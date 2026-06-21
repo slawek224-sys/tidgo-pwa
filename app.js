@@ -46,7 +46,7 @@ const COPY = {
     description: "Description",
     date: "Date",
     save: "Save",
-    saved: "Dropped in the bag. The accountant can pretend to enjoy Monday now.",
+    saved: "Saved.",
     delete: "Delete",
     edit: "Edit",
     close: "Close",
@@ -109,7 +109,7 @@ const COPY = {
     description: "Opis",
     date: "Data",
     save: "Zapisz",
-    saved: "Wrzucone do reklamowki. Ksiegowy moze juz udawac, ze lubi poniedzialki.",
+    saved: "Zapisane.",
     delete: "Usun",
     edit: "Edytuj",
     close: "Zamknij",
@@ -176,7 +176,7 @@ Object.assign(COPY, {
     description: "Descriere",
     date: "Data",
     save: "Salveaza",
-    saved: "Pus in ordine. Contabilul se poate ocupa de restul.",
+    saved: "Salvat.",
     delete: "Sterge",
     cancel: "Anuleaza",
     photoReady: "Poza e gata. O trimit in aplicatie.",
@@ -237,7 +237,7 @@ Object.assign(COPY, {
     description: "Опис",
     date: "Дата",
     save: "Зберегти",
-    saved: "Збережено. Бухгалтер розбереться з розумною частиною.",
+    saved: "Збережено.",
     delete: "Видалити",
     cancel: "Скасувати",
     photoReady: "Фото готове. Надсилаю в застосунок.",
@@ -298,7 +298,7 @@ Object.assign(COPY, {
     description: "Aprašas",
     date: "Data",
     save: "Išsaugoti",
-    saved: "Išsaugota. Buhalteris pasirūpins sudėtinga dalimi.",
+    saved: "Išsaugota.",
     delete: "Ištrinti",
     cancel: "Atšaukti",
     photoReady: "Nuotrauka paruošta. Siunčiu į programą.",
@@ -359,7 +359,7 @@ Object.assign(COPY, {
     description: "Apraksts",
     date: "Datums",
     save: "Saglabāt",
-    saved: "Saglabāts. Grāmatvedis tiks galā ar gudro daļu.",
+    saved: "Saglabāts.",
     delete: "Dzēst",
     cancel: "Atcelt",
     photoReady: "Foto gatavs. Sūtu uz lietotni.",
@@ -420,7 +420,7 @@ Object.assign(COPY, {
     description: "Descripción",
     date: "Fecha",
     save: "Guardar",
-    saved: "Guardado. El contable puede encargarse de la parte lista.",
+    saved: "Guardado.",
     delete: "Eliminar",
     cancel: "Cancelar",
     photoReady: "Foto lista. Enviando a la app.",
@@ -481,7 +481,7 @@ Object.assign(COPY, {
     description: "Описание",
     date: "Дата",
     save: "Запази",
-    saved: "Запазено. Счетоводителят ще се заеме с умната част.",
+    saved: "Запазено.",
     delete: "Изтрий",
     cancel: "Отказ",
     photoReady: "Снимката е готова. Изпращам към приложението.",
@@ -873,7 +873,6 @@ function home() {
     <section class="screen">
       ${topbar("")}
       <h1 class="title">${t("hello")}, ${escapeHtml(state.user.first_name)}.</h1>
-      <p class="subtitle">${t("saved")}</p>
       <button class="nav-row" data-action="summary">
         <span><span class="summary-icon" aria-hidden="true"></span> ${t("summary")}</span><strong>›</strong>
       </button>
