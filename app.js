@@ -578,7 +578,7 @@ const LEGAL_TEXT = {
   en: {
     privacy: {
       short: "TidGo keeps only the data needed to save your income, expenses and monthly summary. Receipt photos and account details are used to run the app, not to sell ads or profile you.",
-      details: "We store your profile, recovery email, receipt photos, receipt details, income entries and settings. The app uses the TidGo API, MongoDB Atlas, Render, OpenAI for receipt reading and Resend for recovery emails. You can delete your account and data in Settings."
+      details: "We store your profile, recovery email, receipt photos, receipt details, income entries and settings. The app uses the TidGo API, MongoDB Atlas, Render, OpenAI for receipt reading, Resend for recovery emails and Google Analytics to understand app usage. You can delete your account and data in Settings."
     },
     terms: {
       short: "TidGo helps organise receipts and prepare a monthly summary for your accountant. It is not accounting, tax, payroll or legal advice.",
@@ -588,7 +588,7 @@ const LEGAL_TEXT = {
   pl: {
     privacy: {
       short: "TidGo przechowuje tylko dane potrzebne do zapisania Twoich przychodow, wydatkow i miesiecznego podsumowania. Zdjecia paragonow i dane konta sa uzywane do dzialania aplikacji, nie do reklam ani profilowania.",
-      details: "Przechowujemy profil, email do odzyskania, zdjecia paragonow, dane paragonow, przychody i ustawienia. Aplikacja uzywa API TidGo, MongoDB Atlas, Render, OpenAI do czytania paragonow i Resend do emaili odzyskiwania. Konto i dane mozesz usunac w Ustawieniach."
+      details: "Przechowujemy profil, email do odzyskania, zdjecia paragonow, dane paragonow, przychody i ustawienia. Aplikacja uzywa API TidGo, MongoDB Atlas, Render, OpenAI do czytania paragonow, Resend do emaili odzyskiwania i Google Analytics do zrozumienia uzycia aplikacji. Konto i dane mozesz usunac w Ustawieniach."
     },
     terms: {
       short: "TidGo pomaga uporzadkowac paragony i przygotowac miesieczne podsumowanie dla ksiegowego. To nie jest ksiegowosc, doradztwo podatkowe, payroll ani porada prawna.",
@@ -598,7 +598,7 @@ const LEGAL_TEXT = {
   ro: {
     privacy: {
       short: "TidGo pastreaza doar datele necesare pentru venituri, cheltuieli si rezumatul lunar. Pozele bonurilor si datele contului sunt folosite pentru aplicatie, nu pentru reclame sau profilare.",
-      details: "Stocam profilul, emailul de recuperare, pozele bonurilor, detaliile bonurilor, veniturile si setarile. Aplicatia foloseste API-ul TidGo, MongoDB Atlas, Render, OpenAI pentru citirea bonurilor si Resend pentru emailuri de recuperare. Iti poti sterge contul si datele din Setari."
+      details: "Stocam profilul, emailul de recuperare, pozele bonurilor, detaliile bonurilor, veniturile si setarile. Aplicatia foloseste API-ul TidGo, MongoDB Atlas, Render, OpenAI pentru citirea bonurilor, Resend pentru emailuri de recuperare si Google Analytics pentru a intelege folosirea aplicatiei. Iti poti sterge contul si datele din Setari."
     },
     terms: {
       short: "TidGo te ajuta sa organizezi bonuri si sa pregatesti un rezumat lunar pentru contabil. Nu este contabilitate, consultanta fiscala, payroll sau consultanta juridica.",
@@ -608,7 +608,7 @@ const LEGAL_TEXT = {
   uk: {
     privacy: {
       short: "TidGo zberihaye lyshe dani, potribni dlya dokhodiv, vytrat i misyachnoho pidsumku. Foto chekiv i dani akauntu vykorystovuyutsya dlya roboty dodatka, ne dlya reklamy abo profilyuvannya.",
-      details: "My zberihayemo profil, email dlya vidnovlennya, foto chekiv, dani chekiv, dokhody ta nalashtuvannya. Dodatok vykorystovuye API TidGo, MongoDB Atlas, Render, OpenAI dlya chytannya chekiv i Resend dlya emailiv vidnovlennya. Akaunt i dani mozhna vydalyty v Nalashtuvannyakh."
+      details: "My zberihayemo profil, email dlya vidnovlennya, foto chekiv, dani chekiv, dokhody ta nalashtuvannya. Dodatok vykorystovuye API TidGo, MongoDB Atlas, Render, OpenAI dlya chytannya chekiv, Resend dlya emailiv vidnovlennya i Google Analytics dlya rozuminnya vykorystannya dodatka. Akaunt i dani mozhna vydalyty v Nalashtuvannyakh."
     },
     terms: {
       short: "TidGo dopomahaye vporiadkuvaty cheky i pidhotuvaty misyachnyi pidsumok dlya bukhhaltera. Tse ne bukhhalteriya, podatkova, payroll abo yurydychna porada.",
@@ -618,7 +618,7 @@ const LEGAL_TEXT = {
   lt: {
     privacy: {
       short: "TidGo saugo tik duomenis, reikalingus pajamoms, islaidoms ir menesio suvestinei. Kvituku nuotraukos ir paskyros duomenys naudojami programai veikti, ne reklamoms ar profiliavimui.",
-      details: "Saugome profili, atkurimo el. pasta, kvituku nuotraukas, kvituku duomenis, pajamas ir nustatymus. Programa naudoja TidGo API, MongoDB Atlas, Render, OpenAI kvitukams nuskaityti ir Resend atkurimo el. laiskams. Paskyra ir duomenis galima istrinti Nustatymuose."
+      details: "Saugome profili, atkurimo el. pasta, kvituku nuotraukas, kvituku duomenis, pajamas ir nustatymus. Programa naudoja TidGo API, MongoDB Atlas, Render, OpenAI kvitukams nuskaityti, Resend atkurimo el. laiskams ir Google Analytics programos naudojimui suprasti. Paskyra ir duomenis galima istrinti Nustatymuose."
     },
     terms: {
       short: "TidGo padeda tvarkyti kvitukus ir paruosti menesio suvestine buhalteriui. Tai nera buhalterija, mokescio, payroll ar teisine konsultacija.",
@@ -628,7 +628,7 @@ const LEGAL_TEXT = {
   lv: {
     privacy: {
       short: "TidGo glaba tikai datus, kas vajadzigi ienakumiem, izdevumiem un menesa kopsavilkumam. Ceku foto un konta dati tiek lietoti lietotnei, ne reklamai vai profilesanai.",
-      details: "Mes glabajam profilu, atjaunosanas e-pastu, ceku foto, ceku datus, ienakumus un iestatijumus. Lietotne izmanto TidGo API, MongoDB Atlas, Render, OpenAI ceku nolasisanai un Resend atjaunosanas e-pastiem. Kontu un datus var dzest Iestatijumos."
+      details: "Mes glabajam profilu, atjaunosanas e-pastu, ceku foto, ceku datus, ienakumus un iestatijumus. Lietotne izmanto TidGo API, MongoDB Atlas, Render, OpenAI ceku nolasisanai, Resend atjaunosanas e-pastiem un Google Analytics lietotnes izmantosanas saprasanai. Kontu un datus var dzest Iestatijumos."
     },
     terms: {
       short: "TidGo palidz sakartot cekus un sagatavot menesa kopsavilkumu gramatvedim. Ta nav gramatvediba, nodoklu, payroll vai juridiska konsultacija.",
@@ -638,7 +638,7 @@ const LEGAL_TEXT = {
   es: {
     privacy: {
       short: "TidGo guarda solo los datos necesarios para ingresos, gastos y resumen mensual. Las fotos de recibos y datos de cuenta se usan para la app, no para vender anuncios ni perfilarte.",
-      details: "Guardamos perfil, email de recuperacion, fotos de recibos, detalles de recibos, ingresos y ajustes. La app usa la API de TidGo, MongoDB Atlas, Render, OpenAI para leer recibos y Resend para emails de recuperacion. Puedes borrar tu cuenta y datos en Ajustes."
+      details: "Guardamos perfil, email de recuperacion, fotos de recibos, detalles de recibos, ingresos y ajustes. La app usa la API de TidGo, MongoDB Atlas, Render, OpenAI para leer recibos, Resend para emails de recuperacion y Google Analytics para entender el uso de la app. Puedes borrar tu cuenta y datos en Ajustes."
     },
     terms: {
       short: "TidGo ayuda a ordenar recibos y preparar un resumen mensual para tu contable. No es contabilidad, asesoria fiscal, payroll ni consejo legal.",
@@ -648,7 +648,7 @@ const LEGAL_TEXT = {
   bg: {
     privacy: {
       short: "TidGo pazhi samo dannite, nuzhni za prihodite, razhodite i mesechnoto obobshtenie. Snimkite na belezhki i dannite za akaunta se polzvat za rabota na prilozhenieto, ne za reklami ili profilirane.",
-      details: "Sahranyavame profil, email za vazstanovyavane, snimki na belezhki, danni za belezhki, prihodi i nastroiki. Prilozhenieto polzva TidGo API, MongoDB Atlas, Render, OpenAI za chetene na belezhki i Resend za emaili za vazstanovyavane. Mozhete da iztriete akaunta i dannite v Nastroiki."
+      details: "Sahranyavame profil, email za vazstanovyavane, snimki na belezhki, danni za belezhki, prihodi i nastroiki. Prilozhenieto polzva TidGo API, MongoDB Atlas, Render, OpenAI za chetene na belezhki, Resend za emaili za vazstanovyavane i Google Analytics za razbirane na upotrebata. Mozhete da iztriete akaunta i dannite v Nastroiki."
     },
     terms: {
       short: "TidGo pomaga da podredite belezhki i da podgotvite mesechno obobshtenie za schetovoditel. Tova ne e schetovodstvo, danachna, payroll ili pravna konsultatsiya.",
