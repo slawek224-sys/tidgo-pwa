@@ -1,4 +1,5 @@
 const API_BASE = "https://donezo-api-53t9.onrender.com";
+const FEEDBACK_EMAIL = "outpost.hub.signal@gmail.com";
 const CURRENCIES = ["GBP", "EUR", "USD", "PLN", "RON", "UAH", "BGN", "CZK", "HUF"];
 const CATEGORIES = ["food", "fuel", "tools", "transport", "other"];
 const LANGUAGES = {
@@ -515,7 +516,11 @@ Object.assign(COPY.en, {
   termsTitle: "Terms",
   legalShort: "Short version",
   legalFull: "Plain details",
-  legalBack: "Back to settings"
+  legalBack: "Back to settings",
+  feedbackTitle: "Send feedback",
+  feedbackHint: "Found something weird? Send a quick message.",
+  feedbackSubject: "TidGo feedback",
+  feedbackBody: "Hi, I tested TidGo and noticed:"
 });
 
 Object.assign(COPY.pl, {
@@ -523,7 +528,11 @@ Object.assign(COPY.pl, {
   termsTitle: "Regulamin",
   legalShort: "Krotko",
   legalFull: "Proste szczegoly",
-  legalBack: "Wroc do ustawien"
+  legalBack: "Wroc do ustawien",
+  feedbackTitle: "Wyslij feedback",
+  feedbackHint: "Cos wyglada dziwnie? Wyslij szybka wiadomosc.",
+  feedbackSubject: "TidGo feedback",
+  feedbackBody: "Czesc, testowalem TidGo i zauwazylem:"
 });
 
 Object.assign(COPY.ro, {
@@ -531,7 +540,11 @@ Object.assign(COPY.ro, {
   termsTitle: "Termeni",
   legalShort: "Pe scurt",
   legalFull: "Detalii simple",
-  legalBack: "Inapoi la setari"
+  legalBack: "Inapoi la setari",
+  feedbackTitle: "Trimite feedback",
+  feedbackHint: "Ai gasit ceva ciudat? Trimite un mesaj scurt.",
+  feedbackSubject: "TidGo feedback",
+  feedbackBody: "Salut, am testat TidGo si am observat:"
 });
 
 Object.assign(COPY.uk, {
@@ -539,7 +552,11 @@ Object.assign(COPY.uk, {
   termsTitle: "\u0423\u043c\u043e\u0432\u0438",
   legalShort: "\u041a\u043e\u0440\u043e\u0442\u043a\u043e",
   legalFull: "\u041f\u0440\u043e\u0441\u0442\u0456 \u0434\u0435\u0442\u0430\u043b\u0456",
-  legalBack: "\u041d\u0430\u0437\u0430\u0434 \u0434\u043e \u043d\u0430\u043b\u0430\u0448\u0442\u0443\u0432\u0430\u043d\u044c"
+  legalBack: "\u041d\u0430\u0437\u0430\u0434 \u0434\u043e \u043d\u0430\u043b\u0430\u0448\u0442\u0443\u0432\u0430\u043d\u044c",
+  feedbackTitle: "\u041d\u0430\u0434\u0456\u0441\u043b\u0430\u0442\u0438 feedback",
+  feedbackHint: "\u0429\u043e\u0441\u044c \u0432\u0438\u0433\u043b\u044f\u0434\u0430\u0454 \u0434\u0438\u0432\u043d\u043e? \u041d\u0430\u0434\u0456\u0448\u043b\u0456\u0442\u044c \u043a\u043e\u0440\u043e\u0442\u043a\u0435 \u043f\u043e\u0432\u0456\u0434\u043e\u043c\u043b\u0435\u043d\u043d\u044f.",
+  feedbackSubject: "TidGo feedback",
+  feedbackBody: "\u041f\u0440\u0438\u0432\u0456\u0442, \u044f \u0442\u0435\u0441\u0442\u0443\u0432\u0430\u0432 TidGo \u0456 \u043f\u043e\u043c\u0456\u0442\u0438\u0432:"
 });
 
 Object.assign(COPY.lt, {
@@ -547,7 +564,11 @@ Object.assign(COPY.lt, {
   termsTitle: "Salygos",
   legalShort: "Trumpai",
   legalFull: "Paprasta informacija",
-  legalBack: "Atgal i nustatymus"
+  legalBack: "Atgal i nustatymus",
+  feedbackTitle: "Siusti feedback",
+  feedbackHint: "Kazkas atrodo keistai? Atsiuskite trumpa zinute.",
+  feedbackSubject: "TidGo feedback",
+  feedbackBody: "Sveiki, isbandziau TidGo ir pastebejau:"
 });
 
 Object.assign(COPY.lv, {
@@ -555,7 +576,11 @@ Object.assign(COPY.lv, {
   termsTitle: "Noteikumi",
   legalShort: "Isuma",
   legalFull: "Vienkarsas detalas",
-  legalBack: "Atpakal uz iestatijumiem"
+  legalBack: "Atpakal uz iestatijumiem",
+  feedbackTitle: "Sutit feedback",
+  feedbackHint: "Kaut kas izskatas divaini? Atsutiet isu zinu.",
+  feedbackSubject: "TidGo feedback",
+  feedbackBody: "Sveiki, es testēju TidGo un pamaniju:"
 });
 
 Object.assign(COPY.es, {
@@ -563,7 +588,11 @@ Object.assign(COPY.es, {
   termsTitle: "Terminos",
   legalShort: "Version corta",
   legalFull: "Detalles simples",
-  legalBack: "Volver a ajustes"
+  legalBack: "Volver a ajustes",
+  feedbackTitle: "Enviar feedback",
+  feedbackHint: "Algo raro? Envia un mensaje corto.",
+  feedbackSubject: "TidGo feedback",
+  feedbackBody: "Hola, he probado TidGo y he notado:"
 });
 
 Object.assign(COPY.bg, {
@@ -571,7 +600,11 @@ Object.assign(COPY.bg, {
   termsTitle: "\u0423\u0441\u043b\u043e\u0432\u0438\u044f",
   legalShort: "\u041d\u0430\u043a\u0440\u0430\u0442\u043a\u043e",
   legalFull: "\u041f\u0440\u043e\u0441\u0442\u0438 \u0434\u0435\u0442\u0430\u0439\u043b\u0438",
-  legalBack: "\u041d\u0430\u0437\u0430\u0434 \u043a\u044a\u043c \u043d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0438"
+  legalBack: "\u041d\u0430\u0437\u0430\u0434 \u043a\u044a\u043c \u043d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0438",
+  feedbackTitle: "\u0418\u0437\u043f\u0440\u0430\u0442\u0438 feedback",
+  feedbackHint: "\u041d\u0435\u0449\u043e \u0438\u0437\u0433\u043b\u0435\u0436\u0434\u0430 \u0441\u0442\u0440\u0430\u043d\u043d\u043e? \u0418\u0437\u043f\u0440\u0430\u0442\u0435\u0442\u0435 \u043a\u0440\u0430\u0442\u043a\u043e \u0441\u044a\u043e\u0431\u0449\u0435\u043d\u0438\u0435.",
+  feedbackSubject: "TidGo feedback",
+  feedbackBody: "\u0417\u0434\u0440\u0430\u0432\u0435\u0439\u0442\u0435, \u0442\u0435\u0441\u0442\u0432\u0430\u0445 TidGo \u0438 \u0437\u0430\u0431\u0435\u043b\u044f\u0437\u0430\u0445:"
 });
 
 const LEGAL_TEXT = {
@@ -984,6 +1017,11 @@ function settings() {
         <button class="primary" type="submit">${t("save")}</button>
       </form>
       <div class="card stack" style="margin-top:18px">
+        <strong>${t("feedbackTitle")}</strong>
+        <span class="hint">${t("feedbackHint")}</span>
+        <button class="secondary" type="button" data-action="feedback">${t("feedbackTitle")}</button>
+      </div>
+      <div class="card stack" style="margin-top:18px">
         <button class="secondary" type="button" data-action="privacy">${t("privacyTitle")}</button>
         <button class="secondary" type="button" data-action="terms">${t("termsTitle")}</button>
       </div>
@@ -1284,6 +1322,12 @@ document.addEventListener("click", async (event) => {
   if (action === "home") return go("home");
   if (action === "recover") return go("recover");
   if (action === "settings") return go("settings");
+  if (action === "feedback") {
+    const subject = encodeURIComponent(t("feedbackSubject"));
+    const body = encodeURIComponent(`${t("feedbackBody")}\n\n`);
+    location.href = `mailto:${FEEDBACK_EMAIL}?subject=${subject}&body=${body}`;
+    return;
+  }
   if (action === "privacy") return go("privacy");
   if (action === "terms") return go("terms");
   if (action === "summary") return go("summary");
