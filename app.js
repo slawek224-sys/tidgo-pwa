@@ -526,6 +526,8 @@ Object.assign(COPY.en, {
     feedbackBody: "Hi, I tested TidGo and noticed:",
     recordsTitle: "Check my records",
     recordsHint: "See what looks ready for your accountant and what may need a proof or a second look.",
+    signOutDevice: "Sign out on this device",
+    signOutHint: "Use this only when you want to test recovery or move to another account. It does not delete your receipts.",
     accountantAccess: "Accountant access",
     accountantEmail: "Accountant email",
     accountantHint: "Accountant portal is coming later. For now, check your records before sending them on.",
@@ -583,6 +585,8 @@ Object.assign(COPY.pl, {
     feedbackBody: "Czesc, testowalem TidGo i zauwazylem:",
     recordsTitle: "Sprawdz moje rekordy",
     recordsHint: "Zobacz, co wyglada gotowe dla ksiegowego, a gdzie moze brakowac dowodu albo drugiego spojrzenia.",
+    signOutDevice: "Wyloguj na tym urzadzeniu",
+    signOutHint: "Uzyj tylko, gdy chcesz przetestowac odzyskiwanie albo przejsc na inne konto. To nie usuwa paragonow.",
     accountantAccess: "Dostep dla ksiegowego",
     accountantEmail: "Email ksiegowego",
     accountantHint: "Portal ksiegowego bedzie pozniej. Na razie sprawdz rekordy przed wyslaniem dalej.",
@@ -830,6 +834,81 @@ function write(key, value) {
 
 function forget(key) {
   localStorage.removeItem(key);
+}
+
+function deviceStore() {
+  return new Promise((resolve, reject) => {
+    if (!("indexedDB" in window)) return resolve(null);
+    const request = indexedDB.open("tidgo_device", 1);
+    request.onupgradeneeded = () => request.result.createObjectStore("session");
+    request.onsuccess = () => resolve(request.result);
+    request.onerror = () => reject(request.error);
+  });
+}
+
+async function deviceGet(key, fallback = null) {
+  try {
+    const db = await deviceStore();
+    if (!db) return fallback;
+    return await new Promise((resolve, reject) => {
+      const request = db.transaction("session", "readonly").objectStore("session").get(key);
+      request.onsuccess = () => resolve(request.result ?? fallback);
+      request.onerror = () => reject(request.error);
+    });
+  } catch {
+    return fallback;
+  }
+}
+
+async function deviceSet(key, value) {
+  write(key, value);
+  try {
+    const db = await deviceStore();
+    if (!db) return;
+    await new Promise((resolve, reject) => {
+      const request = db.transaction("session", "readwrite").objectStore("session").put(value, key);
+      request.onsuccess = resolve;
+      request.onerror = () => reject(request.error);
+    });
+  } catch {
+    // localStorage is the primary path; IndexedDB is an extra belt for PWAs.
+  }
+}
+
+async function deviceForget(key) {
+  forget(key);
+  try {
+    const db = await deviceStore();
+    if (!db) return;
+    await new Promise((resolve, reject) => {
+      const request = db.transaction("session", "readwrite").objectStore("session").delete(key);
+      request.onsuccess = resolve;
+      request.onerror = () => reject(request.error);
+    });
+  } catch {
+    // Nothing else to do.
+  }
+}
+
+async function rememberUser(user) {
+  state.user = user;
+  await deviceSet("rb_user", user);
+  await deviceSet("rb_last_user", {
+    id: user.id,
+    first_name: user.first_name,
+    email: user.email || "",
+    language: user.language || state.language
+  });
+}
+
+async function restoreDeviceUser() {
+  if (state.user?.id) return;
+  const user = await deviceGet("rb_user", null);
+  if (user?.id) {
+    state.user = user;
+    write("rb_user", user);
+    if (user.language) state.language = user.language;
+  }
 }
 
 function money(amount, currency = "GBP") {
@@ -1159,6 +1238,11 @@ function settings() {
       <div class="card stack" style="margin-top:18px">
         <button class="secondary" type="button" data-action="privacy">${t("privacyTitle")}</button>
         <button class="secondary" type="button" data-action="terms">${t("termsTitle")}</button>
+      </div>
+      <div class="card stack" style="margin-top:18px">
+        <strong>${t("signOutDevice")}</strong>
+        <span class="hint">${t("signOutHint")}</span>
+        <button class="secondary" type="button" data-action="signOutDevice">${t("signOutDevice")}</button>
       </div>
       <div class="card stack" style="margin-top:18px">
         <strong>${t("deleteAccount")}</strong>
@@ -1754,9 +1838,17 @@ document.addEventListener("click", async (event) => {
   }
   if (action === "deleteAccount" && confirm(t("deleteWarning"))) {
     await api(`/api/users/${state.user.id}`, { method: "DELETE" });
-    forget("rb_user");
+    await deviceForget("rb_user");
+    await deviceForget("rb_last_user");
     state.user = null;
     return go("onboarding");
+  }
+  if (action === "signOutDevice") {
+    await deviceForget("rb_user");
+    state.user = null;
+    state.receipts = [];
+    state.income = [];
+    return go("recover");
   }
 });
 
@@ -1785,8 +1877,7 @@ document.addEventListener("submit", async (event) => {
           language: state.language
         })
       });
-      state.user = user;
-      write("rb_user", user);
+      await rememberUser(user);
       write("rb_language", state.language);
       await refresh();
       return go("home");
@@ -1798,9 +1889,8 @@ document.addEventListener("submit", async (event) => {
         return toast("Code sent if this email exists.");
       }
       const user = await api("/api/auth/recovery/verify", { method: "POST", body: JSON.stringify({ email: data.email, code: data.code }) });
-      state.user = user;
       state.language = user.language || state.language;
-      write("rb_user", user);
+      await rememberUser(user);
       write("rb_language", state.language);
       await refresh();
       return go("home");
@@ -1873,8 +1963,7 @@ document.addEventListener("submit", async (event) => {
           language: state.language
         })
       });
-      state.user = user;
-      write("rb_user", user);
+      await rememberUser(user);
       write("rb_language", state.language);
       write("rb_humour", state.humour);
       toast(t("saved"));
@@ -1900,6 +1989,7 @@ window.addEventListener("popstate", (event) => {
 
 (async function boot() {
   showSplash();
+  await restoreDeviceUser();
   if (state.user?.id) await refresh();
   if (state.screen === "boot") {
     state.screen = state.user ? "home" : "onboarding";
