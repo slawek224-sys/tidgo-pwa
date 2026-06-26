@@ -638,7 +638,14 @@ Object.assign(COPY.ro, {
   feedbackTitle: "Trimite feedback",
   feedbackHint: "Ai gasit ceva ciudat? Trimite un mesaj scurt.",
   feedbackSubject: "TidGo feedback",
-  feedbackBody: "Salut, am testat TidGo si am observat:"
+  feedbackBody: "Salut, am testat TidGo si am observat:",
+  copyEmail: "Copiaza email",
+  emailCopied: "Email copiat.",
+  openEmailApp: "Deschide email",
+  recordsTitle: "Verifica evidenta",
+  recordsHint: "Vezi ce pare pregatit pentru contabil si ce poate avea nevoie de dovada sau verificare.",
+  signOutDevice: "Delogare pe acest dispozitiv",
+  signOutHint: "Foloseste doar pentru testarea recuperarii sau pentru alt cont. Nu sterge bonurile."
 });
 
 Object.assign(COPY.uk, {
@@ -650,7 +657,14 @@ Object.assign(COPY.uk, {
   feedbackTitle: "\u041d\u0430\u0434\u0456\u0441\u043b\u0430\u0442\u0438 feedback",
   feedbackHint: "\u0429\u043e\u0441\u044c \u0432\u0438\u0433\u043b\u044f\u0434\u0430\u0454 \u0434\u0438\u0432\u043d\u043e? \u041d\u0430\u0434\u0456\u0448\u043b\u0456\u0442\u044c \u043a\u043e\u0440\u043e\u0442\u043a\u0435 \u043f\u043e\u0432\u0456\u0434\u043e\u043c\u043b\u0435\u043d\u043d\u044f.",
   feedbackSubject: "TidGo feedback",
-  feedbackBody: "\u041f\u0440\u0438\u0432\u0456\u0442, \u044f \u0442\u0435\u0441\u0442\u0443\u0432\u0430\u0432 TidGo \u0456 \u043f\u043e\u043c\u0456\u0442\u0438\u0432:"
+  feedbackBody: "\u041f\u0440\u0438\u0432\u0456\u0442, \u044f \u0442\u0435\u0441\u0442\u0443\u0432\u0430\u0432 TidGo \u0456 \u043f\u043e\u043c\u0456\u0442\u0438\u0432:",
+  copyEmail: "\u0421\u043a\u043e\u043f\u0456\u044e\u0432\u0430\u0442\u0438 email",
+  emailCopied: "Email \u0441\u043a\u043e\u043f\u0456\u0439\u043e\u0432\u0430\u043d\u043e.",
+  openEmailApp: "\u0412\u0456\u0434\u043a\u0440\u0438\u0442\u0438 email",
+  recordsTitle: "\u041f\u0435\u0440\u0435\u0432\u0456\u0440\u0438\u0442\u0438 \u043c\u043e\u0457 \u0437\u0430\u043f\u0438\u0441\u0438",
+  recordsHint: "\u041f\u043e\u0434\u0438\u0432\u0456\u0442\u044c\u0441\u044f, \u0449\u043e \u0433\u043e\u0442\u043e\u0432\u0435 \u0434\u043b\u044f \u0431\u0443\u0445\u0433\u0430\u043b\u0442\u0435\u0440\u0430, \u0430 \u0434\u0435 \u043c\u043e\u0436\u0435 \u0431\u0440\u0430\u043a\u0443\u0432\u0430\u0442\u0438 \u0434\u043e\u043a\u0430\u0437\u0443.",
+  signOutDevice: "\u0412\u0438\u0439\u0442\u0438 \u043d\u0430 \u0446\u044c\u043e\u043c\u0443 \u043f\u0440\u0438\u0441\u0442\u0440\u043e\u0457",
+  signOutHint: "\u0422\u0456\u043b\u044c\u043a\u0438 \u0434\u043b\u044f \u0442\u0435\u0441\u0442\u0443 \u0432\u0456\u0434\u043d\u043e\u0432\u043b\u0435\u043d\u043d\u044f \u0430\u0431\u043e \u0456\u043d\u0448\u043e\u0433\u043e \u0430\u043a\u0430\u0443\u043d\u0442\u0430. \u0426\u0435 \u043d\u0435 \u0432\u0438\u0434\u0430\u043b\u044f\u0454 \u0447\u0435\u043a\u0438."
 });
 
 Object.assign(COPY.lt, {
@@ -662,7 +676,14 @@ Object.assign(COPY.lt, {
   feedbackTitle: "Siusti feedback",
   feedbackHint: "Kazkas atrodo keistai? Atsiuskite trumpa zinute.",
   feedbackSubject: "TidGo feedback",
-  feedbackBody: "Sveiki, isbandziau TidGo ir pastebejau:"
+  feedbackBody: "Sveiki, isbandziau TidGo ir pastebejau:",
+  copyEmail: "Kopijuoti el. pasta",
+  emailCopied: "El. pastas nukopijuotas.",
+  openEmailApp: "Atidaryti el. pasta",
+  recordsTitle: "Patikrinti irasus",
+  recordsHint: "Paziurekite, kas paruosta buhalteriui, o kur gali trukti irodymo ar patikrinimo.",
+  signOutDevice: "Atsijungti siame irenginyje",
+  signOutHint: "Naudokite tik atkuriant paskyra testui arba kitai paskyrai. Kvitai neistrinami."
 });
 
 Object.assign(COPY.lv, {
@@ -677,6 +698,17 @@ Object.assign(COPY.lv, {
   feedbackBody: "Sveiki, es testēju TidGo un pamaniju:"
 });
 
+Object.assign(COPY.lv, {
+  feedbackBody: "Sveiki, es testeju TidGo un pamaniju:",
+  copyEmail: "Kopet email",
+  emailCopied: "Email nokopets.",
+  openEmailApp: "Atvert email",
+  recordsTitle: "Parbaudit ierakstus",
+  recordsHint: "Skatiet, kas ir gatavs gramatvedim un kur var trukt pieradijuma vai parbaudes.",
+  signOutDevice: "Izrakstities saja ierice",
+  signOutHint: "Lietojiet tikai atjaunosanas testam vai citam kontam. Ceki netiek dzesti."
+});
+
 Object.assign(COPY.es, {
   privacyTitle: "Privacidad",
   termsTitle: "Terminos",
@@ -686,7 +718,14 @@ Object.assign(COPY.es, {
   feedbackTitle: "Enviar feedback",
   feedbackHint: "Algo raro? Envia un mensaje corto.",
   feedbackSubject: "TidGo feedback",
-  feedbackBody: "Hola, he probado TidGo y he notado:"
+  feedbackBody: "Hola, he probado TidGo y he notado:",
+  copyEmail: "Copiar email",
+  emailCopied: "Email copiado.",
+  openEmailApp: "Abrir email",
+  recordsTitle: "Revisar mis registros",
+  recordsHint: "Mira que parece listo para tu contable y que puede necesitar prueba o revision.",
+  signOutDevice: "Cerrar sesion en este dispositivo",
+  signOutHint: "Usalo solo para probar recuperacion o cambiar de cuenta. No borra tus recibos."
 });
 
 Object.assign(COPY.bg, {
@@ -698,7 +737,14 @@ Object.assign(COPY.bg, {
   feedbackTitle: "\u0418\u0437\u043f\u0440\u0430\u0442\u0438 feedback",
   feedbackHint: "\u041d\u0435\u0449\u043e \u0438\u0437\u0433\u043b\u0435\u0436\u0434\u0430 \u0441\u0442\u0440\u0430\u043d\u043d\u043e? \u0418\u0437\u043f\u0440\u0430\u0442\u0435\u0442\u0435 \u043a\u0440\u0430\u0442\u043a\u043e \u0441\u044a\u043e\u0431\u0449\u0435\u043d\u0438\u0435.",
   feedbackSubject: "TidGo feedback",
-  feedbackBody: "\u0417\u0434\u0440\u0430\u0432\u0435\u0439\u0442\u0435, \u0442\u0435\u0441\u0442\u0432\u0430\u0445 TidGo \u0438 \u0437\u0430\u0431\u0435\u043b\u044f\u0437\u0430\u0445:"
+  feedbackBody: "\u0417\u0434\u0440\u0430\u0432\u0435\u0439\u0442\u0435, \u0442\u0435\u0441\u0442\u0432\u0430\u0445 TidGo \u0438 \u0437\u0430\u0431\u0435\u043b\u044f\u0437\u0430\u0445:",
+  copyEmail: "\u041a\u043e\u043f\u0438\u0440\u0430\u0439 email",
+  emailCopied: "Email \u0435 \u043a\u043e\u043f\u0438\u0440\u0430\u043d.",
+  openEmailApp: "\u041e\u0442\u0432\u043e\u0440\u0438 email",
+  recordsTitle: "\u041f\u0440\u043e\u0432\u0435\u0440\u0438 \u0437\u0430\u043f\u0438\u0441\u0438\u0442\u0435",
+  recordsHint: "\u0412\u0438\u0436\u0442\u0435 \u043a\u043e\u0435 \u0435 \u0433\u043e\u0442\u043e\u0432\u043e \u0437\u0430 \u0441\u0447\u0435\u0442\u043e\u0432\u043e\u0434\u0438\u0442\u0435\u043b \u0438 \u043a\u044a\u0434\u0435 \u043c\u043e\u0436\u0435 \u0434\u0430 \u043b\u0438\u043f\u0441\u0432\u0430 \u0434\u043e\u043a\u0430\u0437\u0430\u0442\u0435\u043b\u0441\u0442\u0432\u043e.",
+  signOutDevice: "\u0418\u0437\u0445\u043e\u0434 \u043e\u0442 \u0442\u043e\u0432\u0430 \u0443\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e",
+  signOutHint: "\u0418\u0437\u043f\u043e\u043b\u0437\u0432\u0430\u0439\u0442\u0435 \u0441\u0430\u043c\u043e \u0437\u0430 \u0442\u0435\u0441\u0442 \u043d\u0430 \u0432\u044a\u0437\u0441\u0442\u0430\u043d\u043e\u0432\u044f\u0432\u0430\u043d\u0435 \u0438\u043b\u0438 \u0434\u0440\u0443\u0433 \u0430\u043a\u0430\u0443\u043d\u0442. \u041d\u0435 \u0442\u0440\u0438\u0435 \u0431\u0435\u043b\u0435\u0436\u043a\u0438."
 });
 
 const LEGAL_TEXT = {
@@ -973,7 +1019,7 @@ function shell(content) {
 function topbar(title, back = false) {
   return `
     <div class="topbar">
-      ${back ? `<button class="icon-btn" data-action="back" aria-label="Back">←</button>` : `<div class="brand"><img src="./icon-192.png" alt=""><span>TidGo</span></div>`}
+      ${back ? `<button class="icon-btn" data-action="back" aria-label="Back">←</button>` : `<div class="brand"><img src="/icon-192.png" alt=""><span>TidGo</span></div>`}
       <strong>${title || ""}</strong>
       ${state.user && !back ? `<button class="icon-btn" data-action="settings" aria-label="${t("settings")}">⚙</button>` : `<span style="width:44px"></span>`}
     </div>
@@ -2174,3 +2220,4 @@ window.addEventListener("popstate", (event) => {
   history.replaceState(routeState(), "", location.pathname + location.search);
   setTimeout(render, 450);
 })();
+
