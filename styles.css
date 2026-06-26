@@ -397,6 +397,16 @@ button {
   color: var(--text);
 }
 
+.email-line {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--soft);
+  color: var(--blue-dark);
+  font-weight: 850;
+  overflow-wrap: anywhere;
+  padding: 12px;
+}
+
 .portal-head {
   display: flex;
   justify-content: space-between;

@@ -518,12 +518,17 @@ Object.assign(COPY.en, {
   legalFull: "Plain details",
   legalBack: "Back to settings",
     feedbackTitle: "Send feedback",
-    feedbackHint: "Found something weird? Send a quick message.",
+    feedbackHint: "Found something weird? Send a quick message to:",
+    copyEmail: "Copy email",
+    emailCopied: "Email copied.",
+    openEmailApp: "Open email app",
     feedbackSubject: "TidGo feedback",
     feedbackBody: "Hi, I tested TidGo and noticed:",
+    recordsTitle: "Check my records",
+    recordsHint: "See what looks ready for your accountant and what may need a proof or a second look.",
     accountantAccess: "Accountant access",
     accountantEmail: "Accountant email",
-    accountantHint: "Prototype: invite your accountant and preview the read-only portal.",
+    accountantHint: "Accountant portal is coming later. For now, check your records before sending them on.",
     saveAccountant: "Save accountant",
     inviteAccountant: "Invite accountant",
     previewAccountant: "Check my records",
@@ -570,12 +575,17 @@ Object.assign(COPY.pl, {
   legalFull: "Proste szczegoly",
   legalBack: "Wroc do ustawien",
     feedbackTitle: "Wyslij feedback",
-    feedbackHint: "Cos wyglada dziwnie? Wyslij szybka wiadomosc.",
+    feedbackHint: "Cos wyglada dziwnie? Wyslij szybka wiadomosc na:",
+    copyEmail: "Kopiuj email",
+    emailCopied: "Email skopiowany.",
+    openEmailApp: "Otworz email",
     feedbackSubject: "TidGo feedback",
     feedbackBody: "Czesc, testowalem TidGo i zauwazylem:",
+    recordsTitle: "Sprawdz moje rekordy",
+    recordsHint: "Zobacz, co wyglada gotowe dla ksiegowego, a gdzie moze brakowac dowodu albo drugiego spojrzenia.",
     accountantAccess: "Dostep dla ksiegowego",
     accountantEmail: "Email ksiegowego",
-    accountantHint: "Prototyp: zapros ksiegowego i podejrzyj portal tylko do odczytu.",
+    accountantHint: "Portal ksiegowego bedzie pozniej. Na razie sprawdz rekordy przed wyslaniem dalej.",
     saveAccountant: "Zapisz ksiegowego",
     inviteAccountant: "Zapros ksiegowego",
     previewAccountant: "Sprawdz moje rekordy",
@@ -1132,19 +1142,19 @@ function settings() {
         </select></label>
         <button class="primary" type="submit">${t("save")}</button>
       </form>
-      <form class="card stack" id="accountantForm" style="margin-top:18px">
-        <strong>${t("accountantAccess")}</strong>
-        <span class="hint">${t("accountantHint")}</span>
-        <label class="field"><span>${t("accountantEmail")}</span><input class="input" name="accountant_email" type="email" value="${escapeAttr(state.accountantEmail)}" placeholder="accountant@example.com"></label>
-        <button class="primary" type="submit">${t("saveAccountant")}</button>
-        <button class="secondary" type="button" data-action="inviteAccountant">${t("inviteAccountant")}</button>
+      <div class="card stack" style="margin-top:18px">
+        <strong>${t("recordsTitle")}</strong>
+        <span class="hint">${t("recordsHint")}</span>
         <button class="secondary" type="button" data-action="accountantPortal">${t("previewAccountant")}</button>
-        ${state.accountantEmail ? `<button class="danger" type="button" data-action="revokeAccountant">${t("revokeAccess")}</button>` : ""}
-      </form>
+      </div>
       <div class="card stack" style="margin-top:18px">
         <strong>${t("feedbackTitle")}</strong>
         <span class="hint">${t("feedbackHint")}</span>
-        <button class="secondary" type="button" data-action="feedback">${t("feedbackTitle")}</button>
+        <div class="email-line">${FEEDBACK_EMAIL}</div>
+        <div class="grid-2">
+          <button class="secondary" type="button" data-action="copyFeedbackEmail">${t("copyEmail")}</button>
+          <button class="secondary" type="button" data-action="feedback">${t("openEmailApp")}</button>
+        </div>
       </div>
       <div class="card stack" style="margin-top:18px">
         <button class="secondary" type="button" data-action="privacy">${t("privacyTitle")}</button>
@@ -1620,6 +1630,15 @@ document.addEventListener("click", async (event) => {
     const subject = encodeURIComponent(t("feedbackSubject"));
     const body = encodeURIComponent(`${t("feedbackBody")}\n\n`);
     location.href = `mailto:${FEEDBACK_EMAIL}?subject=${subject}&body=${body}`;
+    return;
+  }
+  if (action === "copyFeedbackEmail") {
+    try {
+      await navigator.clipboard.writeText(FEEDBACK_EMAIL);
+      toast(t("emailCopied"));
+    } catch {
+      toast(FEEDBACK_EMAIL);
+    }
     return;
   }
   if (action === "privacy") return go("privacy");
