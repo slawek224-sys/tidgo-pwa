@@ -15,7 +15,7 @@ const LANGUAGES = {
 
 const COPY = {
   en: {
-    intro: "Receipts in, monthly summary out. No accounting theatre.",
+    intro: "Receipts in. Tidy records out. Ready for your accountant.",
     chooseLanguage: "Choose language",
     firstName: "First name",
     trade: "Trade or job",
@@ -78,7 +78,7 @@ const COPY = {
     other: "Other"
   },
   pl: {
-    intro: "Fotka paragonu wchodzi, podsumowanie miesiaca wychodzi. Bez ksiegowego teatru.",
+    intro: "Paragony wchodza. Porzadne rekordy wychodza. Gotowe dla ksiegowego.",
     chooseLanguage: "Wybierz jezyk",
     firstName: "Imie",
     trade: "Zawod",
@@ -517,10 +517,50 @@ Object.assign(COPY.en, {
   legalShort: "Short version",
   legalFull: "Plain details",
   legalBack: "Back to settings",
-  feedbackTitle: "Send feedback",
-  feedbackHint: "Found something weird? Send a quick message.",
-  feedbackSubject: "TidGo feedback",
-  feedbackBody: "Hi, I tested TidGo and noticed:"
+    feedbackTitle: "Send feedback",
+    feedbackHint: "Found something weird? Send a quick message.",
+    feedbackSubject: "TidGo feedback",
+    feedbackBody: "Hi, I tested TidGo and noticed:",
+    accountantAccess: "Accountant access",
+    accountantEmail: "Accountant email",
+    accountantHint: "Prototype: invite your accountant and preview the read-only portal.",
+    saveAccountant: "Save accountant",
+    inviteAccountant: "Invite accountant",
+    previewAccountant: "Check my records",
+    revokeAccess: "Revoke access",
+    accountantView: "What your accountant sees",
+    readOnly: "Read-only",
+    lastReceipt: "Last receipt",
+    status: "Status",
+    ok: "OK",
+    chase: "Chase",
+    downloadCsv: "Download CSV",
+    accountantInviteSubject: "TidGo accountant access",
+    accountantInviteBody: "Hi, I use TidGo to keep receipts and income tidy. I would like to connect my records with you when accountant access is ready.",
+    accountantHeroToast: "Hero mode unlocked. The records are tidy and the plastic bag can retire.",
+    missingMonths: "Missing months",
+    needsReview: "Needs review",
+    chaseClient: "Chase client",
+    accountantPack: "Download accountant pack",
+    noRecords: "No records",
+    missingMerchant: "Missing shop",
+    missingCategory: "Missing category",
+    possibleDuplicate: "Possible duplicate",
+    incomeWithoutProof: "Income proof missing",
+    chaseSubject: "Missing TidGo records",
+    chaseBody: "Hi, please add your missing receipts and income proof in TidGo when you can. It helps me prepare your records without the last-minute panic.",
+    accountantPackToast: "Accountant pack started. CSV today, calmer January tomorrow.",
+    addClient: "Add client",
+    importClientEmails: "Import client emails",
+    inviteClients: "Invite clients",
+    clientEmails: "Client emails",
+    accountantDemoHint: "Accountant demo: paste one or many client emails, then invite them to TidGo.",
+    attachProof: "Attach proof",
+    proofAttached: "Proof attached",
+    viewProof: "View proof",
+    takePhoto: "Take photo",
+    uploadFile: "Upload file",
+    proofHint: "Add a payslip, CIS statement, remittance note or screenshot. Amount stays manual."
 });
 
 Object.assign(COPY.pl, {
@@ -529,10 +569,50 @@ Object.assign(COPY.pl, {
   legalShort: "Krotko",
   legalFull: "Proste szczegoly",
   legalBack: "Wroc do ustawien",
-  feedbackTitle: "Wyslij feedback",
-  feedbackHint: "Cos wyglada dziwnie? Wyslij szybka wiadomosc.",
-  feedbackSubject: "TidGo feedback",
-  feedbackBody: "Czesc, testowalem TidGo i zauwazylem:"
+    feedbackTitle: "Wyslij feedback",
+    feedbackHint: "Cos wyglada dziwnie? Wyslij szybka wiadomosc.",
+    feedbackSubject: "TidGo feedback",
+    feedbackBody: "Czesc, testowalem TidGo i zauwazylem:",
+    accountantAccess: "Dostep dla ksiegowego",
+    accountantEmail: "Email ksiegowego",
+    accountantHint: "Prototyp: zapros ksiegowego i podejrzyj portal tylko do odczytu.",
+    saveAccountant: "Zapisz ksiegowego",
+    inviteAccountant: "Zapros ksiegowego",
+    previewAccountant: "Sprawdz moje rekordy",
+    revokeAccess: "Cofnij dostep",
+    accountantView: "Co zobaczy ksiegowy",
+    readOnly: "Tylko do odczytu",
+    lastReceipt: "Ostatni paragon",
+    status: "Status",
+    ok: "OK",
+    chase: "Pogonic",
+    downloadCsv: "Pobierz CSV",
+    accountantInviteSubject: "Dostep ksiegowego TidGo",
+    accountantInviteBody: "Czesc, uzywam TidGo do porzadkowania paragonow i przychodow. Chcialbym polaczyc moje rekordy z Toba, kiedy dostep dla ksiegowego bedzie gotowy.",
+    accountantHeroToast: "Tryb bohatera odblokowany. Rekordy sa w porzadku, reklamowka moze isc na emeryture.",
+    missingMonths: "Brakujace miesiace",
+    needsReview: "Do sprawdzenia",
+    chaseClient: "Pogon klienta",
+    accountantPack: "Pobierz paczke ksiegowego",
+    noRecords: "Brak rekordow",
+    missingMerchant: "Brakuje sklepu",
+    missingCategory: "Brakuje kategorii",
+    possibleDuplicate: "Mozliwy duplikat",
+    incomeWithoutProof: "Brakuje dowodu przychodu",
+    chaseSubject: "Brakujace rekordy TidGo",
+    chaseBody: "Czesc, dodaj prosze brakujace paragony i dowody przychodu w TidGo, kiedy mozesz. To pomoze przygotowac rekordy bez paniki na ostatnia chwile.",
+    accountantPackToast: "Paczka ksiegowego ruszyla. CSV dzisiaj, spokojniejszy styczen jutro.",
+    addClient: "Dodaj klienta",
+    importClientEmails: "Importuj emaile klientow",
+    inviteClients: "Zapros klientow",
+    clientEmails: "Emaile klientow",
+    accountantDemoHint: "Demo ksiegowego: wklej jeden lub wiele emaili klientow, potem zapros ich do TidGo.",
+    attachProof: "Dodaj dowod",
+    proofAttached: "Dowod dodany",
+    viewProof: "Zobacz dowod",
+    takePhoto: "Zrob zdjecie",
+    uploadFile: "Wgraj plik",
+    proofHint: "Dodaj payslip, CIS statement, remittance note albo screenshot. Kwote wpisujesz recznie."
 });
 
 Object.assign(COPY.ro, {
@@ -694,6 +774,8 @@ const state = {
   user: read("rb_user", null),
   language: read("rb_language", "en"),
   humour: read("rb_humour", "funny"),
+  accountantEmail: read("rb_accountant_email", ""),
+  incomeProofs: read("rb_income_proofs", {}),
   screen: "boot",
   receipts: [],
   income: [],
@@ -755,6 +837,17 @@ function monthLabel(date = state.summaryDate) {
 function normalizeAmount(value) {
   const amount = Number(String(value || "").replace(",", ".").trim());
   return Number.isFinite(amount) ? amount : NaN;
+}
+
+function proofForIncome(id) {
+  return state.incomeProofs?.[id] || null;
+}
+
+function attachIncomeProofs(items) {
+  return (items || []).map((item) => {
+    const proof = proofForIncome(item.id);
+    return proof ? { ...item, proof_name: proof.name, proof_type: proof.type, proof_base64: proof.data } : item;
+  });
 }
 
 function routeState() {
@@ -839,7 +932,7 @@ async function refresh() {
       api(`/api/income/${state.user.id}`)
     ]);
     state.receipts = receipts || [];
-    state.income = income || [];
+    state.income = attachIncomeProofs(income);
   } catch (error) {
     toast(error.message || t("backendDown"));
   }
@@ -859,6 +952,7 @@ function render() {
     incomeForm,
     summary,
     settings,
+    accountantPortal,
     privacy,
     terms
   };
@@ -951,6 +1045,16 @@ function incomeForm() {
         <label class="field"><span>${t("currency")}</span><select class="select" name="currency">${currencyOptions("GBP")}</select></label>
         <label class="field"><span>${t("description")}</span><textarea class="textarea" name="description"></textarea></label>
         <label class="field"><span>${t("date")}</span><input class="input" type="date" name="date" value="${new Date().toISOString().slice(0, 10)}"></label>
+        <div class="field">
+          <span>${t("attachProof")}</span>
+          <div class="proof-actions">
+            <button class="secondary" type="button" data-action="pickIncomeProofPhoto">${t("takePhoto")}</button>
+            <button class="secondary" type="button" data-action="pickIncomeProofFile">${t("uploadFile")}</button>
+          </div>
+          <span class="hint">${t("proofHint")}</span>
+          <input class="hidden" type="file" name="proof_photo" accept="image/*" capture="environment">
+          <input class="hidden" type="file" name="proof_file" accept="image/*,.pdf">
+        </div>
         <button class="primary" type="submit">${t("save")}</button>
       </form>
     </section>
@@ -967,6 +1071,18 @@ function incomeDetail() {
         <label class="field"><span>${t("amount")}</span><input class="input" name="amount" inputmode="decimal" value="${entry.amount || 0}"></label>
         <label class="field"><span>${t("currency")}</span><select class="select" name="currency">${currencyOptions(entry.currency || "GBP")}</select></label>
         <label class="field"><span>${t("description")}</span><textarea class="textarea" name="description">${escapeHtml(entry.description || "")}</textarea></label>
+        <div class="field">
+          <span>${t("attachProof")}</span>
+          <div class="proof-actions">
+            <button class="secondary" type="button" data-action="pickIncomeProofPhoto">${t("takePhoto")}</button>
+            <button class="secondary" type="button" data-action="pickIncomeProofFile">${t("uploadFile")}</button>
+          </div>
+          <span class="hint">${t("proofHint")}</span>
+          <input class="hidden" type="file" name="proof_photo" accept="image/*" capture="environment">
+          <input class="hidden" type="file" name="proof_file" accept="image/*,.pdf">
+        </div>
+        ${entry.proof_name ? `<div class="card muted">${t("proofAttached")}: ${escapeHtml(entry.proof_name)}</div>` : ""}
+        ${entry.proof_base64 ? `<button class="secondary" type="button" data-action="viewIncomeProof">${t("viewProof")}</button>` : ""}
         <button class="primary" type="submit">${t("save")}</button>
       </form>
       <button class="danger" style="width:100%;margin-top:12px" data-action="deleteIncome">${t("delete")}</button>
@@ -1016,6 +1132,15 @@ function settings() {
         </select></label>
         <button class="primary" type="submit">${t("save")}</button>
       </form>
+      <form class="card stack" id="accountantForm" style="margin-top:18px">
+        <strong>${t("accountantAccess")}</strong>
+        <span class="hint">${t("accountantHint")}</span>
+        <label class="field"><span>${t("accountantEmail")}</span><input class="input" name="accountant_email" type="email" value="${escapeAttr(state.accountantEmail)}" placeholder="accountant@example.com"></label>
+        <button class="primary" type="submit">${t("saveAccountant")}</button>
+        <button class="secondary" type="button" data-action="inviteAccountant">${t("inviteAccountant")}</button>
+        <button class="secondary" type="button" data-action="accountantPortal">${t("previewAccountant")}</button>
+        ${state.accountantEmail ? `<button class="danger" type="button" data-action="revokeAccountant">${t("revokeAccess")}</button>` : ""}
+      </form>
       <div class="card stack" style="margin-top:18px">
         <strong>${t("feedbackTitle")}</strong>
         <span class="hint">${t("feedbackHint")}</span>
@@ -1030,6 +1155,59 @@ function settings() {
         <span class="hint">${t("deleteWarning")}</span>
         <button class="danger" data-action="deleteAccount">${t("deleteAccount")}</button>
       </div>
+    </section>
+  `);
+}
+
+function accountantPortal() {
+  const { receipts, income } = monthEntries();
+  const normal = receipts.filter((item) => !item.is_client_expense);
+  const client = receipts.filter((item) => item.is_client_expense);
+  const last = transactions()[0];
+  const lastDate = last ? day(last.timestamp) : t("unknown");
+  const needsChase = !last || daysSince(last.timestamp) > 21;
+  const monthStats = recentMonthStats();
+  const missing = monthStats.filter((item) => item.total === 0);
+  const flags = reviewFlags();
+  shell(`
+    <section class="screen">
+      ${topbar(t("accountantView"), true)}
+      <div class="card stack">
+        <div class="portal-head">
+          <span>
+            <strong>${escapeHtml(state.user.first_name || "Client")}</strong>
+            <small>${escapeHtml(state.user.email || "")}</small>
+          </span>
+          <span class="pill">${t("readOnly")}</span>
+        </div>
+        <div class="total-row"><span>${t("lastReceipt")}</span><strong>${lastDate}</strong></div>
+        <div class="total-row"><span>${t("status")}</span><strong class="${needsChase ? "status-warn" : "status-ok"}">${needsChase ? t("chase") : t("ok")}</strong></div>
+      </div>
+      <div class="insight-grid">
+        <div class="insight-card"><span>${t("missingMonths")}</span><strong>${missing.length}</strong></div>
+        <div class="insight-card"><span>${t("needsReview")}</span><strong>${flags.length}</strong></div>
+      </div>
+      <div class="card stack">
+        <strong>${t("missingMonths")}</strong>
+        <div class="month-health">
+          ${monthStats.map((item) => `<span class="${item.total ? "health-ok" : "health-missing"}">${escapeHtml(item.label)}: ${item.total ? item.total : t("noRecords")}</span>`).join("")}
+        </div>
+      </div>
+      <div class="card stack">
+        <strong>${t("needsReview")}</strong>
+        ${flags.length ? `<div class="flag-list">${flags.slice(0, 6).map((flag) => `<span>${escapeHtml(flag)}</span>`).join("")}</div>` : `<span class="hint">${t("ok")}</span>`}
+      </div>
+      <div class="month-switcher">
+        <button class="icon-btn" data-action="prevMonth">&#8249;</button>
+        <span>${monthLabel()}</span>
+        <button class="icon-btn" data-action="nextMonth">&#8250;</button>
+      </div>
+      <div class="total-box">
+        <div class="total-row"><span>${t("income")}</span><strong>${formatTotals(income)}</strong></div>
+        <div class="total-row"><span>${t("expenses")}</span><strong>${formatTotals(normal)}</strong></div>
+        <div class="total-row"><span>${t("client")}</span><strong>${formatTotals(client)}</strong></div>
+      </div>
+      <div class="list">${[...income.map(incomeSummaryRow), ...receipts.map(receiptSummaryRow)].join("") || `<div class="empty">${t("noEntries")}</div>`}</div>
     </section>
   `);
 }
@@ -1110,6 +1288,101 @@ function monthEntries() {
   };
 }
 
+function daysSince(value) {
+  if (!value) return Infinity;
+  return Math.floor((Date.now() - new Date(value).getTime()) / 86400000);
+}
+
+function monthKey(date) {
+  const value = new Date(date);
+  return `${value.getFullYear()}-${String(value.getMonth() + 1).padStart(2, "0")}`;
+}
+
+function shortMonthLabel(date) {
+  return new Date(date).toLocaleDateString(undefined, { month: "short", year: "numeric" });
+}
+
+function recentMonthStats(count = 6) {
+  return Array.from({ length: count }, (_, index) => {
+    const date = new Date();
+    date.setDate(1);
+    date.setMonth(date.getMonth() - (count - 1 - index));
+    const key = monthKey(date);
+    const receiptCount = state.receipts.filter((item) => monthKey(item.timestamp) === key).length;
+    const incomeCount = state.income.filter((item) => monthKey(item.timestamp) === key).length;
+    return { key, label: shortMonthLabel(date), receiptCount, incomeCount, total: receiptCount + incomeCount };
+  });
+}
+
+function reviewFlags() {
+  const { receipts, income } = monthEntries();
+  const flags = [];
+  receipts.forEach((item) => {
+    if (!item.merchant) flags.push(t("missingMerchant"));
+    if (!item.category || item.category === "other") flags.push(t("missingCategory"));
+  });
+  income.forEach((item) => {
+    if (!item.proof_base64 && !item.proof_name) flags.push(t("incomeWithoutProof"));
+  });
+  const seen = new Set();
+  receipts.forEach((item) => {
+    const key = [new Date(item.timestamp).toISOString().slice(0, 10), item.amount, item.currency, item.merchant || ""].join("|");
+    if (seen.has(key)) flags.push(t("possibleDuplicate"));
+    seen.add(key);
+  });
+  return flags;
+}
+
+function csvCell(value) {
+  return `"${String(value ?? "").replace(/"/g, '""')}"`;
+}
+
+function accountantCsv() {
+  const { receipts, income } = monthEntries();
+  const rows = [
+    ["type", "date", "amount", "currency", "merchant_or_description", "tidgo_category", "paid_for_client", "proof_available", "needs_review", "accountant_category", "accountant_notes", "approved"],
+    ...income.map((item) => [
+      "income",
+      new Date(item.timestamp).toISOString().slice(0, 10),
+      Number(item.amount || 0).toFixed(2),
+      item.currency || "GBP",
+      item.description || "",
+      "",
+      "no",
+      item.proof_base64 || item.proof_name ? "yes" : "no",
+      item.proof_base64 || item.proof_name ? "" : t("incomeWithoutProof"),
+      "",
+      "",
+      ""
+    ]),
+    ...receipts.map((item) => [
+      item.is_client_expense ? "paid_for_client" : "expense",
+      new Date(item.timestamp).toISOString().slice(0, 10),
+      Number(item.amount || 0).toFixed(2),
+      item.currency || "GBP",
+      item.merchant || "",
+      item.category || "",
+      item.is_client_expense ? "yes" : "no",
+      item.image_base64 ? "yes" : "no",
+      [!item.merchant ? t("missingMerchant") : "", (!item.category || item.category === "other") ? t("missingCategory") : ""].filter(Boolean).join("; "),
+      "",
+      "",
+      ""
+    ])
+  ];
+  return rows.map((row) => row.map(csvCell).join(",")).join("\n");
+}
+
+function downloadFile(name, content, type = "text/plain") {
+  const blob = new Blob([content], { type });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = name;
+  link.click();
+  URL.revokeObjectURL(url);
+}
+
 function totals(items) {
   return items.reduce((acc, item) => {
     const currency = (item.currency || "GBP").toUpperCase();
@@ -1170,6 +1443,10 @@ function fileToDataUrl(file) {
     reader.onerror = reject;
     reader.readAsDataURL(file);
   });
+}
+
+function incomeProofFile(form) {
+  return form.elements.proof_photo?.files?.[0] || form.elements.proof_file?.files?.[0] || null;
 }
 
 function buildPrintHtml() {
@@ -1322,6 +1599,23 @@ document.addEventListener("click", async (event) => {
   if (action === "home") return go("home");
   if (action === "recover") return go("recover");
   if (action === "settings") return go("settings");
+  if (action === "accountantPortal") return go("accountantPortal");
+  if (action === "inviteAccountant") {
+    if (!state.accountantEmail) {
+      toast(t("accountantEmail"));
+      return;
+    }
+    const subject = encodeURIComponent(t("accountantInviteSubject"));
+    const body = encodeURIComponent(`${t("accountantInviteBody")}\n\n${location.origin}`);
+    location.href = `mailto:${state.accountantEmail}?subject=${subject}&body=${body}`;
+    return;
+  }
+  if (action === "revokeAccountant") {
+    state.accountantEmail = "";
+    forget("rb_accountant_email");
+    toast(t("saved"));
+    return render();
+  }
   if (action === "feedback") {
     const subject = encodeURIComponent(t("feedbackSubject"));
     const body = encodeURIComponent(`${t("feedbackBody")}\n\n`);
@@ -1332,6 +1626,17 @@ document.addEventListener("click", async (event) => {
   if (action === "terms") return go("terms");
   if (action === "summary") return go("summary");
   if (action === "incomeForm") return go("incomeForm");
+  if (action === "pickIncomeProofPhoto" || action === "pickIncomeProofFile") {
+    const form = target.closest("form");
+    const field = action === "pickIncomeProofPhoto" ? "proof_photo" : "proof_file";
+    form?.elements[field]?.click();
+    return;
+  }
+  if (action === "viewIncomeProof") {
+    const entry = state.income.find((item) => item.id === state.selected);
+    if (entry?.proof_base64) window.open(entry.proof_base64, "_blank", "noopener");
+    return;
+  }
   if (action === "toggleTransactions") {
     state.showAllTransactions = !state.showAllTransactions;
     return render();
@@ -1345,6 +1650,41 @@ document.addEventListener("click", async (event) => {
   if (action === "printPdf") {
     document.querySelector("#printRoot").innerHTML = buildPrintHtml();
     window.print();
+    return;
+  }
+  if (action === "downloadAccountantCsv") {
+    const fileName = `TidGo-${state.user.first_name || "client"}-${state.summaryDate.getFullYear()}-${String(state.summaryDate.getMonth() + 1).padStart(2, "0")}.csv`;
+    downloadFile(fileName, accountantCsv(), "text/csv");
+    toast(t("accountantHeroToast"));
+    return;
+  }
+  if (action === "downloadAccountantPack") {
+    const fileName = `TidGo-accountant-pack-${state.user.first_name || "client"}-${state.summaryDate.getFullYear()}-${String(state.summaryDate.getMonth() + 1).padStart(2, "0")}.csv`;
+    downloadFile(fileName, accountantCsv(), "text/csv");
+    document.querySelector("#printRoot").innerHTML = buildPrintHtml();
+    toast(t("accountantPackToast"));
+    return;
+  }
+  if (action === "chaseClient") {
+    if (!state.user.email) {
+      toast(t("email"));
+      return;
+    }
+    const subject = encodeURIComponent(t("chaseSubject"));
+    const body = encodeURIComponent(`${t("chaseBody")}\n\n${location.origin}`);
+    location.href = `mailto:${state.user.email}?subject=${subject}&body=${body}`;
+    return;
+  }
+  if (action === "inviteClients") {
+    const raw = document.querySelector("[name='demo_client_emails']")?.value || "";
+    const emails = raw.split(/[\s,;]+/).map((item) => item.trim()).filter((item) => item.includes("@"));
+    if (!emails.length) {
+      toast(t("clientEmails"));
+      return;
+    }
+    const subject = encodeURIComponent("Try TidGo for your receipts");
+    const body = encodeURIComponent(`Hi,\n\nI would like you to try TidGo for keeping receipt and income records tidy through the year.\n\nOpen: ${location.origin}\n\nIt helps me see what is missing before everything turns into a last-minute plastic bag situation.\n`);
+    location.href = `mailto:${emails.join(",")}?subject=${subject}&body=${body}`;
     return;
   }
   if (action === "sharePdf") {
@@ -1461,7 +1801,7 @@ document.addEventListener("submit", async (event) => {
     if (form.id === "incomeCreateForm") {
       const amount = normalizeAmount(data.amount);
       if (!Number.isFinite(amount) || amount <= 0) throw new Error("Enter a valid amount.");
-      await api("/api/income", {
+      const created = await api("/api/income", {
         method: "POST",
         body: JSON.stringify({
           user_id: state.user.id,
@@ -1471,6 +1811,11 @@ document.addEventListener("submit", async (event) => {
           date: data.date ? new Date(`${data.date}T12:00:00`).toISOString() : null
         })
       });
+      const proof = incomeProofFile(form);
+      if (proof && created?.id) {
+        state.incomeProofs[created.id] = { name: proof.name, type: proof.type, data: await fileToDataUrl(proof) };
+        write("rb_income_proofs", state.incomeProofs);
+      }
       await refresh();
       toast(t("saved"));
       return go("home");
@@ -1482,9 +1827,20 @@ document.addEventListener("submit", async (event) => {
         method: "PATCH",
         body: JSON.stringify({ amount, currency: data.currency, description: data.description || null })
       });
+      const proof = incomeProofFile(form);
+      if (proof && state.selected) {
+        state.incomeProofs[state.selected] = { name: proof.name, type: proof.type, data: await fileToDataUrl(proof) };
+        write("rb_income_proofs", state.incomeProofs);
+      }
       await refresh();
       toast(t("saved"));
       return go("home");
+    }
+    if (form.id === "accountantForm") {
+      state.accountantEmail = (data.accountant_email || "").trim();
+      write("rb_accountant_email", state.accountantEmail);
+      toast(t("saved"));
+      return render();
     }
     if (form.id === "settingsForm") {
       state.language = data.language;

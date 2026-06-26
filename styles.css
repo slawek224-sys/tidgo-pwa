@@ -150,6 +150,12 @@ button {
   gap: 12px;
 }
 
+.proof-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
 .field {
   display: grid;
   gap: 7px;
@@ -389,6 +395,93 @@ button {
 .legal-card p {
   margin: 0 0 6px;
   color: var(--text);
+}
+
+.portal-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.portal-head span:first-child {
+  display: grid;
+  gap: 4px;
+}
+
+.portal-head small {
+  color: var(--muted);
+  font-weight: 650;
+  overflow-wrap: anywhere;
+}
+
+.pill {
+  border: 1px solid var(--client-line);
+  border-radius: 999px;
+  background: var(--client-soft);
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 850;
+  padding: 5px 8px;
+  white-space: nowrap;
+}
+
+.status-ok { color: var(--green); }
+.status-warn { color: var(--red); }
+
+.insight-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 12px 0;
+}
+
+.insight-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--soft);
+  padding: 12px;
+  display: grid;
+  gap: 6px;
+}
+
+.insight-card span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.insight-card strong {
+  font-size: 26px;
+  color: var(--blue);
+}
+
+.month-health,
+.flag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.month-health span,
+.flag-list span {
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 7px 9px;
+}
+
+.health-ok {
+  background: var(--client-soft);
+  color: var(--green);
+  border: 1px solid var(--client-line);
+}
+
+.health-missing,
+.flag-list span {
+  background: #fff0f1;
+  color: var(--red);
+  border: 1px solid #fac9ce;
 }
 
 .eyebrow {
