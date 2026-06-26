@@ -407,6 +407,21 @@ button {
   padding: 12px;
 }
 
+.accountant-screen {
+  background:
+    linear-gradient(180deg, #f8fbff 0%, #ffffff 165px);
+}
+
+.accountant-hero {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.accountant-hero .title {
+  color: var(--blue);
+}
+
 .portal-head {
   display: flex;
   justify-content: space-between;

@@ -790,7 +790,7 @@ const state = {
   humour: read("rb_humour", "funny"),
   accountantEmail: read("rb_accountant_email", ""),
   incomeProofs: read("rb_income_proofs", {}),
-  screen: "boot",
+  screen: isAccountantRoute() ? "accountantLanding" : "boot",
   receipts: [],
   income: [],
   selected: null,
@@ -802,6 +802,10 @@ const state = {
 const app = document.querySelector("#app");
 const expensePicker = document.querySelector("#expensePicker");
 const clientPicker = document.querySelector("#clientPicker");
+
+function isAccountantRoute() {
+  return location.pathname.replace(/\/+$/, "") === "/accountant";
+}
 
 function showSplash() {
   app.innerHTML = `
@@ -1028,11 +1032,13 @@ async function refresh() {
 }
 
 function render() {
-  if (!state.user) {
+  if (state.screen !== "accountantLanding" && state.screen !== "accountantDemoClient" && !state.user) {
     state.screen = state.screen === "recover" ? "recover" : "onboarding";
   }
   if (state.screen === "boot") state.screen = "home";
   const routes = {
+    accountantLanding,
+    accountantDemoClient,
     onboarding,
     recover,
     home,
@@ -1253,6 +1259,101 @@ function settings() {
   `);
 }
 
+function accountantLanding() {
+  const clients = accountantDemoClients();
+  shell(`
+    <section class="screen accountant-screen">
+      ${topbar("")}
+      <div class="accountant-hero">
+        <span class="eyebrow">TidGo for Accountants</span>
+        <h1 class="title">Receipts in. Tidy records out.</h1>
+        <p class="subtitle">A simple read-only handoff for sole traders who are brilliant at work and less brilliant at keeping receipts in order.</p>
+        <button class="primary" type="button" data-action="accountantDemoClient">View demo client</button>
+      </div>
+      <div class="insight-grid">
+        <div class="insight-card"><span>Clients</span><strong>12</strong></div>
+        <div class="insight-card"><span>Ready months</span><strong>8</strong></div>
+        <div class="insight-card"><span>Missing proof</span><strong>3</strong></div>
+        <div class="insight-card"><span>Last-minute bags</span><strong>0</strong></div>
+      </div>
+      <div class="card stack">
+        <strong>Client list</strong>
+        ${clients.map((client) => `
+          <button class="list-item" type="button" data-action="accountantDemoClient">
+            <span class="list-main">
+              <span class="list-title">${escapeHtml(client.name)}</span>
+              <span class="list-meta">${escapeHtml(client.trade)} | ${escapeHtml(client.status)}</span>
+            </span>
+            <span class="pill">${escapeHtml(client.month)}</span>
+          </button>
+        `).join("")}
+      </div>
+      <div class="card stack">
+        <strong>Invite clients</strong>
+        <span class="hint">For the real portal this will send a proper consent link. For now it copies a tidy message you can paste into email.</span>
+        <button class="secondary" type="button" data-action="copyAccountantInvite">Copy invite text</button>
+      </div>
+    </section>
+  `);
+}
+
+function accountantDemoClient() {
+  const client = accountantDemoClients()[0];
+  const rows = accountantDemoRows();
+  const income = rows.filter((item) => item.type === "income");
+  const expenses = rows.filter((item) => item.type === "expense");
+  const paidForClient = rows.filter((item) => item.type === "paid_for_client");
+  shell(`
+    <section class="screen accountant-screen">
+      ${topbar("Demo client", true)}
+      <div class="card stack">
+        <div class="portal-head">
+          <span>
+            <strong>${escapeHtml(client.name)}</strong>
+            <small>${escapeHtml(client.email)}</small>
+          </span>
+          <span class="pill">Read only</span>
+        </div>
+        <div class="total-row"><span>Trade</span><strong>${escapeHtml(client.trade)}</strong></div>
+        <div class="total-row"><span>Status</span><strong class="status-warn">Needs 2 proofs</strong></div>
+      </div>
+      <div class="insight-grid">
+        <div class="insight-card"><span>Income</span><strong>GBP 2.4k</strong></div>
+        <div class="insight-card"><span>Expenses</span><strong>GBP 318</strong></div>
+        <div class="insight-card"><span>To get back</span><strong>GBP 86</strong></div>
+        <div class="insight-card"><span>Review</span><strong>2</strong></div>
+      </div>
+      <div class="card stack">
+        <strong>Records health</strong>
+        <div class="month-health">
+          <span class="health-ok">Apr: ready</span>
+          <span class="health-ok">May: ready</span>
+          <span class="health-missing">Jun: income proof missing</span>
+        </div>
+      </div>
+      <div class="card stack">
+        <strong>Needs accountant attention</strong>
+        <div class="flag-list">
+          <span>Income proof missing</span>
+          <span>Receipt category may need checking</span>
+        </div>
+      </div>
+      <div class="grid-2" style="margin:12px 0">
+        <button class="secondary" type="button" data-action="downloadDemoCsv">Download CSV</button>
+        <button class="secondary" type="button" data-action="requestDemoDocs">Request docs</button>
+      </div>
+      <div class="total-box">
+        <div class="total-row"><span>Income</span><strong>${formatTotals(income)}</strong></div>
+        <div class="total-row"><span>Expenses</span><strong>${formatTotals(expenses)}</strong></div>
+        <div class="total-row"><span>Paid for client</span><strong>${formatTotals(paidForClient)}</strong></div>
+      </div>
+      <div class="list">
+        ${rows.map(accountantDemoRow).join("")}
+      </div>
+    </section>
+  `);
+}
+
 function accountantPortal() {
   const { receipts, income } = monthEntries();
   const normal = receipts.filter((item) => !item.is_client_expense);
@@ -1425,6 +1526,57 @@ function reviewFlags() {
     seen.add(key);
   });
   return flags;
+}
+
+function accountantDemoClients() {
+  return [
+    { name: "Demo Builder Ltd", trade: "Sole trader builder", email: "demo.builder@example.com", status: "June needs proof", month: "Jun" },
+    { name: "Anna Cleaning", trade: "Cleaning services", email: "anna@example.com", status: "May ready", month: "May" },
+    { name: "Mark Courier", trade: "Courier", email: "mark@example.com", status: "Receipts coming in", month: "Jun" }
+  ];
+}
+
+function accountantDemoRows() {
+  return [
+    { type: "income", timestamp: "2026-06-03T12:00:00.000Z", description: "CIS remittance", amount: 2400, currency: "GBP", proof: false },
+    { type: "expense", timestamp: "2026-06-04T12:00:00.000Z", description: "Lidl | Food", amount: 18.42, currency: "GBP", proof: true },
+    { type: "expense", timestamp: "2026-06-08T12:00:00.000Z", description: "Screwfix | Tools", amount: 96.2, currency: "GBP", proof: true },
+    { type: "paid_for_client", timestamp: "2026-06-12T12:00:00.000Z", description: "Materials for client", amount: 86.1, currency: "GBP", proof: true },
+    { type: "expense", timestamp: "2026-06-16T12:00:00.000Z", description: "Fuel receipt | Check category", amount: 203.9, currency: "GBP", proof: true }
+  ];
+}
+
+function accountantDemoRow(item) {
+  const label = item.type === "paid_for_client" ? "Paid for client" : item.type === "income" ? "Income" : "Expense";
+  return `<div class="list-item">
+    <span class="list-main">
+      <span class="list-title">${escapeHtml(label)}</span>
+      <span class="list-meta">${day(item.timestamp)} | ${escapeHtml(item.description)} | proof ${item.proof ? "yes" : "missing"}</span>
+    </span>
+    <span class="amount ${item.type === "income" ? "income" : item.type === "paid_for_client" ? "client" : "expense"}">${money(item.amount, item.currency)}</span>
+  </div>`;
+}
+
+function accountantDemoCsv() {
+  const rows = [
+    ["client", "type", "date", "amount", "currency", "description", "proof_available", "needs_review", "accountant_notes"],
+    ...accountantDemoRows().map((item) => [
+      "Demo Builder Ltd",
+      item.type,
+      new Date(item.timestamp).toISOString().slice(0, 10),
+      Number(item.amount || 0).toFixed(2),
+      item.currency,
+      item.description,
+      item.proof ? "yes" : "no",
+      item.proof ? "" : "Income proof missing",
+      ""
+    ])
+  ];
+  return rows.map((row) => row.map(csvCell).join(",")).join("\n");
+}
+
+function accountantInviteText() {
+  return `Hi,\n\nI would like you to try TidGo for keeping receipts, income proof and paid-for-client records tidy through the year.\n\nOpen: ${location.origin}\n\nIt should make the end-of-month handoff calmer for both of us.`;
 }
 
 function csvCell(value) {
@@ -1693,6 +1845,31 @@ document.addEventListener("click", async (event) => {
   if (action === "home") return go("home");
   if (action === "recover") return go("recover");
   if (action === "settings") return go("settings");
+  if (action === "accountantLanding") return go("accountantLanding");
+  if (action === "accountantDemoClient") return go("accountantDemoClient");
+  if (action === "downloadDemoCsv") {
+    downloadFile("TidGo-demo-client-pack.csv", accountantDemoCsv(), "text/csv");
+    toast("Demo CSV downloaded.");
+    return;
+  }
+  if (action === "copyAccountantInvite") {
+    try {
+      await navigator.clipboard.writeText(accountantInviteText());
+      toast("Invite text copied.");
+    } catch {
+      toast("Copy did not work here. Try again in Chrome.");
+    }
+    return;
+  }
+  if (action === "requestDemoDocs") {
+    try {
+      await navigator.clipboard.writeText("Hi, could you add the missing income proof in TidGo when you can? It helps me prepare your records without the January panic.");
+      toast("Request message copied.");
+    } catch {
+      toast("Request: please add the missing income proof in TidGo.");
+    }
+    return;
+  }
   if (action === "accountantPortal") return go("accountantPortal");
   if (action === "inviteAccountant") {
     if (!state.accountantEmail) {
