@@ -1017,11 +1017,12 @@ function shell(content) {
 }
 
 function topbar(title, back = false) {
+  const accountantMode = state.screen === "accountantLanding" || state.screen === "accountantDemoClient";
   return `
     <div class="topbar">
       ${back ? `<button class="icon-btn" data-action="back" aria-label="Back">←</button>` : `<div class="brand"><img src="/icon-192.png" alt=""><span>TidGo</span></div>`}
       <strong>${title || ""}</strong>
-      ${state.user && !back ? `<button class="icon-btn" data-action="settings" aria-label="${t("settings")}">⚙</button>` : `<span style="width:44px"></span>`}
+      ${state.user && !back && !accountantMode ? `<button class="icon-btn" data-action="settings" aria-label="${t("settings")}">⚙</button>` : `<span style="width:44px"></span>`}
     </div>
   `;
 }
