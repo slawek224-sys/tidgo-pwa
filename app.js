@@ -676,6 +676,23 @@ Object.assign(COPY.ro, {
   openEmailApp: "Deschide email",
   recordsTitle: "Verifica evidenta",
   recordsHint: "Vezi ce pare pregatit pentru contabil si ce poate avea nevoie de dovada sau verificare.",
+  connectAccountant: "Conecteaza contabilul",
+  connectAccountantHint: "Demo: pregatim acordul inainte sa conectam backendul.",
+  accountantEmail: "Email contabil",
+  createInvite: "Creeaza invitatie",
+  connectionStatus: "Status conexiune",
+  pendingAccountant: "Asteapta contabilul",
+  pendingClient: "Asteapta acordul clientului",
+  activeConnection: "Conectat",
+  allowAccess: "Permite acces",
+  declineAccess: "Refuza",
+  revokeAccess: "Retrage accesul",
+  noConnection: "Niciun contabil conectat pe acest dispozitiv.",
+  inviteCreated: "Invitatie creata.",
+  accessAllowed: "Acces permis.",
+  accessDeclined: "Acces refuzat.",
+  accessRevoked: "Acces retras.",
+  previewAccountant: "Verifica evidenta",
   signOutDevice: "Delogare pe acest dispozitiv",
   signOutHint: "Foloseste doar pentru testarea recuperarii sau pentru alt cont. Nu sterge bonurile."
 });
@@ -695,6 +712,23 @@ Object.assign(COPY.uk, {
   openEmailApp: "\u0412\u0456\u0434\u043a\u0440\u0438\u0442\u0438 email",
   recordsTitle: "\u041f\u0435\u0440\u0435\u0432\u0456\u0440\u0438\u0442\u0438 \u043c\u043e\u0457 \u0437\u0430\u043f\u0438\u0441\u0438",
   recordsHint: "\u041f\u043e\u0434\u0438\u0432\u0456\u0442\u044c\u0441\u044f, \u0449\u043e \u0433\u043e\u0442\u043e\u0432\u0435 \u0434\u043b\u044f \u0431\u0443\u0445\u0433\u0430\u043b\u0442\u0435\u0440\u0430, \u0430 \u0434\u0435 \u043c\u043e\u0436\u0435 \u0431\u0440\u0430\u043a\u0443\u0432\u0430\u0442\u0438 \u0434\u043e\u043a\u0430\u0437\u0443.",
+  connectAccountant: "\u041f\u0456\u0434\u043a\u043b\u044e\u0447\u0438\u0442\u0438 \u0431\u0443\u0445\u0433\u0430\u043b\u0442\u0435\u0440\u0430",
+  connectAccountantHint: "\u0414\u0435\u043c\u043e: \u0433\u043e\u0442\u0443\u0454\u043c\u043e \u0437\u0433\u043e\u0434\u0443 \u043f\u0435\u0440\u0435\u0434 \u043f\u0456\u0434\u043a\u043b\u044e\u0447\u0435\u043d\u043d\u044f\u043c backend.",
+  accountantEmail: "Email \u0431\u0443\u0445\u0433\u0430\u043b\u0442\u0435\u0440\u0430",
+  createInvite: "\u0421\u0442\u0432\u043e\u0440\u0438\u0442\u0438 \u0437\u0430\u043f\u0440\u043e\u0448\u0435\u043d\u043d\u044f",
+  connectionStatus: "\u0421\u0442\u0430\u0442\u0443\u0441 \u0437\u0432'\u044f\u0437\u043a\u0443",
+  pendingAccountant: "\u0427\u0435\u043a\u0430\u0454 \u043d\u0430 \u0431\u0443\u0445\u0433\u0430\u043b\u0442\u0435\u0440\u0430",
+  pendingClient: "\u0427\u0435\u043a\u0430\u0454 \u043d\u0430 \u0437\u0433\u043e\u0434\u0443 \u043a\u043b\u0456\u0454\u043d\u0442\u0430",
+  activeConnection: "\u041f\u0456\u0434\u043a\u043b\u044e\u0447\u0435\u043d\u043e",
+  allowAccess: "\u0414\u043e\u0437\u0432\u043e\u043b\u0438\u0442\u0438 \u0434\u043e\u0441\u0442\u0443\u043f",
+  declineAccess: "\u0412\u0456\u0434\u0445\u0438\u043b\u0438\u0442\u0438",
+  revokeAccess: "\u0412\u0456\u0434\u043a\u043b\u0438\u043a\u0430\u0442\u0438 \u0434\u043e\u0441\u0442\u0443\u043f",
+  noConnection: "\u041d\u0430 \u0446\u044c\u043e\u043c\u0443 \u043f\u0440\u0438\u0441\u0442\u0440\u043e\u0457 \u0449\u0435 \u043d\u0435\u043c\u0430\u0454 \u0431\u0443\u0445\u0433\u0430\u043b\u0442\u0435\u0440\u0430.",
+  inviteCreated: "\u0417\u0430\u043f\u0440\u043e\u0448\u0435\u043d\u043d\u044f \u0441\u0442\u0432\u043e\u0440\u0435\u043d\u043e.",
+  accessAllowed: "\u0414\u043e\u0441\u0442\u0443\u043f \u0434\u043e\u0437\u0432\u043e\u043b\u0435\u043d\u043e.",
+  accessDeclined: "\u0414\u043e\u0441\u0442\u0443\u043f \u0432\u0456\u0434\u0445\u0438\u043b\u0435\u043d\u043e.",
+  accessRevoked: "\u0414\u043e\u0441\u0442\u0443\u043f \u0432\u0456\u0434\u043a\u043b\u0438\u043a\u0430\u043d\u043e.",
+  previewAccountant: "\u041f\u0435\u0440\u0435\u0432\u0456\u0440\u0438\u0442\u0438 \u043c\u043e\u0457 \u0437\u0430\u043f\u0438\u0441\u0438",
   signOutDevice: "\u0412\u0438\u0439\u0442\u0438 \u043d\u0430 \u0446\u044c\u043e\u043c\u0443 \u043f\u0440\u0438\u0441\u0442\u0440\u043e\u0457",
   signOutHint: "\u0422\u0456\u043b\u044c\u043a\u0438 \u0434\u043b\u044f \u0442\u0435\u0441\u0442\u0443 \u0432\u0456\u0434\u043d\u043e\u0432\u043b\u0435\u043d\u043d\u044f \u0430\u0431\u043e \u0456\u043d\u0448\u043e\u0433\u043e \u0430\u043a\u0430\u0443\u043d\u0442\u0430. \u0426\u0435 \u043d\u0435 \u0432\u0438\u0434\u0430\u043b\u044f\u0454 \u0447\u0435\u043a\u0438."
 });
@@ -714,6 +748,23 @@ Object.assign(COPY.lt, {
   openEmailApp: "Atidaryti el. pasta",
   recordsTitle: "Patikrinti irasus",
   recordsHint: "Paziurekite, kas paruosta buhalteriui, o kur gali trukti irodymo ar patikrinimo.",
+  connectAccountant: "Prijungti buhalteri",
+  connectAccountantHint: "Demo: paruosiame sutikima pries prijungiant backend.",
+  accountantEmail: "Buhalterio el. pastas",
+  createInvite: "Sukurti kvietima",
+  connectionStatus: "Rysio busena",
+  pendingAccountant: "Laukiama buhalterio",
+  pendingClient: "Laukiama kliento sutikimo",
+  activeConnection: "Prijungta",
+  allowAccess: "Leisti prieiga",
+  declineAccess: "Atmesti",
+  revokeAccess: "Atsaukti prieiga",
+  noConnection: "Siame irenginyje buhalteris dar neprijungtas.",
+  inviteCreated: "Kvietimas sukurtas.",
+  accessAllowed: "Prieiga leista.",
+  accessDeclined: "Prieiga atmesta.",
+  accessRevoked: "Prieiga atsaukta.",
+  previewAccountant: "Patikrinti irasus",
   signOutDevice: "Atsijungti siame irenginyje",
   signOutHint: "Naudokite tik atkuriant paskyra testui arba kitai paskyrai. Kvitai neistrinami."
 });
@@ -737,6 +788,23 @@ Object.assign(COPY.lv, {
   openEmailApp: "Atvert email",
   recordsTitle: "Parbaudit ierakstus",
   recordsHint: "Skatiet, kas ir gatavs gramatvedim un kur var trukt pieradijuma vai parbaudes.",
+  connectAccountant: "Pievienot gramatvedi",
+  connectAccountantHint: "Demo: sagatavojam piekrisanu pirms backend pieslegsanas.",
+  accountantEmail: "Gramatveza email",
+  createInvite: "Izveidot uzaicinajumu",
+  connectionStatus: "Savienojuma statuss",
+  pendingAccountant: "Gaida gramatvedi",
+  pendingClient: "Gaida klienta piekrisanu",
+  activeConnection: "Savienots",
+  allowAccess: "Atlaut piekluvi",
+  declineAccess: "Atteikt",
+  revokeAccess: "Atsaukt piekluvi",
+  noConnection: "Saja ierice gramatvedis vel nav pievienots.",
+  inviteCreated: "Uzaicinajums izveidots.",
+  accessAllowed: "Piekluve atlauzta.",
+  accessDeclined: "Piekluve atteikta.",
+  accessRevoked: "Piekluve atsaukta.",
+  previewAccountant: "Parbaudit ierakstus",
   signOutDevice: "Izrakstities saja ierice",
   signOutHint: "Lietojiet tikai atjaunosanas testam vai citam kontam. Ceki netiek dzesti."
 });
@@ -756,6 +824,23 @@ Object.assign(COPY.es, {
   openEmailApp: "Abrir email",
   recordsTitle: "Revisar mis registros",
   recordsHint: "Mira que parece listo para tu contable y que puede necesitar prueba o revision.",
+  connectAccountant: "Conectar contable",
+  connectAccountantHint: "Demo: preparamos el permiso antes de conectar el backend.",
+  accountantEmail: "Email del contable",
+  createInvite: "Crear invitacion",
+  connectionStatus: "Estado de conexion",
+  pendingAccountant: "Esperando al contable",
+  pendingClient: "Esperando permiso del cliente",
+  activeConnection: "Conectado",
+  allowAccess: "Permitir acceso",
+  declineAccess: "Rechazar",
+  revokeAccess: "Revocar acceso",
+  noConnection: "Aun no hay contable conectado en este dispositivo.",
+  inviteCreated: "Invitacion creada.",
+  accessAllowed: "Acceso permitido.",
+  accessDeclined: "Acceso rechazado.",
+  accessRevoked: "Acceso revocado.",
+  previewAccountant: "Revisar mis registros",
   signOutDevice: "Cerrar sesion en este dispositivo",
   signOutHint: "Usalo solo para probar recuperacion o cambiar de cuenta. No borra tus recibos."
 });
@@ -775,6 +860,23 @@ Object.assign(COPY.bg, {
   openEmailApp: "\u041e\u0442\u0432\u043e\u0440\u0438 email",
   recordsTitle: "\u041f\u0440\u043e\u0432\u0435\u0440\u0438 \u0437\u0430\u043f\u0438\u0441\u0438\u0442\u0435",
   recordsHint: "\u0412\u0438\u0436\u0442\u0435 \u043a\u043e\u0435 \u0435 \u0433\u043e\u0442\u043e\u0432\u043e \u0437\u0430 \u0441\u0447\u0435\u0442\u043e\u0432\u043e\u0434\u0438\u0442\u0435\u043b \u0438 \u043a\u044a\u0434\u0435 \u043c\u043e\u0436\u0435 \u0434\u0430 \u043b\u0438\u043f\u0441\u0432\u0430 \u0434\u043e\u043a\u0430\u0437\u0430\u0442\u0435\u043b\u0441\u0442\u0432\u043e.",
+  connectAccountant: "\u0421\u0432\u044a\u0440\u0436\u0438 \u0441\u0447\u0435\u0442\u043e\u0432\u043e\u0434\u0438\u0442\u0435\u043b",
+  connectAccountantHint: "\u0414\u0435\u043c\u043e: \u043f\u043e\u0434\u0433\u043e\u0442\u0432\u044f\u043c\u0435 \u0441\u044a\u0433\u043b\u0430\u0441\u0438\u0435\u0442\u043e \u043f\u0440\u0435\u0434\u0438 backend \u0432\u0440\u044a\u0437\u043a\u0430\u0442\u0430.",
+  accountantEmail: "Email \u043d\u0430 \u0441\u0447\u0435\u0442\u043e\u0432\u043e\u0434\u0438\u0442\u0435\u043b",
+  createInvite: "\u0421\u044a\u0437\u0434\u0430\u0439 \u043f\u043e\u043a\u0430\u043d\u0430",
+  connectionStatus: "\u0421\u0442\u0430\u0442\u0443\u0441 \u043d\u0430 \u0432\u0440\u044a\u0437\u043a\u0430\u0442\u0430",
+  pendingAccountant: "\u0427\u0430\u043a\u0430 \u0441\u0447\u0435\u0442\u043e\u0432\u043e\u0434\u0438\u0442\u0435\u043b",
+  pendingClient: "\u0427\u0430\u043a\u0430 \u0441\u044a\u0433\u043b\u0430\u0441\u0438\u0435 \u043e\u0442 \u043a\u043b\u0438\u0435\u043d\u0442",
+  activeConnection: "\u0421\u0432\u044a\u0440\u0437\u0430\u043d\u043e",
+  allowAccess: "\u041f\u043e\u0437\u0432\u043e\u043b\u0438 \u0434\u043e\u0441\u0442\u044a\u043f",
+  declineAccess: "\u041e\u0442\u043a\u0430\u0436\u0438",
+  revokeAccess: "\u041e\u0442\u043c\u0435\u043d\u0438 \u0434\u043e\u0441\u0442\u044a\u043f",
+  noConnection: "\u041d\u044f\u043c\u0430 \u0441\u0432\u044a\u0440\u0437\u0430\u043d \u0441\u0447\u0435\u0442\u043e\u0432\u043e\u0434\u0438\u0442\u0435\u043b \u043d\u0430 \u0442\u043e\u0432\u0430 \u0443\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e.",
+  inviteCreated: "\u041f\u043e\u043a\u0430\u043d\u0430\u0442\u0430 \u0435 \u0441\u044a\u0437\u0434\u0430\u0434\u0435\u043d\u0430.",
+  accessAllowed: "\u0414\u043e\u0441\u0442\u044a\u043f\u044a\u0442 \u0435 \u043f\u043e\u0437\u0432\u043e\u043b\u0435\u043d.",
+  accessDeclined: "\u0414\u043e\u0441\u0442\u044a\u043f\u044a\u0442 \u0435 \u043e\u0442\u043a\u0430\u0437\u0430\u043d.",
+  accessRevoked: "\u0414\u043e\u0441\u0442\u044a\u043f\u044a\u0442 \u0435 \u043e\u0442\u043c\u0435\u043d\u0435\u043d.",
+  previewAccountant: "\u041f\u0440\u043e\u0432\u0435\u0440\u0438 \u0437\u0430\u043f\u0438\u0441\u0438\u0442\u0435",
   signOutDevice: "\u0418\u0437\u0445\u043e\u0434 \u043e\u0442 \u0442\u043e\u0432\u0430 \u0443\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e",
   signOutHint: "\u0418\u0437\u043f\u043e\u043b\u0437\u0432\u0430\u0439\u0442\u0435 \u0441\u0430\u043c\u043e \u0437\u0430 \u0442\u0435\u0441\u0442 \u043d\u0430 \u0432\u044a\u0437\u0441\u0442\u0430\u043d\u043e\u0432\u044f\u0432\u0430\u043d\u0435 \u0438\u043b\u0438 \u0434\u0440\u0443\u0433 \u0430\u043a\u0430\u0443\u043d\u0442. \u041d\u0435 \u0442\u0440\u0438\u0435 \u0431\u0435\u043b\u0435\u0436\u043a\u0438."
 });
@@ -1207,6 +1309,9 @@ function home() {
       <button class="nav-row" data-action="summary">
         <span><span class="summary-icon" aria-hidden="true"></span> ${t("summary")}</span><strong>›</strong>
       </button>
+      <button class="nav-row" data-action="settings">
+        <span><span class="summary-icon" aria-hidden="true"></span> ${t("connectAccountant")}</span><strong>&rsaquo;</strong>
+      </button>
       <div class="grid-2" style="margin-top:14px">
         <button class="action blue" data-action="pickExpense"><span>${t("addExpense")}</span><small>${t("photoDone")}</small></button>
         <button class="action green" data-action="incomeForm"><span>${t("addIncome")}</span><small>${t("amountNote")}</small></button>
@@ -1357,7 +1462,7 @@ function settings() {
       <div class="card stack" style="margin-top:18px">
         <strong>${t("recordsTitle")}</strong>
         <span class="hint">${t("recordsHint")}</span>
-        <button class="secondary" type="button" data-action="accountantPortal">${t("previewAccountant")}</button>
+        <button class="secondary" type="button" data-action="accountantPortal">${t("recordsTitle")}</button>
       </div>
       ${clientConnectionCard()}
       <div class="card stack" style="margin-top:18px">
