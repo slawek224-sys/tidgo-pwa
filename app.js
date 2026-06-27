@@ -526,6 +526,22 @@ Object.assign(COPY.en, {
     feedbackBody: "Hi, I tested TidGo and noticed:",
     recordsTitle: "Check my records",
     recordsHint: "See what looks ready for your accountant and what may need a proof or a second look.",
+    connectAccountant: "Connect accountant",
+    connectAccountantHint: "Demo only: prepare the consent flow before we wire it into the backend.",
+    accountantEmail: "Accountant email",
+    createInvite: "Create invite",
+    connectionStatus: "Connection status",
+    pendingAccountant: "Waiting for accountant",
+    pendingClient: "Waiting for client approval",
+    activeConnection: "Connected",
+    allowAccess: "Allow access",
+    declineAccess: "Decline",
+    revokeAccess: "Revoke access",
+    noConnection: "No accountant connected on this device yet.",
+    inviteCreated: "Invite created.",
+    accessAllowed: "Access allowed.",
+    accessDeclined: "Access declined.",
+    accessRevoked: "Access revoked.",
     signOutDevice: "Sign out on this device",
     signOutHint: "Use this only when you want to test recovery or move to another account. It does not delete your receipts.",
     accountantAccess: "Accountant access",
@@ -585,6 +601,22 @@ Object.assign(COPY.pl, {
     feedbackBody: "Czesc, testowalem TidGo i zauwazylem:",
     recordsTitle: "Sprawdz moje rekordy",
     recordsHint: "Zobacz, co wyglada gotowe dla ksiegowego, a gdzie moze brakowac dowodu albo drugiego spojrzenia.",
+    connectAccountant: "Polacz ksiegowego",
+    connectAccountantHint: "Tylko demo: ukladamy zgode zanim podepniemy backend.",
+    accountantEmail: "Email ksiegowego",
+    createInvite: "Utworz zaproszenie",
+    connectionStatus: "Status polaczenia",
+    pendingAccountant: "Czeka na ksiegowego",
+    pendingClient: "Czeka na zgode klienta",
+    activeConnection: "Polaczone",
+    allowAccess: "Zezwol na dostep",
+    declineAccess: "Odmow",
+    revokeAccess: "Cofnij dostep",
+    noConnection: "Na tym urzadzeniu nie ma jeszcze polaczonego ksiegowego.",
+    inviteCreated: "Zaproszenie utworzone.",
+    accessAllowed: "Dostep zatwierdzony.",
+    accessDeclined: "Dostep odrzucony.",
+    accessRevoked: "Dostep cofniety.",
     signOutDevice: "Wyloguj na tym urzadzeniu",
     signOutHint: "Uzyj tylko, gdy chcesz przetestowac odzyskiwanie albo przejsc na inne konto. To nie usuwa paragonow.",
     accountantAccess: "Dostep dla ksiegowego",
@@ -835,6 +867,7 @@ const state = {
   language: read("rb_language", "en"),
   humour: read("rb_humour", "funny"),
   accountantEmail: read("rb_accountant_email", ""),
+  connections: read("rb_connections_demo", []),
   incomeProofs: read("rb_income_proofs", {}),
   screen: isAccountantRoute() ? "accountantLanding" : "boot",
   receipts: [],
@@ -987,6 +1020,35 @@ function attachIncomeProofs(items) {
     const proof = proofForIncome(item.id);
     return proof ? { ...item, proof_name: proof.name, proof_type: proof.type, proof_base64: proof.data } : item;
   });
+}
+
+function saveConnections() {
+  write("rb_connections_demo", state.connections);
+}
+
+function userConnection() {
+  if (!state.user?.email) return state.connections[0] || null;
+  const email = state.user.email.toLowerCase();
+  return state.connections.find((item) => (item.clientEmail || "").toLowerCase() === email) || state.connections[0] || null;
+}
+
+function connectionStatusLabel(status) {
+  if (status === "active") return t("activeConnection");
+  if (status === "pending_client_approval") return t("pendingClient");
+  if (status === "pending_accountant") return t("pendingAccountant");
+  if (status === "declined") return t("accessDeclined");
+  if (status === "revoked") return t("accessRevoked");
+  return t("noConnection");
+}
+
+function upsertConnection(connection) {
+  const key = `${(connection.clientEmail || "").toLowerCase()}|${(connection.accountantEmail || "").toLowerCase()}`;
+  const existing = state.connections.findIndex((item) => `${(item.clientEmail || "").toLowerCase()}|${(item.accountantEmail || "").toLowerCase()}` === key);
+  const next = { ...connection, id: existing >= 0 ? state.connections[existing].id : crypto.randomUUID?.() || String(Date.now()), updatedAt: new Date().toISOString() };
+  if (existing >= 0) state.connections[existing] = { ...state.connections[existing], ...next };
+  else state.connections.unshift(next);
+  saveConnections();
+  return next;
 }
 
 function routeState() {
@@ -1258,6 +1320,24 @@ function summary() {
   `);
 }
 
+function clientConnectionCard() {
+  const connection = userConnection();
+  return `
+    <form class="card stack" id="clientConnectionForm" style="margin-top:18px">
+      <strong>${t("connectAccountant")}</strong>
+      <span class="hint">${t("connectAccountantHint")}</span>
+      ${connection ? `
+        <div class="total-row"><span>${t("connectionStatus")}</span><strong>${connectionStatusLabel(connection.status)}</strong></div>
+        <div class="total-row"><span>${t("accountantEmail")}</span><strong>${escapeHtml(connection.accountantEmail || "-")}</strong></div>
+        ${connection.status === "pending_client_approval" ? `<div class="grid-2"><button class="primary" type="button" data-action="allowAccountantAccess">${t("allowAccess")}</button><button class="danger" type="button" data-action="declineAccountantAccess">${t("declineAccess")}</button></div>` : ""}
+        ${connection.status === "active" ? `<button class="danger" type="button" data-action="revokeConnection">${t("revokeAccess")}</button>` : ""}
+      ` : `<span class="hint">${t("noConnection")}</span>`}
+      <label class="field"><span>${t("accountantEmail")}</span><input class="input" name="accountant_email" type="email" placeholder="accountant@example.com"></label>
+      <button class="secondary" type="submit">${t("createInvite")}</button>
+    </form>
+  `;
+}
+
 function settings() {
   shell(`
     <section class="screen">
@@ -1279,6 +1359,7 @@ function settings() {
         <span class="hint">${t("recordsHint")}</span>
         <button class="secondary" type="button" data-action="accountantPortal">${t("previewAccountant")}</button>
       </div>
+      ${clientConnectionCard()}
       <div class="card stack" style="margin-top:18px">
         <strong>${t("feedbackTitle")}</strong>
         <span class="hint">${t("feedbackHint")}</span>
@@ -1308,6 +1389,7 @@ function settings() {
 
 function accountantLanding() {
   const clients = accountantDemoClients();
+  const connections = state.connections;
   shell(`
     <section class="screen accountant-screen">
       ${topbar("")}
@@ -1335,10 +1417,23 @@ function accountantLanding() {
           </button>
         `).join("")}
       </div>
-      <div class="card stack">
+      <form class="card stack" id="accountantInviteForm">
         <strong>Invite clients</strong>
-        <span class="hint">For the real portal this will send a proper consent link. For now it copies a tidy message you can paste into email.</span>
-        <button class="secondary" type="button" data-action="copyAccountantInvite">Copy invite text</button>
+        <span class="hint">Demo only: create a client connection that must be approved from the client side.</span>
+        <label class="field"><span>Client email</span><input class="input" name="client_email" type="email" placeholder="client@example.com" required></label>
+        <button class="secondary" type="submit">Invite client</button>
+      </form>
+      <div class="card stack">
+        <strong>Connection status</strong>
+        ${connections.length ? connections.map((connection) => `
+          <div class="connection-row">
+            <span>
+              <strong>${escapeHtml(connection.clientName || connection.clientEmail || "Client")}</strong>
+              <small>${escapeHtml(connection.clientEmail || "")}</small>
+            </span>
+            <span class="pill">${escapeHtml(connectionStatusLabel(connection.status))}</span>
+          </div>
+        `).join("") : `<span class="hint">No demo connections yet.</span>`}
       </div>
     </section>
   `);
@@ -1894,6 +1989,36 @@ document.addEventListener("click", async (event) => {
   if (action === "settings") return go("settings");
   if (action === "accountantLanding") return go("accountantLanding");
   if (action === "accountantDemoClient") return go("accountantDemoClient");
+  if (action === "allowAccountantAccess") {
+    const connection = userConnection();
+    if (connection) {
+      connection.status = "active";
+      connection.updatedAt = new Date().toISOString();
+      saveConnections();
+      toast(t("accessAllowed"));
+      return render();
+    }
+  }
+  if (action === "declineAccountantAccess") {
+    const connection = userConnection();
+    if (connection) {
+      connection.status = "declined";
+      connection.updatedAt = new Date().toISOString();
+      saveConnections();
+      toast(t("accessDeclined"));
+      return render();
+    }
+  }
+  if (action === "revokeConnection") {
+    const connection = userConnection();
+    if (connection) {
+      connection.status = "revoked";
+      connection.updatedAt = new Date().toISOString();
+      saveConnections();
+      toast(t("accessRevoked"));
+      return render();
+    }
+  }
   if (action === "downloadDemoCsv") {
     downloadFile("TidGo-demo-client-pack.csv", accountantDemoCsv(), "text/csv");
     toast("Demo CSV downloaded.");
@@ -2168,6 +2293,36 @@ document.addEventListener("submit", async (event) => {
       await refresh();
       toast(t("saved"));
       return go("home");
+    }
+    if (form.id === "clientConnectionForm") {
+      const accountantEmail = (data.accountant_email || "").trim();
+      if (!accountantEmail) throw new Error(t("accountantEmail"));
+      upsertConnection({
+        clientEmail: state.user.email || "",
+        clientName: state.user.first_name || "Client",
+        accountantEmail,
+        accountantName: accountantEmail,
+        status: "pending_accountant",
+        invitedBy: "client",
+        createdAt: new Date().toISOString()
+      });
+      toast(t("inviteCreated"));
+      return render();
+    }
+    if (form.id === "accountantInviteForm") {
+      const clientEmail = (data.client_email || "").trim();
+      if (!clientEmail) throw new Error("Client email");
+      upsertConnection({
+        clientEmail,
+        clientName: clientEmail.split("@")[0] || "Client",
+        accountantEmail: "hello@tidgo.co.uk",
+        accountantName: "TidGo Demo Practice",
+        status: "pending_client_approval",
+        invitedBy: "accountant",
+        createdAt: new Date().toISOString()
+      });
+      toast("Client invite created.");
+      return render();
     }
     if (form.id === "accountantForm") {
       state.accountantEmail = (data.accountant_email || "").trim();

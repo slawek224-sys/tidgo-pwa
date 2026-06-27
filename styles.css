@@ -429,6 +429,28 @@ button {
   align-items: flex-start;
 }
 
+.connection-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  background: #fff;
+}
+
+.connection-row span:first-child {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.connection-row small {
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
 .portal-head span:first-child {
   display: grid;
   gap: 4px;
