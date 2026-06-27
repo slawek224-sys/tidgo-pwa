@@ -451,6 +451,13 @@ button {
   overflow-wrap: anywhere;
 }
 
+.mini-btn {
+  width: auto;
+  padding: 8px 10px;
+  min-height: 36px;
+  white-space: nowrap;
+}
+
 .portal-head span:first-child {
   display: grid;
   gap: 4px;

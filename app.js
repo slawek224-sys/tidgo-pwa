@@ -969,7 +969,11 @@ const state = {
   language: read("rb_language", "en"),
   humour: read("rb_humour", "funny"),
   accountantEmail: read("rb_accountant_email", ""),
-  connections: read("rb_connections_demo", []),
+  accountantConsents: [],
+  accountantPortalEmail: read("rb_accountant_portal_email", ""),
+  accountantClients: [],
+  accountantClientRecords: null,
+  accountantSelectedClientId: null,
   incomeProofs: read("rb_income_proofs", {}),
   screen: isAccountantRoute() ? "accountantLanding" : "boot",
   receipts: [],
@@ -1124,35 +1128,6 @@ function attachIncomeProofs(items) {
   });
 }
 
-function saveConnections() {
-  write("rb_connections_demo", state.connections);
-}
-
-function userConnection() {
-  if (!state.user?.email) return state.connections[0] || null;
-  const email = state.user.email.toLowerCase();
-  return state.connections.find((item) => (item.clientEmail || "").toLowerCase() === email) || state.connections[0] || null;
-}
-
-function connectionStatusLabel(status) {
-  if (status === "active") return t("activeConnection");
-  if (status === "pending_client_approval") return t("pendingClient");
-  if (status === "pending_accountant") return t("pendingAccountant");
-  if (status === "declined") return t("accessDeclined");
-  if (status === "revoked") return t("accessRevoked");
-  return t("noConnection");
-}
-
-function upsertConnection(connection) {
-  const key = `${(connection.clientEmail || "").toLowerCase()}|${(connection.accountantEmail || "").toLowerCase()}`;
-  const existing = state.connections.findIndex((item) => `${(item.clientEmail || "").toLowerCase()}|${(item.accountantEmail || "").toLowerCase()}` === key);
-  const next = { ...connection, id: existing >= 0 ? state.connections[existing].id : crypto.randomUUID?.() || String(Date.now()), updatedAt: new Date().toISOString() };
-  if (existing >= 0) state.connections[existing] = { ...state.connections[existing], ...next };
-  else state.connections.unshift(next);
-  saveConnections();
-  return next;
-}
-
 function routeState() {
   return {
     screen: state.screen === "boot" ? "home" : state.screen,
@@ -1228,15 +1203,42 @@ async function api(path, options = {}) {
   return response.status === 204 ? null : response.json();
 }
 
+async function loadAccountantClients(email = state.accountantPortalEmail) {
+  const cleanEmail = (email || "").trim();
+  if (!cleanEmail) {
+    state.accountantClients = [];
+    return [];
+  }
+  const clients = await api(`/api/accountant/clients?accountant_email=${encodeURIComponent(cleanEmail)}`);
+  state.accountantPortalEmail = cleanEmail;
+  write("rb_accountant_portal_email", cleanEmail);
+  state.accountantClients = clients || [];
+  return state.accountantClients;
+}
+
+async function loadAccountantClientRecords(clientId) {
+  const accountantEmail = (state.accountantPortalEmail || "").trim();
+  if (!accountantEmail) throw new Error("Enter accountant email first");
+  const [receipts, income] = await Promise.all([
+    api(`/api/accountant/clients/${clientId}/receipts?accountant_email=${encodeURIComponent(accountantEmail)}`),
+    api(`/api/accountant/clients/${clientId}/income?accountant_email=${encodeURIComponent(accountantEmail)}`)
+  ]);
+  state.accountantSelectedClientId = clientId;
+  state.accountantClientRecords = { receipts: receipts || [], income: income || [] };
+  return state.accountantClientRecords;
+}
+
 async function refresh() {
   if (!state.user?.id) return;
   try {
-    const [receipts, income] = await Promise.all([
+    const [receipts, income, consents] = await Promise.all([
       api(`/api/receipts/${state.user.id}`),
-      api(`/api/income/${state.user.id}`)
+      api(`/api/income/${state.user.id}`),
+      api(`/api/accountant/consents/client/${state.user.id}`).catch(() => [])
     ]);
     state.receipts = receipts || [];
     state.income = attachIncomeProofs(income);
+    state.accountantConsents = consents || [];
   } catch (error) {
     toast(error.message || t("backendDown"));
   }
@@ -1423,17 +1425,20 @@ function summary() {
 }
 
 function clientConnectionCard() {
-  const connection = userConnection();
+  const consents = state.accountantConsents || [];
   return `
     <form class="card stack" id="clientConnectionForm" style="margin-top:18px">
       <strong>${t("connectAccountant")}</strong>
       <span class="hint">${t("connectAccountantHint")}</span>
-      ${connection ? `
-        <div class="total-row"><span>${t("connectionStatus")}</span><strong>${connectionStatusLabel(connection.status)}</strong></div>
-        <div class="total-row"><span>${t("accountantEmail")}</span><strong>${escapeHtml(connection.accountantEmail || "-")}</strong></div>
-        ${connection.status === "pending_client_approval" ? `<div class="grid-2"><button class="primary" type="button" data-action="allowAccountantAccess">${t("allowAccess")}</button><button class="danger" type="button" data-action="declineAccountantAccess">${t("declineAccess")}</button></div>` : ""}
-        ${connection.status === "active" ? `<button class="danger" type="button" data-action="revokeConnection">${t("revokeAccess")}</button>` : ""}
-      ` : `<span class="hint">${t("noConnection")}</span>`}
+      ${consents.length ? consents.map((consent) => `
+        <div class="connection-row">
+          <span>
+            <strong>${escapeHtml(consent.accountant_name || consent.accountant_email || "-")}</strong>
+            <small>${escapeHtml(consent.accountant_email || "")}</small>
+          </span>
+          <button class="danger mini-btn" type="button" data-revoke-consent="${escapeAttr(consent.id)}">${t("revokeAccess")}</button>
+        </div>
+      `).join("") : `<span class="hint">${t("noConnection")}</span>`}
       <label class="field"><span>${t("accountantEmail")}</span><input class="input" name="accountant_email" type="email"></label>
       <button class="secondary" type="submit">${t("createInvite")}</button>
     </form>
@@ -1490,7 +1495,9 @@ function settings() {
 }
 
 function accountantLanding() {
-  const clients = accountantDemoClients();
+  const clients = state.accountantClients || [];
+  const receiptCount = clients.reduce((sum, client) => sum + Number(client.receipt_count || 0), 0);
+  const incomeCount = clients.reduce((sum, client) => sum + Number(client.income_count || 0), 0);
   shell(`
     <section class="screen accountant-screen">
       ${topbar("")}
@@ -1498,8 +1505,13 @@ function accountantLanding() {
         <span class="eyebrow">TidGo for Accountants</span>
         <h1 class="title">Receipts in. Tidy records out.</h1>
         <p class="subtitle">A simple read-only handoff for sole traders who are brilliant at work and less brilliant at keeping receipts in order.</p>
-        <button class="primary" type="button" data-action="accountantDemoClient">View sample client</button>
       </div>
+      <form class="card stack" id="accountantLoginForm">
+        <strong>Accountant access</strong>
+        <span class="hint">Enter the email your clients used when they connected you in TidGo.</span>
+        <label class="field"><span>Accountant email</span><input class="input" name="accountant_email" type="email" value="${escapeAttr(state.accountantPortalEmail || "")}" required></label>
+        <button class="primary" type="submit">Load clients</button>
+      </form>
       <div class="card stack">
         <strong>Built for accountant handoff</strong>
         <span class="hint">Clients keep receipts, income proof and paid-for-client costs tidy through the month. You get a read-only view and a clean pack when it is time to work.</span>
@@ -1507,22 +1519,22 @@ function accountantLanding() {
         <div class="total-row"><span>Client permission</span><strong>Required</strong></div>
       </div>
       <div class="insight-grid">
-        <div class="insight-card"><span>Clients</span><strong>12</strong></div>
-        <div class="insight-card"><span>Ready months</span><strong>8</strong></div>
-        <div class="insight-card"><span>Missing proof</span><strong>3</strong></div>
+        <div class="insight-card"><span>Clients</span><strong>${clients.length}</strong></div>
+        <div class="insight-card"><span>Receipts</span><strong>${receiptCount}</strong></div>
+        <div class="insight-card"><span>Income</span><strong>${incomeCount}</strong></div>
         <div class="insight-card"><span>Last-minute bags</span><strong>0</strong></div>
       </div>
       <div class="card stack">
         <strong>Client list</strong>
-        ${clients.map((client) => `
-          <button class="list-item" type="button" data-action="accountantDemoClient">
+        ${clients.length ? clients.map((client) => `
+          <button class="list-item" type="button" data-open-accountant-client="${escapeAttr(client.user_id)}">
             <span class="list-main">
-              <span class="list-title">${escapeHtml(client.name)}</span>
-              <span class="list-meta">${escapeHtml(client.trade)} | ${escapeHtml(client.status)}</span>
+              <span class="list-title">${escapeHtml(client.first_name || "Client")}</span>
+              <span class="list-meta">${escapeHtml(client.trade || "No trade set")} | ${escapeHtml(client.email || "No email")}</span>
             </span>
-            <span class="pill">${escapeHtml(client.month)}</span>
+            <span class="pill">${Number(client.receipt_count || 0) + Number(client.income_count || 0)} records</span>
           </button>
-        `).join("")}
+        `).join("") : `<div class="empty">${state.accountantPortalEmail ? "No clients have connected this email yet." : "Enter your accountant email to load connected clients."}</div>`}
       </div>
       <div class="card stack">
         <strong>How access will work</strong>
@@ -1535,48 +1547,46 @@ function accountantLanding() {
 }
 
 function accountantDemoClient() {
-  const client = accountantDemoClients()[0];
-  const rows = accountantDemoRows();
-  const income = rows.filter((item) => item.type === "income");
-  const expenses = rows.filter((item) => item.type === "expense");
-  const paidForClient = rows.filter((item) => item.type === "paid_for_client");
+  const client = (state.accountantClients || []).find((item) => item.user_id === state.accountantSelectedClientId);
+  const records = state.accountantClientRecords || { receipts: [], income: [] };
+  const receipts = records.receipts || [];
+  const income = attachIncomeProofs(records.income || []);
+  const expenses = receipts.filter((item) => !item.is_client_expense);
+  const paidForClient = receipts.filter((item) => item.is_client_expense);
+  const rows = [
+    ...income.map((item) => ({ ...item, type: "income", timestamp: item.timestamp || item.created_at })),
+    ...receipts.map((item) => ({ ...item, type: item.is_client_expense ? "paid_for_client" : "expense", timestamp: item.timestamp || item.created_at }))
+  ].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+  if (!client) {
+    return shell(`
+      <section class="screen accountant-screen">
+        ${topbar("Client records", true)}
+        <div class="empty">Load clients first.</div>
+      </section>
+    `);
+  }
   shell(`
     <section class="screen accountant-screen">
-      ${topbar("Sample client", true)}
+      ${topbar("Client records", true)}
       <div class="card stack">
         <div class="portal-head">
           <span>
-            <strong>${escapeHtml(client.name)}</strong>
+            <strong>${escapeHtml(client.first_name || "Client")}</strong>
             <small>${escapeHtml(client.email)}</small>
           </span>
           <span class="pill">Read only</span>
         </div>
-        <div class="total-row"><span>Trade</span><strong>${escapeHtml(client.trade)}</strong></div>
-        <div class="total-row"><span>Status</span><strong class="status-warn">Needs 2 proofs</strong></div>
+        <div class="total-row"><span>Trade</span><strong>${escapeHtml(client.trade || "Not set")}</strong></div>
+        <div class="total-row"><span>Connected</span><strong>${day(client.consented_at)}</strong></div>
       </div>
       <div class="insight-grid">
-        <div class="insight-card"><span>Income</span><strong>GBP 2.4k</strong></div>
-        <div class="insight-card"><span>Expenses</span><strong>GBP 318</strong></div>
-        <div class="insight-card"><span>To get back</span><strong>GBP 86</strong></div>
-        <div class="insight-card"><span>Review</span><strong>2</strong></div>
-      </div>
-      <div class="card stack">
-        <strong>Records health</strong>
-        <div class="month-health">
-          <span class="health-ok">Apr: ready</span>
-          <span class="health-ok">May: ready</span>
-          <span class="health-missing">Jun: income proof missing</span>
-        </div>
-      </div>
-      <div class="card stack">
-        <strong>Needs accountant attention</strong>
-        <div class="flag-list">
-          <span>Income proof missing</span>
-          <span>Receipt category may need checking</span>
-        </div>
+        <div class="insight-card"><span>Income</span><strong>${formatTotals(income)}</strong></div>
+        <div class="insight-card"><span>Expenses</span><strong>${formatTotals(expenses)}</strong></div>
+        <div class="insight-card"><span>Paid for client</span><strong>${formatTotals(paidForClient)}</strong></div>
+        <div class="insight-card"><span>Records</span><strong>${rows.length}</strong></div>
       </div>
       <div class="grid-2" style="margin:12px 0">
-        <button class="secondary" type="button" data-action="downloadDemoCsv">Download CSV</button>
+        <button class="secondary" type="button" data-action="downloadAccountantClientCsv">Download CSV</button>
         <button class="secondary" type="button" data-action="requestDemoDocs">Request docs</button>
       </div>
       <div class="total-box">
@@ -1585,7 +1595,7 @@ function accountantDemoClient() {
         <div class="total-row"><span>Paid for client</span><strong>${formatTotals(paidForClient)}</strong></div>
       </div>
       <div class="list">
-        ${rows.map(accountantDemoRow).join("")}
+        ${rows.length ? rows.map(accountantRecordRow).join("") : `<div class="empty">No records yet.</div>`}
       </div>
     </section>
   `);
@@ -1765,55 +1775,50 @@ function reviewFlags() {
   return flags;
 }
 
-function accountantDemoClients() {
-  return [
-    { name: "Sample Builder", trade: "Sole trader builder", email: "sample.builder@example.com", status: "June needs proof", month: "Jun" },
-    { name: "Anna Cleaning", trade: "Cleaning services", email: "anna@example.com", status: "May ready", month: "May" },
-    { name: "Mark Courier", trade: "Courier", email: "mark@example.com", status: "Receipts coming in", month: "Jun" }
-  ];
-}
-
-function accountantDemoRows() {
-  return [
-    { type: "income", timestamp: "2026-06-03T12:00:00.000Z", description: "CIS remittance", amount: 2400, currency: "GBP", proof: false },
-    { type: "expense", timestamp: "2026-06-04T12:00:00.000Z", description: "Lidl | Food", amount: 18.42, currency: "GBP", proof: true },
-    { type: "expense", timestamp: "2026-06-08T12:00:00.000Z", description: "Screwfix | Tools", amount: 96.2, currency: "GBP", proof: true },
-    { type: "paid_for_client", timestamp: "2026-06-12T12:00:00.000Z", description: "Materials for client", amount: 86.1, currency: "GBP", proof: true },
-    { type: "expense", timestamp: "2026-06-16T12:00:00.000Z", description: "Fuel receipt | Check category", amount: 203.9, currency: "GBP", proof: true }
-  ];
-}
-
-function accountantDemoRow(item) {
+function accountantRecordRow(item) {
   const label = item.type === "paid_for_client" ? "Paid for client" : item.type === "income" ? "Income" : "Expense";
+  const detail = item.description || item.merchant || item.category || "Record";
+  const proof = item.type === "income"
+    ? (item.image_base64 || item.proof_base64 || item.proof_name ? "Proof attached" : "Proof missing")
+    : (item.image_base64 ? "Receipt photo attached" : "No receipt photo");
   return `<div class="list-item">
     <span class="list-main">
-      <span class="list-title">${escapeHtml(label)}</span>
-      <span class="list-meta">${day(item.timestamp)} | ${escapeHtml(item.description)} | proof ${item.proof ? "yes" : "missing"}</span>
+      <span class="list-title">${escapeHtml(label)} - ${escapeHtml(detail)}</span>
+      <span class="list-meta">${day(item.timestamp)} | ${escapeHtml(proof)}</span>
     </span>
     <span class="amount ${item.type === "income" ? "income" : item.type === "paid_for_client" ? "client" : "expense"}">${money(item.amount, item.currency)}</span>
   </div>`;
 }
 
-function accountantDemoCsv() {
+function accountantClientCsv() {
+  const client = (state.accountantClients || []).find((item) => item.user_id === state.accountantSelectedClientId);
+  const records = state.accountantClientRecords || { receipts: [], income: [] };
   const rows = [
-    ["client", "type", "date", "amount", "currency", "description", "proof_available", "needs_review", "accountant_notes"],
-    ...accountantDemoRows().map((item) => [
-      "Sample Builder",
-      item.type,
-      new Date(item.timestamp).toISOString().slice(0, 10),
+    ["client", "type", "date", "amount", "currency", "description", "paid_for_client", "proof_available", "accountant_notes"],
+    ...(records.income || []).map((item) => [
+      client?.first_name || "Client",
+      "income",
+      new Date(item.timestamp || item.created_at).toISOString().slice(0, 10),
       Number(item.amount || 0).toFixed(2),
-      item.currency,
-      item.description,
-      item.proof ? "yes" : "no",
-      item.proof ? "" : "Income proof missing",
+      item.currency || "GBP",
+      item.description || "",
+      "",
+      item.image_base64 ? "yes" : "no",
+      ""
+    ]),
+    ...(records.receipts || []).map((item) => [
+      client?.first_name || "Client",
+      item.is_client_expense ? "paid_for_client" : "expense",
+      new Date(item.timestamp || item.created_at).toISOString().slice(0, 10),
+      Number(item.amount || 0).toFixed(2),
+      item.currency || "GBP",
+      item.merchant || item.category || "",
+      item.is_client_expense ? "yes" : "no",
+      item.image_base64 ? "yes" : "no",
       ""
     ])
   ];
   return rows.map((row) => row.map(csvCell).join(",")).join("\n");
-}
-
-function accountantInviteText() {
-  return `Hi,\n\nI would like you to try TidGo for keeping receipts, income proof and paid-for-client records tidy through the year.\n\nOpen: ${location.origin}\n\nIt should make the end-of-month handoff calmer for both of us.`;
 }
 
 function csvCell(value) {
@@ -2054,7 +2059,7 @@ function escapeAttr(value) {
 }
 
 document.addEventListener("click", async (event) => {
-  const target = event.target.closest("button, [data-open-receipt], [data-open-income]");
+  const target = event.target.closest("button, [data-open-receipt], [data-open-income], [data-open-accountant-client]");
   if (!target) return;
 
   if (target.dataset.category) {
@@ -2067,6 +2072,26 @@ document.addEventListener("click", async (event) => {
   }
   if (target.dataset.openIncome) {
     return navigate("incomeDetail", { selected: target.dataset.openIncome });
+  }
+  if (target.dataset.openAccountantClient) {
+    try {
+      await loadAccountantClientRecords(target.dataset.openAccountantClient);
+      return navigate("accountantDemoClient");
+    } catch (error) {
+      toast(error.message || "Could not load client records");
+      return;
+    }
+  }
+  if (target.dataset.revokeConsent) {
+    try {
+      await api(`/api/accountant/consents/${target.dataset.revokeConsent}?client_user_id=${encodeURIComponent(state.user.id)}`, { method: "DELETE" });
+      await refresh();
+      toast(t("accessRevoked"));
+      return render();
+    } catch (error) {
+      toast(error.message || t("backendDown"));
+      return;
+    }
   }
 
   const action = target.dataset.action;
@@ -2084,48 +2109,11 @@ document.addEventListener("click", async (event) => {
   if (action === "settings") return go("settings");
   if (action === "accountantLanding") return go("accountantLanding");
   if (action === "accountantDemoClient") return go("accountantDemoClient");
-  if (action === "allowAccountantAccess") {
-    const connection = userConnection();
-    if (connection) {
-      connection.status = "active";
-      connection.updatedAt = new Date().toISOString();
-      saveConnections();
-      toast(t("accessAllowed"));
-      return render();
-    }
-  }
-  if (action === "declineAccountantAccess") {
-    const connection = userConnection();
-    if (connection) {
-      connection.status = "declined";
-      connection.updatedAt = new Date().toISOString();
-      saveConnections();
-      toast(t("accessDeclined"));
-      return render();
-    }
-  }
-  if (action === "revokeConnection") {
-    const connection = userConnection();
-    if (connection) {
-      connection.status = "revoked";
-      connection.updatedAt = new Date().toISOString();
-      saveConnections();
-      toast(t("accessRevoked"));
-      return render();
-    }
-  }
-  if (action === "downloadDemoCsv") {
-    downloadFile("TidGo-demo-client-pack.csv", accountantDemoCsv(), "text/csv");
-    toast("Sample CSV downloaded.");
-    return;
-  }
-  if (action === "copyAccountantInvite") {
-    try {
-      await navigator.clipboard.writeText(accountantInviteText());
-      toast("Invite text copied.");
-    } catch {
-      toast("Copy did not work here. Try again in Chrome.");
-    }
+  if (action === "downloadAccountantClientCsv") {
+    const client = (state.accountantClients || []).find((item) => item.user_id === state.accountantSelectedClientId);
+    const safeName = (client?.first_name || "client").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "client";
+    downloadFile(`TidGo-${safeName}-records.csv`, accountantClientCsv(), "text/csv");
+    toast("Client CSV downloaded.");
     return;
   }
   if (action === "requestDemoDocs") {
@@ -2392,22 +2380,22 @@ document.addEventListener("submit", async (event) => {
     if (form.id === "clientConnectionForm") {
       const accountantEmail = (data.accountant_email || "").trim();
       if (!accountantEmail) throw new Error(t("accountantEmail"));
-      upsertConnection({
-        clientEmail: state.user.email || "",
-        clientName: state.user.first_name || "Client",
-        accountantEmail,
-        accountantName: accountantEmail,
-        status: "pending_accountant",
-        invitedBy: "client",
-        createdAt: new Date().toISOString()
+      await api("/api/accountant/consents", {
+        method: "POST",
+        body: JSON.stringify({
+          client_user_id: state.user.id,
+          accountant_email: accountantEmail
+        })
       });
+      await refresh();
       toast(t("inviteCreated"));
       return render();
     }
-    if (form.id === "accountantForm") {
-      state.accountantEmail = (data.accountant_email || "").trim();
-      write("rb_accountant_email", state.accountantEmail);
-      toast(t("saved"));
+    if (form.id === "accountantLoginForm") {
+      const accountantEmail = (data.accountant_email || "").trim();
+      if (!accountantEmail) throw new Error("Accountant email");
+      await loadAccountantClients(accountantEmail);
+      toast("Clients loaded.");
       return render();
     }
     if (form.id === "settingsForm") {
@@ -2450,6 +2438,13 @@ window.addEventListener("popstate", (event) => {
   showSplash();
   await restoreDeviceUser();
   if (state.user?.id) await refresh();
+  if (isAccountantRoute() && state.accountantPortalEmail) {
+    try {
+      await loadAccountantClients(state.accountantPortalEmail);
+    } catch {
+      state.accountantClients = [];
+    }
+  }
   if (state.screen === "boot") {
     state.screen = state.user ? "home" : "onboarding";
   }
