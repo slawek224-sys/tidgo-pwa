@@ -227,6 +227,13 @@ button {
   opacity: 1;
 }
 
+.action-with-tip .info-tip > span {
+  left: auto;
+  right: 0;
+  width: min(300px, calc(100vw - 48px));
+  transform: none;
+}
+
 .input,
 .select,
 .textarea {
