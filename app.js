@@ -13,6 +13,268 @@ const LANGUAGES = {
   bg: "Български"
 };
 
+const ACCOUNTANT_COPY = {
+  en: {
+    forAccountants: "TidGo for Accountants",
+    heroTitle: "Receipts in. Tidy records out.",
+    heroSubtitle: "A simple read-only handoff for sole traders who are brilliant at work and less brilliant at keeping receipts in order.",
+    accessTitle: "Accountant access",
+    signedInHint: "This device is signed in for the accountant email below.",
+    signedOutHint: "Enter your accountant email. We will send a short login code before showing connected clients.",
+    connectedAccount: "Connected account",
+    email: "Email",
+    nameOrPractice: "Name or practice",
+    accountantEmail: "Accountant email",
+    showConnectedClients: "Show connected clients",
+    signOut: "Sign out",
+    sendLoginCode: "Send login code",
+    loginCode: "Login code",
+    verifyCode: "Verify code",
+    handoffTitle: "Built for accountant handoff",
+    handoffText: "Clients keep receipts, income proof and paid-for-client costs tidy through the month. You get a read-only view and a clean pack when it is time to work.",
+    clientAccess: "Client access",
+    readOnly: "Read only",
+    clientPermission: "Client permission",
+    required: "Required",
+    connectedClients: "Connected clients",
+    clientList: "Client list",
+    noClients: "No clients have connected this email yet.",
+    signInFirst: "Sign in with your accountant email code first.",
+    noTrade: "No trade set",
+    noEmail: "No email",
+    records: "records",
+    howAccessWorks: "How access will work",
+    clientAddsEmail: "1. Client adds your email",
+    consentFirst: "Consent first",
+    youSeeRecords: "2. You see records",
+    youDownloadPack: "3. You download the pack",
+    csvPdf: "CSV + PDF",
+    clientRecords: "Client records",
+    showClientsFirst: "Show connected clients first.",
+    trade: "Trade",
+    connected: "Connected",
+    income: "Income",
+    expenses: "Expenses",
+    paidForClient: "Paid for client",
+    downloadCsv: "Download CSV",
+    downloadPdf: "Download PDF",
+    requestDocs: "Request docs",
+    noRecords: "No records yet.",
+    expense: "Expense",
+    proofAttached: "Proof attached",
+    proofMissing: "Proof missing",
+    receiptPhotoAttached: "Receipt photo attached",
+    noReceiptPhoto: "No receipt photo",
+    record: "Record"
+  },
+  pl: {
+    forAccountants: "TidGo dla ksiegowych",
+    heroTitle: "Paragony wchodza. Porzadek wychodzi.",
+    heroSubtitle: "Prosty podglad tylko do odczytu dla sole traders, ktorzy sa swietni w pracy, ale nie zawsze w pilnowaniu paragonow.",
+    accessTitle: "Dostep ksiegowego",
+    signedInHint: "To urzadzenie jest zalogowane dla ponizszego emaila ksiegowego.",
+    signedOutHint: "Wpisz email ksiegowego. Wyslemy krotki kod logowania przed pokazaniem polaczonych klientow.",
+    connectedAccount: "Polaczone konto",
+    email: "Email",
+    nameOrPractice: "Imie lub nazwa biura",
+    accountantEmail: "Email ksiegowego",
+    showConnectedClients: "Pokaz polaczonych klientow",
+    signOut: "Wyloguj",
+    sendLoginCode: "Wyslij kod logowania",
+    loginCode: "Kod logowania",
+    verifyCode: "Sprawdz kod",
+    handoffTitle: "Zrobione pod przekazanie ksiegowemu",
+    handoffText: "Klienci trzymaja paragony, dowody przychodu i koszty do odzyskania w porzadku przez miesiac. Ty dostajesz podglad tylko do odczytu i czysta paczke do pracy.",
+    clientAccess: "Dostep klienta",
+    readOnly: "Tylko odczyt",
+    clientPermission: "Zgoda klienta",
+    required: "Wymagana",
+    connectedClients: "Polaczeni klienci",
+    clientList: "Lista klientow",
+    noClients: "Zaden klient nie polaczyl jeszcze tego emaila.",
+    signInFirst: "Najpierw zaloguj sie kodem na email ksiegowego.",
+    noTrade: "Brak zawodu",
+    noEmail: "Brak emaila",
+    records: "wpisow",
+    howAccessWorks: "Jak dziala dostep",
+    clientAddsEmail: "1. Klient dodaje twoj email",
+    consentFirst: "Najpierw zgoda",
+    youSeeRecords: "2. Widzisz rekordy",
+    youDownloadPack: "3. Pobierasz paczke",
+    csvPdf: "CSV + PDF",
+    clientRecords: "Rekordy klienta",
+    showClientsFirst: "Najpierw pokaz polaczonych klientow.",
+    trade: "Zawod",
+    connected: "Polaczono",
+    income: "Przychody",
+    expenses: "Wydatki",
+    paidForClient: "Do odzyskania",
+    downloadCsv: "Pobierz CSV",
+    downloadPdf: "Pobierz PDF",
+    requestDocs: "Popros o dokumenty",
+    noRecords: "Brak rekordow.",
+    expense: "Wydatek",
+    proofAttached: "Dowod dodany",
+    proofMissing: "Brak dowodu",
+    receiptPhotoAttached: "Zdjecie paragonu dodane",
+    noReceiptPhoto: "Brak zdjecia paragonu",
+    record: "Rekord"
+  }
+};
+
+Object.assign(ACCOUNTANT_COPY, {
+  ro: {
+    ...ACCOUNTANT_COPY.en,
+    forAccountants: "TidGo pentru contabili",
+    heroTitle: "Bonuri inauntru. Evidente ordonate afara.",
+    heroSubtitle: "Un portal simplu, doar pentru citire, pentru clienti mici care vor sa tina actele pregatite.",
+    accessTitle: "Acces contabil",
+    signedInHint: "Acest dispozitiv este conectat pentru emailul contabilului de mai jos.",
+    signedOutHint: "Introdu emailul contabilului. Trimitem un cod scurt inainte de afisarea clientilor conectati.",
+    connectedAccount: "Cont conectat",
+    nameOrPractice: "Nume sau firma",
+    accountantEmail: "Email contabil",
+    showConnectedClients: "Arata clientii conectati",
+    signOut: "Deconectare",
+    sendLoginCode: "Trimite codul",
+    loginCode: "Cod de login",
+    verifyCode: "Verifica codul",
+    connectedClients: "Clienti conectati",
+    clientList: "Lista clienti",
+    noClients: "Niciun client nu a conectat acest email inca.",
+    signInFirst: "Conecteaza-te mai intai cu codul primit pe email.",
+    records: "inregistrari",
+    downloadCsv: "Descarca CSV",
+    downloadPdf: "Descarca PDF",
+    requestDocs: "Cere documente"
+  },
+  uk: {
+    ...ACCOUNTANT_COPY.en,
+    forAccountants: "TidGo dlia bukhhalteriv",
+    heroTitle: "Cheky vseredynu. Uporiadkovani zapysy nazovni.",
+    heroSubtitle: "Prostyi portal lyshe dlia perehliadu, shchob klienty trymaly dokumenty hotovymy.",
+    accessTitle: "Dostup bukhhaltera",
+    signedInHint: "Tse prystroi uviiishov za emailom bukhhaltera nyzhche.",
+    signedOutHint: "Vvedit email bukhhaltera. My nadishlemo korotkyi kod pered pokazom kliientiv.",
+    connectedAccount: "Pidkliuchenyi akaunt",
+    nameOrPractice: "Imia abo nazva firmy",
+    accountantEmail: "Email bukhhaltera",
+    showConnectedClients: "Pokazaty pidkliuchenykh kliientiv",
+    signOut: "Vyity",
+    sendLoginCode: "Nadislaty kod",
+    loginCode: "Kod vhodu",
+    verifyCode: "Pereviryty kod",
+    connectedClients: "Pidkliucheni kliienty",
+    clientList: "Spysok kliientiv",
+    noClients: "Shche nema kliientiv dlia tsoho emaila.",
+    signInFirst: "Spochatku uviydit z kodom z emaila.",
+    records: "zapysiv",
+    downloadCsv: "Zavantazhyty CSV",
+    downloadPdf: "Zavantazhyty PDF",
+    requestDocs: "Poprosyty dokumenty"
+  },
+  lt: {
+    ...ACCOUNTANT_COPY.en,
+    forAccountants: "TidGo buhalteriams",
+    heroTitle: "Kvitai vidun. Tvarkingi irasai lauk.",
+    heroSubtitle: "Paprastas tik skaitymo portalas, kad klientu dokumentai butu paruosti.",
+    accessTitle: "Buhalterio prieiga",
+    signedInHint: "Sis irenginys prijungtas prie zemiau nurodyto buhalterio el. pasto.",
+    signedOutHint: "Iveskite buhalterio el. pasta. Atsiusime trumpa prisijungimo koda.",
+    connectedAccount: "Prijungta paskyra",
+    nameOrPractice: "Vardas arba imone",
+    accountantEmail: "Buhalterio el. pastas",
+    showConnectedClients: "Rodyti prijungtus klientus",
+    signOut: "Atsijungti",
+    sendLoginCode: "Siusti koda",
+    loginCode: "Prisijungimo kodas",
+    verifyCode: "Patikrinti koda",
+    connectedClients: "Prijungti klientai",
+    clientList: "Klientu sarasas",
+    noClients: "Dar nera klientu, prijungusiu si el. pasta.",
+    signInFirst: "Pirma prisijunkite su el. pasto kodu.",
+    records: "irasai",
+    downloadCsv: "Atsisiusti CSV",
+    downloadPdf: "Atsisiusti PDF",
+    requestDocs: "Prasyti dokumentu"
+  },
+  lv: {
+    ...ACCOUNTANT_COPY.en,
+    forAccountants: "TidGo gramatveziem",
+    heroTitle: "Ceki ieksa. Sakartoti ieraksti ara.",
+    heroSubtitle: "Vienkarss tikai lasisanas portals, lai klientu dokumenti butu gatavi.",
+    accessTitle: "Gramatveza piekluve",
+    signedInHint: "Si ierice ir pieslegta zemak noraditajam gramatveza e-pastam.",
+    signedOutHint: "Ievadi gramatveza e-pastu. Mes nosutisim isu pieteiksanas kodu.",
+    connectedAccount: "Pieslegts konts",
+    nameOrPractice: "Vards vai firma",
+    accountantEmail: "Gramatveza e-pasts",
+    showConnectedClients: "Radit pieslegtos klientus",
+    signOut: "Izrakstities",
+    sendLoginCode: "Sutit kodu",
+    loginCode: "Pieteiksanas kods",
+    verifyCode: "Parbaudit kodu",
+    connectedClients: "Pieslegtie klienti",
+    clientList: "Klientu saraksts",
+    noClients: "Neviens klients vel nav piesledzis so e-pastu.",
+    signInFirst: "Vispirms piesledzies ar e-pasta kodu.",
+    records: "ieraksti",
+    downloadCsv: "Lejupieladet CSV",
+    downloadPdf: "Lejupieladet PDF",
+    requestDocs: "Prasit dokumentus"
+  },
+  es: {
+    ...ACCOUNTANT_COPY.en,
+    forAccountants: "TidGo para contables",
+    heroTitle: "Recibos dentro. Registros ordenados fuera.",
+    heroSubtitle: "Un portal sencillo de solo lectura para que los clientes mantengan sus documentos listos.",
+    accessTitle: "Acceso del contable",
+    signedInHint: "Este dispositivo esta conectado al email del contable mostrado abajo.",
+    signedOutHint: "Introduce el email del contable. Enviaremos un codigo corto antes de mostrar clientes conectados.",
+    connectedAccount: "Cuenta conectada",
+    nameOrPractice: "Nombre o despacho",
+    accountantEmail: "Email del contable",
+    showConnectedClients: "Mostrar clientes conectados",
+    signOut: "Cerrar sesion",
+    sendLoginCode: "Enviar codigo",
+    loginCode: "Codigo de acceso",
+    verifyCode: "Verificar codigo",
+    connectedClients: "Clientes conectados",
+    clientList: "Lista de clientes",
+    noClients: "Ningun cliente ha conectado este email todavia.",
+    signInFirst: "Primero inicia sesion con el codigo enviado por email.",
+    records: "registros",
+    downloadCsv: "Descargar CSV",
+    downloadPdf: "Descargar PDF",
+    requestDocs: "Pedir documentos"
+  },
+  bg: {
+    ...ACCOUNTANT_COPY.en,
+    forAccountants: "TidGo za schetovoditeli",
+    heroTitle: "Belezhki vat. Podredeni zapisi van.",
+    heroSubtitle: "Prost portal samo za chetene, za da sa dokumentite na klientite gotovi.",
+    accessTitle: "Dostap za schetovoditel",
+    signedInHint: "Tova ustroystvo e vlyazlo s emaila na schetovoditelya po-dolu.",
+    signedOutHint: "Vavedete emaila na schetovoditelya. Shte izpratim kratuk kod predi spisaka s klienti.",
+    connectedAccount: "Svarzan akaunt",
+    nameOrPractice: "Ime ili firma",
+    accountantEmail: "Email na schetovoditel",
+    showConnectedClients: "Pokazhi svarzani klienti",
+    signOut: "Izlez",
+    sendLoginCode: "Izprati kod",
+    loginCode: "Kod za vhod",
+    verifyCode: "Proveri koda",
+    connectedClients: "Svarzani klienti",
+    clientList: "Spisak klienti",
+    noClients: "Oshte nyama klienti, svarzali tozi email.",
+    signInFirst: "Parvo vlezi s koda ot emaila.",
+    records: "zapisa",
+    downloadCsv: "Izteglyane CSV",
+    downloadPdf: "Izteglyane PDF",
+    requestDocs: "Poiski dokumenti"
+  }
+});
+
 const COPY = {
   en: {
     intro: "Receipts in. Tidy records out. Ready for your accountant.",
@@ -1011,6 +1273,10 @@ function t(key) {
   return (COPY[state.language] || COPY.en)[key] || COPY.en[key] || key;
 }
 
+function at(key) {
+  return (ACCOUNTANT_COPY[state.language] || ACCOUNTANT_COPY.en)[key] || ACCOUNTANT_COPY.en[key] || key;
+}
+
 function read(key, fallback) {
   try {
     const value = localStorage.getItem(key);
@@ -1544,68 +1810,64 @@ function settings() {
 
 function accountantLanding() {
   const clients = state.accountantClients || [];
-  const receiptCount = clients.reduce((sum, client) => sum + Number(client.receipt_count || 0), 0);
-  const incomeCount = clients.reduce((sum, client) => sum + Number(client.income_count || 0), 0);
   shell(`
     <section class="screen accountant-screen">
       ${topbar("")}
       <div class="accountant-hero">
-        <span class="eyebrow">TidGo for Accountants</span>
-        <h1 class="title">Receipts in. Tidy records out.</h1>
-        <p class="subtitle">A simple read-only handoff for sole traders who are brilliant at work and less brilliant at keeping receipts in order.</p>
+        <span class="eyebrow">${at("forAccountants")}</span>
+        <h1 class="title">${at("heroTitle")}</h1>
+        <p class="subtitle">${at("heroSubtitle")}</p>
       </div>
       <form class="card stack" id="accountantLoginForm">
-        <strong>Accountant access</strong>
-        <span class="hint">${state.accountantPortalEmail ? "This device is signed in for the accountant email below." : "Enter your accountant email. We will send a short login code before showing connected clients."}</span>
+        <strong>${at("accessTitle")}</strong>
+        <label class="field"><span>${t("chooseLanguage")}</span>${languageSelect()}</label>
+        <span class="hint">${state.accountantPortalEmail ? at("signedInHint") : at("signedOutHint")}</span>
         ${state.accountantPortalEmail ? `
-          <div class="total-row"><span>Connected account</span><strong>${escapeHtml(state.accountantDisplayName || "Accountant")}</strong></div>
-          <div class="total-row"><span>Email</span><strong>${escapeHtml(state.accountantPortalEmail)}</strong></div>
+          <div class="total-row"><span>${at("connectedAccount")}</span><strong>${escapeHtml(state.accountantDisplayName || "Accountant")}</strong></div>
+          <div class="total-row"><span>${at("email")}</span><strong>${escapeHtml(state.accountantPortalEmail)}</strong></div>
         ` : `
-          <label class="field"><span>Name or practice</span><input class="input" name="display_name" value="${escapeAttr(state.accountantDisplayName || "")}" placeholder="ABC Accounting"></label>
-          <label class="field"><span>Accountant email</span><input class="input" name="accountant_email" type="email" value="${escapeAttr(state.accountantPendingEmail || "")}" required></label>
+          <label class="field"><span>${at("nameOrPractice")}</span><input class="input" name="display_name" value="${escapeAttr(state.accountantDisplayName || "")}" placeholder="ABC Accounting"></label>
+          <label class="field"><span>${at("accountantEmail")}</span><input class="input" name="accountant_email" type="email" value="${escapeAttr(state.accountantPendingEmail || "")}" required></label>
         `}
         ${state.accountantPortalEmail ? `
           <div class="grid-2">
-            <button class="primary" type="submit" name="step" value="load">Show connected clients</button>
-            <button class="secondary" type="button" data-action="signOutAccountant">Sign out</button>
+            <button class="primary" type="submit" name="step" value="load">${at("showConnectedClients")}</button>
+            <button class="secondary" type="button" data-action="signOutAccountant">${at("signOut")}</button>
           </div>
         ` : `
-          <button class="primary" type="submit" name="step" value="request">Send login code</button>
+          <button class="primary" type="submit" name="step" value="request">${at("sendLoginCode")}</button>
           ${state.accountantCodeSent || state.accountantPendingEmail ? `
-            <label class="field"><span>Login code</span><input class="input" name="code" inputmode="numeric" maxlength="6" autocomplete="one-time-code"></label>
-            <button class="secondary" type="submit" name="step" value="verify">Verify code</button>
+            <label class="field"><span>${at("loginCode")}</span><input class="input" name="code" inputmode="numeric" maxlength="6" autocomplete="one-time-code"></label>
+            <button class="secondary" type="submit" name="step" value="verify">${at("verifyCode")}</button>
           ` : ""}
         `}
       </form>
       <div class="card stack">
-        <strong>Built for accountant handoff</strong>
-        <span class="hint">Clients keep receipts, income proof and paid-for-client costs tidy through the month. You get a read-only view and a clean pack when it is time to work.</span>
-        <div class="total-row"><span>Client access</span><strong>Read only</strong></div>
-        <div class="total-row"><span>Client permission</span><strong>Required</strong></div>
-      </div>
-      <div class="insight-grid">
-        <div class="insight-card"><span>Clients</span><strong>${clients.length}</strong></div>
-        <div class="insight-card"><span>Receipts</span><strong>${receiptCount}</strong></div>
-        <div class="insight-card"><span>Income</span><strong>${incomeCount}</strong></div>
-        <div class="insight-card"><span>Last-minute bags</span><strong>0</strong></div>
+        <strong>${at("handoffTitle")}</strong>
+        <span class="hint">${at("handoffText")}</span>
+        <div class="total-row"><span>${at("clientAccess")}</span><strong>${at("readOnly")}</strong></div>
+        <div class="total-row"><span>${at("clientPermission")}</span><strong>${at("required")}</strong></div>
       </div>
       <div class="card stack">
-        <strong>Client list</strong>
-        ${clients.length ? clients.map((client) => `
+        <div class="total-row"><span>${at("connectedClients")}</span><strong>${clients.length}</strong></div>
+      </div>
+      <div class="card stack">
+        <strong>${at("clientList")}</strong>
+        ${clients.length ? clients.map((client, index) => `
           <button class="list-item" type="button" data-open-accountant-client="${escapeAttr(client.user_id)}">
             <span class="list-main">
-              <span class="list-title">${escapeHtml(client.first_name || "Client")}</span>
-              <span class="list-meta">${escapeHtml(client.trade || "No trade set")} | ${escapeHtml(client.email || "No email")}</span>
+              <span class="list-title">${index + 1}. ${escapeHtml(client.first_name || "Client")}</span>
+              <span class="list-meta">${escapeHtml(client.trade || at("noTrade"))} | ${escapeHtml(client.email || at("noEmail"))}</span>
             </span>
-            <span class="pill">${Number(client.receipt_count || 0) + Number(client.income_count || 0)} records</span>
+            <span class="pill">${Number(client.receipt_count || 0) + Number(client.income_count || 0)} ${at("records")}</span>
           </button>
-        `).join("") : `<div class="empty">${state.accountantPortalEmail ? "No clients have connected this email yet." : "Sign in with your accountant email code first."}</div>`}
+        `).join("") : `<div class="empty">${state.accountantPortalEmail ? at("noClients") : at("signInFirst")}</div>`}
       </div>
       <div class="card stack">
-        <strong>How access will work</strong>
-        <div class="total-row"><span>1. Client adds your email</span><strong>Consent first</strong></div>
-        <div class="total-row"><span>2. You see records</span><strong>Read only</strong></div>
-        <div class="total-row"><span>3. You download the pack</span><strong>CSV + PDF</strong></div>
+        <strong>${at("howAccessWorks")}</strong>
+        <div class="total-row"><span>${at("clientAddsEmail")}</span><strong>${at("consentFirst")}</strong></div>
+        <div class="total-row"><span>${at("youSeeRecords")}</span><strong>${at("readOnly")}</strong></div>
+        <div class="total-row"><span>${at("youDownloadPack")}</span><strong>${at("csvPdf")}</strong></div>
       </div>
     </section>
   `);
@@ -1625,43 +1887,43 @@ function accountantDemoClient() {
   if (!client) {
     return shell(`
       <section class="screen accountant-screen">
-        ${topbar("Client records", true)}
-        <div class="empty">Show connected clients first.</div>
+        ${topbar(at("clientRecords"), true)}
+        <div class="empty">${at("showClientsFirst")}</div>
       </section>
     `);
   }
   shell(`
     <section class="screen accountant-screen">
-      ${topbar("Client records", true)}
+      ${topbar(at("clientRecords"), true)}
       <div class="card stack">
         <div class="portal-head">
           <span>
             <strong>${escapeHtml(client.first_name || "Client")}</strong>
             <small>${escapeHtml(client.email)}</small>
           </span>
-          <span class="pill">Read only</span>
+          <span class="pill">${at("readOnly")}</span>
         </div>
-        <div class="total-row"><span>Trade</span><strong>${escapeHtml(client.trade || "Not set")}</strong></div>
-        <div class="total-row"><span>Connected</span><strong>${day(client.consented_at)}</strong></div>
+        <div class="total-row"><span>${at("trade")}</span><strong>${escapeHtml(client.trade || at("noTrade"))}</strong></div>
+        <div class="total-row"><span>${at("connected")}</span><strong>${day(client.consented_at)}</strong></div>
       </div>
       <div class="insight-grid">
-        <div class="insight-card"><span>Income</span><strong>${formatTotals(income)}</strong></div>
-        <div class="insight-card"><span>Expenses</span><strong>${formatTotals(expenses)}</strong></div>
-        <div class="insight-card"><span>Paid for client</span><strong>${formatTotals(paidForClient)}</strong></div>
-        <div class="insight-card"><span>Records</span><strong>${rows.length}</strong></div>
+        <div class="insight-card"><span>${at("income")}</span><strong>${formatTotals(income)}</strong></div>
+        <div class="insight-card"><span>${at("expenses")}</span><strong>${formatTotals(expenses)}</strong></div>
+        <div class="insight-card"><span>${at("paidForClient")}</span><strong>${formatTotals(paidForClient)}</strong></div>
+        <div class="insight-card"><span>${at("records")}</span><strong>${rows.length}</strong></div>
       </div>
       <div class="grid-2" style="margin:12px 0">
-        <button class="secondary" type="button" data-action="downloadAccountantClientCsv">Download CSV</button>
-        <button class="secondary" type="button" data-action="downloadAccountantClientPdf">Download PDF</button>
+        <button class="secondary" type="button" data-action="downloadAccountantClientCsv">${at("downloadCsv")}</button>
+        <button class="secondary" type="button" data-action="downloadAccountantClientPdf">${at("downloadPdf")}</button>
       </div>
-      <button class="secondary" style="width:100%;margin-bottom:12px" type="button" data-action="requestDemoDocs">Request docs</button>
+      <button class="secondary" style="width:100%;margin-bottom:12px" type="button" data-action="requestDemoDocs">${at("requestDocs")}</button>
       <div class="total-box">
-        <div class="total-row"><span>Income</span><strong>${formatTotals(income)}</strong></div>
-        <div class="total-row"><span>Expenses</span><strong>${formatTotals(expenses)}</strong></div>
-        <div class="total-row"><span>Paid for client</span><strong>${formatTotals(paidForClient)}</strong></div>
+        <div class="total-row"><span>${at("income")}</span><strong>${formatTotals(income)}</strong></div>
+        <div class="total-row"><span>${at("expenses")}</span><strong>${formatTotals(expenses)}</strong></div>
+        <div class="total-row"><span>${at("paidForClient")}</span><strong>${formatTotals(paidForClient)}</strong></div>
       </div>
       <div class="list">
-        ${rows.length ? rows.map(accountantRecordRow).join("") : `<div class="empty">No records yet.</div>`}
+        ${rows.length ? rows.map(accountantRecordRow).join("") : `<div class="empty">${at("noRecords")}</div>`}
       </div>
     </section>
   `);
@@ -1842,11 +2104,11 @@ function reviewFlags() {
 }
 
 function accountantRecordRow(item) {
-  const label = item.type === "paid_for_client" ? "Paid for client" : item.type === "income" ? "Income" : "Expense";
-  const detail = item.description || item.merchant || item.category || "Record";
+  const label = item.type === "paid_for_client" ? at("paidForClient") : item.type === "income" ? at("income") : at("expense");
+  const detail = item.description || item.merchant || item.category || at("record");
   const proof = item.type === "income"
-    ? (item.image_base64 || item.proof_base64 || item.proof_name ? "Proof attached" : "Proof missing")
-    : (item.image_base64 ? "Receipt photo attached" : "No receipt photo");
+    ? (item.image_base64 || item.proof_base64 || item.proof_name ? at("proofAttached") : at("proofMissing"))
+    : (item.image_base64 ? at("receiptPhotoAttached") : at("noReceiptPhoto"));
   return `<div class="list-item record-row">
     <span class="list-main">
       <span class="list-title">${escapeHtml(label)} - ${escapeHtml(detail)}</span>
@@ -2607,15 +2869,17 @@ document.addEventListener("submit", async (event) => {
       return render();
     }
     if (form.id === "accountantLoginForm") {
-      const accountantEmail = (data.accountant_email || "").trim();
-      if (!accountantEmail) throw new Error("Accountant email");
+      state.language = data.language || state.language;
+      write("rb_language", state.language);
+      const step = event.submitter?.value || "request";
+      const accountantEmail = ((data.accountant_email || state.accountantPortalEmail || state.accountantPendingEmail || "")).trim();
+      if (!accountantEmail) throw new Error(at("accountantEmail"));
       const displayName = (data.display_name || "").trim();
       if (displayName) {
         state.accountantDisplayName = displayName;
         write("rb_accountant_display_name", displayName);
         await deviceSet("rb_accountant_display_name", displayName);
       }
-      const step = event.submitter?.value || "request";
       if (step === "request") {
         await requestAccountantCode(accountantEmail);
         toast("Login code sent.");
