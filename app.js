@@ -1309,9 +1309,6 @@ function home() {
       <button class="nav-row" data-action="summary">
         <span><span class="summary-icon" aria-hidden="true"></span> ${t("summary")}</span><strong>›</strong>
       </button>
-      <button class="nav-row" data-action="settings">
-        <span><span class="summary-icon" aria-hidden="true"></span> ${t("connectAccountant")}</span><strong>&rsaquo;</strong>
-      </button>
       <div class="grid-2" style="margin-top:14px">
         <button class="action blue" data-action="pickExpense"><span>${t("addExpense")}</span><small>${t("photoDone")}</small></button>
         <button class="action green" data-action="incomeForm"><span>${t("addIncome")}</span><small>${t("amountNote")}</small></button>
@@ -1502,7 +1499,13 @@ function accountantLanding() {
         <span class="eyebrow">TidGo for Accountants</span>
         <h1 class="title">Receipts in. Tidy records out.</h1>
         <p class="subtitle">A simple read-only handoff for sole traders who are brilliant at work and less brilliant at keeping receipts in order.</p>
-        <button class="primary" type="button" data-action="accountantDemoClient">View demo client</button>
+        <button class="primary" type="button" data-action="accountantDemoClient">View sample client</button>
+      </div>
+      <div class="card stack">
+        <strong>Accountant portal preview</strong>
+        <span class="hint">This is the start screen for accountants. It shows the workflow before live client invitations and email consent are connected to the backend.</span>
+        <div class="total-row"><span>Client access</span><strong>Read only</strong></div>
+        <div class="total-row"><span>Live email invites</span><strong>Not connected yet</strong></div>
       </div>
       <div class="insight-grid">
         <div class="insight-card"><span>Clients</span><strong>12</strong></div>
@@ -1523,10 +1526,10 @@ function accountantLanding() {
         `).join("")}
       </div>
       <form class="card stack" id="accountantInviteForm">
-        <strong>Invite clients</strong>
-        <span class="hint">Demo only: create a client connection that must be approved from the client side.</span>
+        <strong>Invite preview</strong>
+        <span class="hint">This only creates a local preview connection on this browser. It does not send an email yet.</span>
         <label class="field"><span>Client email</span><input class="input" name="client_email" type="email" placeholder="client@example.com" required></label>
-        <button class="secondary" type="submit">Invite client</button>
+        <button class="secondary" type="submit">Create preview invite</button>
       </form>
       <div class="card stack">
         <strong>Connection status</strong>
@@ -1538,7 +1541,7 @@ function accountantLanding() {
             </span>
             <span class="pill">${escapeHtml(connectionStatusLabel(connection.status))}</span>
           </div>
-        `).join("") : `<span class="hint">No demo connections yet.</span>`}
+        `).join("") : `<span class="hint">No preview connections yet.</span>`}
       </div>
     </section>
   `);
@@ -1552,7 +1555,7 @@ function accountantDemoClient() {
   const paidForClient = rows.filter((item) => item.type === "paid_for_client");
   shell(`
     <section class="screen accountant-screen">
-      ${topbar("Demo client", true)}
+      ${topbar("Sample client", true)}
       <div class="card stack">
         <div class="portal-head">
           <span>
@@ -1777,7 +1780,7 @@ function reviewFlags() {
 
 function accountantDemoClients() {
   return [
-    { name: "Demo Builder Ltd", trade: "Sole trader builder", email: "demo.builder@example.com", status: "June needs proof", month: "Jun" },
+    { name: "Sample Builder", trade: "Sole trader builder", email: "sample.builder@example.com", status: "June needs proof", month: "Jun" },
     { name: "Anna Cleaning", trade: "Cleaning services", email: "anna@example.com", status: "May ready", month: "May" },
     { name: "Mark Courier", trade: "Courier", email: "mark@example.com", status: "Receipts coming in", month: "Jun" }
   ];
@@ -1808,7 +1811,7 @@ function accountantDemoCsv() {
   const rows = [
     ["client", "type", "date", "amount", "currency", "description", "proof_available", "needs_review", "accountant_notes"],
     ...accountantDemoRows().map((item) => [
-      "Demo Builder Ltd",
+      "Sample Builder",
       item.type,
       new Date(item.timestamp).toISOString().slice(0, 10),
       Number(item.amount || 0).toFixed(2),
@@ -2126,7 +2129,7 @@ document.addEventListener("click", async (event) => {
   }
   if (action === "downloadDemoCsv") {
     downloadFile("TidGo-demo-client-pack.csv", accountantDemoCsv(), "text/csv");
-    toast("Demo CSV downloaded.");
+    toast("Sample CSV downloaded.");
     return;
   }
   if (action === "copyAccountantInvite") {
@@ -2426,7 +2429,7 @@ document.addEventListener("submit", async (event) => {
         invitedBy: "accountant",
         createdAt: new Date().toISOString()
       });
-      toast("Client invite created.");
+      toast("Preview invite created. No email sent yet.");
       return render();
     }
     if (form.id === "accountantForm") {
