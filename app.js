@@ -971,6 +971,8 @@ const state = {
   accountantEmail: read("rb_accountant_email", ""),
   accountantConsents: [],
   accountantPortalEmail: read("rb_accountant_portal_email", ""),
+  accountantPendingEmail: read("rb_accountant_pending_email", ""),
+  accountantCodeSent: false,
   accountantClients: [],
   accountantClientRecords: null,
   accountantSelectedClientId: null,
@@ -1214,6 +1216,45 @@ async function loadAccountantClients(email = state.accountantPortalEmail) {
   write("rb_accountant_portal_email", cleanEmail);
   state.accountantClients = clients || [];
   return state.accountantClients;
+}
+
+async function requestAccountantCode(email) {
+  const cleanEmail = (email || "").trim();
+  if (!cleanEmail) throw new Error("Enter accountant email");
+  await api("/api/accountant/auth/request", {
+    method: "POST",
+    body: JSON.stringify({ email: cleanEmail })
+  });
+  state.accountantPendingEmail = cleanEmail;
+  state.accountantCodeSent = true;
+  write("rb_accountant_pending_email", cleanEmail);
+}
+
+async function verifyAccountantCode(email, code) {
+  const cleanEmail = (email || "").trim();
+  const cleanCode = (code || "").trim();
+  if (!cleanEmail) throw new Error("Enter accountant email");
+  if (!cleanCode) throw new Error("Enter the code");
+  const response = await api("/api/accountant/auth/verify", {
+    method: "POST",
+    body: JSON.stringify({ email: cleanEmail, code: cleanCode })
+  });
+  const accountantEmail = response.accountant_email || cleanEmail;
+  state.accountantPortalEmail = accountantEmail;
+  state.accountantPendingEmail = "";
+  state.accountantCodeSent = false;
+  forget("rb_accountant_pending_email");
+  await deviceSet("rb_accountant_portal_email", accountantEmail);
+  return loadAccountantClients(accountantEmail);
+}
+
+async function restoreAccountantSession() {
+  if (state.accountantPortalEmail) return;
+  const email = await deviceGet("rb_accountant_portal_email", "");
+  if (email) {
+    state.accountantPortalEmail = email;
+    write("rb_accountant_portal_email", email);
+  }
 }
 
 async function loadAccountantClientRecords(clientId) {
@@ -1508,9 +1549,20 @@ function accountantLanding() {
       </div>
       <form class="card stack" id="accountantLoginForm">
         <strong>Accountant access</strong>
-        <span class="hint">Use your accountant email to see clients who connected with you.</span>
-        <label class="field"><span>Accountant email</span><input class="input" name="accountant_email" type="email" value="${escapeAttr(state.accountantPortalEmail || "")}" required></label>
-        <button class="primary" type="submit">Show connected clients</button>
+        <span class="hint">${state.accountantPortalEmail ? "This device is signed in for the accountant email below." : "Enter your accountant email. We will send a short login code before showing connected clients."}</span>
+        <label class="field"><span>Accountant email</span><input class="input" name="accountant_email" type="email" value="${escapeAttr(state.accountantPortalEmail || state.accountantPendingEmail || "")}" ${state.accountantPortalEmail ? "readonly" : "required"}></label>
+        ${state.accountantPortalEmail ? `
+          <div class="grid-2">
+            <button class="primary" type="submit" name="step" value="load">Show connected clients</button>
+            <button class="secondary" type="button" data-action="signOutAccountant">Sign out</button>
+          </div>
+        ` : `
+          <button class="primary" type="submit" name="step" value="request">Send login code</button>
+          ${state.accountantCodeSent || state.accountantPendingEmail ? `
+            <label class="field"><span>Login code</span><input class="input" name="code" inputmode="numeric" maxlength="6" autocomplete="one-time-code"></label>
+            <button class="secondary" type="submit" name="step" value="verify">Verify code</button>
+          ` : ""}
+        `}
       </form>
       <div class="card stack">
         <strong>Built for accountant handoff</strong>
@@ -1534,7 +1586,7 @@ function accountantLanding() {
             </span>
             <span class="pill">${Number(client.receipt_count || 0) + Number(client.income_count || 0)} records</span>
           </button>
-        `).join("") : `<div class="empty">${state.accountantPortalEmail ? "No clients have connected this email yet." : "Enter your accountant email to load connected clients."}</div>`}
+        `).join("") : `<div class="empty">${state.accountantPortalEmail ? "No clients have connected this email yet." : "Sign in with your accountant email code first."}</div>`}
       </div>
       <div class="card stack">
         <strong>How access will work</strong>
@@ -2109,6 +2161,19 @@ document.addEventListener("click", async (event) => {
   if (action === "settings") return go("settings");
   if (action === "accountantLanding") return go("accountantLanding");
   if (action === "accountantDemoClient") return go("accountantDemoClient");
+  if (action === "signOutAccountant") {
+    state.accountantPortalEmail = "";
+    state.accountantPendingEmail = "";
+    state.accountantCodeSent = false;
+    state.accountantClients = [];
+    state.accountantClientRecords = null;
+    state.accountantSelectedClientId = null;
+    forget("rb_accountant_portal_email");
+    forget("rb_accountant_pending_email");
+    await deviceForget("rb_accountant_portal_email");
+    toast("Signed out.");
+    return render();
+  }
   if (action === "downloadAccountantClientCsv") {
     const client = (state.accountantClients || []).find((item) => item.user_id === state.accountantSelectedClientId);
     const safeName = (client?.first_name || "client").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "client";
@@ -2394,8 +2459,17 @@ document.addEventListener("submit", async (event) => {
     if (form.id === "accountantLoginForm") {
       const accountantEmail = (data.accountant_email || "").trim();
       if (!accountantEmail) throw new Error("Accountant email");
-      await loadAccountantClients(accountantEmail);
-      toast("Clients loaded.");
+      const step = event.submitter?.value || "request";
+      if (step === "request") {
+        await requestAccountantCode(accountantEmail);
+        toast("Login code sent.");
+      } else if (step === "verify") {
+        await verifyAccountantCode(accountantEmail, data.code || "");
+        toast("Signed in.");
+      } else {
+        await loadAccountantClients(accountantEmail);
+        toast("Clients loaded.");
+      }
       return render();
     }
     if (form.id === "settingsForm") {
@@ -2438,6 +2512,7 @@ window.addEventListener("popstate", (event) => {
   showSplash();
   await restoreDeviceUser();
   if (state.user?.id) await refresh();
+  if (isAccountantRoute()) await restoreAccountantSession();
   if (isAccountantRoute() && state.accountantPortalEmail) {
     try {
       await loadAccountantClients(state.accountantPortalEmail);
