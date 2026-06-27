@@ -1,5 +1,5 @@
 const API_BASE = "https://donezo-api-53t9.onrender.com";
-const FEEDBACK_EMAIL = "outpost.hub.signal@gmail.com";
+const FEEDBACK_EMAIL = "hello@tidgo.co.uk";
 const CURRENCIES = ["GBP", "EUR", "USD", "PLN", "RON", "UAH", "BGN", "CZK", "HUF"];
 const CATEGORIES = ["food", "fuel", "tools", "transport", "other"];
 const LANGUAGES = {
@@ -1491,7 +1491,6 @@ function settings() {
 
 function accountantLanding() {
   const clients = accountantDemoClients();
-  const connections = state.connections;
   shell(`
     <section class="screen accountant-screen">
       ${topbar("")}
@@ -1502,10 +1501,10 @@ function accountantLanding() {
         <button class="primary" type="button" data-action="accountantDemoClient">View sample client</button>
       </div>
       <div class="card stack">
-        <strong>Accountant portal preview</strong>
-        <span class="hint">This is the start screen for accountants. It shows the workflow before live client invitations and email consent are connected to the backend.</span>
+        <strong>Built for accountant handoff</strong>
+        <span class="hint">Clients keep receipts, income proof and paid-for-client costs tidy through the month. You get a read-only view and a clean pack when it is time to work.</span>
         <div class="total-row"><span>Client access</span><strong>Read only</strong></div>
-        <div class="total-row"><span>Live email invites</span><strong>Not connected yet</strong></div>
+        <div class="total-row"><span>Client permission</span><strong>Required</strong></div>
       </div>
       <div class="insight-grid">
         <div class="insight-card"><span>Clients</span><strong>12</strong></div>
@@ -1525,23 +1524,11 @@ function accountantLanding() {
           </button>
         `).join("")}
       </div>
-      <form class="card stack" id="accountantInviteForm">
-        <strong>Invite preview</strong>
-        <span class="hint">This only creates a local preview connection on this browser. It does not send an email yet.</span>
-        <label class="field"><span>Client email</span><input class="input" name="client_email" type="email" placeholder="client@example.com" required></label>
-        <button class="secondary" type="submit">Create preview invite</button>
-      </form>
       <div class="card stack">
-        <strong>Connection status</strong>
-        ${connections.length ? connections.map((connection) => `
-          <div class="connection-row">
-            <span>
-              <strong>${escapeHtml(connection.clientName || connection.clientEmail || "Client")}</strong>
-              <small>${escapeHtml(connection.clientEmail || "")}</small>
-            </span>
-            <span class="pill">${escapeHtml(connectionStatusLabel(connection.status))}</span>
-          </div>
-        `).join("") : `<span class="hint">No preview connections yet.</span>`}
+        <strong>How access will work</strong>
+        <div class="total-row"><span>1. Client adds your email</span><strong>Consent first</strong></div>
+        <div class="total-row"><span>2. You see records</span><strong>Read only</strong></div>
+        <div class="total-row"><span>3. You download the pack</span><strong>CSV + PDF</strong></div>
       </div>
     </section>
   `);
@@ -2415,21 +2402,6 @@ document.addEventListener("submit", async (event) => {
         createdAt: new Date().toISOString()
       });
       toast(t("inviteCreated"));
-      return render();
-    }
-    if (form.id === "accountantInviteForm") {
-      const clientEmail = (data.client_email || "").trim();
-      if (!clientEmail) throw new Error("Client email");
-      upsertConnection({
-        clientEmail,
-        clientName: clientEmail.split("@")[0] || "Client",
-        accountantEmail: "hello@tidgo.co.uk",
-        accountantName: "TidGo Demo Practice",
-        status: "pending_client_approval",
-        invitedBy: "accountant",
-        createdAt: new Date().toISOString()
-      });
-      toast("Preview invite created. No email sent yet.");
       return render();
     }
     if (form.id === "accountantForm") {
