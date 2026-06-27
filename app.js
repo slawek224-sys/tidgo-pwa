@@ -65,7 +65,14 @@ const ACCOUNTANT_COPY = {
     proofMissing: "Proof missing",
     receiptPhotoAttached: "Receipt photo attached",
     noReceiptPhoto: "No receipt photo",
-    record: "Record"
+    record: "Record",
+    removeClient: "Remove client",
+    removeClientConfirm: "Remove this client from your accountant list?",
+    clientRemoved: "Client removed.",
+    removeNeedsBackend: "This connection cannot be removed from the accountant side yet. Client can revoke access in TidGo settings.",
+    accountantEmailInfo: "Use the email address your clients connect to in their TidGo settings.",
+    connectedClientsInfo: "Only clients who have allowed access to this accountant email appear here.",
+    requestDocsInfo: "Copies a short message you can paste into email or WhatsApp when proof is missing."
   },
   pl: {
     forAccountants: "TidGo dla ksiegowych",
@@ -118,7 +125,14 @@ const ACCOUNTANT_COPY = {
     proofMissing: "Brak dowodu",
     receiptPhotoAttached: "Zdjecie paragonu dodane",
     noReceiptPhoto: "Brak zdjecia paragonu",
-    record: "Rekord"
+    record: "Rekord",
+    removeClient: "Usun klienta",
+    removeClientConfirm: "Usunac tego klienta z listy ksiegowego?",
+    clientRemoved: "Klient usuniety.",
+    removeNeedsBackend: "Tego polaczenia nie da sie jeszcze usunac od strony ksiegowego. Klient moze cofnac dostep w ustawieniach TidGo.",
+    accountantEmailInfo: "Uzyj adresu email, ktory klienci podlaczaja w swoich ustawieniach TidGo.",
+    connectedClientsInfo: "Tutaj widac tylko klientow, ktorzy pozwolili temu emailowi ksiegowego na dostep.",
+    requestDocsInfo: "Kopiuje krotka wiadomosc, ktora mozna wkleic do emaila albo WhatsAppa, gdy brakuje dokumentu."
   }
 };
 
@@ -1542,6 +1556,10 @@ async function loadAccountantClientRecords(clientId) {
   return state.accountantClientRecords;
 }
 
+function accountantClientConsentId(client) {
+  return client?.consent_id || client?.consentId || client?.accountant_consent_id || client?.connection_id || client?.access_id || (client?.id && client.id !== client.user_id ? client.id : "");
+}
+
 async function refresh() {
   if (!state.user?.id) return;
   try {
@@ -1827,7 +1845,7 @@ function accountantLanding() {
           <div class="total-row"><span>${at("email")}</span><strong>${escapeHtml(state.accountantPortalEmail)}</strong></div>
         ` : `
           <label class="field"><span>${at("nameOrPractice")}</span><input class="input" name="display_name" value="${escapeAttr(state.accountantDisplayName || "")}" placeholder="ABC Accounting"></label>
-          <label class="field"><span>${at("accountantEmail")}</span><input class="input" name="accountant_email" type="email" value="${escapeAttr(state.accountantPendingEmail || "")}" required></label>
+          <label class="field"><span>${at("accountantEmail")} ${infoTip(at("accountantEmailInfo"))}</span><input class="input" name="accountant_email" type="email" value="${escapeAttr(state.accountantPendingEmail || "")}" required></label>
         `}
         ${state.accountantPortalEmail ? `
           <div class="grid-2">
@@ -1849,7 +1867,7 @@ function accountantLanding() {
         <div class="total-row"><span>${at("clientPermission")}</span><strong>${at("required")}</strong></div>
       </div>
       <div class="card stack">
-        <div class="total-row"><span>${at("connectedClients")}</span><strong>${clients.length}</strong></div>
+        <div class="total-row"><span>${at("connectedClients")} ${infoTip(at("connectedClientsInfo"))}</span><strong>${clients.length}</strong></div>
       </div>
       <div class="card stack">
         <strong>${at("clientList")}</strong>
@@ -1916,7 +1934,11 @@ function accountantDemoClient() {
         <button class="secondary" type="button" data-action="downloadAccountantClientCsv">${at("downloadCsv")}</button>
         <button class="secondary" type="button" data-action="downloadAccountantClientPdf">${at("downloadPdf")}</button>
       </div>
-      <button class="secondary" style="width:100%;margin-bottom:12px" type="button" data-action="requestDemoDocs">${at("requestDocs")}</button>
+      <div class="action-with-tip">
+        <button class="secondary" type="button" data-action="requestDemoDocs">${at("requestDocs")}</button>
+        ${infoTip(at("requestDocsInfo"))}
+      </div>
+      <button class="danger" style="width:100%;margin-bottom:12px" type="button" data-action="removeAccountantClient">${at("removeClient")}</button>
       <div class="total-box">
         <div class="total-row"><span>${at("income")}</span><strong>${formatTotals(income)}</strong></div>
         <div class="total-row"><span>${at("expenses")}</span><strong>${formatTotals(expenses)}</strong></div>
@@ -2013,6 +2035,10 @@ function terms() {
 
 function languageSelect() {
   return `<select class="select" name="language">${Object.entries(LANGUAGES).map(([code, name]) => `<option value="${code}"${state.language === code ? " selected" : ""}>${name}</option>`).join("")}</select>`;
+}
+
+function infoTip(text) {
+  return `<span class="info-tip" tabindex="0" role="note" aria-label="${escapeAttr(text)}" title="${escapeAttr(text)}">i<span>${escapeHtml(text)}</span></span>`;
 }
 
 function currencyOptions(active) {
@@ -2590,6 +2616,23 @@ document.addEventListener("click", async (event) => {
       toast("Client PDF downloaded.");
     } catch (error) {
       toast(error.message || "Could not create PDF.");
+    }
+    return;
+  }
+  if (action === "removeAccountantClient") {
+    try {
+      const client = (state.accountantClients || []).find((item) => item.user_id === state.accountantSelectedClientId);
+      const consentId = accountantClientConsentId(client);
+      if (!client || !consentId) throw new Error(at("removeNeedsBackend"));
+      if (!confirm(at("removeClientConfirm"))) return;
+      await api(`/api/accountant/consents/${encodeURIComponent(consentId)}?client_user_id=${encodeURIComponent(client.user_id)}`, { method: "DELETE" });
+      state.accountantClientRecords = null;
+      state.accountantSelectedClientId = null;
+      await loadAccountantClients();
+      toast(at("clientRemoved"));
+      return go("accountantLanding");
+    } catch (error) {
+      toast(error.message || at("removeNeedsBackend"));
     }
     return;
   }

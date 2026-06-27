@@ -160,6 +160,18 @@ button {
   gap: 10px;
 }
 
+.action-with-tip {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 34px;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.action-with-tip .secondary {
+  width: 100%;
+}
+
 .field {
   display: grid;
   gap: 7px;
@@ -169,6 +181,50 @@ button {
   font-size: 13px;
   color: #364155;
   font-weight: 700;
+}
+
+.info-tip {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  margin-left: 4px;
+  border-radius: 999px;
+  background: #eaf2ff;
+  color: var(--blue-dark);
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.info-tip > span {
+  position: absolute;
+  z-index: 20;
+  left: 50%;
+  bottom: calc(100% + 8px);
+  width: min(260px, 78vw);
+  transform: translateX(-50%);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #111827;
+  color: #fff;
+  box-shadow: var(--shadow);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.35;
+  padding: 9px 10px;
+  opacity: 0;
+  pointer-events: none;
+  text-align: left;
+  transition: opacity 0.12s ease;
+}
+
+.info-tip:hover > span,
+.info-tip:focus > span,
+.info-tip:focus-visible > span {
+  opacity: 1;
 }
 
 .input,
