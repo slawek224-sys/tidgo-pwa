@@ -570,6 +570,16 @@ button {
   color: var(--blue);
 }
 
+.accountant-screen .insight-card strong,
+.accountant-screen .total-row strong {
+  white-space: pre-line;
+  line-height: 1.18;
+}
+
+.accountant-screen .insight-card strong {
+  overflow-wrap: anywhere;
+}
+
 .month-health,
 .flag-list {
   display: flex;
