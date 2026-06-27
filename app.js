@@ -1508,9 +1508,9 @@ function accountantLanding() {
       </div>
       <form class="card stack" id="accountantLoginForm">
         <strong>Accountant access</strong>
-        <span class="hint">Enter the email your clients used when they connected you in TidGo.</span>
+        <span class="hint">Use your accountant email to see clients who connected with you.</span>
         <label class="field"><span>Accountant email</span><input class="input" name="accountant_email" type="email" value="${escapeAttr(state.accountantPortalEmail || "")}" required></label>
-        <button class="primary" type="submit">Load clients</button>
+        <button class="primary" type="submit">Show connected clients</button>
       </form>
       <div class="card stack">
         <strong>Built for accountant handoff</strong>
@@ -1561,7 +1561,7 @@ function accountantDemoClient() {
     return shell(`
       <section class="screen accountant-screen">
         ${topbar("Client records", true)}
-        <div class="empty">Load clients first.</div>
+        <div class="empty">Show connected clients first.</div>
       </section>
     `);
   }
