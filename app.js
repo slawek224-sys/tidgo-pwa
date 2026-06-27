@@ -972,6 +972,7 @@ const state = {
   accountantConsents: [],
   accountantPortalEmail: read("rb_accountant_portal_email", ""),
   accountantPendingEmail: read("rb_accountant_pending_email", ""),
+  accountantDisplayName: read("rb_accountant_display_name", ""),
   accountantCodeSent: false,
   accountantClients: [],
   accountantClientRecords: null,
@@ -1154,7 +1155,8 @@ function navigate(screen, extra = {}) {
 }
 
 function shell(content) {
-  app.innerHTML = `<main class="shell">${content}</main><section id="printRoot" class="print-root"></section>`;
+  const accountantMode = state.screen === "accountantLanding" || state.screen === "accountantDemoClient";
+  app.innerHTML = `<main class="shell ${accountantMode ? "accountant-shell" : ""}">${content}</main><section id="printRoot" class="print-root"></section>`;
 }
 
 function topbar(title, back = false) {
@@ -1254,6 +1256,11 @@ async function restoreAccountantSession() {
   if (email) {
     state.accountantPortalEmail = email;
     write("rb_accountant_portal_email", email);
+  }
+  const displayName = await deviceGet("rb_accountant_display_name", "");
+  if (displayName) {
+    state.accountantDisplayName = displayName;
+    write("rb_accountant_display_name", displayName);
   }
 }
 
@@ -1550,7 +1557,13 @@ function accountantLanding() {
       <form class="card stack" id="accountantLoginForm">
         <strong>Accountant access</strong>
         <span class="hint">${state.accountantPortalEmail ? "This device is signed in for the accountant email below." : "Enter your accountant email. We will send a short login code before showing connected clients."}</span>
-        <label class="field"><span>Accountant email</span><input class="input" name="accountant_email" type="email" value="${escapeAttr(state.accountantPortalEmail || state.accountantPendingEmail || "")}" ${state.accountantPortalEmail ? "readonly" : "required"}></label>
+        ${state.accountantPortalEmail ? `
+          <div class="total-row"><span>Connected account</span><strong>${escapeHtml(state.accountantDisplayName || "Accountant")}</strong></div>
+          <div class="total-row"><span>Email</span><strong>${escapeHtml(state.accountantPortalEmail)}</strong></div>
+        ` : `
+          <label class="field"><span>Name or practice</span><input class="input" name="display_name" value="${escapeAttr(state.accountantDisplayName || "")}" placeholder="ABC Accounting"></label>
+          <label class="field"><span>Accountant email</span><input class="input" name="accountant_email" type="email" value="${escapeAttr(state.accountantPendingEmail || "")}" required></label>
+        `}
         ${state.accountantPortalEmail ? `
           <div class="grid-2">
             <button class="primary" type="submit" name="step" value="load">Show connected clients</button>
@@ -1639,8 +1652,9 @@ function accountantDemoClient() {
       </div>
       <div class="grid-2" style="margin:12px 0">
         <button class="secondary" type="button" data-action="downloadAccountantClientCsv">Download CSV</button>
-        <button class="secondary" type="button" data-action="requestDemoDocs">Request docs</button>
+        <button class="secondary" type="button" data-action="downloadAccountantClientPdf">Download PDF</button>
       </div>
+      <button class="secondary" style="width:100%;margin-bottom:12px" type="button" data-action="requestDemoDocs">Request docs</button>
       <div class="total-box">
         <div class="total-row"><span>Income</span><strong>${formatTotals(income)}</strong></div>
         <div class="total-row"><span>Expenses</span><strong>${formatTotals(expenses)}</strong></div>
@@ -1833,7 +1847,7 @@ function accountantRecordRow(item) {
   const proof = item.type === "income"
     ? (item.image_base64 || item.proof_base64 || item.proof_name ? "Proof attached" : "Proof missing")
     : (item.image_base64 ? "Receipt photo attached" : "No receipt photo");
-  return `<div class="list-item">
+  return `<div class="list-item record-row">
     <span class="list-main">
       <span class="list-title">${escapeHtml(label)} - ${escapeHtml(detail)}</span>
       <span class="list-meta">${day(item.timestamp)} | ${escapeHtml(proof)}</span>
@@ -1871,6 +1885,122 @@ function accountantClientCsv() {
     ])
   ];
   return rows.map((row) => row.map(csvCell).join(",")).join("\n");
+}
+
+function createAccountantClientPdfFile() {
+  const jsPdf = window.jspdf?.jsPDF;
+  if (!jsPdf) {
+    throw new Error("PDF tool is still loading. Try again in a few seconds.");
+  }
+
+  const client = (state.accountantClients || []).find((item) => item.user_id === state.accountantSelectedClientId);
+  const records = state.accountantClientRecords || { receipts: [], income: [] };
+  const receipts = records.receipts || [];
+  const income = records.income || [];
+  const expenses = receipts.filter((item) => !item.is_client_expense);
+  const paidForClient = receipts.filter((item) => item.is_client_expense);
+  const doc = new jsPdf({ unit: "pt", format: "a4" });
+  const pageWidth = doc.internal.pageSize.getWidth();
+  const pageHeight = doc.internal.pageSize.getHeight();
+  const margin = 42;
+  let y = 48;
+
+  const line = (text, size = 11, weight = "normal") => {
+    doc.setFont("helvetica", weight);
+    doc.setFontSize(size);
+    const lines = doc.splitTextToSize(String(text || ""), pageWidth - margin * 2);
+    doc.text(lines, margin, y);
+    y += lines.length * (size + 5);
+  };
+
+  doc.setTextColor(23, 32, 51);
+  line("TidGo accountant pack", 22, "bold");
+  line([client?.first_name || "Client", client?.trade || "", client?.email || ""].filter(Boolean).join(" | "), 11);
+  y += 8;
+  line("Income: " + formatTotals(income), 12, "bold");
+  line("Expenses: " + formatTotals(expenses), 12, "bold");
+  line("Paid for client: " + formatTotals(paidForClient), 12, "bold");
+  y += 14;
+
+  const rows = [
+    ...income.map((item) => [day(item.timestamp || item.created_at), "Income", item.description || "Income", money(item.amount, item.currency)]),
+    ...expenses.map((item) => [day(item.timestamp || item.created_at), "Expense", item.merchant || item.category || "Expense", money(item.amount, item.currency)]),
+    ...paidForClient.map((item) => [day(item.timestamp || item.created_at), "Paid for client", item.merchant || item.category || "Paid for client", money(item.amount, item.currency)])
+  ];
+
+  doc.setFontSize(10);
+  doc.setFont("helvetica", "bold");
+  doc.text("Date", margin, y);
+  doc.text("Type", margin + 68, y);
+  doc.text("Description", margin + 168, y);
+  doc.text("Amount", pageWidth - margin - 90, y);
+  y += 14;
+  doc.setDrawColor(216, 222, 232);
+  doc.line(margin, y, pageWidth - margin, y);
+  y += 14;
+  doc.setFont("helvetica", "normal");
+
+  if (!rows.length) {
+    line("No records yet.", 11);
+  }
+
+  for (const row of rows) {
+    if (y > pageHeight - 60) {
+      doc.addPage();
+      y = 48;
+    }
+    doc.text(String(row[0]), margin, y);
+    doc.text(String(row[1]), margin + 68, y);
+    doc.text(doc.splitTextToSize(String(row[2]), 180), margin + 168, y);
+    doc.text(String(row[3]), pageWidth - margin - 90, y);
+    y += 24;
+  }
+
+  for (const receipt of receipts) {
+    if (!receipt.image_base64) continue;
+    doc.addPage();
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(13);
+    doc.text(`${receipt.merchant || receipt.category || "Receipt"} - ${money(receipt.amount, receipt.currency)}`, margin, 36);
+    try {
+      const props = doc.getImageProperties(receipt.image_base64);
+      const maxW = pageWidth - margin * 2;
+      const maxH = pageHeight - 90;
+      const scale = Math.min(maxW / props.width, maxH / props.height);
+      const w = props.width * scale;
+      const h = props.height * scale;
+      doc.addImage(receipt.image_base64, props.fileType || "JPEG", (pageWidth - w) / 2, 58, w, h);
+    } catch {
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(11);
+      doc.text("Receipt photo could not be added to this PDF.", margin, 70);
+    }
+  }
+
+  for (const item of income) {
+    const proofImage = item.image_base64 || item.proof_base64;
+    if (!proofImage) continue;
+    doc.addPage();
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(13);
+    doc.text(`${item.description || "Income proof"} - ${money(item.amount, item.currency)}`, margin, 36);
+    try {
+      const props = doc.getImageProperties(proofImage);
+      const maxW = pageWidth - margin * 2;
+      const maxH = pageHeight - 90;
+      const scale = Math.min(maxW / props.width, maxH / props.height);
+      const w = props.width * scale;
+      const h = props.height * scale;
+      doc.addImage(proofImage, props.fileType || "JPEG", (pageWidth - w) / 2, 58, w, h);
+    } catch {
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(11);
+      doc.text("Income proof could not be added to this PDF.", margin, 70);
+    }
+  }
+
+  const safeName = (client?.first_name || "client").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "client";
+  return doc.output("blob", { filename: `TidGo-${safeName}-accountant-pack.pdf` });
 }
 
 function csvCell(value) {
@@ -2164,13 +2294,16 @@ document.addEventListener("click", async (event) => {
   if (action === "signOutAccountant") {
     state.accountantPortalEmail = "";
     state.accountantPendingEmail = "";
+    state.accountantDisplayName = "";
     state.accountantCodeSent = false;
     state.accountantClients = [];
     state.accountantClientRecords = null;
     state.accountantSelectedClientId = null;
     forget("rb_accountant_portal_email");
     forget("rb_accountant_pending_email");
+    forget("rb_accountant_display_name");
     await deviceForget("rb_accountant_portal_email");
+    await deviceForget("rb_accountant_display_name");
     toast("Signed out.");
     return render();
   }
@@ -2179,6 +2312,23 @@ document.addEventListener("click", async (event) => {
     const safeName = (client?.first_name || "client").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "client";
     downloadFile(`TidGo-${safeName}-records.csv`, accountantClientCsv(), "text/csv");
     toast("Client CSV downloaded.");
+    return;
+  }
+  if (action === "downloadAccountantClientPdf") {
+    try {
+      const client = (state.accountantClients || []).find((item) => item.user_id === state.accountantSelectedClientId);
+      const safeName = (client?.first_name || "client").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "client";
+      const blob = createAccountantClientPdfFile();
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `TidGo-${safeName}-accountant-pack.pdf`;
+      link.click();
+      URL.revokeObjectURL(url);
+      toast("Client PDF downloaded.");
+    } catch (error) {
+      toast(error.message || "Could not create PDF.");
+    }
     return;
   }
   if (action === "requestDemoDocs") {
@@ -2459,6 +2609,12 @@ document.addEventListener("submit", async (event) => {
     if (form.id === "accountantLoginForm") {
       const accountantEmail = (data.accountant_email || "").trim();
       if (!accountantEmail) throw new Error("Accountant email");
+      const displayName = (data.display_name || "").trim();
+      if (displayName) {
+        state.accountantDisplayName = displayName;
+        write("rb_accountant_display_name", displayName);
+        await deviceSet("rb_accountant_display_name", displayName);
+      }
       const step = event.submitter?.value || "request";
       if (step === "request") {
         await requestAccountantCode(accountantEmail);

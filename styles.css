@@ -48,6 +48,10 @@ button {
   flex-direction: column;
 }
 
+.accountant-shell {
+  width: min(100%, 640px);
+}
+
 .screen {
   flex: 1;
   padding: calc(16px + env(safe-area-inset-top)) 18px calc(22px + env(safe-area-inset-bottom));
@@ -560,6 +564,19 @@ button {
 .amount.expense { color: var(--blue); }
 .amount.client { color: var(--green); }
 
+.record-row {
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.record-row .list-main {
+  min-width: 0;
+}
+
+.record-row .amount {
+  max-width: 34%;
+}
+
 @media (max-width: 380px) {
   .screen {
     padding-left: 14px;
@@ -578,13 +595,15 @@ button {
 }
 
 @media (max-width: 430px) {
-  .list-item {
+  .list-item,
+  .record-row {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     align-items: start;
   }
 
-  .amount {
+  .amount,
+  .record-row .amount {
     justify-self: end;
     max-width: 100%;
     margin-top: 3px;
