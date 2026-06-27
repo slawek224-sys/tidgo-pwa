@@ -850,7 +850,7 @@ const expensePicker = document.querySelector("#expensePicker");
 const clientPicker = document.querySelector("#clientPicker");
 
 function isAccountantRoute() {
-  return location.pathname.replace(/\/+$/, "") === "/accountant";
+  return location.hostname.startsWith("accountant.") || location.pathname.replace(/\/+$/, "") === "/accountant";
 }
 
 function showSplash() {
