@@ -289,6 +289,73 @@ Object.assign(ACCOUNTANT_COPY, {
   }
 });
 
+const DOWNLOAD_COPY = {
+  en: {
+    title: "Quick check before download",
+    userText: "TidGo helps prepare your records, but it does not verify every item on a receipt. Please check that amounts, categories and documents are accurate for your situation.",
+    accountantText: "TidGo gives you a read-only pack from the client. It does not verify every item on a receipt. Please check the records before using them for accounting or submission work.",
+    pdfLine: "TidGo helps organise records, but it does not verify every receipt item. Please check amounts, categories and documents before using this pack.",
+    ok: "I understand, continue",
+    cancel: "Cancel"
+  },
+  pl: {
+    title: "Szybkie sprawdzenie przed pobraniem",
+    userText: "TidGo pomaga przygotowac rekordy, ale nie sprawdza kazdej pozycji na paragonie. Sprawdz, czy kwoty, kategorie i dokumenty sa poprawne dla Twojej sytuacji.",
+    accountantText: "TidGo daje paczke klienta tylko do odczytu. Nie sprawdza kazdej pozycji na paragonie. Sprawdz rekordy przed uzyciem ich do ksiegowosci albo wysylki dalej.",
+    pdfLine: "TidGo pomaga uporzadkowac rekordy, ale nie sprawdza kazdej pozycji na paragonie. Sprawdz kwoty, kategorie i dokumenty przed uzyciem tej paczki.",
+    ok: "Rozumiem, kontynuuj",
+    cancel: "Anuluj"
+  },
+  ro: {
+    title: "Verificare rapida inainte de descarcare",
+    userText: "TidGo ajuta la pregatirea evidentelor, dar nu verifica fiecare articol de pe bon. Verifica sumele, categoriile si documentele pentru situatia ta.",
+    accountantText: "TidGo iti ofera o paccheta doar pentru citire de la client. Nu verifica fiecare articol de pe bon. Verifica evidenta inainte de folosire.",
+    pdfLine: "TidGo ajuta la organizarea evidentelor, dar nu verifica fiecare articol de pe bon. Verifica sumele, categoriile si documentele inainte de folosire.",
+    ok: "Inteleg, continua",
+    cancel: "Anuleaza"
+  },
+  uk: {
+    title: "Shvydka perevirka pered zavantazhenniam",
+    userText: "TidGo dopomahaie pidhotuvaty zapysy, ale ne pereviriaie kozhen punkt u cheku. Perevirte sumy, katehorii ta dokumenty dlia svoiei sytuatsii.",
+    accountantText: "TidGo nadaie read-only paket vid kliienta. Vin ne pereviriaie kozhen punkt u cheku. Perevirte zapysy pered vykorystanniam.",
+    pdfLine: "TidGo dopomahaie vporiadkuvaty zapysy, ale ne pereviriaie kozhen punkt u cheku. Perevirte sumy, katehorii ta dokumenty pered vykorystanniam.",
+    ok: "Rozumiiu, prodovzhyty",
+    cancel: "Skasuvaty"
+  },
+  lt: {
+    title: "Greitas patikrinimas pries atsisiuntima",
+    userText: "TidGo padeda paruosti irasus, bet netikrina kiekvienos kvito eilutes. Patikrinkite sumas, kategorijas ir dokumentus pagal savo situacija.",
+    accountantText: "TidGo pateikia tik skaitymo kliento paketa. Jis netikrina kiekvienos kvito eilutes. Patikrinkite irasus pries naudojima.",
+    pdfLine: "TidGo padeda tvarkyti irasus, bet netikrina kiekvienos kvito eilutes. Patikrinkite sumas, kategorijas ir dokumentus pries naudojima.",
+    ok: "Suprantu, testi",
+    cancel: "Atsaukti"
+  },
+  lv: {
+    title: "Atra parbaude pirms lejupielades",
+    userText: "TidGo palidz sagatavot ierakstus, bet neparbauda katru ceka poziciju. Parbaudi summas, kategorijas un dokumentus savai situacijai.",
+    accountantText: "TidGo dod tikai lasisanas klienta paku. Tas neparbauda katru ceka poziciju. Parbaudi ierakstus pirms lietosanas.",
+    pdfLine: "TidGo palidz sakartot ierakstus, bet neparbauda katru ceka poziciju. Parbaudi summas, kategorijas un dokumentus pirms lietosanas.",
+    ok: "Saprotu, turpinat",
+    cancel: "Atcelt"
+  },
+  es: {
+    title: "Revision rapida antes de descargar",
+    userText: "TidGo ayuda a preparar tus registros, pero no verifica cada articulo de un recibo. Revisa importes, categorias y documentos para tu situacion.",
+    accountantText: "TidGo ofrece un paquete de solo lectura del cliente. No verifica cada articulo de un recibo. Revisa los registros antes de usarlos.",
+    pdfLine: "TidGo ayuda a organizar registros, pero no verifica cada articulo de un recibo. Revisa importes, categorias y documentos antes de usar este paquete.",
+    ok: "Entiendo, continuar",
+    cancel: "Cancelar"
+  },
+  bg: {
+    title: "Barza proverka predi svalyane",
+    userText: "TidGo pomaga da podgotvite zapisite, no ne proveriava vsichki pozitsii v belezhkata. Proverete sumite, kategoriite i dokumentite za vashata situatsia.",
+    accountantText: "TidGo dava paket samo za chetene ot klienta. Ne proveriava vsichki pozitsii v belezhkata. Proverete zapisite predi upotreba.",
+    pdfLine: "TidGo pomaga da podredite zapisite, no ne proveriava vsichki pozitsii v belezhkata. Proverete sumite, kategoriite i dokumentite predi upotreba.",
+    ok: "Razbiram, prodalzhi",
+    cancel: "Otkaz"
+  }
+};
+
 const COPY = {
   en: {
     intro: "Receipts in. Tidy records out. Ready for your accountant.",
@@ -1291,6 +1358,10 @@ function at(key) {
   return (ACCOUNTANT_COPY[state.language] || ACCOUNTANT_COPY.en)[key] || ACCOUNTANT_COPY.en[key] || key;
 }
 
+function dt(key) {
+  return (DOWNLOAD_COPY[state.language] || DOWNLOAD_COPY.en)[key] || DOWNLOAD_COPY.en[key] || key;
+}
+
 function read(key, fallback) {
   try {
     const value = localStorage.getItem(key);
@@ -1465,6 +1536,35 @@ function toast(message) {
   node.textContent = message;
   document.body.appendChild(node);
   window.setTimeout(() => node.remove(), 4200);
+}
+
+function confirmDownload(kind = "user") {
+  const old = document.querySelector(".modal-backdrop");
+  if (old) old.remove();
+  const node = document.createElement("div");
+  node.className = "modal-backdrop";
+  node.innerHTML = `
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="downloadCheckTitle">
+      <h2 id="downloadCheckTitle">${escapeHtml(dt("title"))}</h2>
+      <p class="hint">${escapeHtml(kind === "accountant" ? dt("accountantText") : dt("userText"))}</p>
+      <div class="modal-actions">
+        <button class="secondary" type="button" data-download-cancel>${escapeHtml(dt("cancel"))}</button>
+        <button class="primary" type="button" data-download-ok>${escapeHtml(dt("ok"))}</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(node);
+  return new Promise((resolve) => {
+    const close = (result) => {
+      node.remove();
+      resolve(result);
+    };
+    node.querySelector("[data-download-ok]").addEventListener("click", () => close(true));
+    node.querySelector("[data-download-cancel]").addEventListener("click", () => close(false));
+    node.addEventListener("click", (event) => {
+      if (event.target === node) close(false);
+    });
+  });
 }
 
 async function api(path, options = {}) {
@@ -2208,6 +2308,8 @@ function createAccountantClientPdfFile() {
   line("Income: " + formatTotals(income), 12, "bold");
   line("Expenses: " + formatTotals(expenses), 12, "bold");
   line("Paid for client: " + formatTotals(paidForClient), 12, "bold");
+  y += 10;
+  line(dt("pdfLine"), 9);
   y += 14;
 
   const rows = [
@@ -2421,6 +2523,7 @@ function buildPrintHtml() {
     <h1>TidGo - ${escapeHtml(monthLabel())}</h1>
     <p>${escapeHtml(state.user?.first_name || "")} ${state.user?.trade ? " · " + escapeHtml(state.user.trade) : ""}</p>
     <p>${escapeHtml(t("note"))}</p>
+    <p>${escapeHtml(dt("pdfLine"))}</p>
     <table><thead><tr><th>Date</th><th>Type</th><th>Description</th><th class="print-money">Amount</th></tr></thead><tbody>${tableRows}</tbody></table>
     ${photos}
   `;
@@ -2458,6 +2561,8 @@ async function createSummaryPdfFile() {
   line(t("client") + ": " + formatTotals(client), 12, "bold");
   y += 12;
   line(t("note"), 10);
+  y += 6;
+  line(dt("pdfLine"), 9);
   y += 14;
 
   const rows = [
@@ -2596,6 +2701,7 @@ document.addEventListener("click", async (event) => {
     return render();
   }
   if (action === "downloadAccountantClientCsv") {
+    if (!(await confirmDownload("accountant"))) return;
     const client = (state.accountantClients || []).find((item) => item.user_id === state.accountantSelectedClientId);
     const safeName = (client?.first_name || "client").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "client";
     downloadFile(`TidGo-${safeName}-records.csv`, accountantClientCsv(), "text/csv");
@@ -2604,6 +2710,7 @@ document.addEventListener("click", async (event) => {
   }
   if (action === "downloadAccountantClientPdf") {
     try {
+      if (!(await confirmDownload("accountant"))) return;
       const client = (state.accountantClients || []).find((item) => item.user_id === state.accountantSelectedClientId);
       const safeName = (client?.first_name || "client").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "client";
       const blob = createAccountantClientPdfFile();
@@ -2638,7 +2745,7 @@ document.addEventListener("click", async (event) => {
   }
   if (action === "requestDemoDocs") {
     try {
-      await navigator.clipboard.writeText("Hi, could you add the missing income proof in TidGo when you can? It helps me prepare your records without the January panic.");
+      await navigator.clipboard.writeText("Hi, could you add the missing income proof in TidGo when you can? It helps me prepare your records without the deadline panic.");
       toast("Request message copied.");
     } catch {
       toast("Request: please add the missing income proof in TidGo.");
@@ -2703,6 +2810,7 @@ document.addEventListener("click", async (event) => {
     return render();
   }
   if (action === "printPdf") {
+    if (!(await confirmDownload("user"))) return;
     document.querySelector("#printRoot").innerHTML = buildPrintHtml();
     window.print();
     return;
@@ -2748,6 +2856,7 @@ document.addEventListener("click", async (event) => {
         toast(t("secureShareRequired"));
         return;
       }
+      if (!(await confirmDownload("user"))) return;
       setBusy(true);
       const file = await createSummaryPdfFile();
       if (navigator.canShare?.({ files: [file] })) {
