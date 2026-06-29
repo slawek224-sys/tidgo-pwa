@@ -1722,7 +1722,11 @@ function landing() {
     <section class="landing-screen">
       <header class="landing-head">
         <div class="brand landing-brand"><img src="/icon-192.png" alt=""><span>TidGo</span></div>
-        <a class="landing-contact" href="mailto:${FEEDBACK_EMAIL}">Contact</a>
+        <nav class="landing-nav" aria-label="TidGo navigation">
+          <a href="#how">How it works</a>
+          <a href="#trust">Trust</a>
+          <a href="mailto:${FEEDBACK_EMAIL}">Contact</a>
+        </nav>
       </header>
       <div class="landing-hero">
         <span class="eyebrow">Receipts in. Tidy records out.</span>
@@ -1731,22 +1735,39 @@ function landing() {
       </div>
       <div class="landing-grid">
         <article class="landing-card">
-          <span class="landing-card-label">I work for myself</span>
-          <h2>Open TidGo App</h2>
-          <p>Take receipt photos, add income, keep monthly records ready for your accountant.</p>
-          <a class="primary landing-link" href="/app/">Open app</a>
-          <img class="qr-code" src="${qrCodeUrl(appUrl)}" alt="QR code for TidGo app">
-          <small>Scan to open: ${escapeHtml(appUrl)}</small>
+          <div class="landing-card-copy">
+            <span class="landing-card-label">I work for myself</span>
+            <h2>Open TidGo App</h2>
+            <p>Take receipt photos, add income, keep monthly records ready for your accountant.</p>
+            <a class="primary landing-link" href="/app/">Open app</a>
+          </div>
+          <div class="qr-panel">
+            <img class="qr-code" src="${qrCodeUrl(appUrl)}" alt="QR code for TidGo app">
+            <small>Scan app</small>
+          </div>
         </article>
         <article class="landing-card">
-          <span class="landing-card-label">I'm an accountant</span>
-          <h2>Open Accountant Portal</h2>
-          <p>View connected client records, download CSV/PDF packs, and reduce deadline panic.</p>
-          <a class="secondary landing-link" href="${accountantUrl}">Open portal</a>
-          <img class="qr-code" src="${qrCodeUrl(accountantUrl)}" alt="QR code for accountant portal">
-          <small>Scan to open: ${escapeHtml(accountantUrl)}</small>
+          <div class="landing-card-copy">
+            <span class="landing-card-label">I'm an accountant</span>
+            <h2>Open Accountant Portal</h2>
+            <p>View connected client records, download CSV/PDF packs, and reduce deadline panic.</p>
+            <a class="primary landing-link" href="${accountantUrl}">Open portal</a>
+          </div>
+          <div class="qr-panel">
+            <img class="qr-code" src="${qrCodeUrl(accountantUrl)}" alt="QR code for accountant portal">
+            <small>Scan portal</small>
+          </div>
         </article>
       </div>
+      <section class="landing-strip" id="how">
+        <span>Snap receipts</span>
+        <span>Keep records tidy</span>
+        <span>Send a clean pack</span>
+      </section>
+      <section class="landing-placeholder" id="trust">
+        <strong>Coming next:</strong>
+        <span>FAQ, MTD explained, Trustpilot, contact form and product updates.</span>
+      </section>
       <footer class="landing-foot">
         <span>TidGo helps organise records. It is not accounting, tax advice or payroll software.</span>
       </footer>
