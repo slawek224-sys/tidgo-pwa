@@ -1515,7 +1515,8 @@ function navigate(screen, extra = {}) {
 
 function shell(content) {
   const accountantMode = state.screen === "accountantLanding" || state.screen === "accountantDemoClient";
-  app.innerHTML = `<main class="shell ${accountantMode ? "accountant-shell" : ""}">${content}</main><section id="printRoot" class="print-root"></section>`;
+  const landingMode = state.screen === "landing";
+  app.innerHTML = `<main class="shell ${accountantMode ? "accountant-shell" : ""} ${landingMode ? "landing-shell" : ""}">${content}</main><section id="printRoot" class="print-root"></section>`;
 }
 
 function topbar(title, back = false) {
@@ -1724,50 +1725,52 @@ function landing() {
         <div class="brand landing-brand"><img src="/icon-192.png" alt=""><span>TidGo</span></div>
         <nav class="landing-nav" aria-label="TidGo navigation">
           <a href="#how">How it works</a>
-          <a href="#trust">Trust</a>
+          <a href="#who">Who is it for?</a>
+          <a href="#faq">FAQ</a>
+          <a href="#mtd">MTD explained</a>
           <a href="mailto:${FEEDBACK_EMAIL}">Contact</a>
         </nav>
       </header>
-      <div class="landing-hero">
-        <span class="eyebrow">Receipts in. Tidy records out.</span>
-        <h1>One simple place for receipts.</h1>
-        <p>For self-employed people who need records tidy, and accountants who would rather not chase plastic bags full of receipts.</p>
-      </div>
-      <div class="landing-grid">
-        <article class="landing-card">
-          <div class="landing-card-copy">
+      <div class="landing-layout">
+        <div class="landing-main">
+          <div class="landing-hero">
+            <span class="eyebrow">Receipts in. Tidy records out.</span>
+            <h1>One simple place for receipts.</h1>
+            <p>For self-employed people who need records tidy, and accountants who would rather not chase plastic bags full of receipts.</p>
+          </div>
+          <section class="landing-strip" id="how">
+            <span>Snap receipts</span>
+            <span>Keep records tidy</span>
+            <span>Send a clean pack</span>
+          </section>
+          <section class="landing-placeholder" id="faq">
+            <strong>Coming next:</strong>
+            <span>FAQ, MTD explained, Trustpilot, contact form and product updates.</span>
+          </section>
+        </div>
+        <aside class="landing-actions" id="who">
+          <article class="landing-card">
             <span class="landing-card-label">I work for myself</span>
             <h2>Open TidGo App</h2>
             <p>Take receipt photos, add income, keep monthly records ready for your accountant.</p>
-            <a class="primary landing-link" href="/app/">Open app</a>
-          </div>
           <div class="qr-panel">
             <img class="qr-code" src="${qrCodeUrl(appUrl)}" alt="QR code for TidGo app">
             <small>Scan app</small>
           </div>
-        </article>
-        <article class="landing-card">
-          <div class="landing-card-copy">
+            <a class="primary landing-link" href="/app/">Open app</a>
+          </article>
+          <article class="landing-card">
             <span class="landing-card-label">I'm an accountant</span>
             <h2>Open Accountant Portal</h2>
             <p>View connected client records, download CSV/PDF packs, and reduce deadline panic.</p>
-            <a class="primary landing-link" href="${accountantUrl}">Open portal</a>
-          </div>
           <div class="qr-panel">
             <img class="qr-code" src="${qrCodeUrl(accountantUrl)}" alt="QR code for accountant portal">
             <small>Scan portal</small>
           </div>
-        </article>
+            <a class="primary landing-link" href="${accountantUrl}">Open portal</a>
+          </article>
+        </aside>
       </div>
-      <section class="landing-strip" id="how">
-        <span>Snap receipts</span>
-        <span>Keep records tidy</span>
-        <span>Send a clean pack</span>
-      </section>
-      <section class="landing-placeholder" id="trust">
-        <strong>Coming next:</strong>
-        <span>FAQ, MTD explained, Trustpilot, contact form and product updates.</span>
-      </section>
       <footer class="landing-foot">
         <span>TidGo helps organise records. It is not accounting, tax advice or payroll software.</span>
       </footer>
