@@ -1724,11 +1724,11 @@ function landing() {
       <header class="landing-head">
         <div class="brand landing-brand"><img src="/icon-192.png" alt=""><span>TidGo</span></div>
         <nav class="landing-nav" aria-label="TidGo navigation">
-          <a href="#how">How it works</a>
-          <a href="#who">Who is it for?</a>
-          <a href="#faq">FAQ</a>
-          <a href="#mtd">MTD explained</a>
-          <a href="#contact">Contact</a>
+          <a href="#how" data-scroll-target="how">How it works</a>
+          <a href="#who" data-scroll-target="who">Who is it for?</a>
+          <a href="#faq" data-scroll-target="faq">FAQ</a>
+          <a href="#mtd" data-scroll-target="mtd">MTD explained</a>
+          <a href="#contact" data-scroll-target="contact">Contact</a>
         </nav>
       </header>
       <div class="landing-layout">
@@ -1746,6 +1746,14 @@ function landing() {
           <section class="landing-placeholder" id="faq">
             <strong>Early access:</strong>
             <span>TidGo is live for a small group of early users. It is free while we collect feedback, improve the app and add clearer guides for self-employed people and accountants.</span>
+          </section>
+          <section class="landing-placeholder" id="mtd">
+            <strong>MTD explained:</strong>
+            <span>This guide is being written. TidGo helps keep records tidy, but it does not file tax returns or replace an accountant.</span>
+          </section>
+          <section class="landing-placeholder">
+            <strong>FAQ:</strong>
+            <span>More answers are coming soon. For now, try the app, open the accountant portal, or send a message below.</span>
           </section>
           <section class="landing-contact" id="contact">
             <div>
@@ -2729,6 +2737,13 @@ function escapeAttr(value) {
 }
 
 document.addEventListener("click", async (event) => {
+  const scrollLink = event.target.closest("[data-scroll-target]");
+  if (scrollLink) {
+    event.preventDefault();
+    document.getElementById(scrollLink.dataset.scrollTarget)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    return;
+  }
+
   const target = event.target.closest("button, [data-open-receipt], [data-open-income], [data-open-accountant-client]");
   if (!target) return;
 
@@ -3023,15 +3038,6 @@ document.addEventListener("submit", async (event) => {
   setBusy(true);
   try {
     if (form.id === "landingContactForm") {
-      const fallbackSubject = encodeURIComponent("TidGo website message");
-      const fallbackBody = encodeURIComponent([
-        "Hi,",
-        "",
-        data.message || "I would like to know more about TidGo.",
-        "",
-        `Role: ${data.role || "Not specified"}`,
-        `Reply email: ${data.from_email || "Not provided"}`
-      ].join("\n"));
       try {
         await api("/api/contact", {
           method: "POST",
@@ -3044,8 +3050,7 @@ document.addEventListener("submit", async (event) => {
         form.reset();
         toast("Message sent. Thank you.");
       } catch (error) {
-        location.href = `mailto:${FEEDBACK_EMAIL}?subject=${fallbackSubject}&body=${fallbackBody}`;
-        toast("Email app opened as backup.");
+        toast("Automatic contact is being connected. Please try again after the next API deploy.");
       }
       return;
     }
