@@ -3023,8 +3023,8 @@ document.addEventListener("submit", async (event) => {
   setBusy(true);
   try {
     if (form.id === "landingContactForm") {
-      const subject = encodeURIComponent("TidGo website message");
-      const body = encodeURIComponent([
+      const fallbackSubject = encodeURIComponent("TidGo website message");
+      const fallbackBody = encodeURIComponent([
         "Hi,",
         "",
         data.message || "I would like to know more about TidGo.",
@@ -3032,8 +3032,21 @@ document.addEventListener("submit", async (event) => {
         `Role: ${data.role || "Not specified"}`,
         `Reply email: ${data.from_email || "Not provided"}`
       ].join("\n"));
-      location.href = `mailto:${FEEDBACK_EMAIL}?subject=${subject}&body=${body}`;
-      toast("Opening your email app.");
+      try {
+        await api("/api/contact", {
+          method: "POST",
+          body: JSON.stringify({
+            from_email: data.from_email || null,
+            role: data.role || null,
+            message: data.message || ""
+          })
+        });
+        form.reset();
+        toast("Message sent. Thank you.");
+      } catch (error) {
+        location.href = `mailto:${FEEDBACK_EMAIL}?subject=${fallbackSubject}&body=${fallbackBody}`;
+        toast("Email app opened as backup.");
+      }
       return;
     }
     if (form.id === "onboardingForm") {
