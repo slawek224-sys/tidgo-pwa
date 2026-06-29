@@ -304,6 +304,10 @@ button {
 }
 
 .landing-strip span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   border: 1px solid var(--client-line);
   border-radius: 8px;
   background: var(--client-soft);
@@ -311,6 +315,21 @@ button {
   font-weight: 900;
   padding: 12px;
   text-align: center;
+}
+
+.landing-strip span::before {
+  content: "✓";
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  flex: 0 0 22px;
+  border-radius: 999px;
+  background: var(--green);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 950;
+  line-height: 1;
 }
 
 .landing-placeholder {
