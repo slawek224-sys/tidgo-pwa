@@ -1321,7 +1321,7 @@ const state = {
   accountantClientRecords: null,
   accountantSelectedClientId: null,
   incomeProofs: read("rb_income_proofs", {}),
-  screen: isAccountantRoute() ? "accountantLanding" : "boot",
+  screen: isAccountantRoute() ? "accountantLanding" : isLandingRoute() ? "landing" : "boot",
   receipts: [],
   income: [],
   selected: null,
@@ -1336,6 +1336,14 @@ const clientPicker = document.querySelector("#clientPicker");
 
 function isAccountantRoute() {
   return location.hostname.startsWith("accountant.") || location.pathname.replace(/\/+$/, "") === "/accountant";
+}
+
+function isAppRoute() {
+  return location.pathname.replace(/\/+$/, "") === "/app";
+}
+
+function isLandingRoute() {
+  return !isAccountantRoute() && !isAppRoute();
 }
 
 function showSplash() {
@@ -1677,11 +1685,12 @@ async function refresh() {
 }
 
 function render() {
-  if (state.screen !== "accountantLanding" && state.screen !== "accountantDemoClient" && !state.user) {
+  if (state.screen !== "landing" && state.screen !== "accountantLanding" && state.screen !== "accountantDemoClient" && !state.user) {
     state.screen = state.screen === "recover" ? "recover" : "onboarding";
   }
   if (state.screen === "boot") state.screen = "home";
   const routes = {
+    landing,
     accountantLanding,
     accountantDemoClient,
     onboarding,
@@ -1697,6 +1706,52 @@ function render() {
     terms
   };
   routes[state.screen]();
+}
+
+function qrCodeUrl(target) {
+  return `https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=12&data=${encodeURIComponent(target)}`;
+}
+
+function landing() {
+  const origin = location.origin;
+  const appUrl = `${origin}/app/`;
+  const accountantUrl = location.hostname === "localhost" || location.hostname === "127.0.0.1"
+    ? `${origin}/accountant/`
+    : "https://accountant.tidgo.co.uk";
+  shell(`
+    <section class="landing-screen">
+      <header class="landing-head">
+        <div class="brand landing-brand"><img src="/icon-192.png" alt=""><span>TidGo</span></div>
+        <a class="landing-contact" href="mailto:${FEEDBACK_EMAIL}">Contact</a>
+      </header>
+      <div class="landing-hero">
+        <span class="eyebrow">Receipts in. Tidy records out.</span>
+        <h1>One simple place for receipts.</h1>
+        <p>For self-employed people who need records tidy, and accountants who would rather not chase plastic bags full of receipts.</p>
+      </div>
+      <div class="landing-grid">
+        <article class="landing-card">
+          <span class="landing-card-label">I work for myself</span>
+          <h2>Open TidGo App</h2>
+          <p>Take receipt photos, add income, keep monthly records ready for your accountant.</p>
+          <a class="primary landing-link" href="/app/">Open app</a>
+          <img class="qr-code" src="${qrCodeUrl(appUrl)}" alt="QR code for TidGo app">
+          <small>Scan to open: ${escapeHtml(appUrl)}</small>
+        </article>
+        <article class="landing-card">
+          <span class="landing-card-label">I'm an accountant</span>
+          <h2>Open Accountant Portal</h2>
+          <p>View connected client records, download CSV/PDF packs, and reduce deadline panic.</p>
+          <a class="secondary landing-link" href="${accountantUrl}">Open portal</a>
+          <img class="qr-code" src="${qrCodeUrl(accountantUrl)}" alt="QR code for accountant portal">
+          <small>Scan to open: ${escapeHtml(accountantUrl)}</small>
+        </article>
+      </div>
+      <footer class="landing-foot">
+        <span>TidGo helps organise records. It is not accounting, tax advice or payroll software.</span>
+      </footer>
+    </section>
+  `);
 }
 
 function onboarding() {

@@ -123,6 +123,129 @@ button {
   font-weight: 700;
 }
 
+.landing-screen {
+  min-height: 100dvh;
+  padding: 22px;
+  background: #f8fbff;
+  color: var(--ink);
+}
+
+.landing-head,
+.landing-hero,
+.landing-grid,
+.landing-foot {
+  width: min(100%, 980px);
+  margin-inline: auto;
+}
+
+.landing-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 44px;
+}
+
+.landing-brand img {
+  width: 50px;
+  height: 50px;
+}
+
+.landing-contact {
+  color: var(--blue-dark);
+  font-weight: 850;
+  text-decoration: none;
+}
+
+.landing-hero {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.landing-hero h1 {
+  max-width: 720px;
+  margin: 0;
+  color: var(--blue);
+  font-size: clamp(34px, 7vw, 64px);
+  line-height: 1.02;
+  letter-spacing: 0;
+}
+
+.landing-hero p {
+  max-width: 680px;
+  margin: 0;
+  color: #334155;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.landing-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.landing-card {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 18px;
+  box-shadow: 0 12px 28px rgba(24, 38, 62, 0.08);
+}
+
+.landing-card-label {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.landing-card h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 25px;
+  line-height: 1.14;
+}
+
+.landing-card p {
+  margin: 0;
+  color: #4b5563;
+  line-height: 1.5;
+}
+
+.landing-link {
+  display: inline-flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.qr-code {
+  width: 150px;
+  height: 150px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 8px;
+}
+
+.landing-card small {
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.landing-foot {
+  margin-top: 20px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
 .title {
   margin: 0;
   font-size: 25px;
@@ -668,6 +791,23 @@ button {
 }
 
 @media (max-width: 430px) {
+  .landing-screen {
+    padding: 18px;
+  }
+
+  .landing-head {
+    margin-bottom: 30px;
+  }
+
+  .landing-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .qr-code {
+    width: 132px;
+    height: 132px;
+  }
+
   .list-item,
   .record-row {
     display: grid;
