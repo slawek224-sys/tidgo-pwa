@@ -326,6 +326,45 @@ button {
   line-height: 1.45;
 }
 
+.landing-contact {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(260px, 1fr);
+  gap: 18px;
+  align-items: start;
+  margin-top: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 16px;
+  box-shadow: 0 12px 28px rgba(24, 38, 62, 0.07);
+}
+
+.landing-contact div {
+  display: grid;
+  gap: 6px;
+}
+
+.landing-contact strong {
+  color: var(--blue);
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.landing-contact span {
+  color: #475569;
+  line-height: 1.45;
+}
+
+.landing-contact-form {
+  display: grid;
+  gap: 10px;
+}
+
+.landing-contact textarea {
+  resize: vertical;
+  min-height: 92px;
+}
+
 .landing-foot {
   margin-top: 20px;
   color: var(--muted);
@@ -919,6 +958,10 @@ button {
 
   .landing-placeholder {
     display: grid;
+  }
+
+  .landing-contact {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .list-item,

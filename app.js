@@ -1728,7 +1728,7 @@ function landing() {
           <a href="#who">Who is it for?</a>
           <a href="#faq">FAQ</a>
           <a href="#mtd">MTD explained</a>
-          <a href="mailto:${FEEDBACK_EMAIL}">Contact</a>
+          <a href="#contact">Contact</a>
         </nav>
       </header>
       <div class="landing-layout">
@@ -1744,8 +1744,24 @@ function landing() {
             <span>Send a clean pack</span>
           </section>
           <section class="landing-placeholder" id="faq">
-            <strong>Coming next:</strong>
-            <span>FAQ, MTD explained, Trustpilot, contact form and product updates.</span>
+            <strong>Early access:</strong>
+            <span>TidGo is live for a small group of early users. It is free while we collect feedback, improve the app and add clearer guides for self-employed people and accountants.</span>
+          </section>
+          <section class="landing-contact" id="contact">
+            <div>
+              <strong>Want to try it or ask a question?</strong>
+              <span>Send a quick message. No sales maze, just a human reply.</span>
+            </div>
+            <form class="landing-contact-form" id="landingContactForm">
+              <input class="input" name="from_email" type="email" placeholder="Your email">
+              <select class="input" name="role">
+                <option value="I work for myself">I work for myself</option>
+                <option value="I am an accountant">I am an accountant</option>
+                <option value="Just curious">Just curious</option>
+              </select>
+              <textarea class="input" name="message" rows="3" placeholder="Message"></textarea>
+              <button class="primary" type="submit">Send message</button>
+            </form>
           </section>
         </div>
         <aside class="landing-actions" id="who">
@@ -3006,6 +3022,20 @@ document.addEventListener("submit", async (event) => {
   const data = Object.fromEntries(new FormData(form).entries());
   setBusy(true);
   try {
+    if (form.id === "landingContactForm") {
+      const subject = encodeURIComponent("TidGo website message");
+      const body = encodeURIComponent([
+        "Hi,",
+        "",
+        data.message || "I would like to know more about TidGo.",
+        "",
+        `Role: ${data.role || "Not specified"}`,
+        `Reply email: ${data.from_email || "Not provided"}`
+      ].join("\n"));
+      location.href = `mailto:${FEEDBACK_EMAIL}?subject=${subject}&body=${body}`;
+      toast("Opening your email app.");
+      return;
+    }
     if (form.id === "onboardingForm") {
       state.language = data.language || state.language;
       const user = await api("/api/users", {
