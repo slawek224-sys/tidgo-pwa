@@ -52,12 +52,16 @@ button {
   width: min(100%, 640px);
 }
 
-.landing-shell {
-  width: 100%;
+.shell.landing-shell {
+  width: 100vw;
+  max-width: none;
   min-height: 100dvh;
   margin: 0;
   background: transparent;
   box-shadow: none;
+  border-radius: 0;
+  display: block;
+  overflow: visible;
 }
 
 .screen {
@@ -132,6 +136,7 @@ button {
 }
 
 .landing-screen {
+  width: 100%;
   min-height: 100dvh;
   padding: 22px 28px;
   background:
@@ -1066,6 +1071,15 @@ button {
     min-height: calc(100dvh - 48px);
     border-radius: 12px;
     overflow: hidden;
+  }
+
+  .shell.landing-shell {
+    width: 100vw;
+    margin-block: 0;
+    min-height: 100dvh;
+    border-radius: 0;
+    display: block;
+    overflow: visible;
   }
 }
 
