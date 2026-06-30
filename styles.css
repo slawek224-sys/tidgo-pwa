@@ -761,6 +761,31 @@ button {
   box-shadow: 0 0 0 3px rgba(22, 104, 227, 0.12);
 }
 
+.check-row {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 750;
+  line-height: 1.35;
+}
+
+.check-row input {
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  accent-color: var(--red);
+}
+
+.delete-confirm-row {
+  border: 1px solid #fee2e2;
+  border-radius: 8px;
+  background: #fff7f8;
+  padding: 10px;
+}
+
 .primary,
 .secondary,
 .danger,
@@ -783,7 +808,7 @@ button {
 .secondary:disabled,
 .danger:disabled {
   opacity: 0.65;
-  cursor: progress;
+  cursor: not-allowed;
 }
 
 .secondary {

@@ -966,7 +966,13 @@ Object.assign(COPY.en, {
   legalFull: "Plain details",
   legalBack: "Back to settings",
     feedbackTitle: "Send feedback",
-    feedbackHint: "Found something weird? Send a quick message to:",
+    feedbackHint: "Found something weird? Send us a quick message.",
+    feedbackPlaceholder: "Tell us what happened, what felt confusing, or what should work better.",
+    sendMessage: "Send us a message",
+    feedbackSent: "Message sent. Thank you.",
+    feedbackFailed: "Message could not be sent. Please try again later.",
+    deleteConfirmText: "I understand this permanently deletes my profile, receipts, photos and income.",
+    deleteConfirmRequired: "Tick the confirmation box first.",
     copyEmail: "Copy email",
     emailCopied: "Email copied.",
     openEmailApp: "Open email app",
@@ -1041,7 +1047,13 @@ Object.assign(COPY.pl, {
   legalFull: "Proste szczegoly",
   legalBack: "Wroc do ustawien",
     feedbackTitle: "Wyslij feedback",
-    feedbackHint: "Cos wyglada dziwnie? Wyslij szybka wiadomosc na:",
+    feedbackHint: "Cos wyglada dziwnie? Wyslij nam szybka wiadomosc.",
+    feedbackPlaceholder: "Napisz, co sie stalo, co bylo niejasne albo co powinno dzialac lepiej.",
+    sendMessage: "Wyslij wiadomosc",
+    feedbackSent: "Wiadomosc wyslana. Dziekuje.",
+    feedbackFailed: "Nie udalo sie wyslac wiadomosci. Sprobuj pozniej.",
+    deleteConfirmText: "Rozumiem, ze to trwale usunie moj profil, paragony, zdjecia i przychody.",
+    deleteConfirmRequired: "Najpierw zaznacz potwierdzenie.",
     copyEmail: "Kopiuj email",
     emailCopied: "Email skopiowany.",
     openEmailApp: "Otworz email",
@@ -1327,6 +1339,14 @@ Object.assign(COPY.bg, {
   previewAccountant: "\u041f\u0440\u043e\u0432\u0435\u0440\u0438 \u0437\u0430\u043f\u0438\u0441\u0438\u0442\u0435",
   signOutDevice: "\u0418\u0437\u0445\u043e\u0434 \u043e\u0442 \u0442\u043e\u0432\u0430 \u0443\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e",
   signOutHint: "\u0418\u0437\u043f\u043e\u043b\u0437\u0432\u0430\u0439\u0442\u0435 \u0441\u0430\u043c\u043e \u0437\u0430 \u0442\u0435\u0441\u0442 \u043d\u0430 \u0432\u044a\u0437\u0441\u0442\u0430\u043d\u043e\u0432\u044f\u0432\u0430\u043d\u0435 \u0438\u043b\u0438 \u0434\u0440\u0443\u0433 \u0430\u043a\u0430\u0443\u043d\u0442. \u041d\u0435 \u0442\u0440\u0438\u0435 \u0431\u0435\u043b\u0435\u0436\u043a\u0438."
+});
+
+Object.values(COPY).forEach((copy) => {
+  copy.feedbackPlaceholder ||= COPY.en.feedbackPlaceholder;
+  copy.feedbackSent ||= COPY.en.feedbackSent;
+  copy.feedbackFailed ||= COPY.en.feedbackFailed;
+  copy.deleteConfirmText ||= COPY.en.deleteConfirmText;
+  copy.deleteConfirmRequired ||= COPY.en.deleteConfirmRequired;
 });
 
 const LEGAL_TEXT = {
@@ -2304,11 +2324,10 @@ function settings() {
       <div class="card stack" style="margin-top:18px">
         <strong>${t("feedbackTitle")}</strong>
         <span class="hint">${t("feedbackHint")}</span>
-        <div class="email-line">${FEEDBACK_EMAIL}</div>
-        <div class="grid-2">
-          <button class="secondary" type="button" data-action="copyFeedbackEmail">${t("copyEmail")}</button>
-          <button class="secondary" type="button" data-action="feedback">${t("openEmailApp")}</button>
-        </div>
+        <form class="stack" id="settingsFeedbackForm">
+          <textarea class="textarea" name="message" rows="3" placeholder="${escapeAttr(t("feedbackPlaceholder"))}" required></textarea>
+          <button class="secondary" type="submit">${t("sendMessage")}</button>
+        </form>
       </div>
       <div class="card stack" style="margin-top:18px">
         <button class="secondary" type="button" data-action="privacy">${t("privacyTitle")}</button>
@@ -2322,7 +2341,11 @@ function settings() {
       <div class="card stack" style="margin-top:18px">
         <strong>${t("deleteAccount")}</strong>
         <span class="hint">${t("deleteWarning")}</span>
-        <button class="danger" data-action="deleteAccount">${t("deleteAccount")}</button>
+        <label class="check-row delete-confirm-row">
+          <input type="checkbox" name="delete_confirm">
+          <span>${t("deleteConfirmText")}</span>
+        </label>
+        <button class="danger" data-action="deleteAccount" data-delete-account-button disabled>${t("deleteAccount")}</button>
       </div>
     </section>
   `);
@@ -3314,7 +3337,13 @@ document.addEventListener("click", async (event) => {
     await refresh();
     return go("home");
   }
-  if (action === "deleteAccount" && confirm(t("deleteWarning"))) {
+  if (action === "deleteAccount") {
+    const confirmed = document.querySelector('input[name="delete_confirm"]')?.checked;
+    if (!confirmed) {
+      toast(t("deleteConfirmRequired"));
+      return;
+    }
+    if (!confirm(t("deleteWarning"))) return;
     await api(`/api/users/${state.user.id}`, { method: "DELETE" });
     await deviceForget("rb_user");
     await deviceForget("rb_last_user");
@@ -3340,6 +3369,10 @@ document.addEventListener("change", (event) => {
     write("rb_language", state.language);
     render();
   }
+  if (event.target.name === "delete_confirm") {
+    const button = document.querySelector("[data-delete-account-button]");
+    if (button) button.disabled = !event.target.checked;
+  }
 });
 
 document.addEventListener("submit", async (event) => {
@@ -3348,20 +3381,20 @@ document.addEventListener("submit", async (event) => {
   const data = Object.fromEntries(new FormData(form).entries());
   setBusy(true);
   try {
-    if (form.id === "landingContactForm") {
+    if (form.id === "landingContactForm" || form.id === "settingsFeedbackForm") {
       try {
         await api("/api/contact", {
           method: "POST",
           body: JSON.stringify({
-            from_email: data.from_email || null,
-            role: data.role || null,
+            from_email: data.from_email || state.user?.email || null,
+            role: data.role || (form.id === "settingsFeedbackForm" ? "TidGo app settings feedback" : null),
             message: data.message || ""
           })
         });
         form.reset();
-        toast(mk("messageSent"));
+        toast(form.id === "settingsFeedbackForm" ? t("feedbackSent") : mk("messageSent"));
       } catch (error) {
-        toast(mk("messagePending"));
+        toast(form.id === "settingsFeedbackForm" ? t("feedbackFailed") : mk("messagePending"));
       }
       return;
     }
