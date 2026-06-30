@@ -1332,7 +1332,7 @@ const state = {
   accountantSelectedClientId: null,
   pendingSignupEmail: read("rb_pending_signup_email", ""),
   incomeProofs: read("rb_income_proofs", {}),
-  screen: isAccountantRoute() ? "accountantLanding" : isLandingRoute() ? "landing" : "boot",
+  screen: initialScreen(),
   receipts: [],
   income: [],
   selected: null,
@@ -1353,8 +1353,24 @@ function isAppRoute() {
   return location.pathname.replace(/\/+$/, "") === "/app";
 }
 
+function isAppDemoRoute() {
+  return location.pathname.replace(/\/+$/, "") === "/app-demo";
+}
+
+function isAccountantDemoRoute() {
+  return location.pathname.replace(/\/+$/, "") === "/accountant-demo";
+}
+
 function isLandingRoute() {
-  return !isAccountantRoute() && !isAppRoute();
+  return !isAccountantRoute() && !isAppRoute() && !isAppDemoRoute() && !isAccountantDemoRoute();
+}
+
+function initialScreen() {
+  if (isAccountantRoute()) return "accountantLanding";
+  if (isAppDemoRoute()) return "appDemo";
+  if (isAccountantDemoRoute()) return "accountantDemo";
+  if (isLandingRoute()) return "landing";
+  return "boot";
 }
 
 function showSplash() {
@@ -1697,12 +1713,15 @@ async function refresh() {
 }
 
 function render() {
-  if (state.screen !== "landing" && state.screen !== "accountantLanding" && state.screen !== "accountantDemoClient" && !state.user) {
+  const publicScreens = ["landing", "appDemo", "accountantDemo", "accountantLanding", "accountantDemoClient"];
+  if (!publicScreens.includes(state.screen) && !state.user) {
     state.screen = state.screen === "recover" || state.screen === "verifySignup" ? state.screen : "onboarding";
   }
   if (state.screen === "boot") state.screen = "home";
   const routes = {
     landing,
+    appDemo,
+    accountantDemo,
     accountantLanding,
     accountantDemoClient,
     onboarding,
@@ -1799,6 +1818,7 @@ function landing() {
             <small>Scan app</small>
           </div>
             <a class="primary landing-link" href="/app/">Open app</a>
+            <a class="secondary landing-link" href="/app-demo">View quick demo</a>
           </article>
           <article class="landing-card">
             <span class="landing-card-label">I'm an accountant</span>
@@ -1809,6 +1829,7 @@ function landing() {
             <small>Scan portal</small>
           </div>
             <a class="primary landing-link" href="${accountantUrl}">Open portal</a>
+            <a class="secondary landing-link" href="/accountant-demo">View quick demo</a>
           </article>
         </aside>
       </div>
@@ -1817,6 +1838,119 @@ function landing() {
       </footer>
     </section>
   `);
+}
+
+function demoShell(kind, title, subtitle, steps, ctaHref, ctaLabel) {
+  shell(`
+    <section class="landing-screen demo-screen">
+      <header class="landing-head">
+        <a class="brand landing-brand demo-brand" href="/"><img src="/icon-192.png" alt=""><span>TidGo</span></a>
+        <nav class="landing-nav" aria-label="Demo navigation">
+          <a href="/">Home</a>
+          <a href="/app-demo">App demo</a>
+          <a href="/accountant-demo">Accountant demo</a>
+        </nav>
+      </header>
+      <div class="demo-layout">
+        <div class="landing-hero">
+          <span class="eyebrow">${escapeHtml(kind)}</span>
+          <h1>${escapeHtml(title)}</h1>
+          <p>${escapeHtml(subtitle)}</p>
+          <div class="demo-cta">
+            <a class="primary landing-link" href="${ctaHref}">${escapeHtml(ctaLabel)}</a>
+            <a class="secondary landing-link" href="/">Back to homepage</a>
+          </div>
+        </div>
+        <div class="demo-steps">
+          ${steps.map((step, index) => `
+            <article class="demo-card">
+              <div class="demo-phone">
+                <span class="demo-phone-bar"></span>
+                <strong>${escapeHtml(step.screen)}</strong>
+                <div class="demo-visual ${step.tone}">
+                  ${step.visual}
+                </div>
+              </div>
+              <div>
+                <span class="landing-card-label">Step ${index + 1}</span>
+                <h2>${escapeHtml(step.title)}</h2>
+                <p>${escapeHtml(step.text)}</p>
+              </div>
+            </article>
+          `).join("")}
+        </div>
+      </div>
+    </section>
+  `);
+}
+
+function appDemo() {
+  demoShell(
+    "For self-employed",
+    "See the receipt flow before signing in.",
+    "TidGo is built around one simple habit: take the photo now, send a cleaner pack later.",
+    [
+      {
+        screen: "Add expense",
+        title: "Snap the receipt",
+        text: "Use the camera or upload a photo. TidGo reads the total, currency, shop and category.",
+        tone: "blue",
+        visual: "<span class='demo-receipt'></span><span class='demo-plus'>+</span>"
+      },
+      {
+        screen: "Check details",
+        title: "Review before saving",
+        text: "You can correct the amount, category, currency or shop before it goes into your records.",
+        tone: "green",
+        visual: "<span>Amount</span><strong>£18.40</strong><span>Food</span><strong>Saved</strong>"
+      },
+      {
+        screen: "Monthly summary",
+        title: "Send the pack",
+        text: "Income, expenses and paid-for-client records are grouped by currency, ready for your accountant.",
+        tone: "soft",
+        visual: "<strong>June Summary</strong><span>PDF</span><span>CSV</span>"
+      }
+    ],
+    "/app/",
+    "Open TidGo App"
+  );
+}
+
+function accountantDemo() {
+  const accountantHref = location.hostname === "localhost" || location.hostname === "127.0.0.1"
+    ? "/accountant/"
+    : "https://accountant.tidgo.co.uk";
+  demoShell(
+    "For accountants",
+    "See the client handoff before signing in.",
+    "The accountant portal is read-only. Clients keep records tidy; you get a cleaner pack when it is time to work.",
+    [
+      {
+        screen: "Client list",
+        title: "See connected clients",
+        text: "Only clients who gave consent appear in your list. No chasing logins from every client.",
+        tone: "blue",
+        visual: "<strong>Client 1</strong><span>32 records</span><strong>Client 2</strong><span>Ready</span>"
+      },
+      {
+        screen: "Records",
+        title: "Check what is missing",
+        text: "Receipts, income proof and paid-for-client costs are visible in one simple read-only view.",
+        tone: "green",
+        visual: "<span>Income proof</span><strong>Missing</strong><span>Receipt</span><strong>Attached</strong>"
+      },
+      {
+        screen: "Download pack",
+        title: "Export CSV and PDF",
+        text: "Download a clean pack without asking the client to email another bag of random photos.",
+        tone: "soft",
+        visual: "<strong>CSV</strong><span>+</span><strong>PDF</strong>"
+      }
+    ],
+    accountantHref,
+    "Open Accountant Portal"
+  );
 }
 
 function onboarding() {
