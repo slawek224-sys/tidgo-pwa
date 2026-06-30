@@ -971,7 +971,6 @@ Object.assign(COPY.en, {
     sendMessage: "Send us a message",
     feedbackSent: "Message sent. Thank you.",
     feedbackFailed: "Message could not be sent. Please try again later.",
-    feedbackFallback: "Automatic send is unavailable, so I opened an email draft instead.",
     deleteConfirmText: "I understand this permanently deletes my profile, receipts, photos and income.",
     deleteConfirmRequired: "Tick the confirmation box first.",
     copyEmail: "Copy email",
@@ -1054,7 +1053,6 @@ Object.assign(COPY.pl, {
     sendMessage: "Wyslij wiadomosc",
     feedbackSent: "Wiadomosc wyslana. Dziekuje.",
     feedbackFailed: "Nie udalo sie wyslac wiadomosci. Sprobuj pozniej.",
-    feedbackFallback: "Automatyczna wysylka nie dziala, wiec otwieram szkic emaila.",
     deleteConfirmText: "Rozumiem, ze to trwale usunie moj profil, paragony, zdjecia i przychody.",
     deleteConfirmRequired: "Najpierw zaznacz potwierdzenie.",
     copyEmail: "Kopiuj email",
@@ -1349,7 +1347,6 @@ Object.values(COPY).forEach((copy) => {
   copy.feedbackPlaceholder ||= COPY.en.feedbackPlaceholder;
   copy.feedbackSent ||= COPY.en.feedbackSent;
   copy.feedbackFailed ||= COPY.en.feedbackFailed;
-  copy.feedbackFallback ||= COPY.en.feedbackFallback;
   copy.deleteConfirmText ||= COPY.en.deleteConfirmText;
   copy.deleteConfirmRequired ||= COPY.en.deleteConfirmRequired;
   copy.signOutConfirm ||= COPY.en.signOutConfirm;
@@ -1716,19 +1713,6 @@ function toast(message) {
   node.textContent = message;
   document.body.appendChild(node);
   window.setTimeout(() => node.remove(), 4200);
-}
-
-function openContactEmailDraft({ fromEmail, role, message }) {
-  const subject = encodeURIComponent(t("feedbackSubject") || "TidGo feedback");
-  const body = encodeURIComponent([
-    t("feedbackBody") || "Hi, I tested TidGo and noticed:",
-    "",
-    message || "",
-    "",
-    `From: ${fromEmail || state.user?.email || ""}`,
-    `Role: ${role || ""}`
-  ].join("\n"));
-  location.href = `mailto:${FEEDBACK_EMAIL}?subject=${subject}&body=${body}`;
 }
 
 function confirmDownload(kind = "user") {
@@ -3228,21 +3212,6 @@ document.addEventListener("click", async (event) => {
     toast(t("saved"));
     return render();
   }
-  if (action === "feedback") {
-    const subject = encodeURIComponent(t("feedbackSubject"));
-    const body = encodeURIComponent(`${t("feedbackBody")}\n\n`);
-    location.href = `mailto:${FEEDBACK_EMAIL}?subject=${subject}&body=${body}`;
-    return;
-  }
-  if (action === "copyFeedbackEmail") {
-    try {
-      await navigator.clipboard.writeText(FEEDBACK_EMAIL);
-      toast(t("emailCopied"));
-    } catch {
-      toast(FEEDBACK_EMAIL);
-    }
-    return;
-  }
   if (action === "privacy") return go("privacy");
   if (action === "terms") return go("terms");
   if (action === "summary") return go("summary");
@@ -3414,12 +3383,7 @@ document.addEventListener("submit", async (event) => {
         form.reset();
         toast(form.id === "settingsFeedbackForm" ? t("feedbackSent") : mk("messageSent"));
       } catch (error) {
-        openContactEmailDraft({
-          fromEmail: data.from_email || state.user?.email || "",
-          role: data.role || (form.id === "settingsFeedbackForm" ? "TidGo app settings feedback" : ""),
-          message: data.message || ""
-        });
-        toast(form.id === "settingsFeedbackForm" ? t("feedbackFallback") : mk("messagePending"));
+        toast(form.id === "settingsFeedbackForm" ? t("feedbackFailed") : mk("messagePending"));
       }
       return;
     }
