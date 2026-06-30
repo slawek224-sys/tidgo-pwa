@@ -13,6 +13,101 @@ const LANGUAGES = {
   bg: "Български"
 };
 
+
+const MARKETING_LANGUAGES = {
+  en: { country: "gb", label: "English" },
+  pl: { country: "pl", label: "Polski" },
+  ro: { country: "ro", label: "Romana" },
+  lt: { country: "lt", label: "Lietuviu" }
+};
+
+const MARKETING_COPY = {
+  en: {
+    navHow: "How it works", navWho: "Who is it for?", navPricing: "Launch & pricing", navFaq: "FAQ", navMtd: "MTD explained", navContact: "Contact",
+    heroEyebrow: "Receipts in. Tidy records out.", heroTitle: "One simple place for receipts.", heroText: "For self-employed people who need records tidy, and accountants who would rather not chase plastic bags full of receipts.",
+    stepSnap: "Snap receipts", stepTidy: "Keep records tidy", stepPack: "Send a clean pack",
+    earlyTitle: "Early access:", earlyText: "TidGo is live for a small group of early users. It is free while we collect feedback, improve the app and add clearer guides for self-employed people and accountants.",
+    pricingTitle: "Launch & pricing:", pricingText: "Official launch date: to be announced after early-access testing. TidGo is free during early access. Paid plans are expected after launch, with clear notice before anything changes.",
+    mtdTitle: "MTD explained:", mtdText: "This guide is being written. TidGo helps keep records tidy, but it does not file tax returns or replace an accountant.", faqTitle: "FAQ:", faqText: "More answers are coming soon. For now, try the app, open the accountant portal, or send a message below.",
+    contactTitle: "Want to try it or ask a question?", contactText: "Send a quick message. No sales maze, just a human reply.", yourEmail: "Your email", roleSelf: "I work for myself", roleAccountant: "I am an accountant", roleCurious: "Just curious", message: "Message", sendMessage: "Send message", messageSent: "Message sent. Thank you.", messagePending: "Automatic contact is being connected. Please try again after the next API deploy.",
+    selfLabel: "I work for myself", selfTitle: "Open TidGo App", selfText: "Take receipt photos, add income, keep monthly records ready for your accountant.", scanApp: "Scan app", openApp: "Open app",
+    accountantLabel: "I'm an accountant", accountantTitle: "Open Accountant Portal", accountantText: "View connected client records, download CSV/PDF packs, and reduce deadline panic.", scanPortal: "Scan portal", openPortal: "Open portal", viewDemo: "View quick demo",
+    footer: "TidGo helps organise records. It is not accounting, tax advice or payroll software.", home: "Home", appDemo: "App demo", accountantDemo: "Accountant demo", backHome: "Back to homepage", step: "Step",
+    appDemoKind: "For self-employed", appDemoTitle: "See the receipt flow before signing in.", appDemoText: "TidGo is built around one simple habit: take the photo now, send a cleaner pack later.",
+    accountantDemoKind: "For accountants", accountantDemoTitle: "See the client handoff before signing in.", accountantDemoText: "The accountant portal is read-only. Clients keep records tidy; you get a cleaner pack when it is time to work.",
+    demoHomeScreen: "Home", demoHomeTitle: "Start from a simple home screen", demoHomeText: "The main actions are right there: add an expense, add income, paid for client, or open the monthly summary.",
+    demoReceiptScreen: "Receipt photo", demoReceiptTitle: "Snap the receipt", demoReceiptText: "Take or upload a photo. TidGo confirms it has received the receipt with a small friendly message.", demoReceiptCallout: "Friendly confirmation after the receipt is received.",
+    demoDetailsScreen: "Check details", demoDetailsTitle: "Review before saving", demoDetailsText: "You can correct the amount, category, currency or shop before it goes into your records.",
+    demoSummaryScreen: "Monthly summary", demoSummaryTitle: "Send the pack", demoSummaryText: "Income, expenses and paid-for-client records are grouped by currency, ready for your accountant.",
+    demoAccessScreen: "Accountant access", demoAccessTitle: "Sign in with accountant email", demoAccessText: "The portal uses an email code, then shows the connected accountant account on this device.",
+    demoClientsScreen: "Client list", demoClientsTitle: "See connected clients", demoClientsText: "Only clients who gave consent appear in your list. You can open each client from one simple view.",
+    demoRecordsScreen: "Client records", demoRecordsTitle: "Download the client pack", demoRecordsText: "Open a client, check totals, request missing docs, then download CSV or PDF."
+  },
+  pl: {
+    navHow: "Jak to dziala", navWho: "Dla kogo?", navPricing: "Start i ceny", navFaq: "FAQ", navMtd: "MTD prosto", navContact: "Kontakt",
+    heroEyebrow: "Paragony wchodza. Porzadek wychodzi.", heroTitle: "Jedno proste miejsce na paragony.", heroText: "Dla self-employed, ktorzy chca miec rekordy w porzadku, i dla ksiegowych, ktorzy nie chca gonitwy za reklamowka paragonow.",
+    stepSnap: "Zrob zdjecie", stepTidy: "Trzymaj porzadek", stepPack: "Wyslij czysta paczke",
+    earlyTitle: "Early access:", earlyText: "TidGo dziala dla malej grupy pierwszych uzytkownikow. Teraz jest darmowe, zbieramy feedback, poprawiamy aplikacje i dopisujemy jasne instrukcje.",
+    pricingTitle: "Start i ceny:", pricingText: "Oficjalna data startu bedzie ogloszona po testach early access. TidGo jest darmowe w trakcie early access. Po starcie planujemy platne plany, z jasna informacja przed zmianami.",
+    mtdTitle: "MTD prosto:", mtdText: "Ten poradnik jest w przygotowaniu. TidGo pomaga utrzymac rekordy w porzadku, ale nie wysyla deklaracji podatkowych i nie zastapi ksiegowego.", faqTitle: "FAQ:", faqText: "Wiecej odpowiedzi wkrotce. Na razie zobacz aplikacje, portal ksiegowego albo wyslij wiadomosc ponizej.",
+    contactTitle: "Chcesz przetestowac albo zapytac?", contactText: "Wyslij krotka wiadomosc. Bez lejka sprzedazowego, normalna odpowiedz od czlowieka.", yourEmail: "Twoj email", roleSelf: "Pracuje na siebie", roleAccountant: "Jestem ksiegowym", roleCurious: "Tylko sprawdzam", message: "Wiadomosc", sendMessage: "Wyslij wiadomosc", messageSent: "Wiadomosc wyslana. Dziekuje.", messagePending: "Automatyczny kontakt jest podpinany. Sprobuj po nastepnym deployu API.",
+    selfLabel: "Pracuje na siebie", selfTitle: "Otworz aplikacje TidGo", selfText: "Rob zdjecia paragonow, dodawaj przychody i trzymaj miesieczne rekordy gotowe dla ksiegowego.", scanApp: "Skanuj app", openApp: "Otworz app",
+    accountantLabel: "Jestem ksiegowym", accountantTitle: "Otworz portal ksiegowego", accountantText: "Zobacz rekordy klientow, pobierz CSV/PDF i ogranicz panike przed terminem.", scanPortal: "Skanuj portal", openPortal: "Otworz portal", viewDemo: "Zobacz szybkie demo",
+    footer: "TidGo pomaga porzadkowac rekordy. To nie jest ksiegowosc, porada podatkowa ani payroll.", home: "Start", appDemo: "Demo app", accountantDemo: "Demo ksiegowego", backHome: "Wroc na strone glowna", step: "Krok",
+    appDemoKind: "Dla self-employed", appDemoTitle: "Zobacz flow paragonu bez logowania.", appDemoText: "TidGo opiera sie na jednym prostym nawyku: zrob zdjecie teraz, wyslij czystsza paczke pozniej.",
+    accountantDemoKind: "Dla ksiegowych", accountantDemoTitle: "Zobacz przekazanie klienta bez logowania.", accountantDemoText: "Portal ksiegowego jest tylko do odczytu. Klient trzyma rekordy w porzadku, a ty dostajesz czystsza paczke do pracy.",
+    demoHomeScreen: "Start", demoHomeTitle: "Prosty ekran glowny", demoHomeText: "Najwazniejsze akcje sa od razu widoczne: wydatek, przychod, koszt dla klienta i monthly summary.",
+    demoReceiptScreen: "Zdjecie paragonu", demoReceiptTitle: "Zrob zdjecie paragonu", demoReceiptText: "Zrob albo wgraj zdjecie. TidGo potwierdza, ze paragon zostal odebrany.", demoReceiptCallout: "Przyjazne potwierdzenie po odebraniu paragonu.",
+    demoDetailsScreen: "Sprawdz dane", demoDetailsTitle: "Sprawdz przed zapisem", demoDetailsText: "Mozesz poprawic kwote, kategorie, walute albo sklep przed zapisaniem.",
+    demoSummaryScreen: "Podsumowanie", demoSummaryTitle: "Wyslij paczke", demoSummaryText: "Przychody, wydatki i koszty dla klienta sa pogrupowane wedlug waluty i gotowe dla ksiegowego.",
+    demoAccessScreen: "Dostep ksiegowego", demoAccessTitle: "Logowanie emailem ksiegowego", demoAccessText: "Portal uzywa kodu email, a potem pokazuje polaczone konto ksiegowego na tym urzadzeniu.",
+    demoClientsScreen: "Lista klientow", demoClientsTitle: "Zobacz polaczonych klientow", demoClientsText: "Na liscie sa tylko klienci, ktorzy dali zgode. Kazdego klienta otwierasz z prostego widoku.",
+    demoRecordsScreen: "Rekordy klienta", demoRecordsTitle: "Pobierz paczke klienta", demoRecordsText: "Otworz klienta, sprawdz sumy, popros o brakujace dokumenty i pobierz CSV lub PDF."
+  }
+};
+MARKETING_COPY.ro = { ...MARKETING_COPY.en,
+  navHow: "Cum functioneaza", navWho: "Pentru cine?", navPricing: "Lansare si pret", navFaq: "FAQ", navMtd: "MTD pe scurt", navContact: "Contact",
+  heroEyebrow: "Bonuri inauntru. Evidente ordonate afara.", heroTitle: "Un loc simplu pentru bonuri.", heroText: "Pentru persoane self-employed care vor evidente ordonate si contabili care nu vor sa alerge dupa pungi cu bonuri.",
+  stepSnap: "Fotografiaza bonuri", stepTidy: "Tine evidenta ordonata", stepPack: "Trimite pachetul curat",
+  earlyTitle: "Acces timpuriu:", earlyText: "TidGo este live pentru un grup mic de utilizatori. Este gratuit cat timp strangem feedback, imbunatatim aplicatia si adaugam ghiduri clare.",
+  pricingTitle: "Lansare si pret:", pricingText: "Data lansarii oficiale va fi anuntata dupa testele early access. TidGo este gratuit in perioada de testare. Planurile platite vor fi anuntate clar inainte de orice schimbare.",
+  mtdTitle: "MTD pe scurt:", mtdText: "Ghidul este in lucru. TidGo ajuta la pastrarea evidentelor ordonate, dar nu depune declaratii fiscale si nu inlocuieste contabilul.", faqTitle: "FAQ:", faqText: "Mai multe raspunsuri vin curand. Deocamdata poti incerca aplicatia, portalul contabilului sau trimite un mesaj.",
+  contactTitle: "Vrei sa testezi sau sa intrebi ceva?", contactText: "Trimite un mesaj scurt. Fara labirint de vanzari, doar un raspuns uman.", yourEmail: "Emailul tau", roleSelf: "Lucrez pe cont propriu", roleAccountant: "Sunt contabil", roleCurious: "Doar verific", message: "Mesaj", sendMessage: "Trimite mesaj", messageSent: "Mesaj trimis. Multumesc.", messagePending: "Contactul automat este conectat. Incearca din nou dupa urmatorul deploy API.",
+  selfLabel: "Lucrez pe cont propriu", selfTitle: "Deschide aplicatia TidGo", selfText: "Fotografiaza bonuri, adauga venituri si tine evidenta lunara pregatita pentru contabil.", scanApp: "Scaneaza app", openApp: "Deschide app",
+  accountantLabel: "Sunt contabil", accountantTitle: "Deschide portalul contabilului", accountantText: "Vezi evidentele clientilor conectati, descarca pachete CSV/PDF si redu panica de termen limita.", scanPortal: "Scaneaza portal", openPortal: "Deschide portal", viewDemo: "Vezi demo rapid",
+  footer: "TidGo ajuta la organizarea evidentelor. Nu este contabilitate, consultanta fiscala sau payroll.", home: "Acasa", appDemo: "Demo app", accountantDemo: "Demo contabil", backHome: "Inapoi la pagina principala", step: "Pas",
+  appDemoKind: "Pentru self-employed", appDemoTitle: "Vezi fluxul bonului inainte de autentificare.", appDemoText: "TidGo se bazeaza pe un obicei simplu: faci poza acum, trimiti un pachet mai curat mai tarziu.",
+  accountantDemoKind: "Pentru contabili", accountantDemoTitle: "Vezi predarea clientului inainte de autentificare.", accountantDemoText: "Portalul contabilului este doar pentru citire. Clientii isi tin evidentele ordonate; tu primesti un pachet mai curat pentru lucru.",
+  demoHomeScreen: "Start", demoHomeTitle: "Porneste de la un ecran simplu", demoHomeText: "Actiunile principale sunt la indemana: adauga cheltuiala, venit, platit pentru client sau deschide sumarul lunar.",
+  demoReceiptScreen: "Poza bon", demoReceiptTitle: "Fotografiaza bonul", demoReceiptText: "Fa sau incarca o poza. TidGo confirma prietenos ca bonul a fost primit.", demoReceiptCallout: "Confirmare prietenoasa dupa primirea bonului.",
+  demoDetailsScreen: "Verifica datele", demoDetailsTitle: "Revizuieste inainte de salvare", demoDetailsText: "Poti corecta suma, categoria, moneda sau magazinul inainte sa intre in evidente.",
+  demoSummaryScreen: "Sumar lunar", demoSummaryTitle: "Trimite pachetul", demoSummaryText: "Veniturile, cheltuielile si platile pentru client sunt grupate pe moneda, gata pentru contabil.",
+  demoAccessScreen: "Acces contabil", demoAccessTitle: "Autentificare cu emailul contabilului", demoAccessText: "Portalul foloseste un cod pe email, apoi arata contul conectat pe acest dispozitiv.",
+  demoClientsScreen: "Lista clienti", demoClientsTitle: "Vezi clientii conectati", demoClientsText: "Apar doar clientii care au dat acordul. Fiecare client se deschide dintr-un ecran simplu.",
+  demoRecordsScreen: "Evidente client", demoRecordsTitle: "Descarca pachetul clientului", demoRecordsText: "Deschide clientul, verifica totalurile, cere documente lipsa si descarca CSV sau PDF."
+};
+MARKETING_COPY.lt = { ...MARKETING_COPY.en,
+  navHow: "Kaip veikia", navWho: "Kam skirta?", navPricing: "Startas ir kaina", navFaq: "DUK", navMtd: "MTD trumpai", navContact: "Kontaktai",
+  heroEyebrow: "Kvitai vidun. Tvarkingi irasai lauk.", heroTitle: "Viena paprasta vieta kvitams.", heroText: "Dirbantiems sau, kuriems reikia tvarkingu irasu, ir buhalteriams, kurie nenori gaudyti maisu su kvitais.",
+  stepSnap: "Nufotografuok kvita", stepTidy: "Laikyk irasus tvarkingai", stepPack: "Issiusk tvarkinga paketa",
+  earlyTitle: "Ankstyva prieiga:", earlyText: "TidGo jau veikia mazai pirmuju vartotoju grupei. Dabar programa nemokama, kol renkame atsiliepimus, taisome detales ir rengiame paprastus paaiskinimus.",
+  pricingTitle: "Startas ir kaina:", pricingText: "Oficiali starto data bus paskelbta po ankstyvos prieigos testu. TidGo dabar nemokama. Mokami planai bus pristatyti aiskiai, pries bet kokius pakeitimus.",
+  mtdTitle: "MTD trumpai:", mtdText: "Sitas gidas dar rasomas. TidGo padeda laikyti irasus tvarkingai, bet neteikia mokesciu deklaraciju ir nepakeicia buhalterio.", faqTitle: "DUK:", faqText: "Daugiau atsakymu bus greitai. Kol kas galite isbandyti programa, buhalterio portala arba parasyti zinute.",
+  contactTitle: "Norite pabandyti ar paklausti?", contactText: "Parasykite trumpa zinute. Be pardavimo labirinto, tiesiog zmogiskas atsakymas.", yourEmail: "Jusu el. pastas", roleSelf: "Dirbu sau", roleAccountant: "Esu buhalteris", roleCurious: "Tik domiuosi", message: "Zinute", sendMessage: "Siusti zinute", messageSent: "Zinute issiusta. Aciu.", messagePending: "Automatinis kontaktas prijungiamas. Pabandykite po kito API deploy.",
+  selfLabel: "Dirbu sau", selfTitle: "Atidaryti TidGo app", selfText: "Fotografuok kvitus, pridek pajamas ir laikyk menesio irasus paruostus buhalteriui.", scanApp: "Skenuoti app", openApp: "Atidaryti app",
+  accountantLabel: "Esu buhalteris", accountantTitle: "Atidaryti buhalterio portala", accountantText: "Matyk prijungtu klientu irasus, atsisiusk CSV/PDF paketus ir sumazink termino panika.", scanPortal: "Skenuoti portala", openPortal: "Atidaryti portala", viewDemo: "Greitas demo",
+  footer: "TidGo padeda tvarkyti irasus. Tai nera buhalterija, mokesciu konsultacija ar payroll programa.", home: "Pradzia", appDemo: "App demo", accountantDemo: "Buhalterio demo", backHome: "Grizti i pagrindini puslapi", step: "Zingsnis",
+  appDemoKind: "Dirbantiems sau", appDemoTitle: "Pamatyk kvito eiga neprisijungus.", appDemoText: "TidGo remiasi vienu paprastu iprociu: nufotografuok dabar, tvarkingesni paketa issiusk veliau.",
+  accountantDemoKind: "Buhalteriams", accountantDemoTitle: "Pamatyk kliento perdavima neprisijungus.", accountantDemoText: "Buhalterio portalas yra tik skaitymui. Klientai tvarko irasus, o jus gaunate tvarkingesni paketa darbui.",
+  demoHomeScreen: "Pradzia", demoHomeTitle: "Paprastas pradinis ekranas", demoHomeText: "Svarbiausi veiksmai cia pat: prideti islaidas, pajamas, kliento islaidas arba atidaryti menesio suvestine.",
+  demoReceiptScreen: "Kvito nuotrauka", demoReceiptTitle: "Nufotografuok kvita", demoReceiptText: "Nufotografuok arba ikelk nuotrauka. TidGo draugiskai patvirtina, kad kvitas gautas.", demoReceiptCallout: "Draugiskas patvirtinimas gavus kvita.",
+  demoDetailsScreen: "Patikrink duomenis", demoDetailsTitle: "Perziurek pries issaugant", demoDetailsText: "Gali pataisyti suma, kategorija, valiuta arba parduotuve pries irasui patenkant i sistema.",
+  demoSummaryScreen: "Menesio suvestine", demoSummaryTitle: "Issiusk paketa", demoSummaryText: "Pajamos, islaidos ir kliento islaidos sugrupuotos pagal valiuta, paruostos buhalteriui.",
+  demoAccessScreen: "Buhalterio prieiga", demoAccessTitle: "Prisijunk buhalterio el. pastu", demoAccessText: "Portalas naudoja koda el. paste, tada rodo prijungta buhalterio paskyra siame irenginyje.",
+  demoClientsScreen: "Klientu sarasas", demoClientsTitle: "Matyk prijungtus klientus", demoClientsText: "Rodomi tik klientai, kurie dave sutikima. Kiekviena klienta galima atidaryti paprastai.",
+  demoRecordsScreen: "Kliento irasai", demoRecordsTitle: "Atsisiusk kliento paketa", demoRecordsText: "Atidaryk klienta, patikrink sumas, paprasyk trukstamu dokumentu ir atsisiusk CSV arba PDF."
+};
+
 const ACCOUNTANT_COPY = {
   en: {
     forAccountants: "TidGo for Accountants",
@@ -1331,6 +1426,7 @@ const state = {
   accountantClientRecords: null,
   accountantSelectedClientId: null,
   pendingSignupEmail: read("rb_pending_signup_email", ""),
+  marketingLanguage: MARKETING_LANGUAGES[read("tg_marketing_language", "en")] ? read("tg_marketing_language", "en") : "en",
   incomeProofs: read("rb_income_proofs", {}),
   screen: initialScreen(),
   receipts: [],
@@ -1395,6 +1491,23 @@ function at(key) {
 
 function dt(key) {
   return (DOWNLOAD_COPY[state.language] || DOWNLOAD_COPY.en)[key] || DOWNLOAD_COPY.en[key] || key;
+}
+
+function mk(key) {
+  return (MARKETING_COPY[state.marketingLanguage] || MARKETING_COPY.en)[key] || MARKETING_COPY.en[key] || key;
+}
+
+function marketingLanguagePicker() {
+  return `
+    <div class="marketing-language-switcher" aria-label="Marketing page language">
+      ${Object.entries(MARKETING_LANGUAGES).map(([code, language]) => `
+        <button class="marketing-lang ${state.marketingLanguage === code ? "active" : ""}" type="button" data-marketing-language="${code}">
+          <span class="flag flag-${language.country}" aria-hidden="true"></span>
+          <span>${escapeHtml(language.label)}</span>
+        </button>
+      `).join("")}
+    </div>
+  `;
 }
 
 function read(key, fallback) {
@@ -1754,87 +1867,90 @@ function landing() {
     <section class="landing-screen">
       <header class="landing-head">
         <div class="brand landing-brand"><img src="/icon-192.png" alt=""><span>TidGo</span></div>
-        <nav class="landing-nav" aria-label="TidGo navigation">
-          <a href="#how" data-scroll-target="how">How it works</a>
-          <a href="#who" data-scroll-target="who">Who is it for?</a>
-          <a href="#pricing" data-scroll-target="pricing">Launch & pricing</a>
-          <a href="#faq" data-scroll-target="faq">FAQ</a>
-          <a href="#mtd" data-scroll-target="mtd">MTD explained</a>
-          <a href="#contact" data-scroll-target="contact">Contact</a>
-        </nav>
+        <div class="landing-head-actions">
+          <nav class="landing-nav" aria-label="TidGo navigation">
+            <a href="#how" data-scroll-target="how">${mk("navHow")}</a>
+            <a href="#who" data-scroll-target="who">${mk("navWho")}</a>
+            <a href="#pricing" data-scroll-target="pricing">${mk("navPricing")}</a>
+            <a href="#faq" data-scroll-target="faq">${mk("navFaq")}</a>
+            <a href="#mtd" data-scroll-target="mtd">${mk("navMtd")}</a>
+            <a href="#contact" data-scroll-target="contact">${mk("navContact")}</a>
+          </nav>
+          ${marketingLanguagePicker()}
+        </div>
       </header>
       <div class="landing-layout">
         <div class="landing-main">
           <div class="landing-hero">
-            <span class="eyebrow">Receipts in. Tidy records out.</span>
-            <h1>One simple place for receipts.</h1>
-            <p>For self-employed people who need records tidy, and accountants who would rather not chase plastic bags full of receipts.</p>
+            <span class="eyebrow">${mk("heroEyebrow")}</span>
+            <h1>${mk("heroTitle")}</h1>
+            <p>${mk("heroText")}</p>
           </div>
           <section class="landing-strip" id="how">
-            <span>Snap receipts</span>
-            <span>Keep records tidy</span>
-            <span>Send a clean pack</span>
+            <span>${mk("stepSnap")}</span>
+            <span>${mk("stepTidy")}</span>
+            <span>${mk("stepPack")}</span>
           </section>
           <section class="landing-placeholder" id="faq">
-            <strong>Early access:</strong>
-            <span>TidGo is live for a small group of early users. It is free while we collect feedback, improve the app and add clearer guides for self-employed people and accountants.</span>
+            <strong>${mk("earlyTitle")}</strong>
+            <span>${mk("earlyText")}</span>
           </section>
           <section class="landing-placeholder landing-pricing" id="pricing">
-            <strong>Launch & pricing:</strong>
-            <span>Official launch date: to be announced after early-access testing. TidGo is free during early access. Paid plans are expected after launch, with clear notice before anything changes.</span>
+            <strong>${mk("pricingTitle")}</strong>
+            <span>${mk("pricingText")}</span>
           </section>
           <section class="landing-placeholder" id="mtd">
-            <strong>MTD explained:</strong>
-            <span>This guide is being written. TidGo helps keep records tidy, but it does not file tax returns or replace an accountant.</span>
+            <strong>${mk("mtdTitle")}</strong>
+            <span>${mk("mtdText")}</span>
           </section>
           <section class="landing-placeholder">
-            <strong>FAQ:</strong>
-            <span>More answers are coming soon. For now, try the app, open the accountant portal, or send a message below.</span>
+            <strong>${mk("faqTitle")}</strong>
+            <span>${mk("faqText")}</span>
           </section>
           <section class="landing-contact" id="contact">
             <div>
-              <strong>Want to try it or ask a question?</strong>
-              <span>Send a quick message. No sales maze, just a human reply.</span>
+              <strong>${mk("contactTitle")}</strong>
+              <span>${mk("contactText")}</span>
             </div>
             <form class="landing-contact-form" id="landingContactForm">
-              <input class="input" name="from_email" type="email" placeholder="Your email">
+              <input class="input" name="from_email" type="email" placeholder="${escapeAttr(mk("yourEmail"))}">
               <select class="input" name="role">
-                <option value="I work for myself">I work for myself</option>
-                <option value="I am an accountant">I am an accountant</option>
-                <option value="Just curious">Just curious</option>
+                <option value="${escapeAttr(mk("roleSelf"))}">${mk("roleSelf")}</option>
+                <option value="${escapeAttr(mk("roleAccountant"))}">${mk("roleAccountant")}</option>
+                <option value="${escapeAttr(mk("roleCurious"))}">${mk("roleCurious")}</option>
               </select>
-              <textarea class="input" name="message" rows="3" placeholder="Message"></textarea>
-              <button class="primary" type="submit">Send message</button>
+              <textarea class="input" name="message" rows="3" placeholder="${escapeAttr(mk("message"))}"></textarea>
+              <button class="primary" type="submit">${mk("sendMessage")}</button>
             </form>
           </section>
         </div>
         <aside class="landing-actions" id="who">
           <article class="landing-card">
-            <span class="landing-card-label">I work for myself</span>
-            <h2>Open TidGo App</h2>
-            <p>Take receipt photos, add income, keep monthly records ready for your accountant.</p>
+            <span class="landing-card-label">${mk("selfLabel")}</span>
+            <h2>${mk("selfTitle")}</h2>
+            <p>${mk("selfText")}</p>
           <div class="qr-panel">
             <img class="qr-code" src="${qrCodeUrl(appUrl)}" alt="QR code for TidGo app">
-            <small>Scan app</small>
+            <small>${mk("scanApp")}</small>
           </div>
-            <a class="primary landing-link" href="/app/">Open app</a>
-            <a class="secondary landing-link" href="/app-demo">View quick demo</a>
+            <a class="primary landing-link" href="/app/">${mk("openApp")}</a>
+            <a class="secondary landing-link" href="/app-demo">${mk("viewDemo")}</a>
           </article>
           <article class="landing-card">
-            <span class="landing-card-label">I'm an accountant</span>
-            <h2>Open Accountant Portal</h2>
-            <p>View connected client records, download CSV/PDF packs, and reduce deadline panic.</p>
+            <span class="landing-card-label">${mk("accountantLabel")}</span>
+            <h2>${mk("accountantTitle")}</h2>
+            <p>${mk("accountantText")}</p>
           <div class="qr-panel">
             <img class="qr-code" src="${qrCodeUrl(accountantUrl)}" alt="QR code for accountant portal">
-            <small>Scan portal</small>
+            <small>${mk("scanPortal")}</small>
           </div>
-            <a class="primary landing-link" href="${accountantUrl}">Open portal</a>
-            <a class="secondary landing-link" href="/accountant-demo">View quick demo</a>
+            <a class="primary landing-link" href="${accountantUrl}">${mk("openPortal")}</a>
+            <a class="secondary landing-link" href="/accountant-demo">${mk("viewDemo")}</a>
           </article>
         </aside>
       </div>
       <footer class="landing-foot">
-        <span>TidGo helps organise records. It is not accounting, tax advice or payroll software.</span>
+        <span>${mk("footer")}</span>
       </footer>
     </section>
   `);
@@ -1845,11 +1961,14 @@ function demoShell(kind, title, subtitle, steps, ctaHref, ctaLabel, mode = "web"
     <section class="landing-screen demo-screen ${mode === "app" ? "app-demo-screen" : "accountant-demo-screen"}">
       <header class="landing-head">
         <a class="brand landing-brand demo-brand" href="/"><img src="/icon-192.png" alt=""><span>TidGo</span></a>
-        <nav class="landing-nav" aria-label="Demo navigation">
-          <a href="/">Home</a>
-          <a href="/app-demo">App demo</a>
-          <a href="/accountant-demo">Accountant demo</a>
-        </nav>
+        <div class="landing-head-actions">
+          <nav class="landing-nav" aria-label="Demo navigation">
+            <a href="/">${mk("home")}</a>
+            <a href="/app-demo">${mk("appDemo")}</a>
+            <a href="/accountant-demo">${mk("accountantDemo")}</a>
+          </nav>
+          ${marketingLanguagePicker()}
+        </div>
       </header>
       <div class="demo-layout">
         <div class="landing-hero">
@@ -1858,14 +1977,14 @@ function demoShell(kind, title, subtitle, steps, ctaHref, ctaLabel, mode = "web"
           <p>${escapeHtml(subtitle)}</p>
           <div class="demo-cta">
             <a class="primary landing-link" href="${ctaHref}">${escapeHtml(ctaLabel)}</a>
-            <a class="secondary landing-link" href="/">Back to homepage</a>
+            <a class="secondary landing-link" href="/">${mk("backHome")}</a>
           </div>
         </div>
         <div class="demo-steps">
           ${steps.map((step, index) => `
             <article class="demo-card">
               <div class="demo-copy">
-                <span class="landing-card-label">Step ${index + 1}</span>
+                <span class="landing-card-label">${mk("step")} ${index + 1}</span>
                 <h2>${escapeHtml(step.title)}</h2>
                 <p>${escapeHtml(step.text)}</p>
               </div>
@@ -1885,41 +2004,41 @@ function demoShell(kind, title, subtitle, steps, ctaHref, ctaLabel, mode = "web"
 
 function appDemo() {
   demoShell(
-    "For self-employed",
-    "See the receipt flow before signing in.",
-    "TidGo is built around one simple habit: take the photo now, send a cleaner pack later.",
+    mk("appDemoKind"),
+    mk("appDemoTitle"),
+    mk("appDemoText"),
     [
       {
-        screen: "Home",
-        title: "Start from a simple home screen",
-        text: "The main actions are right there: add an expense, add income, paid for client, or open the monthly summary.",
+        screen: mk("demoHomeScreen"),
+        title: mk("demoHomeTitle"),
+        text: mk("demoHomeText"),
         tone: "blue",
         visual: "<img class='demo-shot' src='/assets/demo/user-home.jpg' alt='TidGo app home screen'>"
       },
       {
-        screen: "Receipt photo",
-        title: "Snap the receipt",
-        text: "Take or upload a photo. TidGo confirms it has received the receipt with a small friendly message.",
+        screen: mk("demoReceiptScreen"),
+        title: mk("demoReceiptTitle"),
+        text: mk("demoReceiptText"),
         tone: "green",
-        visual: "<img class='demo-shot' src='/assets/demo/user-receipt-photo.jpg' alt='Receipt photo screen'><span class='demo-callout'>Friendly confirmation after the receipt is received.</span>"
+        visual: `<img class='demo-shot' src='/assets/demo/user-receipt-photo.jpg' alt='Receipt photo screen'><span class='demo-callout'>${escapeHtml(mk("demoReceiptCallout"))}</span>`
       },
       {
-        screen: "Check details",
-        title: "Review before saving",
-        text: "You can correct the amount, category, currency or shop before it goes into your records.",
+        screen: mk("demoDetailsScreen"),
+        title: mk("demoDetailsTitle"),
+        text: mk("demoDetailsText"),
         tone: "green",
         visual: "<img class='demo-shot' src='/assets/demo/user-edit-details.jpg' alt='Receipt details screen'>"
       },
       {
-        screen: "Monthly summary",
-        title: "Send the pack",
-        text: "Income, expenses and paid-for-client records are grouped by currency, ready for your accountant.",
+        screen: mk("demoSummaryScreen"),
+        title: mk("demoSummaryTitle"),
+        text: mk("demoSummaryText"),
         tone: "soft",
         visual: "<img class='demo-shot' src='/assets/demo/user-summary.jpg' alt='Monthly summary screen'>"
       }
     ],
     "/app/",
-    "Open TidGo App",
+    mk("selfTitle"),
     "app"
   );
 }
@@ -1929,34 +2048,34 @@ function accountantDemo() {
     ? "/accountant/"
     : "https://accountant.tidgo.co.uk";
   demoShell(
-    "For accountants",
-    "See the client handoff before signing in.",
-    "The accountant portal is read-only. Clients keep records tidy; you get a cleaner pack when it is time to work.",
+    mk("accountantDemoKind"),
+    mk("accountantDemoTitle"),
+    mk("accountantDemoText"),
     [
       {
-        screen: "Accountant access",
-        title: "Sign in with accountant email",
-        text: "The portal uses an email code, then shows the connected accountant account on this device.",
+        screen: mk("demoAccessScreen"),
+        title: mk("demoAccessTitle"),
+        text: mk("demoAccessText"),
         tone: "blue",
         visual: "<img class='demo-shot' src='/assets/demo/accountant-login.jpg' alt='Accountant portal login screen'>"
       },
       {
-        screen: "Client list",
-        title: "See connected clients",
-        text: "Only clients who gave consent appear in your list. You can open each client from one simple view.",
+        screen: mk("demoClientsScreen"),
+        title: mk("demoClientsTitle"),
+        text: mk("demoClientsText"),
         tone: "green",
         visual: "<img class='demo-shot' src='/assets/demo/accountant-client-list.jpg' alt='Connected clients list'>"
       },
       {
-        screen: "Client records",
-        title: "Download the client pack",
-        text: "Open a client, check totals, request missing docs, then download CSV or PDF.",
+        screen: mk("demoRecordsScreen"),
+        title: mk("demoRecordsTitle"),
+        text: mk("demoRecordsText"),
         tone: "soft",
         visual: "<img class='demo-shot' src='/assets/demo/accountant-client-record.jpg' alt='Client records screen'>"
       }
     ],
     accountantHref,
-    "Open Accountant Portal",
+    mk("accountantTitle"),
     "web"
   );
 }
@@ -2911,6 +3030,14 @@ function escapeAttr(value) {
 }
 
 document.addEventListener("click", async (event) => {
+  const marketingLanguageButton = event.target.closest("[data-marketing-language]");
+  if (marketingLanguageButton) {
+    state.marketingLanguage = marketingLanguageButton.dataset.marketingLanguage;
+    write("tg_marketing_language", state.marketingLanguage);
+    render();
+    return;
+  }
+
   const scrollLink = event.target.closest("[data-scroll-target]");
   if (scrollLink) {
     event.preventDefault();
@@ -3226,9 +3353,9 @@ document.addEventListener("submit", async (event) => {
           })
         });
         form.reset();
-        toast("Message sent. Thank you.");
+        toast(mk("messageSent"));
       } catch (error) {
-        toast("Automatic contact is being connected. Please try again after the next API deploy.");
+        toast(mk("messagePending"));
       }
       return;
     }

@@ -1,4 +1,4 @@
-const CACHE = "tidgo-pwa-v31";
+﻿const CACHE = "tidgo-pwa-v32";
 const ASSETS = [
   "./",
   "./index.html",
@@ -54,3 +54,4 @@ self.addEventListener("fetch", (event) => {
     }))
   );
 });
+

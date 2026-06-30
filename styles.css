@@ -22,6 +22,7 @@ body {
   min-height: 100vh;
   background: #eef2f7;
   color: var(--ink);
+  overflow-x: hidden;
 }
 
 button,
@@ -53,7 +54,7 @@ button {
 }
 
 .shell.landing-shell {
-  width: 100vw;
+  width: 100%;
   max-width: none;
   min-height: 100dvh;
   margin: 0;
@@ -161,6 +162,12 @@ button {
   margin-bottom: 44px;
 }
 
+.landing-head-actions {
+  display: grid;
+  justify-items: end;
+  gap: 10px;
+}
+
 .landing-nav {
   display: flex;
   align-items: center;
@@ -174,6 +181,65 @@ button {
   font-size: 14px;
   font-weight: 850;
   text-decoration: none;
+}
+
+.marketing-language-switcher {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.marketing-lang {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  min-width: 58px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  color: #334155;
+  padding: 6px 8px;
+  font-size: 11px;
+  font-weight: 900;
+  line-height: 1.1;
+  cursor: pointer;
+}
+
+.marketing-lang.active {
+  border-color: var(--green);
+  background: var(--client-soft);
+  color: var(--green);
+}
+
+.flag {
+  display: block;
+  width: 28px;
+  height: 18px;
+  border: 1px solid rgba(15, 23, 42, 0.16);
+  border-radius: 3px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+}
+
+.flag-gb {
+  background:
+    linear-gradient(33deg, transparent 43%, #fff 43% 48%, #c8102e 48% 52%, #fff 52% 57%, transparent 57%),
+    linear-gradient(147deg, transparent 43%, #fff 43% 48%, #c8102e 48% 52%, #fff 52% 57%, transparent 57%),
+    linear-gradient(0deg, transparent 38%, #fff 38% 44%, #c8102e 44% 56%, #fff 56% 62%, transparent 62%),
+    linear-gradient(90deg, transparent 38%, #fff 38% 44%, #c8102e 44% 56%, #fff 56% 62%, transparent 62%),
+    #012169;
+}
+
+.flag-pl {
+  background: linear-gradient(#fff 0 50%, #dc143c 50% 100%);
+}
+
+.flag-ro {
+  background: linear-gradient(90deg, #002b7f 0 33.33%, #fcd116 33.33% 66.66%, #ce1126 66.66% 100%);
+}
+
+.flag-lt {
+  background: linear-gradient(#fdb913 0 33.33%, #006a44 33.33% 66.66%, #c1272d 66.66% 100%);
 }
 
 .landing-brand img {
@@ -1128,10 +1194,18 @@ button {
     margin-bottom: 30px;
   }
 
+  .landing-head-actions {
+    justify-items: end;
+  }
+
   .landing-nav {
     justify-content: flex-end;
     flex-wrap: wrap;
     gap: 8px 12px;
+  }
+
+  .marketing-language-switcher {
+    justify-content: flex-end;
   }
 
   .landing-actions {
@@ -1317,7 +1391,7 @@ button {
   }
 
   .shell.landing-shell {
-    width: 100vw;
+    width: 100%;
     margin-block: 0;
     min-height: 100dvh;
     border-radius: 0;
