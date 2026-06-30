@@ -1726,6 +1726,7 @@ function landing() {
         <nav class="landing-nav" aria-label="TidGo navigation">
           <a href="#how" data-scroll-target="how">How it works</a>
           <a href="#who" data-scroll-target="who">Who is it for?</a>
+          <a href="#pricing" data-scroll-target="pricing">Launch & pricing</a>
           <a href="#faq" data-scroll-target="faq">FAQ</a>
           <a href="#mtd" data-scroll-target="mtd">MTD explained</a>
           <a href="#contact" data-scroll-target="contact">Contact</a>
@@ -1746,6 +1747,10 @@ function landing() {
           <section class="landing-placeholder" id="faq">
             <strong>Early access:</strong>
             <span>TidGo is live for a small group of early users. It is free while we collect feedback, improve the app and add clearer guides for self-employed people and accountants.</span>
+          </section>
+          <section class="landing-placeholder landing-pricing" id="pricing">
+            <strong>Launch & pricing:</strong>
+            <span>Official launch date: to be announced after early-access testing. TidGo is free during early access. Paid plans are expected after launch, with clear notice before anything changes.</span>
           </section>
           <section class="landing-placeholder" id="mtd">
             <strong>MTD explained:</strong>
