@@ -1864,17 +1864,16 @@ function demoShell(kind, title, subtitle, steps, ctaHref, ctaLabel) {
         <div class="demo-steps">
           ${steps.map((step, index) => `
             <article class="demo-card">
-              <div class="demo-phone">
-                <span class="demo-phone-bar"></span>
-                <strong>${escapeHtml(step.screen)}</strong>
-                <div class="demo-visual ${step.tone}">
-                  ${step.visual}
-                </div>
-              </div>
-              <div>
+              <div class="demo-copy">
                 <span class="landing-card-label">Step ${index + 1}</span>
                 <h2>${escapeHtml(step.title)}</h2>
                 <p>${escapeHtml(step.text)}</p>
+              </div>
+              <div class="demo-preview ${step.tone}">
+                <span class="demo-screen-label">${escapeHtml(step.screen)}</span>
+                <div class="demo-visual">
+                  ${step.visual}
+                </div>
               </div>
             </article>
           `).join("")}
