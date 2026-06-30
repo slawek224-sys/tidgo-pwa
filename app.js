@@ -1542,7 +1542,7 @@ function navigate(screen, extra = {}) {
 
 function shell(content) {
   const accountantMode = state.screen === "accountantLanding" || state.screen === "accountantDemoClient";
-  const landingMode = state.screen === "landing";
+  const landingMode = ["landing", "appDemo", "accountantDemo"].includes(state.screen);
   app.innerHTML = `<main class="shell ${accountantMode ? "accountant-shell" : ""} ${landingMode ? "landing-shell" : ""}">${content}</main><section id="printRoot" class="print-root"></section>`;
 }
 
@@ -1840,9 +1840,9 @@ function landing() {
   `);
 }
 
-function demoShell(kind, title, subtitle, steps, ctaHref, ctaLabel) {
+function demoShell(kind, title, subtitle, steps, ctaHref, ctaLabel, mode = "web") {
   shell(`
-    <section class="landing-screen demo-screen">
+    <section class="landing-screen demo-screen ${mode === "app" ? "app-demo-screen" : "accountant-demo-screen"}">
       <header class="landing-head">
         <a class="brand landing-brand demo-brand" href="/"><img src="/icon-192.png" alt=""><span>TidGo</span></a>
         <nav class="landing-nav" aria-label="Demo navigation">
@@ -1912,7 +1912,8 @@ function appDemo() {
       }
     ],
     "/app/",
-    "Open TidGo App"
+    "Open TidGo App",
+    "app"
   );
 }
 
@@ -1948,7 +1949,8 @@ function accountantDemo() {
       }
     ],
     accountantHref,
-    "Open Accountant Portal"
+    "Open Accountant Portal",
+    "web"
   );
 }
 
