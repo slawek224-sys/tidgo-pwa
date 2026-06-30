@@ -370,6 +370,11 @@ const COPY = {
     sendCode: "Send code",
     code: "Email code",
     restore: "Restore",
+    verifyEmail: "Verify your email",
+    verifyEmailHint: "We sent a 6-digit code to your email. Enter it to finish setting up TidGo on this device.",
+    verifyAndStart: "Verify and start",
+    sendCodeAgain: "Send code again",
+    codeSent: "Code sent. Check your email.",
     hello: "Hello",
     summary: "Monthly summary",
     addExpense: "Add expense",
@@ -433,6 +438,11 @@ const COPY = {
     sendCode: "Wyslij kod",
     code: "Kod z emaila",
     restore: "Odzyskaj",
+    verifyEmail: "Potwierdz email",
+    verifyEmailHint: "Wyslalismy 6-cyfrowy kod na twoj email. Wpisz go, zeby dokonczyc start TidGo na tym urzadzeniu.",
+    verifyAndStart: "Potwierdz i start",
+    sendCodeAgain: "Wyslij kod ponownie",
+    codeSent: "Kod wyslany. Sprawdz email.",
     hello: "Czesc",
     summary: "Podsumowanie miesiaca",
     addExpense: "Dodaj wydatek",
@@ -1320,6 +1330,7 @@ const state = {
   accountantClients: [],
   accountantClientRecords: null,
   accountantSelectedClientId: null,
+  pendingSignupEmail: read("rb_pending_signup_email", ""),
   incomeProofs: read("rb_income_proofs", {}),
   screen: isAccountantRoute() ? "accountantLanding" : isLandingRoute() ? "landing" : "boot",
   receipts: [],
@@ -1687,7 +1698,7 @@ async function refresh() {
 
 function render() {
   if (state.screen !== "landing" && state.screen !== "accountantLanding" && state.screen !== "accountantDemoClient" && !state.user) {
-    state.screen = state.screen === "recover" ? "recover" : "onboarding";
+    state.screen = state.screen === "recover" || state.screen === "verifySignup" ? state.screen : "onboarding";
   }
   if (state.screen === "boot") state.screen = "home";
   const routes = {
@@ -1695,6 +1706,7 @@ function render() {
     accountantLanding,
     accountantDemoClient,
     onboarding,
+    verifySignup,
     recover,
     home,
     receipt,
@@ -1817,12 +1829,27 @@ function onboarding() {
         <label class="field"><span>${t("chooseLanguage")}</span>${languageSelect()}</label>
         <label class="field"><span>${t("firstName")}</span><input class="input" name="first_name" autocomplete="given-name" required></label>
         <label class="field"><span>${t("trade")}</span><input class="input" name="trade" autocomplete="organization-title"></label>
-        <label class="field"><span>${t("email")}</span><input class="input" name="email" type="email" autocomplete="email"></label>
+        <label class="field"><span>${t("email")}</span><input class="input" name="email" type="email" autocomplete="email" required></label>
         <p class="hint">${t("emailHint")}</p>
         <button class="primary" type="submit">${t("start")}</button>
       </form>
       <button class="link-btn" data-action="recover">${t("haveAccount")}</button>
       <p class="hint">${t("installHint")}</p>
+    </section>
+  `);
+}
+
+function verifySignup() {
+  shell(`
+    <section class="screen">
+      ${topbar(t("verifyEmail"), true)}
+      <p class="subtitle">${t("verifyEmailHint")}</p>
+      <form class="stack" id="signupVerifyForm">
+        <label class="field"><span>${t("email")}</span><input class="input" name="email" type="email" required autocomplete="email" value="${escapeAttr(state.pendingSignupEmail)}"></label>
+        <label class="field"><span>${t("code")}</span><input class="input" name="code" inputmode="numeric" maxlength="6" autocomplete="one-time-code"></label>
+        <button class="primary" name="step" value="verify">${t("verifyAndStart")}</button>
+        <button class="secondary" name="step" value="request">${t("sendCodeAgain")}</button>
+      </form>
     </section>
   `);
 }
@@ -3016,11 +3043,15 @@ document.addEventListener("click", async (event) => {
     await api(`/api/users/${state.user.id}`, { method: "DELETE" });
     await deviceForget("rb_user");
     await deviceForget("rb_last_user");
+    forget("rb_pending_signup_email");
+    state.pendingSignupEmail = "";
     state.user = null;
     return go("onboarding");
   }
   if (action === "signOutDevice") {
     await deviceForget("rb_user");
+    forget("rb_pending_signup_email");
+    state.pendingSignupEmail = "";
     state.user = null;
     state.receipts = [];
     state.income = [];
@@ -3061,15 +3092,38 @@ document.addEventListener("submit", async (event) => {
     }
     if (form.id === "onboardingForm") {
       state.language = data.language || state.language;
-      const user = await api("/api/users", {
+      const email = (data.email || "").trim();
+      if (!email) throw new Error(t("email"));
+      await api("/api/users", {
         method: "POST",
         body: JSON.stringify({
           first_name: data.first_name,
           trade: data.trade || null,
-          email: data.email || null,
+          email,
           language: state.language
         })
       });
+      await api("/api/auth/recovery/request", { method: "POST", body: JSON.stringify({ email }) });
+      state.pendingSignupEmail = email;
+      write("rb_pending_signup_email", email);
+      write("rb_language", state.language);
+      toast(t("codeSent"));
+      return go("verifySignup");
+    }
+    if (form.id === "signupVerifyForm") {
+      const submitter = event.submitter?.value;
+      const email = (data.email || state.pendingSignupEmail || "").trim();
+      if (!email) throw new Error(t("email"));
+      if (submitter === "request") {
+        await api("/api/auth/recovery/request", { method: "POST", body: JSON.stringify({ email }) });
+        state.pendingSignupEmail = email;
+        write("rb_pending_signup_email", email);
+        return toast(t("codeSent"));
+      }
+      const user = await api("/api/auth/recovery/verify", { method: "POST", body: JSON.stringify({ email, code: data.code }) });
+      state.language = user.language || state.language;
+      state.pendingSignupEmail = "";
+      forget("rb_pending_signup_email");
       await rememberUser(user);
       write("rb_language", state.language);
       await refresh();
