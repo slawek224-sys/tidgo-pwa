@@ -1,4 +1,4 @@
-const CACHE = "tidgo-pwa-v30";
+const CACHE = "tidgo-pwa-v31";
 const ASSETS = [
   "./",
   "./index.html",
@@ -14,7 +14,14 @@ const ASSETS = [
   "./icon-192.png",
   "./icon-512.png",
   "./apple-touch-icon.png",
-  "./tidgo-icon-source.png"
+  "./tidgo-icon-source.png",
+  "./assets/demo/user-home.jpg",
+  "./assets/demo/user-receipt-photo.jpg",
+  "./assets/demo/user-edit-details.jpg",
+  "./assets/demo/user-summary.jpg",
+  "./assets/demo/accountant-login.jpg",
+  "./assets/demo/accountant-client-list.jpg",
+  "./assets/demo/accountant-client-record.jpg"
 ];
 
 self.addEventListener("install", (event) => {

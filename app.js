@@ -1890,25 +1890,32 @@ function appDemo() {
     "TidGo is built around one simple habit: take the photo now, send a cleaner pack later.",
     [
       {
-        screen: "Add expense",
-        title: "Snap the receipt",
-        text: "Use the camera or upload a photo. TidGo reads the total, currency, shop and category.",
+        screen: "Home",
+        title: "Start from a simple home screen",
+        text: "The main actions are right there: add an expense, add income, paid for client, or open the monthly summary.",
         tone: "blue",
-        visual: "<span class='demo-receipt'></span><span class='demo-plus'>+</span>"
+        visual: "<img class='demo-shot' src='/assets/demo/user-home.jpg' alt='TidGo app home screen'>"
+      },
+      {
+        screen: "Receipt photo",
+        title: "Snap the receipt",
+        text: "Take or upload a photo. TidGo confirms it has received the receipt with a small friendly message.",
+        tone: "green",
+        visual: "<img class='demo-shot' src='/assets/demo/user-receipt-photo.jpg' alt='Receipt photo screen'><span class='demo-callout'>Friendly confirmation after the receipt is received.</span>"
       },
       {
         screen: "Check details",
         title: "Review before saving",
         text: "You can correct the amount, category, currency or shop before it goes into your records.",
         tone: "green",
-        visual: "<span>Amount</span><strong>£18.40</strong><span>Food</span><strong>Saved</strong>"
+        visual: "<img class='demo-shot' src='/assets/demo/user-edit-details.jpg' alt='Receipt details screen'>"
       },
       {
         screen: "Monthly summary",
         title: "Send the pack",
         text: "Income, expenses and paid-for-client records are grouped by currency, ready for your accountant.",
         tone: "soft",
-        visual: "<strong>June Summary</strong><span>PDF</span><span>CSV</span>"
+        visual: "<img class='demo-shot' src='/assets/demo/user-summary.jpg' alt='Monthly summary screen'>"
       }
     ],
     "/app/",
@@ -1927,25 +1934,25 @@ function accountantDemo() {
     "The accountant portal is read-only. Clients keep records tidy; you get a cleaner pack when it is time to work.",
     [
       {
+        screen: "Accountant access",
+        title: "Sign in with accountant email",
+        text: "The portal uses an email code, then shows the connected accountant account on this device.",
+        tone: "blue",
+        visual: "<img class='demo-shot' src='/assets/demo/accountant-login.jpg' alt='Accountant portal login screen'>"
+      },
+      {
         screen: "Client list",
         title: "See connected clients",
-        text: "Only clients who gave consent appear in your list. No chasing logins from every client.",
-        tone: "blue",
-        visual: "<strong>Client 1</strong><span>32 records</span><strong>Client 2</strong><span>Ready</span>"
-      },
-      {
-        screen: "Records",
-        title: "Check what is missing",
-        text: "Receipts, income proof and paid-for-client costs are visible in one simple read-only view.",
+        text: "Only clients who gave consent appear in your list. You can open each client from one simple view.",
         tone: "green",
-        visual: "<span>Income proof</span><strong>Missing</strong><span>Receipt</span><strong>Attached</strong>"
+        visual: "<img class='demo-shot' src='/assets/demo/accountant-client-list.jpg' alt='Connected clients list'>"
       },
       {
-        screen: "Download pack",
-        title: "Export CSV and PDF",
-        text: "Download a clean pack without asking the client to email another bag of random photos.",
+        screen: "Client records",
+        title: "Download the client pack",
+        text: "Open a client, check totals, request missing docs, then download CSV or PDF.",
         tone: "soft",
-        visual: "<strong>CSV</strong><span>+</span><strong>PDF</strong>"
+        visual: "<img class='demo-shot' src='/assets/demo/accountant-client-record.jpg' alt='Client records screen'>"
       }
     ],
     accountantHref,
