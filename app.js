@@ -1610,6 +1610,11 @@ function day(value) {
   return new Date(value).toLocaleDateString(undefined, { day: "2-digit", month: "short" });
 }
 
+function dateInputValue(value) {
+  const date = new Date(value || Date.now());
+  return Number.isNaN(date.getTime()) ? new Date().toISOString().slice(0, 10) : date.toISOString().slice(0, 10);
+}
+
 function monthLabel(date = state.summaryDate) {
   return date.toLocaleDateString(undefined, { month: "long", year: "numeric" });
 }
@@ -2163,6 +2168,7 @@ function receipt() {
         <label class="field"><span>${t("amount")}</span><input class="input" name="amount" inputmode="decimal" value="${receipt.amount || 0}"></label>
         <label class="field"><span>${t("currency")}</span><select class="select" name="currency" disabled>${currencyOptions(receipt.currency || "GBP")}</select></label>
         <label class="field"><span>${t("merchant")}</span><input class="input" name="merchant" value="${escapeAttr(receipt.merchant || "")}"></label>
+        <label class="field"><span>${t("date")}</span><input class="input" type="date" name="date" value="${dateInputValue(receipt.timestamp || receipt.created_at)}"></label>
         <label class="field"><span>${t("category")}</span><div class="chip-row">${categoryChips(receipt.category)}</div></label>
         ${receipt.ai_comment ? `<div class="card muted">${escapeHtml(receipt.ai_comment)}</div>` : ""}
         <button class="primary" type="submit">${t("save")}</button>
@@ -3417,7 +3423,12 @@ document.addEventListener("submit", async (event) => {
       if (!Number.isFinite(amount) || amount < 0) throw new Error("Enter a valid amount.");
       await api(`/api/receipts/${state.selected}`, {
         method: "PATCH",
-        body: JSON.stringify({ amount, merchant: data.merchant || null, category })
+        body: JSON.stringify({
+          amount,
+          merchant: data.merchant || null,
+          category,
+          date: data.date ? new Date(`${data.date}T12:00:00`).toISOString() : null
+        })
       });
       await refresh();
       toast(t("saved"));
