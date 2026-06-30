@@ -998,6 +998,7 @@ Object.assign(COPY.en, {
     accessRevoked: "Access revoked.",
     signOutDevice: "Sign out on this device",
     signOutHint: "Use this only when you want to test recovery or move to another account. It does not delete your receipts.",
+    signOutConfirm: "This will sign you out on this device and show the email recovery screen. Your receipts will not be deleted.",
     accountantAccess: "Accountant access",
     accountantEmail: "Accountant email",
     accountantHint: "Accountant portal is coming later. For now, check your records before sending them on.",
@@ -1079,6 +1080,7 @@ Object.assign(COPY.pl, {
     accessRevoked: "Dostep cofniety.",
     signOutDevice: "Wyloguj na tym urzadzeniu",
     signOutHint: "Uzyj tylko, gdy chcesz przetestowac odzyskiwanie albo przejsc na inne konto. To nie usuwa paragonow.",
+    signOutConfirm: "To wyloguje Cie na tym urzadzeniu i pokaze ekran odzyskiwania emailem. Paragony nie zostana usuniete.",
     accountantAccess: "Dostep dla ksiegowego",
     accountantEmail: "Email ksiegowego",
     accountantHint: "Portal ksiegowego bedzie pozniej. Na razie sprawdz rekordy przed wyslaniem dalej.",
@@ -1347,6 +1349,7 @@ Object.values(COPY).forEach((copy) => {
   copy.feedbackFailed ||= COPY.en.feedbackFailed;
   copy.deleteConfirmText ||= COPY.en.deleteConfirmText;
   copy.deleteConfirmRequired ||= COPY.en.deleteConfirmRequired;
+  copy.signOutConfirm ||= COPY.en.signOutConfirm;
 });
 
 const LEGAL_TEXT = {
@@ -3353,6 +3356,7 @@ document.addEventListener("click", async (event) => {
     return go("onboarding");
   }
   if (action === "signOutDevice") {
+    if (!confirm(t("signOutConfirm"))) return;
     await deviceForget("rb_user");
     forget("rb_pending_signup_email");
     state.pendingSignupEmail = "";
