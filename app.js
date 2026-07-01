@@ -129,7 +129,8 @@ Object.assign(MARKETING_COPY.en, {
   platformNow: "Use the web app now.",
   platformSoon: "Android and iOS versions are in development alongside TidGo.",
   socialTitle: "Follow us on",
-  socialSoon: "Links coming soon"
+  socialSoon: "Links coming soon",
+  copyright: "© 2026 TidGo. All rights reserved."
 });
 
 Object.assign(MARKETING_COPY.pl, {
@@ -153,7 +154,8 @@ Object.assign(MARKETING_COPY.pl, {
   platformNow: "Uzyj web app teraz.",
   platformSoon: "Wersje Android i iOS sa rozwijane rownolegle z TidGo.",
   socialTitle: "Obserwuj nas",
-  socialSoon: "Linki wkrotce"
+  socialSoon: "Linki wkrotce",
+  copyright: "© 2026 TidGo. Wszelkie prawa zastrzezone."
 });
 
 Object.assign(MARKETING_COPY.ro, {
@@ -177,7 +179,8 @@ Object.assign(MARKETING_COPY.ro, {
   platformNow: "Foloseste aplicatia web acum.",
   platformSoon: "Versiunile Android si iOS sunt dezvoltate in paralel cu TidGo.",
   socialTitle: "Urmareste-ne",
-  socialSoon: "Linkuri in curand"
+  socialSoon: "Linkuri in curand",
+  copyright: "© 2026 TidGo. Toate drepturile rezervate."
 });
 
 Object.assign(MARKETING_COPY.lt, {
@@ -201,7 +204,8 @@ Object.assign(MARKETING_COPY.lt, {
   platformNow: "Naudok web app dabar.",
   platformSoon: "Android ir iOS versijos kuriamos kartu su TidGo.",
   socialTitle: "Sekite mus",
-  socialSoon: "Nuorodos netrukus"
+  socialSoon: "Nuorodos netrukus",
+  copyright: "© 2026 TidGo. Visos teises saugomos."
 });
 
 const ACCOUNTANT_COPY = {
@@ -2092,7 +2096,7 @@ function landing() {
         </aside>
       </div>
       <footer class="landing-foot">
-        <span>${mk("footer")}</span>
+        <span>${mk("footer")} <strong>${mk("copyright")}</strong></span>
         <div class="social-links" aria-label="${escapeAttr(mk("socialTitle"))}">
           <strong>${mk("socialTitle")}</strong>
           <span>X/Twitter</span>
