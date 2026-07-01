@@ -108,6 +108,102 @@ MARKETING_COPY.lt = { ...MARKETING_COPY.en,
   demoRecordsScreen: "Kliento irasai", demoRecordsTitle: "Atsisiusk kliento paketa", demoRecordsText: "Atidaryk klienta, patikrink sumas, paprasyk trukstamu dokumentu ir atsisiusk CSV arba PDF."
 };
 
+Object.assign(MARKETING_COPY.en, {
+  howTitle: "TidGo is the bridge between busy work and tidy records.",
+  howText: "Self-employed people can take receipt photos through the month. Accountants can see a cleaner read-only handoff when the client gives permission.",
+  whoTitle: "Two simple doors.",
+  whoText: "Open the app if you work for yourself. Open the accountant portal if you help clients keep records ready without the plastic-bag panic.",
+  mtdIntro: "MTD guides are being written as short, practical pages.",
+  mtdWhat: "What is MTD?",
+  mtdWho: "Who needs MTD?",
+  mtdWhen: "When does MTD start?",
+  mtdRecords: "What records do I need?",
+  mtdPaper: "What if I still keep paper receipts?",
+  mtdPhotos: "Can I use photos?",
+  mtdSubmit: "Does TidGo submit to HMRC?",
+  mtdAccountant: "Do I still need an accountant?",
+  faqBuildTitle: "Real questions make a better FAQ.",
+  faqBuildText: "Send us what feels unclear. We are building this section from real feedback, not from corporate fog.",
+  launchTabTitle: "Launch and pricing",
+  launchTabText: "TidGo is in early access and free while we test with real users. Paid plans are expected later, with clear notice before anything changes.",
+  platformNow: "Use the web app now.",
+  platformSoon: "Android and iOS versions are in development alongside TidGo.",
+  socialTitle: "Follow us on",
+  socialSoon: "Links coming soon"
+});
+
+Object.assign(MARKETING_COPY.pl, {
+  howTitle: "TidGo jest mostem miedzy praca w biegu a porzadnymi rekordami.",
+  howText: "Self-employed robi zdjecia paragonow przez miesiac. Ksiegowy dostaje czytelniejszy podglad tylko do odczytu, kiedy klient da zgode.",
+  whoTitle: "Dwie proste drogi.",
+  whoText: "Otworz aplikacje, jesli pracujesz na siebie. Otworz portal ksiegowego, jesli pomagasz klientom trzymac rekordy bez paniki z reklamowka.",
+  mtdIntro: "Poradniki MTD beda krotkimi, praktycznymi stronami.",
+  mtdWhat: "Co to jest MTD?",
+  mtdWho: "Kogo dotyczy MTD?",
+  mtdWhen: "Kiedy startuje MTD?",
+  mtdRecords: "Jakie rekordy trzeba miec?",
+  mtdPaper: "Co jesli dalej mam papierowe paragony?",
+  mtdPhotos: "Czy moge uzywac zdjec?",
+  mtdSubmit: "Czy TidGo wysyla do HMRC?",
+  mtdAccountant: "Czy dalej potrzebuje ksiegowego?",
+  faqBuildTitle: "Prawdziwe pytania robia lepsze FAQ.",
+  faqBuildText: "Wyslij nam, co jest niejasne. Budujemy te sekcje z realnego feedbacku, nie z firmowej mgly.",
+  launchTabTitle: "Start i ceny",
+  launchTabText: "TidGo jest w early access i jest darmowe podczas testow z prawdziwymi uzytkownikami. Platne plany sa spodziewane pozniej, z jasna informacja przed zmianami.",
+  platformNow: "Uzyj web app teraz.",
+  platformSoon: "Wersje Android i iOS sa rozwijane rownolegle z TidGo.",
+  socialTitle: "Obserwuj nas",
+  socialSoon: "Linki wkrotce"
+});
+
+Object.assign(MARKETING_COPY.ro, {
+  howTitle: "TidGo este puntea dintre munca aglomerata si evidente ordonate.",
+  howText: "Persoanele self-employed pot fotografia bonuri in timpul lunii. Contabilii primesc un handoff read-only mai curat, cand clientul isi da acordul.",
+  whoTitle: "Doua intrari simple.",
+  whoText: "Deschide aplicatia daca lucrezi pe cont propriu. Deschide portalul contabilului daca ajuti clienti sa tina evidentele fara panica pungii cu bonuri.",
+  mtdIntro: "Ghidurile MTD vor fi pagini scurte si practice.",
+  mtdWhat: "Ce este MTD?",
+  mtdWho: "Cine are nevoie de MTD?",
+  mtdWhen: "Cand incepe MTD?",
+  mtdRecords: "Ce evidente sunt necesare?",
+  mtdPaper: "Ce fac daca pastrez bonuri pe hartie?",
+  mtdPhotos: "Pot folosi fotografii?",
+  mtdSubmit: "TidGo trimite la HMRC?",
+  mtdAccountant: "Mai am nevoie de contabil?",
+  faqBuildTitle: "Intrebarile reale fac un FAQ mai bun.",
+  faqBuildText: "Trimite-ne ce nu este clar. Construim aceasta sectiune din feedback real, nu din ceata corporate.",
+  launchTabTitle: "Lansare si pret",
+  launchTabText: "TidGo este in early access si este gratuit cat timp testam cu utilizatori reali. Planurile platite sunt asteptate mai tarziu, cu anunt clar inainte de schimbari.",
+  platformNow: "Foloseste aplicatia web acum.",
+  platformSoon: "Versiunile Android si iOS sunt dezvoltate in paralel cu TidGo.",
+  socialTitle: "Urmareste-ne",
+  socialSoon: "Linkuri in curand"
+});
+
+Object.assign(MARKETING_COPY.lt, {
+  howTitle: "TidGo yra tiltas tarp uzimto darbo ir tvarkingu irasu.",
+  howText: "Dirbantys sau gali fotografuoti kvitus visa menesi. Buhalteriai gauna tvarkingesni tik skaitymui skirta perdavima, kai klientas duoda leidima.",
+  whoTitle: "Dvi paprastos durys.",
+  whoText: "Atidaryk programele, jei dirbi sau. Atidaryk buhalterio portala, jei padedi klientams laikyti irasus be kvitu maiselio panikos.",
+  mtdIntro: "MTD gidai bus trumpos ir praktiskos puslapio dalys.",
+  mtdWhat: "Kas yra MTD?",
+  mtdWho: "Kam reikia MTD?",
+  mtdWhen: "Kada prasideda MTD?",
+  mtdRecords: "Kokiu irasu reikia?",
+  mtdPaper: "Kas jei dar laikau popierinius kvitus?",
+  mtdPhotos: "Ar galiu naudoti nuotraukas?",
+  mtdSubmit: "Ar TidGo pateikia HMRC?",
+  mtdAccountant: "Ar vis dar reikia buhalterio?",
+  faqBuildTitle: "Tikri klausimai sukuria geresni DUK.",
+  faqBuildText: "Parasykite, kas neaisku. Sia dali kuriame is tikro griztamojo rysio, ne is korporacines miglos.",
+  launchTabTitle: "Startas ir kaina",
+  launchTabText: "TidGo yra early access ir nemokama, kol testuojame su tikrais vartotojais. Mokami planai numatomi veliau, su aiskia zinute pries pokycius.",
+  platformNow: "Naudok web app dabar.",
+  platformSoon: "Android ir iOS versijos kuriamos kartu su TidGo.",
+  socialTitle: "Sekite mus",
+  socialSoon: "Nuorodos netrukus"
+});
+
 const ACCOUNTANT_COPY = {
   en: {
     forAccountants: "TidGo for Accountants",
@@ -1450,6 +1546,7 @@ const state = {
   accountantSelectedClientId: null,
   pendingSignupEmail: read("rb_pending_signup_email", ""),
   marketingLanguage: MARKETING_LANGUAGES[read("tg_marketing_language", "en")] ? read("tg_marketing_language", "en") : "en",
+  marketingSection: read("tg_marketing_section", "how"),
   incomeProofs: read("rb_income_proofs", {}),
   screen: initialScreen(),
   receipts: [],
@@ -1530,6 +1627,34 @@ function marketingLanguagePicker() {
         </button>
       `).join("")}
     </div>
+  `;
+}
+
+function marketingInfoPanel() {
+  const section = ["how", "who", "pricing", "faq", "mtd"].includes(state.marketingSection) ? state.marketingSection : "how";
+  if (section === "mtd") {
+    return `
+      <section class="landing-placeholder landing-mtd" id="info">
+        <strong>${mk("mtdTitle")}</strong>
+        <span>${mk("mtdIntro")}</span>
+        <div class="mtd-topic-grid">
+          ${["mtdWhat", "mtdWho", "mtdWhen", "mtdRecords", "mtdPaper", "mtdPhotos", "mtdSubmit", "mtdAccountant"].map((key) => `<span>${mk(key)}</span>`).join("")}
+        </div>
+      </section>
+    `;
+  }
+  const panels = {
+    how: ["howTitle", "howText"],
+    who: ["whoTitle", "whoText"],
+    pricing: ["launchTabTitle", "launchTabText"],
+    faq: ["faqBuildTitle", "faqBuildText"]
+  };
+  const [titleKey, textKey] = panels[section] || panels.how;
+  return `
+    <section class="landing-placeholder landing-focus" id="info">
+      <strong>${mk(titleKey)}</strong>
+      <span>${mk(textKey)}</span>
+    </section>
   `;
 }
 
@@ -1888,20 +2013,18 @@ function qrCodeUrl(target) {
 function landing() {
   const origin = location.origin;
   const appUrl = `${origin}/app/`;
-  const accountantUrl = location.hostname === "localhost" || location.hostname === "127.0.0.1"
-    ? `${origin}/accountant/`
-    : "https://accountant.tidgo.co.uk";
+  const accountantUrl = `${origin}/accountant/`;
   shell(`
     <section class="landing-screen">
       <header class="landing-head">
         <div class="brand landing-brand"><img src="/icon-192.png" alt=""><span>TidGo</span></div>
         <div class="landing-head-actions">
           <nav class="landing-nav" aria-label="TidGo navigation">
-            <a href="#how" data-scroll-target="how">${mk("navHow")}</a>
-            <a href="#who" data-scroll-target="who">${mk("navWho")}</a>
-            <a href="#pricing" data-scroll-target="pricing">${mk("navPricing")}</a>
-            <a href="#faq" data-scroll-target="faq">${mk("navFaq")}</a>
-            <a href="#mtd" data-scroll-target="mtd">${mk("navMtd")}</a>
+            <a class="${state.marketingSection === "how" ? "active" : ""}" href="#info" data-marketing-section="how">${mk("navHow")}</a>
+            <a class="${state.marketingSection === "who" ? "active" : ""}" href="#info" data-marketing-section="who">${mk("navWho")}</a>
+            <a class="${state.marketingSection === "pricing" ? "active" : ""}" href="#info" data-marketing-section="pricing">${mk("navPricing")}</a>
+            <a class="${state.marketingSection === "faq" ? "active" : ""}" href="#info" data-marketing-section="faq">${mk("navFaq")}</a>
+            <a class="${state.marketingSection === "mtd" ? "active" : ""}" href="#info" data-marketing-section="mtd">${mk("navMtd")}</a>
             <a href="#contact" data-scroll-target="contact">${mk("navContact")}</a>
           </nav>
           ${marketingLanguagePicker()}
@@ -1914,26 +2037,15 @@ function landing() {
             <h1>${mk("heroTitle")}</h1>
             <p>${mk("heroText")}</p>
           </div>
-          <section class="landing-strip" id="how">
+          <section class="landing-strip">
             <span>${mk("stepSnap")}</span>
             <span>${mk("stepTidy")}</span>
             <span>${mk("stepPack")}</span>
           </section>
-          <section class="landing-placeholder" id="faq">
+          ${marketingInfoPanel()}
+          <section class="landing-placeholder">
             <strong>${mk("earlyTitle")}</strong>
             <span>${mk("earlyText")}</span>
-          </section>
-          <section class="landing-placeholder landing-pricing" id="pricing">
-            <strong>${mk("pricingTitle")}</strong>
-            <span>${mk("pricingText")}</span>
-          </section>
-          <section class="landing-placeholder" id="mtd">
-            <strong>${mk("mtdTitle")}</strong>
-            <span>${mk("mtdText")}</span>
-          </section>
-          <section class="landing-placeholder">
-            <strong>${mk("faqTitle")}</strong>
-            <span>${mk("faqText")}</span>
           </section>
           <section class="landing-contact" id="contact">
             <div>
@@ -1952,7 +2064,7 @@ function landing() {
             </form>
           </section>
         </div>
-        <aside class="landing-actions" id="who">
+        <aside class="landing-actions">
           <article class="landing-card">
             <span class="landing-card-label">${mk("selfLabel")}</span>
             <h2>${mk("selfTitle")}</h2>
@@ -1963,6 +2075,7 @@ function landing() {
           </div>
             <a class="primary landing-link" href="/app/">${mk("openApp")}</a>
             <a class="secondary landing-link" href="/app-demo">${mk("viewDemo")}</a>
+            <div class="platform-note"><strong>${mk("platformNow")}</strong><span>${mk("platformSoon")}</span></div>
           </article>
           <article class="landing-card">
             <span class="landing-card-label">${mk("accountantLabel")}</span>
@@ -1974,11 +2087,19 @@ function landing() {
           </div>
             <a class="primary landing-link" href="${accountantUrl}">${mk("openPortal")}</a>
             <a class="secondary landing-link" href="/accountant-demo">${mk("viewDemo")}</a>
+            <div class="platform-note"><strong>${mk("platformNow")}</strong><span>${mk("platformSoon")}</span></div>
           </article>
         </aside>
       </div>
       <footer class="landing-foot">
         <span>${mk("footer")}</span>
+        <div class="social-links" aria-label="${escapeAttr(mk("socialTitle"))}">
+          <strong>${mk("socialTitle")}</strong>
+          <span>X/Twitter</span>
+          <span>Facebook</span>
+          <span>Instagram</span>
+          <small>${mk("socialSoon")}</small>
+        </div>
       </footer>
     </section>
   `);
@@ -2072,9 +2193,7 @@ function appDemo() {
 }
 
 function accountantDemo() {
-  const accountantHref = location.hostname === "localhost" || location.hostname === "127.0.0.1"
-    ? "/accountant/"
-    : "https://accountant.tidgo.co.uk";
+  const accountantHref = "/accountant/";
   demoShell(
     mk("accountantDemoKind"),
     mk("accountantDemoTitle"),
@@ -3067,6 +3186,16 @@ document.addEventListener("click", async (event) => {
     state.marketingLanguage = marketingLanguageButton.dataset.marketingLanguage;
     write("tg_marketing_language", state.marketingLanguage);
     render();
+    return;
+  }
+
+  const marketingSectionLink = event.target.closest("[data-marketing-section]");
+  if (marketingSectionLink) {
+    event.preventDefault();
+    state.marketingSection = marketingSectionLink.dataset.marketingSection;
+    write("tg_marketing_section", state.marketingSection);
+    render();
+    setTimeout(() => document.getElementById("info")?.scrollIntoView({ behavior: "smooth", block: "center" }), 0);
     return;
   }
 
