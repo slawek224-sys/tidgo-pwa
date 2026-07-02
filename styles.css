@@ -537,16 +537,16 @@ button {
 }
 
 .contact-submit-row {
-  display: flex;
+  display: grid;
+  grid-template-columns: 140px minmax(0, 1fr);
   align-items: center;
-  justify-content: space-between;
-  gap: 10px;
+  column-gap: 14px;
 }
 
 .contact-submit-row .primary {
   width: auto;
   min-width: 170px;
-  flex: 0 0 auto;
+  justify-self: end;
 }
 
 .landing-contact textarea {
@@ -580,12 +580,13 @@ button {
 }
 
 .contact-social {
-  width: auto;
+  display: grid !important;
+  grid-template-columns: repeat(3, 42px);
+  width: 140px;
   justify-content: flex-start;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  flex: 0 0 auto;
-  margin-right: auto;
+  align-items: center;
+  gap: 7px;
+  flex-wrap: nowrap !important;
 }
 
 .social-links strong {
@@ -1462,7 +1463,7 @@ button {
 
   .contact-social {
     justify-content: flex-start;
-    width: auto;
+    width: 140px;
   }
 
   .list-item,
