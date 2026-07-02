@@ -447,13 +447,16 @@ button {
 
 .landing-showcase div {
   display: grid;
-  gap: 8px;
+  gap: 10px;
+  justify-items: center;
+  text-align: center;
 }
 
 .landing-showcase strong {
   color: var(--blue);
-  font-size: 20px;
-  line-height: 1.2;
+  font-size: clamp(23px, 3vw, 34px);
+  line-height: 1.12;
+  max-width: 980px;
 }
 
 .landing-showcase span {

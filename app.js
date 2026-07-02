@@ -113,7 +113,7 @@ MARKETING_COPY.lt = { ...MARKETING_COPY.en,
 };
 
 Object.assign(MARKETING_COPY.en, {
-  howTitle: "TidGo is the bridge between busy work and tidy records.",
+  howTitle: "TidGo is the bridge between busy working people and tidy records ready for accounting.",
   howText: "Self-employed people can take receipt photos through the month. Accountants can see a cleaner read-only handoff when the client gives permission.",
   whoTitle: "Two simple doors.",
   whoText: "Open the app if you work for yourself. Open the accountant portal if you help clients keep records ready without the plastic-bag panic.",
@@ -147,7 +147,7 @@ Object.assign(MARKETING_COPY.en, {
 });
 
 Object.assign(MARKETING_COPY.pl, {
-  howTitle: "TidGo jest mostem miedzy praca w biegu a porzadnymi rekordami.",
+  howTitle: "TidGo jest mostem miedzy zapracowanymi ludzmi a porzadnymi rekordami gotowymi do ksiegowosci.",
   howText: "Self-employed robi zdjecia paragonow przez miesiac. Ksiegowy dostaje czytelniejszy podglad tylko do odczytu, kiedy klient da zgode.",
   whoTitle: "Dwie proste drogi.",
   whoText: "Otworz aplikacje, jesli pracujesz na siebie. Otworz portal ksiegowego, jesli pomagasz klientom trzymac rekordy bez paniki z reklamowka.",
@@ -181,7 +181,7 @@ Object.assign(MARKETING_COPY.pl, {
 });
 
 Object.assign(MARKETING_COPY.ro, {
-  howTitle: "TidGo este puntea dintre munca aglomerata si evidente ordonate.",
+  howTitle: "TidGo este puntea dintre oameni ocupati si evidente ordonate, gata pentru contabilitate.",
   howText: "Persoanele self-employed pot fotografia bonuri in timpul lunii. Contabilii primesc un handoff read-only mai curat, cand clientul isi da acordul.",
   whoTitle: "Doua intrari simple.",
   whoText: "Deschide aplicatia daca lucrezi pe cont propriu. Deschide portalul contabilului daca ajuti clienti sa tina evidentele fara panica pungii cu bonuri.",
@@ -215,7 +215,7 @@ Object.assign(MARKETING_COPY.ro, {
 });
 
 Object.assign(MARKETING_COPY.lt, {
-  howTitle: "TidGo yra tiltas tarp uzimto darbo ir tvarkingu irasu.",
+  howTitle: "TidGo yra tiltas tarp uzimtu dirbanciu zmoniu ir tvarkingu irasu, paruostu buhalterijai.",
   howText: "Dirbantys sau gali fotografuoti kvitus visa menesi. Buhalteriai gauna tvarkingesni tik skaitymui skirta perdavima, kai klientas duoda leidima.",
   whoTitle: "Dvi paprastos durys.",
   whoText: "Atidaryk programele, jei dirbi sau. Atidaryk buhalterio portala, jei padedi klientams laikyti irasus be kvitu maiselio panikos.",
