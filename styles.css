@@ -486,6 +486,18 @@ button {
   font-weight: 750;
 }
 
+.try-safe-note {
+  width: 100%;
+  border: 1px solid #dbeafe;
+  border-radius: 8px;
+  background: #f8fbff;
+  color: #334155;
+  font-size: 12px;
+  font-weight: 750;
+  line-height: 1.38;
+  padding: 10px;
+}
+
 .landing-contact {
   display: grid;
   grid-template-columns: minmax(0, 0.8fr) minmax(260px, 1fr);
