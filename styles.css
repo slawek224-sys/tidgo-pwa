@@ -432,14 +432,27 @@ button {
   margin-top: 4px;
 }
 
-.mtd-topic-grid span {
+.mtd-topic-grid article {
+  display: grid;
+  gap: 5px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: #fff;
   color: #334155;
+  padding: 11px 12px;
+}
+
+.mtd-topic-grid article strong {
+  color: var(--blue);
   font-size: 13px;
-  font-weight: 800;
-  padding: 9px 10px;
+  line-height: 1.25;
+}
+
+.mtd-topic-grid article span {
+  color: #475569;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.38;
 }
 
 .platform-note {
