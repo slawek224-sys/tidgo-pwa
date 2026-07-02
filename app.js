@@ -142,7 +142,6 @@ Object.assign(MARKETING_COPY.en, {
   platformNow: "Use the web app now.",
   platformSoon: "Android and iOS versions are in development alongside TidGo.",
   socialTitle: "Follow us on",
-  socialSoon: "Links coming soon",
   privacyNote: "No cookie maze: TidGo only uses essential app data and basic analytics to improve the product. We do not sell user data.",
   copyright: "© 2026 TidGo. All rights reserved."
 });
@@ -177,7 +176,6 @@ Object.assign(MARKETING_COPY.pl, {
   platformNow: "Uzyj web app teraz.",
   platformSoon: "Wersje Android i iOS sa rozwijane rownolegle z TidGo.",
   socialTitle: "Obserwuj nas",
-  socialSoon: "Linki wkrotce",
   privacyNote: "Bez cookie-labiryntu: TidGo uzywa tylko danych potrzebnych do dzialania aplikacji i podstawowej analityki do ulepszania produktu. Nie sprzedajemy danych uzytkownikow.",
   copyright: "© 2026 TidGo. Wszelkie prawa zastrzezone."
 });
@@ -212,7 +210,6 @@ Object.assign(MARKETING_COPY.ro, {
   platformNow: "Foloseste aplicatia web acum.",
   platformSoon: "Versiunile Android si iOS sunt dezvoltate in paralel cu TidGo.",
   socialTitle: "Urmareste-ne",
-  socialSoon: "Linkuri in curand",
   privacyNote: "Fara labirint de cookies: TidGo foloseste doar date esentiale ale aplicatiei si analiza de baza pentru imbunatatire. Nu vindem datele utilizatorilor.",
   copyright: "© 2026 TidGo. Toate drepturile rezervate."
 });
@@ -247,7 +244,6 @@ Object.assign(MARKETING_COPY.lt, {
   platformNow: "Naudok web app dabar.",
   platformSoon: "Android ir iOS versijos kuriamos kartu su TidGo.",
   socialTitle: "Sekite mus",
-  socialSoon: "Nuorodos netrukus",
   privacyNote: "Be cookies labirinto: TidGo naudoja tik butinus programeles duomenis ir paprasta analitika produkto gerinimui. Vartotoju duomenu neparduodame.",
   copyright: "© 2026 TidGo. Visos teises saugomos."
 });
@@ -2103,6 +2099,12 @@ function landing() {
             <div>
               <strong>${mk("contactTitle")}</strong>
               <span>${mk("contactText")}</span>
+              <div class="social-links contact-social" aria-label="${escapeAttr(mk("socialTitle"))}">
+                <strong>${mk("socialTitle")}</strong>
+                <a class="social-icon social-x" href="https://x.com/TidGoApp" target="_blank" rel="noopener noreferrer" aria-label="TidGo on X">X</a>
+                <a class="social-icon social-facebook" href="https://www.facebook.com/TidGo" target="_blank" rel="noopener noreferrer" aria-label="TidGo on Facebook">f</a>
+                <a class="social-icon social-instagram" href="https://www.instagram.com/tidgouk/" target="_blank" rel="noopener noreferrer" aria-label="TidGo on Instagram">IG</a>
+              </div>
             </div>
             <form class="landing-contact-form" id="landingContactForm">
               <input class="input" name="from_email" type="email" placeholder="${escapeAttr(mk("yourEmail"))}">
@@ -2148,13 +2150,6 @@ function landing() {
         <div class="landing-foot-copy">
           <span>${mk("footer")} <strong>${mk("copyright")}</strong></span>
           <span class="landing-privacy-note">${mk("privacyNote")}</span>
-        </div>
-        <div class="social-links" aria-label="${escapeAttr(mk("socialTitle"))}">
-          <strong>${mk("socialTitle")}</strong>
-          <span>X/Twitter</span>
-          <span>Facebook</span>
-          <span>Instagram</span>
-          <small>${mk("socialSoon")}</small>
         </div>
       </footer>
     </section>

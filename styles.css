@@ -566,22 +566,55 @@ button {
   gap: 8px;
 }
 
+.contact-social {
+  margin-top: 10px;
+}
+
 .social-links strong {
   color: var(--blue);
 }
 
-.social-links span {
+.social-links a {
+  display: inline-grid;
+  place-items: center;
+  min-width: 38px;
+  min-height: 38px;
   border: 1px solid var(--line);
   border-radius: 999px;
   background: #fff;
   color: #334155;
-  font-weight: 850;
-  padding: 6px 10px;
+  font-size: 14px;
+  font-weight: 950;
+  line-height: 1;
+  padding: 6px;
+  text-decoration: none;
 }
 
-.social-links small {
-  color: var(--muted);
-  font-weight: 750;
+.social-links a:hover,
+.social-links a:focus-visible {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.12);
+}
+
+.social-x {
+  background: #111827 !important;
+  border-color: #111827 !important;
+  color: #fff !important;
+}
+
+.social-facebook {
+  background: #1877f2 !important;
+  border-color: #1877f2 !important;
+  color: #fff !important;
+  font-family: Arial, sans-serif;
+  font-size: 22px !important;
+}
+
+.social-instagram {
+  background: linear-gradient(135deg, #f58529, #dd2a7b 45%, #8134af 75%, #515bd4) !important;
+  border-color: #dd2a7b !important;
+  color: #fff !important;
+  font-size: 12px !important;
 }
 
 .demo-brand {
