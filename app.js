@@ -2099,9 +2099,6 @@ function landing() {
             <span>${mk("stepPack")}</span>
           </section>
           ${marketingInfoPanel()}
-          <section class="landing-placeholder landing-privacy-note">
-            <span>${mk("privacyNote")}</span>
-          </section>
           <section class="landing-contact" id="contact">
             <div>
               <strong>${mk("contactTitle")}</strong>
@@ -2148,7 +2145,10 @@ function landing() {
         </aside>
       </div>
       <footer class="landing-foot">
-        <span>${mk("footer")} <strong>${mk("copyright")}</strong></span>
+        <div class="landing-foot-copy">
+          <span>${mk("footer")} <strong>${mk("copyright")}</strong></span>
+          <span class="landing-privacy-note">${mk("privacyNote")}</span>
+        </div>
         <div class="social-links" aria-label="${escapeAttr(mk("socialTitle"))}">
           <strong>${mk("socialTitle")}</strong>
           <span>X/Twitter</span>

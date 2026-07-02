@@ -420,12 +420,16 @@ button {
 }
 
 .landing-privacy-note {
-  border-style: solid;
+  display: inline-block;
+  margin-top: 8px;
+  border: 1px solid var(--client-line);
+  border-radius: 8px;
   border-color: var(--client-line);
   background: var(--client-soft);
   color: #166534;
   font-size: 13px;
   font-weight: 750;
+  padding: 8px 10px;
 }
 
 .landing-mtd {
@@ -547,6 +551,12 @@ button {
   gap: 18px;
   align-items: center;
   flex-wrap: wrap;
+}
+
+.landing-foot-copy {
+  display: grid;
+  gap: 4px;
+  max-width: 760px;
 }
 
 .social-links {
