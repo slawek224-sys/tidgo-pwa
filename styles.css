@@ -574,8 +574,10 @@ button {
 }
 
 .contact-social {
+  width: auto;
   justify-content: flex-end;
   flex-wrap: nowrap;
+  flex: 0 0 auto;
 }
 
 .social-links strong {
@@ -596,6 +598,18 @@ button {
   line-height: 1;
   padding: 6px;
   text-decoration: none;
+}
+
+.contact-social .social-icon {
+  width: 42px !important;
+  min-width: 42px !important;
+  max-width: 42px !important;
+  height: 42px !important;
+  min-height: 42px !important;
+  max-height: 42px !important;
+  aspect-ratio: 1 / 1;
+  flex: 0 0 42px;
+  padding: 0 !important;
 }
 
 .social-links svg {
@@ -1444,6 +1458,7 @@ button {
 
   .contact-social {
     justify-content: flex-start;
+    width: auto;
   }
 
   .list-item,
