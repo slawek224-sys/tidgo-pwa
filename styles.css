@@ -436,8 +436,9 @@ button {
 
 .landing-showcase img {
   width: 100%;
-  height: clamp(150px, 18vw, 230px);
-  object-fit: cover;
+  height: auto;
+  aspect-ratio: 2.4 / 1;
+  object-fit: contain;
   object-position: center;
   border-radius: 8px;
   border: 1px solid var(--line);
@@ -1600,7 +1601,7 @@ button {
   }
 
   .landing-showcase img {
-    height: 150px;
+    height: auto;
   }
 
   .marketing-page-actions .landing-link {
