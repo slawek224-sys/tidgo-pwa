@@ -1621,14 +1621,39 @@ function isAccountantDemoRoute() {
   return location.pathname.replace(/\/+$/, "") === "/accountant-demo";
 }
 
+function marketingPageSlug() {
+  const path = location.pathname.replace(/\/+$/, "") || "/";
+  const routes = {
+    "/how-it-works": "how",
+    "/who-is-it-for": "who",
+    "/launch-pricing": "pricing",
+    "/faq": "faq",
+    "/mtd": "mtd",
+    "/mtd/what-is-mtd": "mtdWhat",
+    "/mtd/who-needs-mtd": "mtdWho",
+    "/mtd/when-does-mtd-start": "mtdWhen",
+    "/mtd/what-records-do-i-need": "mtdRecords",
+    "/mtd/paper-receipts": "mtdPaper",
+    "/mtd/can-i-use-photos": "mtdPhotos",
+    "/mtd/does-tidgo-submit-to-hmrc": "mtdSubmit",
+    "/mtd/do-i-need-an-accountant": "mtdAccountant"
+  };
+  return routes[path] || "";
+}
+
+function isMarketingPageRoute() {
+  return Boolean(marketingPageSlug());
+}
+
 function isLandingRoute() {
-  return !isAccountantRoute() && !isAppRoute() && !isAppDemoRoute() && !isAccountantDemoRoute();
+  return !isAccountantRoute() && !isAppRoute() && !isAppDemoRoute() && !isAccountantDemoRoute() && !isMarketingPageRoute();
 }
 
 function initialScreen() {
   if (isAccountantRoute()) return "accountantLanding";
   if (isAppDemoRoute()) return "appDemo";
   if (isAccountantDemoRoute()) return "accountantDemo";
+  if (isMarketingPageRoute()) return "marketingPage";
   if (isLandingRoute()) return "landing";
   return "boot";
 }
@@ -1674,39 +1699,62 @@ function marketingLanguagePicker() {
   `;
 }
 
-function marketingInfoPanel() {
-  const section = ["how", "who", "pricing", "faq", "mtd"].includes(state.marketingSection) ? state.marketingSection : "how";
-  if (section === "mtd") {
-    return `
-      <section class="landing-placeholder landing-mtd" id="info">
-        <strong>${mk("mtdTitle")}</strong>
-        <div class="mtd-topic-grid">
-          ${[
-            ["mtdWhat", "mtdWhatText"],
-            ["mtdWho", "mtdWhoText"],
-            ["mtdWhen", "mtdWhenText"],
-            ["mtdRecords", "mtdRecordsText"],
-            ["mtdPaper", "mtdPaperText"],
-            ["mtdPhotos", "mtdPhotosText"],
-            ["mtdSubmit", "mtdSubmitText"],
-            ["mtdAccountant", "mtdAccountantText"]
-          ].map(([titleKey, textKey]) => `<article><strong>${mk(titleKey)}</strong><span>${mk(textKey)}</span></article>`).join("")}
-        </div>
-      </section>
-    `;
-  }
-  const panels = {
-    how: ["howTitle", "howText"],
-    who: ["whoTitle", "whoText"],
-    pricing: ["launchTabTitle", "launchPricingFullText"],
-    faq: ["faqBuildTitle", "faqBuildText"]
-  };
-  const [titleKey, textKey] = panels[section] || panels.how;
+function marketingNav(active = "") {
   return `
-    <section class="landing-placeholder landing-focus" id="info">
-      <strong>${mk(titleKey)}</strong>
-      <span>${mk(textKey)}</span>
-    </section>
+    <nav class="landing-nav" aria-label="TidGo navigation">
+      <a class="${active === "how" ? "active" : ""}" href="/how-it-works">${mk("navHow")}</a>
+      <a class="${active === "who" ? "active" : ""}" href="/who-is-it-for">${mk("navWho")}</a>
+      <a class="${active === "pricing" ? "active" : ""}" href="/launch-pricing">${mk("navPricing")}</a>
+      <a class="${active === "faq" ? "active" : ""}" href="/faq">${mk("navFaq")}</a>
+      <a class="${active === "mtd" ? "active" : ""}" href="/mtd">${mk("navMtd")}</a>
+      <a href="/#contact">${mk("navContact")}</a>
+    </nav>
+  `;
+}
+
+function landingHeader(active = "") {
+  return `
+    <header class="landing-head">
+      <a class="brand landing-brand" href="/"><img src="/icon-192.png" alt=""><span>TidGo</span></a>
+      <div class="landing-head-actions">
+        ${marketingNav(active)}
+        ${marketingLanguagePicker()}
+      </div>
+    </header>
+  `;
+}
+
+function landingFooter() {
+  return `
+    <footer class="landing-foot">
+      <div class="landing-foot-copy">
+        <span>${mk("footer")} <strong>${mk("copyright")}</strong></span>
+        <span class="landing-privacy-note">${mk("privacyNote")}</span>
+      </div>
+    </footer>
+  `;
+}
+
+function mtdTopics() {
+  return [
+    ["mtdWhat", "mtdWhatText", "/mtd/what-is-mtd"],
+    ["mtdWho", "mtdWhoText", "/mtd/who-needs-mtd"],
+    ["mtdWhen", "mtdWhenText", "/mtd/when-does-mtd-start"],
+    ["mtdRecords", "mtdRecordsText", "/mtd/what-records-do-i-need"],
+    ["mtdPaper", "mtdPaperText", "/mtd/paper-receipts"],
+    ["mtdPhotos", "mtdPhotosText", "/mtd/can-i-use-photos"],
+    ["mtdSubmit", "mtdSubmitText", "/mtd/does-tidgo-submit-to-hmrc"],
+    ["mtdAccountant", "mtdAccountantText", "/mtd/do-i-need-an-accountant"]
+  ];
+}
+
+function pageCta() {
+  return `
+    <div class="marketing-page-actions">
+      <a class="primary landing-link" href="/app/">${mk("openApp")}</a>
+      <a class="secondary landing-link" href="/accountant/">${mk("openPortal")}</a>
+      <a class="secondary landing-link" href="/">${mk("backHome")}</a>
+    </div>
   `;
 }
 
@@ -1860,7 +1908,7 @@ function navigate(screen, extra = {}) {
 
 function shell(content) {
   const accountantMode = state.screen === "accountantLanding" || state.screen === "accountantDemoClient";
-  const landingMode = ["landing", "appDemo", "accountantDemo"].includes(state.screen);
+  const landingMode = ["landing", "marketingPage", "appDemo", "accountantDemo"].includes(state.screen);
   app.innerHTML = `<main class="shell ${accountantMode ? "accountant-shell" : ""} ${landingMode ? "landing-shell" : ""}">${content}</main><section id="printRoot" class="print-root"></section>`;
 }
 
@@ -2031,13 +2079,14 @@ async function refresh() {
 }
 
 function render() {
-  const publicScreens = ["landing", "appDemo", "accountantDemo", "accountantLanding", "accountantDemoClient"];
+  const publicScreens = ["landing", "marketingPage", "appDemo", "accountantDemo", "accountantLanding", "accountantDemoClient"];
   if (!publicScreens.includes(state.screen) && !state.user) {
     state.screen = state.screen === "recover" || state.screen === "verifySignup" ? state.screen : "onboarding";
   }
   if (state.screen === "boot") state.screen = "home";
   const routes = {
     landing,
+    marketingPage,
     appDemo,
     accountantDemo,
     accountantLanding,
@@ -2068,20 +2117,7 @@ function landing() {
   const accountantUrl = `${origin}/accountant/`;
   shell(`
     <section class="landing-screen">
-      <header class="landing-head">
-        <div class="brand landing-brand"><img src="/icon-192.png" alt=""><span>TidGo</span></div>
-        <div class="landing-head-actions">
-          <nav class="landing-nav" aria-label="TidGo navigation">
-            <a class="${state.marketingSection === "how" ? "active" : ""}" href="#info" data-marketing-section="how">${mk("navHow")}</a>
-            <a class="${state.marketingSection === "who" ? "active" : ""}" href="#info" data-marketing-section="who">${mk("navWho")}</a>
-            <a class="${state.marketingSection === "pricing" ? "active" : ""}" href="#info" data-marketing-section="pricing">${mk("navPricing")}</a>
-            <a class="${state.marketingSection === "faq" ? "active" : ""}" href="#info" data-marketing-section="faq">${mk("navFaq")}</a>
-            <a class="${state.marketingSection === "mtd" ? "active" : ""}" href="#info" data-marketing-section="mtd">${mk("navMtd")}</a>
-            <a href="#contact" data-scroll-target="contact">${mk("navContact")}</a>
-          </nav>
-          ${marketingLanguagePicker()}
-        </div>
-      </header>
+      ${landingHeader()}
       <div class="landing-layout">
         <div class="landing-main">
           <div class="landing-hero">
@@ -2094,7 +2130,14 @@ function landing() {
             <span>${mk("stepTidy")}</span>
             <span>${mk("stepPack")}</span>
           </section>
-          ${marketingInfoPanel()}
+          <section class="landing-showcase">
+            <img src="/assets/demo/user-receipt-photo.jpg" alt="TidGo receipt capture preview">
+            <div>
+              <strong>${mk("howTitle")}</strong>
+              <span>${mk("howText")}</span>
+              <a href="/how-it-works">${mk("navHow")}</a>
+            </div>
+          </section>
           <section class="landing-contact" id="contact">
             <div>
               <strong>${mk("contactTitle")}</strong>
@@ -2153,12 +2196,118 @@ function landing() {
           </article>
         </aside>
       </div>
-      <footer class="landing-foot">
-        <div class="landing-foot-copy">
-          <span>${mk("footer")} <strong>${mk("copyright")}</strong></span>
-          <span class="landing-privacy-note">${mk("privacyNote")}</span>
+      ${landingFooter()}
+    </section>
+  `);
+}
+
+function marketingPage() {
+  const slug = marketingPageSlug();
+  const simplePages = {
+    how: {
+      active: "how",
+      eyebrow: mk("navHow"),
+      title: mk("howTitle"),
+      text: mk("howText"),
+      cards: [
+        [mk("stepSnap"), mk("demoReceiptText")],
+        [mk("stepTidy"), mk("demoDetailsText")],
+        [mk("stepPack"), mk("demoSummaryText")]
+      ]
+    },
+    who: {
+      active: "who",
+      eyebrow: mk("navWho"),
+      title: mk("whoTitle"),
+      text: mk("whoText"),
+      cards: [
+        [mk("selfLabel"), mk("selfText")],
+        [mk("accountantLabel"), mk("accountantText")]
+      ]
+    },
+    pricing: {
+      active: "pricing",
+      eyebrow: mk("navPricing"),
+      title: mk("launchTabTitle"),
+      text: mk("launchPricingFullText"),
+      cards: [
+        [mk("earlyTitle"), mk("earlyText")],
+        [mk("pricingTitle"), mk("pricingText")]
+      ]
+    },
+    faq: {
+      active: "faq",
+      eyebrow: mk("navFaq"),
+      title: mk("faqBuildTitle"),
+      text: mk("faqBuildText"),
+      cards: [
+        [mk("mtdPhotos"), mk("mtdPhotosText")],
+        [mk("mtdSubmit"), mk("mtdSubmitText")],
+        [mk("mtdAccountant"), mk("mtdAccountantText")]
+      ]
+    }
+  };
+  const mtdTopic = mtdTopics().find((topic) => topic[0] === slug);
+  let body = "";
+  let active = simplePages[slug]?.active || "mtd";
+  if (slug === "mtd") {
+    body = `
+      <section class="marketing-page-card">
+        <span class="eyebrow">${mk("navMtd")}</span>
+        <h1>${mk("mtdTitle").replace(":", "")}</h1>
+        <p>${mk("mtdText")}</p>
+        <div class="mtd-topic-grid marketing-topic-grid">
+          ${mtdTopics().map(([titleKey, textKey, href]) => `
+            <a class="marketing-topic" href="${href}">
+              <strong>${mk(titleKey)}</strong>
+              <span>${mk(textKey)}</span>
+            </a>
+          `).join("")}
         </div>
-      </footer>
+        ${pageCta()}
+      </section>
+    `;
+  } else if (mtdTopic) {
+    const [titleKey, textKey] = mtdTopic;
+    body = `
+      <article class="marketing-page-card marketing-article">
+        <span class="eyebrow">${mk("navMtd")}</span>
+        <h1>${mk(titleKey)}</h1>
+        <p>${mk(textKey)}</p>
+        <p>${mk("mtdText")}</p>
+        <div class="marketing-page-actions">
+          <a class="secondary landing-link" href="/mtd">${mk("navMtd")}</a>
+          <a class="primary landing-link" href="/app/">${mk("openApp")}</a>
+        </div>
+      </article>
+    `;
+  } else {
+    const page = simplePages[slug] || simplePages.how;
+    active = page.active;
+    body = `
+      <section class="marketing-page-card">
+        <span class="eyebrow">${page.eyebrow}</span>
+        <h1>${page.title}</h1>
+        <p>${page.text}</p>
+        <div class="marketing-card-grid">
+          ${page.cards.map(([title, text]) => `
+            <article>
+              <strong>${title}</strong>
+              <span>${text}</span>
+            </article>
+          `).join("")}
+        </div>
+        ${pageCta()}
+      </section>
+    `;
+  }
+  shell(`
+    <section class="landing-screen marketing-page-screen">
+      ${landingHeader(active)}
+      <div class="marketing-page-layout">
+        ${body}
+      </div>
+      ${landingFooter()}
     </section>
   `);
 }
@@ -3247,16 +3396,6 @@ document.addEventListener("click", async (event) => {
     return;
   }
 
-  const marketingSectionLink = event.target.closest("[data-marketing-section]");
-  if (marketingSectionLink) {
-    event.preventDefault();
-    state.marketingSection = marketingSectionLink.dataset.marketingSection;
-    write("tg_marketing_section", state.marketingSection);
-    render();
-    setTimeout(() => document.getElementById("info")?.scrollIntoView({ behavior: "smooth", block: "center" }), 0);
-    return;
-  }
-
   const scrollLink = event.target.closest("[data-scroll-target]");
   if (scrollLink) {
     event.preventDefault();
@@ -3748,7 +3887,7 @@ expensePicker.addEventListener("change", (event) => uploadReceipt(event.target.f
 clientPicker.addEventListener("change", (event) => uploadReceipt(event.target.files?.[0], true));
 
 if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("./sw.js").catch(() => {});
+  navigator.serviceWorker.register("/sw.js").catch(() => {});
 }
 
 window.addEventListener("popstate", (event) => {

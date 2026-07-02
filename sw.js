@@ -1,4 +1,4 @@
-const CACHE = "tidgo-pwa-v47";
+const CACHE = "tidgo-pwa-v48";
 const ASSETS = [
   "./",
   "./index.html",
@@ -6,6 +6,19 @@ const ASSETS = [
   "./accountant/index.html",
   "./app-demo/index.html",
   "./accountant-demo/index.html",
+  "./how-it-works/index.html",
+  "./who-is-it-for/index.html",
+  "./launch-pricing/index.html",
+  "./faq/index.html",
+  "./mtd/index.html",
+  "./mtd/what-is-mtd/index.html",
+  "./mtd/who-needs-mtd/index.html",
+  "./mtd/when-does-mtd-start/index.html",
+  "./mtd/what-records-do-i-need/index.html",
+  "./mtd/paper-receipts/index.html",
+  "./mtd/can-i-use-photos/index.html",
+  "./mtd/does-tidgo-submit-to-hmrc/index.html",
+  "./mtd/do-i-need-an-accountant/index.html",
   "./styles.css",
   "./app.js",
   "./manifest.json",
