@@ -602,6 +602,18 @@ button {
   min-width: 168px;
 }
 
+.marketing-page-actions .marketing-open-portal {
+  border-color: var(--client-line);
+  background: var(--client-soft);
+  color: var(--green);
+}
+
+.marketing-page-actions .marketing-back-home {
+  border-color: var(--green);
+  background: var(--green);
+  color: #fff;
+}
+
 .platform-note {
   display: grid;
   gap: 3px;

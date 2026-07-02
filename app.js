@@ -1751,9 +1751,9 @@ function mtdTopics() {
 function pageCta() {
   return `
     <div class="marketing-page-actions">
-      <a class="primary landing-link" href="/app/">${mk("openApp")}</a>
-      <a class="secondary landing-link" href="/accountant/">${mk("openPortal")}</a>
-      <a class="secondary landing-link" href="/">${mk("backHome")}</a>
+      <a class="primary landing-link marketing-open-app" href="/app/">${mk("openApp")}</a>
+      <a class="secondary landing-link marketing-open-portal" href="/accountant/">${mk("openPortal")}</a>
+      <a class="secondary landing-link marketing-back-home" href="/">${mk("backHome")}</a>
     </div>
   `;
 }
@@ -2131,7 +2131,7 @@ function landing() {
             <span>${mk("stepPack")}</span>
           </section>
           <section class="landing-showcase">
-            <img src="/assets/demo/user-receipt-photo.jpg" alt="TidGo receipt capture preview">
+            <img src="/assets/demo/landing-user-home.jpg" alt="TidGo app home screen preview">
             <div>
               <strong>${mk("howTitle")}</strong>
               <span>${mk("howText")}</span>
@@ -2275,10 +2275,7 @@ function marketingPage() {
         <h1>${mk(titleKey)}</h1>
         <p>${mk(textKey)}</p>
         <p>${mk("mtdText")}</p>
-        <div class="marketing-page-actions">
-          <a class="secondary landing-link" href="/mtd">${mk("navMtd")}</a>
-          <a class="primary landing-link" href="/app/">${mk("openApp")}</a>
-        </div>
+        ${pageCta()}
       </article>
     `;
   } else {

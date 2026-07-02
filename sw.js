@@ -1,4 +1,4 @@
-const CACHE = "tidgo-pwa-v48";
+const CACHE = "tidgo-pwa-v49";
 const ASSETS = [
   "./",
   "./index.html",
@@ -28,6 +28,7 @@ const ASSETS = [
   "./icon-512.png",
   "./apple-touch-icon.png",
   "./tidgo-icon-source.png",
+  "./assets/demo/landing-user-home.jpg",
   "./assets/demo/user-home.jpg",
   "./assets/demo/user-receipt-photo.jpg",
   "./assets/demo/user-edit-details.jpg",
