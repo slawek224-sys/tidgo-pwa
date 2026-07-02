@@ -2131,7 +2131,7 @@ function landing() {
             <span>${mk("stepPack")}</span>
           </section>
           <section class="landing-showcase">
-            <img src="/assets/demo/landing-user-home.jpg" alt="TidGo app home screen preview">
+            <img src="/assets/demo/landing-receipts-banner.png" alt="Receipts in, tidy records out with TidGo">
             <div>
               <strong>${mk("howTitle")}</strong>
               <span>${mk("howText")}</span>

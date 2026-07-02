@@ -425,9 +425,7 @@ button {
 
 .landing-showcase {
   display: grid;
-  grid-template-columns: 138px minmax(0, 1fr);
-  gap: 16px;
-  align-items: center;
+  gap: 12px;
   margin-top: 16px;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -437,10 +435,10 @@ button {
 }
 
 .landing-showcase img {
-  width: 138px;
-  height: 180px;
+  width: 100%;
+  height: clamp(150px, 18vw, 230px);
   object-fit: cover;
-  object-position: top center;
+  object-position: center;
   border-radius: 8px;
   border: 1px solid var(--line);
   background: var(--soft);
@@ -1602,8 +1600,7 @@ button {
   }
 
   .landing-showcase img {
-    width: 100%;
-    height: 220px;
+    height: 150px;
   }
 
   .marketing-page-actions .landing-link {
