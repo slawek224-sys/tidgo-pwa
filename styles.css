@@ -537,10 +537,16 @@ button {
 }
 
 .contact-submit-row {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
+  display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 10px;
+}
+
+.contact-submit-row .primary {
+  width: auto;
+  min-width: 170px;
+  flex: 0 0 auto;
 }
 
 .landing-contact textarea {
@@ -576,8 +582,10 @@ button {
 .contact-social {
   width: auto;
   justify-content: flex-start;
+  flex-direction: row;
   flex-wrap: nowrap;
   flex: 0 0 auto;
+  margin-right: auto;
 }
 
 .social-links strong {
@@ -1449,10 +1457,6 @@ button {
   }
 
   .landing-contact {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .contact-submit-row {
     grid-template-columns: minmax(0, 1fr);
   }
 
