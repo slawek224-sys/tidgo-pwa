@@ -419,6 +419,15 @@ button {
   align-items: flex-start;
 }
 
+.landing-privacy-note {
+  border-style: solid;
+  border-color: var(--client-line);
+  background: var(--client-soft);
+  color: #166534;
+  font-size: 13px;
+  font-weight: 750;
+}
+
 .landing-mtd {
   display: grid;
   align-items: stretch;

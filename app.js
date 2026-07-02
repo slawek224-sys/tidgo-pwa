@@ -134,10 +134,12 @@ Object.assign(MARKETING_COPY.en, {
   faqBuildText: "Send us what feels unclear: setup, receipts, PDF, accountant access, MTD, anything. We are building this FAQ from real user questions, not corporate fog.",
   launchTabTitle: "Launch and pricing",
   launchTabText: "TidGo is in early access and free while we test with real users. Paid plans are expected later, with clear notice before anything changes.",
+  launchPricingFullText: "TidGo is in early access for a small group of real users. It is free while we collect feedback, improve the app and prepare clearer guides. Paid plans are expected later, with clear notice before anything changes.",
   platformNow: "Use the web app now.",
   platformSoon: "Android and iOS versions are in development alongside TidGo.",
   socialTitle: "Follow us on",
   socialSoon: "Links coming soon",
+  privacyNote: "No cookie maze: TidGo only uses essential app data and basic analytics to improve the product. We do not sell user data.",
   copyright: "© 2026 TidGo. All rights reserved."
 });
 
@@ -167,10 +169,12 @@ Object.assign(MARKETING_COPY.pl, {
   faqBuildText: "Wyslij nam, co jest niejasne: start, paragony, PDF, dostep ksiegowego, MTD, cokolwiek. Budujemy FAQ z prawdziwych pytan, nie z firmowej mgly.",
   launchTabTitle: "Start i ceny",
   launchTabText: "TidGo jest w early access i jest darmowe podczas testow z prawdziwymi uzytkownikami. Platne plany sa spodziewane pozniej, z jasna informacja przed zmianami.",
+  launchPricingFullText: "TidGo jest w early access dla malej grupy prawdziwych uzytkownikow. Jest darmowe, kiedy zbieramy feedback, poprawiamy aplikacje i przygotowujemy jasniejsze poradniki. Platne plany sa spodziewane pozniej, z jasna informacja przed zmianami.",
   platformNow: "Uzyj web app teraz.",
   platformSoon: "Wersje Android i iOS sa rozwijane rownolegle z TidGo.",
   socialTitle: "Obserwuj nas",
   socialSoon: "Linki wkrotce",
+  privacyNote: "Bez cookie-labiryntu: TidGo uzywa tylko danych potrzebnych do dzialania aplikacji i podstawowej analityki do ulepszania produktu. Nie sprzedajemy danych uzytkownikow.",
   copyright: "© 2026 TidGo. Wszelkie prawa zastrzezone."
 });
 
@@ -200,10 +204,12 @@ Object.assign(MARKETING_COPY.ro, {
   faqBuildText: "Trimite-ne ce nu este clar: start, bonuri, PDF, acces contabil, MTD, orice. Construim FAQ-ul din intrebari reale, nu din ceata corporate.",
   launchTabTitle: "Lansare si pret",
   launchTabText: "TidGo este in early access si este gratuit cat timp testam cu utilizatori reali. Planurile platite sunt asteptate mai tarziu, cu anunt clar inainte de schimbari.",
+  launchPricingFullText: "TidGo este in early access pentru un grup mic de utilizatori reali. Este gratuit cat timp strangem feedback, imbunatatim aplicatia si pregatim ghiduri mai clare. Planurile platite sunt asteptate mai tarziu, cu anunt clar inainte de schimbari.",
   platformNow: "Foloseste aplicatia web acum.",
   platformSoon: "Versiunile Android si iOS sunt dezvoltate in paralel cu TidGo.",
   socialTitle: "Urmareste-ne",
   socialSoon: "Linkuri in curand",
+  privacyNote: "Fara labirint de cookies: TidGo foloseste doar date esentiale ale aplicatiei si analiza de baza pentru imbunatatire. Nu vindem datele utilizatorilor.",
   copyright: "© 2026 TidGo. Toate drepturile rezervate."
 });
 
@@ -233,10 +239,12 @@ Object.assign(MARKETING_COPY.lt, {
   faqBuildText: "Parasykite, kas neaisku: startas, kvitai, PDF, buhalterio prieiga, MTD, bet kas. DUK kuriame is tikru klausimu, ne is korporacines miglos.",
   launchTabTitle: "Startas ir kaina",
   launchTabText: "TidGo yra early access ir nemokama, kol testuojame su tikrais vartotojais. Mokami planai numatomi veliau, su aiskia zinute pries pokycius.",
+  launchPricingFullText: "TidGo yra early access mazai tikru vartotoju grupei. Programa nemokama, kol renkame atsiliepimus, geriname ja ir ruosiame aiskesnius gidus. Mokami planai numatomi veliau, su aiskia zinute pries pokycius.",
   platformNow: "Naudok web app dabar.",
   platformSoon: "Android ir iOS versijos kuriamos kartu su TidGo.",
   socialTitle: "Sekite mus",
   socialSoon: "Nuorodos netrukus",
+  privacyNote: "Be cookies labirinto: TidGo naudoja tik butinus programeles duomenis ir paprasta analitika produkto gerinimui. Vartotoju duomenu neparduodame.",
   copyright: "© 2026 TidGo. Visos teises saugomos."
 });
 
@@ -1672,7 +1680,6 @@ function marketingInfoPanel() {
     return `
       <section class="landing-placeholder landing-mtd" id="info">
         <strong>${mk("mtdTitle")}</strong>
-        <span>${mk("mtdIntro")}</span>
         <div class="mtd-topic-grid">
           ${[
             ["mtdWhat", "mtdWhatText"],
@@ -1691,7 +1698,7 @@ function marketingInfoPanel() {
   const panels = {
     how: ["howTitle", "howText"],
     who: ["whoTitle", "whoText"],
-    pricing: ["launchTabTitle", "launchTabText"],
+    pricing: ["launchTabTitle", "launchPricingFullText"],
     faq: ["faqBuildTitle", "faqBuildText"]
   };
   const [titleKey, textKey] = panels[section] || panels.how;
@@ -2088,9 +2095,8 @@ function landing() {
             <span>${mk("stepPack")}</span>
           </section>
           ${marketingInfoPanel()}
-          <section class="landing-placeholder">
-            <strong>${mk("earlyTitle")}</strong>
-            <span>${mk("earlyText")}</span>
+          <section class="landing-placeholder landing-privacy-note">
+            <span>${mk("privacyNote")}</span>
           </section>
           <section class="landing-contact" id="contact">
             <div>
