@@ -1658,6 +1658,10 @@ function initialScreen() {
   return "boot";
 }
 
+function isFastPublicScreen() {
+  return ["landing", "marketingPage", "appDemo", "accountantDemo"].includes(state.screen);
+}
+
 function showSplash() {
   app.innerHTML = `
     <main class="splash">
@@ -3893,6 +3897,11 @@ window.addEventListener("popstate", (event) => {
 
 (async function boot() {
   showSplash();
+  if (isFastPublicScreen()) {
+    history.replaceState(routeState(), "", location.pathname + location.search);
+    render();
+    return;
+  }
   await restoreDeviceUser();
   if (state.user?.id) await refresh();
   if (isAccountantRoute()) await restoreAccountantSession();

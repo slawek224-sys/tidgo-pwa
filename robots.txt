@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tidgo.co.uk/sitemap.xml
