@@ -2099,12 +2099,6 @@ function landing() {
             <div>
               <strong>${mk("contactTitle")}</strong>
               <span>${mk("contactText")}</span>
-              <div class="social-links contact-social" aria-label="${escapeAttr(mk("socialTitle"))}">
-                <strong>${mk("socialTitle")}</strong>
-                <a class="social-icon social-x" href="https://x.com/TidGoApp" target="_blank" rel="noopener noreferrer" aria-label="TidGo on X">X</a>
-                <a class="social-icon social-facebook" href="https://www.facebook.com/TidGo" target="_blank" rel="noopener noreferrer" aria-label="TidGo on Facebook">f</a>
-                <a class="social-icon social-instagram" href="https://www.instagram.com/tidgouk/" target="_blank" rel="noopener noreferrer" aria-label="TidGo on Instagram">IG</a>
-              </div>
             </div>
             <form class="landing-contact-form" id="landingContactForm">
               <input class="input" name="from_email" type="email" placeholder="${escapeAttr(mk("yourEmail"))}">
@@ -2114,7 +2108,20 @@ function landing() {
                 <option value="${escapeAttr(mk("roleCurious"))}">${mk("roleCurious")}</option>
               </select>
               <textarea class="input" name="message" rows="3" placeholder="${escapeAttr(mk("message"))}"></textarea>
-              <button class="primary" type="submit">${mk("sendMessage")}</button>
+              <div class="contact-submit-row">
+                <button class="primary" type="submit">${mk("sendMessage")}</button>
+                <div class="social-links contact-social" aria-label="${escapeAttr(mk("socialTitle"))}">
+                  <a class="social-icon social-x" href="https://x.com/TidGoApp" target="_blank" rel="noopener noreferrer" aria-label="TidGo on X">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h4.7l4.1 5.9L18 4h2.1l-6.3 7.2L21 20h-4.7l-4.6-6.6L6 20H3.9l6.8-7.8L4 4Zm3.7 1.6 9.4 12.8h1.7L9.4 5.6H7.7Z"/></svg>
+                  </a>
+                  <a class="social-icon social-facebook" href="https://www.facebook.com/TidGo" target="_blank" rel="noopener noreferrer" aria-label="TidGo on Facebook">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8.4V6.8c0-.8.3-1.2 1.3-1.2H17V2.8c-.8-.1-1.6-.2-2.4-.2-2.5 0-4.2 1.5-4.2 4.2v1.6H7.7v3.2h2.7V21H14v-9.4h2.7l.5-3.2H14Z"/></svg>
+                  </a>
+                  <a class="social-icon social-instagram" href="https://www.instagram.com/tidgouk/" target="_blank" rel="noopener noreferrer" aria-label="TidGo on Instagram">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 2.8h9A4.7 4.7 0 0 1 21.2 7.5v9a4.7 4.7 0 0 1-4.7 4.7h-9a4.7 4.7 0 0 1-4.7-4.7v-9a4.7 4.7 0 0 1 4.7-4.7Zm0 3A1.7 1.7 0 0 0 5.8 7.5v9a1.7 1.7 0 0 0 1.7 1.7h9a1.7 1.7 0 0 0 1.7-1.7v-9a1.7 1.7 0 0 0-1.7-1.7h-9Zm4.5 2.8a3.4 3.4 0 1 1 0 6.8 3.4 3.4 0 0 1 0-6.8Zm0 2.2a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4Zm4.1-3.1a.9.9 0 1 1 0 1.8.9.9 0 0 1 0-1.8Z"/></svg>
+                  </a>
+                </div>
+              </div>
             </form>
           </section>
         </div>

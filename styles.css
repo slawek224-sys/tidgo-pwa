@@ -536,6 +536,13 @@ button {
   gap: 10px;
 }
 
+.contact-submit-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+}
+
 .landing-contact textarea {
   resize: vertical;
   min-height: 92px;
@@ -563,11 +570,12 @@ button {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 7px;
 }
 
 .contact-social {
-  margin-top: 10px;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
 }
 
 .social-links strong {
@@ -577,8 +585,8 @@ button {
 .social-links a {
   display: inline-grid;
   place-items: center;
-  min-width: 38px;
-  min-height: 38px;
+  width: 38px;
+  height: 38px;
   border: 1px solid var(--line);
   border-radius: 999px;
   background: #fff;
@@ -588,6 +596,12 @@ button {
   line-height: 1;
   padding: 6px;
   text-decoration: none;
+}
+
+.social-links svg {
+  width: 19px;
+  height: 19px;
+  fill: currentColor;
 }
 
 .social-links a:hover,
@@ -606,15 +620,12 @@ button {
   background: #1877f2 !important;
   border-color: #1877f2 !important;
   color: #fff !important;
-  font-family: Arial, sans-serif;
-  font-size: 22px !important;
 }
 
 .social-instagram {
   background: linear-gradient(135deg, #f58529, #dd2a7b 45%, #8134af 75%, #515bd4) !important;
   border-color: #dd2a7b !important;
   color: #fff !important;
-  font-size: 12px !important;
 }
 
 .demo-brand {
@@ -1425,6 +1436,14 @@ button {
 
   .landing-contact {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .contact-submit-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .contact-social {
+    justify-content: flex-start;
   }
 
   .list-item,
