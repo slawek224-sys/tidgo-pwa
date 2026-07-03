@@ -183,8 +183,23 @@ button {
   text-decoration: none;
 }
 
+.landing-nav a.nav-mtd {
+  border: 1px solid var(--client-line);
+  border-radius: 999px;
+  background: var(--client-soft);
+  color: var(--green);
+  padding: 7px 11px;
+  box-shadow: 0 8px 18px rgba(22, 163, 74, 0.12);
+}
+
 .landing-nav a.active {
   color: var(--green);
+}
+
+.landing-nav a.nav-mtd.active {
+  background: var(--green);
+  border-color: var(--green);
+  color: #fff;
 }
 
 .marketing-language-switcher {
