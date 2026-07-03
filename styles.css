@@ -294,6 +294,42 @@ button {
   gap: 16px;
 }
 
+.landing-trust-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.landing-trust-strip span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #dbeafe;
+  border-radius: 8px;
+  background: #f8fbff;
+  color: #334155;
+  font-size: 13px;
+  font-weight: 850;
+  line-height: 1.25;
+  padding: 10px 11px;
+}
+
+.landing-trust-strip span::before {
+  content: "\2713";
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  border-radius: 999px;
+  background: var(--green);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 950;
+  line-height: 1;
+}
+
 .landing-card {
   display: grid;
   justify-items: start;
@@ -1594,6 +1630,10 @@ button {
   }
 
   .landing-strip {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .landing-trust-strip {
     grid-template-columns: minmax(0, 1fr);
   }
 

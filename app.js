@@ -26,6 +26,9 @@ const MARKETING_COPY = {
     navHow: "How it works", navWho: "Who is it for?", navPricing: "Launch & pricing", navFaq: "FAQ", navMtd: "MTD explained", navContact: "Contact",
     heroEyebrow: "Receipts in. Tidy records out.", heroTitle: "One simple place for receipts.", heroText: "For self-employed people who need records tidy, and accountants who would rather not chase plastic bags full of receipts.",
     stepSnap: "Snap receipts", stepTidy: "Keep records tidy", stepPack: "Send a clean pack",
+    trustSimple: "No complicated registration. Just email sign-in.",
+    trustControl: "Your records stay under your control.",
+    trustEarly: "Free during early access.",
     earlyTitle: "Early access:", earlyText: "TidGo is live for a small group of early users. It is free while we collect feedback, improve the app and add clearer guides for self-employed people and accountants.",
     pricingTitle: "Launch & pricing:", pricingText: "Official launch date: to be announced after early-access testing. TidGo is free during early access. Paid plans are expected after launch, with clear notice before anything changes.",
     mtdTitle: "MTD explained:", mtdText: "This guide is being written. TidGo helps keep records tidy, but it does not file tax returns or replace an accountant.", faqTitle: "FAQ:", faqText: "More answers are coming soon. For now, try the app, open the accountant portal, or send a message below.",
@@ -48,6 +51,9 @@ const MARKETING_COPY = {
     navHow: "Jak to dziala", navWho: "Dla kogo?", navPricing: "Start i ceny", navFaq: "FAQ", navMtd: "MTD prosto", navContact: "Kontakt",
     heroEyebrow: "Paragony wchodza. Porzadek wychodzi.", heroTitle: "Jedno proste miejsce na paragony.", heroText: "Dla self-employed, ktorzy chca miec rekordy w porzadku, i dla ksiegowych, ktorzy nie chca gonitwy za reklamowka paragonow.",
     stepSnap: "Zrob zdjecie", stepTidy: "Trzymaj porzadek", stepPack: "Wyslij czysta paczke",
+    trustSimple: "Bez skomplikowanej rejestracji. Tylko logowanie emailem.",
+    trustControl: "Twoje rekordy zostaja pod Twoja kontrola.",
+    trustEarly: "Darmowe w trakcie early access.",
     earlyTitle: "Early access:", earlyText: "TidGo dziala dla malej grupy pierwszych uzytkownikow. Teraz jest darmowe, zbieramy feedback, poprawiamy aplikacje i dopisujemy jasne instrukcje.",
     pricingTitle: "Start i ceny:", pricingText: "Oficjalna data startu bedzie ogloszona po testach early access. TidGo jest darmowe w trakcie early access. Po starcie planujemy platne plany, z jasna informacja przed zmianami.",
     mtdTitle: "MTD prosto:", mtdText: "Ten poradnik jest w przygotowaniu. TidGo pomaga utrzymac rekordy w porzadku, ale nie wysyla deklaracji podatkowych i nie zastapi ksiegowego.", faqTitle: "FAQ:", faqText: "Wiecej odpowiedzi wkrotce. Na razie zobacz aplikacje, portal ksiegowego albo wyslij wiadomosc ponizej.",
@@ -71,6 +77,9 @@ MARKETING_COPY.ro = { ...MARKETING_COPY.en,
   navHow: "Cum functioneaza", navWho: "Pentru cine?", navPricing: "Lansare si pret", navFaq: "FAQ", navMtd: "MTD pe scurt", navContact: "Contact",
   heroEyebrow: "Bonuri inauntru. Evidente ordonate afara.", heroTitle: "Un loc simplu pentru bonuri.", heroText: "Pentru persoane self-employed care vor evidente ordonate si contabili care nu vor sa alerge dupa pungi cu bonuri.",
   stepSnap: "Fotografiaza bonuri", stepTidy: "Tine evidenta ordonata", stepPack: "Trimite pachetul curat",
+  trustSimple: "Fara inregistrare complicata. Doar login cu email.",
+  trustControl: "Evidentele raman sub controlul tau.",
+  trustEarly: "Gratuit in early access.",
   earlyTitle: "Acces timpuriu:", earlyText: "TidGo este live pentru un grup mic de utilizatori. Este gratuit cat timp strangem feedback, imbunatatim aplicatia si adaugam ghiduri clare.",
   pricingTitle: "Lansare si pret:", pricingText: "Data lansarii oficiale va fi anuntata dupa testele early access. TidGo este gratuit in perioada de testare. Planurile platite vor fi anuntate clar inainte de orice schimbare.",
   mtdTitle: "MTD pe scurt:", mtdText: "Ghidul este in lucru. TidGo ajuta la pastrarea evidentelor ordonate, dar nu depune declaratii fiscale si nu inlocuieste contabilul.", faqTitle: "FAQ:", faqText: "Mai multe raspunsuri vin curand. Deocamdata poti incerca aplicatia, portalul contabilului sau trimite un mesaj.",
@@ -93,6 +102,9 @@ MARKETING_COPY.lt = { ...MARKETING_COPY.en,
   navHow: "Kaip veikia", navWho: "Kam skirta?", navPricing: "Startas ir kaina", navFaq: "DUK", navMtd: "MTD trumpai", navContact: "Kontaktai",
   heroEyebrow: "Kvitai vidun. Tvarkingi irasai lauk.", heroTitle: "Viena paprasta vieta kvitams.", heroText: "Dirbantiems sau, kuriems reikia tvarkingu irasu, ir buhalteriams, kurie nenori gaudyti maisu su kvitais.",
   stepSnap: "Nufotografuok kvita", stepTidy: "Laikyk irasus tvarkingai", stepPack: "Issiusk tvarkinga paketa",
+  trustSimple: "Jokios sudetingos registracijos. Tik prisijungimas el. pastu.",
+  trustControl: "Jusu irasai lieka jusu kontroleje.",
+  trustEarly: "Nemokama early access metu.",
   earlyTitle: "Ankstyva prieiga:", earlyText: "TidGo jau veikia mazai pirmuju vartotoju grupei. Dabar programa nemokama, kol renkame atsiliepimus, taisome detales ir rengiame paprastus paaiskinimus.",
   pricingTitle: "Startas ir kaina:", pricingText: "Oficiali starto data bus paskelbta po ankstyvos prieigos testu. TidGo dabar nemokama. Mokami planai bus pristatyti aiskiai, pries bet kokius pakeitimus.",
   mtdTitle: "MTD trumpai:", mtdText: "Sitas gidas dar rasomas. TidGo padeda laikyti irasus tvarkingai, bet neteikia mokesciu deklaraciju ir nepakeicia buhalterio.", faqTitle: "DUK:", faqText: "Daugiau atsakymu bus greitai. Kol kas galite isbandyti programa, buhalterio portala arba parasyti zinute.",
@@ -2129,6 +2141,11 @@ function landing() {
             <h1>${mk("heroTitle")}</h1>
             <p>${mk("heroText")}</p>
           </div>
+          <section class="landing-trust-strip" aria-label="TidGo basics">
+            <span>${mk("trustSimple")}</span>
+            <span>${mk("trustControl")}</span>
+            <span>${mk("trustEarly")}</span>
+          </section>
           <section class="landing-strip">
             <span>${mk("stepSnap")}</span>
             <span>${mk("stepTidy")}</span>
