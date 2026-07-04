@@ -319,7 +319,10 @@ const ACCOUNTANT_COPY = {
     removeNeedsBackend: "This connection cannot be removed from the accountant side yet. Client can revoke access in TidGo settings.",
     accountantEmailInfo: "Use the email address your clients connect to in their TidGo settings.",
     connectedClientsInfo: "Only clients who have allowed access to this accountant email appear here.",
-    requestDocsInfo: "Copies a short message you can paste into email or WhatsApp when proof is missing."
+    requestDocsInfo: "Sends or prepares a short request when proof is missing.",
+    requestDocsSent: "Request sent.",
+    requestDocsCopied: "Request message copied.",
+    requestDocsFailed: "Request email is not connected yet. Message copied instead."
   },
   pl: {
     forAccountants: "TidGo dla ksiegowych",
@@ -379,7 +382,10 @@ const ACCOUNTANT_COPY = {
     removeNeedsBackend: "Tego polaczenia nie da sie jeszcze usunac od strony ksiegowego. Klient moze cofnac dostep w ustawieniach TidGo.",
     accountantEmailInfo: "Uzyj adresu email, ktory klienci podlaczaja w swoich ustawieniach TidGo.",
     connectedClientsInfo: "Tutaj widac tylko klientow, ktorzy pozwolili temu emailowi ksiegowego na dostep.",
-    requestDocsInfo: "Kopiuje krotka wiadomosc, ktora mozna wkleic do emaila albo WhatsAppa, gdy brakuje dokumentu."
+    requestDocsInfo: "Wysyla albo przygotowuje krotka prosbe, gdy brakuje dokumentu.",
+    requestDocsSent: "Prosba wyslana.",
+    requestDocsCopied: "Wiadomosc skopiowana.",
+    requestDocsFailed: "Email z prosba nie jest jeszcze podpiety. Wiadomosc skopiowana."
   }
 };
 
@@ -536,6 +542,48 @@ Object.assign(ACCOUNTANT_COPY, {
   }
 });
 
+Object.assign(ACCOUNTANT_COPY.ro, {
+  requestDocsInfo: "Trimite sau pregateste o cerere scurta cand lipseste dovada.",
+  requestDocsSent: "Cerere trimisa.",
+  requestDocsCopied: "Mesaj copiat.",
+  requestDocsFailed: "Emailul pentru cerere nu este conectat inca. Mesajul a fost copiat."
+});
+
+Object.assign(ACCOUNTANT_COPY.uk, {
+  requestDocsInfo: "Nadsylaie abo hotuie korotkyi zapyt, koly brakuie dokaziv.",
+  requestDocsSent: "Zapyt nadislano.",
+  requestDocsCopied: "Povidomlennia skopiovano.",
+  requestDocsFailed: "Email dlia zapytu shche ne pidkliuchenyi. Povidomlennia skopiovano."
+});
+
+Object.assign(ACCOUNTANT_COPY.lt, {
+  requestDocsInfo: "Issiuncia arba paruose trumpa prasyma, kai truksta irodymo.",
+  requestDocsSent: "Prasymas issiustas.",
+  requestDocsCopied: "Zinute nukopijuota.",
+  requestDocsFailed: "Prasymo el. pastas dar neprijungtas. Zinute nukopijuota."
+});
+
+Object.assign(ACCOUNTANT_COPY.lv, {
+  requestDocsInfo: "Nosuta vai sagatavo isu pieprasijumu, ja trukst pieradijuma.",
+  requestDocsSent: "Pieprasijums nosutits.",
+  requestDocsCopied: "Zina nokopeta.",
+  requestDocsFailed: "Pieprasijuma e-pasts vel nav pieslegts. Zina nokopeta."
+});
+
+Object.assign(ACCOUNTANT_COPY.es, {
+  requestDocsInfo: "Envia o prepara una solicitud corta cuando falta prueba.",
+  requestDocsSent: "Solicitud enviada.",
+  requestDocsCopied: "Mensaje copiado.",
+  requestDocsFailed: "El email de solicitud aun no esta conectado. Mensaje copiado."
+});
+
+Object.assign(ACCOUNTANT_COPY.bg, {
+  requestDocsInfo: "Izprashta ili podgotvya kratka molba, kogato lipsva dokazatelstvo.",
+  requestDocsSent: "Molbata e izpratena.",
+  requestDocsCopied: "Saobshtenieto e kopirano.",
+  requestDocsFailed: "Email za molbata oshte ne e svarzan. Saobshtenieto e kopirano."
+});
+
 const DOWNLOAD_COPY = {
   en: {
     title: "Quick check before download",
@@ -624,6 +672,9 @@ const COPY = {
     codeSent: "Code sent. Check your email.",
     hello: "Hello",
     summary: "Monthly summary",
+    monthly: "Monthly",
+    quarterly: "Quarterly",
+    quarterReady: "Quarter-ready records",
     addExpense: "Add expense",
     addIncome: "Add income",
     photoDone: "Photo done",
@@ -692,6 +743,9 @@ const COPY = {
     codeSent: "Kod wyslany. Sprawdz email.",
     hello: "Czesc",
     summary: "Podsumowanie miesiaca",
+    monthly: "Miesieczne",
+    quarterly: "Kwartalne",
+    quarterReady: "Rekordy gotowe kwartalnie",
     addExpense: "Dodaj wydatek",
     addIncome: "Dodaj przychod",
     photoDone: "Zdjecie gotowe",
@@ -759,6 +813,9 @@ Object.assign(COPY, {
     restore: "Recupereaza",
     hello: "Salut",
     summary: "Rezumat lunar",
+    monthly: "Lunar",
+    quarterly: "Trimestrial",
+    quarterReady: "Evidente gata pe trimestru",
     addExpense: "Adauga cheltuiala",
     addIncome: "Adauga venit",
     photoDone: "Poza gata",
@@ -820,6 +877,9 @@ Object.assign(COPY, {
     restore: "Відновити",
     hello: "Привіт",
     summary: "Підсумок місяця",
+    monthly: "Місячно",
+    quarterly: "Квартально",
+    quarterReady: "Записи готові до кварталу",
     addExpense: "Додати витрату",
     addIncome: "Додати дохід",
     photoDone: "Фото готове",
@@ -881,6 +941,9 @@ Object.assign(COPY, {
     restore: "Atkurti",
     hello: "Sveiki",
     summary: "Mėnesio suvestinė",
+    monthly: "Menesio",
+    quarterly: "Ketvircio",
+    quarterReady: "Ketvirciui paruosti irasai",
     addExpense: "Pridėti išlaidą",
     addIncome: "Pridėti pajamas",
     photoDone: "Nuotrauka paruošta",
@@ -942,6 +1005,9 @@ Object.assign(COPY, {
     restore: "Atjaunot",
     hello: "Sveiki",
     summary: "Mēneša kopsavilkums",
+    monthly: "Menesa",
+    quarterly: "Ceturksna",
+    quarterReady: "Ceturksnim gatavi ieraksti",
     addExpense: "Pievienot izdevumu",
     addIncome: "Pievienot ienākumu",
     photoDone: "Foto gatavs",
@@ -1003,6 +1069,9 @@ Object.assign(COPY, {
     restore: "Recuperar",
     hello: "Hola",
     summary: "Resumen mensual",
+    monthly: "Mensual",
+    quarterly: "Trimestral",
+    quarterReady: "Registros listos por trimestre",
     addExpense: "Añadir gasto",
     addIncome: "Añadir ingreso",
     photoDone: "Foto lista",
@@ -1064,6 +1133,9 @@ Object.assign(COPY, {
     restore: "Възстанови",
     hello: "Здравейте",
     summary: "Месечно обобщение",
+    monthly: "Месечно",
+    quarterly: "Тримесечно",
+    quarterReady: "Записи готови за тримесечие",
     addExpense: "Добави разход",
     addIncome: "Добави приход",
     photoDone: "Снимката е готова",
@@ -1609,6 +1681,7 @@ const state = {
   income: [],
   selected: null,
   summaryDate: new Date(),
+  summaryPeriod: read("rb_summary_period", "month") === "quarter" ? "quarter" : "month",
   showAllTransactions: false,
   loading: false
 };
@@ -1883,6 +1956,29 @@ function monthLabel(date = state.summaryDate) {
   return date.toLocaleDateString(undefined, { month: "long", year: "numeric" });
 }
 
+function quarterRange(date = state.summaryDate) {
+  const year = date.getFullYear();
+  const quarter = Math.floor(date.getMonth() / 3);
+  const start = new Date(year, quarter * 3, 1);
+  const end = new Date(year, quarter * 3 + 3, 0);
+  const endExclusive = new Date(year, quarter * 3 + 3, 1);
+  return { start, end, endExclusive, quarter: quarter + 1, year };
+}
+
+function periodLabel(date = state.summaryDate) {
+  if (state.summaryPeriod !== "quarter") return monthLabel(date);
+  const range = quarterRange(date);
+  return `Q${range.quarter} ${range.year}`;
+}
+
+function shiftSummaryPeriod(direction) {
+  state.summaryDate.setMonth(state.summaryDate.getMonth() + (state.summaryPeriod === "quarter" ? direction * 3 : direction));
+}
+
+function periodFilePart() {
+  return periodLabel().replace(/[^a-z0-9]+/gi, "-").replace(/^-|-$/g, "") || "summary";
+}
+
 function normalizeAmount(value) {
   const amount = Number(String(value || "").replace(",", ".").trim());
   return Number.isFinite(amount) ? amount : NaN;
@@ -2072,6 +2168,36 @@ async function loadAccountantClientRecords(clientId) {
   state.accountantSelectedClientId = clientId;
   state.accountantClientRecords = { receipts: receipts || [], income: income || [] };
   return state.accountantClientRecords;
+}
+
+function accountantRequestMessage(client) {
+  const name = client?.first_name || "there";
+  return `Hi ${name}, could you add the missing income proof or receipts in TidGo when you can? It helps prepare your records without the deadline panic.`;
+}
+
+async function sendAccountantRequestDocs() {
+  const client = (state.accountantClients || []).find((item) => item.user_id === state.accountantSelectedClientId);
+  if (!client) throw new Error(at("showClientsFirst"));
+  const message = accountantRequestMessage(client);
+  try {
+    await api("/api/accountant/request-docs", {
+      method: "POST",
+      body: JSON.stringify({
+        accountant_email: state.accountantPortalEmail,
+        client_user_id: client.user_id,
+        client_email: client.email || null,
+        message
+      })
+    });
+    toast(at("requestDocsSent"));
+  } catch (error) {
+    try {
+      await navigator.clipboard.writeText(message);
+      toast(at("requestDocsFailed"));
+    } catch {
+      toast(message);
+    }
+  }
 }
 
 function accountantClientConsentId(client) {
@@ -2607,9 +2733,13 @@ function summary() {
   shell(`
     <section class="screen">
       ${topbar(t("summary"), true)}
+      <div class="segmented">
+        <button class="${state.summaryPeriod === "month" ? "active" : ""}" data-action="setSummaryPeriod" data-period="month">${t("monthly")}</button>
+        <button class="${state.summaryPeriod === "quarter" ? "active" : ""}" data-action="setSummaryPeriod" data-period="quarter">${t("quarterly")}</button>
+      </div>
       <div class="month-switcher">
         <button class="icon-btn" data-action="prevMonth">‹</button>
-        <span>${monthLabel()}</span>
+        <span>${periodLabel()}</span>
         <button class="icon-btn" data-action="nextMonth">›</button>
       </div>
       <div class="total-box">
@@ -2617,7 +2747,7 @@ function summary() {
         <div class="total-row"><span>${t("expenses")}</span><strong>${formatTotals(normal)}</strong></div>
         <div class="total-row"><span>${t("client")}</span><strong>${formatTotals(client)}</strong></div>
       </div>
-      <p class="subtitle">${t("note")}</p>
+      <p class="subtitle">${state.summaryPeriod === "quarter" ? t("quarterReady") : t("note")}</p>
       <div class="card muted" style="margin-bottom:12px">${t("submissionHint")}</div>
       <button class="primary" data-action="sharePdf">${t("emailPdf")}</button>
       <button class="secondary" style="width:100%;margin-top:10px" data-action="printPdf">${t("printPdf")}</button>
@@ -2862,9 +2992,13 @@ function accountantPortal() {
         <strong>${t("needsReview")}</strong>
         ${flags.length ? `<div class="flag-list">${flags.slice(0, 6).map((flag) => `<span>${escapeHtml(flag)}</span>`).join("")}</div>` : `<span class="hint">${t("ok")}</span>`}
       </div>
+      <div class="segmented">
+        <button class="${state.summaryPeriod === "month" ? "active" : ""}" data-action="setSummaryPeriod" data-period="month">${t("monthly")}</button>
+        <button class="${state.summaryPeriod === "quarter" ? "active" : ""}" data-action="setSummaryPeriod" data-period="quarter">${t("quarterly")}</button>
+      </div>
       <div class="month-switcher">
         <button class="icon-btn" data-action="prevMonth">&#8249;</button>
-        <span>${monthLabel()}</span>
+        <span>${periodLabel()}</span>
         <button class="icon-btn" data-action="nextMonth">&#8250;</button>
       </div>
       <div class="total-box">
@@ -2947,13 +3081,17 @@ function itemRow(row) {
 function monthEntries() {
   const y = state.summaryDate.getFullYear();
   const m = state.summaryDate.getMonth();
-  const inMonth = (item) => {
+  const inPeriod = (item) => {
     const date = new Date(item.timestamp);
+    if (state.summaryPeriod === "quarter") {
+      const range = quarterRange();
+      return date >= range.start && date < range.endExclusive;
+    }
     return date.getFullYear() === y && date.getMonth() === m;
   };
   return {
-    receipts: state.receipts.filter(inMonth),
-    income: state.income.filter(inMonth)
+    receipts: state.receipts.filter(inPeriod),
+    income: state.income.filter(inPeriod)
   };
 }
 
@@ -3293,7 +3431,7 @@ function buildPrintHtml() {
     : `<tr><td colspan="4">${t("noEntries")}</td></tr>`;
   const photos = receipts.map((item) => `<section class="photo-page"><div class="photo-caption">${escapeHtml(item.merchant || t(item.category))} | ${escapeHtml(money(item.amount, item.currency))}</div><img src="${item.image_base64}" alt=""></section>`).join("");
   return `
-    <h1>TidGo - ${escapeHtml(monthLabel())}</h1>
+    <h1>TidGo - ${escapeHtml(periodLabel())}</h1>
     <p>${escapeHtml(state.user?.first_name || "")} ${state.user?.trade ? " · " + escapeHtml(state.user.trade) : ""}</p>
     <p>${escapeHtml(t("note"))}</p>
     <p>${escapeHtml(dt("pdfLine"))}</p>
@@ -3326,7 +3464,7 @@ async function createSummaryPdfFile() {
   };
 
   doc.setTextColor(23, 32, 51);
-  line("TidGo - " + monthLabel(), 22, "bold");
+  line("TidGo - " + periodLabel(), 22, "bold");
   line([state.user?.first_name, state.user?.trade].filter(Boolean).join(" | "), 11);
   y += 8;
   line(t("income") + ": " + formatTotals(income), 12, "bold");
@@ -3394,7 +3532,7 @@ async function createSummaryPdfFile() {
   }
 
   const blob = doc.output("blob");
-  const fileName = `TidGo-${state.summaryDate.getFullYear()}-${String(state.summaryDate.getMonth() + 1).padStart(2, "0")}.pdf`;
+  const fileName = `TidGo-${periodFilePart()}.pdf`;
   return new File([blob], fileName, { type: "application/pdf" });
 }
 
@@ -3532,12 +3670,7 @@ document.addEventListener("click", async (event) => {
     return;
   }
   if (action === "requestDemoDocs") {
-    try {
-      await navigator.clipboard.writeText("Hi, could you add the missing income proof in TidGo when you can? It helps me prepare your records without the deadline panic.");
-      toast("Request message copied.");
-    } catch {
-      toast("Request: please add the missing income proof in TidGo.");
-    }
+    await sendAccountantRequestDocs();
     return;
   }
   if (action === "accountantPortal") return go("accountantPortal");
@@ -3579,7 +3712,12 @@ document.addEventListener("click", async (event) => {
   if (action === "pickExpense") return expensePicker.click();
   if (action === "pickClient") return clientPicker.click();
   if (action === "prevMonth" || action === "nextMonth") {
-    state.summaryDate.setMonth(state.summaryDate.getMonth() + (action === "prevMonth" ? -1 : 1));
+    shiftSummaryPeriod(action === "prevMonth" ? -1 : 1);
+    return render();
+  }
+  if (action === "setSummaryPeriod") {
+    state.summaryPeriod = target.dataset.period === "quarter" ? "quarter" : "month";
+    write("rb_summary_period", state.summaryPeriod);
     return render();
   }
   if (action === "printPdf") {
@@ -3589,13 +3727,13 @@ document.addEventListener("click", async (event) => {
     return;
   }
   if (action === "downloadAccountantCsv") {
-    const fileName = `TidGo-${state.user.first_name || "client"}-${state.summaryDate.getFullYear()}-${String(state.summaryDate.getMonth() + 1).padStart(2, "0")}.csv`;
+    const fileName = `TidGo-${state.user.first_name || "client"}-${periodFilePart()}.csv`;
     downloadFile(fileName, accountantCsv(), "text/csv");
     toast(t("accountantHeroToast"));
     return;
   }
   if (action === "downloadAccountantPack") {
-    const fileName = `TidGo-accountant-pack-${state.user.first_name || "client"}-${state.summaryDate.getFullYear()}-${String(state.summaryDate.getMonth() + 1).padStart(2, "0")}.csv`;
+    const fileName = `TidGo-accountant-pack-${state.user.first_name || "client"}-${periodFilePart()}.csv`;
     downloadFile(fileName, accountantCsv(), "text/csv");
     document.querySelector("#printRoot").innerHTML = buildPrintHtml();
     toast(t("accountantPackToast"));
@@ -3634,7 +3772,7 @@ document.addEventListener("click", async (event) => {
       const file = await createSummaryPdfFile();
       if (navigator.canShare?.({ files: [file] })) {
         await navigator.share({
-          title: `TidGo ${monthLabel()}`,
+          title: `TidGo ${periodLabel()}`,
           text: t("emailBody"),
           files: [file]
         });
@@ -3655,7 +3793,7 @@ document.addEventListener("click", async (event) => {
     return;
   }
   if (action === "emailPdf") {
-    const subject = encodeURIComponent(`TidGo ${monthLabel()}`);
+    const subject = encodeURIComponent(`TidGo ${periodLabel()}`);
     const body = encodeURIComponent(t("emailBody"));
     location.href = `mailto:?subject=${subject}&body=${body}`;
     return;
