@@ -707,6 +707,8 @@ const COPY = {
     profile: "Profile",
     deleteAccount: "Delete account and all data",
     deleteWarning: "This permanently deletes profile, receipts, receipt photos and income.",
+    deleteReceiptWarning: "This deletes only this receipt entry and its photo.",
+    deleteIncomeWarning: "This deletes only this income entry.",
     printPdf: "Save PDF",
     emailPdf: "Send summary PDF",
     submissionHint: "On the public HTTPS app this creates a PDF and opens your phone sharing options: email, WhatsApp, Drive, Messages and more.",
@@ -779,6 +781,8 @@ const COPY = {
     profile: "Profil",
     deleteAccount: "Usun konto i wszystkie dane",
     deleteWarning: "To trwale usunie profil, paragony, zdjecia paragonow i przychody.",
+    deleteReceiptWarning: "To usunie tylko ten paragon i jego zdjecie.",
+    deleteIncomeWarning: "To usunie tylko ten wpis przychodu.",
     printPdf: "Zapisz PDF",
     emailPdf: "Wyslij summary PDF",
     submissionHint: "W publicznej wersji HTTPS tworzy PDF i otwiera opcje telefonu: email, WhatsApp, Drive, SMS i inne.",
@@ -1664,6 +1668,36 @@ Object.assign(COPY.bg, {
   duplicateDetails: "Otvori vazmozhen dublikat",
   duplicateHint: "Tezi zapisi izgledat podobni. Otvorete edin i sravnete snimkite.",
   requestDocsBackendNeeded: "Email za zayavka iska Resend endpoint v backend predi avtomatichno izprashtane do klienta."
+});
+
+Object.assign(COPY.ro, {
+  deleteReceiptWarning: "Sterge doar acest bon si poza lui.",
+  deleteIncomeWarning: "Sterge doar aceasta intrare de venit."
+});
+
+Object.assign(COPY.uk, {
+  deleteReceiptWarning: "Delete only this receipt and its photo.",
+  deleteIncomeWarning: "Delete only this income entry."
+});
+
+Object.assign(COPY.lt, {
+  deleteReceiptWarning: "Istrina tik si kvita ir jo nuotrauka.",
+  deleteIncomeWarning: "Istrina tik si pajamu irasa."
+});
+
+Object.assign(COPY.lv, {
+  deleteReceiptWarning: "Dzes tikai so ceku un ta foto.",
+  deleteIncomeWarning: "Dzes tikai so ienakumu ierakstu."
+});
+
+Object.assign(COPY.es, {
+  deleteReceiptWarning: "Elimina solo este recibo y su foto.",
+  deleteIncomeWarning: "Elimina solo este ingreso."
+});
+
+Object.assign(COPY.bg, {
+  deleteReceiptWarning: "Delete only this receipt and its photo.",
+  deleteIncomeWarning: "Delete only this income entry."
 });
 
 const LEGAL_TEXT = {
@@ -3974,12 +4008,12 @@ document.addEventListener("click", async (event) => {
     location.href = `mailto:?subject=${subject}&body=${body}`;
     return;
   }
-  if (action === "deleteReceipt" && confirm(t("deleteWarning"))) {
+  if (action === "deleteReceipt" && confirm(t("deleteReceiptWarning"))) {
     await api(`/api/receipts/${state.selected}`, { method: "DELETE" });
     await refresh();
     return go("home");
   }
-  if (action === "deleteIncome" && confirm(t("deleteWarning"))) {
+  if (action === "deleteIncome" && confirm(t("deleteIncomeWarning"))) {
     await api(`/api/income/${state.selected}`, { method: "DELETE" });
     await refresh();
     return go("home");
