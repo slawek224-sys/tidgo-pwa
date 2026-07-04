@@ -674,6 +674,7 @@ const COPY = {
     summary: "Monthly summary",
     monthly: "Monthly",
     quarterly: "Quarterly",
+    taxQuarterly: "UK tax quarters",
     quarterReady: "Quarter-ready records",
     addExpense: "Add expense",
     addIncome: "Add income",
@@ -745,6 +746,7 @@ const COPY = {
     summary: "Podsumowanie miesiaca",
     monthly: "Miesieczne",
     quarterly: "Kwartalne",
+    taxQuarterly: "Kwartaly UK tax",
     quarterReady: "Rekordy gotowe kwartalnie",
     addExpense: "Dodaj wydatek",
     addIncome: "Dodaj przychod",
@@ -1262,7 +1264,18 @@ Object.assign(COPY.en, {
     viewProof: "View proof",
     takePhoto: "Take photo",
     uploadFile: "Upload file",
-    proofHint: "Add a payslip, CIS statement, remittance note or screenshot. Amount stays manual."
+  proofHint: "Add a payslip, CIS statement, remittance note or screenshot. Amount stays manual."
+});
+
+Object.assign(COPY.en, {
+  calendarQuarterly: "Calendar quarters",
+  taxQuarterly: "UK tax quarters",
+  quarterMode: "Quarter mode",
+  calendarQuarterHint: "Jan-Mar, Apr-Jun, Jul-Sep, Oct-Dec.",
+  taxQuarterHint: "UK tax-year quarters from 6 Apr, 6 Jul, 6 Oct and 6 Jan.",
+  duplicateDetails: "Open possible duplicate",
+  duplicateHint: "These records look similar. Open one and compare the receipt photos.",
+  requestDocsBackendNeeded: "Request email needs a backend Resend endpoint before it can send to the client automatically."
 });
 
 Object.assign(COPY.pl, {
@@ -1347,6 +1360,17 @@ Object.assign(COPY.pl, {
     proofHint: "Dodaj payslip, CIS statement, remittance note albo screenshot. Kwote wpisujesz recznie."
 });
 
+Object.assign(COPY.pl, {
+  calendarQuarterly: "Kwartaly kalendarzowe",
+  taxQuarterly: "Kwartaly UK tax",
+  quarterMode: "Tryb kwartalu",
+  calendarQuarterHint: "Sty-Mar, Kwi-Cze, Lip-Wrz, Paz-Gru.",
+  taxQuarterHint: "Kwartaly brytyjskiego roku podatkowego od 6 Apr, 6 Jul, 6 Oct i 6 Jan.",
+  duplicateDetails: "Otworz mozliwy duplikat",
+  duplicateHint: "Te rekordy wygladaja podobnie. Otworz jeden i porownaj zdjecia paragonow.",
+  requestDocsBackendNeeded: "Wysylka request email wymaga endpointu Resend w backendzie, zanim pojdzie automatycznie do klienta."
+});
+
 Object.assign(COPY.ro, {
   privacyTitle: "Politica de confidentialitate",
   termsTitle: "Termeni",
@@ -1381,6 +1405,17 @@ Object.assign(COPY.ro, {
   previewAccountant: "Verifica evidenta",
   signOutDevice: "Delogare pe acest dispozitiv",
   signOutHint: "Foloseste doar pentru testarea recuperarii sau pentru alt cont. Nu sterge bonurile."
+});
+
+Object.assign(COPY.ro, {
+  calendarQuarterly: "Trimestre calendaristice",
+  taxQuarterly: "Trimestre fiscale UK",
+  quarterMode: "Mod trimestru",
+  calendarQuarterHint: "Ian-Mar, Apr-Iun, Iul-Sep, Oct-Dec.",
+  taxQuarterHint: "Trimestre ale anului fiscal UK de la 6 Apr, 6 Iul, 6 Oct si 6 Ian.",
+  duplicateDetails: "Deschide posibil duplicat",
+  duplicateHint: "Aceste inregistrari par similare. Deschide una si compara pozele bonurilor.",
+  requestDocsBackendNeeded: "Emailul de cerere are nevoie de endpoint Resend in backend inainte sa fie trimis automat clientului."
 });
 
 Object.assign(COPY.uk, {
@@ -1453,6 +1488,17 @@ Object.assign(COPY.lt, {
   previewAccountant: "Patikrinti irasus",
   signOutDevice: "Atsijungti siame irenginyje",
   signOutHint: "Naudokite tik atkuriant paskyra testui arba kitai paskyrai. Kvitai neistrinami."
+});
+
+Object.assign(COPY.lt, {
+  calendarQuarterly: "Kalendoriniai ketvirciai",
+  taxQuarterly: "UK mokesciu ketvirciai",
+  quarterMode: "Ketvircio rezimas",
+  calendarQuarterHint: "Sau-Kov, Bal-Bir, Lie-Rug, Spa-Gru.",
+  taxQuarterHint: "UK mokestiniu metu ketvirciai nuo Apr 6, Jul 6, Oct 6 ir Jan 6.",
+  duplicateDetails: "Atidaryti galima dublikata",
+  duplicateHint: "Sie irasai atrodo panasus. Atidarykite viena ir palyginkite kvitu nuotraukas.",
+  requestDocsBackendNeeded: "Prasymo emailui reikia Resend endpointo backend'e, pries siunciant klientui automatiskai."
 });
 
 Object.assign(COPY.lv, {
@@ -1576,6 +1622,50 @@ Object.values(COPY).forEach((copy) => {
   copy.signOutConfirm ||= COPY.en.signOutConfirm;
 });
 
+Object.assign(COPY.uk, {
+  calendarQuarterly: "Kalend. kvartaly",
+  taxQuarterly: "UK podatkovi kvartaly",
+  quarterMode: "Rezhym kvartalu",
+  calendarQuarterHint: "Jan-Mar, Apr-Jun, Jul-Sep, Oct-Dec.",
+  taxQuarterHint: "Kvartaly UK podatkovoho roku vid 6 Apr, 6 Jul, 6 Oct i 6 Jan.",
+  duplicateDetails: "Vidkryty mozlyvyi dublikat",
+  duplicateHint: "Tsi zapysy skhozhi. Vidkryite odyn i porivniaite foto chekiv.",
+  requestDocsBackendNeeded: "Email-zapyt potrebuie Resend endpoint u backend, persh nizh avtomatychno nadislaty kliientu."
+});
+
+Object.assign(COPY.lv, {
+  calendarQuarterly: "Kalendara ceturksni",
+  taxQuarterly: "UK nodoklu ceturksni",
+  quarterMode: "Ceturksna rezims",
+  calendarQuarterHint: "Jan-Mar, Apr-Jun, Jul-Sep, Oct-Dec.",
+  taxQuarterHint: "UK nodoklu gada ceturksni no 6 Apr, 6 Jul, 6 Oct un 6 Jan.",
+  duplicateDetails: "Atvert iespejamu dublikatu",
+  duplicateHint: "Sie ieraksti izskatas lidzigi. Atver vienu un salidzini ceku foto.",
+  requestDocsBackendNeeded: "Pieprasijuma emailam vajag Resend endpoint backend'a, pirms tas sutis klientam automatiski."
+});
+
+Object.assign(COPY.es, {
+  calendarQuarterly: "Trimestres calendario",
+  taxQuarterly: "Trimestres fiscales UK",
+  quarterMode: "Modo trimestral",
+  calendarQuarterHint: "Ene-Mar, Abr-Jun, Jul-Sep, Oct-Dic.",
+  taxQuarterHint: "Trimestres del ano fiscal UK desde 6 Apr, 6 Jul, 6 Oct y 6 Jan.",
+  duplicateDetails: "Abrir posible duplicado",
+  duplicateHint: "Estos registros parecen similares. Abre uno y compara las fotos.",
+  requestDocsBackendNeeded: "El email de solicitud necesita un endpoint Resend en backend antes de enviarse automaticamente al cliente."
+});
+
+Object.assign(COPY.bg, {
+  calendarQuarterly: "Kalendarni trimesecia",
+  taxQuarterly: "UK danachni trimesecia",
+  quarterMode: "Rezhim trimesecie",
+  calendarQuarterHint: "Jan-Mar, Apr-Jun, Jul-Sep, Oct-Dec.",
+  taxQuarterHint: "UK danachni trimesecia ot 6 Apr, 6 Jul, 6 Oct i 6 Jan.",
+  duplicateDetails: "Otvori vazmozhen dublikat",
+  duplicateHint: "Tezi zapisi izgledat podobni. Otvorete edin i sravnete snimkite.",
+  requestDocsBackendNeeded: "Email za zayavka iska Resend endpoint v backend predi avtomatichno izprashtane do klienta."
+});
+
 const LEGAL_TEXT = {
   en: {
     privacy: {
@@ -1682,6 +1772,7 @@ const state = {
   selected: null,
   summaryDate: new Date(),
   summaryPeriod: read("rb_summary_period", "month") === "quarter" ? "quarter" : "month",
+  quarterMode: read("rb_quarter_mode", "calendar") === "uk_tax" ? "uk_tax" : "calendar",
   showAllTransactions: false,
   loading: false
 };
@@ -1957,17 +2048,51 @@ function monthLabel(date = state.summaryDate) {
 }
 
 function quarterRange(date = state.summaryDate) {
+  if (state.quarterMode === "uk_tax") return ukTaxQuarterRange(date);
   const year = date.getFullYear();
   const quarter = Math.floor(date.getMonth() / 3);
   const start = new Date(year, quarter * 3, 1);
   const end = new Date(year, quarter * 3 + 3, 0);
   const endExclusive = new Date(year, quarter * 3 + 3, 1);
-  return { start, end, endExclusive, quarter: quarter + 1, year };
+  return { start, end, endExclusive, quarter: quarter + 1, year, mode: "calendar" };
+}
+
+function ukTaxQuarterRange(date = state.summaryDate) {
+  const value = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  const starts = [
+    new Date(value.getFullYear() - 1, 9, 6),
+    new Date(value.getFullYear(), 0, 6),
+    new Date(value.getFullYear(), 3, 6),
+    new Date(value.getFullYear(), 6, 6),
+    new Date(value.getFullYear(), 9, 6),
+    new Date(value.getFullYear() + 1, 0, 6),
+    new Date(value.getFullYear() + 1, 3, 6)
+  ].sort((a, b) => a - b);
+  let start = starts[0];
+  let endExclusive = starts[1];
+  for (let index = 0; index < starts.length - 1; index += 1) {
+    if (value >= starts[index] && value < starts[index + 1]) {
+      start = starts[index];
+      endExclusive = starts[index + 1];
+      break;
+    }
+  }
+  const taxYearStartYear = start >= new Date(start.getFullYear(), 3, 6) ? start.getFullYear() : start.getFullYear() - 1;
+  const quarter = Math.floor(((start.getMonth() - 3 + 12) % 12) / 3) + 1;
+  return {
+    start,
+    end: new Date(endExclusive.getFullYear(), endExclusive.getMonth(), endExclusive.getDate() - 1),
+    endExclusive,
+    quarter,
+    year: taxYearStartYear,
+    mode: "uk_tax"
+  };
 }
 
 function periodLabel(date = state.summaryDate) {
   if (state.summaryPeriod !== "quarter") return monthLabel(date);
   const range = quarterRange(date);
+  if (range.mode === "uk_tax") return `UK tax Q${range.quarter} ${range.year}/${String(range.year + 1).slice(-2)}`;
   return `Q${range.quarter} ${range.year}`;
 }
 
@@ -1977,6 +2102,27 @@ function shiftSummaryPeriod(direction) {
 
 function periodFilePart() {
   return periodLabel().replace(/[^a-z0-9]+/gi, "-").replace(/^-|-$/g, "") || "summary";
+}
+
+function quarterModeControls() {
+  if (state.summaryPeriod !== "quarter") return "";
+  return `
+    <div class="segmented segmented-compact">
+      <button class="${state.quarterMode === "calendar" ? "active" : ""}" data-action="setQuarterMode" data-quarter-mode="calendar">${t("calendarQuarterly")}</button>
+      <button class="${state.quarterMode === "uk_tax" ? "active" : ""}" data-action="setQuarterMode" data-quarter-mode="uk_tax">${t("taxQuarterly")}</button>
+    </div>
+    <p class="hint quarter-hint">${state.quarterMode === "uk_tax" ? t("taxQuarterHint") : t("calendarQuarterHint")}</p>
+  `;
+}
+
+function summaryPeriodControls() {
+  return `
+    <div class="segmented">
+      <button class="${state.summaryPeriod === "month" ? "active" : ""}" data-action="setSummaryPeriod" data-period="month">${t("monthly")}</button>
+      <button class="${state.summaryPeriod === "quarter" ? "active" : ""}" data-action="setSummaryPeriod" data-period="quarter">${t("quarterly")}</button>
+    </div>
+    ${quarterModeControls()}
+  `;
 }
 
 function normalizeAmount(value) {
@@ -2733,10 +2879,7 @@ function summary() {
   shell(`
     <section class="screen">
       ${topbar(t("summary"), true)}
-      <div class="segmented">
-        <button class="${state.summaryPeriod === "month" ? "active" : ""}" data-action="setSummaryPeriod" data-period="month">${t("monthly")}</button>
-        <button class="${state.summaryPeriod === "quarter" ? "active" : ""}" data-action="setSummaryPeriod" data-period="quarter">${t("quarterly")}</button>
-      </div>
+      ${summaryPeriodControls()}
       <div class="month-switcher">
         <button class="icon-btn" data-action="prevMonth">‹</button>
         <span>${periodLabel()}</span>
@@ -2797,6 +2940,14 @@ function settings() {
         <strong>${t("recordsTitle")}</strong>
         <span class="hint">${t("recordsHint")}</span>
         <button class="secondary" type="button" data-action="accountantPortal">${t("recordsTitle")}</button>
+      </div>
+      <div class="card stack" style="margin-top:18px">
+        <strong>${t("quarterMode")}</strong>
+        <div class="segmented segmented-compact">
+          <button class="${state.quarterMode === "calendar" ? "active" : ""}" type="button" data-action="setQuarterMode" data-quarter-mode="calendar">${t("calendarQuarterly")}</button>
+          <button class="${state.quarterMode === "uk_tax" ? "active" : ""}" type="button" data-action="setQuarterMode" data-quarter-mode="uk_tax">${t("taxQuarterly")}</button>
+        </div>
+        <span class="hint">${state.quarterMode === "uk_tax" ? t("taxQuarterHint") : t("calendarQuarterHint")}</span>
       </div>
       ${clientConnectionCard()}
       <div class="card stack" style="margin-top:18px">
@@ -2897,8 +3048,8 @@ function accountantLanding() {
 function accountantDemoClient() {
   const client = (state.accountantClients || []).find((item) => item.user_id === state.accountantSelectedClientId);
   const records = state.accountantClientRecords || { receipts: [], income: [] };
-  const receipts = records.receipts || [];
-  const income = attachIncomeProofs(records.income || []);
+  const receipts = (records.receipts || []).filter(recordInCurrentPeriod);
+  const income = attachIncomeProofs(records.income || []).filter(recordInCurrentPeriod);
   const expenses = receipts.filter((item) => !item.is_client_expense);
   const paidForClient = receipts.filter((item) => item.is_client_expense);
   const rows = [
@@ -2927,6 +3078,12 @@ function accountantDemoClient() {
         <div class="total-row"><span>${at("trade")}</span><strong>${escapeHtml(client.trade || at("noTrade"))}</strong></div>
         <div class="total-row"><span>${at("connected")}</span><strong>${day(client.consented_at)}</strong></div>
       </div>
+      ${summaryPeriodControls()}
+      <div class="month-switcher">
+        <button class="icon-btn" data-action="prevMonth">&#8249;</button>
+        <span>${periodLabel()}</span>
+        <button class="icon-btn" data-action="nextMonth">&#8250;</button>
+      </div>
       <div class="insight-grid">
         <div class="insight-card"><span>${at("income")}</span><strong>${formatTotals(income)}</strong></div>
         <div class="insight-card"><span>${at("expenses")}</span><strong>${formatTotals(expenses)}</strong></div>
@@ -2941,6 +3098,7 @@ function accountantDemoClient() {
         <button class="secondary" type="button" data-action="requestDemoDocs">${at("requestDocs")}</button>
         ${infoTip(at("requestDocsInfo"))}
       </div>
+      <p class="hint">${t("requestDocsBackendNeeded")}</p>
       <button class="danger" style="width:100%;margin-bottom:12px" type="button" data-action="removeAccountantClient">${at("removeClient")}</button>
       <div class="total-box">
         <div class="total-row"><span>${at("income")}</span><strong>${formatTotals(income)}</strong></div>
@@ -2990,12 +3148,9 @@ function accountantPortal() {
       </div>
       <div class="card stack">
         <strong>${t("needsReview")}</strong>
-        ${flags.length ? `<div class="flag-list">${flags.slice(0, 6).map((flag) => `<span>${escapeHtml(flag)}</span>`).join("")}</div>` : `<span class="hint">${t("ok")}</span>`}
+        ${flags.length ? `<div class="flag-list">${flags.slice(0, 6).map(reviewFlagNode).join("")}</div><span class="hint">${t("duplicateHint")}</span>` : `<span class="hint">${t("ok")}</span>`}
       </div>
-      <div class="segmented">
-        <button class="${state.summaryPeriod === "month" ? "active" : ""}" data-action="setSummaryPeriod" data-period="month">${t("monthly")}</button>
-        <button class="${state.summaryPeriod === "quarter" ? "active" : ""}" data-action="setSummaryPeriod" data-period="quarter">${t("quarterly")}</button>
-      </div>
+      ${summaryPeriodControls()}
       <div class="month-switcher">
         <button class="icon-btn" data-action="prevMonth">&#8249;</button>
         <span>${periodLabel()}</span>
@@ -3079,20 +3234,21 @@ function itemRow(row) {
 }
 
 function monthEntries() {
-  const y = state.summaryDate.getFullYear();
-  const m = state.summaryDate.getMonth();
-  const inPeriod = (item) => {
-    const date = new Date(item.timestamp);
-    if (state.summaryPeriod === "quarter") {
-      const range = quarterRange();
-      return date >= range.start && date < range.endExclusive;
-    }
-    return date.getFullYear() === y && date.getMonth() === m;
-  };
   return {
-    receipts: state.receipts.filter(inPeriod),
-    income: state.income.filter(inPeriod)
+    receipts: state.receipts.filter(recordInCurrentPeriod),
+    income: state.income.filter(recordInCurrentPeriod)
   };
+}
+
+function recordInCurrentPeriod(item) {
+  const rawDate = item?.timestamp || item?.created_at;
+  const date = new Date(rawDate);
+  if (Number.isNaN(date.getTime())) return false;
+  if (state.summaryPeriod === "quarter") {
+    const range = quarterRange();
+    return date >= range.start && date < range.endExclusive;
+  }
+  return date.getFullYear() === state.summaryDate.getFullYear() && date.getMonth() === state.summaryDate.getMonth();
 }
 
 function daysSince(value) {
@@ -3125,19 +3281,30 @@ function reviewFlags() {
   const { receipts, income } = monthEntries();
   const flags = [];
   receipts.forEach((item) => {
-    if (!item.merchant) flags.push(t("missingMerchant"));
-    if (!item.category || item.category === "other") flags.push(t("missingCategory"));
+    if (!item.merchant) flags.push({ label: t("missingMerchant"), receiptId: item.id });
+    if (!item.category || item.category === "other") flags.push({ label: t("missingCategory"), receiptId: item.id });
   });
   income.forEach((item) => {
-    if (!item.proof_base64 && !item.proof_name) flags.push(t("incomeWithoutProof"));
+    if (!item.proof_base64 && !item.proof_name) flags.push({ label: t("incomeWithoutProof"), incomeId: item.id });
   });
-  const seen = new Set();
+  const seen = new Map();
   receipts.forEach((item) => {
     const key = [new Date(item.timestamp).toISOString().slice(0, 10), item.amount, item.currency, item.merchant || ""].join("|");
-    if (seen.has(key)) flags.push(t("possibleDuplicate"));
-    seen.add(key);
+    if (seen.has(key)) {
+      flags.push({ label: t("possibleDuplicate"), receiptId: item.id, detail: t("duplicateHint") });
+    } else {
+      seen.set(key, item.id);
+    }
   });
   return flags;
+}
+
+function reviewFlagNode(flag) {
+  const label = escapeHtml(flag.label || String(flag));
+  const detail = flag.detail ? ` title="${escapeAttr(flag.detail)}"` : "";
+  if (flag.receiptId) return `<button type="button" data-open-receipt="${escapeAttr(flag.receiptId)}"${detail}>${label}</button>`;
+  if (flag.incomeId) return `<button type="button" data-open-income="${escapeAttr(flag.incomeId)}"${detail}>${label}</button>`;
+  return `<span${detail}>${label}</span>`;
 }
 
 function accountantRecordRow(item) {
@@ -3158,10 +3325,13 @@ function accountantRecordRow(item) {
 function accountantClientCsv() {
   const client = (state.accountantClients || []).find((item) => item.user_id === state.accountantSelectedClientId);
   const records = state.accountantClientRecords || { receipts: [], income: [] };
+  const income = (records.income || []).filter(recordInCurrentPeriod);
+  const receipts = (records.receipts || []).filter(recordInCurrentPeriod);
   const rows = [
-    ["client", "type", "date", "amount", "currency", "description", "paid_for_client", "proof_available", "accountant_notes"],
-    ...(records.income || []).map((item) => [
+    ["client", "period", "type", "date", "amount", "currency", "description", "paid_for_client", "proof_available", "accountant_notes"],
+    ...income.map((item) => [
       client?.first_name || "Client",
+      periodLabel(),
       "income",
       new Date(item.timestamp || item.created_at).toISOString().slice(0, 10),
       Number(item.amount || 0).toFixed(2),
@@ -3171,8 +3341,9 @@ function accountantClientCsv() {
       item.image_base64 ? "yes" : "no",
       ""
     ]),
-    ...(records.receipts || []).map((item) => [
+    ...receipts.map((item) => [
       client?.first_name || "Client",
+      periodLabel(),
       item.is_client_expense ? "paid_for_client" : "expense",
       new Date(item.timestamp || item.created_at).toISOString().slice(0, 10),
       Number(item.amount || 0).toFixed(2),
@@ -3194,8 +3365,8 @@ function createAccountantClientPdfFile() {
 
   const client = (state.accountantClients || []).find((item) => item.user_id === state.accountantSelectedClientId);
   const records = state.accountantClientRecords || { receipts: [], income: [] };
-  const receipts = records.receipts || [];
-  const income = records.income || [];
+  const receipts = (records.receipts || []).filter(recordInCurrentPeriod);
+  const income = (records.income || []).filter(recordInCurrentPeriod);
   const expenses = receipts.filter((item) => !item.is_client_expense);
   const paidForClient = receipts.filter((item) => item.is_client_expense);
   const doc = new jsPdf({ unit: "pt", format: "a4" });
@@ -3213,7 +3384,7 @@ function createAccountantClientPdfFile() {
   };
 
   doc.setTextColor(23, 32, 51);
-  line("TidGo accountant pack", 22, "bold");
+  line(`TidGo accountant pack - ${periodLabel()}`, 22, "bold");
   line([client?.first_name || "Client", client?.trade || "", client?.email || ""].filter(Boolean).join(" | "), 11);
   y += 8;
   line("Income: " + formatTotals(income), 12, "bold");
@@ -3301,7 +3472,7 @@ function createAccountantClientPdfFile() {
   }
 
   const safeName = (client?.first_name || "client").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "client";
-  return doc.output("blob", { filename: `TidGo-${safeName}-accountant-pack.pdf` });
+  return doc.output("blob", { filename: `TidGo-${safeName}-${periodFilePart()}-accountant-pack.pdf` });
 }
 
 function csvCell(value) {
@@ -3630,7 +3801,7 @@ document.addEventListener("click", async (event) => {
     if (!(await confirmDownload("accountant"))) return;
     const client = (state.accountantClients || []).find((item) => item.user_id === state.accountantSelectedClientId);
     const safeName = (client?.first_name || "client").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "client";
-    downloadFile(`TidGo-${safeName}-records.csv`, accountantClientCsv(), "text/csv");
+    downloadFile(`TidGo-${safeName}-${periodFilePart()}-records.csv`, accountantClientCsv(), "text/csv");
     toast("Client CSV downloaded.");
     return;
   }
@@ -3643,7 +3814,7 @@ document.addEventListener("click", async (event) => {
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url;
-      link.download = `TidGo-${safeName}-accountant-pack.pdf`;
+      link.download = `TidGo-${safeName}-${periodFilePart()}-accountant-pack.pdf`;
       link.click();
       URL.revokeObjectURL(url);
       toast("Client PDF downloaded.");
@@ -3718,6 +3889,11 @@ document.addEventListener("click", async (event) => {
   if (action === "setSummaryPeriod") {
     state.summaryPeriod = target.dataset.period === "quarter" ? "quarter" : "month";
     write("rb_summary_period", state.summaryPeriod);
+    return render();
+  }
+  if (action === "setQuarterMode") {
+    state.quarterMode = target.dataset.quarterMode === "uk_tax" ? "uk_tax" : "calendar";
+    write("rb_quarter_mode", state.quarterMode);
     return render();
   }
   if (action === "printPdf") {
