@@ -675,6 +675,8 @@ const COPY = {
     monthly: "Monthly",
     quarterly: "Quarterly",
     taxQuarterly: "UK tax quarters",
+    currentUkQuarter: "Current UK Q",
+    previousUkQuarter: "Previous UK Q",
     quarterReady: "Quarter-ready records",
     addExpense: "Add expense",
     addIncome: "Add income",
@@ -749,6 +751,8 @@ const COPY = {
     monthly: "Miesieczne",
     quarterly: "Kwartalne",
     taxQuarterly: "Kwartaly UK tax",
+    currentUkQuarter: "Obecny UK Q",
+    previousUkQuarter: "Poprzedni UK Q",
     quarterReady: "Rekordy gotowe kwartalnie",
     addExpense: "Dodaj wydatek",
     addIncome: "Dodaj przychod",
@@ -2149,7 +2153,29 @@ function periodLabel(date = state.summaryDate) {
 }
 
 function shiftSummaryPeriod(direction) {
+  if (state.summaryPeriod === "quarter" && state.quarterMode === "uk_tax") {
+    const range = ukTaxQuarterRange(state.summaryDate);
+    if (direction > 0) {
+      state.summaryDate = new Date(range.endExclusive.getFullYear(), range.endExclusive.getMonth(), range.endExclusive.getDate());
+      return;
+    }
+    const previousDate = new Date(range.start);
+    previousDate.setDate(previousDate.getDate() - 1);
+    state.summaryDate = previousDate;
+    return;
+  }
   state.summaryDate.setMonth(state.summaryDate.getMonth() + (state.summaryPeriod === "quarter" ? direction * 3 : direction));
+}
+
+function focusCurrentUkTaxQuarter() {
+  state.summaryDate = new Date();
+}
+
+function focusPreviousUkTaxQuarter() {
+  const currentRange = ukTaxQuarterRange(new Date());
+  const previousDate = new Date(currentRange.start);
+  previousDate.setDate(previousDate.getDate() - 1);
+  state.summaryDate = previousDate;
 }
 
 function focusLatestUkTaxQuarterWithRecords() {
@@ -2180,6 +2206,12 @@ function quarterModeControls() {
       <button class="${state.quarterMode === "calendar" ? "active" : ""}" data-action="setQuarterMode" data-quarter-mode="calendar">${t("calendarQuarterly")}</button>
       <button class="${state.quarterMode === "uk_tax" ? "active" : ""}" data-action="setQuarterMode" data-quarter-mode="uk_tax">${t("taxQuarterly")}</button>
     </div>
+    ${state.quarterMode === "uk_tax" ? `
+      <div class="segmented segmented-compact">
+        <button data-action="currentUkQuarter">${t("currentUkQuarter")}</button>
+        <button data-action="previousUkQuarter">${t("previousUkQuarter")}</button>
+      </div>
+    ` : ""}
     <p class="hint quarter-hint">${state.quarterMode === "uk_tax" ? t("taxQuarterHint") : t("calendarQuarterHint")}</p>
   `;
 }
@@ -3970,6 +4002,14 @@ document.addEventListener("click", async (event) => {
     write("rb_quarter_mode", state.quarterMode);
     if (state.quarterMode === "uk_tax") anchorSummaryDateToMonthStart();
     focusLatestUkTaxQuarterWithRecords();
+    return render();
+  }
+  if (action === "currentUkQuarter") {
+    focusCurrentUkTaxQuarter();
+    return render();
+  }
+  if (action === "previousUkQuarter") {
+    focusPreviousUkTaxQuarter();
     return render();
   }
   if (action === "printPdf") {
