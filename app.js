@@ -273,6 +273,8 @@ const ACCOUNTANT_COPY = {
     nameOrPractice: "Name or practice",
     accountantEmail: "Accountant email",
     showConnectedClients: "Show connected clients",
+    refreshClients: "Refresh clients",
+    showAllClients: "Show all clients",
     signOut: "Sign out",
     sendLoginCode: "Send login code",
     loginCode: "Login code",
@@ -285,6 +287,7 @@ const ACCOUNTANT_COPY = {
     required: "Required",
     connectedClients: "Connected clients",
     clientList: "Client list",
+    recentClients: "Recent clients",
     noClients: "No clients have connected this email yet.",
     signInFirst: "Sign in with your accountant email code first.",
     noTrade: "No trade set",
@@ -336,6 +339,8 @@ const ACCOUNTANT_COPY = {
     nameOrPractice: "Imie lub nazwa biura",
     accountantEmail: "Email ksiegowego",
     showConnectedClients: "Pokaz polaczonych klientow",
+    refreshClients: "Odswiez klientow",
+    showAllClients: "Pokaz wszystkich klientow",
     signOut: "Wyloguj",
     sendLoginCode: "Wyslij kod logowania",
     loginCode: "Kod logowania",
@@ -348,6 +353,7 @@ const ACCOUNTANT_COPY = {
     required: "Wymagana",
     connectedClients: "Polaczeni klienci",
     clientList: "Lista klientow",
+    recentClients: "Ostatni klienci",
     noClients: "Zaden klient nie polaczyl jeszcze tego emaila.",
     signInFirst: "Najpierw zaloguj sie kodem na email ksiegowego.",
     noTrade: "Brak zawodu",
@@ -1828,6 +1834,7 @@ const state = {
   accountantClients: [],
   accountantClientRecords: null,
   accountantSelectedClientId: null,
+  accountantShowAllClients: false,
   pendingSignupEmail: read("rb_pending_signup_email", ""),
   marketingLanguage: MARKETING_LANGUAGES[read("tg_marketing_language", "en")] ? read("tg_marketing_language", "en") : "en",
   marketingSection: read("tg_marketing_section", "how"),
@@ -3067,6 +3074,7 @@ function settings() {
 
 function accountantLanding() {
   const clients = state.accountantClients || [];
+  const visibleClients = state.accountantShowAllClients ? clients : clients.slice(0, 3);
   shell(`
     <section class="screen accountant-screen">
       ${topbar("")}
@@ -3088,7 +3096,7 @@ function accountantLanding() {
         `}
         ${state.accountantPortalEmail ? `
           <div class="grid-2">
-            <button class="primary" type="submit" name="step" value="load">${at("showConnectedClients")}</button>
+            <button class="primary" type="submit" name="step" value="load">${at("refreshClients")}</button>
             <button class="secondary" type="button" data-action="signOutAccountant">${at("signOut")}</button>
           </div>
         ` : `
@@ -3109,8 +3117,8 @@ function accountantLanding() {
         <div class="total-row"><span>${at("connectedClients")} ${infoTip(at("connectedClientsInfo"))}</span><strong>${clients.length}</strong></div>
       </div>
       <div class="card stack">
-        <strong>${at("clientList")}</strong>
-        ${clients.length ? clients.map((client, index) => `
+        <strong>${state.accountantShowAllClients ? at("clientList") : at("recentClients")}</strong>
+        ${visibleClients.length ? visibleClients.map((client, index) => `
           <button class="list-item" type="button" data-open-accountant-client="${escapeAttr(client.user_id)}">
             <span class="list-main">
               <span class="list-title">${index + 1}. ${escapeHtml(client.first_name || "Client")}</span>
@@ -3119,6 +3127,8 @@ function accountantLanding() {
             <span class="pill">${Number(client.receipt_count || 0) + Number(client.income_count || 0)} ${at("records")}</span>
           </button>
         `).join("") : `<div class="empty">${state.accountantPortalEmail ? at("noClients") : at("signInFirst")}</div>`}
+        ${clients.length > 3 && !state.accountantShowAllClients ? `<button class="secondary" type="button" data-action="showAllAccountantClients">${at("showAllClients")}</button>` : ""}
+        ${state.accountantShowAllClients ? `<button class="secondary" type="button" data-action="showRecentAccountantClients">${at("recentClients")}</button>` : ""}
       </div>
       <div class="card stack">
         <strong>${at("howAccessWorks")}</strong>
@@ -3872,6 +3882,7 @@ document.addEventListener("click", async (event) => {
     state.accountantPendingEmail = "";
     state.accountantDisplayName = "";
     state.accountantCodeSent = false;
+    state.accountantShowAllClients = false;
     state.accountantClients = [];
     state.accountantClientRecords = null;
     state.accountantSelectedClientId = null;
@@ -3881,6 +3892,14 @@ document.addEventListener("click", async (event) => {
     await deviceForget("rb_accountant_portal_email");
     await deviceForget("rb_accountant_display_name");
     toast("Signed out.");
+    return render();
+  }
+  if (action === "showAllAccountantClients") {
+    state.accountantShowAllClients = true;
+    return render();
+  }
+  if (action === "showRecentAccountantClients") {
+    state.accountantShowAllClients = false;
     return render();
   }
   if (action === "downloadAccountantClientCsv") {
@@ -4288,9 +4307,11 @@ document.addEventListener("submit", async (event) => {
         toast("Login code sent.");
       } else if (step === "verify") {
         await verifyAccountantCode(accountantEmail, data.code || "");
+        state.accountantShowAllClients = false;
         toast("Signed in.");
       } else {
         await loadAccountantClients(accountantEmail);
+        state.accountantShowAllClients = false;
         toast("Clients loaded.");
       }
       return render();
