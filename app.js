@@ -2268,16 +2268,18 @@ function compactIncomeProofs(proofs = {}) {
     name: proof?.name || proof?.proof_name || "Income proof",
     type: proof?.type || proof?.proof_type || "",
     attached: Boolean(proof?.attached || proof?.name || proof?.proof_name || proof?.data),
-    description: proof?.description || ""
+    description: proof?.description || "",
+    preview: typeof proof?.preview === "string" && proof.preview.startsWith("data:image/") ? proof.preview : ""
   }]));
 }
 
-function incomeProofMeta(file, description = "") {
+function incomeProofMeta(file, description = "", preview = "") {
   return {
     name: file?.name || "Income proof",
     type: file?.type || "",
     attached: true,
-    description: description || ""
+    description: description || "",
+    preview: preview || ""
   };
 }
 
@@ -2296,7 +2298,7 @@ function attachIncomeProofs(items) {
   return (items || []).map((item) => {
     const proof = proofForIncome(item.id);
     const description = item.description || item.note || item.details || proof?.description || "";
-    return proof ? { ...item, description, proof_name: proof.name, proof_type: proof.type } : { ...item, description };
+    return proof ? { ...item, description, proof_name: proof.name, proof_type: proof.type, proof_preview: proof.preview || "" } : { ...item, description };
   });
 }
 
@@ -3016,7 +3018,7 @@ function incomeDetail() {
         <label class="field"><span>${t("amount")}</span><input class="input" name="amount" inputmode="decimal" value="${entry.amount || 0}"></label>
         <label class="field"><span>${t("currency")}</span><select class="select" name="currency">${currencyOptions(entry.currency || "GBP")}</select></label>
         <label class="field"><span>${t("description")}</span><textarea class="textarea" name="description">${escapeHtml(entry.description || "")}</textarea></label>
-        ${hasProof ? `<div class="card muted">${t("proofAttached")}: ${escapeHtml(entry.proof_name || t("attachProof"))}</div>` : `<div class="field">
+        ${hasProof ? `<div class="card muted">${t("proofAttached")}: ${escapeHtml(entry.proof_name || t("attachProof"))}</div>${entry.proof_preview ? `<img class="receipt-preview" src="${entry.proof_preview}" alt="${escapeAttr(t("proofAttached"))}">` : ""}` : `<div class="field">
           <span>${t("attachProof")}</span>
           <div class="proof-actions">
             <button class="secondary" type="button" data-action="pickIncomeProofPhoto">${t("takePhoto")}</button>
@@ -3757,6 +3759,25 @@ function fileToDataUrl(file) {
   });
 }
 
+async function imageThumbnailDataUrl(file, maxSize = 520, quality = 0.72) {
+  if (!file?.type?.startsWith("image/")) return "";
+  const dataUrl = await fileToDataUrl(file);
+  return await new Promise((resolve) => {
+    const image = new Image();
+    image.onload = () => {
+      const scale = Math.min(1, maxSize / Math.max(image.width, image.height));
+      const canvas = document.createElement("canvas");
+      canvas.width = Math.max(1, Math.round(image.width * scale));
+      canvas.height = Math.max(1, Math.round(image.height * scale));
+      const context = canvas.getContext("2d");
+      context.drawImage(image, 0, 0, canvas.width, canvas.height);
+      resolve(canvas.toDataURL("image/jpeg", quality));
+    };
+    image.onerror = () => resolve("");
+    image.src = dataUrl;
+  });
+}
+
 function incomeProofFile(form) {
   return form.elements.proof_photo?.files?.[0] || form.elements.proof_file?.files?.[0] || null;
 }
@@ -4212,7 +4233,7 @@ document.addEventListener("click", async (event) => {
   }
 });
 
-document.addEventListener("change", (event) => {
+document.addEventListener("change", async (event) => {
   if (event.target.name === "language") {
     state.language = event.target.value;
     write("rb_language", state.language);
@@ -4226,7 +4247,8 @@ document.addEventListener("change", (event) => {
     const preview = form?.querySelector("[data-proof-preview]");
     if (preview && file) {
       preview.hidden = false;
-      preview.textContent = `${t("proofAttached")}: ${file.name || t("attachProof")}`;
+      const imagePreview = await imageThumbnailDataUrl(file, 360, 0.68);
+      preview.innerHTML = `${escapeHtml(t("proofAttached"))}: ${escapeHtml(file.name || t("attachProof"))}${imagePreview ? `<img class="receipt-preview" src="${imagePreview}" alt="${escapeAttr(t("proofAttached"))}">` : ""}`;
     }
   }
   if (event.target.name === "delete_confirm") {
@@ -4358,28 +4380,46 @@ document.addEventListener("submit", async (event) => {
       });
       const proof = incomeProofFile(form);
       if (proof && created?.id) {
-        saveIncomeMeta(created.id, incomeProofMeta(proof, data.description || ""));
+        const preview = await imageThumbnailDataUrl(proof);
+        saveIncomeMeta(created.id, incomeProofMeta(proof, data.description || "", preview));
       } else if (created?.id && data.description) {
         saveIncomeMeta(created.id, { description: data.description });
       }
-      await refresh();
+      if (created?.id) {
+        const localIncome = {
+          ...created,
+          amount,
+          currency: data.currency,
+          description: data.description || created.description || "",
+          timestamp: created.timestamp || created.created_at || (data.date ? new Date(`${data.date}T12:00:00`).toISOString() : new Date().toISOString())
+        };
+        state.income = attachIncomeProofs([...state.income.filter((item) => item.id !== created.id), localIncome]);
+      }
       toast(t("saved"));
       return go("home");
     }
     if (form.id === "incomeEditForm") {
       const amount = normalizeAmount(data.amount);
       if (!Number.isFinite(amount) || amount <= 0) throw new Error("Enter a valid amount.");
-      await api(`/api/income/${state.selected}`, {
+      const updated = await api(`/api/income/${state.selected}`, {
         method: "PATCH",
         body: JSON.stringify({ amount, currency: data.currency, description: data.description || null })
       });
       const proof = incomeProofFile(form);
       if (proof && state.selected) {
-        saveIncomeMeta(state.selected, incomeProofMeta(proof, data.description || ""));
+        const preview = await imageThumbnailDataUrl(proof);
+        saveIncomeMeta(state.selected, incomeProofMeta(proof, data.description || "", preview));
       } else if (state.selected) {
         saveIncomeMeta(state.selected, { description: data.description || "" });
       }
-      await refresh();
+      state.income = attachIncomeProofs(state.income.map((item) => item.id === state.selected ? {
+        ...item,
+        ...updated,
+        amount,
+        currency: data.currency,
+        description: data.description || "",
+        timestamp: updated?.timestamp || item.timestamp
+      } : item));
       toast(t("saved"));
       return go("home");
     }

@@ -38,4 +38,5 @@
 - Current receipt photos are stored in MongoDB as base64 data.
 - Income proofs in the PWA are currently kept as lightweight "proof attached" metadata only, to avoid mobile browser storage quota errors.
 - Add backend storage for income proof photos/PDFs before relying on them as full downloadable evidence.
+- Income proof files should not go through OpenAI/OCR by default. Users enter amount, date and description manually, while the proof file goes straight to storage and Mongo keeps only metadata plus a file reference.
 - Plan migration to external file storage later, keeping only metadata and file URL/reference in MongoDB.
