@@ -39,10 +39,10 @@ const MARKETING_COPY = {
     trySafe: "Try it safely: take a photo, check the result, download your summary, and delete your account/data any time from Settings.",
     appDemoKind: "For self-employed", appDemoTitle: "See the receipt flow before signing in.", appDemoText: "TidGo is built around one simple habit: take the photo now, send a cleaner pack later.",
     accountantDemoKind: "For accountants", accountantDemoTitle: "See the client handoff before signing in.", accountantDemoText: "The accountant portal is read-only. Clients keep records tidy; you get a cleaner pack when it is time to work.",
-    demoHomeScreen: "Home", demoHomeTitle: "Start from a simple home screen", demoHomeText: "The main actions are right there: add an expense, add income, paid for client, or open the monthly summary.",
+    demoHomeScreen: "Home", demoHomeTitle: "Start from a simple home screen", demoHomeText: "The main actions are right there: add an expense, add income, or open the monthly summary.",
     demoReceiptScreen: "Receipt photo", demoReceiptTitle: "Snap the receipt", demoReceiptText: "Take or upload a photo. TidGo confirms it has received the receipt with a small friendly message.", demoReceiptCallout: "Friendly confirmation after the receipt is received.",
     demoDetailsScreen: "Check details", demoDetailsTitle: "Review before saving", demoDetailsText: "You can correct the amount, category, currency or shop before it goes into your records.",
-    demoSummaryScreen: "Monthly summary", demoSummaryTitle: "Send the pack", demoSummaryText: "Income, expenses and paid-for-client records are grouped by currency, ready for your accountant.",
+    demoSummaryScreen: "Monthly summary", demoSummaryTitle: "Send the pack", demoSummaryText: "Income and expenses are grouped by currency, ready for your accountant.",
     demoAccessScreen: "Accountant access", demoAccessTitle: "Sign in with accountant email", demoAccessText: "The portal uses an email code, then shows the connected accountant account on this device.",
     demoClientsScreen: "Client list", demoClientsTitle: "See connected clients", demoClientsText: "Only clients who gave consent appear in your list. You can open each client from one simple view.",
     demoRecordsScreen: "Client records", demoRecordsTitle: "Download the client pack", demoRecordsText: "Open a client, check totals, request missing docs, then download CSV or PDF."
@@ -90,10 +90,10 @@ MARKETING_COPY.ro = { ...MARKETING_COPY.en,
   trySafe: "Incearca in siguranta: fa o poza, verifica rezultatul, descarca sumarul si sterge contul/datele oricand din setari.",
   appDemoKind: "Pentru self-employed", appDemoTitle: "Vezi fluxul bonului inainte de autentificare.", appDemoText: "TidGo se bazeaza pe un obicei simplu: faci poza acum, trimiti un pachet mai curat mai tarziu.",
   accountantDemoKind: "Pentru contabili", accountantDemoTitle: "Vezi predarea clientului inainte de autentificare.", accountantDemoText: "Portalul contabilului este doar pentru citire. Clientii isi tin evidentele ordonate; tu primesti un pachet mai curat pentru lucru.",
-  demoHomeScreen: "Start", demoHomeTitle: "Porneste de la un ecran simplu", demoHomeText: "Actiunile principale sunt la indemana: adauga cheltuiala, venit, platit pentru client sau deschide sumarul lunar.",
+  demoHomeScreen: "Start", demoHomeTitle: "Porneste de la un ecran simplu", demoHomeText: "Actiunile principale sunt la indemana: adauga cheltuiala, venit sau deschide sumarul lunar.",
   demoReceiptScreen: "Poza bon", demoReceiptTitle: "Fotografiaza bonul", demoReceiptText: "Fa sau incarca o poza. TidGo confirma prietenos ca bonul a fost primit.", demoReceiptCallout: "Confirmare prietenoasa dupa primirea bonului.",
   demoDetailsScreen: "Verifica datele", demoDetailsTitle: "Revizuieste inainte de salvare", demoDetailsText: "Poti corecta suma, categoria, moneda sau magazinul inainte sa intre in evidente.",
-  demoSummaryScreen: "Sumar lunar", demoSummaryTitle: "Trimite pachetul", demoSummaryText: "Veniturile, cheltuielile si platile pentru client sunt grupate pe moneda, gata pentru contabil.",
+  demoSummaryScreen: "Sumar lunar", demoSummaryTitle: "Trimite pachetul", demoSummaryText: "Veniturile si cheltuielile sunt grupate pe moneda, gata pentru contabil.",
   demoAccessScreen: "Acces contabil", demoAccessTitle: "Autentificare cu emailul contabilului", demoAccessText: "Portalul foloseste un cod pe email, apoi arata contul conectat pe acest dispozitiv.",
   demoClientsScreen: "Lista clienti", demoClientsTitle: "Vezi clientii conectati", demoClientsText: "Apar doar clientii care au dat acordul. Fiecare client se deschide dintr-un ecran simplu.",
   demoRecordsScreen: "Evidente client", demoRecordsTitle: "Descarca pachetul clientului", demoRecordsText: "Deschide clientul, verifica totalurile, cere documente lipsa si descarca CSV sau PDF."
@@ -281,7 +281,7 @@ const ACCOUNTANT_COPY = {
     loginCode: "Login code",
     verifyCode: "Verify code",
     handoffTitle: "Built for accountant handoff",
-    handoffText: "Clients keep receipts, income proof and paid-for-client costs tidy through the month. You get a read-only view and a clean pack when it is time to work.",
+    handoffText: "Clients keep receipts and income proof tidy through the month. You get a read-only view and a clean pack when it is time to work.",
     clientAccess: "Client access",
     readOnly: "Read only",
     clientPermission: "Client permission",
@@ -347,7 +347,7 @@ const ACCOUNTANT_COPY = {
     loginCode: "Kod logowania",
     verifyCode: "Sprawdz kod",
     handoffTitle: "Zrobione pod przekazanie ksiegowemu",
-    handoffText: "Klienci trzymaja paragony, dowody przychodu i koszty do odzyskania w porzadku przez miesiac. Ty dostajesz podglad tylko do odczytu i czysta paczke do pracy.",
+    handoffText: "Klienci trzymaja paragony i dowody przychodu w porzadku przez miesiac. Ty dostajesz podglad tylko do odczytu i czysta paczke do pracy.",
     clientAccess: "Dostep klienta",
     readOnly: "Tylko odczyt",
     clientPermission: "Zgoda klienta",
@@ -1860,8 +1860,8 @@ const state = {
 };
 
 const app = document.querySelector("#app");
-const expensePicker = document.querySelector("#expensePicker");
-const clientPicker = document.querySelector("#clientPicker");
+const expensePhotoPicker = document.querySelector("#expensePhotoPicker");
+const expenseFilePicker = document.querySelector("#expenseFilePicker");
 
 state.incomeProofs = compactIncomeProofs(state.incomeProofs);
 try {
@@ -2544,6 +2544,7 @@ function render() {
     verifySignup,
     recover,
     home,
+    expenseChoice,
     receipt,
     incomeDetail,
     incomeForm,
@@ -2947,14 +2948,27 @@ function home() {
         <span><span class="summary-icon" aria-hidden="true"></span> ${t("summary")}</span><strong>›</strong>
       </button>
       <div class="grid-2" style="margin-top:14px">
-        <button class="action blue" data-action="pickExpense"><span>${t("addExpense")}</span><small>${t("photoDone")}</small></button>
+        <button class="action blue" data-action="expenseChoice"><span>${t("addExpense")}</span><small>${t("photoDone")}</small></button>
         <button class="action green" data-action="incomeForm"><span>${t("addIncome")}</span><small>${t("amountNote")}</small></button>
       </div>
-      <button class="action client" style="width:100%;margin-top:10px" data-action="pickClient"><span>${t("paidForClient")}</span></button>
       <div class="list">
         ${items.length ? visibleItems.map(itemRow).join("") : `<div class="empty">${t("empty")}</div>`}
         ${items.length > transactionLimit ? `<button class="link-btn see-all-btn" data-action="showMoreTransactions">${t("seeMore")}</button>` : ""}
         ${transactionLimit > 4 ? `<button class="link-btn see-all-btn" data-action="showLessTransactions">${t("showLess")}</button>` : ""}
+      </div>
+    </section>
+  `);
+}
+
+function expenseChoice() {
+  shell(`
+    <section class="screen">
+      ${topbar(t("addExpense"), true)}
+      <div class="card stack">
+        <strong>${t("addExpense")}</strong>
+        <span class="hint">${t("proofHint")}</span>
+        <button class="primary" type="button" data-action="pickExpensePhoto">${t("takePhoto")}</button>
+        <button class="secondary" type="button" data-action="pickExpenseFile">${t("uploadFile")}</button>
       </div>
     </section>
   `);
@@ -3038,8 +3052,6 @@ function incomeDetail() {
 
 function summary() {
   const { receipts, income } = monthEntries();
-  const normal = receipts.filter((item) => !item.is_client_expense);
-  const client = receipts.filter((item) => item.is_client_expense);
   shell(`
     <section class="screen">
       ${topbar(t("summary"), true)}
@@ -3051,8 +3063,7 @@ function summary() {
       </div>
       <div class="total-box">
         <div class="total-row"><span>${t("income")}</span><strong>${formatTotals(income)}</strong></div>
-        <div class="total-row"><span>${t("expenses")}</span><strong>${formatTotals(normal)}</strong></div>
-        <div class="total-row"><span>${t("client")}</span><strong>${formatTotals(client)}</strong></div>
+        <div class="total-row"><span>${t("expenses")}</span><strong>${formatTotals(receipts)}</strong></div>
       </div>
       <p class="subtitle">${state.summaryPeriod === "quarter" ? t("quarterReady") : t("note")}</p>
       <div class="card muted" style="margin-bottom:12px">${t("submissionHint")}</div>
@@ -3220,13 +3231,11 @@ function accountantLanding() {
 function accountantDemoClient() {
   const client = (state.accountantClients || []).find((item) => item.user_id === state.accountantSelectedClientId);
   const records = state.accountantClientRecords || { receipts: [], income: [] };
-  const receipts = (records.receipts || []).filter(recordInCurrentPeriod);
+  const receipts = (records.receipts || []).filter((item) => !item.is_client_expense).filter(recordInCurrentPeriod);
   const income = attachIncomeProofs(records.income || []).filter(recordInCurrentPeriod);
-  const expenses = receipts.filter((item) => !item.is_client_expense);
-  const paidForClient = receipts.filter((item) => item.is_client_expense);
   const rows = [
     ...income.map((item) => ({ ...item, type: "income", timestamp: item.timestamp || item.created_at })),
-    ...receipts.map((item) => ({ ...item, type: item.is_client_expense ? "paid_for_client" : "expense", timestamp: item.timestamp || item.created_at }))
+    ...receipts.map((item) => ({ ...item, type: "expense", timestamp: item.timestamp || item.created_at }))
   ].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
   if (!client) {
     return shell(`
@@ -3258,8 +3267,7 @@ function accountantDemoClient() {
       </div>
       <div class="insight-grid">
         <div class="insight-card"><span>${at("income")}</span><strong>${formatTotals(income)}</strong></div>
-        <div class="insight-card"><span>${at("expenses")}</span><strong>${formatTotals(expenses)}</strong></div>
-        <div class="insight-card"><span>${at("paidForClient")}</span><strong>${formatTotals(paidForClient)}</strong></div>
+        <div class="insight-card"><span>${at("expenses")}</span><strong>${formatTotals(receipts)}</strong></div>
         <div class="insight-card"><span>${at("records")}</span><strong>${rows.length}</strong></div>
       </div>
       <div class="grid-2" style="margin:12px 0">
@@ -3273,8 +3281,7 @@ function accountantDemoClient() {
       <button class="danger" style="width:100%;margin-bottom:12px" type="button" data-action="removeAccountantClient">${at("removeClient")}</button>
       <div class="total-box">
         <div class="total-row"><span>${at("income")}</span><strong>${formatTotals(income)}</strong></div>
-        <div class="total-row"><span>${at("expenses")}</span><strong>${formatTotals(expenses)}</strong></div>
-        <div class="total-row"><span>${at("paidForClient")}</span><strong>${formatTotals(paidForClient)}</strong></div>
+        <div class="total-row"><span>${at("expenses")}</span><strong>${formatTotals(receipts)}</strong></div>
       </div>
       <div class="list">
         ${rows.length ? rows.map(accountantRecordRow).join("") : `<div class="empty">${at("noRecords")}</div>`}
@@ -3285,8 +3292,6 @@ function accountantDemoClient() {
 
 function accountantPortal() {
   const { receipts, income } = monthEntries();
-  const normal = receipts.filter((item) => !item.is_client_expense);
-  const client = receipts.filter((item) => item.is_client_expense);
   const last = transactions()[0];
   const lastDate = last ? day(last.timestamp) : t("unknown");
   const needsChase = !last || daysSince(last.timestamp) > 21;
@@ -3329,8 +3334,7 @@ function accountantPortal() {
       </div>
       <div class="total-box">
         <div class="total-row"><span>${t("income")}</span><strong>${formatTotals(income)}</strong></div>
-        <div class="total-row"><span>${t("expenses")}</span><strong>${formatTotals(normal)}</strong></div>
-        <div class="total-row"><span>${t("client")}</span><strong>${formatTotals(client)}</strong></div>
+        <div class="total-row"><span>${t("expenses")}</span><strong>${formatTotals(receipts)}</strong></div>
       </div>
       <div class="list">${[...income.map(incomeSummaryRow), ...receipts.map(receiptSummaryRow)].join("") || `<div class="empty">${t("noEntries")}</div>`}</div>
     </section>
@@ -3384,7 +3388,7 @@ function categoryChips(active = "other") {
 
 function transactions() {
   return [
-    ...state.receipts.map((item) => ({ type: "receipt", timestamp: item.timestamp, item })),
+    ...state.receipts.filter((item) => !item.is_client_expense).map((item) => ({ type: "receipt", timestamp: item.timestamp, item })),
     ...state.income.map((item) => ({ type: "income", timestamp: item.timestamp, item }))
   ].sort((a, b) => appDate(b.timestamp) - appDate(a.timestamp));
 }
@@ -3399,14 +3403,14 @@ function itemRow(row) {
   }
   const item = row.item;
   return `<button class="list-item" data-open-receipt="${item.id}">
-    <span class="list-main"><span class="list-title">${escapeHtml(item.merchant || t("unknown"))}</span><span class="list-meta">${item.is_client_expense ? t("client") : t(item.category)} · ${day(item.timestamp)}</span></span>
-    <span class="amount ${item.is_client_expense ? "client" : "expense"}">${money(item.amount, item.currency)}</span>
+    <span class="list-main"><span class="list-title">${escapeHtml(item.merchant || t("unknown"))}</span><span class="list-meta">${t(item.category)} · ${day(item.timestamp)}</span></span>
+    <span class="amount expense">${money(item.amount, item.currency)}</span>
   </button>`;
 }
 
 function monthEntries() {
   return {
-    receipts: state.receipts.filter(recordInCurrentPeriod),
+    receipts: state.receipts.filter((item) => !item.is_client_expense).filter(recordInCurrentPeriod),
     income: state.income.filter(recordInCurrentPeriod)
   };
 }
@@ -3497,9 +3501,9 @@ function accountantClientCsv() {
   const client = (state.accountantClients || []).find((item) => item.user_id === state.accountantSelectedClientId);
   const records = state.accountantClientRecords || { receipts: [], income: [] };
   const income = (records.income || []).filter(recordInCurrentPeriod);
-  const receipts = (records.receipts || []).filter(recordInCurrentPeriod);
+  const receipts = (records.receipts || []).filter((item) => !item.is_client_expense).filter(recordInCurrentPeriod);
   const rows = [
-    ["client", "period", "type", "date", "amount", "currency", "description", "paid_for_client", "proof_available", "accountant_notes"],
+    ["client", "period", "type", "date", "amount", "currency", "description", "proof_available", "accountant_notes"],
     ...income.map((item) => [
       client?.first_name || "Client",
       periodLabel(),
@@ -3508,19 +3512,17 @@ function accountantClientCsv() {
       Number(item.amount || 0).toFixed(2),
       item.currency || "GBP",
       item.description || "",
-      "",
       item.image_base64 ? "yes" : "no",
       ""
     ]),
     ...receipts.map((item) => [
       client?.first_name || "Client",
       periodLabel(),
-      item.is_client_expense ? "paid_for_client" : "expense",
+      "expense",
       dateInputValue(item.timestamp || item.created_at),
       Number(item.amount || 0).toFixed(2),
       item.currency || "GBP",
       item.merchant || item.category || "",
-      item.is_client_expense ? "yes" : "no",
       item.image_base64 ? "yes" : "no",
       ""
     ])
@@ -3536,10 +3538,8 @@ function createAccountantClientPdfFile() {
 
   const client = (state.accountantClients || []).find((item) => item.user_id === state.accountantSelectedClientId);
   const records = state.accountantClientRecords || { receipts: [], income: [] };
-  const receipts = (records.receipts || []).filter(recordInCurrentPeriod);
+  const receipts = (records.receipts || []).filter((item) => !item.is_client_expense).filter(recordInCurrentPeriod);
   const income = (records.income || []).filter(recordInCurrentPeriod);
-  const expenses = receipts.filter((item) => !item.is_client_expense);
-  const paidForClient = receipts.filter((item) => item.is_client_expense);
   const doc = new jsPdf({ unit: "pt", format: "a4" });
   const pageWidth = doc.internal.pageSize.getWidth();
   const pageHeight = doc.internal.pageSize.getHeight();
@@ -3559,16 +3559,14 @@ function createAccountantClientPdfFile() {
   line([client?.first_name || "Client", client?.trade || "", client?.email || ""].filter(Boolean).join(" | "), 11);
   y += 8;
   line("Income: " + formatTotals(income), 12, "bold");
-  line("Expenses: " + formatTotals(expenses), 12, "bold");
-  line("Paid for client: " + formatTotals(paidForClient), 12, "bold");
+  line("Expenses: " + formatTotals(receipts), 12, "bold");
   y += 10;
   line(dt("pdfLine"), 9);
   y += 14;
 
   const rows = [
     ...income.map((item) => [day(item.timestamp || item.created_at), "Income", item.description || "Income", money(item.amount, item.currency)]),
-    ...expenses.map((item) => [day(item.timestamp || item.created_at), "Expense", item.merchant || item.category || "Expense", money(item.amount, item.currency)]),
-    ...paidForClient.map((item) => [day(item.timestamp || item.created_at), "Paid for client", item.merchant || item.category || "Paid for client", money(item.amount, item.currency)])
+    ...receipts.map((item) => [day(item.timestamp || item.created_at), "Expense", item.merchant || item.category || "Expense", money(item.amount, item.currency)])
   ];
 
   doc.setFontSize(10);
@@ -3653,7 +3651,7 @@ function csvCell(value) {
 function accountantCsv() {
   const { receipts, income } = monthEntries();
   const rows = [
-    ["type", "date", "amount", "currency", "merchant_or_description", "tidgo_category", "paid_for_client", "proof_available", "needs_review", "accountant_category", "accountant_notes", "approved"],
+    ["type", "date", "amount", "currency", "merchant_or_description", "tidgo_category", "proof_available", "needs_review", "accountant_category", "accountant_notes", "approved"],
     ...income.map((item) => [
       "income",
       dateInputValue(item.timestamp),
@@ -3661,7 +3659,6 @@ function accountantCsv() {
       item.currency || "GBP",
       item.description || "",
       "",
-      "no",
       item.proof_base64 || item.proof_name ? "yes" : "no",
       item.proof_base64 || item.proof_name ? "" : t("incomeWithoutProof"),
       "",
@@ -3669,13 +3666,12 @@ function accountantCsv() {
       ""
     ]),
     ...receipts.map((item) => [
-      item.is_client_expense ? "paid_for_client" : "expense",
+      "expense",
       dateInputValue(item.timestamp),
       Number(item.amount || 0).toFixed(2),
       item.currency || "GBP",
       item.merchant || "",
       item.category || "",
-      item.is_client_expense ? "yes" : "no",
       item.image_base64 ? "yes" : "no",
       [!item.merchant ? t("missingMerchant") : "", (!item.category || item.category === "other") ? t("missingCategory") : ""].filter(Boolean).join("; "),
       "",
@@ -3714,7 +3710,7 @@ function incomeSummaryRow(item) {
 }
 
 function receiptSummaryRow(item) {
-  return `<div class="list-item"><span><strong>${item.is_client_expense ? t("client") : t("expenses")}</strong><br><span class="list-meta">${day(item.timestamp)} · ${escapeHtml(item.merchant || t(item.category))}</span></span><span class="amount ${item.is_client_expense ? "client" : "expense"}">${money(item.amount, item.currency)}</span></div>`;
+  return `<div class="list-item"><span><strong>${t("expenses")}</strong><br><span class="list-meta">${day(item.timestamp)} · ${escapeHtml(item.merchant || t(item.category))}</span></span><span class="amount expense">${money(item.amount, item.currency)}</span></div>`;
 }
 
 function go(screen) {
@@ -3723,6 +3719,10 @@ function go(screen) {
 
 async function uploadReceipt(file, isClientExpense) {
   if (!file || !state.user?.id) return;
+  if (!file.type?.startsWith("image/")) {
+    toast("For now, expense upload needs an image or screenshot. PDF support needs backend storage.");
+    return;
+  }
   setBusy(true);
   toast(t("photoReady"));
   try {
@@ -3786,7 +3786,7 @@ function buildPrintHtml() {
   const { receipts, income } = monthEntries();
   const rows = [
     ...income.map((item) => ({ date: day(item.timestamp), type: t("income"), label: item.description || t("income"), amount: money(item.amount, item.currency) })),
-    ...receipts.map((item) => ({ date: day(item.timestamp), type: item.is_client_expense ? t("client") : t("expenses"), label: item.merchant || t(item.category), amount: money(item.amount, item.currency) }))
+    ...receipts.map((item) => ({ date: day(item.timestamp), type: t("expenses"), label: item.merchant || t(item.category), amount: money(item.amount, item.currency) }))
   ];
   const tableRows = rows.length
     ? rows.map((row) => `<tr><td>${escapeHtml(row.date)}</td><td>${escapeHtml(row.type)}</td><td>${escapeHtml(row.label)}</td><td class="print-money">${escapeHtml(row.amount)}</td></tr>`).join("")
@@ -3810,8 +3810,6 @@ async function createSummaryPdfFile() {
 
   const doc = new jsPdf({ unit: "pt", format: "a4" });
   const { receipts, income } = monthEntries();
-  const normal = receipts.filter((item) => !item.is_client_expense);
-  const client = receipts.filter((item) => item.is_client_expense);
   const pageWidth = doc.internal.pageSize.getWidth();
   const pageHeight = doc.internal.pageSize.getHeight();
   const margin = 42;
@@ -3830,8 +3828,7 @@ async function createSummaryPdfFile() {
   line([state.user?.first_name, state.user?.trade].filter(Boolean).join(" | "), 11);
   y += 8;
   line(t("income") + ": " + formatTotals(income), 12, "bold");
-  line(t("expenses") + ": " + formatTotals(normal), 12, "bold");
-  line(t("client") + ": " + formatTotals(client), 12, "bold");
+  line(t("expenses") + ": " + formatTotals(receipts), 12, "bold");
   y += 12;
   line(t("note"), 10);
   y += 6;
@@ -3840,8 +3837,7 @@ async function createSummaryPdfFile() {
 
   const rows = [
     ...income.map((item) => [day(item.timestamp), t("income"), item.description || t("income"), money(item.amount, item.currency)]),
-    ...normal.map((item) => [day(item.timestamp), t("expenses"), item.merchant || t(item.category), money(item.amount, item.currency)]),
-    ...client.map((item) => [day(item.timestamp), t("client"), item.merchant || t(item.category), money(item.amount, item.currency)])
+    ...receipts.map((item) => [day(item.timestamp), t("expenses"), item.merchant || t(item.category), money(item.amount, item.currency)])
   ];
 
   doc.setFontSize(10);
@@ -4085,8 +4081,15 @@ document.addEventListener("click", async (event) => {
     state.transactionLimit = 4;
     return render();
   }
-  if (action === "pickExpense") return expensePicker.click();
-  if (action === "pickClient") return clientPicker.click();
+  if (action === "expenseChoice") return go("expenseChoice");
+  if (action === "pickExpensePhoto") {
+    if (expensePhotoPicker) expensePhotoPicker.value = "";
+    return expensePhotoPicker?.click();
+  }
+  if (action === "pickExpenseFile") {
+    if (expenseFilePicker) expenseFilePicker.value = "";
+    return expenseFilePicker?.click();
+  }
   if (action === "prevMonth" || action === "nextMonth") {
     shiftSummaryPeriod(action === "prevMonth" ? -1 : 1);
     return render();
@@ -4490,8 +4493,8 @@ document.addEventListener("submit", async (event) => {
   }
 });
 
-expensePicker.addEventListener("change", (event) => uploadReceipt(event.target.files?.[0], false));
-clientPicker.addEventListener("change", (event) => uploadReceipt(event.target.files?.[0], true));
+expensePhotoPicker?.addEventListener("change", (event) => uploadReceipt(event.target.files?.[0], false));
+expenseFilePicker?.addEventListener("change", (event) => uploadReceipt(event.target.files?.[0], false));
 
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("/sw.js").catch(() => {});
