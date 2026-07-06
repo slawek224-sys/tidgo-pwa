@@ -676,8 +676,6 @@ const COPY = {
     quarterly: "Quarterly",
     taxQuarterly: "UK tax quarters",
     ukTaxQuarterly: "Quarterly for UK taxpayers",
-    currentUkQuarter: "Current UK Q",
-    previousUkQuarter: "Previous UK Q",
     quarterReady: "Quarter-ready records",
     addExpense: "Add expense",
     addIncome: "Add income",
@@ -753,8 +751,6 @@ const COPY = {
     quarterly: "Kwartalne",
     taxQuarterly: "Kwartaly UK tax",
     ukTaxQuarterly: "Kwartalnie dla podatnikow UK",
-    currentUkQuarter: "Obecny UK Q",
-    previousUkQuarter: "Poprzedni UK Q",
     quarterReady: "Rekordy gotowe kwartalnie",
     addExpense: "Dodaj wydatek",
     addIncome: "Dodaj przychod",
@@ -2124,13 +2120,6 @@ function anchorSummaryDateToMonthStart() {
   state.summaryDate = new Date(state.summaryDate.getFullYear(), state.summaryDate.getMonth(), 1);
 }
 
-function rangeHasRecords(range, records = [...state.receipts, ...state.income]) {
-  return records.some((item) => {
-    const date = new Date(item?.timestamp || item?.created_at);
-    return !Number.isNaN(date.getTime()) && date >= range.start && date < range.endExclusive;
-  });
-}
-
 function monthLabel(date = state.summaryDate) {
   return date.toLocaleDateString(undefined, { month: "long", year: "numeric" });
 }
@@ -2188,43 +2177,15 @@ function shiftSummaryPeriod(direction) {
   if (state.summaryPeriod === "quarter" && state.quarterMode === "uk_tax") {
     const range = ukTaxQuarterRange(state.summaryDate);
     if (direction > 0) {
-      state.summaryDate = new Date(range.endExclusive.getFullYear(), range.endExclusive.getMonth(), range.endExclusive.getDate());
+      state.summaryDate = new Date(range.endExclusive.getFullYear(), range.endExclusive.getMonth(), range.endExclusive.getDate(), 12);
       return;
     }
     const previousDate = new Date(range.start);
     previousDate.setDate(previousDate.getDate() - 1);
-    state.summaryDate = previousDate;
+    state.summaryDate = new Date(previousDate.getFullYear(), previousDate.getMonth(), previousDate.getDate(), 12);
     return;
   }
   state.summaryDate.setMonth(state.summaryDate.getMonth() + (state.summaryPeriod === "quarter" ? direction * 3 : direction));
-}
-
-function focusCurrentUkTaxQuarter() {
-  state.summaryDate = new Date();
-}
-
-function focusPreviousUkTaxQuarter() {
-  const currentRange = ukTaxQuarterRange(new Date());
-  const previousDate = new Date(currentRange.start);
-  previousDate.setDate(previousDate.getDate() - 1);
-  state.summaryDate = previousDate;
-}
-
-function focusLatestUkTaxQuarterWithRecords() {
-  if (state.summaryPeriod !== "quarter" || state.quarterMode !== "uk_tax") return;
-  const currentRange = ukTaxQuarterRange(state.summaryDate);
-  if (rangeHasRecords(currentRange)) return;
-  let cursor = new Date(currentRange.start);
-  cursor.setDate(cursor.getDate() - 1);
-  for (let index = 0; index < 8; index += 1) {
-    const previousRange = ukTaxQuarterRange(cursor);
-    if (rangeHasRecords(previousRange)) {
-      state.summaryDate = new Date(previousRange.start.getFullYear(), previousRange.start.getMonth(), previousRange.start.getDate());
-      return;
-    }
-    cursor = new Date(previousRange.start);
-    cursor.setDate(cursor.getDate() - 1);
-  }
 }
 
 function periodFilePart() {
@@ -2234,12 +2195,6 @@ function periodFilePart() {
 function quarterModeControls() {
   if (state.summaryPeriod !== "quarter") return "";
   return `
-    ${state.quarterMode === "uk_tax" ? `
-      <div class="segmented segmented-compact">
-        <button data-action="currentUkQuarter">${t("currentUkQuarter")}</button>
-        <button data-action="previousUkQuarter">${t("previousUkQuarter")}</button>
-      </div>
-    ` : ""}
     <p class="hint quarter-hint">${state.quarterMode === "uk_tax" ? t("taxQuarterHint") : t("calendarQuarterHint")}</p>
   `;
 }
@@ -2491,7 +2446,6 @@ async function refresh() {
     state.receipts = receipts || [];
     state.income = attachIncomeProofs(income);
     state.accountantConsents = consents || [];
-    focusLatestUkTaxQuarterWithRecords();
   } catch (error) {
     toast(error.message || t("backendDown"));
   }
@@ -4023,7 +3977,6 @@ document.addEventListener("click", async (event) => {
     state.summaryPeriod = target.dataset.period === "quarter" ? "quarter" : "month";
     write("rb_summary_period", state.summaryPeriod);
     if (previousPeriod === "month" && state.summaryPeriod === "quarter") anchorSummaryDateToMonthStart();
-    focusLatestUkTaxQuarterWithRecords();
     return render();
   }
   if (action === "setSummaryView") {
@@ -4035,7 +3988,6 @@ document.addEventListener("click", async (event) => {
       state.summaryPeriod = "quarter";
       state.quarterMode = view === "uk_tax" ? "uk_tax" : "calendar";
       if (previousPeriod === "month") anchorSummaryDateToMonthStart();
-      if (state.quarterMode === "uk_tax") focusLatestUkTaxQuarterWithRecords();
     }
     write("rb_summary_period", state.summaryPeriod);
     write("rb_quarter_mode", state.quarterMode);
@@ -4045,15 +3997,6 @@ document.addEventListener("click", async (event) => {
     state.quarterMode = target.dataset.quarterMode === "uk_tax" ? "uk_tax" : "calendar";
     write("rb_quarter_mode", state.quarterMode);
     if (state.quarterMode === "uk_tax") anchorSummaryDateToMonthStart();
-    focusLatestUkTaxQuarterWithRecords();
-    return render();
-  }
-  if (action === "currentUkQuarter") {
-    focusCurrentUkTaxQuarter();
-    return render();
-  }
-  if (action === "previousUkQuarter") {
-    focusPreviousUkTaxQuarter();
     return render();
   }
   if (action === "printPdf") {
