@@ -2084,6 +2084,10 @@ function focusSummaryOnRecord(record) {
   state.summaryDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
 }
 
+function anchorSummaryDateToMonthStart() {
+  state.summaryDate = new Date(state.summaryDate.getFullYear(), state.summaryDate.getMonth(), 1);
+}
+
 function rangeHasRecords(range, records = [...state.receipts, ...state.income]) {
   return records.some((item) => {
     const date = new Date(item?.timestamp || item?.created_at);
@@ -3954,14 +3958,17 @@ document.addEventListener("click", async (event) => {
     return render();
   }
   if (action === "setSummaryPeriod") {
+    const previousPeriod = state.summaryPeriod;
     state.summaryPeriod = target.dataset.period === "quarter" ? "quarter" : "month";
     write("rb_summary_period", state.summaryPeriod);
+    if (previousPeriod === "month" && state.summaryPeriod === "quarter") anchorSummaryDateToMonthStart();
     focusLatestUkTaxQuarterWithRecords();
     return render();
   }
   if (action === "setQuarterMode") {
     state.quarterMode = target.dataset.quarterMode === "uk_tax" ? "uk_tax" : "calendar";
     write("rb_quarter_mode", state.quarterMode);
+    if (state.quarterMode === "uk_tax") anchorSummaryDateToMonthStart();
     focusLatestUkTaxQuarterWithRecords();
     return render();
   }
