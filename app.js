@@ -1863,6 +1863,14 @@ const app = document.querySelector("#app");
 const expensePicker = document.querySelector("#expensePicker");
 const clientPicker = document.querySelector("#clientPicker");
 
+state.incomeProofs = compactIncomeProofs(state.incomeProofs);
+try {
+  write("rb_income_proofs", state.incomeProofs);
+} catch {
+  state.incomeProofs = {};
+  forget("rb_income_proofs");
+}
+
 function isAccountantRoute() {
   return location.hostname.startsWith("accountant.") || location.pathname.replace(/\/+$/, "") === "/accountant";
 }
@@ -2255,10 +2263,26 @@ function proofForIncome(id) {
   return state.incomeProofs?.[id] || null;
 }
 
+function compactIncomeProofs(proofs = {}) {
+  return Object.fromEntries(Object.entries(proofs || {}).map(([id, proof]) => [id, {
+    name: proof?.name || proof?.proof_name || "Income proof",
+    type: proof?.type || proof?.proof_type || "",
+    attached: true
+  }]));
+}
+
+function incomeProofMeta(file) {
+  return {
+    name: file?.name || "Income proof",
+    type: file?.type || "",
+    attached: true
+  };
+}
+
 function attachIncomeProofs(items) {
   return (items || []).map((item) => {
     const proof = proofForIncome(item.id);
-    return proof ? { ...item, proof_name: proof.name, proof_type: proof.type, proof_base64: proof.data } : item;
+    return proof ? { ...item, proof_name: proof.name, proof_type: proof.type } : item;
   });
 }
 
@@ -2957,6 +2981,7 @@ function incomeForm() {
             <button class="secondary" type="button" data-action="pickIncomeProofFile">${t("uploadFile")}</button>
           </div>
           <span class="hint">${t("proofHint")}</span>
+          <div class="card muted proof-preview" data-proof-preview hidden></div>
           <input class="hidden" type="file" name="proof_photo" accept="image/*" capture="environment">
           <input class="hidden" type="file" name="proof_file" accept="image/*,.pdf">
         </div>
@@ -2983,11 +3008,11 @@ function incomeDetail() {
             <button class="secondary" type="button" data-action="pickIncomeProofFile">${t("uploadFile")}</button>
           </div>
           <span class="hint">${t("proofHint")}</span>
+          <div class="card muted proof-preview" data-proof-preview hidden></div>
           <input class="hidden" type="file" name="proof_photo" accept="image/*" capture="environment">
           <input class="hidden" type="file" name="proof_file" accept="image/*,.pdf">
         </div>
         ${entry.proof_name ? `<div class="card muted">${t("proofAttached")}: ${escapeHtml(entry.proof_name)}</div>` : ""}
-        ${entry.proof_base64 ? `<button class="secondary" type="button" data-action="viewIncomeProof">${t("viewProof")}</button>` : ""}
         <button class="primary" type="submit">${t("save")}</button>
       </form>
       <button class="danger" style="width:100%;margin-top:12px" data-action="deleteIncome">${t("delete")}</button>
@@ -4013,12 +4038,8 @@ document.addEventListener("click", async (event) => {
   if (action === "pickIncomeProofPhoto" || action === "pickIncomeProofFile") {
     const form = target.closest("form");
     const field = action === "pickIncomeProofPhoto" ? "proof_photo" : "proof_file";
+    if (form?.elements[field]) form.elements[field].value = "";
     form?.elements[field]?.click();
-    return;
-  }
-  if (action === "viewIncomeProof") {
-    const entry = state.income.find((item) => item.id === state.selected);
-    if (entry?.proof_base64) window.open(entry.proof_base64, "_blank", "noopener");
     return;
   }
   if (action === "showMoreTransactions") {
@@ -4183,6 +4204,17 @@ document.addEventListener("change", (event) => {
     write("rb_language", state.language);
     render();
   }
+  if (event.target.name === "proof_photo" || event.target.name === "proof_file") {
+    const form = event.target.closest("form");
+    const otherName = event.target.name === "proof_photo" ? "proof_file" : "proof_photo";
+    if (form?.elements[otherName]) form.elements[otherName].value = "";
+    const file = event.target.files?.[0];
+    const preview = form?.querySelector("[data-proof-preview]");
+    if (preview && file) {
+      preview.hidden = false;
+      preview.textContent = `${t("proofAttached")}: ${file.name || t("attachProof")}`;
+    }
+  }
   if (event.target.name === "delete_confirm") {
     const button = document.querySelector("[data-delete-account-button]");
     if (button) button.disabled = !event.target.checked;
@@ -4312,7 +4344,7 @@ document.addEventListener("submit", async (event) => {
       });
       const proof = incomeProofFile(form);
       if (proof && created?.id) {
-        state.incomeProofs[created.id] = { name: proof.name, type: proof.type, data: await fileToDataUrl(proof) };
+        state.incomeProofs[created.id] = incomeProofMeta(proof);
         write("rb_income_proofs", state.incomeProofs);
       }
       await refresh();
@@ -4328,7 +4360,7 @@ document.addEventListener("submit", async (event) => {
       });
       const proof = incomeProofFile(form);
       if (proof && state.selected) {
-        state.incomeProofs[state.selected] = { name: proof.name, type: proof.type, data: await fileToDataUrl(proof) };
+        state.incomeProofs[state.selected] = incomeProofMeta(proof);
         write("rb_income_proofs", state.incomeProofs);
       }
       await refresh();
