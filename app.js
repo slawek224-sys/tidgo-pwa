@@ -3199,7 +3199,6 @@ function accountantDemoClient() {
         <button class="secondary" type="button" data-action="requestDemoDocs">${at("requestDocs")}</button>
         ${infoTip(at("requestDocsInfo"))}
       </div>
-      <p class="hint">${t("requestDocsBackendNeeded")}</p>
       <button class="danger" style="width:100%;margin-bottom:12px" type="button" data-action="removeAccountantClient">${at("removeClient")}</button>
       <div class="total-box">
         <div class="total-row"><span>${at("income")}</span><strong>${formatTotals(income)}</strong></div>
