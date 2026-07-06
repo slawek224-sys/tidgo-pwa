@@ -273,8 +273,9 @@ const ACCOUNTANT_COPY = {
     nameOrPractice: "Name or practice",
     accountantEmail: "Accountant email",
     showConnectedClients: "Show connected clients",
-    refreshClients: "Refresh clients",
-    showAllClients: "Show all clients",
+    openClientList: "Open client list",
+    backToOverview: "Back to overview",
+    searchClients: "Search clients",
     signOut: "Sign out",
     sendLoginCode: "Send login code",
     loginCode: "Login code",
@@ -287,7 +288,6 @@ const ACCOUNTANT_COPY = {
     required: "Required",
     connectedClients: "Connected clients",
     clientList: "Client list",
-    recentClients: "Recent clients",
     noClients: "No clients have connected this email yet.",
     signInFirst: "Sign in with your accountant email code first.",
     noTrade: "No trade set",
@@ -339,8 +339,9 @@ const ACCOUNTANT_COPY = {
     nameOrPractice: "Imie lub nazwa biura",
     accountantEmail: "Email ksiegowego",
     showConnectedClients: "Pokaz polaczonych klientow",
-    refreshClients: "Odswiez klientow",
-    showAllClients: "Pokaz wszystkich klientow",
+    openClientList: "Otworz liste klientow",
+    backToOverview: "Wroc do podgladu",
+    searchClients: "Szukaj klientow",
     signOut: "Wyloguj",
     sendLoginCode: "Wyslij kod logowania",
     loginCode: "Kod logowania",
@@ -353,7 +354,6 @@ const ACCOUNTANT_COPY = {
     required: "Wymagana",
     connectedClients: "Polaczeni klienci",
     clientList: "Lista klientow",
-    recentClients: "Ostatni klienci",
     noClients: "Zaden klient nie polaczyl jeszcze tego emaila.",
     signInFirst: "Najpierw zaloguj sie kodem na email ksiegowego.",
     noTrade: "Brak zawodu",
@@ -1834,7 +1834,8 @@ const state = {
   accountantClients: [],
   accountantClientRecords: null,
   accountantSelectedClientId: null,
-  accountantShowAllClients: false,
+  accountantClientListOpen: false,
+  accountantClientSearch: "",
   pendingSignupEmail: read("rb_pending_signup_email", ""),
   marketingLanguage: MARKETING_LANGUAGES[read("tg_marketing_language", "en")] ? read("tg_marketing_language", "en") : "en",
   marketingSection: read("tg_marketing_section", "how"),
@@ -3074,7 +3075,10 @@ function settings() {
 
 function accountantLanding() {
   const clients = state.accountantClients || [];
-  const visibleClients = state.accountantShowAllClients ? clients : clients.slice(0, 3);
+  const search = (state.accountantClientSearch || "").trim().toLowerCase();
+  const visibleClients = search
+    ? clients.filter((client) => [client.first_name, client.trade, client.email].some((value) => String(value || "").toLowerCase().includes(search)))
+    : clients;
   shell(`
     <section class="screen accountant-screen">
       ${topbar("")}
@@ -3096,7 +3100,7 @@ function accountantLanding() {
         `}
         ${state.accountantPortalEmail ? `
           <div class="grid-2">
-            <button class="primary" type="submit" name="step" value="load">${at("refreshClients")}</button>
+            <button class="primary" type="button" data-action="openAccountantClientList">${at("openClientList")}</button>
             <button class="secondary" type="button" data-action="signOutAccountant">${at("signOut")}</button>
           </div>
         ` : `
@@ -3116,20 +3120,22 @@ function accountantLanding() {
       <div class="card stack">
         <div class="total-row"><span>${at("connectedClients")} ${infoTip(at("connectedClientsInfo"))}</span><strong>${clients.length}</strong></div>
       </div>
-      <div class="card stack">
-        <strong>${state.accountantShowAllClients ? at("clientList") : at("recentClients")}</strong>
-        ${visibleClients.length ? visibleClients.map((client, index) => `
-          <button class="list-item" type="button" data-open-accountant-client="${escapeAttr(client.user_id)}">
-            <span class="list-main">
-              <span class="list-title">${index + 1}. ${escapeHtml(client.first_name || "Client")}</span>
-              <span class="list-meta">${escapeHtml(client.trade || at("noTrade"))} | ${escapeHtml(client.email || at("noEmail"))}</span>
-            </span>
-            <span class="pill">${Number(client.receipt_count || 0) + Number(client.income_count || 0)} ${at("records")}</span>
-          </button>
-        `).join("") : `<div class="empty">${state.accountantPortalEmail ? at("noClients") : at("signInFirst")}</div>`}
-        ${clients.length > 3 && !state.accountantShowAllClients ? `<button class="secondary" type="button" data-action="showAllAccountantClients">${at("showAllClients")}</button>` : ""}
-        ${state.accountantShowAllClients ? `<button class="secondary" type="button" data-action="showRecentAccountantClients">${at("recentClients")}</button>` : ""}
-      </div>
+      ${state.accountantClientListOpen ? `
+        <div class="card stack">
+          <strong>${at("clientList")}</strong>
+          <label class="field"><span>${at("searchClients")}</span><input class="input" name="accountant_client_search" data-accountant-client-search value="${escapeAttr(state.accountantClientSearch)}" placeholder="Dan, builder, email"></label>
+          ${visibleClients.length ? visibleClients.map((client, index) => `
+            <button class="list-item" type="button" data-open-accountant-client="${escapeAttr(client.user_id)}">
+              <span class="list-main">
+                <span class="list-title">${index + 1}. ${escapeHtml(client.first_name || "Client")}</span>
+                <span class="list-meta">${escapeHtml(client.trade || at("noTrade"))} | ${escapeHtml(client.email || at("noEmail"))}</span>
+              </span>
+              <span class="pill">${Number(client.receipt_count || 0) + Number(client.income_count || 0)} ${at("records")}</span>
+            </button>
+          `).join("") : `<div class="empty">${state.accountantPortalEmail ? at("noClients") : at("signInFirst")}</div>`}
+          <button class="secondary" type="button" data-action="closeAccountantClientList">${at("backToOverview")}</button>
+        </div>
+      ` : ""}
       <div class="card stack">
         <strong>${at("howAccessWorks")}</strong>
         <div class="total-row"><span>${at("clientAddsEmail")}</span><strong>${at("consentFirst")}</strong></div>
@@ -3882,7 +3888,8 @@ document.addEventListener("click", async (event) => {
     state.accountantPendingEmail = "";
     state.accountantDisplayName = "";
     state.accountantCodeSent = false;
-    state.accountantShowAllClients = false;
+    state.accountantClientListOpen = false;
+    state.accountantClientSearch = "";
     state.accountantClients = [];
     state.accountantClientRecords = null;
     state.accountantSelectedClientId = null;
@@ -3894,12 +3901,16 @@ document.addEventListener("click", async (event) => {
     toast("Signed out.");
     return render();
   }
-  if (action === "showAllAccountantClients") {
-    state.accountantShowAllClients = true;
+  if (action === "openAccountantClientList") {
+    state.accountantClientListOpen = true;
+    if (state.accountantPortalEmail && !state.accountantClients.length) {
+      await loadAccountantClients(state.accountantPortalEmail);
+    }
     return render();
   }
-  if (action === "showRecentAccountantClients") {
-    state.accountantShowAllClients = false;
+  if (action === "closeAccountantClientList") {
+    state.accountantClientListOpen = false;
+    state.accountantClientSearch = "";
     return render();
   }
   if (action === "downloadAccountantClientCsv") {
@@ -4145,6 +4156,13 @@ document.addEventListener("change", (event) => {
   }
 });
 
+document.addEventListener("input", (event) => {
+  if (event.target.matches("[data-accountant-client-search]")) {
+    state.accountantClientSearch = event.target.value || "";
+    render();
+  }
+});
+
 document.addEventListener("submit", async (event) => {
   event.preventDefault();
   const form = event.target;
@@ -4307,11 +4325,13 @@ document.addEventListener("submit", async (event) => {
         toast("Login code sent.");
       } else if (step === "verify") {
         await verifyAccountantCode(accountantEmail, data.code || "");
-        state.accountantShowAllClients = false;
+        state.accountantClientListOpen = false;
+        state.accountantClientSearch = "";
         toast("Signed in.");
       } else {
         await loadAccountantClients(accountantEmail);
-        state.accountantShowAllClients = false;
+        state.accountantClientListOpen = true;
+        state.accountantClientSearch = "";
         toast("Clients loaded.");
       }
       return render();
