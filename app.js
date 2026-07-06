@@ -686,6 +686,7 @@ const COPY = {
     addExpense: "Add expense",
     addIncome: "Add income",
     photoDone: "Take photo",
+    expenseHint: "Take a receipt photo or upload a receipt screenshot/image.",
     amountNote: "Amount and note",
     paidForClient: "Paid for client",
     settings: "Settings",
@@ -762,6 +763,7 @@ const COPY = {
     addExpense: "Dodaj wydatek",
     addIncome: "Dodaj przychod",
     photoDone: "Zrob zdjecie",
+    expenseHint: "Zrob zdjecie paragonu albo wgraj screenshot/obraz paragonu.",
     amountNote: "Kwota i opis",
     paidForClient: "Zaplacone za klienta",
     settings: "Ustawienia",
@@ -2966,9 +2968,15 @@ function expenseChoice() {
       ${topbar(t("addExpense"), true)}
       <div class="card stack">
         <strong>${t("addExpense")}</strong>
-        <span class="hint">${t("proofHint")}</span>
-        <button class="primary" type="button" data-action="pickExpensePhoto">${t("takePhoto")}</button>
-        <button class="secondary" type="button" data-action="pickExpenseFile">${t("uploadFile")}</button>
+        <span class="hint">${t("expenseHint")}</span>
+        <label class="primary file-label">
+          ${t("takePhoto")}
+          <input class="hidden" type="file" name="expense_photo" accept="image/*" capture="environment">
+        </label>
+        <label class="secondary file-label">
+          ${t("uploadFile")}
+          <input class="hidden" type="file" name="expense_file" accept="image/*,.pdf">
+        </label>
       </div>
     </section>
   `);
@@ -4253,6 +4261,9 @@ document.addEventListener("change", async (event) => {
       const imagePreview = await imageThumbnailDataUrl(file, 360, 0.68);
       preview.innerHTML = `${escapeHtml(t("proofAttached"))}: ${escapeHtml(file.name || t("attachProof"))}${imagePreview ? `<img class="receipt-preview" src="${imagePreview}" alt="${escapeAttr(t("proofAttached"))}">` : ""}`;
     }
+  }
+  if (event.target.name === "expense_photo" || event.target.name === "expense_file") {
+    await uploadReceipt(event.target.files?.[0], false);
   }
   if (event.target.name === "delete_confirm") {
     const button = document.querySelector("[data-delete-account-button]");
