@@ -2077,6 +2077,13 @@ function dateInputValue(value) {
   return Number.isNaN(date.getTime()) ? new Date().toISOString().slice(0, 10) : date.toISOString().slice(0, 10);
 }
 
+function focusSummaryOnRecord(record) {
+  const rawDate = record?.timestamp || record?.created_at || record?.date;
+  const date = new Date(rawDate);
+  if (Number.isNaN(date.getTime())) return;
+  state.summaryDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+}
+
 function monthLabel(date = state.summaryDate) {
   return date.toLocaleDateString(undefined, { month: "long", year: "numeric" });
 }
@@ -3601,6 +3608,7 @@ async function uploadReceipt(file, isClientExpense) {
       })
     });
     await refresh();
+    focusSummaryOnRecord(state.receipts.find((item) => item.id === receipt.id) || receipt);
     state.selected = receipt.id;
     state.screen = "receipt";
     render();
@@ -4136,7 +4144,7 @@ document.addEventListener("submit", async (event) => {
       const category = document.querySelector("[data-category].active")?.dataset.category || "other";
       const amount = normalizeAmount(data.amount);
       if (!Number.isFinite(amount) || amount < 0) throw new Error("Enter a valid amount.");
-      await api(`/api/receipts/${state.selected}`, {
+      const updatedReceipt = await api(`/api/receipts/${state.selected}`, {
         method: "PATCH",
         body: JSON.stringify({
           amount,
@@ -4146,6 +4154,7 @@ document.addEventListener("submit", async (event) => {
         })
       });
       await refresh();
+      focusSummaryOnRecord(state.receipts.find((item) => item.id === state.selected) || updatedReceipt);
       toast(t("saved"));
       return go("home");
     }
