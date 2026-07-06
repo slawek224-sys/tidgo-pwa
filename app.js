@@ -3075,10 +3075,6 @@ function settings() {
 
 function accountantLanding() {
   const clients = state.accountantClients || [];
-  const search = (state.accountantClientSearch || "").trim().toLowerCase();
-  const visibleClients = search
-    ? clients.filter((client) => [client.first_name, client.trade, client.email].some((value) => String(value || "").toLowerCase().includes(search)))
-    : clients;
   shell(`
     <section class="screen accountant-screen">
       ${topbar("")}
@@ -3124,15 +3120,19 @@ function accountantLanding() {
         <div class="card stack">
           <strong>${at("clientList")}</strong>
           <label class="field"><span>${at("searchClients")}</span><input class="input" name="accountant_client_search" data-accountant-client-search value="${escapeAttr(state.accountantClientSearch)}" placeholder="Dan, builder, email"></label>
-          ${visibleClients.length ? visibleClients.map((client, index) => `
-            <button class="list-item" type="button" data-open-accountant-client="${escapeAttr(client.user_id)}">
+          ${clients.length ? clients.map((client, index) => {
+            const searchText = [client.first_name, client.trade, client.email].map((value) => String(value || "")).join(" ").toLowerCase();
+            const visible = !state.accountantClientSearch || searchText.includes(state.accountantClientSearch.trim().toLowerCase());
+            return `
+            <button class="list-item ${visible ? "" : "hidden"}" type="button" data-open-accountant-client="${escapeAttr(client.user_id)}" data-accountant-client-row data-search-text="${escapeAttr(searchText)}">
               <span class="list-main">
                 <span class="list-title">${index + 1}. ${escapeHtml(client.first_name || "Client")}</span>
                 <span class="list-meta">${escapeHtml(client.trade || at("noTrade"))} | ${escapeHtml(client.email || at("noEmail"))}</span>
               </span>
               <span class="pill">${Number(client.receipt_count || 0) + Number(client.income_count || 0)} ${at("records")}</span>
             </button>
-          `).join("") : `<div class="empty">${state.accountantPortalEmail ? at("noClients") : at("signInFirst")}</div>`}
+          `}).join("") : ""}
+          <div class="empty ${clients.length ? "hidden" : ""}" data-accountant-client-empty>${state.accountantPortalEmail ? at("noClients") : at("signInFirst")}</div>
           <button class="secondary" type="button" data-action="closeAccountantClientList">${at("backToOverview")}</button>
         </div>
       ` : ""}
@@ -4158,8 +4158,16 @@ document.addEventListener("change", (event) => {
 
 document.addEventListener("input", (event) => {
   if (event.target.matches("[data-accountant-client-search]")) {
+    const query = (event.target.value || "").trim().toLowerCase();
     state.accountantClientSearch = event.target.value || "";
-    render();
+    let visibleCount = 0;
+    document.querySelectorAll("[data-accountant-client-row]").forEach((row) => {
+      const matches = !query || (row.dataset.searchText || "").includes(query);
+      row.classList.toggle("hidden", !matches);
+      if (matches) visibleCount += 1;
+    });
+    const empty = document.querySelector("[data-accountant-client-empty]");
+    if (empty) empty.classList.toggle("hidden", visibleCount > 0);
   }
 });
 
