@@ -10,6 +10,8 @@
 ## OCR date
 
 - Keep extracting the transaction date from the receipt where visible.
+- Treat two-digit receipt years as the current century unless the receipt clearly proves otherwise, for example `01/07/26` should become `2026-07-01`, not `2006-07-01`.
+- If OCR returns a very old date from a modern-looking receipt, flag it for review instead of silently saving it.
 - If the receipt date is missing or unclear, use upload date.
 - Consider returning a confidence / warning when date was guessed.
 - Add a "re-check receipt date" option for old receipts, so records uploaded before OCR/date fixes can be corrected without deleting and uploading again.

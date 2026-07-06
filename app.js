@@ -685,7 +685,7 @@ const COPY = {
     quarterReady: "Quarter-ready records",
     addExpense: "Add expense",
     addIncome: "Add income",
-    photoDone: "Photo done",
+    photoDone: "Take photo",
     amountNote: "Amount and note",
     paidForClient: "Paid for client",
     settings: "Settings",
@@ -726,6 +726,7 @@ const COPY = {
     backendDown: "Cannot reach TidGo API right now. Render may be waking up; try again in a moment.",
     installHint: "On iPhone: Share, then Add to Home Screen.",
     seeAll: "See all",
+    seeMore: "See more",
     showLess: "Show less",
     food: "Food",
     fuel: "Fuel",
@@ -760,7 +761,7 @@ const COPY = {
     quarterReady: "Rekordy gotowe kwartalnie",
     addExpense: "Dodaj wydatek",
     addIncome: "Dodaj przychod",
-    photoDone: "Zdjecie gotowe",
+    photoDone: "Zrob zdjecie",
     amountNote: "Kwota i opis",
     paidForClient: "Zaplacone za klienta",
     settings: "Ustawienia",
@@ -801,6 +802,7 @@ const COPY = {
     backendDown: "Nie moge teraz polaczyc sie z API TidGo. Render moze sie budzic; sprobuj za moment.",
     installHint: "Na iPhonie: Udostepnij, potem Dodaj do ekranu poczatkowego.",
     seeAll: "Pokaz wszystkie",
+    seeMore: "Pokaz wiecej",
     showLess: "Pokaz mniej",
     food: "Jedzenie",
     fuel: "Paliwo",
@@ -868,6 +870,7 @@ Object.assign(COPY, {
     note: "Un rezumat lunar ordonat. Taxele si partea desteapta raman la contabil.",
     installHint: "Pe iPhone: Share, apoi Add to Home Screen.",
     seeAll: "Vezi toate",
+    seeMore: "Vezi mai multe",
     showLess: "Arata mai putin",
     food: "Mancare",
     fuel: "Combustibil",
@@ -932,6 +935,7 @@ Object.assign(COPY, {
     note: "Акуратний місячний підсумок. Податки залишаємо справжньому бухгалтеру.",
     installHint: "На iPhone: Share, потім Add to Home Screen.",
     seeAll: "Показати всі",
+    seeMore: "Показати більше",
     showLess: "Показати менше",
     food: "Їжа",
     fuel: "Пальне",
@@ -996,6 +1000,7 @@ Object.assign(COPY, {
     note: "Tvarkinga mėnesio suvestinė. Mokesčius paliekame tikram buhalteriui.",
     installHint: "iPhone: Share, tada Add to Home Screen.",
     seeAll: "Rodyti visus",
+    seeMore: "Rodyti daugiau",
     showLess: "Rodyti mažiau",
     food: "Maistas",
     fuel: "Kuras",
@@ -1060,6 +1065,7 @@ Object.assign(COPY, {
     note: "Kārtīgs mēneša kopsavilkums. Nodokļus atstājam īstam grāmatvedim.",
     installHint: "iPhone: Share, tad Add to Home Screen.",
     seeAll: "Rādīt visus",
+    seeMore: "Rādīt vairāk",
     showLess: "Rādīt mazāk",
     food: "Pārtika",
     fuel: "Degviela",
@@ -1124,6 +1130,7 @@ Object.assign(COPY, {
     note: "Un resumen mensual ordenado. Los impuestos se quedan con el contable real.",
     installHint: "En iPhone: Share, luego Add to Home Screen.",
     seeAll: "Ver todo",
+    seeMore: "Ver más",
     showLess: "Ver menos",
     food: "Comida",
     fuel: "Combustible",
@@ -1188,6 +1195,7 @@ Object.assign(COPY, {
     note: "Подредено месечно обобщение. Данъците остават за истинския счетоводител.",
     installHint: "На iPhone: Share, после Add to Home Screen.",
     seeAll: "Покажи всички",
+    seeMore: "Покажи още",
     showLess: "Покажи по-малко",
     food: "Храна",
     fuel: "Гориво",
@@ -1847,7 +1855,7 @@ const state = {
   summaryDate: new Date(),
   summaryPeriod: read("rb_summary_period", "month") === "quarter" ? "quarter" : "month",
   quarterMode: read("rb_quarter_mode", "calendar") === "uk_tax" ? "uk_tax" : "calendar",
-  showAllTransactions: false,
+  transactionLimit: 4,
   loading: false
 };
 
@@ -2108,18 +2116,38 @@ function money(amount, currency = "GBP") {
   return `${Number(amount || 0).toFixed(2)} ${currency || "GBP"}`;
 }
 
+function appDate(value) {
+  if (!value) return new Date();
+  if (value instanceof Date) return value;
+  const text = String(value);
+  const dateOnly = text.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if (dateOnly) {
+    return new Date(Number(dateOnly[1]), Number(dateOnly[2]) - 1, Number(dateOnly[3]), 12);
+  }
+  const parsed = new Date(value);
+  return Number.isNaN(parsed.getTime()) ? new Date() : parsed;
+}
+
+function appDateKey(value) {
+  const date = appDate(value);
+  return [
+    date.getFullYear(),
+    String(date.getMonth() + 1).padStart(2, "0"),
+    String(date.getDate()).padStart(2, "0")
+  ].join("-");
+}
+
 function day(value) {
-  return new Date(value).toLocaleDateString(undefined, { day: "2-digit", month: "short" });
+  return appDate(value).toLocaleDateString(undefined, { day: "2-digit", month: "short" });
 }
 
 function dateInputValue(value) {
-  const date = new Date(value || Date.now());
-  return Number.isNaN(date.getTime()) ? new Date().toISOString().slice(0, 10) : date.toISOString().slice(0, 10);
+  return appDateKey(value || Date.now());
 }
 
 function focusSummaryOnRecord(record) {
   const rawDate = record?.timestamp || record?.created_at || record?.date;
-  const date = new Date(rawDate);
+  const date = appDate(rawDate);
   if (Number.isNaN(date.getTime())) return;
   state.summaryDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
 }
@@ -2869,7 +2897,8 @@ function recover() {
 
 function home() {
   const items = transactions();
-  const visibleItems = state.showAllTransactions ? items : items.slice(0, 4);
+  const transactionLimit = Math.max(4, state.transactionLimit || 4);
+  const visibleItems = items.slice(0, transactionLimit);
   shell(`
     <section class="screen">
       ${topbar("")}
@@ -2884,7 +2913,8 @@ function home() {
       <button class="action client" style="width:100%;margin-top:10px" data-action="pickClient"><span>${t("paidForClient")}</span></button>
       <div class="list">
         ${items.length ? visibleItems.map(itemRow).join("") : `<div class="empty">${t("empty")}</div>`}
-        ${items.length > 4 ? `<button class="link-btn see-all-btn" data-action="toggleTransactions">${state.showAllTransactions ? t("showLess") : t("seeAll")}</button>` : ""}
+        ${items.length > transactionLimit ? `<button class="link-btn see-all-btn" data-action="showMoreTransactions">${t("seeMore")}</button>` : ""}
+        ${transactionLimit > 4 ? `<button class="link-btn see-all-btn" data-action="showLessTransactions">${t("showLess")}</button>` : ""}
       </div>
     </section>
   `);
@@ -2919,7 +2949,7 @@ function incomeForm() {
         <label class="field"><span>${t("amount")}</span><input class="input" name="amount" inputmode="decimal" required></label>
         <label class="field"><span>${t("currency")}</span><select class="select" name="currency">${currencyOptions("GBP")}</select></label>
         <label class="field"><span>${t("description")}</span><textarea class="textarea" name="description"></textarea></label>
-        <label class="field"><span>${t("date")}</span><input class="input" type="date" name="date" value="${new Date().toISOString().slice(0, 10)}"></label>
+        <label class="field"><span>${t("date")}</span><input class="input" type="date" name="date" value="${dateInputValue()}"></label>
         <div class="field">
           <span>${t("attachProof")}</span>
           <div class="proof-actions">
@@ -3315,7 +3345,7 @@ function transactions() {
   return [
     ...state.receipts.map((item) => ({ type: "receipt", timestamp: item.timestamp, item })),
     ...state.income.map((item) => ({ type: "income", timestamp: item.timestamp, item }))
-  ].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+  ].sort((a, b) => appDate(b.timestamp) - appDate(a.timestamp));
 }
 
 function itemRow(row) {
@@ -3342,7 +3372,7 @@ function monthEntries() {
 
 function recordInCurrentPeriod(item) {
   const rawDate = item?.timestamp || item?.created_at;
-  const date = new Date(rawDate);
+  const date = appDate(rawDate);
   if (Number.isNaN(date.getTime())) return false;
   if (state.summaryPeriod === "quarter") {
     const range = quarterRange();
@@ -3353,16 +3383,16 @@ function recordInCurrentPeriod(item) {
 
 function daysSince(value) {
   if (!value) return Infinity;
-  return Math.floor((Date.now() - new Date(value).getTime()) / 86400000);
+  return Math.floor((Date.now() - appDate(value).getTime()) / 86400000);
 }
 
 function monthKey(date) {
-  const value = new Date(date);
+  const value = appDate(date);
   return `${value.getFullYear()}-${String(value.getMonth() + 1).padStart(2, "0")}`;
 }
 
 function shortMonthLabel(date) {
-  return new Date(date).toLocaleDateString(undefined, { month: "short", year: "numeric" });
+  return appDate(date).toLocaleDateString(undefined, { month: "short", year: "numeric" });
 }
 
 function recentMonthStats(count = 6) {
@@ -3389,7 +3419,7 @@ function reviewFlags() {
   });
   const seen = new Map();
   receipts.forEach((item) => {
-    const key = [new Date(item.timestamp).toISOString().slice(0, 10), item.amount, item.currency, item.merchant || ""].join("|");
+    const key = [dateInputValue(item.timestamp), item.amount, item.currency, item.merchant || ""].join("|");
     if (seen.has(key)) {
       flags.push({ label: t("possibleDuplicate"), receiptId: item.id, detail: t("duplicateHint") });
     } else {
@@ -3433,7 +3463,7 @@ function accountantClientCsv() {
       client?.first_name || "Client",
       periodLabel(),
       "income",
-      new Date(item.timestamp || item.created_at).toISOString().slice(0, 10),
+      dateInputValue(item.timestamp || item.created_at),
       Number(item.amount || 0).toFixed(2),
       item.currency || "GBP",
       item.description || "",
@@ -3445,7 +3475,7 @@ function accountantClientCsv() {
       client?.first_name || "Client",
       periodLabel(),
       item.is_client_expense ? "paid_for_client" : "expense",
-      new Date(item.timestamp || item.created_at).toISOString().slice(0, 10),
+      dateInputValue(item.timestamp || item.created_at),
       Number(item.amount || 0).toFixed(2),
       item.currency || "GBP",
       item.merchant || item.category || "",
@@ -3585,7 +3615,7 @@ function accountantCsv() {
     ["type", "date", "amount", "currency", "merchant_or_description", "tidgo_category", "paid_for_client", "proof_available", "needs_review", "accountant_category", "accountant_notes", "approved"],
     ...income.map((item) => [
       "income",
-      new Date(item.timestamp).toISOString().slice(0, 10),
+      dateInputValue(item.timestamp),
       Number(item.amount || 0).toFixed(2),
       item.currency || "GBP",
       item.description || "",
@@ -3599,7 +3629,7 @@ function accountantCsv() {
     ]),
     ...receipts.map((item) => [
       item.is_client_expense ? "paid_for_client" : "expense",
-      new Date(item.timestamp).toISOString().slice(0, 10),
+      dateInputValue(item.timestamp),
       Number(item.amount || 0).toFixed(2),
       item.currency || "GBP",
       item.merchant || "",
@@ -3991,8 +4021,12 @@ document.addEventListener("click", async (event) => {
     if (entry?.proof_base64) window.open(entry.proof_base64, "_blank", "noopener");
     return;
   }
-  if (action === "toggleTransactions") {
-    state.showAllTransactions = !state.showAllTransactions;
+  if (action === "showMoreTransactions") {
+    state.transactionLimit = Math.min(transactions().length, Math.max(4, state.transactionLimit || 4) + 10);
+    return render();
+  }
+  if (action === "showLessTransactions") {
+    state.transactionLimit = 4;
     return render();
   }
   if (action === "pickExpense") return expensePicker.click();
