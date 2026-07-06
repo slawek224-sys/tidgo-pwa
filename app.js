@@ -2267,22 +2267,36 @@ function compactIncomeProofs(proofs = {}) {
   return Object.fromEntries(Object.entries(proofs || {}).map(([id, proof]) => [id, {
     name: proof?.name || proof?.proof_name || "Income proof",
     type: proof?.type || proof?.proof_type || "",
-    attached: true
+    attached: Boolean(proof?.attached || proof?.name || proof?.proof_name || proof?.data),
+    description: proof?.description || ""
   }]));
 }
 
-function incomeProofMeta(file) {
+function incomeProofMeta(file, description = "") {
   return {
     name: file?.name || "Income proof",
     type: file?.type || "",
-    attached: true
+    attached: true,
+    description: description || ""
   };
+}
+
+function saveIncomeMeta(id, updates = {}) {
+  if (!id) return;
+  state.incomeProofs[id] = { ...(state.incomeProofs[id] || {}), ...updates };
+  try {
+    write("rb_income_proofs", state.incomeProofs);
+  } catch {
+    state.incomeProofs = compactIncomeProofs(state.incomeProofs);
+    write("rb_income_proofs", state.incomeProofs);
+  }
 }
 
 function attachIncomeProofs(items) {
   return (items || []).map((item) => {
     const proof = proofForIncome(item.id);
-    return proof ? { ...item, proof_name: proof.name, proof_type: proof.type } : item;
+    const description = item.description || item.note || item.details || proof?.description || "";
+    return proof ? { ...item, description, proof_name: proof.name, proof_type: proof.type } : { ...item, description };
   });
 }
 
@@ -2994,6 +3008,7 @@ function incomeForm() {
 function incomeDetail() {
   const entry = state.income.find((item) => item.id === state.selected);
   if (!entry) return go("home");
+  const hasProof = Boolean(entry.proof_name || entry.proof_base64);
   shell(`
     <section class="screen">
       ${topbar(t("income"), true)}
@@ -3001,7 +3016,7 @@ function incomeDetail() {
         <label class="field"><span>${t("amount")}</span><input class="input" name="amount" inputmode="decimal" value="${entry.amount || 0}"></label>
         <label class="field"><span>${t("currency")}</span><select class="select" name="currency">${currencyOptions(entry.currency || "GBP")}</select></label>
         <label class="field"><span>${t("description")}</span><textarea class="textarea" name="description">${escapeHtml(entry.description || "")}</textarea></label>
-        <div class="field">
+        ${hasProof ? `<div class="card muted">${t("proofAttached")}: ${escapeHtml(entry.proof_name || t("attachProof"))}</div>` : `<div class="field">
           <span>${t("attachProof")}</span>
           <div class="proof-actions">
             <button class="secondary" type="button" data-action="pickIncomeProofPhoto">${t("takePhoto")}</button>
@@ -3011,8 +3026,7 @@ function incomeDetail() {
           <div class="card muted proof-preview" data-proof-preview hidden></div>
           <input class="hidden" type="file" name="proof_photo" accept="image/*" capture="environment">
           <input class="hidden" type="file" name="proof_file" accept="image/*,.pdf">
-        </div>
-        ${entry.proof_name ? `<div class="card muted">${t("proofAttached")}: ${escapeHtml(entry.proof_name)}</div>` : ""}
+        </div>`}
         <button class="primary" type="submit">${t("save")}</button>
       </form>
       <button class="danger" style="width:100%;margin-top:12px" data-action="deleteIncome">${t("delete")}</button>
@@ -4344,8 +4358,9 @@ document.addEventListener("submit", async (event) => {
       });
       const proof = incomeProofFile(form);
       if (proof && created?.id) {
-        state.incomeProofs[created.id] = incomeProofMeta(proof);
-        write("rb_income_proofs", state.incomeProofs);
+        saveIncomeMeta(created.id, incomeProofMeta(proof, data.description || ""));
+      } else if (created?.id && data.description) {
+        saveIncomeMeta(created.id, { description: data.description });
       }
       await refresh();
       toast(t("saved"));
@@ -4360,8 +4375,9 @@ document.addEventListener("submit", async (event) => {
       });
       const proof = incomeProofFile(form);
       if (proof && state.selected) {
-        state.incomeProofs[state.selected] = incomeProofMeta(proof);
-        write("rb_income_proofs", state.incomeProofs);
+        saveIncomeMeta(state.selected, incomeProofMeta(proof, data.description || ""));
+      } else if (state.selected) {
+        saveIncomeMeta(state.selected, { description: data.description || "" });
       }
       await refresh();
       toast(t("saved"));
