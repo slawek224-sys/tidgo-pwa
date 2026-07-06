@@ -2084,6 +2084,13 @@ function focusSummaryOnRecord(record) {
   state.summaryDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
 }
 
+function rangeHasRecords(range, records = [...state.receipts, ...state.income]) {
+  return records.some((item) => {
+    const date = new Date(item?.timestamp || item?.created_at);
+    return !Number.isNaN(date.getTime()) && date >= range.start && date < range.endExclusive;
+  });
+}
+
 function monthLabel(date = state.summaryDate) {
   return date.toLocaleDateString(undefined, { month: "long", year: "numeric" });
 }
@@ -2139,6 +2146,23 @@ function periodLabel(date = state.summaryDate) {
 
 function shiftSummaryPeriod(direction) {
   state.summaryDate.setMonth(state.summaryDate.getMonth() + (state.summaryPeriod === "quarter" ? direction * 3 : direction));
+}
+
+function focusLatestUkTaxQuarterWithRecords() {
+  if (state.summaryPeriod !== "quarter" || state.quarterMode !== "uk_tax") return;
+  const currentRange = ukTaxQuarterRange(state.summaryDate);
+  if (rangeHasRecords(currentRange)) return;
+  let cursor = new Date(currentRange.start);
+  cursor.setDate(cursor.getDate() - 1);
+  for (let index = 0; index < 8; index += 1) {
+    const previousRange = ukTaxQuarterRange(cursor);
+    if (rangeHasRecords(previousRange)) {
+      state.summaryDate = new Date(previousRange.start.getFullYear(), previousRange.start.getMonth(), previousRange.start.getDate());
+      return;
+    }
+    cursor = new Date(previousRange.start);
+    cursor.setDate(cursor.getDate() - 1);
+  }
 }
 
 function periodFilePart() {
@@ -2402,6 +2426,7 @@ async function refresh() {
     state.receipts = receipts || [];
     state.income = attachIncomeProofs(income);
     state.accountantConsents = consents || [];
+    focusLatestUkTaxQuarterWithRecords();
   } catch (error) {
     toast(error.message || t("backendDown"));
   }
@@ -3931,11 +3956,13 @@ document.addEventListener("click", async (event) => {
   if (action === "setSummaryPeriod") {
     state.summaryPeriod = target.dataset.period === "quarter" ? "quarter" : "month";
     write("rb_summary_period", state.summaryPeriod);
+    focusLatestUkTaxQuarterWithRecords();
     return render();
   }
   if (action === "setQuarterMode") {
     state.quarterMode = target.dataset.quarterMode === "uk_tax" ? "uk_tax" : "calendar";
     write("rb_quarter_mode", state.quarterMode);
+    focusLatestUkTaxQuarterWithRecords();
     return render();
   }
   if (action === "printPdf") {
