@@ -12,6 +12,7 @@
 - Keep extracting the transaction date from the receipt where visible.
 - If the receipt date is missing or unclear, use upload date.
 - Consider returning a confidence / warning when date was guessed.
+- Add a "re-check receipt date" option for old receipts, so records uploaded before OCR/date fixes can be corrected without deleting and uploading again.
 
 ## OCR cost control
 
@@ -24,6 +25,11 @@
 - Add backend endpoint for accountant "request missing docs".
 - Send email through Resend from TidGo to the connected client.
 - Store a small audit log: accountant email, client id, message type, timestamp.
+
+## Accountant portal summaries
+
+- Make sure accountant downloads can request monthly, calendar quarter and UK tax quarter packs explicitly.
+- Use the same UK tax quarter boundaries as the PWA: 6 Apr, 6 Jul, 6 Oct and 6 Jan.
 
 ## Storage
 

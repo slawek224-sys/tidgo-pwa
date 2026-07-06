@@ -48,7 +48,7 @@ const MARKETING_COPY = {
     demoRecordsScreen: "Client records", demoRecordsTitle: "Download the client pack", demoRecordsText: "Open a client, check totals, request missing docs, then download CSV or PDF."
   },
   pl: {
-    navHow: "Jak to dziala", navWho: "Dla kogo?", navPricing: "Start i ceny", navFaq: "FAQ", navMtd: "MTD prosto", navContact: "Kontakt",
+    navHow: "Jak to dziala", navWho: "Dla kogo?", navPricing: "Start i ceny", navFaq: "FAQ", navMtd: "MTD wyjasnione", navContact: "Kontakt",
     heroEyebrow: "Paragony wchodza. Porzadek wychodzi.", heroTitle: "Jedno proste miejsce na paragony.", heroText: "Dla self-employed, ktorzy chca miec rekordy w porzadku, i dla ksiegowych, ktorzy nie chca gonitwy za reklamowka paragonow.",
     stepSnap: "Zrob zdjecie", stepTidy: "Trzymaj porzadek", stepPack: "Wyslij czysta paczke",
     trustSimple: "Bez skomplikowanej rejestracji. Tylko logowanie emailem.",
@@ -671,10 +671,11 @@ const COPY = {
     sendCodeAgain: "Send code again",
     codeSent: "Code sent. Check your email.",
     hello: "Hello",
-    summary: "Monthly summary",
+    summary: "Summaries",
     monthly: "Monthly",
     quarterly: "Quarterly",
     taxQuarterly: "UK tax quarters",
+    ukTaxQuarterly: "Quarterly for UK taxpayers",
     currentUkQuarter: "Current UK Q",
     previousUkQuarter: "Previous UK Q",
     quarterReady: "Quarter-ready records",
@@ -747,10 +748,11 @@ const COPY = {
     sendCodeAgain: "Wyslij kod ponownie",
     codeSent: "Kod wyslany. Sprawdz email.",
     hello: "Czesc",
-    summary: "Podsumowanie miesiaca",
+    summary: "Podsumowania",
     monthly: "Miesieczne",
     quarterly: "Kwartalne",
     taxQuarterly: "Kwartaly UK tax",
+    ukTaxQuarterly: "Kwartalnie dla podatnikow UK",
     currentUkQuarter: "Obecny UK Q",
     previousUkQuarter: "Poprzedni UK Q",
     quarterReady: "Rekordy gotowe kwartalnie",
@@ -1704,6 +1706,36 @@ Object.assign(COPY.bg, {
   deleteIncomeWarning: "Delete only this income entry."
 });
 
+Object.assign(COPY.ro, {
+  summary: "Rezumate",
+  ukTaxQuarterly: "Trimestrial pentru contribuabili UK"
+});
+
+Object.assign(COPY.uk, {
+  summary: "Summaries",
+  ukTaxQuarterly: "Quarterly for UK taxpayers"
+});
+
+Object.assign(COPY.lt, {
+  summary: "Suvestines",
+  ukTaxQuarterly: "Ketvirciai UK mokesciu moketojams"
+});
+
+Object.assign(COPY.lv, {
+  summary: "Kopsavilkumi",
+  ukTaxQuarterly: "Ceturksni UK nodoklu maksatājiem"
+});
+
+Object.assign(COPY.es, {
+  summary: "Resúmenes",
+  ukTaxQuarterly: "Trimestral para contribuyentes UK"
+});
+
+Object.assign(COPY.bg, {
+  summary: "Summaries",
+  ukTaxQuarterly: "Quarterly for UK taxpayers"
+});
+
 const LEGAL_TEXT = {
   en: {
     privacy: {
@@ -2202,10 +2234,6 @@ function periodFilePart() {
 function quarterModeControls() {
   if (state.summaryPeriod !== "quarter") return "";
   return `
-    <div class="segmented segmented-compact">
-      <button class="${state.quarterMode === "calendar" ? "active" : ""}" data-action="setQuarterMode" data-quarter-mode="calendar">${t("calendarQuarterly")}</button>
-      <button class="${state.quarterMode === "uk_tax" ? "active" : ""}" data-action="setQuarterMode" data-quarter-mode="uk_tax">${t("taxQuarterly")}</button>
-    </div>
     ${state.quarterMode === "uk_tax" ? `
       <div class="segmented segmented-compact">
         <button data-action="currentUkQuarter">${t("currentUkQuarter")}</button>
@@ -2218,9 +2246,10 @@ function quarterModeControls() {
 
 function summaryPeriodControls() {
   return `
-    <div class="segmented">
-      <button class="${state.summaryPeriod === "month" ? "active" : ""}" data-action="setSummaryPeriod" data-period="month">${t("monthly")}</button>
-      <button class="${state.summaryPeriod === "quarter" ? "active" : ""}" data-action="setSummaryPeriod" data-period="quarter">${t("quarterly")}</button>
+    <div class="segmented segmented-three">
+      <button class="${state.summaryPeriod === "month" ? "active" : ""}" data-action="setSummaryView" data-summary-view="month">${t("monthly")}</button>
+      <button class="${state.summaryPeriod === "quarter" && state.quarterMode === "calendar" ? "active" : ""}" data-action="setSummaryView" data-summary-view="calendar">${t("quarterly")}</button>
+      <button class="${state.summaryPeriod === "quarter" && state.quarterMode === "uk_tax" ? "active" : ""}" data-action="setSummaryView" data-summary-view="uk_tax">${t("ukTaxQuarterly")}</button>
     </div>
     ${quarterModeControls()}
   `;
@@ -3995,6 +4024,21 @@ document.addEventListener("click", async (event) => {
     write("rb_summary_period", state.summaryPeriod);
     if (previousPeriod === "month" && state.summaryPeriod === "quarter") anchorSummaryDateToMonthStart();
     focusLatestUkTaxQuarterWithRecords();
+    return render();
+  }
+  if (action === "setSummaryView") {
+    const view = target.dataset.summaryView;
+    if (view === "month") {
+      state.summaryPeriod = "month";
+    } else {
+      const previousPeriod = state.summaryPeriod;
+      state.summaryPeriod = "quarter";
+      state.quarterMode = view === "uk_tax" ? "uk_tax" : "calendar";
+      if (previousPeriod === "month") anchorSummaryDateToMonthStart();
+      if (state.quarterMode === "uk_tax") focusLatestUkTaxQuarterWithRecords();
+    }
+    write("rb_summary_period", state.summaryPeriod);
+    write("rb_quarter_mode", state.quarterMode);
     return render();
   }
   if (action === "setQuarterMode") {
