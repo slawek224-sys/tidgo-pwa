@@ -1,4 +1,4 @@
-const CACHE = "tidgo-pwa-v56";
+const CACHE = "tidgo-pwa-v57";
 const ASSETS = [
   "./",
   "./index.html",
@@ -62,6 +62,18 @@ self.addEventListener("fetch", (event) => {
   }
   if (event.request.mode === "navigate") {
     event.respondWith(fetch(event.request).catch(() => caches.match("./index.html")));
+    return;
+  }
+  if (["/app.js", "/styles.css", "/manifest.json", "/manifest.webmanifest", "/sw.js"].includes(url.pathname)) {
+    event.respondWith(
+      fetch(event.request)
+        .then((response) => {
+          const copy = response.clone();
+          caches.open(CACHE).then((cache) => cache.put(event.request, copy));
+          return response;
+        })
+        .catch(() => caches.match(event.request))
+    );
     return;
   }
   event.respondWith(
