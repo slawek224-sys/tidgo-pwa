@@ -2222,6 +2222,18 @@ function periodLabel(date = state.summaryDate) {
   return `Q${range.quarter} ${range.year}`;
 }
 
+function periodRangeLabel(date = state.summaryDate) {
+  if (state.summaryPeriod !== "quarter") return "";
+  const range = quarterRange(date);
+  const format = (value) => value.toLocaleDateString(undefined, { day: "numeric", month: "short", year: "numeric" });
+  return `${format(range.start)} - ${format(range.end)}`;
+}
+
+function periodSwitcherLabel() {
+  const range = periodRangeLabel();
+  return `<span class="period-switcher-label"><strong>${periodLabel()}</strong>${range ? `<small>${range}</small>` : ""}</span>`;
+}
+
 function shiftSummaryPeriod(direction) {
   if (state.summaryPeriod === "quarter" && state.quarterMode === "uk_tax") {
     const range = ukTaxQuarterRange(state.summaryDate);
@@ -3092,7 +3104,7 @@ function summary() {
       ${summaryPeriodControls()}
       <div class="month-switcher">
         <button class="icon-btn" data-action="prevMonth">‹</button>
-        <span>${periodLabel()}</span>
+        ${periodSwitcherLabel()}
         <button class="icon-btn" data-action="nextMonth">›</button>
       </div>
       <div class="total-box">
@@ -3296,7 +3308,7 @@ function accountantDemoClient() {
       ${summaryPeriodControls()}
       <div class="month-switcher">
         <button class="icon-btn" data-action="prevMonth">&#8249;</button>
-        <span>${periodLabel()}</span>
+        ${periodSwitcherLabel()}
         <button class="icon-btn" data-action="nextMonth">&#8250;</button>
       </div>
       <div class="insight-grid">
@@ -3363,7 +3375,7 @@ function accountantPortal() {
       ${summaryPeriodControls()}
       <div class="month-switcher">
         <button class="icon-btn" data-action="prevMonth">&#8249;</button>
-        <span>${periodLabel()}</span>
+        ${periodSwitcherLabel()}
         <button class="icon-btn" data-action="nextMonth">&#8250;</button>
       </div>
       <div class="total-box">
