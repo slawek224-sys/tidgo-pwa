@@ -779,6 +779,22 @@ button {
   max-width: 760px;
 }
 
+.landing-legal-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-weight: 850;
+}
+
+.landing-legal-links a {
+  color: var(--blue);
+  text-decoration: none;
+}
+
+.landing-legal-links a:hover {
+  text-decoration: underline;
+}
+
 .social-links {
   display: flex;
   align-items: center;

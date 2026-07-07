@@ -1904,7 +1904,9 @@ function marketingPageSlug() {
     "/mtd/paper-receipts": "mtdPaper",
     "/mtd/can-i-use-photos": "mtdPhotos",
     "/mtd/does-tidgo-submit-to-hmrc": "mtdSubmit",
-    "/mtd/do-i-need-an-accountant": "mtdAccountant"
+    "/mtd/do-i-need-an-accountant": "mtdAccountant",
+    "/privacy": "privacy",
+    "/terms": "terms"
   };
   return routes[path] || "";
 }
@@ -2001,6 +2003,7 @@ function landingFooter() {
     <footer class="landing-foot">
       <div class="landing-foot-copy">
         <span>${mk("footer")} <strong>${mk("copyright")}</strong></span>
+        <span class="landing-legal-links"><a href="/privacy">${t("privacyTitle")}</a><a href="/terms">${t("termsTitle")}</a></span>
         <span class="landing-privacy-note">${mk("privacyNote")}</span>
       </div>
     </footer>
@@ -2660,6 +2663,7 @@ function landing() {
 
 function marketingPage() {
   const slug = marketingPageSlug();
+  if (slug === "privacy" || slug === "terms") return marketingLegalPage(slug);
   const simplePages = {
     how: {
       active: "how",
@@ -2761,6 +2765,28 @@ function marketingPage() {
       ${landingHeader(active)}
       <div class="marketing-page-layout">
         ${body}
+      </div>
+      ${landingFooter()}
+    </section>
+  `);
+}
+
+function marketingLegalPage(kind) {
+  const title = kind === "privacy" ? t("privacyTitle") : t("termsTitle");
+  const copy = legalCopy(kind);
+  shell(`
+    <section class="landing-screen marketing-page-screen">
+      ${landingHeader("")}
+      <div class="marketing-page-layout">
+        <article class="marketing-page-card marketing-article">
+          <span class="eyebrow">TidGo</span>
+          <h1>${escapeHtml(title)}</h1>
+          <h2>${escapeHtml(t("legalShort"))}</h2>
+          <p>${escapeHtml(copy.short)}</p>
+          <h2>${escapeHtml(t("legalFull"))}</h2>
+          <p>${escapeHtml(copy.details)}</p>
+          ${pageCta()}
+        </article>
       </div>
       ${landingFooter()}
     </section>
