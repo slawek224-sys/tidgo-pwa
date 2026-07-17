@@ -1866,7 +1866,7 @@ const LEGAL_TEXT = {
 };
 
 const state = {
-  user: read("rb_user", null),
+  user: read("rb_signed_out", false) ? null : read("rb_user", null),
   language: read("rb_language", "en"),
   humour: read("rb_humour", "funny"),
   accountantEmail: read("rb_accountant_email", ""),
@@ -1881,6 +1881,7 @@ const state = {
   accountantClientListOpen: false,
   accountantClientSearch: "",
   pendingSignupEmail: read("rb_pending_signup_email", ""),
+  pendingSignupWhatsApp: read("rb_pending_signup_whatsapp", ""),
   marketingLanguage: MARKETING_LANGUAGES[read("tg_marketing_language", "en")] ? read("tg_marketing_language", "en") : "en",
   marketingSection: read("tg_marketing_section", "how"),
   incomeProofs: read("rb_income_proofs", {}),
@@ -2140,6 +2141,7 @@ async function deviceForget(key) {
 
 async function rememberUser(user) {
   state.user = user;
+  forget("rb_signed_out");
   await deviceSet("rb_user", user);
   await deviceSet("rb_last_user", {
     id: user.id,
@@ -2153,6 +2155,11 @@ async function rememberUser(user) {
 
 async function restoreDeviceUser() {
   if (state.user?.id) return;
+  if (read("rb_signed_out", false)) {
+    state.user = null;
+    forget("rb_user");
+    return;
+  }
   const user = await deviceGet("rb_user", null);
   if (user?.id) {
     state.user = user;
@@ -4308,15 +4315,22 @@ document.addEventListener("click", async (event) => {
     await deviceForget("rb_user");
     await deviceForget("rb_last_user");
     forget("rb_pending_signup_email");
+    forget("rb_pending_signup_whatsapp");
+    write("rb_signed_out", true);
     state.pendingSignupEmail = "";
+    state.pendingSignupWhatsApp = "";
     state.user = null;
     return go("onboarding");
   }
   if (action === "signOutDevice") {
     if (!confirm(t("signOutConfirm"))) return;
     await deviceForget("rb_user");
+    await deviceForget("rb_last_user");
     forget("rb_pending_signup_email");
+    forget("rb_pending_signup_whatsapp");
+    write("rb_signed_out", true);
     state.pendingSignupEmail = "";
+    state.pendingSignupWhatsApp = "";
     state.user = null;
     state.receipts = [];
     state.income = [];
@@ -4405,7 +4419,9 @@ document.addEventListener("submit", async (event) => {
       });
       await api("/api/auth/recovery/request", { method: "POST", body: JSON.stringify({ email }) });
       state.pendingSignupEmail = email;
+      state.pendingSignupWhatsApp = (data.whatsapp_phone || "").trim();
       write("rb_pending_signup_email", email);
+      write("rb_pending_signup_whatsapp", state.pendingSignupWhatsApp);
       write("rb_language", state.language);
       toast(t("codeSent"));
       return go("verifySignup");
@@ -4421,10 +4437,18 @@ document.addEventListener("submit", async (event) => {
         return toast(t("codeSent"));
       }
       const user = await api("/api/auth/recovery/verify", { method: "POST", body: JSON.stringify({ email, code: data.code }) });
+      const signupWhatsApp = state.pendingSignupWhatsApp || read("rb_pending_signup_whatsapp", "");
+      const rememberedUser = signupWhatsApp && !user.whatsapp_phone ? {
+        ...user,
+        whatsapp_phone: signupWhatsApp,
+        whatsapp_phone_normalized: user.whatsapp_phone_normalized || ""
+      } : user;
       state.language = user.language || state.language;
       state.pendingSignupEmail = "";
+      state.pendingSignupWhatsApp = "";
       forget("rb_pending_signup_email");
-      await rememberUser(user);
+      forget("rb_pending_signup_whatsapp");
+      await rememberUser(rememberedUser);
       write("rb_language", state.language);
       await refresh();
       return go("home");
@@ -4438,10 +4462,16 @@ document.addEventListener("submit", async (event) => {
       let user = await api("/api/auth/recovery/verify", { method: "POST", body: JSON.stringify({ email: data.email, code: data.code }) });
       const whatsappPhone = (data.whatsapp_phone || "").trim();
       if (whatsappPhone && user?.id) {
-        user = await api(`/api/users/${user.id}`, {
+        const patchedUser = await api(`/api/users/${user.id}`, {
           method: "PATCH",
           body: JSON.stringify({ whatsapp_phone: whatsappPhone })
         });
+        user = {
+          ...user,
+          ...patchedUser,
+          whatsapp_phone: patchedUser.whatsapp_phone || whatsappPhone,
+          whatsapp_phone_normalized: patchedUser.whatsapp_phone_normalized || user.whatsapp_phone_normalized || ""
+        };
       }
       state.language = user.language || state.language;
       await rememberUser(user);
@@ -4570,17 +4600,23 @@ document.addEventListener("submit", async (event) => {
     if (form.id === "settingsForm") {
       state.language = data.language;
       state.humour = data.humour;
+      const whatsappPhone = (data.whatsapp_phone || "").trim();
       const user = await api(`/api/users/${state.user.id}`, {
         method: "PATCH",
         body: JSON.stringify({
           first_name: data.first_name,
           trade: data.trade || null,
           email: data.email || null,
-          whatsapp_phone: (data.whatsapp_phone || "").trim() || null,
+          whatsapp_phone: whatsappPhone || null,
           language: state.language
         })
       });
-      await rememberUser(user);
+      await rememberUser({
+        ...state.user,
+        ...user,
+        whatsapp_phone: user.whatsapp_phone || whatsappPhone,
+        whatsapp_phone_normalized: user.whatsapp_phone_normalized || state.user.whatsapp_phone_normalized || ""
+      });
       write("rb_language", state.language);
       write("rb_humour", state.humour);
       toast(t("saved"));
