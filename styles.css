@@ -1877,6 +1877,30 @@ button {
   background: #f4fff8;
 }
 
+.whatsapp-connect-box {
+  display: grid;
+  gap: 9px;
+  border: 1px solid #b7efcf;
+  border-radius: 8px;
+  background: #f0fff6;
+  color: var(--green-dark);
+  padding: 11px;
+}
+
+.whatsapp-connect-box p {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.whatsapp-connect-box .secondary {
+  width: auto;
+  justify-self: start;
+  border-color: #9fe8bf;
+  color: var(--green-dark);
+}
+
 .total-box {
   display: grid;
   gap: 0;

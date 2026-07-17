@@ -1,4 +1,5 @@
 const API_BASE = "https://donezo-api-53t9.onrender.com";
+const TIDGO_WHATSAPP_NUMBER = "447466382511";
 const FEEDBACK_EMAIL = "hello@tidgo.co.uk";
 const CURRENCIES = ["GBP", "EUR", "USD", "PLN", "RON", "UAH", "BGN", "CZK", "HUF"];
 const CATEGORIES = ["food", "fuel", "tools", "transport", "other"];
@@ -674,6 +675,9 @@ const COPY = {
     emailHint: "Use email if you want to recover the same bag of receipts later.",
     whatsappPhone: "WhatsApp number",
     whatsappPhoneHint: "Optional. Add it if you want to send receipt photos to TidGo by WhatsApp later.",
+    connectWhatsApp: "Connect WhatsApp",
+    connectWhatsAppHint: "Open WhatsApp and send the ready LINK message. TidGo will use it to connect this phone to your account.",
+    connectWhatsAppFallback: "Opening WhatsApp with a basic link message. If it does not connect, try again after the next API deploy.",
     start: "Start TidGo",
     haveAccount: "I already have an account",
     recover: "Recover account",
@@ -764,6 +768,9 @@ const COPY = {
     emailHint: "Email pozwala odzyskac te same paragony pozniej.",
     whatsappPhone: "Numer WhatsApp",
     whatsappPhoneHint: "Opcjonalnie. Dodaj go, jesli pozniej chcesz wysylac zdjecia paragonow do TidGo przez WhatsApp.",
+    connectWhatsApp: "Polacz WhatsApp",
+    connectWhatsAppHint: "Otworz WhatsApp i wyslij gotowa wiadomosc LINK. TidGo uzyje jej, zeby polaczyc ten telefon z kontem.",
+    connectWhatsAppFallback: "Otwieram WhatsApp z podstawowa wiadomoscia LINK. Jesli nie polaczy, sprobuj po nastepnym deployu API.",
     start: "Start",
     haveAccount: "Mam juz konto",
     recover: "Odzyskaj konto",
@@ -1864,6 +1871,14 @@ Object.assign(COPY.bg, {
   incomeOther: "Other"
 });
 
+["ro", "uk", "lt", "lv", "es", "bg"].forEach((language) => {
+  Object.assign(COPY[language], {
+    connectWhatsApp: COPY.en.connectWhatsApp,
+    connectWhatsAppHint: COPY.en.connectWhatsAppHint,
+    connectWhatsAppFallback: COPY.en.connectWhatsAppFallback
+  });
+});
+
 const LEGAL_TEXT = {
   en: {
     privacy: {
@@ -2578,6 +2593,27 @@ async function api(path, options = {}) {
     throw new Error(detail);
   }
   return response.status === 204 ? null : response.json();
+}
+
+async function whatsappLinkMessage() {
+  try {
+    const response = await api("/api/whatsapp/link-code", {
+      method: "POST",
+      body: JSON.stringify({ user_id: state.user.id })
+    });
+    const code = response?.code || response?.link_code || response?.token;
+    if (response?.message) return response.message;
+    if (code) return `LINK TIDGO ${code}`;
+  } catch {
+    toast(t("connectWhatsAppFallback"));
+  }
+  return "LINK TIDGO";
+}
+
+async function openWhatsAppConnect() {
+  const message = await whatsappLinkMessage();
+  const url = `https://wa.me/${TIDGO_WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  window.location.href = url;
 }
 
 async function loadAccountantClients(email = state.accountantPortalEmail) {
@@ -3331,7 +3367,10 @@ function settings() {
         </div>
         <label class="field"><span>${t("email")}</span><input class="input" name="email" type="email" value="${escapeAttr(state.user.email || "")}"></label>
         <label class="field"><span>${t("whatsappPhone")}</span><input class="input" name="whatsapp_phone" type="tel" inputmode="tel" autocomplete="tel" value="${escapeAttr(state.user.whatsapp_phone || state.user.whatsapp_phone_normalized || "")}" placeholder="+44 7..."></label>
-        <p class="hint">${t("whatsappPhoneHint")}</p>
+        <div class="whatsapp-connect-box">
+          <p>${t("connectWhatsAppHint")}</p>
+          <button class="secondary" type="button" data-action="connectWhatsApp">${t("connectWhatsApp")}</button>
+        </div>
         <label class="field"><span>${t("humour")}</span><select class="select" name="humour">
           <option value="funny"${state.humour === "funny" ? " selected" : ""}>${t("subtle")}</option>
           <option value="sarcastic"${state.humour === "sarcastic" ? " selected" : ""}>${t("dry")}</option>
@@ -4173,6 +4212,17 @@ document.addEventListener("click", async (event) => {
   if (target.dataset.category) {
     document.querySelectorAll("[data-category]").forEach((item) => item.classList.remove("active"));
     target.classList.add("active");
+    return;
+  }
+  if (target.dataset.action === "connectWhatsApp") {
+    setBusy(true);
+    try {
+      await openWhatsAppConnect();
+    } catch (error) {
+      toast(error.message || t("backendDown"));
+    } finally {
+      setBusy(false);
+    }
     return;
   }
   if (target.dataset.openReceipt) {
