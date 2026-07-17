@@ -680,6 +680,10 @@ const COPY = {
     sendCode: "Send code",
     code: "Email code",
     restore: "Restore",
+    login: "Login",
+    recoveryEmail: "Email recovery",
+    whatsappRecovery: "WhatsApp recovery",
+    whatsappRecoverySoon: "WhatsApp recovery is being connected. Use email code for now.",
     verifyEmail: "Verify your email",
     verifyEmailHint: "We sent a 6-digit code to your email. Enter it to finish setting up TidGo on this device.",
     verifyAndStart: "Verify and start",
@@ -766,6 +770,10 @@ const COPY = {
     sendCode: "Wyslij kod",
     code: "Kod z emaila",
     restore: "Odzyskaj",
+    login: "Login",
+    recoveryEmail: "Odzyskiwanie emailem",
+    whatsappRecovery: "Odzyskiwanie przez WhatsApp",
+    whatsappRecoverySoon: "Odzyskiwanie przez WhatsApp jest podpinane. Na razie uzyj kodu email.",
     verifyEmail: "Potwierdz email",
     verifyEmailHint: "Wyslalismy 6-cyfrowy kod na twoj email. Wpisz go, zeby dokonczyc start TidGo na tym urzadzeniu.",
     verifyAndStart: "Potwierdz i start",
@@ -3121,12 +3129,23 @@ function recover() {
     <section class="screen">
       ${topbar(t("recover"), true)}
       <form class="stack" id="recoveryForm">
-        <label class="field"><span>${t("email")}</span><input class="input" name="email" type="email" required autocomplete="email"></label>
-        <button class="primary" name="step" value="request">${t("sendCode")}</button>
-        <label class="field"><span>${t("code")}</span><input class="input" name="code" inputmode="numeric" maxlength="6"></label>
-        <label class="field"><span>${t("whatsappPhone")}</span><input class="input" name="whatsapp_phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+44 7..."></label>
-        <p class="hint">${t("whatsappPhoneHint")}</p>
-        <button class="secondary" name="step" value="verify">${t("restore")}</button>
+        <div class="card stack recovery-block">
+          <strong>${t("recoveryEmail")}</strong>
+          <label class="field"><span>${t("email")}</span><input class="input" name="email" type="email" required autocomplete="email"></label>
+          <button class="secondary recovery-send" name="step" value="request">${t("sendCode")}</button>
+          <label class="field"><span>${t("code")}</span><input class="input" name="code" inputmode="numeric" maxlength="6" autocomplete="one-time-code"></label>
+          <button class="primary" name="step" value="verify">${t("login")}</button>
+        </div>
+      </form>
+      <form class="stack" id="whatsappRecoveryForm">
+        <div class="card stack recovery-block recovery-block-muted">
+          <strong>${t("whatsappRecovery")}</strong>
+          <label class="field"><span>${t("whatsappPhone")}</span><input class="input" name="whatsapp_phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+44 7..."></label>
+          <button class="secondary recovery-send" name="step" value="request">${t("sendCode")}</button>
+          <label class="field"><span>${t("code")}</span><input class="input" name="code" inputmode="numeric" maxlength="6" autocomplete="one-time-code"></label>
+          <button class="secondary" name="step" value="verify">${t("login")}</button>
+          <p class="hint">${t("whatsappRecoverySoon")}</p>
+        </div>
       </form>
     </section>
   `);
@@ -4623,6 +4642,10 @@ document.addEventListener("submit", async (event) => {
       write("rb_language", state.language);
       await refresh();
       return go("home");
+    }
+    if (form.id === "whatsappRecoveryForm") {
+      toast(t("whatsappRecoverySoon"));
+      return;
     }
     if (form.id === "receiptForm") {
       const category = document.querySelector("[data-category].active")?.dataset.category || "other";

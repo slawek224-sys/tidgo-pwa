@@ -1856,6 +1856,27 @@ button {
   color: var(--green-dark);
 }
 
+.recovery-block {
+  gap: 10px;
+}
+
+.recovery-block > strong {
+  color: var(--blue-dark);
+  font-size: 16px;
+}
+
+.recovery-send {
+  width: auto;
+  min-width: 120px;
+  justify-self: start;
+  padding: 9px 13px;
+}
+
+.recovery-block-muted {
+  border-color: #c7f3d8;
+  background: #f4fff8;
+}
+
 .total-box {
   display: grid;
   gap: 0;
