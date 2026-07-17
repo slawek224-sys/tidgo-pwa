@@ -663,6 +663,13 @@ const COPY = {
     chooseLanguage: "Choose language",
     firstName: "First name",
     trade: "Trade or job",
+    incomeSources: "Income sources",
+    incomeSourcesHint: "This helps TidGo understand your records. PAYE income is handled separately; TidGo keeps records for self-employment, CIS, landlord or side-income work.",
+    incomeSelfEmployed: "Self-employed",
+    incomeCis: "CIS",
+    incomeLandlord: "Landlord",
+    incomePayeSide: "PAYE + side income",
+    incomeOther: "Other",
     email: "Recovery email",
     emailHint: "Use email if you want to recover the same bag of receipts later.",
     whatsappPhone: "WhatsApp number",
@@ -742,6 +749,13 @@ const COPY = {
     chooseLanguage: "Wybierz jezyk",
     firstName: "Imie",
     trade: "Zawod",
+    incomeSources: "Zrodla przychodu",
+    incomeSourcesHint: "To pomaga TidGo zrozumiec Twoje rekordy. Dochod PAYE jest rozliczany osobno; TidGo trzyma rekordy dla self-employment, CIS, landlord albo dodatkowej pracy.",
+    incomeSelfEmployed: "Self-employed",
+    incomeCis: "CIS",
+    incomeLandlord: "Landlord",
+    incomePayeSide: "PAYE + dodatkowy dochod",
+    incomeOther: "Inne",
     email: "Email do odzyskania",
     emailHint: "Email pozwala odzyskac te same paragony pozniej.",
     whatsappPhone: "Numer WhatsApp",
@@ -1782,6 +1796,66 @@ Object.assign(COPY.bg, {
   whatsappPhoneHint: "Optional. Add it if you want to send receipt photos to TidGo by WhatsApp later."
 });
 
+Object.assign(COPY.ro, {
+  incomeSources: "Surse de venit",
+  incomeSourcesHint: "Ajuta TidGo sa inteleaga evidenta. Venitul PAYE se trateaza separat; TidGo pastreaza documente pentru self-employment, CIS, landlord sau venit secundar.",
+  incomeSelfEmployed: "Self-employed",
+  incomeCis: "CIS",
+  incomeLandlord: "Landlord",
+  incomePayeSide: "PAYE + venit secundar",
+  incomeOther: "Altceva"
+});
+
+Object.assign(COPY.uk, {
+  incomeSources: "Income sources",
+  incomeSourcesHint: "This helps TidGo understand your records. PAYE income is handled separately; TidGo keeps records for self-employment, CIS, landlord or side-income work.",
+  incomeSelfEmployed: "Self-employed",
+  incomeCis: "CIS",
+  incomeLandlord: "Landlord",
+  incomePayeSide: "PAYE + side income",
+  incomeOther: "Other"
+});
+
+Object.assign(COPY.lt, {
+  incomeSources: "Pajamu saltiniai",
+  incomeSourcesHint: "Tai padeda TidGo suprasti jusu irasus. PAYE pajamos tvarkomos atskirai; TidGo saugo irasus self-employment, CIS, landlord arba papildomoms pajamoms.",
+  incomeSelfEmployed: "Self-employed",
+  incomeCis: "CIS",
+  incomeLandlord: "Landlord",
+  incomePayeSide: "PAYE + papildomos pajamos",
+  incomeOther: "Kita"
+});
+
+Object.assign(COPY.lv, {
+  incomeSources: "Ienakumu avoti",
+  incomeSourcesHint: "Tas palidz TidGo saprast jusu ierakstus. PAYE ienakumi tiek apstradati atseviski; TidGo glaba ierakstus self-employment, CIS, landlord vai papildu darbam.",
+  incomeSelfEmployed: "Self-employed",
+  incomeCis: "CIS",
+  incomeLandlord: "Landlord",
+  incomePayeSide: "PAYE + papildu ienakumi",
+  incomeOther: "Cits"
+});
+
+Object.assign(COPY.es, {
+  incomeSources: "Fuentes de ingreso",
+  incomeSourcesHint: "Ayuda a TidGo a entender tus registros. El ingreso PAYE se gestiona aparte; TidGo guarda registros para self-employment, CIS, landlord o ingresos secundarios.",
+  incomeSelfEmployed: "Self-employed",
+  incomeCis: "CIS",
+  incomeLandlord: "Landlord",
+  incomePayeSide: "PAYE + ingreso secundario",
+  incomeOther: "Otro"
+});
+
+Object.assign(COPY.bg, {
+  incomeSources: "Income sources",
+  incomeSourcesHint: "This helps TidGo understand your records. PAYE income is handled separately; TidGo keeps records for self-employment, CIS, landlord or side-income work.",
+  incomeSelfEmployed: "Self-employed",
+  incomeCis: "CIS",
+  incomeLandlord: "Landlord",
+  incomePayeSide: "PAYE + side income",
+  incomeOther: "Other"
+});
+
 const LEGAL_TEXT = {
   en: {
     privacy: {
@@ -1865,6 +1939,8 @@ const LEGAL_TEXT = {
   }
 };
 
+const INCOME_SOURCE_KEYS = ["self_employed", "cis", "landlord", "paye_side", "other"];
+
 const state = {
   user: read("rb_signed_out", false) ? null : read("rb_user", null),
   language: read("rb_language", "en"),
@@ -1882,6 +1958,7 @@ const state = {
   accountantClientSearch: "",
   pendingSignupEmail: read("rb_pending_signup_email", ""),
   pendingSignupWhatsApp: read("rb_pending_signup_whatsapp", ""),
+  pendingSignupIncomeSources: read("rb_pending_income_sources", []),
   marketingLanguage: MARKETING_LANGUAGES[read("tg_marketing_language", "en")] ? read("tg_marketing_language", "en") : "en",
   marketingSection: read("tg_marketing_section", "how"),
   incomeProofs: read("rb_income_proofs", {}),
@@ -2139,17 +2216,44 @@ async function deviceForget(key) {
   }
 }
 
+function cleanIncomeSources(values) {
+  return Array.isArray(values) ? values.filter((value) => INCOME_SOURCE_KEYS.includes(value)) : [];
+}
+
+function userIncomeSourceKey(user = state.user) {
+  return user?.id ? `rb_income_sources_${user.id}` : "rb_pending_income_sources";
+}
+
+function readIncomeSources(user = state.user) {
+  const fromUser = cleanIncomeSources(user?.income_sources);
+  if (fromUser.length) return fromUser;
+  return cleanIncomeSources(read(userIncomeSourceKey(user), []));
+}
+
+function writeIncomeSources(user, sources) {
+  const clean = cleanIncomeSources(sources);
+  write(userIncomeSourceKey(user), clean);
+  return clean;
+}
+
+function formIncomeSources(data) {
+  return INCOME_SOURCE_KEYS.filter((key) => data[`income_source_${key}`]);
+}
+
 async function rememberUser(user) {
-  state.user = user;
+  const incomeSources = writeIncomeSources(user, user?.income_sources || readIncomeSources(user));
+  const storedUser = { ...user, income_sources: incomeSources };
+  state.user = storedUser;
   forget("rb_signed_out");
-  await deviceSet("rb_user", user);
+  await deviceSet("rb_user", storedUser);
   await deviceSet("rb_last_user", {
-    id: user.id,
-    first_name: user.first_name,
-    email: user.email || "",
-    whatsapp_phone: user.whatsapp_phone || "",
-    whatsapp_phone_normalized: user.whatsapp_phone_normalized || "",
-    language: user.language || state.language
+    id: storedUser.id,
+    first_name: storedUser.first_name,
+    email: storedUser.email || "",
+    whatsapp_phone: storedUser.whatsapp_phone || "",
+    whatsapp_phone_normalized: storedUser.whatsapp_phone_normalized || "",
+    income_sources: incomeSources,
+    language: storedUser.language || state.language
   });
 }
 
@@ -2162,8 +2266,8 @@ async function restoreDeviceUser() {
   }
   const user = await deviceGet("rb_user", null);
   if (user?.id) {
-    state.user = user;
-    write("rb_user", user);
+    state.user = { ...user, income_sources: readIncomeSources(user) };
+    write("rb_user", state.user);
     if (user.language) state.language = user.language;
   }
 }
@@ -2980,6 +3084,11 @@ function onboarding() {
         <label class="field"><span>${t("chooseLanguage")}</span>${languageSelect()}</label>
         <label class="field"><span>${t("firstName")}</span><input class="input" name="first_name" autocomplete="given-name" required></label>
         <label class="field"><span>${t("trade")}</span><input class="input" name="trade" autocomplete="organization-title"></label>
+        <div class="field">
+          <span>${t("incomeSources")}</span>
+          ${incomeSourceChoices(state.pendingSignupIncomeSources)}
+          <p class="hint">${t("incomeSourcesHint")}</p>
+        </div>
         <label class="field"><span>${t("email")}</span><input class="input" name="email" type="email" autocomplete="email" required></label>
         <p class="hint">${t("emailHint")}</p>
         <label class="field"><span>${t("whatsappPhone")}</span><input class="input" name="whatsapp_phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+44 7..."></label>
@@ -3196,6 +3305,11 @@ function settings() {
         <label class="field"><span>${t("chooseLanguage")}</span>${languageSelect()}</label>
         <label class="field"><span>${t("firstName")}</span><input class="input" name="first_name" value="${escapeAttr(state.user.first_name)}" required></label>
         <label class="field"><span>${t("trade")}</span><input class="input" name="trade" value="${escapeAttr(state.user.trade || "")}"></label>
+        <div class="field">
+          <span>${t("incomeSources")}</span>
+          ${incomeSourceChoices(readIncomeSources())}
+          <p class="hint">${t("incomeSourcesHint")}</p>
+        </div>
         <label class="field"><span>${t("email")}</span><input class="input" name="email" type="email" value="${escapeAttr(state.user.email || "")}"></label>
         <label class="field"><span>${t("whatsappPhone")}</span><input class="input" name="whatsapp_phone" type="tel" inputmode="tel" autocomplete="tel" value="${escapeAttr(state.user.whatsapp_phone || state.user.whatsapp_phone_normalized || "")}" placeholder="+44 7..."></label>
         <p class="hint">${t("whatsappPhoneHint")}</p>
@@ -3479,6 +3593,27 @@ function currencyOptions(active) {
 
 function categoryChips(active = "other") {
   return CATEGORIES.map((category) => `<button class="chip ${active === category ? "active" : ""}" type="button" data-category="${category}">${t(category)}</button>`).join("");
+}
+
+function incomeSourceChoices(selected = []) {
+  const active = new Set(cleanIncomeSources(selected));
+  const labels = {
+    self_employed: t("incomeSelfEmployed"),
+    cis: t("incomeCis"),
+    landlord: t("incomeLandlord"),
+    paye_side: t("incomePayeSide"),
+    other: t("incomeOther")
+  };
+  return `
+    <div class="source-grid">
+      ${INCOME_SOURCE_KEYS.map((key) => `
+        <label class="source-pill">
+          <input type="checkbox" name="income_source_${key}" value="1"${active.has(key) ? " checked" : ""}>
+          <span>${escapeHtml(labels[key])}</span>
+        </label>
+      `).join("")}
+    </div>
+  `;
 }
 
 function transactions() {
@@ -4316,9 +4451,11 @@ document.addEventListener("click", async (event) => {
     await deviceForget("rb_last_user");
     forget("rb_pending_signup_email");
     forget("rb_pending_signup_whatsapp");
+    forget("rb_pending_income_sources");
     write("rb_signed_out", true);
     state.pendingSignupEmail = "";
     state.pendingSignupWhatsApp = "";
+    state.pendingSignupIncomeSources = [];
     state.user = null;
     return go("onboarding");
   }
@@ -4328,9 +4465,11 @@ document.addEventListener("click", async (event) => {
     await deviceForget("rb_last_user");
     forget("rb_pending_signup_email");
     forget("rb_pending_signup_whatsapp");
+    forget("rb_pending_income_sources");
     write("rb_signed_out", true);
     state.pendingSignupEmail = "";
     state.pendingSignupWhatsApp = "";
+    state.pendingSignupIncomeSources = [];
     state.user = null;
     state.receipts = [];
     state.income = [];
@@ -4420,8 +4559,10 @@ document.addEventListener("submit", async (event) => {
       await api("/api/auth/recovery/request", { method: "POST", body: JSON.stringify({ email }) });
       state.pendingSignupEmail = email;
       state.pendingSignupWhatsApp = (data.whatsapp_phone || "").trim();
+      state.pendingSignupIncomeSources = formIncomeSources(data);
       write("rb_pending_signup_email", email);
       write("rb_pending_signup_whatsapp", state.pendingSignupWhatsApp);
+      write("rb_pending_income_sources", state.pendingSignupIncomeSources);
       write("rb_language", state.language);
       toast(t("codeSent"));
       return go("verifySignup");
@@ -4438,16 +4579,20 @@ document.addEventListener("submit", async (event) => {
       }
       const user = await api("/api/auth/recovery/verify", { method: "POST", body: JSON.stringify({ email, code: data.code }) });
       const signupWhatsApp = state.pendingSignupWhatsApp || read("rb_pending_signup_whatsapp", "");
-      const rememberedUser = signupWhatsApp && !user.whatsapp_phone ? {
+      const signupIncomeSources = cleanIncomeSources(state.pendingSignupIncomeSources || read("rb_pending_income_sources", []));
+      const rememberedUser = {
         ...user,
-        whatsapp_phone: signupWhatsApp,
-        whatsapp_phone_normalized: user.whatsapp_phone_normalized || ""
-      } : user;
+        whatsapp_phone: signupWhatsApp && !user.whatsapp_phone ? signupWhatsApp : user.whatsapp_phone,
+        whatsapp_phone_normalized: user.whatsapp_phone_normalized || "",
+        income_sources: signupIncomeSources
+      };
       state.language = user.language || state.language;
       state.pendingSignupEmail = "";
       state.pendingSignupWhatsApp = "";
+      state.pendingSignupIncomeSources = [];
       forget("rb_pending_signup_email");
       forget("rb_pending_signup_whatsapp");
+      forget("rb_pending_income_sources");
       await rememberUser(rememberedUser);
       write("rb_language", state.language);
       await refresh();
@@ -4601,6 +4746,7 @@ document.addEventListener("submit", async (event) => {
       state.language = data.language;
       state.humour = data.humour;
       const whatsappPhone = (data.whatsapp_phone || "").trim();
+      const incomeSources = formIncomeSources(data);
       const user = await api(`/api/users/${state.user.id}`, {
         method: "PATCH",
         body: JSON.stringify({
@@ -4615,7 +4761,8 @@ document.addEventListener("submit", async (event) => {
         ...state.user,
         ...user,
         whatsapp_phone: user.whatsapp_phone || whatsappPhone,
-        whatsapp_phone_normalized: user.whatsapp_phone_normalized || state.user.whatsapp_phone_normalized || ""
+        whatsapp_phone_normalized: user.whatsapp_phone_normalized || state.user.whatsapp_phone_normalized || "",
+        income_sources: incomeSources
       });
       write("rb_language", state.language);
       write("rb_humour", state.humour);

@@ -1822,6 +1822,40 @@ button {
   color: var(--blue-dark);
 }
 
+.source-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.source-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  color: #334155;
+  font-size: 13px;
+  font-weight: 850;
+  line-height: 1.2;
+  padding: 9px 10px;
+}
+
+.source-pill input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--green);
+  flex: 0 0 18px;
+}
+
+.source-pill:has(input:checked) {
+  border-color: #9fe8bf;
+  background: #eefbf3;
+  color: var(--green-dark);
+}
+
 .total-box {
   display: grid;
   gap: 0;
