@@ -665,6 +665,8 @@ const COPY = {
     trade: "Trade or job",
     email: "Recovery email",
     emailHint: "Use email if you want to recover the same bag of receipts later.",
+    whatsappPhone: "WhatsApp number",
+    whatsappPhoneHint: "Optional. Add it if you want to send receipt photos to TidGo by WhatsApp later.",
     start: "Start TidGo",
     haveAccount: "I already have an account",
     recover: "Recover account",
@@ -742,6 +744,8 @@ const COPY = {
     trade: "Zawod",
     email: "Email do odzyskania",
     emailHint: "Email pozwala odzyskac te same paragony pozniej.",
+    whatsappPhone: "Numer WhatsApp",
+    whatsappPhoneHint: "Opcjonalnie. Dodaj go, jesli pozniej chcesz wysylac zdjecia paragonow do TidGo przez WhatsApp.",
     start: "Start",
     haveAccount: "Mam juz konto",
     recover: "Odzyskaj konto",
@@ -1748,6 +1752,36 @@ Object.assign(COPY.bg, {
   ukTaxQuarterly: "Quarterly for UK taxpayers"
 });
 
+Object.assign(COPY.ro, {
+  whatsappPhone: "Numar WhatsApp",
+  whatsappPhoneHint: "Optional. Adauga-l daca vrei sa trimiti poze cu bonuri catre TidGo prin WhatsApp mai tarziu."
+});
+
+Object.assign(COPY.uk, {
+  whatsappPhone: "WhatsApp number",
+  whatsappPhoneHint: "Optional. Add it if you want to send receipt photos to TidGo by WhatsApp later."
+});
+
+Object.assign(COPY.lt, {
+  whatsappPhone: "WhatsApp numeris",
+  whatsappPhoneHint: "Neprivaloma. Pridekite, jei veliau noresite siusti kvitu nuotraukas i TidGo per WhatsApp."
+});
+
+Object.assign(COPY.lv, {
+  whatsappPhone: "WhatsApp numurs",
+  whatsappPhoneHint: "Nav obligati. Pievienojiet, ja velak velaties sutit ceku foto uz TidGo caur WhatsApp."
+});
+
+Object.assign(COPY.es, {
+  whatsappPhone: "Numero de WhatsApp",
+  whatsappPhoneHint: "Opcional. Anadelo si luego quieres enviar fotos de recibos a TidGo por WhatsApp."
+});
+
+Object.assign(COPY.bg, {
+  whatsappPhone: "WhatsApp number",
+  whatsappPhoneHint: "Optional. Add it if you want to send receipt photos to TidGo by WhatsApp later."
+});
+
 const LEGAL_TEXT = {
   en: {
     privacy: {
@@ -2111,6 +2145,8 @@ async function rememberUser(user) {
     id: user.id,
     first_name: user.first_name,
     email: user.email || "",
+    whatsapp_phone: user.whatsapp_phone || "",
+    whatsapp_phone_normalized: user.whatsapp_phone_normalized || "",
     language: user.language || state.language
   });
 }
@@ -2939,6 +2975,8 @@ function onboarding() {
         <label class="field"><span>${t("trade")}</span><input class="input" name="trade" autocomplete="organization-title"></label>
         <label class="field"><span>${t("email")}</span><input class="input" name="email" type="email" autocomplete="email" required></label>
         <p class="hint">${t("emailHint")}</p>
+        <label class="field"><span>${t("whatsappPhone")}</span><input class="input" name="whatsapp_phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+44 7..."></label>
+        <p class="hint">${t("whatsappPhoneHint")}</p>
         <button class="primary" type="submit">${t("start")}</button>
       </form>
       <button class="link-btn" data-action="recover">${t("haveAccount")}</button>
@@ -2970,6 +3008,8 @@ function recover() {
         <label class="field"><span>${t("email")}</span><input class="input" name="email" type="email" required autocomplete="email"></label>
         <button class="primary" name="step" value="request">${t("sendCode")}</button>
         <label class="field"><span>${t("code")}</span><input class="input" name="code" inputmode="numeric" maxlength="6"></label>
+        <label class="field"><span>${t("whatsappPhone")}</span><input class="input" name="whatsapp_phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+44 7..."></label>
+        <p class="hint">${t("whatsappPhoneHint")}</p>
         <button class="secondary" name="step" value="verify">${t("restore")}</button>
       </form>
     </section>
@@ -3150,6 +3190,8 @@ function settings() {
         <label class="field"><span>${t("firstName")}</span><input class="input" name="first_name" value="${escapeAttr(state.user.first_name)}" required></label>
         <label class="field"><span>${t("trade")}</span><input class="input" name="trade" value="${escapeAttr(state.user.trade || "")}"></label>
         <label class="field"><span>${t("email")}</span><input class="input" name="email" type="email" value="${escapeAttr(state.user.email || "")}"></label>
+        <label class="field"><span>${t("whatsappPhone")}</span><input class="input" name="whatsapp_phone" type="tel" inputmode="tel" autocomplete="tel" value="${escapeAttr(state.user.whatsapp_phone || state.user.whatsapp_phone_normalized || "")}" placeholder="+44 7..."></label>
+        <p class="hint">${t("whatsappPhoneHint")}</p>
         <label class="field"><span>${t("humour")}</span><select class="select" name="humour">
           <option value="funny"${state.humour === "funny" ? " selected" : ""}>${t("subtle")}</option>
           <option value="sarcastic"${state.humour === "sarcastic" ? " selected" : ""}>${t("dry")}</option>
@@ -4357,6 +4399,7 @@ document.addEventListener("submit", async (event) => {
           first_name: data.first_name,
           trade: data.trade || null,
           email,
+          whatsapp_phone: (data.whatsapp_phone || "").trim() || null,
           language: state.language
         })
       });
@@ -4392,7 +4435,14 @@ document.addEventListener("submit", async (event) => {
         await api("/api/auth/recovery/request", { method: "POST", body: JSON.stringify({ email: data.email }) });
         return toast("Code sent if this email exists.");
       }
-      const user = await api("/api/auth/recovery/verify", { method: "POST", body: JSON.stringify({ email: data.email, code: data.code }) });
+      let user = await api("/api/auth/recovery/verify", { method: "POST", body: JSON.stringify({ email: data.email, code: data.code }) });
+      const whatsappPhone = (data.whatsapp_phone || "").trim();
+      if (whatsappPhone && user?.id) {
+        user = await api(`/api/users/${user.id}`, {
+          method: "PATCH",
+          body: JSON.stringify({ whatsapp_phone: whatsappPhone })
+        });
+      }
       state.language = user.language || state.language;
       await rememberUser(user);
       write("rb_language", state.language);
@@ -4526,6 +4576,7 @@ document.addEventListener("submit", async (event) => {
           first_name: data.first_name,
           trade: data.trade || null,
           email: data.email || null,
+          whatsapp_phone: (data.whatsapp_phone || "").trim() || null,
           language: state.language
         })
       });
