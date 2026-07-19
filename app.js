@@ -1360,6 +1360,7 @@ Object.assign(COPY.en, {
     attachProof: "Attach proof",
     proofAttached: "Proof attached",
     viewProof: "View proof",
+    replaceProof: "Replace proof",
     takePhoto: "Take photo",
     uploadFile: "Upload file",
   proofHint: "Add a payslip, CIS statement, remittance note or screenshot. Amount stays manual."
@@ -1454,6 +1455,7 @@ Object.assign(COPY.pl, {
     attachProof: "Dodaj dowod",
     proofAttached: "Dowod dodany",
     viewProof: "Zobacz dowod",
+    replaceProof: "Zmien dowod",
     takePhoto: "Zrob zdjecie",
     uploadFile: "Wgraj plik",
     proofHint: "Dodaj payslip, CIS statement, remittance note albo screenshot. Kwote wpisujesz recznie."
@@ -2654,10 +2656,10 @@ function incomeProofName(item = {}, proof = null) {
   return proof?.name || item.proof_name || item.attachment_name || item.file_name || item.document_name || item.filename || "";
 }
 
-function incomeProofPickerField() {
+function incomeProofPickerField(label = t("attachProof")) {
   return `
     <div class="field">
-      <span>${t("attachProof")}</span>
+      <span>${label}</span>
       <div class="drop-zone" data-drop-upload="income-proof">
         <strong>${t("proofDropTitle")}</strong>
         <span>${t("proofDropHint")}</span>
@@ -3552,7 +3554,8 @@ function incomeDetail() {
         <label class="field"><span>${t("currency")}</span><select class="select" name="currency">${currencyOptions(entry.currency || "GBP")}</select></label>
         <label class="field"><span>${t("description")}</span><textarea class="textarea" name="description">${escapeHtml(entry.description || "")}</textarea></label>
         ${proofName ? `<div class="card muted">${t("proofAttached")}: ${escapeHtml(proofName)}</div>` : ""}
-        ${proofImage ? imagePreviewButton(proofImage, t("proofAttached")) : incomeProofPickerField()}
+        ${proofImage ? imagePreviewButton(proofImage, t("proofAttached")) : ""}
+        ${incomeProofPickerField(proofImage || proofName ? t("replaceProof") : t("attachProof"))}
         <button class="primary" type="submit">${t("save")}</button>
       </form>
       <button class="danger" style="width:100%;margin-top:12px" data-action="deleteIncome">${t("delete")}</button>
