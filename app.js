@@ -675,6 +675,9 @@ const COPY = {
     emailHint: "Use email if you want to recover the same bag of receipts later.",
     whatsappPhone: "WhatsApp number",
     whatsappPhoneHint: "Optional. Add it if you want to send receipt photos to TidGo by WhatsApp later.",
+    whatsappConnectedTitle: "WhatsApp connected",
+    whatsappConnectedText: "A WhatsApp number ending in {last3} is already linked to this account. To avoid mix-ups, TidGo does not let you replace it here.",
+    whatsappAddOnceHint: "Add the number you want to use for sending receipts. Connect it once, then send the ready LINK message in WhatsApp.",
     connectWhatsApp: "Connect WhatsApp",
     connectWhatsAppHint: "Open WhatsApp and send the ready LINK message. TidGo will use it to connect this phone to your account.",
     connectWhatsAppFallback: "Opening WhatsApp with a basic link message. If it does not connect, try again after the next API deploy.",
@@ -779,6 +782,9 @@ const COPY = {
     emailHint: "Email pozwala odzyskac te same paragony pozniej.",
     whatsappPhone: "Numer WhatsApp",
     whatsappPhoneHint: "Opcjonalnie. Dodaj go, jesli pozniej chcesz wysylac zdjecia paragonow do TidGo przez WhatsApp.",
+    whatsappConnectedTitle: "WhatsApp polaczony",
+    whatsappConnectedText: "Numer WhatsApp zakonczony na {last3} jest juz przypisany do tego konta. Zeby uniknac balaganu, TidGo nie pozwala zmienic go tutaj.",
+    whatsappAddOnceHint: "Dodaj numer, z ktorego chcesz wysylac paragony. Polacz go raz, potem wyslij gotowa wiadomosc LINK w WhatsAppie.",
     connectWhatsApp: "Polacz WhatsApp",
     connectWhatsAppHint: "Otworz WhatsApp i wyslij gotowa wiadomosc LINK. TidGo uzyje jej, zeby polaczyc ten telefon z kontem.",
     connectWhatsAppFallback: "Otwieram WhatsApp z podstawowa wiadomoscia LINK. Jesli nie polaczy, sprobuj po nastepnym deployu API.",
@@ -1806,6 +1812,9 @@ Object.assign(COPY.bg, {
 Object.assign(COPY.ro, {
   whatsappPhone: "Numar WhatsApp",
   whatsappPhoneHint: "Optional. Adauga-l daca vrei sa trimiti poze cu bonuri catre TidGo prin WhatsApp mai tarziu.",
+  whatsappConnectedTitle: "WhatsApp conectat",
+  whatsappConnectedText: "Un numar WhatsApp care se termina in {last3} este deja legat de acest cont. Pentru a evita confuzii, TidGo nu il schimba aici.",
+  whatsappAddOnceHint: "Adauga numarul de pe care vrei sa trimiti bonuri. Conecteaza-l o singura data, apoi trimite mesajul LINK in WhatsApp.",
   intakeTitle: "Modalitati de adaugare",
   whatsappIntakeText: "WhatsApp intake: conecteaza numarul, apoi trimite poze cu bonuri catre TidGo din WhatsApp.",
   emailIntakeLabel: "Email intake:",
@@ -1822,6 +1831,9 @@ Object.assign(COPY.ro, {
 Object.assign(COPY.uk, {
   whatsappPhone: "WhatsApp number",
   whatsappPhoneHint: "Optional. Add it if you want to send receipt photos to TidGo by WhatsApp later.",
+  whatsappConnectedTitle: "WhatsApp connected",
+  whatsappConnectedText: "A WhatsApp number ending in {last3} is already linked to this account. To avoid mix-ups, TidGo does not let you replace it here.",
+  whatsappAddOnceHint: "Add the number you want to use for sending receipts. Connect it once, then send the ready LINK message in WhatsApp.",
   intakeTitle: "Ways to add records",
   whatsappIntakeText: "WhatsApp intake: connect your number, then send receipt photos to TidGo from WhatsApp.",
   emailIntakeLabel: "Email intake:",
@@ -1838,6 +1850,9 @@ Object.assign(COPY.uk, {
 Object.assign(COPY.lt, {
   whatsappPhone: "WhatsApp numeris",
   whatsappPhoneHint: "Neprivaloma. Pridekite, jei veliau noresite siusti kvitu nuotraukas i TidGo per WhatsApp.",
+  whatsappConnectedTitle: "WhatsApp prijungtas",
+  whatsappConnectedText: "WhatsApp numeris, kuris baigiasi {last3}, jau prijungtas prie sios paskyros. Kad nekiltu painiavos, TidGo neleidzia jo cia pakeisti.",
+  whatsappAddOnceHint: "Pridėkite numeri, is kurio siusite kvitus. Prijunkite ji viena karta, tada issiuskite LINK zinute WhatsApp.",
   intakeTitle: "Būdai pridėti įrašus",
   whatsappIntakeText: "WhatsApp intake: prijunkite numeri, tada siuskite kvitu nuotraukas i TidGo per WhatsApp.",
   emailIntakeLabel: "Email intake:",
@@ -1854,6 +1869,9 @@ Object.assign(COPY.lt, {
 Object.assign(COPY.lv, {
   whatsappPhone: "WhatsApp numurs",
   whatsappPhoneHint: "Nav obligati. Pievienojiet, ja velak velaties sutit ceku foto uz TidGo caur WhatsApp.",
+  whatsappConnectedTitle: "WhatsApp pieslegts",
+  whatsappConnectedText: "WhatsApp numurs, kas beidzas ar {last3}, jau ir piesaistits sim kontam. Lai izvairitos no jukuma, TidGo nelauj to seit nomainit.",
+  whatsappAddOnceHint: "Pievienojiet numuru, no kura sūtisiet čekus. Piesledziet to vienu reizi, pec tam nosutiet LINK zinu WhatsApp.",
   intakeTitle: "Veidi, ka pievienot ierakstus",
   whatsappIntakeText: "WhatsApp intake: piesledziet numuru, pec tam sutiet ceku foto uz TidGo caur WhatsApp.",
   emailIntakeLabel: "Email intake:",
@@ -1870,6 +1888,9 @@ Object.assign(COPY.lv, {
 Object.assign(COPY.es, {
   whatsappPhone: "Numero de WhatsApp",
   whatsappPhoneHint: "Opcional. Anadelo si luego quieres enviar fotos de recibos a TidGo por WhatsApp.",
+  whatsappConnectedTitle: "WhatsApp conectado",
+  whatsappConnectedText: "Un numero de WhatsApp que termina en {last3} ya esta vinculado a esta cuenta. Para evitar lios, TidGo no permite cambiarlo aqui.",
+  whatsappAddOnceHint: "Anade el numero desde el que quieres enviar recibos. Conectalo una vez y luego envia el mensaje LINK en WhatsApp.",
   intakeTitle: "Formas de anadir registros",
   whatsappIntakeText: "WhatsApp intake: conecta tu numero y luego envia fotos de recibos a TidGo desde WhatsApp.",
   emailIntakeLabel: "Email intake:",
@@ -1886,6 +1907,9 @@ Object.assign(COPY.es, {
 Object.assign(COPY.bg, {
   whatsappPhone: "WhatsApp number",
   whatsappPhoneHint: "Optional. Add it if you want to send receipt photos to TidGo by WhatsApp later.",
+  whatsappConnectedTitle: "WhatsApp connected",
+  whatsappConnectedText: "A WhatsApp number ending in {last3} is already linked to this account. To avoid mix-ups, TidGo does not let you replace it here.",
+  whatsappAddOnceHint: "Add the number you want to use for sending receipts. Connect it once, then send the ready LINK message in WhatsApp.",
   intakeTitle: "Ways to add records",
   whatsappIntakeText: "WhatsApp intake: connect your number, then send receipt photos to TidGo from WhatsApp.",
   emailIntakeLabel: "Email intake:",
@@ -2568,6 +2592,11 @@ function incomeProofImage(item = {}, proof = null) {
 
 function incomeProofName(item = {}, proof = null) {
   return proof?.name || item.proof_name || item.attachment_name || item.file_name || item.document_name || item.filename || "";
+}
+
+function lastPhoneDigits(value = "") {
+  const digits = String(value || "").replace(/\D/g, "");
+  return digits ? digits.slice(-3).padStart(Math.min(3, digits.length), "*") : "***";
 }
 
 function compactIncomeProofs(proofs = {}) {
@@ -3487,6 +3516,8 @@ function clientConnectionCard() {
 }
 
 function settings() {
+  const existingWhatsApp = state.user.whatsapp_phone_normalized || state.user.whatsapp_phone || "";
+  const whatsappConnectedText = t("whatsappConnectedText").replace("{last3}", lastPhoneDigits(existingWhatsApp));
   shell(`
     <section class="screen">
       ${topbar(t("settings"), true)}
@@ -3500,11 +3531,18 @@ function settings() {
           <p class="hint">${t("incomeSourcesHint")}</p>
         </div>
         <label class="field"><span>${t("email")}</span><input class="input" name="email" type="email" value="${escapeAttr(state.user.email || "")}"></label>
-        <label class="field"><span>${t("whatsappPhone")}</span><input class="input" name="whatsapp_phone" type="tel" inputmode="tel" autocomplete="tel" value="${escapeAttr(state.user.whatsapp_phone || state.user.whatsapp_phone_normalized || "")}" placeholder="+44 7..."></label>
-        <div class="whatsapp-connect-box">
-          <p>${t("connectWhatsAppHint")}</p>
-          <button class="secondary whatsapp-connect-btn" type="button" data-action="connectWhatsApp"><span class="wa-icon" aria-hidden="true">WA</span>${t("connectWhatsApp")}</button>
-        </div>
+        ${existingWhatsApp ? `
+          <div class="whatsapp-connect-box whatsapp-connected-box">
+            <strong>${t("whatsappConnectedTitle")}</strong>
+            <p>${escapeHtml(whatsappConnectedText)}</p>
+          </div>
+        ` : `
+          <label class="field"><span>${t("whatsappPhone")}</span><input class="input" name="whatsapp_phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+44 7..."></label>
+          <div class="whatsapp-connect-box">
+            <p>${t("whatsappAddOnceHint")}</p>
+            <button class="secondary whatsapp-connect-btn" type="button" data-action="connectWhatsApp"><span class="wa-icon" aria-hidden="true">WA</span>${t("connectWhatsApp")}</button>
+          </div>
+        `}
         <div class="intake-card">
           <strong>${t("intakeTitle")}</strong>
           <span><strong>${t("emailIntakeLabel")}</strong> ${t("emailIntakeText")}</span>
@@ -4995,20 +5033,21 @@ document.addEventListener("submit", async (event) => {
       state.humour = data.humour;
       const whatsappPhone = (data.whatsapp_phone || "").trim();
       const incomeSources = formIncomeSources(data);
+      const patchBody = {
+        first_name: data.first_name,
+        trade: data.trade || null,
+        email: data.email || null,
+        language: state.language
+      };
+      if (whatsappPhone) patchBody.whatsapp_phone = whatsappPhone;
       const user = await api(`/api/users/${state.user.id}`, {
         method: "PATCH",
-        body: JSON.stringify({
-          first_name: data.first_name,
-          trade: data.trade || null,
-          email: data.email || null,
-          whatsapp_phone: whatsappPhone || null,
-          language: state.language
-        })
+        body: JSON.stringify(patchBody)
       });
       await rememberUser({
         ...state.user,
         ...user,
-        whatsapp_phone: user.whatsapp_phone || whatsappPhone,
+        whatsapp_phone: user.whatsapp_phone || state.user.whatsapp_phone || whatsappPhone,
         whatsapp_phone_normalized: user.whatsapp_phone_normalized || state.user.whatsapp_phone_normalized || "",
         income_sources: incomeSources
       });

@@ -1948,6 +1948,15 @@ button {
   line-height: 1.35;
 }
 
+.whatsapp-connected-box {
+  border-color: #bbf7d0;
+  background: #f0fdf4;
+}
+
+.whatsapp-connected-box strong {
+  color: #166534;
+}
+
 .whatsapp-connect-box .secondary {
   width: auto;
   justify-self: start;
