@@ -1972,6 +1972,18 @@ button {
   color: var(--green-dark);
 }
 
+.whatsapp-change-box {
+  border-top: 1px solid #bbf7d0;
+  padding-top: 10px;
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
 .whatsapp-connect-btn {
   display: inline-flex;
   align-items: center;

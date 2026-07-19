@@ -677,6 +677,12 @@ const COPY = {
     whatsappPhoneHint: "Optional. Add it if you want to send receipt photos to TidGo by WhatsApp later.",
     whatsappConnectedTitle: "WhatsApp connected",
     whatsappConnectedText: "A WhatsApp number ending in {last3} is already linked to this account. To avoid mix-ups, TidGo does not let you replace it here.",
+    changeWhatsAppNumber: "Change WhatsApp number",
+    changeWhatsAppIntro: "For safety, confirm your recovery email first. Then open WhatsApp on the new phone and send the ready LINK message.",
+    changeWhatsAppEmailHint: "We will send a code to your TidGo recovery email.",
+    whatsappChangeCodeHint: "Enter the email code, then you can connect the new WhatsApp number.",
+    unlockWhatsAppChange: "Unlock change",
+    whatsappChangeUnlocked: "Email confirmed. Now use the new phone to connect WhatsApp.",
     whatsappAddOnceHint: "Add the number you want to use for sending receipts. Connect it once, then send the ready LINK message in WhatsApp.",
     connectWhatsApp: "Connect WhatsApp",
     connectWhatsAppHint: "Open WhatsApp and send the ready LINK message. TidGo will use it to connect this phone to your account.",
@@ -784,6 +790,12 @@ const COPY = {
     whatsappPhoneHint: "Opcjonalnie. Dodaj go, jesli pozniej chcesz wysylac zdjecia paragonow do TidGo przez WhatsApp.",
     whatsappConnectedTitle: "WhatsApp polaczony",
     whatsappConnectedText: "Numer WhatsApp zakonczony na {last3} jest juz przypisany do tego konta. Zeby uniknac balaganu, TidGo nie pozwala zmienic go tutaj.",
+    changeWhatsAppNumber: "Zmien numer WhatsApp",
+    changeWhatsAppIntro: "Dla bezpieczenstwa najpierw potwierdz email odzyskiwania. Potem otworz WhatsApp na nowym telefonie i wyslij gotowa wiadomosc LINK.",
+    changeWhatsAppEmailHint: "Wyslemy kod na email odzyskiwania TidGo.",
+    whatsappChangeCodeHint: "Wpisz kod z emaila, potem mozesz polaczyc nowy numer WhatsApp.",
+    unlockWhatsAppChange: "Odblokuj zmiane",
+    whatsappChangeUnlocked: "Email potwierdzony. Teraz uzyj nowego telefonu, zeby polaczyc WhatsApp.",
     whatsappAddOnceHint: "Dodaj numer, z ktorego chcesz wysylac paragony. Polacz go raz, potem wyslij gotowa wiadomosc LINK w WhatsAppie.",
     connectWhatsApp: "Polacz WhatsApp",
     connectWhatsAppHint: "Otworz WhatsApp i wyslij gotowa wiadomosc LINK. TidGo uzyje jej, zeby polaczyc ten telefon z kontem.",
@@ -1814,6 +1826,12 @@ Object.assign(COPY.ro, {
   whatsappPhoneHint: "Optional. Adauga-l daca vrei sa trimiti poze cu bonuri catre TidGo prin WhatsApp mai tarziu.",
   whatsappConnectedTitle: "WhatsApp conectat",
   whatsappConnectedText: "Un numar WhatsApp care se termina in {last3} este deja legat de acest cont. Pentru a evita confuzii, TidGo nu il schimba aici.",
+  changeWhatsAppNumber: "Schimba numarul WhatsApp",
+  changeWhatsAppIntro: "Pentru siguranta, confirma mai intai emailul de recuperare. Apoi deschide WhatsApp pe noul telefon si trimite mesajul LINK pregatit.",
+  changeWhatsAppEmailHint: "Vom trimite un cod pe emailul de recuperare TidGo.",
+  whatsappChangeCodeHint: "Introdu codul din email, apoi poti conecta noul numar WhatsApp.",
+  unlockWhatsAppChange: "Deblocheaza schimbarea",
+  whatsappChangeUnlocked: "Email confirmat. Acum foloseste noul telefon pentru a conecta WhatsApp.",
   whatsappAddOnceHint: "Adauga numarul de pe care vrei sa trimiti bonuri. Conecteaza-l o singura data, apoi trimite mesajul LINK in WhatsApp.",
   intakeTitle: "Modalitati de adaugare",
   whatsappIntakeText: "WhatsApp intake: conecteaza numarul, apoi trimite poze cu bonuri catre TidGo din WhatsApp.",
@@ -1833,6 +1851,12 @@ Object.assign(COPY.uk, {
   whatsappPhoneHint: "Optional. Add it if you want to send receipt photos to TidGo by WhatsApp later.",
   whatsappConnectedTitle: "WhatsApp connected",
   whatsappConnectedText: "A WhatsApp number ending in {last3} is already linked to this account. To avoid mix-ups, TidGo does not let you replace it here.",
+  changeWhatsAppNumber: "Change WhatsApp number",
+  changeWhatsAppIntro: "For safety, confirm your recovery email first. Then open WhatsApp on the new phone and send the ready LINK message.",
+  changeWhatsAppEmailHint: "We will send a code to your TidGo recovery email.",
+  whatsappChangeCodeHint: "Enter the email code, then you can connect the new WhatsApp number.",
+  unlockWhatsAppChange: "Unlock change",
+  whatsappChangeUnlocked: "Email confirmed. Now use the new phone to connect WhatsApp.",
   whatsappAddOnceHint: "Add the number you want to use for sending receipts. Connect it once, then send the ready LINK message in WhatsApp.",
   intakeTitle: "Ways to add records",
   whatsappIntakeText: "WhatsApp intake: connect your number, then send receipt photos to TidGo from WhatsApp.",
@@ -1852,6 +1876,12 @@ Object.assign(COPY.lt, {
   whatsappPhoneHint: "Neprivaloma. Pridekite, jei veliau noresite siusti kvitu nuotraukas i TidGo per WhatsApp.",
   whatsappConnectedTitle: "WhatsApp prijungtas",
   whatsappConnectedText: "WhatsApp numeris, kuris baigiasi {last3}, jau prijungtas prie sios paskyros. Kad nekiltu painiavos, TidGo neleidzia jo cia pakeisti.",
+  changeWhatsAppNumber: "Keisti WhatsApp numeri",
+  changeWhatsAppIntro: "Saugumui pirma patvirtinkite atkurimo el. pasta. Tada atidarykite WhatsApp naujame telefone ir issiuskite paruosta LINK zinute.",
+  changeWhatsAppEmailHint: "Koda atsiusime i TidGo atkurimo el. pasta.",
+  whatsappChangeCodeHint: "Iveskite el. pasto koda, tada galesite prijungti nauja WhatsApp numeri.",
+  unlockWhatsAppChange: "Atrakinti keitima",
+  whatsappChangeUnlocked: "El. pastas patvirtintas. Dabar naudokite nauja telefona WhatsApp prijungimui.",
   whatsappAddOnceHint: "Pridėkite numeri, is kurio siusite kvitus. Prijunkite ji viena karta, tada issiuskite LINK zinute WhatsApp.",
   intakeTitle: "Būdai pridėti įrašus",
   whatsappIntakeText: "WhatsApp intake: prijunkite numeri, tada siuskite kvitu nuotraukas i TidGo per WhatsApp.",
@@ -1871,6 +1901,12 @@ Object.assign(COPY.lv, {
   whatsappPhoneHint: "Nav obligati. Pievienojiet, ja velak velaties sutit ceku foto uz TidGo caur WhatsApp.",
   whatsappConnectedTitle: "WhatsApp pieslegts",
   whatsappConnectedText: "WhatsApp numurs, kas beidzas ar {last3}, jau ir piesaistits sim kontam. Lai izvairitos no jukuma, TidGo nelauj to seit nomainit.",
+  changeWhatsAppNumber: "Mainit WhatsApp numuru",
+  changeWhatsAppIntro: "Drosibai vispirms apstipriniet atjaunosanas e-pastu. Tad atveriet WhatsApp jaunaja telefona un nosutiet gatavo LINK zinu.",
+  changeWhatsAppEmailHint: "Mes nosutisim kodu uz TidGo atjaunosanas e-pastu.",
+  whatsappChangeCodeHint: "Ievadiet emaila kodu, tad varesiet pieslegt jaunu WhatsApp numuru.",
+  unlockWhatsAppChange: "Atlaujat mainu",
+  whatsappChangeUnlocked: "E-pasts apstiprinats. Tagad izmantojiet jauno telefonu, lai pieslegtu WhatsApp.",
   whatsappAddOnceHint: "Pievienojiet numuru, no kura sūtisiet čekus. Piesledziet to vienu reizi, pec tam nosutiet LINK zinu WhatsApp.",
   intakeTitle: "Veidi, ka pievienot ierakstus",
   whatsappIntakeText: "WhatsApp intake: piesledziet numuru, pec tam sutiet ceku foto uz TidGo caur WhatsApp.",
@@ -1890,6 +1926,12 @@ Object.assign(COPY.es, {
   whatsappPhoneHint: "Opcional. Anadelo si luego quieres enviar fotos de recibos a TidGo por WhatsApp.",
   whatsappConnectedTitle: "WhatsApp conectado",
   whatsappConnectedText: "Un numero de WhatsApp que termina en {last3} ya esta vinculado a esta cuenta. Para evitar lios, TidGo no permite cambiarlo aqui.",
+  changeWhatsAppNumber: "Cambiar numero de WhatsApp",
+  changeWhatsAppIntro: "Por seguridad, confirma primero tu email de recuperacion. Luego abre WhatsApp en el nuevo telefono y envia el mensaje LINK preparado.",
+  changeWhatsAppEmailHint: "Enviaremos un codigo a tu email de recuperacion de TidGo.",
+  whatsappChangeCodeHint: "Introduce el codigo del email y luego podras conectar el nuevo numero de WhatsApp.",
+  unlockWhatsAppChange: "Desbloquear cambio",
+  whatsappChangeUnlocked: "Email confirmado. Ahora usa el nuevo telefono para conectar WhatsApp.",
   whatsappAddOnceHint: "Anade el numero desde el que quieres enviar recibos. Conectalo una vez y luego envia el mensaje LINK en WhatsApp.",
   intakeTitle: "Formas de anadir registros",
   whatsappIntakeText: "WhatsApp intake: conecta tu numero y luego envia fotos de recibos a TidGo desde WhatsApp.",
@@ -1909,6 +1951,12 @@ Object.assign(COPY.bg, {
   whatsappPhoneHint: "Optional. Add it if you want to send receipt photos to TidGo by WhatsApp later.",
   whatsappConnectedTitle: "WhatsApp connected",
   whatsappConnectedText: "A WhatsApp number ending in {last3} is already linked to this account. To avoid mix-ups, TidGo does not let you replace it here.",
+  changeWhatsAppNumber: "Change WhatsApp number",
+  changeWhatsAppIntro: "For safety, confirm your recovery email first. Then open WhatsApp on the new phone and send the ready LINK message.",
+  changeWhatsAppEmailHint: "We will send a code to your TidGo recovery email.",
+  whatsappChangeCodeHint: "Enter the email code, then you can connect the new WhatsApp number.",
+  unlockWhatsAppChange: "Unlock change",
+  whatsappChangeUnlocked: "Email confirmed. Now use the new phone to connect WhatsApp.",
   whatsappAddOnceHint: "Add the number you want to use for sending receipts. Connect it once, then send the ready LINK message in WhatsApp.",
   intakeTitle: "Ways to add records",
   whatsappIntakeText: "WhatsApp intake: connect your number, then send receipt photos to TidGo from WhatsApp.",
@@ -2091,6 +2139,9 @@ const state = {
   accountantSelectedClientId: null,
   accountantClientListOpen: false,
   accountantClientSearch: "",
+  whatsappChangeCodeSent: false,
+  whatsappChangeUnlocked: false,
+  whatsappChangeOpen: false,
   pendingSignupEmail: read("rb_pending_signup_email", ""),
   pendingSignupWhatsApp: read("rb_pending_signup_whatsapp", ""),
   pendingSignupIncomeSources: read("rb_pending_income_sources", []),
@@ -2597,6 +2648,10 @@ function incomeProofName(item = {}, proof = null) {
 function lastPhoneDigits(value = "") {
   const digits = String(value || "").replace(/\D/g, "");
   return digits ? digits.slice(-3).padStart(Math.min(3, digits.length), "*") : "***";
+}
+
+function recoveryEmailForUser() {
+  return (state.user?.email || state.user?.recovery_email || "").trim();
 }
 
 function compactIncomeProofs(proofs = {}) {
@@ -3530,9 +3585,47 @@ function clientConnectionCard() {
   `;
 }
 
+function settingsWhatsAppSection(existingWhatsApp = "") {
+  const whatsappConnectedText = t("whatsappConnectedText").replace("{last3}", lastPhoneDigits(existingWhatsApp));
+  const email = recoveryEmailForUser();
+  if (!existingWhatsApp) {
+    return `
+      <label class="field"><span>${t("whatsappPhone")}</span><input class="input" name="whatsapp_phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+44 7..."></label>
+      <div class="whatsapp-connect-box">
+        <p>${t("whatsappAddOnceHint")}</p>
+        <button class="secondary whatsapp-connect-btn" type="button" data-action="connectWhatsApp"><span class="wa-icon" aria-hidden="true">WA</span>${t("connectWhatsApp")}</button>
+      </div>
+    `;
+  }
+  return `
+    <div class="whatsapp-connect-box whatsapp-connected-box">
+      <strong>${t("whatsappConnectedTitle")}</strong>
+      <p>${escapeHtml(whatsappConnectedText)}</p>
+      ${!state.whatsappChangeOpen ? `<button class="secondary" type="button" data-action="startWhatsAppChange">${t("changeWhatsAppNumber")}</button>` : `
+        <div class="stack whatsapp-change-box">
+          <p class="hint">${t("changeWhatsAppIntro")}</p>
+          <label class="field"><span>${t("email")}</span><input class="input" name="whatsapp_change_email" type="email" value="${escapeAttr(email)}" placeholder="you@email.com"></label>
+          ${!state.whatsappChangeUnlocked ? `
+            <p class="hint">${state.whatsappChangeCodeSent ? t("whatsappChangeCodeHint") : t("changeWhatsAppEmailHint")}</p>
+            ${state.whatsappChangeCodeSent ? `<label class="field"><span>${t("code")}</span><input class="input" name="whatsapp_change_code" inputmode="numeric" autocomplete="one-time-code" placeholder="123456"></label>` : ""}
+            <div class="button-row">
+              <button class="secondary" type="button" data-action="requestWhatsAppChangeCode">${state.whatsappChangeCodeSent ? t("sendCodeAgain") : t("sendCode")}</button>
+              ${state.whatsappChangeCodeSent ? `<button class="primary" type="button" data-action="verifyWhatsAppChangeCode">${t("unlockWhatsAppChange")}</button>` : ""}
+              <button class="secondary" type="button" data-action="cancelWhatsAppChange">${t("cancel")}</button>
+            </div>
+          ` : `
+            <p class="hint">${t("whatsappChangeUnlocked")}</p>
+            <button class="secondary whatsapp-connect-btn" type="button" data-action="connectWhatsApp"><span class="wa-icon" aria-hidden="true">WA</span>${t("connectWhatsApp")}</button>
+            <button class="secondary" type="button" data-action="cancelWhatsAppChange">${t("cancel")}</button>
+          `}
+        </div>
+      `}
+    </div>
+  `;
+}
+
 function settings() {
   const existingWhatsApp = state.user.whatsapp_phone_normalized || state.user.whatsapp_phone || "";
-  const whatsappConnectedText = t("whatsappConnectedText").replace("{last3}", lastPhoneDigits(existingWhatsApp));
   shell(`
     <section class="screen">
       ${topbar(t("settings"), true)}
@@ -3546,18 +3639,7 @@ function settings() {
           <p class="hint">${t("incomeSourcesHint")}</p>
         </div>
         <label class="field"><span>${t("email")}</span><input class="input" name="email" type="email" value="${escapeAttr(state.user.email || "")}"></label>
-        ${existingWhatsApp ? `
-          <div class="whatsapp-connect-box whatsapp-connected-box">
-            <strong>${t("whatsappConnectedTitle")}</strong>
-            <p>${escapeHtml(whatsappConnectedText)}</p>
-          </div>
-        ` : `
-          <label class="field"><span>${t("whatsappPhone")}</span><input class="input" name="whatsapp_phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+44 7..."></label>
-          <div class="whatsapp-connect-box">
-            <p>${t("whatsappAddOnceHint")}</p>
-            <button class="secondary whatsapp-connect-btn" type="button" data-action="connectWhatsApp"><span class="wa-icon" aria-hidden="true">WA</span>${t("connectWhatsApp")}</button>
-          </div>
-        `}
+        ${settingsWhatsAppSection(existingWhatsApp)}
         <div class="intake-card">
           <strong>${t("intakeTitle")}</strong>
           <span><strong>${t("emailIntakeLabel")}</strong> ${t("emailIntakeText")}</span>
@@ -4457,6 +4539,55 @@ document.addEventListener("click", async (event) => {
   if (action === "home") return go("home");
   if (action === "recover") return go("recover");
   if (action === "settings") return go("settings");
+  if (action === "startWhatsAppChange") {
+    state.whatsappChangeOpen = true;
+    state.whatsappChangeCodeSent = false;
+    state.whatsappChangeUnlocked = false;
+    return render();
+  }
+  if (action === "cancelWhatsAppChange") {
+    state.whatsappChangeOpen = false;
+    state.whatsappChangeCodeSent = false;
+    state.whatsappChangeUnlocked = false;
+    return render();
+  }
+  if (action === "requestWhatsAppChangeCode") {
+    const form = target.closest("form");
+    const email = (form?.elements.whatsapp_change_email?.value || "").trim();
+    if (!email) return toast(t("email"));
+    try {
+      setBusy(true);
+      await api("/api/auth/recovery/request", { method: "POST", body: JSON.stringify({ email }) });
+      state.whatsappChangeCodeSent = true;
+      toast(t("codeSent"));
+      return render();
+    } catch (error) {
+      toast(error.message || t("backendDown"));
+    } finally {
+      setBusy(false);
+    }
+    return;
+  }
+  if (action === "verifyWhatsAppChangeCode") {
+    const form = target.closest("form");
+    const email = (form?.elements.whatsapp_change_email?.value || "").trim();
+    const code = (form?.elements.whatsapp_change_code?.value || "").trim();
+    if (!email || !code) return toast(t("code"));
+    try {
+      setBusy(true);
+      const user = await api("/api/auth/recovery/verify", { method: "POST", body: JSON.stringify({ email, code }) });
+      if (user?.id && user.id !== state.user.id) throw new Error(t("email"));
+      state.whatsappChangeUnlocked = true;
+      await rememberUser({ ...state.user, ...user });
+      toast(t("whatsappChangeUnlocked"));
+      return render();
+    } catch (error) {
+      toast(error.message || t("backendDown"));
+    } finally {
+      setBusy(false);
+    }
+    return;
+  }
   if (action === "accountantLanding") return go("accountantLanding");
   if (action === "accountantDemoClient") return go("accountantDemoClient");
   if (action === "signOutAccountant") {
