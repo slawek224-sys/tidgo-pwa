@@ -680,7 +680,7 @@ const COPY = {
     connectWhatsAppFallback: "Opening WhatsApp with a basic link message. If it does not connect, try again after the next API deploy.",
     intakeTitle: "Ways to add records",
     whatsappIntakeText: "WhatsApp intake: connect your number, then send receipt photos to TidGo from WhatsApp.",
-    emailIntakeText: "Email intake: forward email receipts or income proof to TidGo when your intake address is connected.",
+    emailIntakeText: "Email intake: send from the same email you use in TidGo to intake@tidgo.co.uk. Use subject income or expense to help TidGo sort it quickly.",
     dragDropTitle: "Drop receipt here",
     dragDropHint: "On desktop, drag a receipt photo or screenshot into this box.",
     dropActive: "Let go to add this receipt.",
@@ -779,7 +779,7 @@ const COPY = {
     connectWhatsAppFallback: "Otwieram WhatsApp z podstawowa wiadomoscia LINK. Jesli nie polaczy, sprobuj po nastepnym deployu API.",
     intakeTitle: "Sposoby dodawania rekordow",
     whatsappIntakeText: "WhatsApp intake: polacz numer, potem wysylaj zdjecia paragonow do TidGo z WhatsAppa.",
-    emailIntakeText: "Email intake: przeslij paragony z maila albo dowod przychodu do TidGo, kiedy adres intake bedzie podpiety.",
+    emailIntakeText: "Email intake: wyslij z tego samego emaila, ktorego uzywasz w TidGo, na intake@tidgo.co.uk. W temacie wpisz income albo expense, zeby TidGo szybciej to posortowal.",
     dragDropTitle: "Upusc paragon tutaj",
     dragDropHint: "Na komputerze przeciagnij zdjecie paragonu albo screenshot do tego pola.",
     dropActive: "Pusc, zeby dodac ten paragon.",
@@ -1798,7 +1798,7 @@ Object.assign(COPY.ro, {
   whatsappPhoneHint: "Optional. Adauga-l daca vrei sa trimiti poze cu bonuri catre TidGo prin WhatsApp mai tarziu.",
   intakeTitle: "Modalitati de adaugare",
   whatsappIntakeText: "WhatsApp intake: conecteaza numarul, apoi trimite poze cu bonuri catre TidGo din WhatsApp.",
-  emailIntakeText: "Email intake: redirectioneaza bonuri primite pe email sau dovezi de venit catre TidGo cand adresa este conectata.",
+  emailIntakeText: "Email intake: trimite de pe acelasi email folosit in TidGo catre intake@tidgo.co.uk. Pune in subiect income sau expense ca TidGo sa sorteze mai usor.",
   dragDropTitle: "Trage bonul aici",
   dragDropHint: "Pe desktop, trage o poza sau un screenshot al bonului in aceasta zona.",
   dropActive: "Elibereaza pentru a adauga bonul."
@@ -1809,7 +1809,7 @@ Object.assign(COPY.uk, {
   whatsappPhoneHint: "Optional. Add it if you want to send receipt photos to TidGo by WhatsApp later.",
   intakeTitle: "Ways to add records",
   whatsappIntakeText: "WhatsApp intake: connect your number, then send receipt photos to TidGo from WhatsApp.",
-  emailIntakeText: "Email intake: forward email receipts or income proof to TidGo when your intake address is connected.",
+  emailIntakeText: "Email intake: send from the same email you use in TidGo to intake@tidgo.co.uk. Use subject income or expense to help TidGo sort it quickly.",
   dragDropTitle: "Drop receipt here",
   dragDropHint: "On desktop, drag a receipt photo or screenshot into this box.",
   dropActive: "Let go to add this receipt."
@@ -1820,7 +1820,7 @@ Object.assign(COPY.lt, {
   whatsappPhoneHint: "Neprivaloma. Pridekite, jei veliau noresite siusti kvitu nuotraukas i TidGo per WhatsApp.",
   intakeTitle: "Būdai pridėti įrašus",
   whatsappIntakeText: "WhatsApp intake: prijunkite numeri, tada siuskite kvitu nuotraukas i TidGo per WhatsApp.",
-  emailIntakeText: "Email intake: persiuskite el. kvitus arba pajamu irodyma i TidGo, kai adresas bus prijungtas.",
+  emailIntakeText: "Email intake: siuskite is to paties el. pasto, kuri naudojate TidGo, i intake@tidgo.co.uk. Temos lauke rasykite income arba expense, kad TidGo greiciau surusiuotu.",
   dragDropTitle: "Numeskite kvita cia",
   dragDropHint: "Kompiuteryje nutempkite kvito nuotrauka arba ekrano kopija i si laukeli.",
   dropActive: "Paleiskite, kad prideti kvita."
@@ -1831,7 +1831,7 @@ Object.assign(COPY.lv, {
   whatsappPhoneHint: "Nav obligati. Pievienojiet, ja velak velaties sutit ceku foto uz TidGo caur WhatsApp.",
   intakeTitle: "Veidi, ka pievienot ierakstus",
   whatsappIntakeText: "WhatsApp intake: piesledziet numuru, pec tam sutiet ceku foto uz TidGo caur WhatsApp.",
-  emailIntakeText: "Email intake: parsutiet e-cekus vai ienakumu pieradijumu uz TidGo, kad adrese bus pieslegta.",
+  emailIntakeText: "Email intake: sutiet no ta pasa emaila, ko izmantojat TidGo, uz intake@tidgo.co.uk. Temata ierakstiet income vai expense, lai TidGo vieglak sakarto.",
   dragDropTitle: "Nometiet ceku seit",
   dragDropHint: "Datora parvelciet ceka foto vai ekrankopiju saja lauka.",
   dropActive: "Atlaidiet, lai pievienotu ceku."
@@ -1842,7 +1842,7 @@ Object.assign(COPY.es, {
   whatsappPhoneHint: "Opcional. Anadelo si luego quieres enviar fotos de recibos a TidGo por WhatsApp.",
   intakeTitle: "Formas de anadir registros",
   whatsappIntakeText: "WhatsApp intake: conecta tu numero y luego envia fotos de recibos a TidGo desde WhatsApp.",
-  emailIntakeText: "Email intake: reenvia recibos por email o pruebas de ingreso a TidGo cuando la direccion este conectada.",
+  emailIntakeText: "Email intake: envia desde el mismo email que usas en TidGo a intake@tidgo.co.uk. Usa el asunto income o expense para ayudar a TidGo a ordenarlo rapido.",
   dragDropTitle: "Suelta el recibo aqui",
   dragDropHint: "En desktop, arrastra una foto o captura del recibo a este cuadro.",
   dropActive: "Suelta para anadir este recibo."
@@ -1853,7 +1853,7 @@ Object.assign(COPY.bg, {
   whatsappPhoneHint: "Optional. Add it if you want to send receipt photos to TidGo by WhatsApp later.",
   intakeTitle: "Ways to add records",
   whatsappIntakeText: "WhatsApp intake: connect your number, then send receipt photos to TidGo from WhatsApp.",
-  emailIntakeText: "Email intake: forward email receipts or income proof to TidGo when your intake address is connected.",
+  emailIntakeText: "Email intake: send from the same email you use in TidGo to intake@tidgo.co.uk. Use subject income or expense to help TidGo sort it quickly.",
   dragDropTitle: "Drop receipt here",
   dragDropHint: "On desktop, drag a receipt photo or screenshot into this box.",
   dropActive: "Let go to add this receipt."
