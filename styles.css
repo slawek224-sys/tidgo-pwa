@@ -804,8 +804,8 @@ button {
 
 .contact-social {
   display: grid !important;
-  grid-template-columns: repeat(3, 42px);
-  width: 140px;
+  grid-template-columns: repeat(4, 42px);
+  width: 189px;
   justify-content: flex-start;
   align-items: center;
   gap: 7px;
@@ -872,6 +872,14 @@ button {
   background: linear-gradient(135deg, #f58529, #dd2a7b 45%, #8134af 75%, #515bd4) !important;
   border-color: #dd2a7b !important;
   color: #fff !important;
+}
+
+.social-whatsapp {
+  background: #22c55e !important;
+  border-color: #22c55e !important;
+  color: #fff !important;
+  font-size: 11px !important;
+  font-weight: 950 !important;
 }
 
 .demo-brand {
@@ -1773,7 +1781,7 @@ button {
 
   .contact-social {
     justify-content: flex-start;
-    width: 140px;
+    width: 189px;
   }
 
   .list-item,
