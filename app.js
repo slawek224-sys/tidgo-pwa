@@ -1372,6 +1372,9 @@ Object.assign(COPY.en, {
     legalSettingsTitle: "Legal",
     legalSettingsText: "Full versions are available at TidGo.co.uk. By using this app, you agree to the Privacy Policy and Terms below. If you do not agree, please delete your account and stop using TidGo.",
     legalSettingsAgree: "I have read and agree to the Privacy Policy and Terms.",
+    legalConsentTitle: "Before you continue",
+    legalConsentText: "Please confirm that you agree to TidGo's Privacy Policy and Terms. You can open the full versions below.",
+    continueToApp: "Continue to TidGo",
     notificationsTitle: "Notifications",
     notificationsHint: "Choose how TidGo may contact you about service messages such as records, summaries and important account updates. No spam.",
     notifyEmail: "Email",
@@ -1478,6 +1481,9 @@ Object.assign(COPY.pl, {
     legalSettingsTitle: "Legal",
     legalSettingsText: "Pelne wersje sa dostepne na TidGo.co.uk. Uzywajac tej aplikacji, zgadzasz sie z Polityka prywatnosci i Regulaminem ponizej. Jesli sie nie zgadzasz, usun konto i przestan uzywac TidGo.",
     legalSettingsAgree: "Przeczytalem i zgadzam sie z Polityka prywatnosci i Regulaminem.",
+    legalConsentTitle: "Zanim przejdziesz dalej",
+    legalConsentText: "Potwierdz prosze, ze zgadzasz sie z Polityka prywatnosci i Regulaminem TidGo. Pelne wersje mozesz otworzyc ponizej.",
+    continueToApp: "Przejdz do TidGo",
     notificationsTitle: "Powiadomienia",
     notificationsHint: "Wybierz, jak TidGo moze kontaktowac sie z Toba w sprawach aplikacji, rekordow, podsumowan i waznych zmian konta. Bez spamu.",
     notifyEmail: "Email",
@@ -2072,6 +2078,9 @@ Object.assign(COPY.bg, {
     agreeLegal: COPY.en.agreeLegal,
     legalOpenFull: COPY.en.legalOpenFull,
     legalSettingsAgree: COPY.en.legalSettingsAgree,
+    legalConsentTitle: COPY.en.legalConsentTitle,
+    legalConsentText: COPY.en.legalConsentText,
+    continueToApp: COPY.en.continueToApp,
     replaceReceiptPhoto: COPY.en.replaceReceiptPhoto,
     replaceReceiptHint: COPY.en.replaceReceiptHint,
     legalSettingsTitle: COPY.en.legalSettingsTitle,
@@ -3066,10 +3075,14 @@ async function refresh() {
 
 function render() {
   const publicScreens = ["landing", "marketingPage", "appDemo", "accountantDemo", "accountantLanding", "accountantDemoClient"];
+  const legalScreens = ["legalConsent", "privacy", "terms"];
   if (!publicScreens.includes(state.screen) && !state.user) {
     state.screen = state.screen === "recover" || state.screen === "verifySignup" ? state.screen : "onboarding";
   }
   if (state.screen === "boot") state.screen = "home";
+  if (state.user && !publicScreens.includes(state.screen) && !legalScreens.includes(state.screen) && read("rb_legal_agreed", "") !== "true") {
+    state.screen = "legalConsent";
+  }
   const routes = {
     landing,
     marketingPage,
@@ -3078,6 +3091,7 @@ function render() {
     accountantLanding,
     accountantDemoClient,
     onboarding,
+    legalConsent,
     verifySignup,
     recover,
     home,
@@ -3481,6 +3495,27 @@ function onboarding() {
   `);
 }
 
+function legalConsent() {
+  shell(`
+    <section class="screen">
+      ${topbar("")}
+      <h1 class="title">${t("legalConsentTitle")}</h1>
+      <p class="subtitle">${t("legalConsentText")}</p>
+      <form class="stack" id="legalConsentForm">
+        <label class="check-row legal-agree-row">
+          <input type="checkbox" name="legal_agree" required>
+          <span>${t("legalSettingsAgree")}</span>
+        </label>
+        <button class="primary" type="submit">${t("continueToApp")}</button>
+      </form>
+      <div class="grid-2" style="margin-top:12px">
+        <button class="secondary" type="button" data-action="privacy">${t("privacyTitle")}</button>
+        <button class="secondary" type="button" data-action="terms">${t("termsTitle")}</button>
+      </div>
+    </section>
+  `);
+}
+
 function verifySignup() {
   shell(`
     <section class="screen">
@@ -3733,12 +3768,15 @@ function settings() {
         </div>
         <label class="field"><span>${t("email")}</span><input class="input" name="email" type="email" value="${escapeAttr(state.user.email || "")}"></label>
         ${settingsWhatsAppSection(existingWhatsApp)}
-        <label class="field"><span>${t("notificationsTitle")}</span><select class="select" name="notification_preference">
+        <div class="field">
+          <span>${t("notificationsTitle")}</span>
+          <p class="hint">${t("notificationsHint")}</p>
+          <select class="select" name="notification_preference">
           <option value="email"${notificationPreference === "email" ? " selected" : ""}>${t("notifyEmail")}</option>
           <option value="push"${notificationPreference === "push" ? " selected" : ""}>${t("notifyPush")}</option>
           <option value="none"${notificationPreference === "none" ? " selected" : ""}>${t("notifyNone")}</option>
-        </select></label>
-        <p class="hint">${t("notificationsHint")}</p>
+          </select>
+        </div>
         <div class="intake-card">
           <strong>${t("intakeTitle")}</strong>
           <span><strong>${t("emailIntakeLabel")}</strong> ${t("emailIntakeText")}</span>
@@ -5050,7 +5088,11 @@ document.addEventListener("change", async (event) => {
   }
   if (event.target.name === "legal_agree_settings") {
     write("rb_legal_agreed", event.target.checked ? "true" : "false");
-    toast(event.target.checked ? t("saved") : t("legalSettingsTitle"));
+    if (!event.target.checked) {
+      state.screen = "legalConsent";
+      return render();
+    }
+    toast(t("saved"));
   }
 });
 
@@ -5200,6 +5242,11 @@ document.addEventListener("submit", async (event) => {
       await rememberUser(user);
       write("rb_language", state.language);
       await refresh();
+      return go("home");
+    }
+    if (form.id === "legalConsentForm") {
+      write("rb_legal_agreed", "true");
+      toast(t("saved"));
       return go("home");
     }
     if (form.id === "receiptForm") {
