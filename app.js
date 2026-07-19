@@ -684,6 +684,9 @@ const COPY = {
     dragDropTitle: "Drop receipt here",
     dragDropHint: "On desktop, drag a receipt photo or screenshot into this box.",
     dropActive: "Let go to add this receipt.",
+    proofDropTitle: "Drop income proof here",
+    proofDropHint: "On desktop, drag a payslip, remittance note or screenshot into this box.",
+    proofDropActive: "Let go to attach this proof.",
     start: "Start TidGo",
     haveAccount: "I already have an account",
     recover: "Recover account",
@@ -783,6 +786,9 @@ const COPY = {
     dragDropTitle: "Upusc paragon tutaj",
     dragDropHint: "Na komputerze przeciagnij zdjecie paragonu albo screenshot do tego pola.",
     dropActive: "Pusc, zeby dodac ten paragon.",
+    proofDropTitle: "Upusc dowod przychodu tutaj",
+    proofDropHint: "Na komputerze przeciagnij payslip, remittance note albo screenshot do tego pola.",
+    proofDropActive: "Pusc, zeby dodac ten dowod.",
     start: "Start",
     haveAccount: "Mam juz konto",
     recover: "Odzyskaj konto",
@@ -1801,7 +1807,10 @@ Object.assign(COPY.ro, {
   emailIntakeText: "Email intake: trimite de pe acelasi email folosit in TidGo catre intake@tidgo.co.uk. Pune in subiect income sau expense ca TidGo sa sorteze mai usor.",
   dragDropTitle: "Trage bonul aici",
   dragDropHint: "Pe desktop, trage o poza sau un screenshot al bonului in aceasta zona.",
-  dropActive: "Elibereaza pentru a adauga bonul."
+  dropActive: "Elibereaza pentru a adauga bonul.",
+  proofDropTitle: "Trage dovada venitului aici",
+  proofDropHint: "Pe desktop, trage un payslip, remittance note sau screenshot in aceasta zona.",
+  proofDropActive: "Elibereaza pentru a atasa dovada."
 });
 
 Object.assign(COPY.uk, {
@@ -1812,7 +1821,10 @@ Object.assign(COPY.uk, {
   emailIntakeText: "Email intake: send from the same email you use in TidGo to intake@tidgo.co.uk. Use subject income or expense to help TidGo sort it quickly.",
   dragDropTitle: "Drop receipt here",
   dragDropHint: "On desktop, drag a receipt photo or screenshot into this box.",
-  dropActive: "Let go to add this receipt."
+  dropActive: "Let go to add this receipt.",
+  proofDropTitle: "Drop income proof here",
+  proofDropHint: "On desktop, drag a payslip, remittance note or screenshot into this box.",
+  proofDropActive: "Let go to attach this proof."
 });
 
 Object.assign(COPY.lt, {
@@ -1823,7 +1835,10 @@ Object.assign(COPY.lt, {
   emailIntakeText: "Email intake: siuskite is to paties el. pasto, kuri naudojate TidGo, i intake@tidgo.co.uk. Temos lauke rasykite income arba expense, kad TidGo greiciau surusiuotu.",
   dragDropTitle: "Numeskite kvita cia",
   dragDropHint: "Kompiuteryje nutempkite kvito nuotrauka arba ekrano kopija i si laukeli.",
-  dropActive: "Paleiskite, kad prideti kvita."
+  dropActive: "Paleiskite, kad prideti kvita.",
+  proofDropTitle: "Numeskite pajamu irodyma cia",
+  proofDropHint: "Kompiuteryje nutempkite payslip, remittance note arba ekrano kopija i si laukeli.",
+  proofDropActive: "Paleiskite, kad prideti irodyma."
 });
 
 Object.assign(COPY.lv, {
@@ -1834,7 +1849,10 @@ Object.assign(COPY.lv, {
   emailIntakeText: "Email intake: sutiet no ta pasa emaila, ko izmantojat TidGo, uz intake@tidgo.co.uk. Temata ierakstiet income vai expense, lai TidGo vieglak sakarto.",
   dragDropTitle: "Nometiet ceku seit",
   dragDropHint: "Datora parvelciet ceka foto vai ekrankopiju saja lauka.",
-  dropActive: "Atlaidiet, lai pievienotu ceku."
+  dropActive: "Atlaidiet, lai pievienotu ceku.",
+  proofDropTitle: "Nometiet ienakumu pieradijumu seit",
+  proofDropHint: "Datora parvelciet payslip, remittance note vai ekrankopiju saja lauka.",
+  proofDropActive: "Atlaidiet, lai pievienotu pieradijumu."
 });
 
 Object.assign(COPY.es, {
@@ -1845,7 +1863,10 @@ Object.assign(COPY.es, {
   emailIntakeText: "Email intake: envia desde el mismo email que usas en TidGo a intake@tidgo.co.uk. Usa el asunto income o expense para ayudar a TidGo a ordenarlo rapido.",
   dragDropTitle: "Suelta el recibo aqui",
   dragDropHint: "En desktop, arrastra una foto o captura del recibo a este cuadro.",
-  dropActive: "Suelta para anadir este recibo."
+  dropActive: "Suelta para anadir este recibo.",
+  proofDropTitle: "Suelta la prueba de ingreso aqui",
+  proofDropHint: "En desktop, arrastra un payslip, remittance note o captura a este cuadro.",
+  proofDropActive: "Suelta para adjuntar esta prueba."
 });
 
 Object.assign(COPY.bg, {
@@ -1856,7 +1877,10 @@ Object.assign(COPY.bg, {
   emailIntakeText: "Email intake: send from the same email you use in TidGo to intake@tidgo.co.uk. Use subject income or expense to help TidGo sort it quickly.",
   dragDropTitle: "Drop receipt here",
   dragDropHint: "On desktop, drag a receipt photo or screenshot into this box.",
-  dropActive: "Let go to add this receipt."
+  dropActive: "Let go to add this receipt.",
+  proofDropTitle: "Drop income proof here",
+  proofDropHint: "On desktop, drag a payslip, remittance note or screenshot into this box.",
+  proofDropActive: "Let go to attach this proof."
 });
 
 Object.assign(COPY.ro, {
@@ -2496,6 +2520,38 @@ function normalizeAmount(value) {
 
 function proofForIncome(id) {
   return state.incomeProofs?.[id] || null;
+}
+
+function dataUrlFromMaybeBase64(value) {
+  if (!value || typeof value !== "string") return "";
+  if (value.startsWith("data:image/") || value.startsWith("http://") || value.startsWith("https://")) return value;
+  if (value.startsWith("/9j/")) return `data:image/jpeg;base64,${value}`;
+  if (value.startsWith("iVBOR")) return `data:image/png;base64,${value}`;
+  if (value.startsWith("UklGR")) return `data:image/webp;base64,${value}`;
+  return "";
+}
+
+function incomeProofImage(item = {}, proof = null) {
+  const candidates = [
+    proof?.preview,
+    item.proof_preview,
+    item.proof_image_base64,
+    item.proof_base64,
+    item.income_proof_base64,
+    item.attachment_base64,
+    item.file_base64,
+    item.document_base64,
+    item.image_base64,
+    item.proof_url,
+    item.attachment_url,
+    item.file_url,
+    item.document_url
+  ];
+  return candidates.map(dataUrlFromMaybeBase64).find(Boolean) || "";
+}
+
+function incomeProofName(item = {}, proof = null) {
+  return proof?.name || item.proof_name || item.attachment_name || item.file_name || item.document_name || item.filename || "";
 }
 
 function compactIncomeProofs(proofs = {}) {
@@ -3315,6 +3371,10 @@ function incomeForm() {
         <label class="field"><span>${t("date")}</span><input class="input" type="date" name="date" value="${dateInputValue()}"></label>
         <div class="field">
           <span>${t("attachProof")}</span>
+          <div class="drop-zone" data-drop-upload="income-proof">
+            <strong>${t("proofDropTitle")}</strong>
+            <span>${t("proofDropHint")}</span>
+          </div>
           <div class="proof-actions">
             <button class="secondary" type="button" data-action="pickIncomeProofPhoto">${t("takePhoto")}</button>
             <button class="secondary" type="button" data-action="pickIncomeProofFile">${t("uploadFile")}</button>
@@ -3333,8 +3393,8 @@ function incomeForm() {
 function incomeDetail() {
   const entry = state.income.find((item) => item.id === state.selected);
   if (!entry) return go("home");
-  const proofImage = entry.proof_preview || entry.proof_base64 || entry.image_base64 || "";
-  const hasProof = Boolean(entry.proof_name || entry.proof_base64 || entry.image_base64 || entry.proof_preview);
+  const proofImage = incomeProofImage(entry, proofForIncome(entry.id));
+  const hasProof = Boolean(incomeProofName(entry, proofForIncome(entry.id)) || proofImage);
   shell(`
     <section class="screen">
       ${topbar(t("income"), true)}
@@ -3342,8 +3402,12 @@ function incomeDetail() {
         <label class="field"><span>${t("amount")}</span><input class="input" name="amount" inputmode="decimal" value="${entry.amount || 0}"></label>
         <label class="field"><span>${t("currency")}</span><select class="select" name="currency">${currencyOptions(entry.currency || "GBP")}</select></label>
         <label class="field"><span>${t("description")}</span><textarea class="textarea" name="description">${escapeHtml(entry.description || "")}</textarea></label>
-        ${hasProof ? `<div class="card muted">${t("proofAttached")}: ${escapeHtml(entry.proof_name || t("attachProof"))}</div>${proofImage ? `<img class="receipt-preview" src="${proofImage}" alt="${escapeAttr(t("proofAttached"))}">` : ""}` : `<div class="field">
+        ${hasProof ? `<div class="card muted">${t("proofAttached")}: ${escapeHtml(incomeProofName(entry, proofForIncome(entry.id)) || t("attachProof"))}</div>${proofImage ? `<img class="receipt-preview" src="${proofImage}" alt="${escapeAttr(t("proofAttached"))}">` : ""}` : `<div class="field">
           <span>${t("attachProof")}</span>
+          <div class="drop-zone" data-drop-upload="income-proof">
+            <strong>${t("proofDropTitle")}</strong>
+            <span>${t("proofDropHint")}</span>
+          </div>
           <div class="proof-actions">
             <button class="secondary" type="button" data-action="pickIncomeProofPhoto">${t("takePhoto")}</button>
             <button class="secondary" type="button" data-action="pickIncomeProofFile">${t("uploadFile")}</button>
@@ -3806,7 +3870,7 @@ function reviewFlags() {
     if (!item.category || item.category === "other") flags.push({ label: t("missingCategory"), receiptId: item.id });
   });
   income.forEach((item) => {
-    if (!item.proof_base64 && !item.proof_name) flags.push({ label: t("incomeWithoutProof"), incomeId: item.id });
+    if (!incomeProofImage(item, proofForIncome(item.id)) && !incomeProofName(item, proofForIncome(item.id))) flags.push({ label: t("incomeWithoutProof"), incomeId: item.id });
   });
   const seen = new Map();
   receipts.forEach((item) => {
@@ -3832,7 +3896,7 @@ function accountantRecordRow(item) {
   const label = item.type === "paid_for_client" ? at("paidForClient") : item.type === "income" ? at("income") : at("expense");
   const detail = item.description || item.merchant || item.category || at("record");
   const proof = item.type === "income"
-    ? (item.image_base64 || item.proof_base64 || item.proof_name ? at("proofAttached") : at("proofMissing"))
+    ? (incomeProofImage(item, proofForIncome(item.id)) || incomeProofName(item, proofForIncome(item.id)) ? at("proofAttached") : at("proofMissing"))
     : (item.image_base64 ? at("receiptPhotoAttached") : at("noReceiptPhoto"));
   return `<div class="list-item record-row">
     <span class="list-main">
@@ -3858,7 +3922,7 @@ function accountantClientCsv() {
       Number(item.amount || 0).toFixed(2),
       item.currency || "GBP",
       item.description || "",
-      item.image_base64 ? "yes" : "no",
+      incomeProofImage(item, proofForIncome(item.id)) || incomeProofName(item, proofForIncome(item.id)) ? "yes" : "no",
       ""
     ]),
     ...receipts.map((item) => [
@@ -3965,7 +4029,7 @@ function createAccountantClientPdfFile() {
   }
 
   for (const item of income) {
-    const proofImage = item.image_base64 || item.proof_base64;
+    const proofImage = incomeProofImage(item, proofForIncome(item.id));
     if (!proofImage) continue;
     doc.addPage();
     doc.setFont("helvetica", "bold");
@@ -4005,8 +4069,8 @@ function accountantCsv() {
       item.currency || "GBP",
       item.description || "",
       "",
-      item.proof_base64 || item.proof_name ? "yes" : "no",
-      item.proof_base64 || item.proof_name ? "" : t("incomeWithoutProof"),
+      incomeProofImage(item, proofForIncome(item.id)) || incomeProofName(item, proofForIncome(item.id)) ? "yes" : "no",
+      incomeProofImage(item, proofForIncome(item.id)) || incomeProofName(item, proofForIncome(item.id)) ? "" : t("incomeWithoutProof"),
       "",
       "",
       ""
@@ -4651,14 +4715,14 @@ document.addEventListener("dragover", (event) => {
   if (!dropZone) return;
   event.preventDefault();
   dropZone.classList.add("drag-active");
-  dropZone.querySelector("span").textContent = t("dropActive");
+  dropZone.querySelector("span").textContent = dropZone.dataset.dropUpload === "income-proof" ? t("proofDropActive") : t("dropActive");
 });
 
 document.addEventListener("dragleave", (event) => {
   const dropZone = event.target.closest("[data-drop-upload]");
   if (!dropZone || dropZone.contains(event.relatedTarget)) return;
   dropZone.classList.remove("drag-active");
-  dropZone.querySelector("span").textContent = t("dragDropHint");
+  dropZone.querySelector("span").textContent = dropZone.dataset.dropUpload === "income-proof" ? t("proofDropHint") : t("dragDropHint");
 });
 
 document.addEventListener("drop", async (event) => {
@@ -4666,8 +4730,20 @@ document.addEventListener("drop", async (event) => {
   if (!dropZone) return;
   event.preventDefault();
   dropZone.classList.remove("drag-active");
-  dropZone.querySelector("span").textContent = t("dragDropHint");
-  await uploadReceipt(event.dataTransfer?.files?.[0], false);
+  dropZone.querySelector("span").textContent = dropZone.dataset.dropUpload === "income-proof" ? t("proofDropHint") : t("dragDropHint");
+  const file = event.dataTransfer?.files?.[0];
+  if (dropZone.dataset.dropUpload === "income-proof") {
+    const form = dropZone.closest("form");
+    const input = form?.elements?.proof_file;
+    if (file && input) {
+      const transfer = new DataTransfer();
+      transfer.items.add(file);
+      input.files = transfer.files;
+      input.dispatchEvent(new Event("change", { bubbles: true }));
+    }
+    return;
+  }
+  await uploadReceipt(file, false);
 });
 
 document.addEventListener("submit", async (event) => {
