@@ -680,13 +680,15 @@ const COPY = {
     connectWhatsAppFallback: "Opening WhatsApp with a basic link message. If it does not connect, try again after the next API deploy.",
     intakeTitle: "Ways to add records",
     whatsappIntakeText: "WhatsApp intake: connect your number, then send receipt photos to TidGo from WhatsApp.",
-    emailIntakeText: "Email intake: send from the same email you use in TidGo to intake@tidgo.co.uk. Use subject income or expense to help TidGo sort it quickly.",
+    emailIntakeLabel: "Email intake:",
+    emailIntakeText: "You can also send income and expense records from the same email you use for TidGo. Forward the email or send a normal email with an attachment. Use subject income or expense if you can.",
     dragDropTitle: "Drop receipt here",
     dragDropHint: "On desktop, drag a receipt photo or screenshot into this box.",
     dropActive: "Let go to add this receipt.",
     proofDropTitle: "Drop income proof here",
     proofDropHint: "On desktop, drag a payslip, remittance note or screenshot into this box.",
     proofDropActive: "Let go to attach this proof.",
+    incomeManualCheck: "Please check and enter the amount and date manually to avoid mistakes from busy documents.",
     start: "Start TidGo",
     haveAccount: "I already have an account",
     recover: "Recover account",
@@ -782,13 +784,15 @@ const COPY = {
     connectWhatsAppFallback: "Otwieram WhatsApp z podstawowa wiadomoscia LINK. Jesli nie polaczy, sprobuj po nastepnym deployu API.",
     intakeTitle: "Sposoby dodawania rekordow",
     whatsappIntakeText: "WhatsApp intake: polacz numer, potem wysylaj zdjecia paragonow do TidGo z WhatsAppa.",
-    emailIntakeText: "Email intake: wyslij z tego samego emaila, ktorego uzywasz w TidGo, na intake@tidgo.co.uk. W temacie wpisz income albo expense, zeby TidGo szybciej to posortowal.",
+    emailIntakeLabel: "Email intake:",
+    emailIntakeText: "Mozesz tez wysylac rekordy income i expense z tego samego emaila, ktorego uzywasz w TidGo. Przeslij mail dalej albo wyslij zwykly email z zalacznikiem. W temacie wpisz income albo expense, jesli mozesz.",
     dragDropTitle: "Upusc paragon tutaj",
     dragDropHint: "Na komputerze przeciagnij zdjecie paragonu albo screenshot do tego pola.",
     dropActive: "Pusc, zeby dodac ten paragon.",
     proofDropTitle: "Upusc dowod przychodu tutaj",
     proofDropHint: "Na komputerze przeciagnij payslip, remittance note albo screenshot do tego pola.",
     proofDropActive: "Pusc, zeby dodac ten dowod.",
+    incomeManualCheck: "Sprawdz i wpisz kwote oraz date recznie, zeby uniknac pomylek z dokumentow pelnych roznych liczb.",
     start: "Start",
     haveAccount: "Mam juz konto",
     recover: "Odzyskaj konto",
@@ -1804,13 +1808,15 @@ Object.assign(COPY.ro, {
   whatsappPhoneHint: "Optional. Adauga-l daca vrei sa trimiti poze cu bonuri catre TidGo prin WhatsApp mai tarziu.",
   intakeTitle: "Modalitati de adaugare",
   whatsappIntakeText: "WhatsApp intake: conecteaza numarul, apoi trimite poze cu bonuri catre TidGo din WhatsApp.",
-  emailIntakeText: "Email intake: trimite de pe acelasi email folosit in TidGo catre intake@tidgo.co.uk. Pune in subiect income sau expense ca TidGo sa sorteze mai usor.",
+  emailIntakeLabel: "Email intake:",
+  emailIntakeText: "Poti trimite documente income si expense de pe acelasi email folosit in TidGo. Redirectioneaza emailul sau trimite un email normal cu atasament. Pune income sau expense in subiect daca poti.",
   dragDropTitle: "Trage bonul aici",
   dragDropHint: "Pe desktop, trage o poza sau un screenshot al bonului in aceasta zona.",
   dropActive: "Elibereaza pentru a adauga bonul.",
   proofDropTitle: "Trage dovada venitului aici",
   proofDropHint: "Pe desktop, trage un payslip, remittance note sau screenshot in aceasta zona.",
-  proofDropActive: "Elibereaza pentru a atasa dovada."
+  proofDropActive: "Elibereaza pentru a atasa dovada.",
+  incomeManualCheck: "Verifica si introdu manual suma si data, ca sa eviti greseli din documente cu multe cifre."
 });
 
 Object.assign(COPY.uk, {
@@ -1818,13 +1824,15 @@ Object.assign(COPY.uk, {
   whatsappPhoneHint: "Optional. Add it if you want to send receipt photos to TidGo by WhatsApp later.",
   intakeTitle: "Ways to add records",
   whatsappIntakeText: "WhatsApp intake: connect your number, then send receipt photos to TidGo from WhatsApp.",
-  emailIntakeText: "Email intake: send from the same email you use in TidGo to intake@tidgo.co.uk. Use subject income or expense to help TidGo sort it quickly.",
+  emailIntakeLabel: "Email intake:",
+  emailIntakeText: "You can also send income and expense records from the same email you use for TidGo. Forward the email or send a normal email with an attachment. Use subject income or expense if you can.",
   dragDropTitle: "Drop receipt here",
   dragDropHint: "On desktop, drag a receipt photo or screenshot into this box.",
   dropActive: "Let go to add this receipt.",
   proofDropTitle: "Drop income proof here",
   proofDropHint: "On desktop, drag a payslip, remittance note or screenshot into this box.",
-  proofDropActive: "Let go to attach this proof."
+  proofDropActive: "Let go to attach this proof.",
+  incomeManualCheck: "Please check and enter the amount and date manually to avoid mistakes from busy documents."
 });
 
 Object.assign(COPY.lt, {
@@ -1832,13 +1840,15 @@ Object.assign(COPY.lt, {
   whatsappPhoneHint: "Neprivaloma. Pridekite, jei veliau noresite siusti kvitu nuotraukas i TidGo per WhatsApp.",
   intakeTitle: "Būdai pridėti įrašus",
   whatsappIntakeText: "WhatsApp intake: prijunkite numeri, tada siuskite kvitu nuotraukas i TidGo per WhatsApp.",
-  emailIntakeText: "Email intake: siuskite is to paties el. pasto, kuri naudojate TidGo, i intake@tidgo.co.uk. Temos lauke rasykite income arba expense, kad TidGo greiciau surusiuotu.",
+  emailIntakeLabel: "Email intake:",
+  emailIntakeText: "Taip pat galite siusti income ir expense irasus is to paties el. pasto, kuri naudojate TidGo. Persiuskite el. laiska arba siuskite paprasta laiska su priedu. Jei galite, temoje rasykite income arba expense.",
   dragDropTitle: "Numeskite kvita cia",
   dragDropHint: "Kompiuteryje nutempkite kvito nuotrauka arba ekrano kopija i si laukeli.",
   dropActive: "Paleiskite, kad prideti kvita.",
   proofDropTitle: "Numeskite pajamu irodyma cia",
   proofDropHint: "Kompiuteryje nutempkite payslip, remittance note arba ekrano kopija i si laukeli.",
-  proofDropActive: "Paleiskite, kad prideti irodyma."
+  proofDropActive: "Paleiskite, kad prideti irodyma.",
+  incomeManualCheck: "Patikrinkite ir iveskite suma bei data ranka, kad isvengtumete klaidu is dokumentu su daug skaiciu."
 });
 
 Object.assign(COPY.lv, {
@@ -1846,13 +1856,15 @@ Object.assign(COPY.lv, {
   whatsappPhoneHint: "Nav obligati. Pievienojiet, ja velak velaties sutit ceku foto uz TidGo caur WhatsApp.",
   intakeTitle: "Veidi, ka pievienot ierakstus",
   whatsappIntakeText: "WhatsApp intake: piesledziet numuru, pec tam sutiet ceku foto uz TidGo caur WhatsApp.",
-  emailIntakeText: "Email intake: sutiet no ta pasa emaila, ko izmantojat TidGo, uz intake@tidgo.co.uk. Temata ierakstiet income vai expense, lai TidGo vieglak sakarto.",
+  emailIntakeLabel: "Email intake:",
+  emailIntakeText: "Varat sutit income un expense ierakstus no ta pasa emaila, ko izmantojat TidGo. Parsutiet emailu vai nosutiet parastu emailu ar pielikumu. Ja varat, temata ierakstiet income vai expense.",
   dragDropTitle: "Nometiet ceku seit",
   dragDropHint: "Datora parvelciet ceka foto vai ekrankopiju saja lauka.",
   dropActive: "Atlaidiet, lai pievienotu ceku.",
   proofDropTitle: "Nometiet ienakumu pieradijumu seit",
   proofDropHint: "Datora parvelciet payslip, remittance note vai ekrankopiju saja lauka.",
-  proofDropActive: "Atlaidiet, lai pievienotu pieradijumu."
+  proofDropActive: "Atlaidiet, lai pievienotu pieradijumu.",
+  incomeManualCheck: "Parbaudiet un ievadiet summu un datumu manuali, lai izvairitos no kludam dokumentos ar daudz skaitliem."
 });
 
 Object.assign(COPY.es, {
@@ -1860,13 +1872,15 @@ Object.assign(COPY.es, {
   whatsappPhoneHint: "Opcional. Anadelo si luego quieres enviar fotos de recibos a TidGo por WhatsApp.",
   intakeTitle: "Formas de anadir registros",
   whatsappIntakeText: "WhatsApp intake: conecta tu numero y luego envia fotos de recibos a TidGo desde WhatsApp.",
-  emailIntakeText: "Email intake: envia desde el mismo email que usas en TidGo a intake@tidgo.co.uk. Usa el asunto income o expense para ayudar a TidGo a ordenarlo rapido.",
+  emailIntakeLabel: "Email intake:",
+  emailIntakeText: "Tambien puedes enviar registros de income y expense desde el mismo email que usas para TidGo. Reenvia el email o envia un email normal con adjunto. Usa income o expense en el asunto si puedes.",
   dragDropTitle: "Suelta el recibo aqui",
   dragDropHint: "En desktop, arrastra una foto o captura del recibo a este cuadro.",
   dropActive: "Suelta para anadir este recibo.",
   proofDropTitle: "Suelta la prueba de ingreso aqui",
   proofDropHint: "En desktop, arrastra un payslip, remittance note o captura a este cuadro.",
-  proofDropActive: "Suelta para adjuntar esta prueba."
+  proofDropActive: "Suelta para adjuntar esta prueba.",
+  incomeManualCheck: "Revisa e introduce el importe y la fecha manualmente para evitar errores en documentos con muchas cifras."
 });
 
 Object.assign(COPY.bg, {
@@ -1874,13 +1888,15 @@ Object.assign(COPY.bg, {
   whatsappPhoneHint: "Optional. Add it if you want to send receipt photos to TidGo by WhatsApp later.",
   intakeTitle: "Ways to add records",
   whatsappIntakeText: "WhatsApp intake: connect your number, then send receipt photos to TidGo from WhatsApp.",
-  emailIntakeText: "Email intake: send from the same email you use in TidGo to intake@tidgo.co.uk. Use subject income or expense to help TidGo sort it quickly.",
+  emailIntakeLabel: "Email intake:",
+  emailIntakeText: "You can also send income and expense records from the same email you use for TidGo. Forward the email or send a normal email with an attachment. Use subject income or expense if you can.",
   dragDropTitle: "Drop receipt here",
   dragDropHint: "On desktop, drag a receipt photo or screenshot into this box.",
   dropActive: "Let go to add this receipt.",
   proofDropTitle: "Drop income proof here",
   proofDropHint: "On desktop, drag a payslip, remittance note or screenshot into this box.",
-  proofDropActive: "Let go to attach this proof."
+  proofDropActive: "Let go to attach this proof.",
+  incomeManualCheck: "Please check and enter the amount and date manually to avoid mistakes from busy documents."
 });
 
 Object.assign(COPY.ro, {
@@ -3385,6 +3401,7 @@ function incomeForm() {
           <input class="hidden" type="file" name="proof_file" accept="image/*,.pdf">
         </div>
         <button class="primary" type="submit">${t("save")}</button>
+        <p class="hint income-manual-check">${t("incomeManualCheck")}</p>
       </form>
     </section>
   `);
@@ -3486,12 +3503,12 @@ function settings() {
         <label class="field"><span>${t("whatsappPhone")}</span><input class="input" name="whatsapp_phone" type="tel" inputmode="tel" autocomplete="tel" value="${escapeAttr(state.user.whatsapp_phone || state.user.whatsapp_phone_normalized || "")}" placeholder="+44 7..."></label>
         <div class="whatsapp-connect-box">
           <p>${t("connectWhatsAppHint")}</p>
-          <button class="secondary" type="button" data-action="connectWhatsApp">${t("connectWhatsApp")}</button>
+          <button class="secondary whatsapp-connect-btn" type="button" data-action="connectWhatsApp"><span class="wa-icon" aria-hidden="true">WA</span>${t("connectWhatsApp")}</button>
         </div>
         <div class="intake-card">
           <strong>${t("intakeTitle")}</strong>
-          <span>${t("whatsappIntakeText")}</span>
-          <span>${t("emailIntakeText")}</span>
+          <span><strong>${t("emailIntakeLabel")}</strong> ${t("emailIntakeText")}</span>
+          <span class="intake-address">intake@tidgo.co.uk</span>
         </div>
         <label class="field"><span>${t("humour")}</span><select class="select" name="humour">
           <option value="funny"${state.humour === "funny" ? " selected" : ""}>${t("subtle")}</option>

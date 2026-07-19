@@ -1121,6 +1121,18 @@ button {
   color: #166534;
 }
 
+.intake-address {
+  display: inline-flex;
+  width: fit-content;
+  border: 1px solid #86efac;
+  border-radius: 999px;
+  background: #fff;
+  color: var(--green-dark);
+  font-size: 14px;
+  font-weight: 900;
+  padding: 6px 10px;
+}
+
 .action-with-tip {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 34px;
@@ -1941,6 +1953,25 @@ button {
   justify-self: start;
   border-color: #9fe8bf;
   color: var(--green-dark);
+}
+
+.whatsapp-connect-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.wa-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 999px;
+  background: #22c55e;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 950;
+  letter-spacing: 0;
 }
 
 .total-box {
