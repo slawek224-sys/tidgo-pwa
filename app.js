@@ -857,7 +857,7 @@ const COPY = {
     close: "Zamknij",
     tapToView: "Tapnij, zeby zobaczyc",
     rotate: "Obroc",
-    pinchToZoom: "Uszczypnij, zeby powiekszyc",
+    pinchToZoom: "Zoom palcami",
     cancel: "Anuluj",
     photoReady: "Fotka gotowa. Wysylam do reklamowki.",
     subtle: "Lekki",
