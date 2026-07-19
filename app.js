@@ -709,6 +709,7 @@ const COPY = {
     verifyEmail: "Verify your email",
     verifyEmailHint: "We sent a 6-digit code to your email. Enter it to finish setting up TidGo on this device.",
     verifyAndStart: "Verify and start",
+    agreeLegal: "I agree to the Privacy Policy and Terms.",
     sendCodeAgain: "Send code again",
     codeSent: "Code sent. Check your email.",
     hello: "Hello",
@@ -823,6 +824,7 @@ const COPY = {
     verifyEmail: "Potwierdz email",
     verifyEmailHint: "Wyslalismy 6-cyfrowy kod na twoj email. Wpisz go, zeby dokonczyc start TidGo na tym urzadzeniu.",
     verifyAndStart: "Potwierdz i start",
+    agreeLegal: "Zgadzam sie z Polityka prywatnosci i Regulaminem.",
     sendCodeAgain: "Wyslij kod ponownie",
     codeSent: "Kod wyslany. Sprawdz email.",
     hello: "Czesc",
@@ -2063,6 +2065,7 @@ Object.assign(COPY.bg, {
     tapToView: COPY.en.tapToView,
     rotate: COPY.en.rotate,
     pinchToZoom: COPY.en.pinchToZoom,
+    agreeLegal: COPY.en.agreeLegal,
     replaceReceiptPhoto: COPY.en.replaceReceiptPhoto,
     replaceReceiptHint: COPY.en.replaceReceiptHint,
     legalSettingsTitle: COPY.en.legalSettingsTitle,
@@ -3460,6 +3463,10 @@ function onboarding() {
         <p class="hint">${t("emailHint")}</p>
         <label class="field"><span>${t("whatsappPhone")}</span><input class="input" name="whatsapp_phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+44 7..."></label>
         <p class="hint">${t("whatsappPhoneHint")}</p>
+        <label class="check-row">
+          <input type="checkbox" name="legal_agree" required>
+          <span>${t("agreeLegal")} <a href="/privacy/" target="_blank" rel="noopener">${t("privacyTitle")}</a> / <a href="/terms/" target="_blank" rel="noopener">${t("termsTitle")}</a></span>
+        </label>
         <button class="primary" type="submit">${t("start")}</button>
       </form>
       <button class="link-btn" data-action="recover">${t("haveAccount")}</button>
