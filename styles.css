@@ -1265,6 +1265,22 @@ button {
   padding: 10px;
 }
 
+.legal-agree-row {
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  background: #eff6ff;
+  padding: 10px;
+}
+
+.app-full-legal-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
 .primary,
 .secondary,
 .danger,

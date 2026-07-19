@@ -1289,6 +1289,7 @@ Object.assign(COPY.en, {
   termsTitle: "Terms",
   legalShort: "Short version",
   legalFull: "Plain details",
+  legalOpenFull: "Open full version",
   legalBack: "Back to settings",
     feedbackTitle: "Send feedback",
     feedbackHint: "Found something weird? Send us a quick message.",
@@ -1370,6 +1371,7 @@ Object.assign(COPY.en, {
     replaceReceiptHint: "Use this if OCR asked for a clearer photo. The new photo will be read again and replace this receipt record.",
     legalSettingsTitle: "Legal",
     legalSettingsText: "Full versions are available at TidGo.co.uk. By using this app, you agree to the Privacy Policy and Terms below. If you do not agree, please delete your account and stop using TidGo.",
+    legalSettingsAgree: "I have read and agree to the Privacy Policy and Terms.",
     notificationsTitle: "Notifications",
     notificationsHint: "Choose how TidGo may contact you about service messages such as records, summaries and important account updates. No spam.",
     notifyEmail: "Email",
@@ -1393,6 +1395,7 @@ Object.assign(COPY.pl, {
   termsTitle: "Regulamin",
   legalShort: "Krotko",
   legalFull: "Proste szczegoly",
+  legalOpenFull: "Otworz pelna wersje",
   legalBack: "Wroc do ustawien",
     feedbackTitle: "Wyslij feedback",
     feedbackHint: "Cos wyglada dziwnie? Wyslij nam szybka wiadomosc.",
@@ -1474,6 +1477,7 @@ Object.assign(COPY.pl, {
     replaceReceiptHint: "Uzyj tego, jesli OCR poprosil o wyrazniejsze zdjecie. Nowe zdjecie zostanie odczytane ponownie i zastapi ten paragon.",
     legalSettingsTitle: "Legal",
     legalSettingsText: "Pelne wersje sa dostepne na TidGo.co.uk. Uzywajac tej aplikacji, zgadzasz sie z Polityka prywatnosci i Regulaminem ponizej. Jesli sie nie zgadzasz, usun konto i przestan uzywac TidGo.",
+    legalSettingsAgree: "Przeczytalem i zgadzam sie z Polityka prywatnosci i Regulaminem.",
     notificationsTitle: "Powiadomienia",
     notificationsHint: "Wybierz, jak TidGo moze kontaktowac sie z Toba w sprawach aplikacji, rekordow, podsumowan i waznych zmian konta. Bez spamu.",
     notifyEmail: "Email",
@@ -2066,6 +2070,8 @@ Object.assign(COPY.bg, {
     rotate: COPY.en.rotate,
     pinchToZoom: COPY.en.pinchToZoom,
     agreeLegal: COPY.en.agreeLegal,
+    legalOpenFull: COPY.en.legalOpenFull,
+    legalSettingsAgree: COPY.en.legalSettingsAgree,
     replaceReceiptPhoto: COPY.en.replaceReceiptPhoto,
     replaceReceiptHint: COPY.en.replaceReceiptHint,
     legalSettingsTitle: COPY.en.legalSettingsTitle,
@@ -3712,6 +3718,7 @@ function settingsWhatsAppSection(existingWhatsApp = "") {
 function settings() {
   const existingWhatsApp = state.user.whatsapp_phone_normalized || state.user.whatsapp_phone || "";
   const notificationPreference = state.user.notification_preference || "none";
+  const legalAgreed = read("rb_legal_agreed", "") === "true";
   shell(`
     <section class="screen">
       ${topbar(t("settings"), true)}
@@ -3756,6 +3763,10 @@ function settings() {
       <div class="card stack" style="margin-top:18px">
         <strong>${t("legalSettingsTitle")}</strong>
         <span class="hint">${t("legalSettingsText")}</span>
+        <label class="check-row legal-agree-row">
+          <input type="checkbox" name="legal_agree_settings"${legalAgreed ? " checked" : ""}>
+          <span>${t("legalSettingsAgree")}</span>
+        </label>
         <button class="secondary" type="button" data-action="privacy">${t("privacyTitle")}</button>
         <button class="secondary" type="button" data-action="terms">${t("termsTitle")}</button>
       </div>
@@ -3970,6 +3981,8 @@ function legalCopy(kind) {
 function legalPage(kind) {
   const title = kind === "privacy" ? t("privacyTitle") : t("termsTitle");
   const copy = legalCopy(kind);
+  const fullPath = kind === "privacy" ? "/privacy/" : "/terms/";
+  const fullUrl = `https://tidgo.co.uk${fullPath}`;
   shell(`
     <section class="screen">
       ${topbar(title, true)}
@@ -3978,6 +3991,7 @@ function legalPage(kind) {
         <p>${escapeHtml(copy.short)}</p>
         <span class="eyebrow">${t("legalFull")}</span>
         <p>${escapeHtml(copy.details)}</p>
+        <a class="secondary app-full-legal-link" href="${fullPath}" target="_blank" rel="noopener">${t("legalOpenFull")}: ${escapeHtml(fullUrl)}</a>
       </div>
       <button class="secondary" style="width:100%;margin-top:12px" data-action="settings">${t("legalBack")}</button>
     </section>
@@ -5034,6 +5048,10 @@ document.addEventListener("change", async (event) => {
     const button = document.querySelector("[data-delete-account-button]");
     if (button) button.disabled = !event.target.checked;
   }
+  if (event.target.name === "legal_agree_settings") {
+    write("rb_legal_agreed", event.target.checked ? "true" : "false");
+    toast(event.target.checked ? t("saved") : t("legalSettingsTitle"));
+  }
 });
 
 document.addEventListener("input", (event) => {
@@ -5136,6 +5154,7 @@ document.addEventListener("submit", async (event) => {
       write("rb_pending_signup_whatsapp", state.pendingSignupWhatsApp);
       write("rb_pending_income_sources", state.pendingSignupIncomeSources);
       write("rb_language", state.language);
+      write("rb_legal_agreed", "true");
       toast(t("codeSent"));
       return go("verifySignup");
     }
