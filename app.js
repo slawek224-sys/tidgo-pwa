@@ -761,7 +761,7 @@ const COPY = {
     secureShareRequired: "Phone sharing with a PDF needs the public HTTPS version. Local testing over http can only use Save PDF.",
     emailBody: "TidGo monthly summary PDF",
     noEntries: "No entries",
-    note: "A tidy monthly bag. Tax and clever bits stay with the real accountant.",
+    note: "A tidy monthly bag. Tax and clever bits stay with the accountant.",
     backendDown: "Cannot reach TidGo API right now. Render may be waking up; try again in a moment.",
     installHint: "On iPhone: Share, then Add to Home Screen.",
     seeAll: "See all",
@@ -875,7 +875,7 @@ const COPY = {
     secureShareRequired: "Wysylanie PDF przez opcje telefonu wymaga publicznej wersji HTTPS. Lokalnie przez http dziala tylko Zapisz PDF.",
     emailBody: "Miesieczne podsumowanie TidGo PDF",
     noEntries: "Brak wpisow",
-    note: "Porzadna miesieczna reklamowka. Podatki i madre sztuczki zostaja dla prawdziwego ksiegowego.",
+    note: "Porzadna miesieczna reklamowka. Podatki i madre sztuczki zostaja dla ksiegowego.",
     backendDown: "Nie moge teraz polaczyc sie z API TidGo. Render moze sie budzic; sprobuj za moment.",
     installHint: "Na iPhonie: Udostepnij, potem Dodaj do ekranu poczatkowego.",
     seeAll: "Pokaz wszystkie",
@@ -3582,7 +3582,6 @@ function summary() {
         <div class="total-row"><span>${t("expenses")}</span><strong>${formatTotals(receipts)}</strong></div>
       </div>
       <p class="subtitle">${state.summaryPeriod === "quarter" ? t("quarterReady") : t("note")}</p>
-      <div class="card muted" style="margin-bottom:12px">${t("submissionHint")}</div>
       <button class="primary" data-action="sharePdf">${t("emailPdf")}</button>
       <button class="secondary" style="width:100%;margin-top:10px" data-action="printPdf">${t("printPdf")}</button>
       <div class="list">${[...income.map(incomeSummaryRow), ...receipts.map(receiptSummaryRow)].join("") || `<div class="empty">${t("noEntries")}</div>`}</div>
