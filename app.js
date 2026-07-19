@@ -2871,11 +2871,23 @@ function accountantClientConsentId(client) {
 async function refresh() {
   if (!state.user?.id) return;
   try {
-    const [receipts, income, consents] = await Promise.all([
+    const [profile, receipts, income, consents] = await Promise.all([
+      api(`/api/users/${state.user.id}`).catch(() => null),
       api(`/api/receipts/${state.user.id}`),
       api(`/api/income/${state.user.id}`),
       api(`/api/accountant/consents/client/${state.user.id}`).catch(() => [])
     ]);
+    if (profile?.id) {
+      await rememberUser({
+        ...state.user,
+        ...profile,
+        income_sources: readIncomeSources(state.user)
+      });
+      if (profile.language) {
+        state.language = profile.language;
+        write("rb_language", state.language);
+      }
+    }
     state.receipts = receipts || [];
     state.income = attachIncomeProofs(income);
     state.accountantConsents = consents || [];
