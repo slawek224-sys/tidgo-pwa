@@ -2654,6 +2654,26 @@ function incomeProofName(item = {}, proof = null) {
   return proof?.name || item.proof_name || item.attachment_name || item.file_name || item.document_name || item.filename || "";
 }
 
+function incomeProofPickerField() {
+  return `
+    <div class="field">
+      <span>${t("attachProof")}</span>
+      <div class="drop-zone" data-drop-upload="income-proof">
+        <strong>${t("proofDropTitle")}</strong>
+        <span>${t("proofDropHint")}</span>
+      </div>
+      <div class="proof-actions">
+        <button class="secondary" type="button" data-action="pickIncomeProofPhoto">${t("takePhoto")}</button>
+        <button class="secondary" type="button" data-action="pickIncomeProofFile">${t("uploadFile")}</button>
+      </div>
+      <span class="hint">${t("proofHint")}</span>
+      <div class="card muted proof-preview" data-proof-preview hidden></div>
+      <input class="hidden" type="file" name="proof_photo" accept="image/*" capture="environment">
+      <input class="hidden" type="file" name="proof_file" accept="image/*,.pdf">
+    </div>
+  `;
+}
+
 function lastPhoneDigits(value = "") {
   const digits = String(value || "").replace(/\D/g, "");
   return digits ? digits.slice(-3).padStart(Math.min(3, digits.length), "*") : "***";
@@ -3510,21 +3530,7 @@ function incomeForm() {
         <label class="field"><span>${t("currency")}</span><select class="select" name="currency">${currencyOptions("GBP")}</select></label>
         <label class="field"><span>${t("description")}</span><textarea class="textarea" name="description"></textarea></label>
         <label class="field"><span>${t("date")}</span><input class="input" type="date" name="date" value="${dateInputValue()}"></label>
-        <div class="field">
-          <span>${t("attachProof")}</span>
-          <div class="drop-zone" data-drop-upload="income-proof">
-            <strong>${t("proofDropTitle")}</strong>
-            <span>${t("proofDropHint")}</span>
-          </div>
-          <div class="proof-actions">
-            <button class="secondary" type="button" data-action="pickIncomeProofPhoto">${t("takePhoto")}</button>
-            <button class="secondary" type="button" data-action="pickIncomeProofFile">${t("uploadFile")}</button>
-          </div>
-          <span class="hint">${t("proofHint")}</span>
-          <div class="card muted proof-preview" data-proof-preview hidden></div>
-          <input class="hidden" type="file" name="proof_photo" accept="image/*" capture="environment">
-          <input class="hidden" type="file" name="proof_file" accept="image/*,.pdf">
-        </div>
+        ${incomeProofPickerField()}
         <button class="primary" type="submit">${t("save")}</button>
         <p class="hint income-manual-check">${t("incomeManualCheck")}</p>
       </form>
@@ -3535,8 +3541,9 @@ function incomeForm() {
 function incomeDetail() {
   const entry = state.income.find((item) => item.id === state.selected);
   if (!entry) return go("home");
-  const proofImage = incomeProofImage(entry, proofForIncome(entry.id));
-  const hasProof = Boolean(incomeProofName(entry, proofForIncome(entry.id)) || proofImage);
+  const proof = proofForIncome(entry.id);
+  const proofImage = incomeProofImage(entry, proof);
+  const proofName = incomeProofName(entry, proof);
   shell(`
     <section class="screen">
       ${topbar(t("income"), true)}
@@ -3544,21 +3551,8 @@ function incomeDetail() {
         <label class="field"><span>${t("amount")}</span><input class="input" name="amount" inputmode="decimal" value="${entry.amount || 0}"></label>
         <label class="field"><span>${t("currency")}</span><select class="select" name="currency">${currencyOptions(entry.currency || "GBP")}</select></label>
         <label class="field"><span>${t("description")}</span><textarea class="textarea" name="description">${escapeHtml(entry.description || "")}</textarea></label>
-        ${hasProof ? `<div class="card muted">${t("proofAttached")}: ${escapeHtml(incomeProofName(entry, proofForIncome(entry.id)) || t("attachProof"))}</div>${proofImage ? imagePreviewButton(proofImage, t("proofAttached")) : ""}` : `<div class="field">
-          <span>${t("attachProof")}</span>
-          <div class="drop-zone" data-drop-upload="income-proof">
-            <strong>${t("proofDropTitle")}</strong>
-            <span>${t("proofDropHint")}</span>
-          </div>
-          <div class="proof-actions">
-            <button class="secondary" type="button" data-action="pickIncomeProofPhoto">${t("takePhoto")}</button>
-            <button class="secondary" type="button" data-action="pickIncomeProofFile">${t("uploadFile")}</button>
-          </div>
-          <span class="hint">${t("proofHint")}</span>
-          <div class="card muted proof-preview" data-proof-preview hidden></div>
-          <input class="hidden" type="file" name="proof_photo" accept="image/*" capture="environment">
-          <input class="hidden" type="file" name="proof_file" accept="image/*,.pdf">
-        </div>`}
+        ${proofName ? `<div class="card muted">${t("proofAttached")}: ${escapeHtml(proofName)}</div>` : ""}
+        ${proofImage ? imagePreviewButton(proofImage, t("proofAttached")) : incomeProofPickerField()}
         <button class="primary" type="submit">${t("save")}</button>
       </form>
       <button class="danger" style="width:100%;margin-top:12px" data-action="deleteIncome">${t("delete")}</button>
