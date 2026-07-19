@@ -678,6 +678,12 @@ const COPY = {
     connectWhatsApp: "Connect WhatsApp",
     connectWhatsAppHint: "Open WhatsApp and send the ready LINK message. TidGo will use it to connect this phone to your account.",
     connectWhatsAppFallback: "Opening WhatsApp with a basic link message. If it does not connect, try again after the next API deploy.",
+    intakeTitle: "Ways to add records",
+    whatsappIntakeText: "WhatsApp intake: connect your number, then send receipt photos to TidGo from WhatsApp.",
+    emailIntakeText: "Email intake: forward email receipts or income proof to TidGo when your intake address is connected.",
+    dragDropTitle: "Drop receipt here",
+    dragDropHint: "On desktop, drag a receipt photo or screenshot into this box.",
+    dropActive: "Let go to add this receipt.",
     start: "Start TidGo",
     haveAccount: "I already have an account",
     recover: "Recover account",
@@ -771,6 +777,12 @@ const COPY = {
     connectWhatsApp: "Polacz WhatsApp",
     connectWhatsAppHint: "Otworz WhatsApp i wyslij gotowa wiadomosc LINK. TidGo uzyje jej, zeby polaczyc ten telefon z kontem.",
     connectWhatsAppFallback: "Otwieram WhatsApp z podstawowa wiadomoscia LINK. Jesli nie polaczy, sprobuj po nastepnym deployu API.",
+    intakeTitle: "Sposoby dodawania rekordow",
+    whatsappIntakeText: "WhatsApp intake: polacz numer, potem wysylaj zdjecia paragonow do TidGo z WhatsAppa.",
+    emailIntakeText: "Email intake: przeslij paragony z maila albo dowod przychodu do TidGo, kiedy adres intake bedzie podpiety.",
+    dragDropTitle: "Upusc paragon tutaj",
+    dragDropHint: "Na komputerze przeciagnij zdjecie paragonu albo screenshot do tego pola.",
+    dropActive: "Pusc, zeby dodac ten paragon.",
     start: "Start",
     haveAccount: "Mam juz konto",
     recover: "Odzyskaj konto",
@@ -1783,32 +1795,68 @@ Object.assign(COPY.bg, {
 
 Object.assign(COPY.ro, {
   whatsappPhone: "Numar WhatsApp",
-  whatsappPhoneHint: "Optional. Adauga-l daca vrei sa trimiti poze cu bonuri catre TidGo prin WhatsApp mai tarziu."
+  whatsappPhoneHint: "Optional. Adauga-l daca vrei sa trimiti poze cu bonuri catre TidGo prin WhatsApp mai tarziu.",
+  intakeTitle: "Modalitati de adaugare",
+  whatsappIntakeText: "WhatsApp intake: conecteaza numarul, apoi trimite poze cu bonuri catre TidGo din WhatsApp.",
+  emailIntakeText: "Email intake: redirectioneaza bonuri primite pe email sau dovezi de venit catre TidGo cand adresa este conectata.",
+  dragDropTitle: "Trage bonul aici",
+  dragDropHint: "Pe desktop, trage o poza sau un screenshot al bonului in aceasta zona.",
+  dropActive: "Elibereaza pentru a adauga bonul."
 });
 
 Object.assign(COPY.uk, {
   whatsappPhone: "WhatsApp number",
-  whatsappPhoneHint: "Optional. Add it if you want to send receipt photos to TidGo by WhatsApp later."
+  whatsappPhoneHint: "Optional. Add it if you want to send receipt photos to TidGo by WhatsApp later.",
+  intakeTitle: "Ways to add records",
+  whatsappIntakeText: "WhatsApp intake: connect your number, then send receipt photos to TidGo from WhatsApp.",
+  emailIntakeText: "Email intake: forward email receipts or income proof to TidGo when your intake address is connected.",
+  dragDropTitle: "Drop receipt here",
+  dragDropHint: "On desktop, drag a receipt photo or screenshot into this box.",
+  dropActive: "Let go to add this receipt."
 });
 
 Object.assign(COPY.lt, {
   whatsappPhone: "WhatsApp numeris",
-  whatsappPhoneHint: "Neprivaloma. Pridekite, jei veliau noresite siusti kvitu nuotraukas i TidGo per WhatsApp."
+  whatsappPhoneHint: "Neprivaloma. Pridekite, jei veliau noresite siusti kvitu nuotraukas i TidGo per WhatsApp.",
+  intakeTitle: "Būdai pridėti įrašus",
+  whatsappIntakeText: "WhatsApp intake: prijunkite numeri, tada siuskite kvitu nuotraukas i TidGo per WhatsApp.",
+  emailIntakeText: "Email intake: persiuskite el. kvitus arba pajamu irodyma i TidGo, kai adresas bus prijungtas.",
+  dragDropTitle: "Numeskite kvita cia",
+  dragDropHint: "Kompiuteryje nutempkite kvito nuotrauka arba ekrano kopija i si laukeli.",
+  dropActive: "Paleiskite, kad prideti kvita."
 });
 
 Object.assign(COPY.lv, {
   whatsappPhone: "WhatsApp numurs",
-  whatsappPhoneHint: "Nav obligati. Pievienojiet, ja velak velaties sutit ceku foto uz TidGo caur WhatsApp."
+  whatsappPhoneHint: "Nav obligati. Pievienojiet, ja velak velaties sutit ceku foto uz TidGo caur WhatsApp.",
+  intakeTitle: "Veidi, ka pievienot ierakstus",
+  whatsappIntakeText: "WhatsApp intake: piesledziet numuru, pec tam sutiet ceku foto uz TidGo caur WhatsApp.",
+  emailIntakeText: "Email intake: parsutiet e-cekus vai ienakumu pieradijumu uz TidGo, kad adrese bus pieslegta.",
+  dragDropTitle: "Nometiet ceku seit",
+  dragDropHint: "Datora parvelciet ceka foto vai ekrankopiju saja lauka.",
+  dropActive: "Atlaidiet, lai pievienotu ceku."
 });
 
 Object.assign(COPY.es, {
   whatsappPhone: "Numero de WhatsApp",
-  whatsappPhoneHint: "Opcional. Anadelo si luego quieres enviar fotos de recibos a TidGo por WhatsApp."
+  whatsappPhoneHint: "Opcional. Anadelo si luego quieres enviar fotos de recibos a TidGo por WhatsApp.",
+  intakeTitle: "Formas de anadir registros",
+  whatsappIntakeText: "WhatsApp intake: conecta tu numero y luego envia fotos de recibos a TidGo desde WhatsApp.",
+  emailIntakeText: "Email intake: reenvia recibos por email o pruebas de ingreso a TidGo cuando la direccion este conectada.",
+  dragDropTitle: "Suelta el recibo aqui",
+  dragDropHint: "En desktop, arrastra una foto o captura del recibo a este cuadro.",
+  dropActive: "Suelta para anadir este recibo."
 });
 
 Object.assign(COPY.bg, {
   whatsappPhone: "WhatsApp number",
-  whatsappPhoneHint: "Optional. Add it if you want to send receipt photos to TidGo by WhatsApp later."
+  whatsappPhoneHint: "Optional. Add it if you want to send receipt photos to TidGo by WhatsApp later.",
+  intakeTitle: "Ways to add records",
+  whatsappIntakeText: "WhatsApp intake: connect your number, then send receipt photos to TidGo from WhatsApp.",
+  emailIntakeText: "Email intake: forward email receipts or income proof to TidGo when your intake address is connected.",
+  dragDropTitle: "Drop receipt here",
+  dragDropHint: "On desktop, drag a receipt photo or screenshot into this box.",
+  dropActive: "Let go to add this receipt."
 });
 
 Object.assign(COPY.ro, {
@@ -3218,6 +3266,10 @@ function expenseChoice() {
       <div class="card stack">
         <strong>${t("addExpense")}</strong>
         <span class="hint">${t("expenseHint")}</span>
+        <div class="drop-zone" data-drop-upload="expense">
+          <strong>${t("dragDropTitle")}</strong>
+          <span>${t("dragDropHint")}</span>
+        </div>
         <label class="primary file-label">
           ${t("takePhoto")}
           <input class="hidden" type="file" name="expense_photo" accept="image/*" capture="environment">
@@ -3281,7 +3333,8 @@ function incomeForm() {
 function incomeDetail() {
   const entry = state.income.find((item) => item.id === state.selected);
   if (!entry) return go("home");
-  const hasProof = Boolean(entry.proof_name || entry.proof_base64);
+  const proofImage = entry.proof_preview || entry.proof_base64 || entry.image_base64 || "";
+  const hasProof = Boolean(entry.proof_name || entry.proof_base64 || entry.image_base64 || entry.proof_preview);
   shell(`
     <section class="screen">
       ${topbar(t("income"), true)}
@@ -3289,7 +3342,7 @@ function incomeDetail() {
         <label class="field"><span>${t("amount")}</span><input class="input" name="amount" inputmode="decimal" value="${entry.amount || 0}"></label>
         <label class="field"><span>${t("currency")}</span><select class="select" name="currency">${currencyOptions(entry.currency || "GBP")}</select></label>
         <label class="field"><span>${t("description")}</span><textarea class="textarea" name="description">${escapeHtml(entry.description || "")}</textarea></label>
-        ${hasProof ? `<div class="card muted">${t("proofAttached")}: ${escapeHtml(entry.proof_name || t("attachProof"))}</div>${entry.proof_preview ? `<img class="receipt-preview" src="${entry.proof_preview}" alt="${escapeAttr(t("proofAttached"))}">` : ""}` : `<div class="field">
+        ${hasProof ? `<div class="card muted">${t("proofAttached")}: ${escapeHtml(entry.proof_name || t("attachProof"))}</div>${proofImage ? `<img class="receipt-preview" src="${proofImage}" alt="${escapeAttr(t("proofAttached"))}">` : ""}` : `<div class="field">
           <span>${t("attachProof")}</span>
           <div class="proof-actions">
             <button class="secondary" type="button" data-action="pickIncomeProofPhoto">${t("takePhoto")}</button>
@@ -3370,6 +3423,11 @@ function settings() {
         <div class="whatsapp-connect-box">
           <p>${t("connectWhatsAppHint")}</p>
           <button class="secondary" type="button" data-action="connectWhatsApp">${t("connectWhatsApp")}</button>
+        </div>
+        <div class="intake-card">
+          <strong>${t("intakeTitle")}</strong>
+          <span>${t("whatsappIntakeText")}</span>
+          <span>${t("emailIntakeText")}</span>
         </div>
         <label class="field"><span>${t("humour")}</span><select class="select" name="humour">
           <option value="funny"${state.humour === "funny" ? " selected" : ""}>${t("subtle")}</option>
@@ -4586,6 +4644,30 @@ document.addEventListener("input", (event) => {
     const empty = document.querySelector("[data-accountant-client-empty]");
     if (empty) empty.classList.toggle("hidden", visibleCount > 0);
   }
+});
+
+document.addEventListener("dragover", (event) => {
+  const dropZone = event.target.closest("[data-drop-upload]");
+  if (!dropZone) return;
+  event.preventDefault();
+  dropZone.classList.add("drag-active");
+  dropZone.querySelector("span").textContent = t("dropActive");
+});
+
+document.addEventListener("dragleave", (event) => {
+  const dropZone = event.target.closest("[data-drop-upload]");
+  if (!dropZone || dropZone.contains(event.relatedTarget)) return;
+  dropZone.classList.remove("drag-active");
+  dropZone.querySelector("span").textContent = t("dragDropHint");
+});
+
+document.addEventListener("drop", async (event) => {
+  const dropZone = event.target.closest("[data-drop-upload]");
+  if (!dropZone) return;
+  event.preventDefault();
+  dropZone.classList.remove("drag-active");
+  dropZone.querySelector("span").textContent = t("dragDropHint");
+  await uploadReceipt(event.dataTransfer?.files?.[0], false);
 });
 
 document.addEventListener("submit", async (event) => {

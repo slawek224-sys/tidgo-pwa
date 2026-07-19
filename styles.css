@@ -1079,6 +1079,48 @@ button {
   gap: 10px;
 }
 
+.drop-zone {
+  display: grid;
+  gap: 5px;
+  place-items: center;
+  min-height: 116px;
+  border: 2px dashed rgba(30, 64, 175, 0.28);
+  border-radius: 8px;
+  background: #eff6ff;
+  color: var(--blue-dark);
+  text-align: center;
+  padding: 18px;
+}
+
+.drop-zone span {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.drop-zone.drag-active {
+  border-color: var(--green);
+  background: #ecfdf5;
+  color: var(--green);
+}
+
+.intake-card {
+  display: grid;
+  gap: 7px;
+  border: 1px solid #b7f7d1;
+  border-radius: 8px;
+  background: #ecfdf5;
+  color: #14532d;
+  padding: 12px;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.intake-card strong {
+  font-size: 14px;
+  color: #166534;
+}
+
 .action-with-tip {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 34px;
