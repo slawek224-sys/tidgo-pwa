@@ -1323,6 +1323,7 @@ Object.assign(COPY.en, {
     inviteAccountant: "Invite accountant",
     previewAccountant: "Check my records",
     revokeAccess: "Revoke access",
+    revokeOrChangeAccountant: "Revoke access / change accountant",
     accountantView: "What your accountant sees",
     readOnly: "Read-only",
     lastReceipt: "Last receipt",
@@ -1416,6 +1417,7 @@ Object.assign(COPY.pl, {
     inviteAccountant: "Zapros ksiegowego",
     previewAccountant: "Sprawdz moje rekordy",
     revokeAccess: "Cofnij dostep",
+    revokeOrChangeAccountant: "Cofnij dostep / zmien ksiegowego",
     accountantView: "Co zobaczy ksiegowy",
     readOnly: "Tylko do odczytu",
     lastReceipt: "Ostatni paragon",
@@ -3552,19 +3554,28 @@ function summary() {
 
 function clientConnectionCard() {
   const consents = state.accountantConsents || [];
+  if (consents.length) {
+    return `
+      <div class="card stack" style="margin-top:18px">
+        <strong>${t("connectAccountant")}</strong>
+        ${consents.map((consent) => `
+          <div class="connection-row">
+            <span>
+              <small>${t("activeConnection")}</small>
+              <strong>${escapeHtml(consent.accountant_name || consent.accountant_email || "-")}</strong>
+              <small>${escapeHtml(consent.accountant_email || "")}</small>
+            </span>
+            <button class="danger mini-btn" type="button" data-revoke-consent="${escapeAttr(consent.id)}">${t("revokeOrChangeAccountant")}</button>
+          </div>
+        `).join("")}
+      </div>
+    `;
+  }
   return `
     <form class="card stack" id="clientConnectionForm" style="margin-top:18px">
       <strong>${t("connectAccountant")}</strong>
       <span class="hint">${t("connectAccountantHint")}</span>
-      ${consents.length ? consents.map((consent) => `
-        <div class="connection-row">
-          <span>
-            <strong>${escapeHtml(consent.accountant_name || consent.accountant_email || "-")}</strong>
-            <small>${escapeHtml(consent.accountant_email || "")}</small>
-          </span>
-          <button class="danger mini-btn" type="button" data-revoke-consent="${escapeAttr(consent.id)}">${t("revokeAccess")}</button>
-        </div>
-      `).join("") : `<span class="hint">${t("noConnection")}</span>`}
+      <span class="hint">${t("noConnection")}</span>
       <label class="field"><span>${t("accountantEmail")}</span><input class="input" name="accountant_email" type="email"></label>
       <button class="secondary" type="submit">${t("createInvite")}</button>
     </form>
@@ -3642,14 +3653,6 @@ function settings() {
         <strong>${t("recordsTitle")}</strong>
         <span class="hint">${t("recordsHint")}</span>
         <button class="secondary" type="button" data-action="accountantPortal">${t("recordsTitle")}</button>
-      </div>
-      <div class="card stack" style="margin-top:18px">
-        <strong>${t("quarterMode")}</strong>
-        <div class="segmented segmented-compact">
-          <button class="${state.quarterMode === "calendar" ? "active" : ""}" type="button" data-action="setQuarterMode" data-quarter-mode="calendar">${t("calendarQuarterly")}</button>
-          <button class="${state.quarterMode === "uk_tax" ? "active" : ""}" type="button" data-action="setQuarterMode" data-quarter-mode="uk_tax">${t("taxQuarterly")}</button>
-        </div>
-        <span class="hint">${state.quarterMode === "uk_tax" ? t("taxQuarterHint") : t("calendarQuarterHint")}</span>
       </div>
       ${clientConnectionCard()}
       <div class="card stack" style="margin-top:18px">
