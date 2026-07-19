@@ -741,6 +741,9 @@ const COPY = {
     delete: "Delete",
     edit: "Edit",
     close: "Close",
+    tapToView: "Tap to view",
+    rotate: "Rotate",
+    pinchToZoom: "Pinch to zoom",
     cancel: "Cancel",
     photoReady: "Photo ready. Sending it to the bag.",
     subtle: "Light",
@@ -852,6 +855,9 @@ const COPY = {
     delete: "Usun",
     edit: "Edytuj",
     close: "Zamknij",
+    tapToView: "Tapnij, zeby zobaczyc",
+    rotate: "Obroc",
+    pinchToZoom: "Uszczypnij, zeby powiekszyc",
     cancel: "Anuluj",
     photoReady: "Fotka gotowa. Wysylam do reklamowki.",
     subtle: "Lekki",
@@ -2033,7 +2039,10 @@ Object.assign(COPY.bg, {
   Object.assign(COPY[language], {
     connectWhatsApp: COPY.en.connectWhatsApp,
     connectWhatsAppHint: COPY.en.connectWhatsAppHint,
-    connectWhatsAppFallback: COPY.en.connectWhatsAppFallback
+    connectWhatsAppFallback: COPY.en.connectWhatsAppFallback,
+    tapToView: COPY.en.tapToView,
+    rotate: COPY.en.rotate,
+    pinchToZoom: COPY.en.pinchToZoom
   });
 });
 
@@ -2150,6 +2159,8 @@ const state = {
   receipts: [],
   income: [],
   selected: null,
+  imageViewer: null,
+  imageRotation: 0,
   summaryDate: new Date(),
   summaryPeriod: read("rb_summary_period", "month") === "quarter" ? "quarter" : "month",
   quarterMode: read("rb_quarter_mode", "calendar") === "uk_tax" ? "uk_tax" : "calendar",
@@ -2717,7 +2728,34 @@ function navigate(screen, extra = {}) {
 function shell(content) {
   const accountantMode = state.screen === "accountantLanding" || state.screen === "accountantDemoClient";
   const landingMode = ["landing", "marketingPage", "appDemo", "accountantDemo"].includes(state.screen);
-  app.innerHTML = `<main class="shell ${accountantMode ? "accountant-shell" : ""} ${landingMode ? "landing-shell" : ""}">${content}</main><section id="printRoot" class="print-root"></section>`;
+  app.innerHTML = `<main class="shell ${accountantMode ? "accountant-shell" : ""} ${landingMode ? "landing-shell" : ""}">${content}</main><section id="printRoot" class="print-root"></section>${imageViewerOverlay()}`;
+}
+
+function imagePreviewButton(src, alt = "Photo") {
+  if (!src) return "";
+  return `
+    <button class="image-preview-button" type="button" data-action="viewImage" data-image-src="${escapeAttr(src)}" aria-label="${escapeAttr(t("tapToView"))}">
+      <img class="receipt-preview" src="${escapeAttr(src)}" alt="${escapeAttr(alt)}">
+      <span>${t("tapToView")}</span>
+    </button>
+  `;
+}
+
+function imageViewerOverlay() {
+  if (!state.imageViewer) return "";
+  const rotation = Number(state.imageRotation || 0);
+  return `
+    <div class="image-viewer-backdrop" role="dialog" aria-modal="true" aria-label="${escapeAttr(t("tapToView"))}">
+      <div class="image-viewer-stage">
+        <img src="${escapeAttr(state.imageViewer)}" alt="" style="transform: rotate(${rotation}deg)">
+      </div>
+      <div class="image-viewer-footer">
+        <button class="secondary" type="button" data-action="rotateImage">${t("rotate")}</button>
+        <span>${t("pinchToZoom")}</span>
+        <button class="secondary" type="button" data-action="closeImageViewer">${t("close")}</button>
+      </div>
+    </div>
+  `;
 }
 
 function topbar(title, back = false) {
@@ -3448,7 +3486,7 @@ function receipt() {
   shell(`
     <section class="screen">
       ${topbar(t("expenses"), true)}
-      <img class="receipt-preview" src="${receipt.image_base64}" alt="Receipt photo">
+      ${imagePreviewButton(receipt.image_base64, "Receipt photo")}
       <form class="stack" id="receiptForm" style="margin-top:14px">
         <label class="field"><span>${t("amount")}</span><input class="input" name="amount" inputmode="decimal" value="${receipt.amount || 0}"></label>
         <label class="field"><span>${t("currency")}</span><select class="select" name="currency" disabled>${currencyOptions(receipt.currency || "GBP")}</select></label>
@@ -3506,7 +3544,7 @@ function incomeDetail() {
         <label class="field"><span>${t("amount")}</span><input class="input" name="amount" inputmode="decimal" value="${entry.amount || 0}"></label>
         <label class="field"><span>${t("currency")}</span><select class="select" name="currency">${currencyOptions(entry.currency || "GBP")}</select></label>
         <label class="field"><span>${t("description")}</span><textarea class="textarea" name="description">${escapeHtml(entry.description || "")}</textarea></label>
-        ${hasProof ? `<div class="card muted">${t("proofAttached")}: ${escapeHtml(incomeProofName(entry, proofForIncome(entry.id)) || t("attachProof"))}</div>${proofImage ? `<img class="receipt-preview" src="${proofImage}" alt="${escapeAttr(t("proofAttached"))}">` : ""}` : `<div class="field">
+        ${hasProof ? `<div class="card muted">${t("proofAttached")}: ${escapeHtml(incomeProofName(entry, proofForIncome(entry.id)) || t("attachProof"))}</div>${proofImage ? imagePreviewButton(proofImage, t("proofAttached")) : ""}` : `<div class="field">
           <span>${t("attachProof")}</span>
           <div class="drop-zone" data-drop-upload="income-proof">
             <strong>${t("proofDropTitle")}</strong>
@@ -4528,6 +4566,20 @@ document.addEventListener("click", async (event) => {
   if (action === "home") return go("home");
   if (action === "recover") return go("recover");
   if (action === "settings") return go("settings");
+  if (action === "viewImage") {
+    state.imageViewer = target.dataset.imageSrc || "";
+    state.imageRotation = 0;
+    return render();
+  }
+  if (action === "rotateImage") {
+    state.imageRotation = (Number(state.imageRotation || 0) + 90) % 360;
+    return render();
+  }
+  if (action === "closeImageViewer") {
+    state.imageViewer = null;
+    state.imageRotation = 0;
+    return render();
+  }
   if (action === "startWhatsAppChange") {
     state.whatsappChangeOpen = true;
     state.whatsappChangeCodeSent = false;
