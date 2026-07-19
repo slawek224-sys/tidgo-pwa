@@ -676,7 +676,7 @@ const COPY = {
     whatsappPhone: "WhatsApp number",
     whatsappPhoneHint: "Optional. Add it if you want to send receipt photos to TidGo by WhatsApp later.",
     whatsappConnectedTitle: "WhatsApp connected",
-    whatsappConnectedText: "A WhatsApp number ending in {last3} is already linked to this account. To avoid mix-ups, TidGo does not let you replace it here.",
+    whatsappConnectedText: "A WhatsApp number ending in {last3} is linked to this account.",
     changeWhatsAppNumber: "Change WhatsApp number",
     changeWhatsAppIntro: "For safety, confirm your recovery email first. You do not type the new number here; TidGo reads it from the WhatsApp message sent by the new phone.",
     changeWhatsAppEmailHint: "We will send a code to your TidGo recovery email.",
@@ -790,7 +790,7 @@ const COPY = {
     whatsappPhone: "Numer WhatsApp",
     whatsappPhoneHint: "Opcjonalnie. Dodaj go, jesli pozniej chcesz wysylac zdjecia paragonow do TidGo przez WhatsApp.",
     whatsappConnectedTitle: "WhatsApp polaczony",
-    whatsappConnectedText: "Numer WhatsApp zakonczony na {last3} jest juz przypisany do tego konta. Zeby uniknac balaganu, TidGo nie pozwala zmienic go tutaj.",
+    whatsappConnectedText: "Numer WhatsApp zakonczony na {last3} jest przypisany do tego konta.",
     changeWhatsAppNumber: "Zmien numer WhatsApp",
     changeWhatsAppIntro: "Dla bezpieczenstwa najpierw potwierdz email odzyskiwania. Nie wpisujesz tutaj nowego numeru; TidGo odczyta go z wiadomosci WhatsApp wyslanej z nowego telefonu.",
     changeWhatsAppEmailHint: "Wyslemy kod na email odzyskiwania TidGo.",
@@ -1363,7 +1363,16 @@ Object.assign(COPY.en, {
     replaceProof: "Replace proof",
     takePhoto: "Take photo",
     uploadFile: "Upload file",
-  proofHint: "Add a payslip, CIS statement, remittance note or screenshot. Amount stays manual."
+    proofHint: "Add a payslip, CIS statement, remittance note or screenshot. Amount stays manual.",
+    replaceReceiptPhoto: "Retake or replace photo",
+    replaceReceiptHint: "Use this if OCR asked for a clearer photo. The new photo will be read again and replace this receipt record.",
+    legalSettingsTitle: "Legal",
+    legalSettingsText: "Full versions are available at TidGo.co.uk. By using this app, you agree to the Privacy Policy and Terms below. If you do not agree, please delete your account and stop using TidGo.",
+    notificationsTitle: "Notifications",
+    notificationsHint: "Choose how TidGo may contact you about service messages such as records, summaries and important account updates. No spam.",
+    notifyEmail: "Email",
+    notifyPush: "Push",
+    notifyNone: "None"
 });
 
 Object.assign(COPY.en, {
@@ -1458,7 +1467,16 @@ Object.assign(COPY.pl, {
     replaceProof: "Zmien dowod",
     takePhoto: "Zrob zdjecie",
     uploadFile: "Wgraj plik",
-    proofHint: "Dodaj payslip, CIS statement, remittance note albo screenshot. Kwote wpisujesz recznie."
+    proofHint: "Dodaj payslip, CIS statement, remittance note albo screenshot. Kwote wpisujesz recznie.",
+    replaceReceiptPhoto: "Zrob ponownie albo zamien zdjecie",
+    replaceReceiptHint: "Uzyj tego, jesli OCR poprosil o wyrazniejsze zdjecie. Nowe zdjecie zostanie odczytane ponownie i zastapi ten paragon.",
+    legalSettingsTitle: "Legal",
+    legalSettingsText: "Pelne wersje sa dostepne na TidGo.co.uk. Uzywajac tej aplikacji, zgadzasz sie z Polityka prywatnosci i Regulaminem ponizej. Jesli sie nie zgadzasz, usun konto i przestan uzywac TidGo.",
+    notificationsTitle: "Powiadomienia",
+    notificationsHint: "Wybierz, jak TidGo moze kontaktowac sie z Toba w sprawach aplikacji, rekordow, podsumowan i waznych zmian konta. Bez spamu.",
+    notifyEmail: "Email",
+    notifyPush: "Push",
+    notifyNone: "Brak"
 });
 
 Object.assign(COPY.pl, {
@@ -1831,7 +1849,7 @@ Object.assign(COPY.ro, {
   whatsappPhone: "Numar WhatsApp",
   whatsappPhoneHint: "Optional. Adauga-l daca vrei sa trimiti poze cu bonuri catre TidGo prin WhatsApp mai tarziu.",
   whatsappConnectedTitle: "WhatsApp conectat",
-  whatsappConnectedText: "Un numar WhatsApp care se termina in {last3} este deja legat de acest cont. Pentru a evita confuzii, TidGo nu il schimba aici.",
+  whatsappConnectedText: "Un numar WhatsApp care se termina in {last3} este legat de acest cont.",
   changeWhatsAppNumber: "Schimba numarul WhatsApp",
   changeWhatsAppIntro: "Pentru siguranta, confirma mai intai emailul de recuperare. Nu scrii noul numar aici; TidGo il citeste din mesajul WhatsApp trimis de noul telefon.",
   changeWhatsAppEmailHint: "Vom trimite un cod pe emailul de recuperare TidGo.",
@@ -1856,7 +1874,7 @@ Object.assign(COPY.uk, {
   whatsappPhone: "WhatsApp number",
   whatsappPhoneHint: "Optional. Add it if you want to send receipt photos to TidGo by WhatsApp later.",
   whatsappConnectedTitle: "WhatsApp connected",
-  whatsappConnectedText: "A WhatsApp number ending in {last3} is already linked to this account. To avoid mix-ups, TidGo does not let you replace it here.",
+  whatsappConnectedText: "A WhatsApp number ending in {last3} is linked to this account.",
   changeWhatsAppNumber: "Change WhatsApp number",
   changeWhatsAppIntro: "For safety, confirm your recovery email first. You do not type the new number here; TidGo reads it from the WhatsApp message sent by the new phone.",
   changeWhatsAppEmailHint: "We will send a code to your TidGo recovery email.",
@@ -1881,7 +1899,7 @@ Object.assign(COPY.lt, {
   whatsappPhone: "WhatsApp numeris",
   whatsappPhoneHint: "Neprivaloma. Pridekite, jei veliau noresite siusti kvitu nuotraukas i TidGo per WhatsApp.",
   whatsappConnectedTitle: "WhatsApp prijungtas",
-  whatsappConnectedText: "WhatsApp numeris, kuris baigiasi {last3}, jau prijungtas prie sios paskyros. Kad nekiltu painiavos, TidGo neleidzia jo cia pakeisti.",
+  whatsappConnectedText: "WhatsApp numeris, kuris baigiasi {last3}, prijungtas prie sios paskyros.",
   changeWhatsAppNumber: "Keisti WhatsApp numeri",
   changeWhatsAppIntro: "Saugumui pirma patvirtinkite atkurimo el. pasta. Naujo numerio cia neivedate; TidGo ji nuskaitys is WhatsApp zinutes, issiustos is naujo telefono.",
   changeWhatsAppEmailHint: "Koda atsiusime i TidGo atkurimo el. pasta.",
@@ -1906,7 +1924,7 @@ Object.assign(COPY.lv, {
   whatsappPhone: "WhatsApp numurs",
   whatsappPhoneHint: "Nav obligati. Pievienojiet, ja velak velaties sutit ceku foto uz TidGo caur WhatsApp.",
   whatsappConnectedTitle: "WhatsApp pieslegts",
-  whatsappConnectedText: "WhatsApp numurs, kas beidzas ar {last3}, jau ir piesaistits sim kontam. Lai izvairitos no jukuma, TidGo nelauj to seit nomainit.",
+  whatsappConnectedText: "WhatsApp numurs, kas beidzas ar {last3}, ir piesaistits sim kontam.",
   changeWhatsAppNumber: "Mainit WhatsApp numuru",
   changeWhatsAppIntro: "Drosibai vispirms apstipriniet atjaunosanas e-pastu. Jauno numuru seit neievadiet; TidGo to nolasa no WhatsApp zinas, kas nosutita no jauna telefona.",
   changeWhatsAppEmailHint: "Mes nosutisim kodu uz TidGo atjaunosanas e-pastu.",
@@ -1931,7 +1949,7 @@ Object.assign(COPY.es, {
   whatsappPhone: "Numero de WhatsApp",
   whatsappPhoneHint: "Opcional. Anadelo si luego quieres enviar fotos de recibos a TidGo por WhatsApp.",
   whatsappConnectedTitle: "WhatsApp conectado",
-  whatsappConnectedText: "Un numero de WhatsApp que termina en {last3} ya esta vinculado a esta cuenta. Para evitar lios, TidGo no permite cambiarlo aqui.",
+  whatsappConnectedText: "Un numero de WhatsApp que termina en {last3} esta vinculado a esta cuenta.",
   changeWhatsAppNumber: "Cambiar numero de WhatsApp",
   changeWhatsAppIntro: "Por seguridad, confirma primero tu email de recuperacion. No escribes el nuevo numero aqui; TidGo lo lee del mensaje de WhatsApp enviado desde el nuevo telefono.",
   changeWhatsAppEmailHint: "Enviaremos un codigo a tu email de recuperacion de TidGo.",
@@ -1956,7 +1974,7 @@ Object.assign(COPY.bg, {
   whatsappPhone: "WhatsApp number",
   whatsappPhoneHint: "Optional. Add it if you want to send receipt photos to TidGo by WhatsApp later.",
   whatsappConnectedTitle: "WhatsApp connected",
-  whatsappConnectedText: "A WhatsApp number ending in {last3} is already linked to this account. To avoid mix-ups, TidGo does not let you replace it here.",
+  whatsappConnectedText: "A WhatsApp number ending in {last3} is linked to this account.",
   changeWhatsAppNumber: "Change WhatsApp number",
   changeWhatsAppIntro: "For safety, confirm your recovery email first. You do not type the new number here; TidGo reads it from the WhatsApp message sent by the new phone.",
   changeWhatsAppEmailHint: "We will send a code to your TidGo recovery email.",
@@ -2044,7 +2062,16 @@ Object.assign(COPY.bg, {
     connectWhatsAppFallback: COPY.en.connectWhatsAppFallback,
     tapToView: COPY.en.tapToView,
     rotate: COPY.en.rotate,
-    pinchToZoom: COPY.en.pinchToZoom
+    pinchToZoom: COPY.en.pinchToZoom,
+    replaceReceiptPhoto: COPY.en.replaceReceiptPhoto,
+    replaceReceiptHint: COPY.en.replaceReceiptHint,
+    legalSettingsTitle: COPY.en.legalSettingsTitle,
+    legalSettingsText: COPY.en.legalSettingsText,
+    notificationsTitle: COPY.en.notificationsTitle,
+    notificationsHint: COPY.en.notificationsHint,
+    notifyEmail: COPY.en.notifyEmail,
+    notifyPush: COPY.en.notifyPush,
+    notifyNone: COPY.en.notifyNone
   });
 });
 
@@ -2672,6 +2699,25 @@ function incomeProofPickerField(label = t("attachProof")) {
       <div class="card muted proof-preview" data-proof-preview hidden></div>
       <input class="hidden" type="file" name="proof_photo" accept="image/*" capture="environment">
       <input class="hidden" type="file" name="proof_file" accept="image/*,.pdf">
+    </div>
+  `;
+}
+
+function receiptReplaceField() {
+  return `
+    <div class="field">
+      <span>${t("replaceReceiptPhoto")}</span>
+      <div class="drop-zone" data-drop-upload="receipt-replace">
+        <strong>${t("dragDropTitle")}</strong>
+        <span>${t("dragDropHint")}</span>
+      </div>
+      <div class="proof-actions">
+        <button class="secondary" type="button" data-action="pickReceiptReplacePhoto">${t("takePhoto")}</button>
+        <button class="secondary" type="button" data-action="pickReceiptReplaceFile">${t("uploadFile")}</button>
+      </div>
+      <span class="hint">${t("replaceReceiptHint")}</span>
+      <input class="hidden" type="file" name="receipt_replace_photo" accept="image/*" capture="environment">
+      <input class="hidden" type="file" name="receipt_replace_file" accept="image/*,.pdf">
     </div>
   `;
 }
@@ -3510,6 +3556,7 @@ function receipt() {
       ${topbar(t("expenses"), true)}
       ${imagePreviewButton(receipt.image_base64, "Receipt photo")}
       <form class="stack" id="receiptForm" style="margin-top:14px">
+        ${receiptReplaceField()}
         <label class="field"><span>${t("amount")}</span><input class="input" name="amount" inputmode="decimal" value="${receipt.amount || 0}"></label>
         <label class="field"><span>${t("currency")}</span><select class="select" name="currency" disabled>${currencyOptions(receipt.currency || "GBP")}</select></label>
         <label class="field"><span>${t("merchant")}</span><input class="input" name="merchant" value="${escapeAttr(receipt.merchant || "")}"></label>
@@ -3657,6 +3704,7 @@ function settingsWhatsAppSection(existingWhatsApp = "") {
 
 function settings() {
   const existingWhatsApp = state.user.whatsapp_phone_normalized || state.user.whatsapp_phone || "";
+  const notificationPreference = state.user.notification_preference || "none";
   shell(`
     <section class="screen">
       ${topbar(t("settings"), true)}
@@ -3671,6 +3719,12 @@ function settings() {
         </div>
         <label class="field"><span>${t("email")}</span><input class="input" name="email" type="email" value="${escapeAttr(state.user.email || "")}"></label>
         ${settingsWhatsAppSection(existingWhatsApp)}
+        <label class="field"><span>${t("notificationsTitle")}</span><select class="select" name="notification_preference">
+          <option value="email"${notificationPreference === "email" ? " selected" : ""}>${t("notifyEmail")}</option>
+          <option value="push"${notificationPreference === "push" ? " selected" : ""}>${t("notifyPush")}</option>
+          <option value="none"${notificationPreference === "none" ? " selected" : ""}>${t("notifyNone")}</option>
+        </select></label>
+        <p class="hint">${t("notificationsHint")}</p>
         <div class="intake-card">
           <strong>${t("intakeTitle")}</strong>
           <span><strong>${t("emailIntakeLabel")}</strong> ${t("emailIntakeText")}</span>
@@ -3683,11 +3737,6 @@ function settings() {
         </select></label>
         <button class="primary" type="submit">${t("save")}</button>
       </form>
-      <div class="card stack" style="margin-top:18px">
-        <strong>${t("recordsTitle")}</strong>
-        <span class="hint">${t("recordsHint")}</span>
-        <button class="secondary" type="button" data-action="accountantPortal">${t("recordsTitle")}</button>
-      </div>
       ${clientConnectionCard()}
       <div class="card stack" style="margin-top:18px">
         <strong>${t("feedbackTitle")}</strong>
@@ -3698,6 +3747,8 @@ function settings() {
         </form>
       </div>
       <div class="card stack" style="margin-top:18px">
+        <strong>${t("legalSettingsTitle")}</strong>
+        <span class="hint">${t("legalSettingsText")}</span>
         <button class="secondary" type="button" data-action="privacy">${t("privacyTitle")}</button>
         <button class="secondary" type="button" data-action="terms">${t("termsTitle")}</button>
       </div>
@@ -4335,6 +4386,41 @@ async function uploadReceipt(file, isClientExpense) {
   }
 }
 
+async function replaceReceiptImage(file) {
+  if (!file || !state.user?.id || !state.selected) return;
+  if (!file.type?.startsWith("image/")) {
+    toast("For now, expense upload needs an image or screenshot. PDF support needs backend storage.");
+    return;
+  }
+  const oldReceiptId = state.selected;
+  setBusy(true);
+  toast(t("photoReady"));
+  try {
+    const image_base64 = await fileToDataUrl(file);
+    const receipt = await api("/api/receipts", {
+      method: "POST",
+      body: JSON.stringify({
+        user_id: state.user.id,
+        image_base64,
+        is_client_expense: false,
+        humour_style: state.humour,
+        language: state.language
+      })
+    });
+    await api(`/api/receipts/${oldReceiptId}`, { method: "DELETE" });
+    await refresh();
+    focusSummaryOnRecord(state.receipts.find((item) => item.id === receipt.id) || receipt);
+    state.selected = receipt.id;
+    state.screen = "receipt";
+    render();
+    toast(receipt.ai_comment || t("saved"));
+  } catch (error) {
+    toast(error.message || t("backendDown"));
+  } finally {
+    setBusy(false);
+  }
+}
+
 function fileToDataUrl(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -4732,6 +4818,13 @@ document.addEventListener("click", async (event) => {
     form?.elements[field]?.click();
     return;
   }
+  if (action === "pickReceiptReplacePhoto" || action === "pickReceiptReplaceFile") {
+    const form = target.closest("form");
+    const field = action === "pickReceiptReplacePhoto" ? "receipt_replace_photo" : "receipt_replace_file";
+    if (form?.elements[field]) form.elements[field].value = "";
+    form?.elements[field]?.click();
+    return;
+  }
   if (action === "showMoreTransactions") {
     state.transactionLimit = Math.min(transactions().length, Math.max(4, state.transactionLimit || 4) + 10);
     return render();
@@ -4927,6 +5020,9 @@ document.addEventListener("change", async (event) => {
   if (event.target.name === "expense_photo" || event.target.name === "expense_file") {
     await uploadReceipt(event.target.files?.[0], false);
   }
+  if (event.target.name === "receipt_replace_photo" || event.target.name === "receipt_replace_file") {
+    await replaceReceiptImage(event.target.files?.[0]);
+  }
   if (event.target.name === "delete_confirm") {
     const button = document.querySelector("[data-delete-account-button]");
     if (button) button.disabled = !event.target.checked;
@@ -4979,6 +5075,10 @@ document.addEventListener("drop", async (event) => {
       input.files = transfer.files;
       input.dispatchEvent(new Event("change", { bubbles: true }));
     }
+    return;
+  }
+  if (dropZone.dataset.dropUpload === "receipt-replace") {
+    await replaceReceiptImage(file);
     return;
   }
   await uploadReceipt(file, false);
@@ -5203,7 +5303,8 @@ document.addEventListener("submit", async (event) => {
         first_name: data.first_name,
         trade: data.trade || null,
         email: data.email || null,
-        language: state.language
+        language: state.language,
+        notification_preference: data.notification_preference || "none"
       };
       if (whatsappPhone) patchBody.whatsapp_phone = whatsappPhone;
       const user = await api(`/api/users/${state.user.id}`, {
@@ -5215,6 +5316,7 @@ document.addEventListener("submit", async (event) => {
         ...user,
         whatsapp_phone: user.whatsapp_phone || state.user.whatsapp_phone || whatsappPhone,
         whatsapp_phone_normalized: user.whatsapp_phone_normalized || state.user.whatsapp_phone_normalized || "",
+        notification_preference: user.notification_preference || data.notification_preference || "none",
         income_sources: incomeSources
       });
       write("rb_language", state.language);
