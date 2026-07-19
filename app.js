@@ -706,8 +706,6 @@ const COPY = {
     restore: "Restore",
     login: "Login",
     recoveryEmail: "Email recovery",
-    whatsappRecovery: "WhatsApp recovery",
-    whatsappRecoverySoon: "WhatsApp recovery is being connected. Use email code for now.",
     verifyEmail: "Verify your email",
     verifyEmailHint: "We sent a 6-digit code to your email. Enter it to finish setting up TidGo on this device.",
     verifyAndStart: "Verify and start",
@@ -819,8 +817,6 @@ const COPY = {
     restore: "Odzyskaj",
     login: "Login",
     recoveryEmail: "Odzyskiwanie emailem",
-    whatsappRecovery: "Odzyskiwanie przez WhatsApp",
-    whatsappRecoverySoon: "Odzyskiwanie przez WhatsApp jest podpinane. Na razie uzyj kodu email.",
     verifyEmail: "Potwierdz email",
     verifyEmailHint: "Wyslalismy 6-cyfrowy kod na twoj email. Wpisz go, zeby dokonczyc start TidGo na tym urzadzeniu.",
     verifyAndStart: "Potwierdz i start",
@@ -3392,16 +3388,6 @@ function recover() {
           <button class="primary" name="step" value="verify">${t("login")}</button>
         </div>
       </form>
-      <form class="stack" id="whatsappRecoveryForm">
-        <div class="card stack recovery-block recovery-block-muted">
-          <strong>${t("whatsappRecovery")}</strong>
-          <label class="field"><span>${t("whatsappPhone")}</span><input class="input" name="whatsapp_phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+44 7..."></label>
-          <button class="secondary recovery-send" name="step" value="request">${t("sendCode")}</button>
-          <label class="field"><span>${t("code")}</span><input class="input" name="code" inputmode="numeric" maxlength="6" autocomplete="one-time-code"></label>
-          <button class="secondary" name="step" value="verify">${t("login")}</button>
-          <p class="hint">${t("whatsappRecoverySoon")}</p>
-        </div>
-      </form>
     </section>
   `);
 }
@@ -5032,29 +5018,12 @@ document.addEventListener("submit", async (event) => {
         await api("/api/auth/recovery/request", { method: "POST", body: JSON.stringify({ email: data.email }) });
         return toast("Code sent if this email exists.");
       }
-      let user = await api("/api/auth/recovery/verify", { method: "POST", body: JSON.stringify({ email: data.email, code: data.code }) });
-      const whatsappPhone = (data.whatsapp_phone || "").trim();
-      if (whatsappPhone && user?.id) {
-        const patchedUser = await api(`/api/users/${user.id}`, {
-          method: "PATCH",
-          body: JSON.stringify({ whatsapp_phone: whatsappPhone })
-        });
-        user = {
-          ...user,
-          ...patchedUser,
-          whatsapp_phone: patchedUser.whatsapp_phone || whatsappPhone,
-          whatsapp_phone_normalized: patchedUser.whatsapp_phone_normalized || user.whatsapp_phone_normalized || ""
-        };
-      }
+      const user = await api("/api/auth/recovery/verify", { method: "POST", body: JSON.stringify({ email: data.email, code: data.code }) });
       state.language = user.language || state.language;
       await rememberUser(user);
       write("rb_language", state.language);
       await refresh();
       return go("home");
-    }
-    if (form.id === "whatsappRecoveryForm") {
-      toast(t("whatsappRecoverySoon"));
-      return;
     }
     if (form.id === "receiptForm") {
       const category = document.querySelector("[data-category].active")?.dataset.category || "other";
