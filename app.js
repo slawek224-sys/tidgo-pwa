@@ -725,7 +725,7 @@ const COPY = {
     verifyEmail: "Verify your email",
     verifyEmailHint: "We sent a 6-digit code to your email. Enter it to finish setting up TidGo on this device.",
     verifyAndStart: "Verify and start",
-    agreeLegal: "I agree to the Privacy Policy and Terms.",
+    agreeLegal: "I agree to TidGo's Privacy Policy and Terms.",
     sendCodeAgain: "Send code again",
     codeSent: "Code sent. Check your email.",
     hello: "Hello",
@@ -840,7 +840,7 @@ const COPY = {
     verifyEmail: "Potwierdz email",
     verifyEmailHint: "Wyslalismy 6-cyfrowy kod na twoj email. Wpisz go, zeby dokonczyc start TidGo na tym urzadzeniu.",
     verifyAndStart: "Potwierdz i start",
-    agreeLegal: "Zgadzam sie z Polityka prywatnosci i Regulaminem.",
+    agreeLegal: "Zgadzam sie z Polityka prywatnosci i Regulaminem TidGo.",
     sendCodeAgain: "Wyslij kod ponownie",
     codeSent: "Kod wyslany. Sprawdz email.",
     hello: "Czesc",
@@ -1387,7 +1387,9 @@ Object.assign(COPY.en, {
     replaceReceiptHint: "Use this if OCR asked for a clearer photo. The new photo will be read again and replace this receipt record.",
     legalSettingsTitle: "Legal",
     legalSettingsText: "Full versions are available at TidGo.co.uk. By using this app, you agree to the Privacy Policy and Terms below. If you do not agree, please delete your account and stop using TidGo.",
-    legalSettingsAgree: "I have read and agree to the Privacy Policy and Terms.",
+    legalSettingsAgree: "I agree to TidGo's Privacy Policy and Terms.",
+    shortPrivacyNoticeTitle: "Short privacy notice",
+    shortPrivacyNoticeText: "TidGo stores your account details, receipt photos, income records and summaries so you can keep simple self-employed or landlord records in one place.\n\nTidGo is designed for simple record-keeping only. It does not support limited company accounts, VAT returns, payroll or corporation tax.\n\nWe use your email for account recovery, service messages and email intake. If you choose email notifications, we may also send occasional TidGo product updates.\n\nIf you connect WhatsApp or send emails to TidGo, we use those channels only to add records to your account.\n\nReceipt photos may be processed by OpenAI on our behalf to read dates, amounts, merchants and categories. We do not sell your data.\n\nYou can delete your account and active data from Settings. Some backups and technical logs may remain for up to 30 days.\n\nBy creating an account, you agree to TidGo's Privacy Policy and Terms.",
     importantNotesTitle: "Important notes",
     importantNotesText: "TidGo is for simple self-employed, landlord and side-income records. It is not VAT, LTD/company accounts, payroll or corporation tax software.",
     legalConsentTitle: "Before you continue",
@@ -1498,7 +1500,9 @@ Object.assign(COPY.pl, {
     replaceReceiptHint: "Uzyj tego, jesli OCR poprosil o wyrazniejsze zdjecie. Nowe zdjecie zostanie odczytane ponownie i zastapi ten paragon.",
     legalSettingsTitle: "Legal",
     legalSettingsText: "Pelne wersje sa dostepne na TidGo.co.uk. Uzywajac tej aplikacji, zgadzasz sie z Polityka prywatnosci i Regulaminem ponizej. Jesli sie nie zgadzasz, usun konto i przestan uzywac TidGo.",
-    legalSettingsAgree: "Przeczytalem i zgadzam sie z Polityka prywatnosci i Regulaminem.",
+    legalSettingsAgree: "Zgadzam sie z Polityka prywatnosci i Regulaminem TidGo.",
+    shortPrivacyNoticeTitle: "Krotka informacja prywatnosci",
+    shortPrivacyNoticeText: "TidGo przechowuje dane konta, zdjecia paragonow, rekordy przychodow i podsumowania, zebys mogl trzymac proste rekordy self-employed albo landlord w jednym miejscu.\n\nTidGo sluzy tylko do prostego prowadzenia rekordow. Nie obsluguje kont limited company, VAT returns, payroll ani corporation tax.\n\nUzywamy emaila do odzyskiwania konta, wiadomosci serwisowych i email intake. Jesli wybierzesz powiadomienia email, mozemy tez wysylac okazjonalne informacje o zmianach w TidGo.\n\nJesli polaczysz WhatsApp albo wysylasz maile do TidGo, uzywamy tych kanalow tylko do dodawania rekordow do Twojego konta.\n\nZdjecia paragonow moga byc przetwarzane przez OpenAI w naszym imieniu, zeby odczytac daty, kwoty, sklepy i kategorie. Nie sprzedajemy Twoich danych.\n\nMozesz usunac konto i aktywne dane w Settings. Niektore backupy i logi techniczne moga zostac do 30 dni.\n\nTworzac konto, zgadzasz sie z Polityka prywatnosci i Regulaminem TidGo.",
     importantNotesTitle: "Wazne informacje",
     importantNotesText: "TidGo jest do prostych rekordow self-employed, landlord i dodatkowego dochodu. To nie jest software do VAT, kont LTD/company accounts, payroll ani corporation tax.",
     legalConsentTitle: "Zanim przejdziesz dalej",
@@ -2098,6 +2102,8 @@ Object.assign(COPY.bg, {
     agreeLegal: COPY.en.agreeLegal,
     legalOpenFull: COPY.en.legalOpenFull,
     legalSettingsAgree: COPY.en.legalSettingsAgree,
+    shortPrivacyNoticeTitle: COPY.en.shortPrivacyNoticeTitle,
+    shortPrivacyNoticeText: COPY.en.shortPrivacyNoticeText,
     importantNotesTitle: COPY.en.importantNotesTitle,
     importantNotesText: COPY.en.importantNotesText,
     legalConsentTitle: COPY.en.legalConsentTitle,
@@ -3507,6 +3513,7 @@ function onboarding() {
         <p class="hint">${t("emailHint")}</p>
         <label class="field"><span>${t("whatsappPhone")}</span><input class="input" name="whatsapp_phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+44 7..."></label>
         <p class="hint">${t("whatsappPhoneHint")}</p>
+        ${shortPrivacyNoticeBlock(true)}
         <label class="check-row">
           <input type="checkbox" name="legal_agree" required>
           <span>${t("agreeLegal")} <a href="/privacy/" target="_blank" rel="noopener">${t("privacyTitle")}</a> / <a href="/terms/" target="_blank" rel="noopener">${t("termsTitle")}</a></span>
@@ -3526,6 +3533,7 @@ function legalConsent() {
       <h1 class="title">${t("legalConsentTitle")}</h1>
       <p class="subtitle">${t("legalConsentText")}</p>
       <form class="stack" id="legalConsentForm">
+        ${shortPrivacyNoticeBlock(true)}
         <label class="check-row legal-agree-row">
           <input type="checkbox" name="legal_agree" required>
           <span>${t("legalSettingsAgree")}</span>
@@ -3825,6 +3833,7 @@ function settings() {
       <div class="card stack" style="margin-top:18px">
         <strong>${t("legalSettingsTitle")}</strong>
         <span class="hint">${t("legalSettingsText")}</span>
+        ${shortPrivacyNoticeBlock(false)}
         <div class="intake-card">
           <strong>${t("importantNotesTitle")}</strong>
           <span>${t("importantNotesText")}</span>
@@ -4658,6 +4667,20 @@ function escapeHtml(value) {
 
 function escapeAttr(value) {
   return escapeHtml(value).replace(/`/g, "&#96;");
+}
+
+function shortPrivacyNoticeBlock(framed = false) {
+  const paragraphs = String(t("shortPrivacyNoticeText"))
+    .split(/\n{2,}/)
+    .map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`)
+    .join("");
+  const className = framed ? "card stack short-privacy-notice" : "short-privacy-notice";
+  return `
+    <div class="${className}">
+      <strong>${t("shortPrivacyNoticeTitle")}</strong>
+      ${paragraphs}
+    </div>
+  `;
 }
 
 document.addEventListener("click", async (event) => {

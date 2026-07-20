@@ -1129,6 +1129,27 @@ button {
   color: #166534;
 }
 
+.short-privacy-notice {
+  display: grid;
+  gap: 8px;
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  background: #f8fbff;
+  color: #1f2937;
+  padding: 12px;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.short-privacy-notice strong {
+  color: var(--blue-dark);
+  font-size: 14px;
+}
+
+.short-privacy-notice p {
+  margin: 0;
+}
+
 .intake-address {
   display: inline-flex;
   width: fit-content;
