@@ -130,6 +130,10 @@ Object.assign(MARKETING_COPY.en, {
   howText: "Self-employed people can take receipt photos through the month. Accountants can see a cleaner read-only handoff when the client gives permission.",
   whoTitle: "Two simple doors.",
   whoText: "Open the app if you work for yourself. Open the accountant portal if you help clients keep records ready without the plastic-bag panic.",
+  scopeFitTitle: "Good fit",
+  scopeFitText: "Simple self-employed, landlord, CIS and side-income records: receipts, income proof and tidy summaries.",
+  scopeNotForTitle: "Not built for",
+  scopeNotForText: "VAT returns, LTD/company accounts, payroll, corporation tax or full accounting workflows.",
   mtdIntro: "MTD guides are being written as short, practical pages.",
   mtdWhat: "What is MTD?",
   mtdWho: "Who needs MTD?",
@@ -164,6 +168,10 @@ Object.assign(MARKETING_COPY.pl, {
   howText: "Self-employed robi zdjecia paragonow przez miesiac. Ksiegowy dostaje czytelniejszy podglad tylko do odczytu, kiedy klient da zgode.",
   whoTitle: "Dwie proste drogi.",
   whoText: "Otworz aplikacje, jesli pracujesz na siebie. Otworz portal ksiegowego, jesli pomagasz klientom trzymac rekordy bez paniki z reklamowka.",
+  scopeFitTitle: "Dobre dopasowanie",
+  scopeFitText: "Proste rekordy self-employed, landlord, CIS i dodatkowego dochodu: paragony, dowody przychodu i czytelne podsumowania.",
+  scopeNotForTitle: "Nie do tego",
+  scopeNotForText: "VAT returns, konta LTD/company accounts, payroll, corporation tax ani pelne procesy ksiegowe.",
   mtdIntro: "Poradniki MTD beda krotkimi, praktycznymi stronami.",
   mtdWhat: "Co to jest MTD?",
   mtdWho: "Kogo dotyczy MTD?",
@@ -198,6 +206,10 @@ Object.assign(MARKETING_COPY.ro, {
   howText: "Persoanele self-employed pot fotografia bonuri in timpul lunii. Contabilii primesc un handoff read-only mai curat, cand clientul isi da acordul.",
   whoTitle: "Doua intrari simple.",
   whoText: "Deschide aplicatia daca lucrezi pe cont propriu. Deschide portalul contabilului daca ajuti clienti sa tina evidentele fara panica pungii cu bonuri.",
+  scopeFitTitle: "Potrivit pentru",
+  scopeFitText: "Evidente simple pentru self-employed, landlord, CIS si venit secundar: bonuri, dovezi de venit si rezumate clare.",
+  scopeNotForTitle: "Nu este construit pentru",
+  scopeNotForText: "Declaratii VAT, conturi LTD/company, payroll, corporation tax sau fluxuri complete de contabilitate.",
   mtdIntro: "Ghidurile MTD vor fi pagini scurte si practice.",
   mtdWhat: "Ce este MTD?",
   mtdWho: "Cine are nevoie de MTD?",
@@ -232,6 +244,10 @@ Object.assign(MARKETING_COPY.lt, {
   howText: "Dirbantys sau gali fotografuoti kvitus visa menesi. Buhalteriai gauna tvarkingesni tik skaitymui skirta perdavima, kai klientas duoda leidima.",
   whoTitle: "Dvi paprastos durys.",
   whoText: "Atidaryk programele, jei dirbi sau. Atidaryk buhalterio portala, jei padedi klientams laikyti irasus be kvitu maiselio panikos.",
+  scopeFitTitle: "Tinka",
+  scopeFitText: "Paprasti self-employed, landlord, CIS ir papildomu pajamu irasai: kvitai, pajamu irodymai ir tvarkingos suvestines.",
+  scopeNotForTitle: "Neskirta",
+  scopeNotForText: "VAT deklaracijoms, LTD/company accounts, payroll, corporation tax ar pilnai buhalterijai.",
   mtdIntro: "MTD gidai bus trumpos ir praktiskos puslapio dalys.",
   mtdWhat: "Kas yra MTD?",
   mtdWho: "Kam reikia MTD?",
@@ -596,7 +612,7 @@ const DOWNLOAD_COPY = {
     title: "Quick check before download",
     userText: "TidGo helps prepare your records, but it does not verify every item on a receipt. Please check that amounts, categories and documents are accurate for your situation.",
     accountantText: "TidGo gives you a read-only pack from the client. It does not verify every item on a receipt. Please check the records before using them for accounting or submission work.",
-    pdfLine: "TidGo helps organise records, but it does not verify every receipt item. Please check amounts, categories and documents before using this pack.",
+    pdfLine: "TidGo helps organise records, but it does not verify every receipt item. Please check amounts, categories and documents before using this pack. This is a record summary, not VAT, payroll or corporation tax advice.",
     ok: "I understand, continue",
     cancel: "Cancel"
   },
@@ -604,7 +620,7 @@ const DOWNLOAD_COPY = {
     title: "Szybkie sprawdzenie przed pobraniem",
     userText: "TidGo pomaga przygotowac rekordy, ale nie sprawdza kazdej pozycji na paragonie. Sprawdz, czy kwoty, kategorie i dokumenty sa poprawne dla Twojej sytuacji.",
     accountantText: "TidGo daje paczke klienta tylko do odczytu. Nie sprawdza kazdej pozycji na paragonie. Sprawdz rekordy przed uzyciem ich do ksiegowosci albo wysylki dalej.",
-    pdfLine: "TidGo pomaga uporzadkowac rekordy, ale nie sprawdza kazdej pozycji na paragonie. Sprawdz kwoty, kategorie i dokumenty przed uzyciem tej paczki.",
+    pdfLine: "TidGo pomaga uporzadkowac rekordy, ale nie sprawdza kazdej pozycji na paragonie. Sprawdz kwoty, kategorie i dokumenty przed uzyciem tej paczki. To jest podsumowanie rekordow, nie porada VAT, payroll ani corporation tax.",
     ok: "Rozumiem, kontynuuj",
     cancel: "Anuluj"
   },
@@ -612,7 +628,7 @@ const DOWNLOAD_COPY = {
     title: "Verificare rapida inainte de descarcare",
     userText: "TidGo ajuta la pregatirea evidentelor, dar nu verifica fiecare articol de pe bon. Verifica sumele, categoriile si documentele pentru situatia ta.",
     accountantText: "TidGo iti ofera o paccheta doar pentru citire de la client. Nu verifica fiecare articol de pe bon. Verifica evidenta inainte de folosire.",
-    pdfLine: "TidGo ajuta la organizarea evidentelor, dar nu verifica fiecare articol de pe bon. Verifica sumele, categoriile si documentele inainte de folosire.",
+    pdfLine: "TidGo ajuta la organizarea evidentelor, dar nu verifica fiecare articol de pe bon. Verifica sumele, categoriile si documentele inainte de folosire. Acesta este un sumar de evidente, nu consultanta VAT, payroll sau corporation tax.",
     ok: "Inteleg, continua",
     cancel: "Anuleaza"
   },
@@ -620,7 +636,7 @@ const DOWNLOAD_COPY = {
     title: "Shvydka perevirka pered zavantazhenniam",
     userText: "TidGo dopomahaie pidhotuvaty zapysy, ale ne pereviriaie kozhen punkt u cheku. Perevirte sumy, katehorii ta dokumenty dlia svoiei sytuatsii.",
     accountantText: "TidGo nadaie read-only paket vid kliienta. Vin ne pereviriaie kozhen punkt u cheku. Perevirte zapysy pered vykorystanniam.",
-    pdfLine: "TidGo dopomahaie vporiadkuvaty zapysy, ale ne pereviriaie kozhen punkt u cheku. Perevirte sumy, katehorii ta dokumenty pered vykorystanniam.",
+    pdfLine: "TidGo dopomahaie vporiadkuvaty zapysy, ale ne pereviriaie kozhen punkt u cheku. Perevirte sumy, katehorii ta dokumenty pered vykorystanniam. This is a record summary, not VAT, payroll or corporation tax advice.",
     ok: "Rozumiiu, prodovzhyty",
     cancel: "Skasuvaty"
   },
@@ -628,7 +644,7 @@ const DOWNLOAD_COPY = {
     title: "Greitas patikrinimas pries atsisiuntima",
     userText: "TidGo padeda paruosti irasus, bet netikrina kiekvienos kvito eilutes. Patikrinkite sumas, kategorijas ir dokumentus pagal savo situacija.",
     accountantText: "TidGo pateikia tik skaitymo kliento paketa. Jis netikrina kiekvienos kvito eilutes. Patikrinkite irasus pries naudojima.",
-    pdfLine: "TidGo padeda tvarkyti irasus, bet netikrina kiekvienos kvito eilutes. Patikrinkite sumas, kategorijas ir dokumentus pries naudojima.",
+    pdfLine: "TidGo padeda tvarkyti irasus, bet netikrina kiekvienos kvito eilutes. Patikrinkite sumas, kategorijas ir dokumentus pries naudojima. Tai irasu suvestine, ne VAT, payroll ar corporation tax patarimas.",
     ok: "Suprantu, testi",
     cancel: "Atsaukti"
   },
@@ -636,7 +652,7 @@ const DOWNLOAD_COPY = {
     title: "Atra parbaude pirms lejupielades",
     userText: "TidGo palidz sagatavot ierakstus, bet neparbauda katru ceka poziciju. Parbaudi summas, kategorijas un dokumentus savai situacijai.",
     accountantText: "TidGo dod tikai lasisanas klienta paku. Tas neparbauda katru ceka poziciju. Parbaudi ierakstus pirms lietosanas.",
-    pdfLine: "TidGo palidz sakartot ierakstus, bet neparbauda katru ceka poziciju. Parbaudi summas, kategorijas un dokumentus pirms lietosanas.",
+    pdfLine: "TidGo palidz sakartot ierakstus, bet neparbauda katru ceka poziciju. Parbaudi summas, kategorijas un dokumentus pirms lietosanas. Sis ir ierakstu kopsavilkums, ne VAT, payroll vai corporation tax padoms.",
     ok: "Saprotu, turpinat",
     cancel: "Atcelt"
   },
@@ -644,7 +660,7 @@ const DOWNLOAD_COPY = {
     title: "Revision rapida antes de descargar",
     userText: "TidGo ayuda a preparar tus registros, pero no verifica cada articulo de un recibo. Revisa importes, categorias y documentos para tu situacion.",
     accountantText: "TidGo ofrece un paquete de solo lectura del cliente. No verifica cada articulo de un recibo. Revisa los registros antes de usarlos.",
-    pdfLine: "TidGo ayuda a organizar registros, pero no verifica cada articulo de un recibo. Revisa importes, categorias y documentos antes de usar este paquete.",
+    pdfLine: "TidGo ayuda a organizar registros, pero no verifica cada articulo de un recibo. Revisa importes, categorias y documentos antes de usar este paquete. Es un resumen de registros, no asesoramiento de VAT, payroll o corporation tax.",
     ok: "Entiendo, continuar",
     cancel: "Cancelar"
   },
@@ -652,7 +668,7 @@ const DOWNLOAD_COPY = {
     title: "Barza proverka predi svalyane",
     userText: "TidGo pomaga da podgotvite zapisite, no ne proveriava vsichki pozitsii v belezhkata. Proverete sumite, kategoriite i dokumentite za vashata situatsia.",
     accountantText: "TidGo dava paket samo za chetene ot klienta. Ne proveriava vsichki pozitsii v belezhkata. Proverete zapisite predi upotreba.",
-    pdfLine: "TidGo pomaga da podredite zapisite, no ne proveriava vsichki pozitsii v belezhkata. Proverete sumite, kategoriite i dokumentite predi upotreba.",
+    pdfLine: "TidGo pomaga da podredite zapisite, no ne proveriava vsichki pozitsii v belezhkata. Proverete sumite, kategoriite i dokumentite predi upotreba. This is a record summary, not VAT, payroll or corporation tax advice.",
     ok: "Razbiram, prodalzhi",
     cancel: "Otkaz"
   }
@@ -665,7 +681,7 @@ const COPY = {
     firstName: "First name",
     trade: "Trade or job",
     incomeSources: "Income sources",
-    incomeSourcesHint: "This helps TidGo understand your records. PAYE income is handled separately; TidGo keeps records for self-employment, CIS, landlord or side-income work.",
+    incomeSourcesHint: "This helps TidGo understand your records. PAYE income is handled separately; TidGo keeps records for self-employment, CIS, landlord or side-income work. It is not VAT or LTD accounting software.",
     incomeSelfEmployed: "Self-employed",
     incomeCis: "CIS",
     incomeLandlord: "Landlord",
@@ -780,7 +796,7 @@ const COPY = {
     firstName: "Imie",
     trade: "Zawod",
     incomeSources: "Zrodla przychodu",
-    incomeSourcesHint: "To pomaga TidGo zrozumiec Twoje rekordy. Dochod PAYE jest rozliczany osobno; TidGo trzyma rekordy dla self-employment, CIS, landlord albo dodatkowej pracy.",
+    incomeSourcesHint: "To pomaga TidGo zrozumiec Twoje rekordy. Dochod PAYE jest rozliczany osobno; TidGo trzyma rekordy dla self-employment, CIS, landlord albo dodatkowej pracy. To nie jest software do VAT ani ksiegowosci LTD.",
     incomeSelfEmployed: "Self-employed",
     incomeCis: "CIS",
     incomeLandlord: "Landlord",
@@ -1372,6 +1388,8 @@ Object.assign(COPY.en, {
     legalSettingsTitle: "Legal",
     legalSettingsText: "Full versions are available at TidGo.co.uk. By using this app, you agree to the Privacy Policy and Terms below. If you do not agree, please delete your account and stop using TidGo.",
     legalSettingsAgree: "I have read and agree to the Privacy Policy and Terms.",
+    importantNotesTitle: "Important notes",
+    importantNotesText: "TidGo is for simple self-employed, landlord and side-income records. It is not VAT, LTD/company accounts, payroll or corporation tax software.",
     legalConsentTitle: "Before you continue",
     legalConsentText: "Please confirm that you agree to TidGo's Privacy Policy and Terms. You can open the full versions below.",
     continueToApp: "Continue to TidGo",
@@ -1481,6 +1499,8 @@ Object.assign(COPY.pl, {
     legalSettingsTitle: "Legal",
     legalSettingsText: "Pelne wersje sa dostepne na TidGo.co.uk. Uzywajac tej aplikacji, zgadzasz sie z Polityka prywatnosci i Regulaminem ponizej. Jesli sie nie zgadzasz, usun konto i przestan uzywac TidGo.",
     legalSettingsAgree: "Przeczytalem i zgadzam sie z Polityka prywatnosci i Regulaminem.",
+    importantNotesTitle: "Wazne informacje",
+    importantNotesText: "TidGo jest do prostych rekordow self-employed, landlord i dodatkowego dochodu. To nie jest software do VAT, kont LTD/company accounts, payroll ani corporation tax.",
     legalConsentTitle: "Zanim przejdziesz dalej",
     legalConsentText: "Potwierdz prosze, ze zgadzasz sie z Polityka prywatnosci i Regulaminem TidGo. Pelne wersje mozesz otworzyc ponizej.",
     continueToApp: "Przejdz do TidGo",
@@ -2009,7 +2029,7 @@ Object.assign(COPY.bg, {
 
 Object.assign(COPY.ro, {
   incomeSources: "Surse de venit",
-  incomeSourcesHint: "Ajuta TidGo sa inteleaga evidenta. Venitul PAYE se trateaza separat; TidGo pastreaza documente pentru self-employment, CIS, landlord sau venit secundar.",
+  incomeSourcesHint: "Ajuta TidGo sa inteleaga evidenta. Venitul PAYE se trateaza separat; TidGo pastreaza documente pentru self-employment, CIS, landlord sau venit secundar. Nu este software pentru VAT sau LTD.",
   incomeSelfEmployed: "Self-employed",
   incomeCis: "CIS",
   incomeLandlord: "Landlord",
@@ -2019,7 +2039,7 @@ Object.assign(COPY.ro, {
 
 Object.assign(COPY.uk, {
   incomeSources: "Income sources",
-  incomeSourcesHint: "This helps TidGo understand your records. PAYE income is handled separately; TidGo keeps records for self-employment, CIS, landlord or side-income work.",
+  incomeSourcesHint: "This helps TidGo understand your records. PAYE income is handled separately; TidGo keeps records for self-employment, CIS, landlord or side-income work. It is not VAT or LTD accounting software.",
   incomeSelfEmployed: "Self-employed",
   incomeCis: "CIS",
   incomeLandlord: "Landlord",
@@ -2029,7 +2049,7 @@ Object.assign(COPY.uk, {
 
 Object.assign(COPY.lt, {
   incomeSources: "Pajamu saltiniai",
-  incomeSourcesHint: "Tai padeda TidGo suprasti jusu irasus. PAYE pajamos tvarkomos atskirai; TidGo saugo irasus self-employment, CIS, landlord arba papildomoms pajamoms.",
+  incomeSourcesHint: "Tai padeda TidGo suprasti jusu irasus. PAYE pajamos tvarkomos atskirai; TidGo saugo irasus self-employment, CIS, landlord arba papildomoms pajamoms. Tai nera VAT ar LTD apskaitos programa.",
   incomeSelfEmployed: "Self-employed",
   incomeCis: "CIS",
   incomeLandlord: "Landlord",
@@ -2039,7 +2059,7 @@ Object.assign(COPY.lt, {
 
 Object.assign(COPY.lv, {
   incomeSources: "Ienakumu avoti",
-  incomeSourcesHint: "Tas palidz TidGo saprast jusu ierakstus. PAYE ienakumi tiek apstradati atseviski; TidGo glaba ierakstus self-employment, CIS, landlord vai papildu darbam.",
+  incomeSourcesHint: "Tas palidz TidGo saprast jusu ierakstus. PAYE ienakumi tiek apstradati atseviski; TidGo glaba ierakstus self-employment, CIS, landlord vai papildu darbam. Ta nav VAT vai LTD gramatvedibas programma.",
   incomeSelfEmployed: "Self-employed",
   incomeCis: "CIS",
   incomeLandlord: "Landlord",
@@ -2049,7 +2069,7 @@ Object.assign(COPY.lv, {
 
 Object.assign(COPY.es, {
   incomeSources: "Fuentes de ingreso",
-  incomeSourcesHint: "Ayuda a TidGo a entender tus registros. El ingreso PAYE se gestiona aparte; TidGo guarda registros para self-employment, CIS, landlord o ingresos secundarios.",
+  incomeSourcesHint: "Ayuda a TidGo a entender tus registros. El ingreso PAYE se gestiona aparte; TidGo guarda registros para self-employment, CIS, landlord o ingresos secundarios. No es software de contabilidad VAT o LTD.",
   incomeSelfEmployed: "Self-employed",
   incomeCis: "CIS",
   incomeLandlord: "Landlord",
@@ -2059,7 +2079,7 @@ Object.assign(COPY.es, {
 
 Object.assign(COPY.bg, {
   incomeSources: "Income sources",
-  incomeSourcesHint: "This helps TidGo understand your records. PAYE income is handled separately; TidGo keeps records for self-employment, CIS, landlord or side-income work.",
+  incomeSourcesHint: "This helps TidGo understand your records. PAYE income is handled separately; TidGo keeps records for self-employment, CIS, landlord or side-income work. It is not VAT or LTD accounting software.",
   incomeSelfEmployed: "Self-employed",
   incomeCis: "CIS",
   incomeLandlord: "Landlord",
@@ -2078,6 +2098,8 @@ Object.assign(COPY.bg, {
     agreeLegal: COPY.en.agreeLegal,
     legalOpenFull: COPY.en.legalOpenFull,
     legalSettingsAgree: COPY.en.legalSettingsAgree,
+    importantNotesTitle: COPY.en.importantNotesTitle,
+    importantNotesText: COPY.en.importantNotesText,
     legalConsentTitle: COPY.en.legalConsentTitle,
     legalConsentText: COPY.en.legalConsentText,
     continueToApp: COPY.en.continueToApp,
@@ -3232,7 +3254,9 @@ function marketingPage() {
       text: mk("whoText"),
       cards: [
         [mk("selfLabel"), mk("selfText")],
-        [mk("accountantLabel"), mk("accountantText")]
+        [mk("accountantLabel"), mk("accountantText")],
+        [mk("scopeFitTitle"), mk("scopeFitText")],
+        [mk("scopeNotForTitle"), mk("scopeNotForText")]
       ]
     },
     pricing: {
@@ -3801,6 +3825,10 @@ function settings() {
       <div class="card stack" style="margin-top:18px">
         <strong>${t("legalSettingsTitle")}</strong>
         <span class="hint">${t("legalSettingsText")}</span>
+        <div class="intake-card">
+          <strong>${t("importantNotesTitle")}</strong>
+          <span>${t("importantNotesText")}</span>
+        </div>
         <label class="check-row legal-agree-row">
           <input type="checkbox" name="legal_agree_settings"${legalAgreed ? " checked" : ""}>
           <span>${t("legalSettingsAgree")}</span>
