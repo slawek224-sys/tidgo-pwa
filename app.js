@@ -3418,6 +3418,7 @@ function deleteAccountInfoPage() {
         <article class="marketing-page-card marketing-article">
           <span class="eyebrow">TidGo</span>
           <h1>Delete your TidGo account</h1>
+          <p>You can delete individual receipts, income records and attached proof photos inside the app without deleting your whole account. Open the record, then use the delete option for that item.</p>
           <p>You can delete your TidGo account inside the app:</p>
           <ol>
             <li>Open TidGo.</li>
