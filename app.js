@@ -3891,17 +3891,17 @@ function settings() {
       <div class="card stack" style="margin-top:18px">
         <strong>${t("legalSettingsTitle")}</strong>
         <span class="hint">${t("legalSettingsText")}</span>
-        ${shortPrivacyNoticeBlock(false)}
         <div class="intake-card">
           <strong>${t("importantNotesTitle")}</strong>
           <span>${t("importantNotesText")}</span>
         </div>
+        ${shortPrivacyNoticeBlock(false)}
         <label class="check-row legal-agree-row">
           <input type="checkbox" name="legal_agree_settings"${legalAgreed ? " checked" : ""}>
           <span>${t("legalSettingsAgree")}</span>
         </label>
-        <button class="secondary" type="button" data-action="privacy">${t("privacyTitle")}</button>
-        <button class="secondary" type="button" data-action="terms">${t("termsTitle")}</button>
+        <a class="secondary legal-link-button" href="/privacy/" target="_blank" rel="noopener">${t("privacyTitle")}</a>
+        <a class="secondary legal-link-button" href="/terms/" target="_blank" rel="noopener">${t("termsTitle")}</a>
       </div>
       <div class="card stack" style="margin-top:18px">
         <strong>${t("signOutDevice")}</strong>

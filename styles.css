@@ -1390,6 +1390,13 @@ button {
   padding: 12px 14px;
 }
 
+.legal-link-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
 .danger {
   background: #fff0f1;
   color: var(--red);
