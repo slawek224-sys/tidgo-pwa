@@ -2220,6 +2220,359 @@ const LEGAL_TEXT = {
   }
 };
 
+const FULL_LEGAL_MARKDOWN = {
+  privacy: `# TidGo Privacy Policy
+
+**Last updated:** [DATE -- TO CONFIRM]
+**Version:** 0.9 -- Closed Testing / Beta
+
+> **Beta notice:** TidGo is currently in closed testing (Google Play closed testing) and the PWA is under continuous development until the service is formally launched as a subscription product. This policy reflects how we handle your data today. It will be updated with registered company details and final infrastructure information before public launch.
+
+## 1. Who we are
+
+TidGo ("TidGo", "we", "us", "our") is a record-keeping app designed for self-employed individuals, sole traders, landlords, and individuals with simple income and expense records, including those keeping records under Making Tax Digital. It helps you collect receipt photos and income proof documents, and produce simple monthly or quarterly summaries.
+
+TidGo is designed for simple record-keeping only. It does not support limited company accounts, VAT returns, payroll or corporation tax. If you need any of these, please use appropriate accounting software.
+
+TidGo is not accounting software, not tax advice, and does not submit tax returns to HMRC or any tax authority.
+
+Important - accuracy of extracted data: TidGo uses AI/OCR technology to read receipt and document details automatically. This technology does its best, but it does not verify every item and may occasionally produce inaccurate results. You are responsible for checking that amounts, categories and documents are correct for your situation before using them for any tax, accounting or other official purpose. TidGo displays a reminder of this when you export a monthly or quarterly summary as a PDF.
+
+The data controller for your personal data is:
+
+> Slawomir Sarosiek, trading as TidGo
+> To be replaced with registered limited company details before public launch.
+> Business address -- TO CONFIRM before public launch / LTD registration.
+> Email: hello@tidgo.co.uk / support@tidgo.co.uk
+> ICO registration number: [TO CONFIRM -- required for most UK data controllers]
+
+If you have any questions about this policy or how we handle your data, contact us at the email above.
+
+## 2. What data we collect
+
+Depending on how you use TidGo, we may collect:
+
+- Account and recovery data -- your recovery email address.
+- Profile data -- such as your first name, trade/job and income source.
+- WhatsApp phone number (optional) -- only if you choose to connect WhatsApp as an intake channel.
+- Email intake data (optional) -- if you send documents to TidGo by email, we process the sender email address, the message and its attachments.
+- Receipt photos and uploaded files -- images and documents you upload or send to TidGo.
+- Income proof files -- such as payslips, remittance notes or screenshots you upload.
+- Extracted receipt details -- such as amount, currency, merchant, category and date, produced automatically from your receipts using OCR/AI.
+- Accountant connection data -- if you choose to connect an accountant to your account.
+- Basic usage and analytics data -- such as how the app is used, to help us maintain and improve TidGo.
+
+We do not ask you to upload anything you are not comfortable storing in TidGo. Please do not upload documents you do not want stored in the service.
+
+## 3. Why we collect this data and our lawful bases
+
+Under UK data protection law (UK GDPR and the Data Protection Act 2018), we need a lawful basis for processing your personal data. We use your data:
+
+| Purpose | Lawful basis |
+|---|---|
+| To create your account and let you recover access to it | Performance of a contract |
+| To store and organise your receipts and income records | Performance of a contract |
+| To read receipt details using OCR/AI and produce extracted data | Performance of a contract |
+| To create monthly or quarterly summaries | Performance of a contract |
+| To let you share records with an accountant you connect | Performance of a contract / your consent |
+| To match incoming WhatsApp messages and documents to your account, if you connect WhatsApp | Your consent |
+| To match incoming emails and attachments to your account, if you use email intake | Performance of a contract |
+| To send service and recovery emails | Performance of a contract / legitimate interests |
+| To maintain, secure and improve the app, including basic analytics | Legitimate interests |
+| To comply with legal obligations | Legal obligation |
+
+We do not sell your personal data. We do not use WhatsApp for marketing spam.
+
+AI/OCR processing: receipt and income proof images you upload may be sent to the OpenAI API to extract the document type, amount, currency, date, category and merchant/description. This processing is performed solely to provide the service to you. Under OpenAI's API data controls, data submitted via the API is not used to train OpenAI's models by default. OpenAI may retain abuse-monitoring logs for up to 30 days, unless a longer period is legally required, after which they are deleted.
+
+## 4. Who we share your data with
+
+We use trusted third-party providers to run TidGo. They process data on our behalf under contractual safeguards:
+
+- MongoDB Atlas -- database storage for account data, records and extracted receipt details. During the current testing phase, receipt and income proof images are also stored here as compressed image data. Hosted on AWS, Ireland (eu-west-1). Automated Atlas backups are currently inactive during the testing phase; the backup retention policy will be updated when backups are enabled before production launch.
+- Render -- application hosting and API backend. Hosted in Oregon, United States. International transfer applies and is covered by Render's Data Processing Agreement incorporating SCCs with the UK Addendum.
+- OpenAI API -- receipt reading and classification. US-based. API data is not used to train OpenAI's models by default; abuse-monitoring logs are retained for up to 30 days.
+- IONOS -- domain and email forwarding for tidgo.co.uk. Data processed in the UK or EEA.
+- Resend -- outbound service and account recovery emails, and inbound email receiving. Emails sent to our intake address are received by Resend and delivered to our backend via webhook.
+- Dedicated image storage -- TO CONFIRM before wider production use. Shortlist: AWS S3 (UK/EU), Cloudflare R2 (EU), Backblaze B2 (EU), or upgraded MongoDB Atlas with backups as an interim step.
+- Meta / WhatsApp -- WhatsApp message and document intake, only if you choose to connect WhatsApp.
+- Google Analytics -- website and PWA usage analytics, only where consent is required and given.
+
+We also share your records with your accountant, but only if and when you choose to connect one.
+
+We may disclose data where required by law, regulation or valid legal process.
+
+## 5. International data transfers
+
+Some of our providers process data outside the UK. MongoDB Atlas is hosted in Ireland. Render, OpenAI, Resend, Meta and Google may process data in the United States.
+
+Where data is transferred outside the UK, we rely on safeguards recognised under UK law, such as UK adequacy regulations, the UK Extension to the EU-US Data Privacy Framework, or the UK International Data Transfer Agreement / Addendum (IDTA), as applicable to each provider.
+
+## 6. How long we keep your data
+
+- Your data is kept while your account is active.
+- When you delete your account, we delete your active account data, receipts, income records and stored files from our live systems.
+- Some limited technical logs or backups may remain for up to 30 days before automatic deletion, unless we are legally required to keep them longer.
+- Abuse-monitoring logs held by OpenAI are retained by OpenAI for up to 30 days.
+
+Please note: if you use TidGo to keep business records, UK law may require you to keep your own copies of business records for several years. Deleting your TidGo account deletes your data from TidGo. It does not fulfil or remove your own record-keeping obligations.
+
+## 7. Account deletion
+
+You can delete your account and all your data at any time from Settings -> Delete account and all data. Once deleted from our live systems, your data cannot be recovered.
+
+You can also delete individual receipts, income records and proof photos inside the app without deleting your whole account.
+
+If you cannot access the app, contact hello@tidgo.co.uk from the email address linked to your TidGo account and request deletion.
+
+## 8. Accountant access
+
+Accountant access is optional and fully consent-based:
+
+- You enter your accountant's email address in the app.
+- Your accountant receives an email invitation asking if they want access to your records.
+- If they accept, a six-digit access code is sent to the email address you provided.
+- From that point, your accountant has read-only access. They can view and download your records as CSV or PDF exports, but cannot make changes.
+- You can revoke access or change your accountant at any time from Settings.
+
+Your accountant's email address is processed solely to send the invitation and access code. We do not use it for any other purpose.
+
+If you connect an accountant, your accountant is independently responsible for how they handle any data they access or export in the course of providing services to you.
+
+## 9. How you can send documents to TidGo
+
+You can add documents to your TidGo account in several ways:
+
+- In-app photo/upload -- taking a photo or uploading a file in the Android app or the PWA.
+- WhatsApp (optional) -- sending a receipt photo or document by WhatsApp.
+- Email (optional) -- sending an email with an attachment to your TidGo intake address.
+
+WhatsApp intake:
+
+- We use your phone number solely to match incoming WhatsApp receipt photos and documents to the correct TidGo account.
+- You start the connection yourself by sending a LINK message.
+- We do not use WhatsApp for marketing.
+- You can disconnect WhatsApp by changing the connection in the app or by deleting your account.
+- Messages you send via WhatsApp are also processed by Meta under WhatsApp's own terms.
+
+Email intake:
+
+- We use the sender email address solely to match the incoming message and its attachments to the correct TidGo account.
+- Emails and attachments are processed only to add the documents to your account.
+- Incoming emails to our intake address are routed via IONOS and Resend, then delivered to our backend.
+
+## 10. Security
+
+We take reasonable technical and organisational measures to protect your data:
+
+- Data is transmitted over HTTPS.
+- Data is stored with reputable third-party cloud providers.
+- We use encrypted connections, access controls based on least privilege and multi-factor authentication where technically feasible.
+
+No system is 100% secure. Please do not upload documents you do not want stored in TidGo.
+
+## 11. Your rights
+
+Under UK data protection law, you have the right to:
+
+- access the personal data we hold about you,
+- rectify inaccurate data,
+- erase your data,
+- restrict or object to certain processing,
+- data portability,
+- withdraw consent where processing is based on consent,
+- complain to the Information Commissioner's Office (ICO): https://ico.org.uk.
+
+To exercise any of these rights, contact hello@tidgo.co.uk or use the tools in the app. We will respond within one month.
+
+## 12. Children
+
+TidGo is a business tool intended for users aged 18 or over. We do not knowingly collect data from children.
+
+## 13. Analytics and cookies
+
+The TidGo website and PWA use Google Analytics only after cookie/analytics consent where required. Google Analytics uses cookies and device identifiers and may process data in the United States.
+
+A cookie consent banner is displayed on first visit to the TidGo website and PWA. You can choose essential-only use or allow analytics.
+
+The TidGo Android app does not currently use Google Analytics or Firebase Analytics. No third-party analytics or advertising identifiers are collected within the Android app.
+
+## 14. Early access notice
+
+TidGo is currently in closed testing (Google Play closed testing), and the PWA remains under continuous development until the service is formally announced as a subscription product. Features may change and data structures may evolve during this phase.
+
+## 15. Changes to this policy
+
+We may update this policy from time to time. We will post the updated version in the app and on our website with a new "Last updated" date, and where changes are significant, we will notify you directly.
+
+## 16. Governing law
+
+This Privacy Policy is governed by the laws of England and Wales.
+
+## 17. Contact
+
+Questions, requests or complaints:
+
+hello@tidgo.co.uk / support@tidgo.co.uk
+
+Postal address -- TO CONFIRM before public launch / LTD registration`,
+  terms: `# TidGo Terms & Conditions
+
+**Last updated:** [DATE -- TO CONFIRM]
+**Version:** 0.9 -- Closed Testing / Beta
+
+Please read these Terms & Conditions ("Terms") carefully before using TidGo. You accept these Terms by ticking the acceptance box when creating an account, and by continuing to use TidGo. If you do not agree, please do not use the service.
+
+## 1. Who we are
+
+TidGo is operated by:
+
+> Slawomir Sarosiek, trading as TidGo
+> To be replaced with registered limited company details before public launch.
+> Business address -- TO CONFIRM before public launch / LTD registration.
+> Email: hello@tidgo.co.uk / support@tidgo.co.uk
+> Company number -- TO CONFIRM upon LTD registration.
+
+## 2. What TidGo is -- and what it is not
+
+TidGo is a record-keeping app designed for self-employed individuals, sole traders, landlords, and individuals with simple income and expense records. It helps you collect receipt photos and income proof documents, and produce simple monthly or quarterly summaries for your own records or to share with your accountant.
+
+TidGo is designed for simple record-keeping only. It does not support limited company accounts, VAT returns, payroll or corporation tax. If you need any of these, please use appropriate accounting software.
+
+TidGo is not:
+
+- accounting software,
+- tax, legal or financial advice,
+- a tax filing service,
+- a substitute for a qualified accountant or tax adviser.
+
+TidGo does not submit tax returns to HMRC or any other tax authority. TidGo does not decide whether an expense is tax deductible, whether your records are complete, or whether your summaries are correct for tax purposes.
+
+## 3. Eligibility
+
+You must be at least 18 years old and capable of entering into a binding contract to use TidGo. TidGo is intended for business use by self-employed individuals, sole traders and small businesses.
+
+## 4. Your account
+
+- You are responsible for keeping your account access secure.
+- You must provide a valid recovery email address so you can regain access to your account.
+- You must not share your account with others or use another person's account without permission.
+- You are responsible for all activity that occurs under your account.
+
+## 5. Early access / testing
+
+TidGo is currently in a closed testing / beta phase:
+
+- The Android app is available via Google Play closed testing only.
+- The PWA is under continuous development until TidGo is formally launched as a subscription product.
+- Features may change, be added or removed at any time.
+- Occasional bugs, downtime or data-format changes may occur.
+- The service is provided free of charge during this phase.
+- When TidGo launches as a subscription product, you will always be clearly informed before any paid plan starts or applies to you. No charges will apply without your agreement.
+
+## 6. Your content and data
+
+- You retain ownership of all receipts, photos, documents and data you upload.
+- You grant TidGo a limited licence to store, process and display your content solely to provide the service to you.
+- This includes OCR/AI extraction, summaries, and sharing with an accountant you connect.
+- You are responsible for ensuring you have the right to upload your content.
+- Do not upload content that is illegal, infringes others' rights, or that you do not want stored in TidGo.
+
+How we handle personal data is described in our Privacy Policy, which forms part of these Terms.
+
+## 7. Accuracy -- your responsibility to check
+
+TidGo uses OCR and AI to read receipt details such as amounts, merchants, dates and categories. OCR/AI may make mistakes.
+
+You are responsible for checking all amounts, categories, dates, receipt contents and summaries before using, exporting, sharing or relying on them, including before sharing with an accountant or using them for any tax or business purpose.
+
+TidGo accepts no responsibility for decisions made, or returns filed, based on unchecked or inaccurate extracted data.
+
+## 8. Accountant access
+
+- Connecting an accountant is optional and requires your approval.
+- Accountant access is read-only unless a future feature clearly states otherwise and you approve it.
+- You can revoke accountant access at any time.
+- TidGo is not a party to the relationship between you and your accountant and is not responsible for the accountant's services, advice or conduct.
+
+## 9. Intake channels
+
+You can add documents to TidGo in-app, by WhatsApp or by email.
+
+- Connecting WhatsApp is optional and started by you by sending a LINK message. If connected, TidGo uses your phone number only to match incoming receipt photos/documents to your account. WhatsApp is a third-party service provided by Meta and subject to Meta's own terms.
+- Email intake is optional. TidGo uses the sender email address only to match incoming emails and attachments to your account.
+- You are responsible for ensuring documents you send via any channel reach the correct account.
+- Documents that cannot be matched to an account may be rejected and deleted.
+
+## 10. Acceptable use
+
+You agree not to:
+
+- use TidGo for any unlawful purpose, including fraud or money laundering,
+- upload malicious code or attempt to breach, probe or disrupt the service,
+- attempt to access other users' accounts or data,
+- reverse-engineer, scrape or copy the service except as permitted by law,
+- resell or provide the service to third parties without our written agreement.
+
+We may suspend or terminate accounts that breach these Terms.
+
+## 11. Record-keeping obligations remain yours
+
+UK law may require you to keep your own business records. For example, HMRC generally expects self-employed records to be kept for several years. TidGo is a convenience tool. It does not replace your legal obligation to retain your own records. We strongly recommend keeping your own copies or exports of important documents.
+
+## 12. Availability and changes to the service
+
+- We aim to keep TidGo available and working well, but we do not guarantee uninterrupted or error-free operation, especially during early access.
+- We may modify, suspend or discontinue the service.
+- If we discontinue the service or materially reduce it, we will give you reasonable notice and an opportunity to export your data where practicable.
+
+## 13. Termination
+
+- You may stop using TidGo and delete your account at any time from Settings.
+- We may suspend or terminate your account if you materially breach these Terms, if required by law, or if we discontinue the service.
+- On deletion, your data is removed from active systems as described in the Privacy Policy.
+
+## 14. Disclaimers
+
+To the fullest extent permitted by law:
+
+- TidGo is provided "as is" and "as available", without warranties of any kind.
+- TidGo uses AI/OCR technology to extract details from receipts and documents. This technology does not verify every item and may produce inaccurate results.
+- Before using any extracted data for tax, accounting or official purposes, you must check that amounts, categories and documents are correct for your situation.
+- TidGo displays this reminder within the app when you export a monthly or quarterly summary as a PDF.
+- TidGo does not provide tax, accounting, legal or financial advice, and no output of the service should be treated as such.
+
+Nothing in these Terms excludes or limits liability that cannot be excluded under UK law, including liability for death or personal injury caused by negligence, or for fraud.
+
+## 15. Limitation of liability
+
+To the fullest extent permitted by law:
+
+- TidGo is not liable for indirect or consequential losses, loss of profits, loss of business, or loss of data beyond taking reasonable steps to protect it as described in the Privacy Policy.
+- TidGo is not liable for penalties, interest, additional tax or losses arising from inaccurate, incomplete or unchecked records, extracted data or summaries.
+- During any free/early-access period, our total liability to you in connection with the service is limited to GBP 100. [TO CONFIRM / adjust once paid plans exist.]
+
+## 16. Intellectual property
+
+TidGo, its name, branding, software and design are owned by us or our licensors. These Terms do not grant you any rights to our intellectual property other than the right to use the service as intended.
+
+## 17. Changes to these Terms
+
+We may update these Terms from time to time, for example when new features launch or paid plans are introduced. We will post the updated Terms with a new "Last updated" date and, for material changes, notify you in-app or by email. Continued use of TidGo after changes take effect means you accept the updated Terms.
+
+## 18. Governing law and disputes
+
+These Terms are governed by the laws of England and Wales. Any disputes arising from these Terms or your use of TidGo will be subject to the exclusive jurisdiction of the courts of England and Wales, without affecting any mandatory consumer rights you may have under the law of your country of residence.
+
+## 19. Contact
+
+Questions about these Terms:
+
+hello@tidgo.co.uk / support@tidgo.co.uk
+
+Postal address -- TO CONFIRM before public launch / LTD registration`
+};
+
 const INCOME_SOURCE_KEYS = ["self_employed", "cis", "landlord", "paye_side", "other"];
 
 const state = {
@@ -3443,6 +3796,12 @@ function deleteAccountInfoPage() {
 function marketingLegalPage(kind) {
   const title = kind === "privacy" ? t("privacyTitle") : t("termsTitle");
   const copy = legalCopy(kind);
+  const fullDocument = FULL_LEGAL_MARKDOWN[kind] ? markdownToLegalHtml(FULL_LEGAL_MARKDOWN[kind]) : `
+    <h2>${escapeHtml(t("legalShort"))}</h2>
+    <p>${escapeHtml(copy.short)}</p>
+    <h2>${escapeHtml(t("legalFull"))}</h2>
+    <p>${escapeHtml(copy.details)}</p>
+  `;
   shell(`
     <section class="landing-screen marketing-page-screen">
       ${landingHeader("")}
@@ -3450,10 +3809,9 @@ function marketingLegalPage(kind) {
         <article class="marketing-page-card marketing-article">
           <span class="eyebrow">TidGo</span>
           <h1>${escapeHtml(title)}</h1>
-          <h2>${escapeHtml(t("legalShort"))}</h2>
-          <p>${escapeHtml(copy.short)}</p>
-          <h2>${escapeHtml(t("legalFull"))}</h2>
-          <p>${escapeHtml(copy.details)}</p>
+          <div class="legal-document">
+            ${fullDocument}
+          </div>
           ${pageCta()}
         </article>
       </div>
@@ -4142,6 +4500,110 @@ function accountantPortal() {
 
 function legalCopy(kind) {
   return (LEGAL_TEXT[state.language] || LEGAL_TEXT.en)[kind] || LEGAL_TEXT.en[kind];
+}
+
+function inlineMarkdown(value) {
+  return escapeHtml(value)
+    .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+    .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+}
+
+function markdownTableToHtml(lines) {
+  const rows = lines
+    .filter((line) => !/^\|\s*-+/.test(line))
+    .map((line) => line.split("|").slice(1, -1).map((cell) => inlineMarkdown(cell.trim())));
+  if (!rows.length) return "";
+  const [head, ...body] = rows;
+  return `
+    <div class="legal-table-wrap">
+      <table class="legal-table">
+        <thead><tr>${head.map((cell) => `<th>${cell}</th>`).join("")}</tr></thead>
+        <tbody>${body.map((row) => `<tr>${row.map((cell) => `<td>${cell}</td>`).join("")}</tr>`).join("")}</tbody>
+      </table>
+    </div>
+  `;
+}
+
+function markdownToLegalHtml(markdown) {
+  const lines = String(markdown || "").replace(/\r/g, "").split("\n");
+  const html = [];
+  let paragraph = [];
+  let list = [];
+  let quote = [];
+  let table = [];
+  const flushParagraph = () => {
+    if (!paragraph.length) return;
+    html.push(`<p>${inlineMarkdown(paragraph.join(" "))}</p>`);
+    paragraph = [];
+  };
+  const flushList = () => {
+    if (!list.length) return;
+    html.push(`<ul>${list.map((item) => `<li>${inlineMarkdown(item)}</li>`).join("")}</ul>`);
+    list = [];
+  };
+  const flushQuote = () => {
+    if (!quote.length) return;
+    html.push(`<blockquote>${quote.map((item) => `<p>${inlineMarkdown(item)}</p>`).join("")}</blockquote>`);
+    quote = [];
+  };
+  const flushTable = () => {
+    if (!table.length) return;
+    html.push(markdownTableToHtml(table));
+    table = [];
+  };
+  const flushAll = () => {
+    flushParagraph();
+    flushList();
+    flushQuote();
+    flushTable();
+  };
+
+  lines.forEach((rawLine) => {
+    const line = rawLine.trim();
+    if (!line || line === "---") {
+      flushAll();
+      return;
+    }
+    if (line.startsWith("|") && line.endsWith("|")) {
+      flushParagraph();
+      flushList();
+      flushQuote();
+      table.push(line);
+      return;
+    }
+    flushTable();
+    if (line.startsWith("# ")) {
+      flushAll();
+      return;
+    }
+    if (line.startsWith("## ")) {
+      flushAll();
+      html.push(`<h2>${inlineMarkdown(line.slice(3))}</h2>`);
+      return;
+    }
+    if (line.startsWith("### ")) {
+      flushAll();
+      html.push(`<h3>${inlineMarkdown(line.slice(4))}</h3>`);
+      return;
+    }
+    if (line.startsWith("> ")) {
+      flushParagraph();
+      flushList();
+      quote.push(line.slice(2));
+      return;
+    }
+    if (line.startsWith("- ")) {
+      flushParagraph();
+      flushQuote();
+      list.push(line.slice(2));
+      return;
+    }
+    flushList();
+    flushQuote();
+    paragraph.push(line);
+  });
+  flushAll();
+  return html.join("");
 }
 
 function legalPage(kind) {
