@@ -2043,29 +2043,29 @@ Object.assign(COPY.bg, {
 Object.assign(COPY.ro, {
   incomeSources: "Surse de venit",
   incomeSourcesHint: "Ajuta TidGo sa inteleaga evidenta. Venitul PAYE se trateaza separat; TidGo pastreaza documente pentru self-employment, CIS, landlord sau venit secundar. Nu este software pentru VAT sau LTD.",
-  incomeSelfEmployed: "Self-employed",
+  incomeSelfEmployed: "Lucrez pe cont propriu",
   incomeCis: "CIS",
-  incomeLandlord: "Landlord",
+  incomeLandlord: "Venit din chirii",
   incomePayeSide: "PAYE + venit secundar",
   incomeOther: "Altceva"
 });
 
 Object.assign(COPY.uk, {
-  incomeSources: "Income sources",
-  incomeSourcesHint: "This helps TidGo understand your records. PAYE income is handled separately; TidGo keeps records for self-employment, CIS, landlord or side-income work. It is not VAT or LTD accounting software.",
-  incomeSelfEmployed: "Self-employed",
+  incomeSources: "Dzherela dokhodu",
+  incomeSourcesHint: "Tse dopomahaie TidGo zrozumity vashi zapysy. PAYE dokhid oblikovuietsia okremo; TidGo zberihaye zapysy dlia samozainiatosti, CIS, orendy abo dodatkovoho dokhodu. Tse ne prohrama dlia VAT abo LTD accounting.",
+  incomeSelfEmployed: "Samozainiatyi",
   incomeCis: "CIS",
-  incomeLandlord: "Landlord",
-  incomePayeSide: "PAYE + side income",
-  incomeOther: "Other"
+  incomeLandlord: "Dokhid z orendy",
+  incomePayeSide: "PAYE + dodatkovyi dokhid",
+  incomeOther: "Inshe"
 });
 
 Object.assign(COPY.lt, {
   incomeSources: "Pajamu saltiniai",
   incomeSourcesHint: "Tai padeda TidGo suprasti jusu irasus. PAYE pajamos tvarkomos atskirai; TidGo saugo irasus self-employment, CIS, landlord arba papildomoms pajamoms. Tai nera VAT ar LTD apskaitos programa.",
-  incomeSelfEmployed: "Self-employed",
+  incomeSelfEmployed: "Dirbu savarankiskai",
   incomeCis: "CIS",
-  incomeLandlord: "Landlord",
+  incomeLandlord: "Nuomos pajamos",
   incomePayeSide: "PAYE + papildomos pajamos",
   incomeOther: "Kita"
 });
@@ -2073,9 +2073,9 @@ Object.assign(COPY.lt, {
 Object.assign(COPY.lv, {
   incomeSources: "Ienakumu avoti",
   incomeSourcesHint: "Tas palidz TidGo saprast jusu ierakstus. PAYE ienakumi tiek apstradati atseviski; TidGo glaba ierakstus self-employment, CIS, landlord vai papildu darbam. Ta nav VAT vai LTD gramatvedibas programma.",
-  incomeSelfEmployed: "Self-employed",
+  incomeSelfEmployed: "Pasnodarbinatais",
   incomeCis: "CIS",
-  incomeLandlord: "Landlord",
+  incomeLandlord: "Ienakumi no ires",
   incomePayeSide: "PAYE + papildu ienakumi",
   incomeOther: "Cits"
 });
@@ -2083,21 +2083,21 @@ Object.assign(COPY.lv, {
 Object.assign(COPY.es, {
   incomeSources: "Fuentes de ingreso",
   incomeSourcesHint: "Ayuda a TidGo a entender tus registros. El ingreso PAYE se gestiona aparte; TidGo guarda registros para self-employment, CIS, landlord o ingresos secundarios. No es software de contabilidad VAT o LTD.",
-  incomeSelfEmployed: "Self-employed",
+  incomeSelfEmployed: "Trabajo por cuenta propia",
   incomeCis: "CIS",
-  incomeLandlord: "Landlord",
+  incomeLandlord: "Ingresos por alquiler",
   incomePayeSide: "PAYE + ingreso secundario",
   incomeOther: "Otro"
 });
 
 Object.assign(COPY.bg, {
-  incomeSources: "Income sources",
-  incomeSourcesHint: "This helps TidGo understand your records. PAYE income is handled separately; TidGo keeps records for self-employment, CIS, landlord or side-income work. It is not VAT or LTD accounting software.",
-  incomeSelfEmployed: "Self-employed",
+  incomeSources: "Iztochnitsi na dohod",
+  incomeSourcesHint: "Tova pomaga na TidGo da razbere zapisite vi. PAYE dohod se obrabotva otdelno; TidGo pazi zapisi za samozaietost, CIS, naemi ili dopalnitelen dohod. Ne e software za VAT ili LTD accounting.",
+  incomeSelfEmployed: "Samozaiet",
   incomeCis: "CIS",
-  incomeLandlord: "Landlord",
-  incomePayeSide: "PAYE + side income",
-  incomeOther: "Other"
+  incomeLandlord: "Dohod ot naem",
+  incomePayeSide: "PAYE + dopalnitelen dohod",
+  incomeOther: "Drugo"
 });
 
 ["ro", "uk", "lt", "lv", "es", "bg"].forEach((language) => {
