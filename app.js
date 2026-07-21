@@ -37,7 +37,7 @@ const MARKETING_COPY = {
     contactTitle: "Want to try it or ask a question?", contactText: "Send a quick message. No sales maze, just a human reply.", yourEmail: "Your email", roleSelf: "I work for myself", roleAccountant: "I am an accountant", roleCurious: "Just curious", message: "Message", sendMessage: "Send message", messageSent: "Message sent. Thank you.", messagePending: "Automatic contact is being connected. Please try again after the next API deploy.",
     selfLabel: "I work for myself", selfTitle: "Open TidGo App", selfText: "Take receipt photos, add income, keep monthly records ready for your accountant.", scanApp: "Scan app", openApp: "Open app",
     accountantLabel: "I'm an accountant", accountantTitle: "Open Accountant Portal", accountantText: "View connected client records, download CSV/PDF packs, and reduce deadline panic.", scanPortal: "Scan portal", openPortal: "Open portal", viewDemo: "View quick demo",
-    footer: "TidGo helps organise records. It is not accounting, tax advice or payroll software.", home: "Home", appDemo: "App demo", accountantDemo: "Accountant demo", backHome: "Back to homepage", step: "Step",
+    footer: "TidGo helps organise records. It is not accounting, tax advice or payroll software.", home: "Home", appDemo: "App demo", accountantDemo: "Accountant demo", deleteAccountLink: "Delete account", backHome: "Back to homepage", step: "Step",
     trySafe: "Try it safely: take a photo, check the result, download your summary, and delete your account/data any time from Settings.",
     appDemoKind: "For self-employed", appDemoTitle: "See the receipt flow before signing in.", appDemoText: "TidGo is built around one simple habit: take the photo now, send a cleaner pack later.",
     accountantDemoKind: "For accountants", accountantDemoTitle: "See the client handoff before signing in.", accountantDemoText: "The accountant portal is read-only. Clients keep records tidy; you get a cleaner pack when it is time to work.",
@@ -62,7 +62,7 @@ const MARKETING_COPY = {
     contactTitle: "Chcesz przetestowac albo zapytac?", contactText: "Wyslij krotka wiadomosc. Bez lejka sprzedazowego, normalna odpowiedz od czlowieka.", yourEmail: "Twoj email", roleSelf: "Pracuje na siebie", roleAccountant: "Jestem ksiegowym", roleCurious: "Tylko sprawdzam", message: "Wiadomosc", sendMessage: "Wyslij wiadomosc", messageSent: "Wiadomosc wyslana. Dziekuje.", messagePending: "Automatyczny kontakt jest podpinany. Sprobuj po nastepnym deployu API.",
     selfLabel: "Pracuje na siebie", selfTitle: "Otworz aplikacje TidGo", selfText: "Rob zdjecia paragonow, dodawaj przychody i trzymaj miesieczne rekordy gotowe dla ksiegowego.", scanApp: "Skanuj app", openApp: "Otworz app",
     accountantLabel: "Jestem ksiegowym", accountantTitle: "Otworz portal ksiegowego", accountantText: "Zobacz rekordy klientow, pobierz CSV/PDF i ogranicz panike przed terminem.", scanPortal: "Skanuj portal", openPortal: "Otworz portal", viewDemo: "Zobacz szybkie demo",
-    footer: "TidGo pomaga porzadkowac rekordy. To nie jest ksiegowosc, porada podatkowa ani payroll.", home: "Start", appDemo: "Demo app", accountantDemo: "Demo ksiegowego", backHome: "Wroc na strone glowna", step: "Krok",
+    footer: "TidGo pomaga porzadkowac rekordy. To nie jest ksiegowosc, porada podatkowa ani payroll.", home: "Start", appDemo: "Demo app", accountantDemo: "Demo ksiegowego", deleteAccountLink: "Usun konto", backHome: "Wroc na strone glowna", step: "Krok",
     trySafe: "Sprawdz bez stresu: zrob zdjecie, zobacz wynik, pobierz summary i usun konto/dane w dowolnym momencie w ustawieniach.",
     appDemoKind: "Dla self-employed", appDemoTitle: "Zobacz flow paragonu bez logowania.", appDemoText: "TidGo opiera sie na jednym prostym nawyku: zrob zdjecie teraz, wyslij czystsza paczke pozniej.",
     accountantDemoKind: "Dla ksiegowych", accountantDemoTitle: "Zobacz przekazanie klienta bez logowania.", accountantDemoText: "Portal ksiegowego jest tylko do odczytu. Klient trzyma rekordy w porzadku, a ty dostajesz czystsza paczke do pracy.",
@@ -88,7 +88,7 @@ MARKETING_COPY.ro = { ...MARKETING_COPY.en,
   contactTitle: "Vrei sa testezi sau sa intrebi ceva?", contactText: "Trimite un mesaj scurt. Fara labirint de vanzari, doar un raspuns uman.", yourEmail: "Emailul tau", roleSelf: "Lucrez pe cont propriu", roleAccountant: "Sunt contabil", roleCurious: "Doar verific", message: "Mesaj", sendMessage: "Trimite mesaj", messageSent: "Mesaj trimis. Multumesc.", messagePending: "Contactul automat este conectat. Incearca din nou dupa urmatorul deploy API.",
   selfLabel: "Lucrez pe cont propriu", selfTitle: "Deschide aplicatia TidGo", selfText: "Fotografiaza bonuri, adauga venituri si tine evidenta lunara pregatita pentru contabil.", scanApp: "Scaneaza app", openApp: "Deschide app",
   accountantLabel: "Sunt contabil", accountantTitle: "Deschide portalul contabilului", accountantText: "Vezi evidentele clientilor conectati, descarca pachete CSV/PDF si redu panica de termen limita.", scanPortal: "Scaneaza portal", openPortal: "Deschide portal", viewDemo: "Vezi demo rapid",
-  footer: "TidGo ajuta la organizarea evidentelor. Nu este contabilitate, consultanta fiscala sau payroll.", home: "Acasa", appDemo: "Demo app", accountantDemo: "Demo contabil", backHome: "Inapoi la pagina principala", step: "Pas",
+  footer: "TidGo ajuta la organizarea evidentelor. Nu este contabilitate, consultanta fiscala sau payroll.", home: "Acasa", appDemo: "Demo app", accountantDemo: "Demo contabil", deleteAccountLink: "Sterge contul", backHome: "Inapoi la pagina principala", step: "Pas",
   trySafe: "Incearca in siguranta: fa o poza, verifica rezultatul, descarca sumarul si sterge contul/datele oricand din setari.",
   appDemoKind: "Pentru self-employed", appDemoTitle: "Vezi fluxul bonului inainte de autentificare.", appDemoText: "TidGo se bazeaza pe un obicei simplu: faci poza acum, trimiti un pachet mai curat mai tarziu.",
   accountantDemoKind: "Pentru contabili", accountantDemoTitle: "Vezi predarea clientului inainte de autentificare.", accountantDemoText: "Portalul contabilului este doar pentru citire. Clientii isi tin evidentele ordonate; tu primesti un pachet mai curat pentru lucru.",
@@ -113,7 +113,7 @@ MARKETING_COPY.lt = { ...MARKETING_COPY.en,
   contactTitle: "Norite pabandyti ar paklausti?", contactText: "Parasykite trumpa zinute. Be pardavimo labirinto, tiesiog zmogiskas atsakymas.", yourEmail: "Jusu el. pastas", roleSelf: "Dirbu sau", roleAccountant: "Esu buhalteris", roleCurious: "Tik domiuosi", message: "Zinute", sendMessage: "Siusti zinute", messageSent: "Zinute issiusta. Aciu.", messagePending: "Automatinis kontaktas prijungiamas. Pabandykite po kito API deploy.",
   selfLabel: "Dirbu sau", selfTitle: "Atidaryti TidGo app", selfText: "Fotografuok kvitus, pridek pajamas ir laikyk menesio irasus paruostus buhalteriui.", scanApp: "Skenuoti app", openApp: "Atidaryti app",
   accountantLabel: "Esu buhalteris", accountantTitle: "Atidaryti buhalterio portala", accountantText: "Matyk prijungtu klientu irasus, atsisiusk CSV/PDF paketus ir sumazink termino panika.", scanPortal: "Skenuoti portala", openPortal: "Atidaryti portala", viewDemo: "Greitas demo",
-  footer: "TidGo padeda tvarkyti irasus. Tai nera buhalterija, mokesciu konsultacija ar payroll programa.", home: "Pradzia", appDemo: "App demo", accountantDemo: "Buhalterio demo", backHome: "Grizti i pagrindini puslapi", step: "Zingsnis",
+  footer: "TidGo padeda tvarkyti irasus. Tai nera buhalterija, mokesciu konsultacija ar payroll programa.", home: "Pradzia", appDemo: "App demo", accountantDemo: "Buhalterio demo", deleteAccountLink: "Istrinti paskyra", backHome: "Grizti i pagrindini puslapi", step: "Zingsnis",
   trySafe: "Isbandyk saugiai: nufotografuok, patikrink rezultata, atsisiusk suvestine ir bet kada istrink paskyra/duomenis nustatymuose.",
   appDemoKind: "Dirbantiems sau", appDemoTitle: "Pamatyk kvito eiga neprisijungus.", appDemoText: "TidGo remiasi vienu paprastu iprociu: nufotografuok dabar, tvarkingesni paketa issiusk veliau.",
   accountantDemoKind: "Buhalteriams", accountantDemoTitle: "Pamatyk kliento perdavima neprisijungus.", accountantDemoText: "Buhalterio portalas yra tik skaitymui. Klientai tvarko irasus, o jus gaunate tvarkingesni paketa darbui.",
@@ -2301,7 +2301,8 @@ function marketingPageSlug() {
     "/mtd/does-tidgo-submit-to-hmrc": "mtdSubmit",
     "/mtd/do-i-need-an-accountant": "mtdAccountant",
     "/privacy": "privacy",
-    "/terms": "terms"
+    "/terms": "terms",
+    "/delete-account": "deleteAccountInfo"
   };
   return routes[path] || "";
 }
@@ -2398,7 +2399,7 @@ function landingFooter() {
     <footer class="landing-foot">
       <div class="landing-foot-copy">
         <span>${mk("footer")} <strong>${mk("copyright")}</strong></span>
-        <span class="landing-legal-links"><a href="/privacy">${t("privacyTitle")}</a><a href="/terms">${t("termsTitle")}</a></span>
+        <span class="landing-legal-links"><a href="/privacy">${t("privacyTitle")}</a><a href="/terms">${t("termsTitle")}</a><a href="/delete-account">${mk("deleteAccountLink")}</a></span>
         <span class="landing-privacy-note">${mk("privacyNote")}</span>
       </div>
     </footer>
@@ -3299,6 +3300,7 @@ function landing() {
 function marketingPage() {
   const slug = marketingPageSlug();
   if (slug === "privacy" || slug === "terms") return marketingLegalPage(slug);
+  if (slug === "deleteAccountInfo") return deleteAccountInfoPage();
   const simplePages = {
     how: {
       active: "how",
@@ -3402,6 +3404,32 @@ function marketingPage() {
       ${landingHeader(active)}
       <div class="marketing-page-layout">
         ${body}
+      </div>
+      ${landingFooter()}
+    </section>
+  `);
+}
+
+function deleteAccountInfoPage() {
+  shell(`
+    <section class="landing-screen marketing-page-screen">
+      ${landingHeader("")}
+      <div class="marketing-page-layout">
+        <article class="marketing-page-card marketing-article">
+          <span class="eyebrow">TidGo</span>
+          <h1>Delete your TidGo account</h1>
+          <p>You can delete your TidGo account inside the app:</p>
+          <ol>
+            <li>Open TidGo.</li>
+            <li>Go to Settings.</li>
+            <li>Tap "Delete account and all data".</li>
+            <li>Confirm the deletion.</li>
+          </ol>
+          <p>When you delete your account, TidGo deletes your active account profile, receipt records, income records, stored receipt photos/proof files, summaries, WhatsApp link information and accountant access permissions from our live systems.</p>
+          <p>Some limited technical logs and backups may remain for up to 30 days before automatic deletion, unless we are legally required to keep them for longer.</p>
+          <p>If you cannot access the app, contact us at <a href="mailto:hello@tidgo.co.uk">hello@tidgo.co.uk</a> and request account deletion from the email address linked to your TidGo account.</p>
+          ${pageCta()}
+        </article>
       </div>
       ${landingFooter()}
     </section>
