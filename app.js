@@ -1312,6 +1312,7 @@ Object.assign(COPY, {
 Object.assign(COPY.en, {
   privacyTitle: "Privacy Policy",
   termsTitle: "Terms",
+  deleteAccountInfoTitle: "Delete account info",
   legalShort: "Short version",
   legalFull: "Plain details",
   legalOpenFull: "Open full version",
@@ -1425,6 +1426,7 @@ Object.assign(COPY.en, {
 Object.assign(COPY.pl, {
   privacyTitle: "Polityka prywatnosci",
   termsTitle: "Regulamin",
+  deleteAccountInfoTitle: "Instrukcja usuniecia konta",
   legalShort: "Krotko",
   legalFull: "Proste szczegoly",
   legalOpenFull: "Otworz pelna wersje",
@@ -2114,6 +2116,7 @@ Object.assign(COPY.bg, {
     cookieDecline: COPY.en.cookieDecline,
     agreeLegal: COPY.en.agreeLegal,
     legalOpenFull: COPY.en.legalOpenFull,
+    deleteAccountInfoTitle: COPY.en.deleteAccountInfoTitle,
     legalSettingsAgree: COPY.en.legalSettingsAgree,
     shortPrivacyNoticeTitle: COPY.en.shortPrivacyNoticeTitle,
     shortPrivacyNoticeText: COPY.en.shortPrivacyNoticeText,
@@ -3931,6 +3934,7 @@ function settings() {
         </label>
         <a class="secondary legal-link-button" href="/privacy/" target="_blank" rel="noopener">${t("privacyTitle")}</a>
         <a class="secondary legal-link-button" href="/terms/" target="_blank" rel="noopener">${t("termsTitle")}</a>
+        <a class="secondary legal-link-button" href="/delete-account/" target="_blank" rel="noopener">${t("deleteAccountInfoTitle")}</a>
       </div>
       <div class="card stack" style="margin-top:18px">
         <strong>${t("signOutDevice")}</strong>
