@@ -534,6 +534,55 @@ button {
   padding: 8px 10px;
 }
 
+.cookie-consent {
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: calc(16px + env(safe-area-inset-bottom));
+  z-index: 80;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  max-width: 840px;
+  margin: 0 auto;
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 16px 50px rgba(15, 23, 42, 0.18);
+  color: var(--ink);
+  padding: 12px;
+}
+
+.cookie-consent > div:first-child {
+  display: grid;
+  gap: 4px;
+}
+
+.cookie-consent strong {
+  color: var(--blue-dark);
+  font-size: 14px;
+}
+
+.cookie-consent span {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.cookie-actions {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 8px;
+}
+
+.cookie-actions .primary,
+.cookie-actions .secondary {
+  min-height: 40px;
+  padding: 9px 12px;
+  white-space: nowrap;
+}
+
 .landing-mtd {
   display: grid;
   align-items: stretch;
@@ -1819,6 +1868,23 @@ button {
   .contact-social {
     justify-content: flex-start;
     width: 189px;
+  }
+
+  .cookie-consent {
+    display: grid;
+    left: 10px;
+    right: 10px;
+    gap: 10px;
+  }
+
+  .cookie-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cookie-actions .primary,
+  .cookie-actions .secondary {
+    width: 100%;
   }
 
   .list-item,

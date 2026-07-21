@@ -1,6 +1,7 @@
 const API_BASE = "https://donezo-api-53t9.onrender.com";
 const TIDGO_WHATSAPP_NUMBER = "447466382511";
 const FEEDBACK_EMAIL = "hello@tidgo.co.uk";
+const GA_MEASUREMENT_ID = "G-FTS1ZS0PF5";
 const CURRENCIES = ["GBP", "EUR", "USD", "PLN", "RON", "UAH", "BGN", "CZK", "HUF"];
 const CATEGORIES = ["food", "fuel", "tools", "transport", "other"];
 const LANGUAGES = {
@@ -159,7 +160,7 @@ Object.assign(MARKETING_COPY.en, {
   platformNow: "Use the web app now.",
   platformSoon: "Android and iOS versions are in development alongside TidGo.",
   socialTitle: "Follow us on",
-  privacyNote: "No cookie maze: TidGo only uses essential app data and basic analytics to improve the product. We do not sell user data.",
+  privacyNote: "No cookie maze: TidGo uses essential app data only. Basic analytics runs only if you allow it. We do not sell user data.",
   copyright: "© 2026 TidGo. All rights reserved."
 });
 
@@ -197,7 +198,7 @@ Object.assign(MARKETING_COPY.pl, {
   platformNow: "Uzyj web app teraz.",
   platformSoon: "Wersje Android i iOS sa rozwijane rownolegle z TidGo.",
   socialTitle: "Obserwuj nas",
-  privacyNote: "Bez cookie-labiryntu: TidGo uzywa tylko danych potrzebnych do dzialania aplikacji i podstawowej analityki do ulepszania produktu. Nie sprzedajemy danych uzytkownikow.",
+  privacyNote: "Bez cookie-labiryntu: TidGo uzywa tylko danych potrzebnych do dzialania aplikacji. Podstawowa analityka dziala tylko po zgodzie. Nie sprzedajemy danych uzytkownikow.",
   copyright: "© 2026 TidGo. Wszelkie prawa zastrzezone."
 });
 
@@ -235,7 +236,7 @@ Object.assign(MARKETING_COPY.ro, {
   platformNow: "Foloseste aplicatia web acum.",
   platformSoon: "Versiunile Android si iOS sunt dezvoltate in paralel cu TidGo.",
   socialTitle: "Urmareste-ne",
-  privacyNote: "Fara labirint de cookies: TidGo foloseste doar date esentiale ale aplicatiei si analiza de baza pentru imbunatatire. Nu vindem datele utilizatorilor.",
+  privacyNote: "Fara labirint de cookies: TidGo foloseste doar date esentiale ale aplicatiei. Analiza de baza ruleaza doar daca o permiti. Nu vindem datele utilizatorilor.",
   copyright: "© 2026 TidGo. Toate drepturile rezervate."
 });
 
@@ -273,7 +274,7 @@ Object.assign(MARKETING_COPY.lt, {
   platformNow: "Naudok web app dabar.",
   platformSoon: "Android ir iOS versijos kuriamos kartu su TidGo.",
   socialTitle: "Sekite mus",
-  privacyNote: "Be cookies labirinto: TidGo naudoja tik butinus programeles duomenis ir paprasta analitika produkto gerinimui. Vartotoju duomenu neparduodame.",
+  privacyNote: "Be cookies labirinto: TidGo naudoja tik butinus programeles duomenis. Paprasta analitika veikia tik jei sutinki. Vartotoju duomenu neparduodame.",
   copyright: "© 2026 TidGo. Visos teises saugomos."
 });
 
@@ -721,6 +722,10 @@ const COPY = {
     code: "Email code",
     restore: "Restore",
     login: "Login",
+    cookieTitle: "Cookie choice",
+    cookieText: "TidGo needs essential app storage to work. Basic analytics is optional and only helps us improve the product.",
+    cookieAccept: "Allow analytics",
+    cookieDecline: "Essential only",
     recoveryEmail: "Email recovery",
     verifyEmail: "Verify your email",
     verifyEmailHint: "We sent a 6-digit code to your email. Enter it to finish setting up TidGo on this device.",
@@ -836,6 +841,10 @@ const COPY = {
     code: "Kod z emaila",
     restore: "Odzyskaj",
     login: "Login",
+    cookieTitle: "Zgoda cookies",
+    cookieText: "TidGo potrzebuje podstawowego zapisu danych, zeby aplikacja dzialala. Podstawowa analityka jest opcjonalna i pomaga nam ulepszac produkt.",
+    cookieAccept: "Zgadzam sie na analityke",
+    cookieDecline: "Tylko niezbedne",
     recoveryEmail: "Odzyskiwanie emailem",
     verifyEmail: "Potwierdz email",
     verifyEmailHint: "Wyslalismy 6-cyfrowy kod na twoj email. Wpisz go, zeby dokonczyc start TidGo na tym urzadzeniu.",
@@ -2099,6 +2108,10 @@ Object.assign(COPY.bg, {
     tapToView: COPY.en.tapToView,
     rotate: COPY.en.rotate,
     pinchToZoom: COPY.en.pinchToZoom,
+    cookieTitle: COPY.en.cookieTitle,
+    cookieText: COPY.en.cookieText,
+    cookieAccept: COPY.en.cookieAccept,
+    cookieDecline: COPY.en.cookieDecline,
     agreeLegal: COPY.en.agreeLegal,
     legalOpenFull: COPY.en.legalOpenFull,
     legalSettingsAgree: COPY.en.legalSettingsAgree,
@@ -2125,7 +2138,7 @@ const LEGAL_TEXT = {
   en: {
     privacy: {
       short: "TidGo keeps only the data needed to save your income, expenses and monthly summary. Receipt photos and account details are used to run the app, not to sell ads or profile you.",
-      details: "We store your profile, recovery email, receipt photos, receipt details, income entries and settings. The app uses the TidGo API, MongoDB Atlas, Render, OpenAI for receipt reading, Resend for recovery emails and Google Analytics to understand app usage. You can delete your account and data in Settings."
+      details: "We store your profile, recovery email, receipt photos, receipt details, income entries and settings. The app uses the TidGo API, MongoDB Atlas, Render, OpenAI for receipt reading, Resend for recovery emails and, if you allow analytics, Google Analytics to understand app usage. You can delete your account and data in Settings."
     },
     terms: {
       short: "TidGo helps organise receipts and prepare a monthly summary for your accountant. It is not accounting, tax, payroll or legal advice.",
@@ -2135,7 +2148,7 @@ const LEGAL_TEXT = {
   pl: {
     privacy: {
       short: "TidGo przechowuje tylko dane potrzebne do zapisania Twoich przychodow, wydatkow i miesiecznego podsumowania. Zdjecia paragonow i dane konta sa uzywane do dzialania aplikacji, nie do reklam ani profilowania.",
-      details: "Przechowujemy profil, email do odzyskania, zdjecia paragonow, dane paragonow, przychody i ustawienia. Aplikacja uzywa API TidGo, MongoDB Atlas, Render, OpenAI do czytania paragonow, Resend do emaili odzyskiwania i Google Analytics do zrozumienia uzycia aplikacji. Konto i dane mozesz usunac w Ustawieniach."
+      details: "Przechowujemy profil, email do odzyskania, zdjecia paragonow, dane paragonow, przychody i ustawienia. Aplikacja uzywa API TidGo, MongoDB Atlas, Render, OpenAI do czytania paragonow, Resend do emaili odzyskiwania oraz, jesli wyrazisz zgode na analityke, Google Analytics do zrozumienia uzycia aplikacji. Konto i dane mozesz usunac w Ustawieniach."
     },
     terms: {
       short: "TidGo pomaga uporzadkowac paragony i przygotowac miesieczne podsumowanie dla ksiegowego. To nie jest ksiegowosc, doradztwo podatkowe, payroll ani porada prawna.",
@@ -2145,7 +2158,7 @@ const LEGAL_TEXT = {
   ro: {
     privacy: {
       short: "TidGo pastreaza doar datele necesare pentru venituri, cheltuieli si rezumatul lunar. Pozele bonurilor si datele contului sunt folosite pentru aplicatie, nu pentru reclame sau profilare.",
-      details: "Stocam profilul, emailul de recuperare, pozele bonurilor, detaliile bonurilor, veniturile si setarile. Aplicatia foloseste API-ul TidGo, MongoDB Atlas, Render, OpenAI pentru citirea bonurilor, Resend pentru emailuri de recuperare si Google Analytics pentru a intelege folosirea aplicatiei. Iti poti sterge contul si datele din Setari."
+      details: "Stocam profilul, emailul de recuperare, pozele bonurilor, detaliile bonurilor, veniturile si setarile. Aplicatia foloseste API-ul TidGo, MongoDB Atlas, Render, OpenAI pentru citirea bonurilor, Resend pentru emailuri de recuperare si, daca permiti analiza, Google Analytics pentru a intelege folosirea aplicatiei. Iti poti sterge contul si datele din Setari."
     },
     terms: {
       short: "TidGo te ajuta sa organizezi bonuri si sa pregatesti un rezumat lunar pentru contabil. Nu este contabilitate, consultanta fiscala, payroll sau consultanta juridica.",
@@ -2155,7 +2168,7 @@ const LEGAL_TEXT = {
   uk: {
     privacy: {
       short: "TidGo zberihaye lyshe dani, potribni dlya dokhodiv, vytrat i misyachnoho pidsumku. Foto chekiv i dani akauntu vykorystovuyutsya dlya roboty dodatka, ne dlya reklamy abo profilyuvannya.",
-      details: "My zberihayemo profil, email dlya vidnovlennya, foto chekiv, dani chekiv, dokhody ta nalashtuvannya. Dodatok vykorystovuye API TidGo, MongoDB Atlas, Render, OpenAI dlya chytannya chekiv, Resend dlya emailiv vidnovlennya i Google Analytics dlya rozuminnya vykorystannya dodatka. Akaunt i dani mozhna vydalyty v Nalashtuvannyakh."
+      details: "My zberihayemo profil, email dlya vidnovlennya, foto chekiv, dani chekiv, dokhody ta nalashtuvannya. Dodatok vykorystovuye API TidGo, MongoDB Atlas, Render, OpenAI dlya chytannya chekiv, Resend dlya emailiv vidnovlennya i, yakshcho vy dozvolyte analityku, Google Analytics dlya rozuminnya vykorystannya dodatka. Akaunt i dani mozhna vydalyty v Nalashtuvannyakh."
     },
     terms: {
       short: "TidGo dopomahaye vporiadkuvaty cheky i pidhotuvaty misyachnyi pidsumok dlya bukhhaltera. Tse ne bukhhalteriya, podatkova, payroll abo yurydychna porada.",
@@ -2165,7 +2178,7 @@ const LEGAL_TEXT = {
   lt: {
     privacy: {
       short: "TidGo saugo tik duomenis, reikalingus pajamoms, islaidoms ir menesio suvestinei. Kvituku nuotraukos ir paskyros duomenys naudojami programai veikti, ne reklamoms ar profiliavimui.",
-      details: "Saugome profili, atkurimo el. pasta, kvituku nuotraukas, kvituku duomenis, pajamas ir nustatymus. Programa naudoja TidGo API, MongoDB Atlas, Render, OpenAI kvitukams nuskaityti, Resend atkurimo el. laiskams ir Google Analytics programos naudojimui suprasti. Paskyra ir duomenis galima istrinti Nustatymuose."
+      details: "Saugome profili, atkurimo el. pasta, kvituku nuotraukas, kvituku duomenis, pajamas ir nustatymus. Programa naudoja TidGo API, MongoDB Atlas, Render, OpenAI kvitukams nuskaityti, Resend atkurimo el. laiskams ir, jei leidziate analitika, Google Analytics programos naudojimui suprasti. Paskyra ir duomenis galima istrinti Nustatymuose."
     },
     terms: {
       short: "TidGo padeda tvarkyti kvitukus ir paruosti menesio suvestine buhalteriui. Tai nera buhalterija, mokescio, payroll ar teisine konsultacija.",
@@ -2175,7 +2188,7 @@ const LEGAL_TEXT = {
   lv: {
     privacy: {
       short: "TidGo glaba tikai datus, kas vajadzigi ienakumiem, izdevumiem un menesa kopsavilkumam. Ceku foto un konta dati tiek lietoti lietotnei, ne reklamai vai profilesanai.",
-      details: "Mes glabajam profilu, atjaunosanas e-pastu, ceku foto, ceku datus, ienakumus un iestatijumus. Lietotne izmanto TidGo API, MongoDB Atlas, Render, OpenAI ceku nolasisanai, Resend atjaunosanas e-pastiem un Google Analytics lietotnes izmantosanas saprasanai. Kontu un datus var dzest Iestatijumos."
+      details: "Mes glabajam profilu, atjaunosanas e-pastu, ceku foto, ceku datus, ienakumus un iestatijumus. Lietotne izmanto TidGo API, MongoDB Atlas, Render, OpenAI ceku nolasisanai, Resend atjaunosanas e-pastiem un, ja atlaujat analitiku, Google Analytics lietotnes izmantosanas saprasanai. Kontu un datus var dzest Iestatijumos."
     },
     terms: {
       short: "TidGo palidz sakartot cekus un sagatavot menesa kopsavilkumu gramatvedim. Ta nav gramatvediba, nodoklu, payroll vai juridiska konsultacija.",
@@ -2185,7 +2198,7 @@ const LEGAL_TEXT = {
   es: {
     privacy: {
       short: "TidGo guarda solo los datos necesarios para ingresos, gastos y resumen mensual. Las fotos de recibos y datos de cuenta se usan para la app, no para vender anuncios ni perfilarte.",
-      details: "Guardamos perfil, email de recuperacion, fotos de recibos, detalles de recibos, ingresos y ajustes. La app usa la API de TidGo, MongoDB Atlas, Render, OpenAI para leer recibos, Resend para emails de recuperacion y Google Analytics para entender el uso de la app. Puedes borrar tu cuenta y datos en Ajustes."
+      details: "Guardamos perfil, email de recuperacion, fotos de recibos, detalles de recibos, ingresos y ajustes. La app usa la API de TidGo, MongoDB Atlas, Render, OpenAI para leer recibos, Resend para emails de recuperacion y, si permites analitica, Google Analytics para entender el uso de la app. Puedes borrar tu cuenta y datos en Ajustes."
     },
     terms: {
       short: "TidGo ayuda a ordenar recibos y preparar un resumen mensual para tu contable. No es contabilidad, asesoria fiscal, payroll ni consejo legal.",
@@ -2195,7 +2208,7 @@ const LEGAL_TEXT = {
   bg: {
     privacy: {
       short: "TidGo pazhi samo dannite, nuzhni za prihodite, razhodite i mesechnoto obobshtenie. Snimkite na belezhki i dannite za akaunta se polzvat za rabota na prilozhenieto, ne za reklami ili profilirane.",
-      details: "Sahranyavame profil, email za vazstanovyavane, snimki na belezhki, danni za belezhki, prihodi i nastroiki. Prilozhenieto polzva TidGo API, MongoDB Atlas, Render, OpenAI za chetene na belezhki, Resend za emaili za vazstanovyavane i Google Analytics za razbirane na upotrebata. Mozhete da iztriete akaunta i dannite v Nastroiki."
+      details: "Sahranyavame profil, email za vazstanovyavane, snimki na belezhki, danni za belezhki, prihodi i nastroiki. Prilozhenieto polzva TidGo API, MongoDB Atlas, Render, OpenAI za chetene na belezhki, Resend za emaili za vazstanovyavane i, ako pozvolite analitika, Google Analytics za razbirane na upotrebata. Mozhete da iztriete akaunta i dannite v Nastroiki."
     },
     terms: {
       short: "TidGo pomaga da podredite belezhki i da podgotvite mesechno obobshtenie za schetovoditel. Tova ne e schetovodstvo, danachna, payroll ili pravna konsultatsiya.",
@@ -2430,6 +2443,50 @@ function write(key, value) {
 
 function forget(key) {
   localStorage.removeItem(key);
+}
+
+function loadAnalytics() {
+  if (window.tidgoAnalyticsLoaded || !GA_MEASUREMENT_ID) return;
+  window.tidgoAnalyticsLoaded = true;
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = window.gtag || function gtag(){ window.dataLayer.push(arguments); };
+  const script = document.createElement("script");
+  script.async = true;
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(GA_MEASUREMENT_ID)}`;
+  document.head.appendChild(script);
+  window.gtag("js", new Date());
+  window.gtag("config", GA_MEASUREMENT_ID, { anonymize_ip: true });
+}
+
+function applyCookieChoice() {
+  if (read("tg_cookie_choice", "") === "analytics") loadAnalytics();
+}
+
+function cookieConsentBanner() {
+  if (read("tg_cookie_choice", "")) return "";
+  return `
+    <div class="cookie-consent" role="dialog" aria-live="polite" aria-label="${escapeAttr(t("cookieTitle"))}">
+      <div>
+        <strong>${t("cookieTitle")}</strong>
+        <span>${t("cookieText")}</span>
+      </div>
+      <div class="cookie-actions">
+        <button class="secondary" type="button" data-cookie-choice="essential">${t("cookieDecline")}</button>
+        <button class="primary" type="button" data-cookie-choice="analytics">${t("cookieAccept")}</button>
+      </div>
+    </div>
+  `;
+}
+
+function renderCookieConsent() {
+  let holder = document.getElementById("cookieConsentHost");
+  if (!holder) {
+    holder = document.createElement("div");
+    holder.id = "cookieConsentHost";
+    document.body.appendChild(holder);
+  }
+  holder.innerHTML = cookieConsentBanner();
+  applyCookieChoice();
 }
 
 function deviceStore() {
@@ -3134,6 +3191,7 @@ function render() {
     terms
   };
   routes[state.screen]();
+  renderCookieConsent();
 }
 
 function qrCodeUrl(target) {
@@ -4684,6 +4742,14 @@ function shortPrivacyNoticeBlock(framed = false) {
 }
 
 document.addEventListener("click", async (event) => {
+  const cookieChoiceButton = event.target.closest("[data-cookie-choice]");
+  if (cookieChoiceButton) {
+    const choice = cookieChoiceButton.dataset.cookieChoice === "analytics" ? "analytics" : "essential";
+    write("tg_cookie_choice", choice);
+    renderCookieConsent();
+    return;
+  }
+
   const marketingLanguageButton = event.target.closest("[data-marketing-language]");
   if (marketingLanguageButton) {
     state.marketingLanguage = marketingLanguageButton.dataset.marketingLanguage;
