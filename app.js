@@ -25,19 +25,19 @@ const MARKETING_LANGUAGES = {
 
 const MARKETING_COPY = {
   en: {
-    navHow: "How it works", navWho: "Who is it for?", navPricing: "Launch & pricing", navFaq: "FAQ", navMtd: "MTD explained", navContact: "Contact",
+    navHow: "How it works", navWho: "Who is it for?", navIntake: "How intake works", navAccountantPack: "Show your accountant", navPricing: "Launch & pricing", navFaq: "FAQ", navMtd: "MTD explained", navContact: "Contact",
     heroEyebrow: "Receipts in. Tidy records out.", heroTitle: "One simple place for receipts.", heroText: "For self-employed people who need records tidy, and accountants who would rather not chase plastic bags full of receipts.",
     stepSnap: "Snap receipts", stepTidy: "Keep records tidy", stepPack: "Send a clean pack",
     trustSimple: "No complicated registration. Just email sign-in.",
     trustControl: "Your records stay under your control.",
     trustEarly: "Free during early access.",
     earlyTitle: "Early access:", earlyText: "TidGo is live for a small group of early users. It is free while we collect feedback, improve the app and add clearer guides for self-employed people and accountants.",
-    pricingTitle: "Launch & pricing:", pricingText: "Official launch date: to be announced after early-access testing. TidGo is free during early access. Paid plans are expected after launch, with clear notice before anything changes.",
+    pricingTitle: "Launch & pricing:", pricingText: "Official launch date: to be announced after early-access testing. TidGo is free during early access. If paid plans are introduced, users will be told clearly in advance and will always be able to export or delete their records.",
     mtdTitle: "MTD records without the accounting chaos", mtdLead: "The first step in Making Tax Digital is not sending receipt photos to HMRC. It is keeping your income, expenses and proof in digital form.", mtdText: "TidGo does not replace your accountant and does not submit your tax returns. It helps you keep receipts, income proof and summaries in one tidy place, so you or your accountant can prepare the quarterly summary without the last-minute scramble.", faqTitle: "FAQ:", faqText: "More answers are coming soon. For now, try the app, open the accountant portal, or send a message below.",
     contactTitle: "Want to try it or ask a question?", contactText: "Send a quick message. No sales maze, just a human reply.", yourEmail: "Your email", roleSelf: "I work for myself", roleAccountant: "I am an accountant", roleCurious: "Just curious", message: "Message", sendMessage: "Send message", messageSent: "Message sent. Thank you.", messagePending: "Automatic contact is being connected. Please try again after the next API deploy.",
     selfLabel: "I work for myself", selfTitle: "Open TidGo App", selfText: "Take receipt photos, add income, keep monthly records ready for your accountant.", scanApp: "Scan app", openApp: "Open app",
     accountantLabel: "I'm an accountant", accountantTitle: "Open Accountant Portal", accountantText: "View connected client records, download CSV/PDF packs, and reduce deadline panic.", scanPortal: "Scan portal", openPortal: "Open portal", viewDemo: "View quick demo",
-    footer: "TidGo helps organise records. It is not accounting, tax advice or payroll software.", home: "Home", appDemo: "App demo", accountantDemo: "Accountant demo", deleteAccountLink: "Delete account", backHome: "Back to homepage", step: "Step",
+    footer: "TidGo helps organise records. It is not accounting, tax advice or payroll software.", companyFooter: "TidGo Ltd. Company number 17356146. 128 City Road, London, EC1V 2NX. hello@tidgo.co.uk", home: "Home", appDemo: "App demo", accountantDemo: "Accountant demo", deleteAccountLink: "Delete account", backHome: "Back to homepage", step: "Step",
     trySafe: "Try it safely: take a photo, check the result, download your summary, and delete your account/data any time from Settings.",
     appDemoKind: "For self-employed", appDemoTitle: "See the receipt flow before signing in.", appDemoText: "TidGo is built around one simple habit: take the photo now, send a cleaner pack later.",
     accountantDemoKind: "For accountants", accountantDemoTitle: "See the client handoff before signing in.", accountantDemoText: "The accountant portal is read-only. Clients keep records tidy; you get a cleaner pack when it is time to work.",
@@ -50,19 +50,19 @@ const MARKETING_COPY = {
     demoRecordsScreen: "Client records", demoRecordsTitle: "Download the client pack", demoRecordsText: "Open a client, check totals, request missing docs, then download CSV or PDF."
   },
   pl: {
-    navHow: "Jak to dziala", navWho: "Dla kogo?", navPricing: "Start i ceny", navFaq: "FAQ", navMtd: "MTD wyjasnione", navContact: "Kontakt",
+    navHow: "Jak to dziala", navWho: "Dla kogo?", navIntake: "Jak dodawac dokumenty", navAccountantPack: "Pokaz ksiegowemu", navPricing: "Start i ceny", navFaq: "FAQ", navMtd: "MTD wyjasnione", navContact: "Kontakt",
     heroEyebrow: "Paragony wchodza. Porzadek wychodzi.", heroTitle: "Jedno proste miejsce na paragony.", heroText: "Dla self-employed, ktorzy chca miec rekordy w porzadku, i dla ksiegowych, ktorzy nie chca gonitwy za reklamowka paragonow.",
     stepSnap: "Zrob zdjecie", stepTidy: "Trzymaj porzadek", stepPack: "Wyslij czysta paczke",
     trustSimple: "Bez skomplikowanej rejestracji. Tylko logowanie emailem.",
     trustControl: "Twoje rekordy zostaja pod Twoja kontrola.",
     trustEarly: "Darmowe w trakcie early access.",
     earlyTitle: "Early access:", earlyText: "TidGo dziala dla malej grupy pierwszych uzytkownikow. Teraz jest darmowe, zbieramy feedback, poprawiamy aplikacje i dopisujemy jasne instrukcje.",
-    pricingTitle: "Start i ceny:", pricingText: "Oficjalna data startu bedzie ogloszona po testach early access. TidGo jest darmowe w trakcie early access. Po starcie planujemy platne plany, z jasna informacja przed zmianami.",
+    pricingTitle: "Start i ceny:", pricingText: "Oficjalna data startu bedzie ogloszona po testach early access. TidGo jest darmowe w trakcie early access. Jesli wprowadzimy platne plany, uzytkownicy dostana jasna informacje z wyprzedzeniem i zawsze beda mogli wyeksportowac albo usunac swoje rekordy.",
     mtdTitle: "Rekordy MTD bez chaosu ksiegowego", mtdLead: "Pierwszy krok w Making Tax Digital to nie wysylanie zdjec paragonow do HMRC. To trzymanie przychodow, wydatkow i dowodow w cyfrowej formie.", mtdText: "TidGo nie zastepuje ksiegowego i nie wysyla Twoich deklaracji podatkowych. Pomaga trzymac paragony, dowody przychodu i podsumowania w jednym uporzadkowanym miejscu, zeby Ty albo ksiegowy mogli przygotowac kwartalne summary bez paniki na ostatnia chwile.", faqTitle: "FAQ:", faqText: "Wiecej odpowiedzi wkrotce. Na razie zobacz aplikacje, portal ksiegowego albo wyslij wiadomosc ponizej.",
     contactTitle: "Chcesz przetestowac albo zapytac?", contactText: "Wyslij krotka wiadomosc. Bez lejka sprzedazowego, normalna odpowiedz od czlowieka.", yourEmail: "Twoj email", roleSelf: "Pracuje na siebie", roleAccountant: "Jestem ksiegowym", roleCurious: "Tylko sprawdzam", message: "Wiadomosc", sendMessage: "Wyslij wiadomosc", messageSent: "Wiadomosc wyslana. Dziekuje.", messagePending: "Automatyczny kontakt jest podpinany. Sprobuj po nastepnym deployu API.",
     selfLabel: "Pracuje na siebie", selfTitle: "Otworz aplikacje TidGo", selfText: "Rob zdjecia paragonow, dodawaj przychody i trzymaj miesieczne rekordy gotowe dla ksiegowego.", scanApp: "Skanuj app", openApp: "Otworz app",
     accountantLabel: "Jestem ksiegowym", accountantTitle: "Otworz portal ksiegowego", accountantText: "Zobacz rekordy klientow, pobierz CSV/PDF i ogranicz panike przed terminem.", scanPortal: "Skanuj portal", openPortal: "Otworz portal", viewDemo: "Zobacz szybkie demo",
-    footer: "TidGo pomaga porzadkowac rekordy. To nie jest ksiegowosc, porada podatkowa ani payroll.", home: "Start", appDemo: "Demo app", accountantDemo: "Demo ksiegowego", deleteAccountLink: "Usun konto", backHome: "Wroc na strone glowna", step: "Krok",
+    footer: "TidGo pomaga porzadkowac rekordy. To nie jest ksiegowosc, porada podatkowa ani payroll.", companyFooter: "TidGo Ltd. Company number 17356146. 128 City Road, London, EC1V 2NX. hello@tidgo.co.uk", home: "Start", appDemo: "Demo app", accountantDemo: "Demo ksiegowego", deleteAccountLink: "Usun konto", backHome: "Wroc na strone glowna", step: "Krok",
     trySafe: "Sprawdz bez stresu: zrob zdjecie, zobacz wynik, pobierz summary i usun konto/dane w dowolnym momencie w ustawieniach.",
     appDemoKind: "Dla self-employed", appDemoTitle: "Zobacz flow paragonu bez logowania.", appDemoText: "TidGo opiera sie na jednym prostym nawyku: zrob zdjecie teraz, wyslij czystsza paczke pozniej.",
     accountantDemoKind: "Dla ksiegowych", accountantDemoTitle: "Zobacz przekazanie klienta bez logowania.", accountantDemoText: "Portal ksiegowego jest tylko do odczytu. Klient trzyma rekordy w porzadku, a ty dostajesz czystsza paczke do pracy.",
@@ -77,18 +77,19 @@ const MARKETING_COPY = {
 };
 MARKETING_COPY.ro = { ...MARKETING_COPY.en,
   navHow: "Cum functioneaza", navWho: "Pentru cine?", navPricing: "Lansare si pret", navFaq: "FAQ", navMtd: "MTD pe scurt", navContact: "Contact",
+  navIntake: "Cum adaugi documente", navAccountantPack: "Arata contabilului",
   heroEyebrow: "Bonuri inauntru. Evidente ordonate afara.", heroTitle: "Un loc simplu pentru bonuri.", heroText: "Pentru persoane self-employed care vor evidente ordonate si contabili care nu vor sa alerge dupa pungi cu bonuri.",
   stepSnap: "Fotografiaza bonuri", stepTidy: "Tine evidenta ordonata", stepPack: "Trimite pachetul curat",
   trustSimple: "Fara inregistrare complicata. Doar login cu email.",
   trustControl: "Evidentele raman sub controlul tau.",
   trustEarly: "Gratuit in early access.",
   earlyTitle: "Acces timpuriu:", earlyText: "TidGo este live pentru un grup mic de utilizatori. Este gratuit cat timp strangem feedback, imbunatatim aplicatia si adaugam ghiduri clare.",
-  pricingTitle: "Lansare si pret:", pricingText: "Data lansarii oficiale va fi anuntata dupa testele early access. TidGo este gratuit in perioada de testare. Planurile platite vor fi anuntate clar inainte de orice schimbare.",
+  pricingTitle: "Lansare si pret:", pricingText: "Data lansarii oficiale va fi anuntata dupa testele early access. TidGo este gratuit in perioada de testare. Daca apar planuri platite, utilizatorii vor fi anuntati clar din timp si vor putea mereu exporta sau sterge inregistrarile.",
   mtdTitle: "Evidente MTD fara haos contabil", mtdLead: "Primul pas in Making Tax Digital nu este trimiterea pozelor cu bonuri la HMRC. Este pastrarea veniturilor, cheltuielilor si dovezilor in format digital.", mtdText: "TidGo nu inlocuieste contabilul si nu trimite declaratiile tale fiscale. Te ajuta sa pastrezi bonuri, dovezi de venit si rezumate intr-un singur loc ordonat, ca tu sau contabilul tau sa pregatiti sumarul trimestrial fara panica de ultim moment.", faqTitle: "FAQ:", faqText: "Mai multe raspunsuri vin curand. Deocamdata poti incerca aplicatia, portalul contabilului sau trimite un mesaj.",
   contactTitle: "Vrei sa testezi sau sa intrebi ceva?", contactText: "Trimite un mesaj scurt. Fara labirint de vanzari, doar un raspuns uman.", yourEmail: "Emailul tau", roleSelf: "Lucrez pe cont propriu", roleAccountant: "Sunt contabil", roleCurious: "Doar verific", message: "Mesaj", sendMessage: "Trimite mesaj", messageSent: "Mesaj trimis. Multumesc.", messagePending: "Contactul automat este conectat. Incearca din nou dupa urmatorul deploy API.",
   selfLabel: "Lucrez pe cont propriu", selfTitle: "Deschide aplicatia TidGo", selfText: "Fotografiaza bonuri, adauga venituri si tine evidenta lunara pregatita pentru contabil.", scanApp: "Scaneaza app", openApp: "Deschide app",
   accountantLabel: "Sunt contabil", accountantTitle: "Deschide portalul contabilului", accountantText: "Vezi evidentele clientilor conectati, descarca pachete CSV/PDF si redu panica de termen limita.", scanPortal: "Scaneaza portal", openPortal: "Deschide portal", viewDemo: "Vezi demo rapid",
-  footer: "TidGo ajuta la organizarea evidentelor. Nu este contabilitate, consultanta fiscala sau payroll.", home: "Acasa", appDemo: "Demo app", accountantDemo: "Demo contabil", deleteAccountLink: "Sterge contul", backHome: "Inapoi la pagina principala", step: "Pas",
+  footer: "TidGo ajuta la organizarea evidentelor. Nu este contabilitate, consultanta fiscala sau payroll.", companyFooter: "TidGo Ltd. Company number 17356146. 128 City Road, London, EC1V 2NX. hello@tidgo.co.uk", home: "Acasa", appDemo: "Demo app", accountantDemo: "Demo contabil", deleteAccountLink: "Sterge contul", backHome: "Inapoi la pagina principala", step: "Pas",
   trySafe: "Incearca in siguranta: fa o poza, verifica rezultatul, descarca sumarul si sterge contul/datele oricand din setari.",
   appDemoKind: "Pentru self-employed", appDemoTitle: "Vezi fluxul bonului inainte de autentificare.", appDemoText: "TidGo se bazeaza pe un obicei simplu: faci poza acum, trimiti un pachet mai curat mai tarziu.",
   accountantDemoKind: "Pentru contabili", accountantDemoTitle: "Vezi predarea clientului inainte de autentificare.", accountantDemoText: "Portalul contabilului este doar pentru citire. Clientii isi tin evidentele ordonate; tu primesti un pachet mai curat pentru lucru.",
@@ -102,18 +103,19 @@ MARKETING_COPY.ro = { ...MARKETING_COPY.en,
 };
 MARKETING_COPY.lt = { ...MARKETING_COPY.en,
   navHow: "Kaip veikia", navWho: "Kam skirta?", navPricing: "Startas ir kaina", navFaq: "DUK", navMtd: "MTD trumpai", navContact: "Kontaktai",
+  navIntake: "Kaip prideti dokumentus", navAccountantPack: "Parodyti buhalteriui",
   heroEyebrow: "Kvitai vidun. Tvarkingi irasai lauk.", heroTitle: "Viena paprasta vieta kvitams.", heroText: "Dirbantiems sau, kuriems reikia tvarkingu irasu, ir buhalteriams, kurie nenori gaudyti maisu su kvitais.",
   stepSnap: "Nufotografuok kvita", stepTidy: "Laikyk irasus tvarkingai", stepPack: "Issiusk tvarkinga paketa",
   trustSimple: "Jokios sudetingos registracijos. Tik prisijungimas el. pastu.",
   trustControl: "Jusu irasai lieka jusu kontroleje.",
   trustEarly: "Nemokama early access metu.",
   earlyTitle: "Ankstyva prieiga:", earlyText: "TidGo jau veikia mazai pirmuju vartotoju grupei. Dabar programa nemokama, kol renkame atsiliepimus, taisome detales ir rengiame paprastus paaiskinimus.",
-  pricingTitle: "Startas ir kaina:", pricingText: "Oficiali starto data bus paskelbta po ankstyvos prieigos testu. TidGo dabar nemokama. Mokami planai bus pristatyti aiskiai, pries bet kokius pakeitimus.",
+  pricingTitle: "Startas ir kaina:", pricingText: "Oficiali starto data bus paskelbta po ankstyvos prieigos testu. TidGo dabar nemokama. Jei bus ivesti mokami planai, vartotojai bus aiskiai informuoti is anksto ir visada gales eksportuoti arba istrinti savo irasus.",
   mtdTitle: "MTD irasai be buhalterinio chaoso", mtdLead: "Pirmas Making Tax Digital zingsnis nera kvitu nuotrauku siuntimas HMRC. Tai pajamu, islaidu ir irodymu laikymas skaitmenine forma.", mtdText: "TidGo nepakeicia buhalterio ir neteikia jusu mokesciu deklaraciju. Jis padeda laikyti kvitus, pajamu irodymus ir suvestines vienoje tvarkingoje vietoje, kad jus arba buhalteris galetumete paruosti ketvircio suvestine be paskutines minutes panikos.", faqTitle: "DUK:", faqText: "Daugiau atsakymu bus greitai. Kol kas galite isbandyti programa, buhalterio portala arba parasyti zinute.",
   contactTitle: "Norite pabandyti ar paklausti?", contactText: "Parasykite trumpa zinute. Be pardavimo labirinto, tiesiog zmogiskas atsakymas.", yourEmail: "Jusu el. pastas", roleSelf: "Dirbu sau", roleAccountant: "Esu buhalteris", roleCurious: "Tik domiuosi", message: "Zinute", sendMessage: "Siusti zinute", messageSent: "Zinute issiusta. Aciu.", messagePending: "Automatinis kontaktas prijungiamas. Pabandykite po kito API deploy.",
   selfLabel: "Dirbu sau", selfTitle: "Atidaryti TidGo app", selfText: "Fotografuok kvitus, pridek pajamas ir laikyk menesio irasus paruostus buhalteriui.", scanApp: "Skenuoti app", openApp: "Atidaryti app",
   accountantLabel: "Esu buhalteris", accountantTitle: "Atidaryti buhalterio portala", accountantText: "Matyk prijungtu klientu irasus, atsisiusk CSV/PDF paketus ir sumazink termino panika.", scanPortal: "Skenuoti portala", openPortal: "Atidaryti portala", viewDemo: "Greitas demo",
-  footer: "TidGo padeda tvarkyti irasus. Tai nera buhalterija, mokesciu konsultacija ar payroll programa.", home: "Pradzia", appDemo: "App demo", accountantDemo: "Buhalterio demo", deleteAccountLink: "Istrinti paskyra", backHome: "Grizti i pagrindini puslapi", step: "Zingsnis",
+  footer: "TidGo padeda tvarkyti irasus. Tai nera buhalterija, mokesciu konsultacija ar payroll programa.", companyFooter: "TidGo Ltd. Company number 17356146. 128 City Road, London, EC1V 2NX. hello@tidgo.co.uk", home: "Pradzia", appDemo: "App demo", accountantDemo: "Buhalterio demo", deleteAccountLink: "Istrinti paskyra", backHome: "Grizti i pagrindini puslapi", step: "Zingsnis",
   trySafe: "Isbandyk saugiai: nufotografuok, patikrink rezultata, atsisiusk suvestine ir bet kada istrink paskyra/duomenis nustatymuose.",
   appDemoKind: "Dirbantiems sau", appDemoTitle: "Pamatyk kvito eiga neprisijungus.", appDemoText: "TidGo remiasi vienu paprastu iprociu: nufotografuok dabar, tvarkingesni paketa issiusk veliau.",
   accountantDemoKind: "Buhalteriams", accountantDemoTitle: "Pamatyk kliento perdavima neprisijungus.", accountantDemoText: "Buhalterio portalas yra tik skaitymui. Klientai tvarko irasus, o jus gaunate tvarkingesni paketa darbui.",
@@ -156,7 +158,29 @@ Object.assign(MARKETING_COPY.en, {
   faqBuildText: "Send us what feels unclear: setup, receipts, PDF, accountant access, MTD, anything. We are building this FAQ from real user questions, not corporate fog.",
   launchTabTitle: "Launch and pricing",
   launchTabText: "TidGo is in early access and free while we test with real users. Paid plans are expected later, with clear notice before anything changes.",
-  launchPricingFullText: "TidGo is in early access for a small group of real users. It is free while we collect feedback, improve the app and prepare clearer guides. Paid plans are expected later, with clear notice before anything changes.",
+  launchPricingFullText: "TidGo is in early access for a small group of real users. It is free while we collect feedback, improve the app and prepare clearer guides. If paid plans are introduced, users will be told clearly in advance and will always be able to export or delete their records.",
+  intakeTitle: "How intake works",
+  intakeText: "TidGo recognises you by your registered email address and linked WhatsApp number. You do not need to remember a special personal address yet.",
+  intakeWhatsAppTitle: "WhatsApp intake",
+  intakeWhatsAppText: "Link your WhatsApp number in TidGo, then start the conversation yourself by sending the ready LINK message. After that, receipt photos sent from that linked number can be matched to your TidGo account. Unknown numbers are not assigned to an account.",
+  intakeEmailTitle: "Email intake",
+  intakeEmailText: "Forward documents from the same email address you use for TidGo to intake@tidgo.co.uk. Add expense or income in the subject if you want to help TidGo route it faster.",
+  intakeFutureTitle: "Later: personal intake addresses",
+  intakeFutureText: "Unique personal intake addresses are on the roadmap. For now, TidGo uses your registered sender email and linked WhatsApp number to identify you.",
+  notDoTitle: "What TidGo does not do",
+  notDoText: "TidGo does not submit to HMRC, does not replace your accountant, and does not handle VAT returns, LTD company accounts, payroll or corporation tax.",
+  faqHmrcTitle: "Does TidGo submit to HMRC?",
+  faqHmrcText: "No. That is by design. TidGo helps keep digital records tidy before they go to your accountant or MTD-compatible software.",
+  faqSoftwareTitle: "Can I use TidGo with FreeAgent, Xero or QuickBooks?",
+  faqSoftwareText: "Yes. TidGo sits before those tools. Use it to collect receipt photos, email receipts, WhatsApp photos and income proof, then export or share a cleaner pack.",
+  faqMettleTitle: "Why not just use free FreeAgent via Mettle?",
+  faqMettleText: "If that works for you, great. TidGo is for people who need an even simpler front door for messy receipts, WhatsApp photos, email receipts and accountant handoff.",
+  accountantShareTitle: "Show this to your accountant",
+  accountantShareText: "Use this short message if you want your accountant or trusted bookkeeper to understand TidGo before you connect them.",
+  accountantMessageTitle: "Message to copy",
+  accountantMessageText: "Hi, I am trying TidGo to keep my receipts and income proof in one place. It has a read-only accountant portal, so if I connect your email you can view my records and download a PDF/CSV pack, but you cannot change my data. The accountant demo is here: https://tidgo.co.uk/accountant-demo",
+  accountantDemoPackTitle: "What they can see",
+  accountantDemoPackText: "Only records you allow them to see: receipt photos, income proof, monthly/quarterly summaries and export packs. Accountant access is read-only and can be revoked.",
   platformNow: "Use the web app now.",
   platformSoon: "Android and iOS versions are in development alongside TidGo.",
   socialTitle: "Follow us on",
@@ -194,7 +218,29 @@ Object.assign(MARKETING_COPY.pl, {
   faqBuildText: "Wyslij nam, co jest niejasne: start, paragony, PDF, dostep ksiegowego, MTD, cokolwiek. Budujemy FAQ z prawdziwych pytan, nie z firmowej mgly.",
   launchTabTitle: "Start i ceny",
   launchTabText: "TidGo jest w early access i jest darmowe podczas testow z prawdziwymi uzytkownikami. Platne plany sa spodziewane pozniej, z jasna informacja przed zmianami.",
-  launchPricingFullText: "TidGo jest w early access dla malej grupy prawdziwych uzytkownikow. Jest darmowe, kiedy zbieramy feedback, poprawiamy aplikacje i przygotowujemy jasniejsze poradniki. Platne plany sa spodziewane pozniej, z jasna informacja przed zmianami.",
+  launchPricingFullText: "TidGo jest w early access dla malej grupy prawdziwych uzytkownikow. Jest darmowe, kiedy zbieramy feedback, poprawiamy aplikacje i przygotowujemy jasniejsze poradniki. Jesli wprowadzimy platne plany, uzytkownicy dostana jasna informacje z wyprzedzeniem i zawsze beda mogli wyeksportowac albo usunac swoje rekordy.",
+  intakeTitle: "Jak dziala dodawanie dokumentow",
+  intakeText: "TidGo rozpoznaje Cie po zarejestrowanym adresie email i podlaczonym numerze WhatsApp. Nie musisz pamietac zadnego specjalnego osobistego adresu.",
+  intakeWhatsAppTitle: "WhatsApp intake",
+  intakeWhatsAppText: "Podlacz numer WhatsApp w TidGo, a potem sam rozpocznij rozmowe wysylajac gotowa wiadomosc LINK. Po tym zdjecia paragonow z tego numeru moga byc dopasowane do Twojego konta. Nieznane numery nie sa przypisywane do kont.",
+  intakeEmailTitle: "Email intake",
+  intakeEmailText: "Przekaz dokumenty z tego samego adresu email, ktorego uzywasz w TidGo, na intake@tidgo.co.uk. W temacie wpisz expense albo income, jesli chcesz pomoc TidGo szybciej to przypisac.",
+  intakeFutureTitle: "Pozniej: osobiste adresy intake",
+  intakeFutureText: "Unikalne osobiste adresy intake sa w roadmapie. Na teraz TidGo uzywa zarejestrowanego adresu nadawcy i podlaczonego numeru WhatsApp.",
+  notDoTitle: "Czego TidGo nie robi",
+  notDoText: "TidGo nie wysyla danych do HMRC, nie zastepuje ksiegowego i nie obsluguje VAT returns, kont LTD, payroll ani corporation tax.",
+  faqHmrcTitle: "Czy TidGo wysyla do HMRC?",
+  faqHmrcText: "Nie. Tak jest celowo. TidGo pomaga trzymac cyfrowe rekordy w porzadku, zanim trafia do ksiegowego albo programu zgodnego z MTD.",
+  faqSoftwareTitle: "Czy moge uzywac TidGo z FreeAgent, Xero albo QuickBooks?",
+  faqSoftwareText: "Tak. TidGo jest przed tymi narzedziami. Zbieraj w nim paragony, maile, zdjecia z WhatsAppa i dowody przychodu, a potem eksportuj albo udostepnij czystsza paczke.",
+  faqMettleTitle: "Dlaczego nie darmowy FreeAgent przez Mettle?",
+  faqMettleText: "Jesli to dziala dla Ciebie, swietnie. TidGo jest dla ludzi, ktorzy potrzebuja jeszcze prostszego wejscia dla chaotycznych paragonow, WhatsAppa, maili i przekazania ksiegowemu.",
+  accountantShareTitle: "Pokaz to ksiegowemu",
+  accountantShareText: "Uzyj tej krotkiej wiadomosci, jesli chcesz, zeby ksiegowy albo zaufany bookkeeper zrozumial TidGo zanim go podlaczysz.",
+  accountantMessageTitle: "Wiadomosc do skopiowania",
+  accountantMessageText: "Czesc, testuje TidGo do trzymania paragonow i dowodow przychodu w jednym miejscu. Jest tam portal ksiegowego tylko do odczytu, wiec jesli podlacze Twoj email, mozesz zobaczyc moje rekordy i pobrac PDF/CSV pack, ale nie mozesz zmieniac moich danych. Demo portalu: https://tidgo.co.uk/accountant-demo",
+  accountantDemoPackTitle: "Co ksiegowy widzi",
+  accountantDemoPackText: "Tylko rekordy, na ktore dasz zgode: zdjecia paragonow, dowody przychodu, podsumowania miesieczne/kwartalne i eksporty. Dostep jest tylko do odczytu i mozna go cofnac.",
   platformNow: "Uzyj web app teraz.",
   platformSoon: "Wersje Android i iOS sa rozwijane rownolegle z TidGo.",
   socialTitle: "Obserwuj nas",
@@ -232,7 +278,29 @@ Object.assign(MARKETING_COPY.ro, {
   faqBuildText: "Trimite-ne ce nu este clar: start, bonuri, PDF, acces contabil, MTD, orice. Construim FAQ-ul din intrebari reale, nu din ceata corporate.",
   launchTabTitle: "Lansare si pret",
   launchTabText: "TidGo este in early access si este gratuit cat timp testam cu utilizatori reali. Planurile platite sunt asteptate mai tarziu, cu anunt clar inainte de schimbari.",
-  launchPricingFullText: "TidGo este in early access pentru un grup mic de utilizatori reali. Este gratuit cat timp strangem feedback, imbunatatim aplicatia si pregatim ghiduri mai clare. Planurile platite sunt asteptate mai tarziu, cu anunt clar inainte de schimbari.",
+  launchPricingFullText: "TidGo este in early access pentru un grup mic de utilizatori reali. Este gratuit cat timp strangem feedback, imbunatatim aplicatia si pregatim ghiduri mai clare. Daca apar planuri platite, utilizatorii vor fi anuntati clar din timp si vor putea mereu exporta sau sterge inregistrarile.",
+  intakeTitle: "Cum functioneaza adaugarea documentelor",
+  intakeText: "TidGo te recunoaste dupa emailul inregistrat si numarul WhatsApp conectat. Nu trebuie sa retii o adresa personala speciala.",
+  intakeWhatsAppTitle: "WhatsApp intake",
+  intakeWhatsAppText: "Conecteaza numarul WhatsApp in TidGo, apoi porneste tu conversatia trimitand mesajul LINK pregatit. Dupa aceea, pozele cu bonuri de pe acel numar pot fi asociate contului tau TidGo. Numerele necunoscute nu sunt atribuite unui cont.",
+  intakeEmailTitle: "Email intake",
+  intakeEmailText: "Redirectioneaza documente de pe acelasi email folosit pentru TidGo catre intake@tidgo.co.uk. Scrie expense sau income in subiect daca vrei sa ajuti TidGo sa le sorteze mai repede.",
+  intakeFutureTitle: "Mai tarziu: adrese intake personale",
+  intakeFutureText: "Adresele intake personale sunt in roadmap. Acum TidGo foloseste emailul expeditor inregistrat si numarul WhatsApp conectat.",
+  notDoTitle: "Ce nu face TidGo",
+  notDoText: "TidGo nu trimite la HMRC, nu inlocuieste contabilul si nu gestioneaza declaratii VAT, conturi LTD, payroll sau corporation tax.",
+  faqHmrcTitle: "TidGo trimite la HMRC?",
+  faqHmrcText: "Nu. Asa este proiectat. TidGo te ajuta sa tii evidente digitale ordonate inainte sa ajunga la contabil sau software compatibil MTD.",
+  faqSoftwareTitle: "Pot folosi TidGo cu FreeAgent, Xero sau QuickBooks?",
+  faqSoftwareText: "Da. TidGo sta inaintea acestor instrumente. Il folosesti pentru bonuri, email receipts, poze WhatsApp si dovezi de venit, apoi exporti sau partajezi un pachet mai curat.",
+  faqMettleTitle: "De ce nu FreeAgent gratuit prin Mettle?",
+  faqMettleText: "Daca functioneaza pentru tine, foarte bine. TidGo este pentru oameni care au nevoie de o intrare si mai simpla pentru bonuri, WhatsApp, emailuri si predarea catre contabil.",
+  accountantShareTitle: "Arata asta contabilului",
+  accountantShareText: "Foloseste acest mesaj scurt daca vrei ca un contabil sau bookkeeper de incredere sa inteleaga TidGo inainte sa il conectezi.",
+  accountantMessageTitle: "Mesaj de copiat",
+  accountantMessageText: "Salut, testez TidGo pentru a pastra bonuri si dovezi de venit intr-un singur loc. Are un portal pentru contabil doar pentru citire, deci daca iti conectez emailul, poti vedea evidentele mele si descarca un pachet PDF/CSV, dar nu poti modifica datele. Demo portal: https://tidgo.co.uk/accountant-demo",
+  accountantDemoPackTitle: "Ce poate vedea contabilul",
+  accountantDemoPackText: "Doar evidentele pentru care dai acordul: poze cu bonuri, dovezi de venit, rezumate lunare/trimestriale si exporturi. Accesul este read-only si poate fi revocat.",
   platformNow: "Foloseste aplicatia web acum.",
   platformSoon: "Versiunile Android si iOS sunt dezvoltate in paralel cu TidGo.",
   socialTitle: "Urmareste-ne",
@@ -270,7 +338,29 @@ Object.assign(MARKETING_COPY.lt, {
   faqBuildText: "Parasykite, kas neaisku: startas, kvitai, PDF, buhalterio prieiga, MTD, bet kas. DUK kuriame is tikru klausimu, ne is korporacines miglos.",
   launchTabTitle: "Startas ir kaina",
   launchTabText: "TidGo yra early access ir nemokama, kol testuojame su tikrais vartotojais. Mokami planai numatomi veliau, su aiskia zinute pries pokycius.",
-  launchPricingFullText: "TidGo yra early access mazai tikru vartotoju grupei. Programa nemokama, kol renkame atsiliepimus, geriname ja ir ruosiame aiskesnius gidus. Mokami planai numatomi veliau, su aiskia zinute pries pokycius.",
+  launchPricingFullText: "TidGo yra early access mazai tikru vartotoju grupei. Programa nemokama, kol renkame atsiliepimus, geriname ja ir ruosiame aiskesnius gidus. Jei bus ivesti mokami planai, vartotojai bus aiskiai informuoti is anksto ir visada gales eksportuoti arba istrinti savo irasus.",
+  intakeTitle: "Kaip veikia dokumentu pridejimas",
+  intakeText: "TidGo atpazista jus pagal registruota el. pasta ir prijungta WhatsApp numeri. Nereikia prisiminti specialaus asmeninio adreso.",
+  intakeWhatsAppTitle: "WhatsApp intake",
+  intakeWhatsAppText: "Prijunkite WhatsApp numeri TidGo, tada patys pradekite pokalbi siusdami paruosta LINK zinute. Po to kvitu nuotraukos is to numerio gali buti priskirtos jusu TidGo paskyrai. Nezinomi numeriai paskyroms nepriskiriami.",
+  intakeEmailTitle: "Email intake",
+  intakeEmailText: "Persiuskite dokumentus is to pacio el. pasto, kuri naudojate TidGo, i intake@tidgo.co.uk. Tema parasykite expense arba income, jei norite padeti TidGo greiciau surusiuoti.",
+  intakeFutureTitle: "Veliau: asmeniniai intake adresai",
+  intakeFutureText: "Unikalus asmeniniai intake adresai yra roadmap. Dabar TidGo naudoja registruota siuntejo el. pasta ir prijungta WhatsApp numeri.",
+  notDoTitle: "Ko TidGo nedaro",
+  notDoText: "TidGo neteikia HMRC deklaraciju, nepakeicia buhalterio ir nevaldo VAT deklaraciju, LTD/company accounts, payroll ar corporation tax.",
+  faqHmrcTitle: "Ar TidGo pateikia HMRC?",
+  faqHmrcText: "Ne. Taip suplanuota. TidGo padeda laikyti skaitmeninius irasus tvarkingai pries perduodant buhalteriui arba MTD suderinamai programai.",
+  faqSoftwareTitle: "Ar galiu naudoti TidGo su FreeAgent, Xero arba QuickBooks?",
+  faqSoftwareText: "Taip. TidGo yra pries sias sistemas. Jis renka kvitu nuotraukas, email receipts, WhatsApp nuotraukas ir pajamu irodymus, tada leidzia eksportuoti tvarkingesni paketa.",
+  faqMettleTitle: "Kodel ne nemokamas FreeAgent per Mettle?",
+  faqMettleText: "Jei tai jums veikia, puiku. TidGo skirtas zmonems, kuriems reikia dar paprastesnio iejimo kvitams, WhatsApp, el. pastui ir perdavimui buhalteriui.",
+  accountantShareTitle: "Parodyti buhalteriui",
+  accountantShareText: "Naudokite sia trumpa zinute, jei norite, kad buhalteris arba patikimas bookkeeper suprastu TidGo pries prijungima.",
+  accountantMessageTitle: "Zinute kopijavimui",
+  accountantMessageText: "Sveiki, bandau TidGo kvitams ir pajamu irodymams laikyti vienoje vietoje. Yra tik skaitymui skirtas buhalterio portalas, taigi prijungus jusu el. pasta galite matyti mano irasus ir atsisiusti PDF/CSV paketa, bet negalite keisti duomenu. Portalo demo: https://tidgo.co.uk/accountant-demo",
+  accountantDemoPackTitle: "Ka gali matyti buhalteris",
+  accountantDemoPackText: "Tik irasus, kuriems duodate leidima: kvitu nuotraukas, pajamu irodymus, menesio/ketvircio suvestines ir eksportus. Prieiga yra tik skaitymui ir gali buti atsaukta.",
   platformNow: "Naudok web app dabar.",
   platformSoon: "Android ir iOS versijos kuriamos kartu su TidGo.",
   socialTitle: "Sekite mus",
@@ -2554,7 +2644,7 @@ To the fullest extent permitted by law:
 
 ## 16. Intellectual property
 
-TidGo, its name, branding, software and design are owned by us or our licensors. These Terms do not grant you any rights to our intellectual property other than the right to use the service as intended.
+TidGo(TM), its name, branding, software and design are owned by us or our licensors. TidGo(TM) is a trade mark of TidGo Ltd. These Terms do not grant you any rights to our intellectual property other than the right to use the service as intended.
 
 ## 17. Changes to these Terms
 
@@ -2645,6 +2735,8 @@ function marketingPageSlug() {
   const routes = {
     "/how-it-works": "how",
     "/who-is-it-for": "who",
+    "/how-intake-works": "intake",
+    "/show-this-to-your-accountant": "accountantPack",
     "/launch-pricing": "pricing",
     "/faq": "faq",
     "/mtd": "mtd",
@@ -2730,6 +2822,8 @@ function marketingNav(active = "") {
     <nav class="landing-nav" aria-label="TidGo navigation">
       <a class="${active === "how" ? "active" : ""}" href="/how-it-works">${mk("navHow")}</a>
       <a class="${active === "who" ? "active" : ""}" href="/who-is-it-for">${mk("navWho")}</a>
+      <a class="${active === "intake" ? "active" : ""}" href="/how-intake-works">${mk("navIntake")}</a>
+      <a class="${active === "accountantPack" ? "active" : ""}" href="/show-this-to-your-accountant">${mk("navAccountantPack")}</a>
       <a class="${active === "pricing" ? "active" : ""}" href="/launch-pricing">${mk("navPricing")}</a>
       <a class="${active === "faq" ? "active" : ""}" href="/faq">${mk("navFaq")}</a>
       <a class="nav-mtd ${active === "mtd" ? "active" : ""}" href="/mtd">${mk("navMtd")}</a>
@@ -2741,7 +2835,7 @@ function marketingNav(active = "") {
 function landingHeader(active = "") {
   return `
     <header class="landing-head">
-      <a class="brand landing-brand" href="/"><img src="/icon-192.png" alt=""><span>TidGo</span></a>
+      <a class="brand landing-brand" href="/"><img src="/icon-192.png" alt=""><span>TidGo<sup>TM</sup></span></a>
       <div class="landing-head-actions">
         ${marketingNav(active)}
         ${marketingLanguagePicker()}
@@ -2755,6 +2849,7 @@ function landingFooter() {
     <footer class="landing-foot">
       <div class="landing-foot-copy">
         <span>${mk("footer")} <strong>${mk("copyright")}</strong></span>
+        <span class="landing-company-line">${mk("companyFooter")}</span>
         <span class="landing-legal-links"><a href="/privacy">${t("privacyTitle")}</a><a href="/terms">${t("termsTitle")}</a><a href="/delete-account">${mk("deleteAccountLink")}</a></span>
         <span class="landing-privacy-note">${mk("privacyNote")}</span>
       </div>
@@ -3574,6 +3669,10 @@ function landing() {
             <span>${mk("trustControl")}</span>
             <span>${mk("trustEarly")}</span>
           </section>
+          <section class="landing-limits" aria-label="${escapeAttr(mk("notDoTitle"))}">
+            <strong>${mk("notDoTitle")}</strong>
+            <span>${mk("notDoText")}</span>
+          </section>
           <section class="landing-strip">
             <span>${mk("stepSnap")}</span>
             <span>${mk("stepTidy")}</span>
@@ -3584,7 +3683,11 @@ function landing() {
             <div>
               <strong>${mk("howTitle")}</strong>
               <span>${mk("howText")}</span>
-              <a href="/how-it-works">${mk("navHow")}</a>
+              <div class="landing-showcase-links">
+                <a href="/how-it-works">${mk("navHow")}</a>
+                <a href="/how-intake-works">${mk("navIntake")}</a>
+                <a href="/show-this-to-your-accountant">${mk("navAccountantPack")}</a>
+              </div>
             </div>
           </section>
           <section class="landing-contact" id="contact">
@@ -3681,6 +3784,28 @@ function marketingPage() {
         [mk("scopeNotForTitle"), mk("scopeNotForText")]
       ]
     },
+    intake: {
+      active: "intake",
+      eyebrow: mk("navIntake"),
+      title: mk("intakeTitle"),
+      text: mk("intakeText"),
+      cards: [
+        [mk("intakeWhatsAppTitle"), mk("intakeWhatsAppText")],
+        [mk("intakeEmailTitle"), mk("intakeEmailText")],
+        [mk("intakeFutureTitle"), mk("intakeFutureText")]
+      ]
+    },
+    accountantPack: {
+      active: "accountantPack",
+      eyebrow: mk("navAccountantPack"),
+      title: mk("accountantShareTitle"),
+      text: mk("accountantShareText"),
+      cards: [
+        [mk("accountantMessageTitle"), mk("accountantMessageText")],
+        [mk("accountantDemoPackTitle"), mk("accountantDemoPackText")],
+        [mk("accountantDemoKind"), mk("accountantDemoText")]
+      ]
+    },
     pricing: {
       active: "pricing",
       eyebrow: mk("navPricing"),
@@ -3697,9 +3822,10 @@ function marketingPage() {
       title: mk("faqBuildTitle"),
       text: mk("faqBuildText"),
       cards: [
-        [mk("mtdPhotos"), mk("mtdPhotosText")],
-        [mk("mtdSubmit"), mk("mtdSubmitText")],
-        [mk("mtdAccountant"), mk("mtdAccountantText")]
+        [mk("faqHmrcTitle"), mk("faqHmrcText")],
+        [mk("faqSoftwareTitle"), mk("faqSoftwareText")],
+        [mk("faqMettleTitle"), mk("faqMettleText")],
+        [mk("faqBuildTitle"), mk("faqBuildText")]
       ]
     }
   };
@@ -3824,7 +3950,7 @@ function demoShell(kind, title, subtitle, steps, ctaHref, ctaLabel, mode = "web"
   shell(`
     <section class="landing-screen demo-screen ${mode === "app" ? "app-demo-screen" : "accountant-demo-screen"}">
       <header class="landing-head">
-        <a class="brand landing-brand demo-brand" href="/"><img src="/icon-192.png" alt=""><span>TidGo</span></a>
+        <a class="brand landing-brand demo-brand" href="/"><img src="/icon-192.png" alt=""><span>TidGo<sup>TM</sup></span></a>
         <div class="landing-head-actions">
           <nav class="landing-nav" aria-label="Demo navigation">
             <a href="/">${mk("home")}</a>
@@ -3862,6 +3988,7 @@ function demoShell(kind, title, subtitle, steps, ctaHref, ctaLabel, mode = "web"
           `).join("")}
         </div>
       </div>
+      ${landingFooter()}
     </section>
   `);
 }

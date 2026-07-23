@@ -902,6 +902,67 @@ button {
   max-width: 760px;
 }
 
+.landing-brand sup,
+.demo-brand sup {
+  margin-left: 2px;
+  font-size: 11px;
+  line-height: 1;
+  vertical-align: super;
+}
+
+.landing-company-line {
+  color: #475569;
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.landing-limits {
+  display: grid;
+  gap: 6px;
+  border: 1px solid #b7f7d1;
+  border-radius: 8px;
+  background: #ecfdf5;
+  color: #14532d;
+  padding: 14px 16px;
+}
+
+.landing-limits strong {
+  color: var(--green);
+  font-size: 15px;
+}
+
+.landing-limits span {
+  color: #14532d;
+  font-weight: 750;
+  line-height: 1.45;
+}
+
+.landing-showcase-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.landing-showcase-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  border: 1px solid #bfdbfe;
+  border-radius: 999px;
+  background: #eff6ff;
+  color: var(--blue);
+  padding: 6px 10px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.landing-showcase-links a:hover,
+.landing-showcase-links a:focus-visible {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.12);
+}
+
 .landing-legal-links {
   display: flex;
   flex-wrap: wrap;
