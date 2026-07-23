@@ -280,6 +280,13 @@ button {
 
 .landing-brand {
   font-size: 26px;
+  text-decoration: none;
+}
+
+.landing-brand:hover,
+.landing-brand:focus,
+.landing-brand:focus-visible {
+  text-decoration: none;
 }
 
 .landing-layout {
