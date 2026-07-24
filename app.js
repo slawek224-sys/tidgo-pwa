@@ -779,7 +779,7 @@ const COPY = {
     incomePayeSide: "PAYE + side income",
     incomeOther: "Other",
     email: "Recovery email",
-    emailHint: "Use email if you want to recover the same bag of receipts later.",
+    emailHint: "Email is required for account access, recovery and email intake.",
     whatsappPhone: "WhatsApp number",
     whatsappPhoneHint: "Optional. Add it if you want to send receipt photos to TidGo by WhatsApp later.",
     whatsappConnectedTitle: "WhatsApp connected",
@@ -903,7 +903,7 @@ const COPY = {
     incomePayeSide: "PAYE + dodatkowy dochod",
     incomeOther: "Inne",
     email: "Email do odzyskania",
-    emailHint: "Email pozwala odzyskac te same paragony pozniej.",
+    emailHint: "Email jest wymagany do dostepu do konta, odzyskiwania i email intake.",
     whatsappPhone: "Numer WhatsApp",
     whatsappPhoneHint: "Opcjonalnie. Dodaj go, jesli pozniej chcesz wysylac zdjecia paragonow do TidGo przez WhatsApp.",
     whatsappConnectedTitle: "WhatsApp polaczony",
@@ -1024,7 +1024,7 @@ Object.assign(COPY, {
     firstName: "Prenume",
     trade: "Meserie",
     email: "Email de recuperare",
-    emailHint: "Emailul te ajuta sa recuperezi aceleasi bonuri mai tarziu.",
+    emailHint: "Emailul este necesar pentru acces la cont, recuperare si email intake.",
     start: "Porneste TidGo",
     haveAccount: "Am deja cont",
     recover: "Recupereaza contul",
@@ -1089,7 +1089,7 @@ Object.assign(COPY, {
     firstName: "Ім'я",
     trade: "Професія",
     email: "Email для відновлення",
-    emailHint: "Email допоможе відновити ті самі чеки пізніше.",
+    emailHint: "Email потрібен для доступу до акаунта, відновлення та email intake.",
     start: "Запустити TidGo",
     haveAccount: "У мене вже є акаунт",
     recover: "Відновити акаунт",
@@ -1154,7 +1154,7 @@ Object.assign(COPY, {
     firstName: "Vardas",
     trade: "Profesija",
     email: "Atkūrimo el. paštas",
-    emailHint: "El. paštas padės vėliau atkurti tuos pačius kvitus.",
+    emailHint: "El. paštas reikalingas paskyros prieigai, atkūrimui ir email intake.",
     start: "Pradėti TidGo",
     haveAccount: "Jau turiu paskyrą",
     recover: "Atkurti paskyrą",
@@ -1219,7 +1219,7 @@ Object.assign(COPY, {
     firstName: "Vārds",
     trade: "Profesija",
     email: "Atjaunošanas e-pasts",
-    emailHint: "E-pasts palīdzēs vēlāk atjaunot tos pašus čekus.",
+    emailHint: "E-pasts ir vajadzīgs konta piekļuvei, atjaunošanai un email intake.",
     start: "Sākt TidGo",
     haveAccount: "Man jau ir konts",
     recover: "Atjaunot kontu",
@@ -1284,7 +1284,7 @@ Object.assign(COPY, {
     firstName: "Nombre",
     trade: "Oficio",
     email: "Email de recuperación",
-    emailHint: "El email te permite recuperar los mismos recibos después.",
+    emailHint: "El email es necesario para acceder a la cuenta, recuperarla y usar email intake.",
     start: "Empezar TidGo",
     haveAccount: "Ya tengo cuenta",
     recover: "Recuperar cuenta",
@@ -1349,7 +1349,7 @@ Object.assign(COPY, {
     firstName: "Име",
     trade: "Професия",
     email: "Email за възстановяване",
-    emailHint: "Email помага да възстановите същите бележки по-късно.",
+    emailHint: "Email е необходим за достъп до акаунта, възстановяване и email intake.",
     start: "Стартирай TidGo",
     haveAccount: "Вече имам акаунт",
     recover: "Възстанови акаунт",
@@ -2352,7 +2352,7 @@ If you have any questions about this policy or how we handle your data, contact 
 
 Depending on how you use TidGo, we may collect:
 
-- **Account and recovery data** — your recovery email address.
+- **Account and recovery data** — your email address. Your email address is required to create and recover your TidGo account, send account security messages, link incoming email records to your account, and contact you about important service matters.
 - **Profile data** — such as your first name, trade/job and income source.
 - **WhatsApp phone number (optional)** — only if you choose to connect WhatsApp as an intake channel.
 - **Email intake data (optional)** — if you send documents to TidGo by email, we process the sender email address (to match the message to your account), the message and its attachments (e.g. payslips or PDFs).
@@ -2561,7 +2561,7 @@ You must be at least **18 years old** and capable of entering into a binding con
 ## 4. Your account
 
 - You are responsible for keeping your account access secure.
-- You must provide a valid recovery email address so you can regain access to your account.
+- You must provide an email address that you control and can access. TidGo uses this email for account access, recovery, security messages and matching records sent by email. You are responsible for keeping your email address current and maintaining access to it.
 - You must not share your account with others or use another person's account without permission.
 - You are responsible for all activity that occurs under your account.
 
