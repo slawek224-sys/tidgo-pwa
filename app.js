@@ -5996,6 +5996,7 @@ document.addEventListener("submit", async (event) => {
       state.language = data.language || state.language;
       const email = (data.email || "").trim();
       if (!email) throw new Error(t("email"));
+      if (data.legal_agree !== "on") throw new Error(t("legalConsentText"));
       await api("/api/users", {
         method: "POST",
         body: JSON.stringify({
@@ -6003,7 +6004,11 @@ document.addEventListener("submit", async (event) => {
           trade: data.trade || null,
           email,
           whatsapp_phone: (data.whatsapp_phone || "").trim() || null,
-          language: state.language
+          language: state.language,
+          terms_accepted: true,
+          privacy_accepted: true,
+          legal_accepted: true,
+          legal_version: "0.9"
         })
       });
       await api("/api/auth/recovery/request", { method: "POST", body: JSON.stringify({ email }) });
