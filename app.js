@@ -4119,8 +4119,6 @@ function onboarding() {
         </div>
         <label class="field"><span>${t("email")}</span><input class="input" name="email" type="email" autocomplete="email" required></label>
         <p class="hint">${t("emailHint")}</p>
-        <label class="field"><span>${t("whatsappPhone")}</span><input class="input" name="whatsapp_phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+44 7..."></label>
-        <p class="hint">${t("whatsappPhoneHint")}</p>
         ${shortPrivacyNoticeBlock(true)}
         <label class="check-row">
           <input type="checkbox" name="legal_agree" required>
@@ -4360,7 +4358,6 @@ function settingsWhatsAppSection(existingWhatsApp = "") {
   const email = recoveryEmailForUser();
   if (!existingWhatsApp) {
     return `
-      <label class="field"><span>${t("whatsappPhone")}</span><input class="input" name="whatsapp_phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+44 7..."></label>
       <div class="whatsapp-connect-box">
         <p>${t("whatsappAddOnceHint")}</p>
         <button class="secondary whatsapp-connect-btn" type="button" data-action="connectWhatsApp"><span class="wa-icon" aria-hidden="true">WA</span>${t("connectWhatsApp")}</button>
@@ -6003,7 +6000,6 @@ document.addEventListener("submit", async (event) => {
           first_name: data.first_name,
           trade: data.trade || null,
           email,
-          whatsapp_phone: (data.whatsapp_phone || "").trim() || null,
           language: state.language,
           terms_accepted: true,
           privacy_accepted: true,
@@ -6013,7 +6009,7 @@ document.addEventListener("submit", async (event) => {
       });
       await api("/api/auth/recovery/request", { method: "POST", body: JSON.stringify({ email }) });
       state.pendingSignupEmail = email;
-      state.pendingSignupWhatsApp = (data.whatsapp_phone || "").trim();
+      state.pendingSignupWhatsApp = "";
       state.pendingSignupIncomeSources = formIncomeSources(data);
       write("rb_pending_signup_email", email);
       write("rb_pending_signup_whatsapp", state.pendingSignupWhatsApp);
@@ -6034,12 +6030,9 @@ document.addEventListener("submit", async (event) => {
         return toast(t("codeSent"));
       }
       const user = await api("/api/auth/recovery/verify", { method: "POST", body: JSON.stringify({ email, code: data.code }) });
-      const signupWhatsApp = state.pendingSignupWhatsApp || read("rb_pending_signup_whatsapp", "");
       const signupIncomeSources = cleanIncomeSources(state.pendingSignupIncomeSources || read("rb_pending_income_sources", []));
       const rememberedUser = {
         ...user,
-        whatsapp_phone: signupWhatsApp && !user.whatsapp_phone ? signupWhatsApp : user.whatsapp_phone,
-        whatsapp_phone_normalized: user.whatsapp_phone_normalized || "",
         income_sources: signupIncomeSources
       };
       state.language = user.language || state.language;
@@ -6193,7 +6186,6 @@ document.addEventListener("submit", async (event) => {
     if (form.id === "settingsForm") {
       state.language = data.language;
       state.humour = data.humour;
-      const whatsappPhone = (data.whatsapp_phone || "").trim();
       const incomeSources = formIncomeSources(data);
       const patchBody = {
         first_name: data.first_name,
@@ -6202,7 +6194,6 @@ document.addEventListener("submit", async (event) => {
         language: state.language,
         notification_preference: data.notification_preference || "none"
       };
-      if (whatsappPhone) patchBody.whatsapp_phone = whatsappPhone;
       const user = await api(`/api/users/${state.user.id}`, {
         method: "PATCH",
         body: JSON.stringify(patchBody)
@@ -6210,7 +6201,7 @@ document.addEventListener("submit", async (event) => {
       await rememberUser({
         ...state.user,
         ...user,
-        whatsapp_phone: user.whatsapp_phone || state.user.whatsapp_phone || whatsappPhone,
+        whatsapp_phone: user.whatsapp_phone || state.user.whatsapp_phone || "",
         whatsapp_phone_normalized: user.whatsapp_phone_normalized || state.user.whatsapp_phone_normalized || "",
         notification_preference: user.notification_preference || data.notification_preference || "none",
         income_sources: incomeSources
