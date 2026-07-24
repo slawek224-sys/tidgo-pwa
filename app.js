@@ -3247,6 +3247,30 @@ function incomeProofName(item = {}, proof = null) {
   return proof?.name || item.proof_name || item.attachment_name || item.file_name || item.document_name || item.filename || "";
 }
 
+function incomeProofFileUrl(item = {}, proof = null) {
+  const candidates = [
+    proof?.url,
+    proof?.file_url,
+    item.image_url,
+    item.image_base64,
+    item.proof_url,
+    item.attachment_url,
+    item.file_url,
+    item.document_url
+  ];
+  return candidates.find((value) => typeof value === "string" && value.trim()) || "";
+}
+
+function incomeProofIsPdf(item = {}, url = "", proof = null) {
+  const mime = String(item.image_mime_type || item.proof_mime_type || item.attachment_mime_type || proof?.type || "").toLowerCase();
+  return mime.includes("pdf") || String(url || "").toLowerCase().includes(".pdf");
+}
+
+function reviewBadge(item = {}) {
+  if (!recordDateNeedsReview(item)) return "";
+  return `<span class="needs-review-badge" title="${escapeAttr(t("dateNeedsReview"))}" aria-label="${escapeAttr(t("dateNeedsReview"))}">!</span>`;
+}
+
 function incomeProofPickerField(label = t("attachProof")) {
   return `
     <div class="field">
@@ -4279,8 +4303,10 @@ function incomeDetail() {
   const entry = state.income.find((item) => item.id === state.selected);
   if (!entry) return go("home");
   const proof = proofForIncome(entry.id);
-  const proofImage = incomeProofImage(entry, proof);
-  const proofName = incomeProofName(entry, proof);
+  const proofUrl = incomeProofFileUrl(entry, proof);
+  const proofIsPdf = incomeProofIsPdf(entry, proofUrl, proof);
+  const proofImage = proofIsPdf ? "" : incomeProofImage(entry, proof);
+  const proofName = incomeProofName(entry, proof) || (proofIsPdf ? "PDF proof" : "");
   shell(`
     <section class="screen">
       ${topbar(t("income"), true)}
@@ -4291,8 +4317,9 @@ function incomeDetail() {
         ${recordDateNeedsReview(entry) ? dateReviewCard() : ""}
         <label class="field"><span>${t("date")}</span><input class="input" type="date" name="date" value="${dateInputValue(entry.timestamp || entry.created_at)}"></label>
         ${proofName ? `<div class="card muted">${t("proofAttached")}: ${escapeHtml(proofName)}</div>` : ""}
+        ${proofIsPdf && proofUrl ? `<a class="secondary proof-link" href="${escapeAttr(proofUrl)}" target="_blank" rel="noopener">${t("proofAttached")} - open PDF</a>` : ""}
         ${proofImage ? imagePreviewButton(proofImage, t("proofAttached")) : ""}
-        ${incomeProofPickerField(proofImage || proofName ? t("replaceProof") : t("attachProof"))}
+        ${incomeProofPickerField(proofImage || proofName || proofUrl ? t("replaceProof") : t("attachProof"))}
         <button class="primary" type="submit">${t("save")}</button>
       </form>
       <button class="danger" style="width:100%;margin-top:12px" data-action="deleteIncome">${t("delete")}</button>
@@ -4873,13 +4900,19 @@ function itemRow(row) {
   if (row.type === "income") {
     const item = row.item;
     return `<button class="list-item" data-open-income="${item.id}">
-      <span class="list-main"><span class="list-title">${escapeHtml(item.description || t("income"))}</span><span class="list-meta">${day(item.timestamp)}</span></span>
+      <span class="list-main">
+        <span class="list-title">${escapeHtml(item.description || t("income"))}${reviewBadge(item)}</span>
+        <span class="list-meta">${day(item.timestamp)}</span>
+      </span>
       <span class="amount income">${money(item.amount, item.currency)}</span>
     </button>`;
   }
   const item = row.item;
   return `<button class="list-item" data-open-receipt="${item.id}">
-    <span class="list-main"><span class="list-title">${escapeHtml(item.merchant || t("unknown"))}</span><span class="list-meta">${t(item.category)} · ${day(item.timestamp)}</span></span>
+    <span class="list-main">
+      <span class="list-title">${escapeHtml(item.merchant || t("unknown"))}${reviewBadge(item)}</span>
+      <span class="list-meta">${t(item.category)} - ${day(item.timestamp)}</span>
+    </span>
     <span class="amount expense">${money(item.amount, item.currency)}</span>
   </button>`;
 }
