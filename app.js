@@ -875,6 +875,11 @@ const COPY = {
     noEntries: "No entries",
     note: "A tidy monthly bag. Tax and clever bits stay with the accountant.",
     backendDown: "Cannot reach TidGo API right now. Render may be waking up; try again in a moment.",
+    serverUnavailableTitle: "TidGo is temporarily unavailable",
+    serverUnavailableText: "The app on your device is fine. The TidGo server is not answering right now, probably during a deploy or restart. Please try again shortly.",
+    tryAgain: "Try again",
+    dateNeedsReview: "Please check this date",
+    dateNeedsReviewHint: "TidGo was not fully confident about the receipt date. Edit it here before using this record.",
     installHint: "On iPhone: Share, then Add to Home Screen.",
     seeAll: "See all",
     seeMore: "See more",
@@ -994,6 +999,11 @@ const COPY = {
     noEntries: "Brak wpisow",
     note: "Porzadna miesieczna reklamowka. Podatki i madre sztuczki zostaja dla ksiegowego.",
     backendDown: "Nie moge teraz polaczyc sie z API TidGo. Render moze sie budzic; sprobuj za moment.",
+    serverUnavailableTitle: "TidGo jest chwilowo niedostepne",
+    serverUnavailableText: "Aplikacja na tym urzadzeniu jest w porzadku. Serwer TidGo teraz nie odpowiada, prawdopodobnie przez deploy albo restart. Sprobuj ponownie za chwile.",
+    tryAgain: "Sprobuj ponownie",
+    dateNeedsReview: "Sprawdz date",
+    dateNeedsReviewHint: "TidGo nie ma pelnej pewnosci co do daty z paragonu. Popraw ja tutaj przed uzyciem rekordu.",
     installHint: "Na iPhonie: Udostepnij, potem Dodaj do ekranu poczatkowego.",
     seeAll: "Pokaz wszystkie",
     seeMore: "Pokaz wiecej",
@@ -2690,6 +2700,7 @@ const state = {
   screen: initialScreen(),
   receipts: [],
   income: [],
+  apiUnavailable: false,
   selected: null,
   imageViewer: null,
   imageRotation: 0,
@@ -3437,14 +3448,26 @@ function confirmDownload(kind = "user") {
 }
 
 async function api(path, options = {}) {
-  const response = await fetch(`${API_BASE}${path}`, {
-    ...options,
-    headers: {
-      Accept: "application/json",
-      ...(options.body ? { "Content-Type": "application/json" } : {}),
-      ...(options.headers || {})
-    }
-  });
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), options.timeoutMs || 18000);
+  let response;
+  try {
+    response = await fetch(`${API_BASE}${path}`, {
+      ...options,
+      signal: controller.signal,
+      headers: {
+        Accept: "application/json",
+        ...(options.body ? { "Content-Type": "application/json" } : {}),
+        ...(options.headers || {})
+      }
+    });
+    state.apiUnavailable = false;
+  } catch (error) {
+    state.apiUnavailable = true;
+    throw new Error(t("backendDown"));
+  } finally {
+    clearTimeout(timeout);
+  }
   if (!response.ok) {
     let detail = `HTTP ${response.status}`;
     try {
@@ -3604,8 +3627,20 @@ async function refresh() {
     state.income = attachIncomeProofs(income);
     state.accountantConsents = consents || [];
   } catch (error) {
+    state.apiUnavailable = true;
     toast(error.message || t("backendDown"));
   }
+}
+
+function serverUnavailableCard() {
+  if (!state.apiUnavailable) return "";
+  return `
+    <div class="status-card server-unavailable-card">
+      <strong>${t("serverUnavailableTitle")}</strong>
+      <span>${t("serverUnavailableText")}</span>
+      <button class="secondary" data-action="retryRefresh">${t("tryAgain")}</button>
+    </div>
+  `;
 }
 
 function render() {
@@ -4161,6 +4196,7 @@ function home() {
     <section class="screen">
       ${topbar("")}
       <h1 class="title">${t("hello")}, ${escapeHtml(state.user.first_name)}.</h1>
+      ${serverUnavailableCard()}
       <button class="nav-row" data-action="summary">
         <span><span class="summary-icon" aria-hidden="true"></span> ${t("summary")}</span><strong>›</strong>
       </button>
@@ -4208,6 +4244,7 @@ function receipt() {
     <section class="screen">
       ${topbar(t("expenses"), true)}
       ${imagePreviewButton(receipt.image_base64, "Receipt photo")}
+      ${recordDateNeedsReview(receipt) ? dateReviewCard() : ""}
       <form class="stack" id="receiptForm" style="margin-top:14px">
         ${receiptReplaceField()}
         <label class="field"><span>${t("amount")}</span><input class="input" name="amount" inputmode="decimal" value="${receipt.amount || 0}"></label>
@@ -4253,6 +4290,8 @@ function incomeDetail() {
         <label class="field"><span>${t("amount")}</span><input class="input" name="amount" inputmode="decimal" value="${entry.amount || 0}"></label>
         <label class="field"><span>${t("currency")}</span><select class="select" name="currency">${currencyOptions(entry.currency || "GBP")}</select></label>
         <label class="field"><span>${t("description")}</span><textarea class="textarea" name="description">${escapeHtml(entry.description || "")}</textarea></label>
+        ${recordDateNeedsReview(entry) ? dateReviewCard() : ""}
+        <label class="field"><span>${t("date")}</span><input class="input" type="date" name="date" value="${dateInputValue(entry.timestamp || entry.created_at)}"></label>
         ${proofName ? `<div class="card muted">${t("proofAttached")}: ${escapeHtml(proofName)}</div>` : ""}
         ${proofImage ? imagePreviewButton(proofImage, t("proofAttached")) : ""}
         ${incomeProofPickerField(proofImage || proofName ? t("replaceProof") : t("attachProof"))}
@@ -4798,9 +4837,39 @@ function incomeSourceChoices(selected = []) {
 
 function transactions() {
   return [
-    ...state.receipts.filter((item) => !item.is_client_expense).map((item) => ({ type: "receipt", timestamp: item.timestamp, item })),
-    ...state.income.map((item) => ({ type: "income", timestamp: item.timestamp, item }))
-  ].sort((a, b) => appDate(b.timestamp) - appDate(a.timestamp));
+    ...state.receipts.filter((item) => !item.is_client_expense).map((item) => ({ type: "receipt", timestamp: item.timestamp, sortTimestamp: recordAddedAt(item), item })),
+    ...state.income.map((item) => ({ type: "income", timestamp: item.timestamp, sortTimestamp: recordAddedAt(item), item }))
+  ].sort((a, b) => sortTime(b.sortTimestamp) - sortTime(a.sortTimestamp));
+}
+
+function recordAddedAt(item = {}) {
+  return item.created_at || item.createdAt || item.uploaded_at || item.uploadedAt || item.updated_at || item.timestamp || item.date || "";
+}
+
+function sortTime(value) {
+  const date = appDate(value);
+  const time = date.getTime();
+  return Number.isNaN(time) ? 0 : time;
+}
+
+function recordDateNeedsReview(item = {}) {
+  return Boolean(
+    item.date_needs_review ||
+    item.dateNeedsReview ||
+    item.needs_date_review ||
+    item.ocr_date_needs_review ||
+    item.date_confidence === "low" ||
+    Number(item.date_confidence || item.dateConfidence || 1) < 0.65
+  );
+}
+
+function dateReviewCard() {
+  return `
+    <div class="status-card date-review-card">
+      <strong>${t("dateNeedsReview")}</strong>
+      <span>${t("dateNeedsReviewHint")}</span>
+    </div>
+  `;
 }
 
 function itemRow(row) {
@@ -5444,6 +5513,18 @@ document.addEventListener("click", async (event) => {
   if (action === "home") return go("home");
   if (action === "recover") return go("recover");
   if (action === "settings") return go("settings");
+  if (action === "retryRefresh") {
+    try {
+      setBusy(true);
+      await refresh();
+      return render();
+    } catch (error) {
+      toast(error.message || t("backendDown"));
+    } finally {
+      setBusy(false);
+    }
+    return;
+  }
   if (action === "viewImage") {
     state.imageViewer = target.dataset.imageSrc || "";
     state.imageRotation = 0;
