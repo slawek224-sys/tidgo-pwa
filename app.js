@@ -3263,7 +3263,8 @@ function incomeProofFileUrl(item = {}, proof = null) {
 
 function incomeProofIsPdf(item = {}, url = "", proof = null) {
   const mime = String(item.image_mime_type || item.proof_mime_type || item.attachment_mime_type || proof?.type || "").toLowerCase();
-  return mime.includes("pdf") || String(url || "").toLowerCase().includes(".pdf");
+  const attachmentType = String(item.email_attachment_type || item.attachment_type || "").toLowerCase();
+  return mime.includes("pdf") || attachmentType === "pdf" || String(url || "").toLowerCase().includes(".pdf");
 }
 
 function reviewBadge(item = {}) {
