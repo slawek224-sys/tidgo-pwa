@@ -5359,6 +5359,18 @@ async function createSummaryPdfFile() {
   const pageHeight = doc.internal.pageSize.getHeight();
   const margin = 42;
   let y = 48;
+  const pdfText = {
+    income: "Income",
+    expenses: "Expenses",
+    noEntries: "No records for this period.",
+    note: "A tidy bag of receipts for the selected period. Your accountant can handle the clever tax part.",
+    pdfLine: "TidGo helps organise records, but it does not verify every receipt item. Please check amounts, categories and documents before using this pack. This is a record summary, not VAT, payroll or corporation tax advice."
+  };
+  const pdfDay = (value) => {
+    const date = new Date(value || Date.now());
+    if (Number.isNaN(date.getTime())) return "";
+    return date.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+  };
 
   const line = (text, size = 11, weight = "normal") => {
     doc.setFont("helvetica", weight);
@@ -5372,17 +5384,17 @@ async function createSummaryPdfFile() {
   line("TidGo - " + periodLabel(), 22, "bold");
   line([state.user?.first_name, state.user?.trade].filter(Boolean).join(" | "), 11);
   y += 8;
-  line(t("income") + ": " + formatTotals(income), 12, "bold");
-  line(t("expenses") + ": " + formatTotals(receipts), 12, "bold");
+  line(pdfText.income + ": " + formatTotals(income), 12, "bold");
+  line(pdfText.expenses + ": " + formatTotals(receipts), 12, "bold");
   y += 12;
-  line(t("note"), 10);
+  line(pdfText.note, 10);
   y += 6;
-  line(dt("pdfLine"), 9);
+  line(pdfText.pdfLine, 9);
   y += 14;
 
   const rows = [
-    ...income.map((item) => [day(item.timestamp), t("income"), item.description || t("income"), money(item.amount, item.currency)]),
-    ...receipts.map((item) => [day(item.timestamp), t("expenses"), item.merchant || t(item.category), money(item.amount, item.currency)])
+    ...income.map((item) => [pdfDay(item.timestamp), pdfText.income, item.description || pdfText.income, money(item.amount, item.currency)]),
+    ...receipts.map((item) => [pdfDay(item.timestamp), pdfText.expenses, item.merchant || item.category || pdfText.expenses, money(item.amount, item.currency)])
   ];
 
   doc.setFontSize(10);
@@ -5398,7 +5410,7 @@ async function createSummaryPdfFile() {
   doc.setFont("helvetica", "normal");
 
   if (!rows.length) {
-    line(t("noEntries"), 11);
+    line(pdfText.noEntries, 11);
   }
 
   for (const row of rows) {
@@ -5418,7 +5430,7 @@ async function createSummaryPdfFile() {
     doc.addPage();
     doc.setFont("helvetica", "bold");
     doc.setFontSize(13);
-    doc.text(`${receipt.merchant || t(receipt.category)} - ${money(receipt.amount, receipt.currency)}`, margin, 36);
+    doc.text(`${receipt.merchant || receipt.category || pdfText.expenses} - ${money(receipt.amount, receipt.currency)}`, margin, 36);
     try {
       const props = doc.getImageProperties(receipt.image_base64);
       const maxW = pageWidth - margin * 2;
@@ -5434,9 +5446,9 @@ async function createSummaryPdfFile() {
     }
   }
 
-  const blob = doc.output("blob");
+  const bytes = doc.output("arraybuffer");
   const fileName = `TidGo-${periodFilePart()}.pdf`;
-  return new File([blob], fileName, { type: "application/pdf" });
+  return new File([bytes], fileName, { type: "application/pdf" });
 }
 
 function escapeHtml(value) {
@@ -6286,4 +6298,3 @@ window.addEventListener("popstate", (event) => {
   history.replaceState(routeState(), "", location.pathname + location.search);
   setTimeout(render, 450);
 })();
-
