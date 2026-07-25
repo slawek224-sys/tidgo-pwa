@@ -2691,6 +2691,7 @@ const state = {
   whatsappChangeCodeSent: false,
   whatsappChangeUnlocked: false,
   whatsappChangeOpen: false,
+  whatsappChangeEmail: "",
   pendingSignupEmail: read("rb_pending_signup_email", ""),
   pendingSignupWhatsApp: read("rb_pending_signup_whatsapp", ""),
   pendingSignupIncomeSources: read("rb_pending_income_sources", []),
@@ -4384,6 +4385,7 @@ function clientConnectionCard() {
 function settingsWhatsAppSection(existingWhatsApp = "") {
   const whatsappConnectedText = t("whatsappConnectedText").replace("{last3}", lastPhoneDigits(existingWhatsApp));
   const email = recoveryEmailForUser();
+  const changeEmail = state.whatsappChangeEmail || email;
   if (!existingWhatsApp) {
     return `
       <div class="whatsapp-connect-box">
@@ -4399,7 +4401,7 @@ function settingsWhatsAppSection(existingWhatsApp = "") {
       ${!state.whatsappChangeOpen ? `<button class="secondary" type="button" data-action="startWhatsAppChange">${t("changeWhatsAppNumber")}</button>` : `
         <div class="stack whatsapp-change-box">
           <p class="hint">${t("changeWhatsAppIntro")}</p>
-          <label class="field"><span>${t("email")}</span><input class="input" name="whatsapp_change_email" type="email" value="${escapeAttr(email)}" placeholder="you@email.com"></label>
+          <label class="field"><span>${t("email")}</span><input class="input" name="whatsapp_change_email" type="email" value="${escapeAttr(changeEmail)}" placeholder="you@email.com"></label>
           ${!state.whatsappChangeUnlocked ? `
             <p class="hint">${state.whatsappChangeCodeSent ? t("whatsappChangeCodeHint") : t("changeWhatsAppEmailHint")}</p>
             ${state.whatsappChangeCodeSent ? `<label class="field"><span>${t("code")}</span><input class="input" name="whatsapp_change_code" inputmode="numeric" autocomplete="one-time-code" placeholder="123456"></label>` : ""}
@@ -5586,21 +5588,24 @@ document.addEventListener("click", async (event) => {
     state.whatsappChangeOpen = true;
     state.whatsappChangeCodeSent = false;
     state.whatsappChangeUnlocked = false;
+    state.whatsappChangeEmail = recoveryEmailForUser();
     return render();
   }
   if (action === "cancelWhatsAppChange") {
     state.whatsappChangeOpen = false;
     state.whatsappChangeCodeSent = false;
     state.whatsappChangeUnlocked = false;
+    state.whatsappChangeEmail = "";
     return render();
   }
   if (action === "requestWhatsAppChangeCode") {
-    const form = target.closest("form");
-    const email = (form?.elements.whatsapp_change_email?.value || "").trim();
+    const box = target.closest(".whatsapp-change-box");
+    const email = (box?.querySelector("[name='whatsapp_change_email']")?.value || state.whatsappChangeEmail || "").trim();
     if (!email) return toast(t("email"));
     try {
       setBusy(true);
       await api("/api/auth/recovery/request", { method: "POST", body: JSON.stringify({ email }) });
+      state.whatsappChangeEmail = email;
       state.whatsappChangeCodeSent = true;
       toast(t("codeSent"));
       return render();
@@ -5612,14 +5617,15 @@ document.addEventListener("click", async (event) => {
     return;
   }
   if (action === "verifyWhatsAppChangeCode") {
-    const form = target.closest("form");
-    const email = (form?.elements.whatsapp_change_email?.value || "").trim();
-    const code = (form?.elements.whatsapp_change_code?.value || "").trim();
+    const box = target.closest(".whatsapp-change-box");
+    const email = (box?.querySelector("[name='whatsapp_change_email']")?.value || state.whatsappChangeEmail || "").trim();
+    const code = (box?.querySelector("[name='whatsapp_change_code']")?.value || "").trim();
     if (!email || !code) return toast(t("code"));
     try {
       setBusy(true);
       const user = await api("/api/auth/recovery/verify", { method: "POST", body: JSON.stringify({ email, code }) });
       if (user?.id && user.id !== state.user.id) throw new Error(t("email"));
+      state.whatsappChangeEmail = email;
       state.whatsappChangeUnlocked = true;
       await rememberUser({ ...state.user, ...user });
       toast(t("whatsappChangeUnlocked"));
