@@ -5621,13 +5621,16 @@ document.addEventListener("click", async (event) => {
     const email = (box?.querySelector("[name='whatsapp_change_email']")?.value || state.whatsappChangeEmail || "").trim();
     const code = (box?.querySelector("[name='whatsapp_change_code']")?.value || "").trim();
     if (!email || !code) return toast(t("code"));
+    const currentEmail = recoveryEmailForUser().toLowerCase();
+    if (currentEmail && email.toLowerCase() !== currentEmail) return toast(t("email"));
     try {
       setBusy(true);
       const user = await api("/api/auth/recovery/verify", { method: "POST", body: JSON.stringify({ email, code }) });
-      if (user?.id && user.id !== state.user.id) throw new Error(t("email"));
       state.whatsappChangeEmail = email;
       state.whatsappChangeUnlocked = true;
-      await rememberUser({ ...state.user, ...user });
+      if (user?.email || user?.recovery_email) {
+        await rememberUser({ ...state.user, ...user, id: state.user.id });
+      }
       toast(t("whatsappChangeUnlocked"));
       return render();
     } catch (error) {
