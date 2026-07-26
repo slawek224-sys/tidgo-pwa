@@ -5153,6 +5153,18 @@ function recordDateNeedsReview(item = {}) {
   );
 }
 
+function clearDateReviewFields(item = {}) {
+  return {
+    ...item,
+    date_needs_review: false,
+    dateNeedsReview: false,
+    needs_date_review: false,
+    ocr_date_needs_review: false,
+    date_confidence: 1,
+    dateConfidence: 1
+  };
+}
+
 function dateReviewCard() {
   return `
     <div class="status-card date-review-card">
@@ -6397,11 +6409,17 @@ document.addEventListener("submit", async (event) => {
           amount,
           merchant: data.merchant || null,
           category,
-          date: data.date ? new Date(`${data.date}T12:00:00`).toISOString() : null
+          date: data.date ? new Date(`${data.date}T12:00:00`).toISOString() : null,
+          date_needs_review: false,
+          needs_date_review: false,
+          ocr_date_needs_review: false,
+          date_confidence: 1,
+          date_confirmed: true
         })
       });
       await refresh();
-      focusSummaryOnRecord(state.receipts.find((item) => item.id === state.selected) || updatedReceipt);
+      state.receipts = state.receipts.map((item) => item.id === state.selected ? clearDateReviewFields({ ...item, ...updatedReceipt }) : item);
+      focusSummaryOnRecord(state.receipts.find((item) => item.id === state.selected) || clearDateReviewFields(updatedReceipt));
       toast(t("saved"));
       return go("home");
     }
