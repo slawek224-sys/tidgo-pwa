@@ -385,7 +385,7 @@ Object.assign(MARKETING_COPY.en, {
   whatsNewMtd: "TidGo is currently testing MTD connection/readiness, while staying focused on tidy digital records for your accountant.",
   whatsNewCta: "See more after you sign in.",
   simpleValueTitle: "No bloated accounting suite",
-  simpleValueText: "TidGo is for the 5% most people actually need: receipts, income proof, tidy summaries and accountant handoff. No dashboards for the sake of dashboards. No paying for features you never open.",
+  simpleValueText: "TidGo focuses on the work most small users actually need: receipts, income proof, tidy summaries and accountant handoff. No dashboards for the sake of dashboards. No paying for features you never open.",
   shareTidGo: "Share TidGo",
   shareTitle: "TidGo",
   shareText: "TidGo keeps receipts, income proof and simple records tidy for self-employed people and accountants.",
@@ -407,7 +407,7 @@ Object.assign(MARKETING_COPY.pl, {
   whatsNewMtd: "TidGo testuje obecnie warstwe MTD connection/readiness, ale nadal skupia sie na porzadnych cyfrowych rekordach dla ksiegowego.",
   whatsNewCta: "Zobacz wiecej po zalogowaniu.",
   simpleValueTitle: "Bez nadmuchanego kombajnu ksiegowego",
-  simpleValueText: "TidGo jest do tych 5%, ktorych ludzie naprawde uzywaja: paragony, dowody przychodu, porzadne summary i przekazanie ksiegowemu. Bez wykresow dla samych wykresow. Bez placenia za funkcje, ktorych nigdy nie otwierasz.",
+  simpleValueText: "TidGo skupia sie na pracy, ktorej male firmy naprawde potrzebuja: paragony, dowody przychodu, porzadne summary i przekazanie ksiegowemu. Bez wykresow dla samych wykresow. Bez placenia za funkcje, ktorych nigdy nie otwierasz.",
   shareTidGo: "Udostepnij TidGo",
   shareTitle: "TidGo",
   shareText: "TidGo trzyma paragony, dowody przychodu i proste rekordy w porzadku dla self-employed i ksiegowych.",
@@ -429,7 +429,7 @@ Object.assign(MARKETING_COPY.ro, {
   whatsNewMtd: "TidGo testeaza acum stratul de conectare/readiness MTD, dar ramane concentrat pe evidente digitale ordonate pentru contabil.",
   whatsNewCta: "Vezi mai multe dupa autentificare.",
   simpleValueTitle: "Fara suita contabila umflata",
-  simpleValueText: "TidGo este pentru cei 5% pe care oamenii chiar ii folosesc: bonuri, dovezi de venit, rezumate ordonate si predare catre contabil. Fara dashboard-uri de dragul dashboard-urilor. Fara plata pentru functii pe care nu le deschizi.",
+  simpleValueText: "TidGo se concentreaza pe munca de care utilizatorii mici chiar au nevoie: bonuri, dovezi de venit, rezumate ordonate si predare catre contabil. Fara dashboard-uri de dragul dashboard-urilor. Fara plata pentru functii pe care nu le deschizi.",
   shareTidGo: "Distribuie TidGo",
   shareTitle: "TidGo",
   shareText: "TidGo tine bonuri, dovezi de venit si evidente simple ordonate pentru self-employed si contabili.",
@@ -451,7 +451,7 @@ Object.assign(MARKETING_COPY.lt, {
   whatsNewMtd: "TidGo dabar testuoja MTD connection/readiness sluoksni, bet lieka susitelkes i tvarkingus skaitmeninius irasus buhalteriui.",
   whatsNewCta: "Daugiau pamatysite prisijunge.",
   simpleValueTitle: "Ne perpusta buhalterijos sistema",
-  simpleValueText: "TidGo skirtas tiems 5%, kuriu zmonems tikrai reikia: kvitai, pajamu irodymai, tvarkingos suvestines ir perdavimas buhalteriui. Jokiu dashboard'u vien del dashboard'u. Jokio mokejimo uz funkcijas, kuriu neatidarote.",
+  simpleValueText: "TidGo susitelkia i darba, kurio maziems vartotojams tikrai reikia: kvitai, pajamu irodymai, tvarkingos suvestines ir perdavimas buhalteriui. Jokiu dashboard'u vien del dashboard'u. Jokio mokejimo uz funkcijas, kuriu neatidarote.",
   shareTidGo: "Dalintis TidGo",
   shareTitle: "TidGo",
   shareText: "TidGo tvarko kvitus, pajamu irodymus ir paprastus irasus self-employed zmonems ir buhalteriams.",
@@ -3930,6 +3930,26 @@ function qrCodeUrl(target) {
   return `https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=12&data=${encodeURIComponent(target)}`;
 }
 
+function landingSocialLinks() {
+  return `
+    <div class="social-links contact-social" aria-label="${escapeAttr(mk("socialTitle"))}">
+      <button class="secondary share-button" type="button" data-action="shareTidGo">${mk("shareTidGo")}</button>
+      <a class="social-icon social-x" href="https://x.com/TidGoApp" target="_blank" rel="noopener noreferrer" aria-label="TidGo on X">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h4.7l4.1 5.9L18 4h2.1l-6.3 7.2L21 20h-4.7l-4.6-6.6L6 20H3.9l6.8-7.8L4 4Zm3.7 1.6 9.4 12.8h1.7L9.4 5.6H7.7Z"/></svg>
+      </a>
+      <a class="social-icon social-facebook" href="https://www.facebook.com/TidGo" target="_blank" rel="noopener noreferrer" aria-label="TidGo on Facebook">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8.4V6.8c0-.8.3-1.2 1.3-1.2H17V2.8c-.8-.1-1.6-.2-2.4-.2-2.5 0-4.2 1.5-4.2 4.2v1.6H7.7v3.2h2.7V21H14v-9.4h2.7l.5-3.2H14Z"/></svg>
+      </a>
+      <a class="social-icon social-instagram" href="https://www.instagram.com/tidgouk/" target="_blank" rel="noopener noreferrer" aria-label="TidGo on Instagram">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 2.8h9A4.7 4.7 0 0 1 21.2 7.5v9a4.7 4.7 0 0 1-4.7 4.7h-9a4.7 4.7 0 0 1-4.7-4.7v-9a4.7 4.7 0 0 1 4.7-4.7Zm0 3A1.7 1.7 0 0 0 5.8 7.5v9a1.7 1.7 0 0 0 1.7 1.7h9a1.7 1.7 0 0 0 1.7-1.7v-9a1.7 1.7 0 0 0-1.7-1.7h-9Zm4.5 2.8a3.4 3.4 0 1 1 0 6.8 3.4 3.4 0 0 1 0-6.8Zm0 2.2a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4Zm4.1-3.1a.9.9 0 1 1 0 1.8.9.9 0 0 1 0-1.8Z"/></svg>
+      </a>
+      <a class="social-icon social-whatsapp" href="https://wa.me/447466382511" target="_blank" rel="noopener noreferrer" aria-label="TidGo on WhatsApp">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2a8.5 8.5 0 0 0-7.2 13l-.9 3.4 3.5-.9A8.5 8.5 0 1 0 12 3.2Zm0 2a6.5 6.5 0 0 1 5.4 10.1 6.5 6.5 0 0 1-8.9 1.5l-.4-.2-1.5.4.4-1.5-.3-.4A6.5 6.5 0 0 1 12 5.2Zm-2.2 3.2c-.2 0-.5.1-.7.3-.3.3-.8.8-.8 1.9 0 1.1.8 2.2.9 2.3.1.2 1.6 2.5 3.9 3.4 1.9.8 2.3.6 2.7.6.4-.1 1.3-.5 1.5-1 .2-.5.2-.9.1-1-.1-.1-.2-.2-.5-.3l-1.5-.7c-.2-.1-.4-.1-.6.2l-.6.8c-.1.2-.3.2-.5.1-.3-.1-1-.4-1.8-1.1-.7-.6-1.1-1.4-1.3-1.6-.1-.2 0-.4.1-.5l.4-.5c.1-.1.2-.2.2-.4.1-.1.1-.3 0-.4l-.7-1.6c-.2-.4-.4-.4-.6-.4h-.2Z"/></svg>
+      </a>
+    </div>
+  `;
+}
+
 function landing() {
   const origin = location.origin;
   const appUrl = `${origin}/app/`;
@@ -3984,9 +4004,12 @@ function landing() {
             </div>
           </section>
           <section class="landing-contact" id="contact">
-            <div>
-              <strong>${mk("contactTitle")}</strong>
-              <span>${mk("contactText")}</span>
+            <div class="landing-contact-copy">
+              <div>
+                <strong>${mk("contactTitle")}</strong>
+                <span>${mk("contactText")}</span>
+              </div>
+              ${landingSocialLinks()}
             </div>
             <form class="landing-contact-form" id="landingContactForm">
               <input class="input" name="from_email" type="email" placeholder="${escapeAttr(mk("yourEmail"))}">
@@ -3997,21 +4020,6 @@ function landing() {
               </select>
               <textarea class="input" name="message" rows="3" placeholder="${escapeAttr(mk("message"))}"></textarea>
               <div class="contact-submit-row">
-                <div class="social-links contact-social" aria-label="${escapeAttr(mk("socialTitle"))}">
-                  <button class="secondary share-button" type="button" data-action="shareTidGo">${mk("shareTidGo")}</button>
-                  <a class="social-icon social-x" href="https://x.com/TidGoApp" target="_blank" rel="noopener noreferrer" aria-label="TidGo on X">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h4.7l4.1 5.9L18 4h2.1l-6.3 7.2L21 20h-4.7l-4.6-6.6L6 20H3.9l6.8-7.8L4 4Zm3.7 1.6 9.4 12.8h1.7L9.4 5.6H7.7Z"/></svg>
-                  </a>
-                  <a class="social-icon social-facebook" href="https://www.facebook.com/TidGo" target="_blank" rel="noopener noreferrer" aria-label="TidGo on Facebook">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8.4V6.8c0-.8.3-1.2 1.3-1.2H17V2.8c-.8-.1-1.6-.2-2.4-.2-2.5 0-4.2 1.5-4.2 4.2v1.6H7.7v3.2h2.7V21H14v-9.4h2.7l.5-3.2H14Z"/></svg>
-                  </a>
-                  <a class="social-icon social-instagram" href="https://www.instagram.com/tidgouk/" target="_blank" rel="noopener noreferrer" aria-label="TidGo on Instagram">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 2.8h9A4.7 4.7 0 0 1 21.2 7.5v9a4.7 4.7 0 0 1-4.7 4.7h-9a4.7 4.7 0 0 1-4.7-4.7v-9a4.7 4.7 0 0 1 4.7-4.7Zm0 3A1.7 1.7 0 0 0 5.8 7.5v9a1.7 1.7 0 0 0 1.7 1.7h9a1.7 1.7 0 0 0 1.7-1.7v-9a1.7 1.7 0 0 0-1.7-1.7h-9Zm4.5 2.8a3.4 3.4 0 1 1 0 6.8 3.4 3.4 0 0 1 0-6.8Zm0 2.2a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4Zm4.1-3.1a.9.9 0 1 1 0 1.8.9.9 0 0 1 0-1.8Z"/></svg>
-                  </a>
-                  <a class="social-icon social-whatsapp" href="https://wa.me/447466382511" target="_blank" rel="noopener noreferrer" aria-label="TidGo on WhatsApp">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2a8.5 8.5 0 0 0-7.2 13l-.9 3.4 3.5-.9A8.5 8.5 0 1 0 12 3.2Zm0 2a6.5 6.5 0 0 1 5.4 10.1 6.5 6.5 0 0 1-8.9 1.5l-.4-.2-1.5.4.4-1.5-.3-.4A6.5 6.5 0 0 1 12 5.2Zm-2.2 3.2c-.2 0-.5.1-.7.3-.3.3-.8.8-.8 1.9 0 1.1.8 2.2.9 2.3.1.2 1.6 2.5 3.9 3.4 1.9.8 2.3.6 2.7.6.4-.1 1.3-.5 1.5-1 .2-.5.2-.9.1-1-.1-.1-.2-.2-.5-.3l-1.5-.7c-.2-.1-.4-.1-.6.2l-.6.8c-.1.2-.3.2-.5.1-.3-.1-1-.4-1.8-1.1-.7-.6-1.1-1.4-1.3-1.6-.1-.2 0-.4.1-.5l.4-.5c.1-.1.2-.2.2-.4.1-.1.1-.3 0-.4l-.7-1.6c-.2-.4-.4-.4-.6-.4h-.2Z"/></svg>
-                  </a>
-                </div>
                 <button class="primary" type="submit">${mk("sendMessage")}</button>
               </div>
             </form>
