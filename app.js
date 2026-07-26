@@ -381,7 +381,7 @@ Object.assign(MARKETING_COPY.lt, {
 Object.assign(MARKETING_COPY.en, {
   whatsNewTitle: "What's new in TidGo",
   whatsNewBadge: "New",
-  whatsNewIntake: "WhatsApp and email intake are now available: send receipt photos or documents without opening the app.",
+  whatsNewIntake: "WhatsApp receipt intake is now live: send receipt photos to TidGo without opening the app. Email intake is available too.",
   whatsNewMtd: "TidGo is currently testing MTD connection/readiness, while staying focused on tidy digital records for your accountant.",
   whatsNewCta: "See more after you sign in.",
   simpleValueTitle: "No bloated accounting suite",
@@ -403,7 +403,7 @@ Object.assign(MARKETING_COPY.en, {
 Object.assign(MARKETING_COPY.pl, {
   whatsNewTitle: "Co nowego w TidGo",
   whatsNewBadge: "Nowe",
-  whatsNewIntake: "WhatsApp i email intake juz dzialaja: wysylaj zdjecia paragonow albo dokumenty bez otwierania aplikacji.",
+  whatsNewIntake: "WhatsApp receipt intake juz dziala: wysylaj zdjecia paragonow do TidGo bez otwierania aplikacji. Email intake tez jest dostepny.",
   whatsNewMtd: "TidGo testuje obecnie warstwe MTD connection/readiness, ale nadal skupia sie na porzadnych cyfrowych rekordach dla ksiegowego.",
   whatsNewCta: "Zobacz wiecej po zalogowaniu.",
   simpleValueTitle: "Bez nadmuchanego kombajnu ksiegowego",
@@ -425,7 +425,7 @@ Object.assign(MARKETING_COPY.pl, {
 Object.assign(MARKETING_COPY.ro, {
   whatsNewTitle: "Ce este nou in TidGo",
   whatsNewBadge: "Nou",
-  whatsNewIntake: "WhatsApp si email intake sunt disponibile: trimite poze cu bonuri sau documente fara sa deschizi aplicatia.",
+  whatsNewIntake: "WhatsApp receipt intake este live: trimite poze cu bonuri catre TidGo fara sa deschizi aplicatia. Email intake este disponibil si el.",
   whatsNewMtd: "TidGo testeaza acum stratul de conectare/readiness MTD, dar ramane concentrat pe evidente digitale ordonate pentru contabil.",
   whatsNewCta: "Vezi mai multe dupa autentificare.",
   simpleValueTitle: "Fara suita contabila umflata",
@@ -447,7 +447,7 @@ Object.assign(MARKETING_COPY.ro, {
 Object.assign(MARKETING_COPY.lt, {
   whatsNewTitle: "Kas naujo TidGo",
   whatsNewBadge: "Nauja",
-  whatsNewIntake: "WhatsApp ir email intake jau veikia: siuskite kvitu nuotraukas ar dokumentus neatidarydami programeles.",
+  whatsNewIntake: "WhatsApp receipt intake jau veikia: siuskite kvitu nuotraukas i TidGo neatidarydami programeles. Email intake taip pat prieinamas.",
   whatsNewMtd: "TidGo dabar testuoja MTD connection/readiness sluoksni, bet lieka susitelkes i tvarkingus skaitmeninius irasus buhalteriui.",
   whatsNewCta: "Daugiau pamatysite prisijunge.",
   simpleValueTitle: "Ne perpusta buhalterijos sistema",
@@ -3965,7 +3965,7 @@ function landing() {
             <p>${mk("heroText")}</p>
           </div>
           <section class="landing-news" aria-label="${escapeAttr(mk("whatsNewTitle"))}">
-            <span class="new-badge">${mk("whatsNewBadge")}</span>
+            <span class="new-badge"><span class="new-flame" aria-hidden="true">&#128293;</span>${mk("whatsNewBadge")}</span>
             <div>
               <strong>${mk("whatsNewTitle")}</strong>
               <span class="landing-news-line landing-news-intake">${mk("whatsNewIntake")}</span>
