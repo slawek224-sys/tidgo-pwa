@@ -2733,7 +2733,8 @@ const state = {
   summaryPeriod: read("rb_summary_period", "month") === "quarter" ? "quarter" : "month",
   quarterMode: read("rb_quarter_mode", "calendar") === "uk_tax" ? "uk_tax" : "calendar",
   transactionLimit: 4,
-  loading: false
+  loading: false,
+  routeMotion: ""
 };
 
 const app = document.querySelector("#app");
@@ -3408,12 +3409,14 @@ function routeState() {
 
 function applyRoute(route) {
   if (!route) return;
+  state.routeMotion = "back";
   state.screen = route.screen || "home";
   state.selected = route.selected || null;
   render();
 }
 
 function navigate(screen, extra = {}) {
+  state.routeMotion = "forward";
   state.screen = screen;
   if ("selected" in extra) {
     state.selected = extra.selected;
@@ -3425,7 +3428,12 @@ function navigate(screen, extra = {}) {
 function shell(content) {
   const accountantMode = state.screen === "accountantLanding" || state.screen === "accountantDemoClient";
   const landingMode = ["landing", "marketingPage", "appDemo", "accountantDemo"].includes(state.screen);
-  app.innerHTML = `<main class="shell ${accountantMode ? "accountant-shell" : ""} ${landingMode ? "landing-shell" : ""}">${content}</main><section id="printRoot" class="print-root"></section>${imageViewerOverlay()}`;
+  const motionClass = state.routeMotion ? ` route-enter route-${state.routeMotion}` : "";
+  app.innerHTML = `<main class="shell ${accountantMode ? "accountant-shell" : ""} ${landingMode ? "landing-shell" : ""}${motionClass}">${content}</main><section id="printRoot" class="print-root"></section>${imageViewerOverlay()}`;
+  if (state.routeMotion && !landingMode && !state.imageViewer) {
+    window.scrollTo(0, 0);
+  }
+  state.routeMotion = "";
 }
 
 function imagePreviewButton(src, alt = "Photo") {
@@ -6331,7 +6339,6 @@ window.addEventListener("popstate", (event) => {
     return;
   }
   await restoreDeviceUser();
-  if (state.user?.id) await refresh();
   if (isAccountantRoute()) await restoreAccountantSession();
   if (isAccountantRoute() && state.accountantPortalEmail) {
     try {
@@ -6344,5 +6351,8 @@ window.addEventListener("popstate", (event) => {
     state.screen = state.user ? "home" : "onboarding";
   }
   history.replaceState(routeState(), "", location.pathname + location.search);
-  setTimeout(render, 450);
+  render();
+  if (state.user?.id && !isAccountantRoute()) {
+    refresh().then(render).catch(() => {});
+  }
 })();

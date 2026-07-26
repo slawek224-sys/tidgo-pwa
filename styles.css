@@ -49,6 +49,46 @@ button {
   flex-direction: column;
 }
 
+.route-enter {
+  animation: routeFadeIn 180ms ease-out both;
+}
+
+.route-enter.route-back {
+  animation-name: routeBackIn;
+}
+
+.landing-shell.route-enter {
+  animation-duration: 140ms;
+}
+
+@keyframes routeFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes routeBackIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .route-enter {
+    animation: none;
+  }
+}
+
 .accountant-shell {
   width: min(100%, 640px);
 }
@@ -1562,8 +1602,8 @@ button {
 .primary:disabled,
 .secondary:disabled,
 .danger:disabled {
-  opacity: 0.65;
-  cursor: not-allowed;
+  opacity: 0.72;
+  cursor: progress;
 }
 
 .secondary {
