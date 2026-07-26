@@ -20,7 +20,10 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background: #eef2f7;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(30, 64, 175, 0.08), transparent 30%),
+    radial-gradient(circle at 88% 16%, rgba(22, 163, 74, 0.08), transparent 28%),
+    #eef2f7;
   color: var(--ink);
   overflow-x: hidden;
 }
@@ -115,8 +118,11 @@ button {
   width: min(100%, 460px);
   min-height: 100dvh;
   margin: 0 auto;
-  background: var(--paper);
-  box-shadow: 0 0 0 1px rgba(23, 32, 51, 0.05);
+  background:
+    linear-gradient(180deg, #f8fbff 0%, #ffffff 185px, #ffffff 100%);
+  box-shadow:
+    0 28px 70px rgba(15, 23, 42, 0.16),
+    0 0 0 1px rgba(23, 32, 51, 0.05);
   display: flex;
   flex-direction: column;
 }
@@ -179,7 +185,7 @@ button {
 
 .screen {
   flex: 1;
-  padding: calc(16px + env(safe-area-inset-top)) 18px calc(22px + env(safe-area-inset-bottom));
+  padding: calc(18px + env(safe-area-inset-top)) 18px calc(24px + env(safe-area-inset-bottom));
 }
 
 .topbar,
@@ -195,7 +201,7 @@ button {
 .topbar {
   justify-content: space-between;
   gap: 12px;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 
 .brand {
@@ -207,12 +213,12 @@ button {
 }
 
 .brand img {
-  width: 46px;
-  height: 46px;
+  width: 48px;
+  height: 48px;
   object-fit: contain;
   border-radius: 10px;
   background: #fff;
-  box-shadow: 0 1px 4px rgba(17, 24, 39, 0.12);
+  box-shadow: 0 10px 24px rgba(30, 64, 175, 0.14);
 }
 
 .brand sup {
@@ -1424,9 +1430,10 @@ button {
 
 .title {
   margin: 0;
-  font-size: 25px;
+  font-size: 27px;
   line-height: 1.12;
   letter-spacing: 0;
+  color: #0f172a;
 }
 
 .subtitle,
@@ -1442,31 +1449,34 @@ button {
 }
 
 .card {
-  border: 1px solid var(--line);
+  border: 1px solid rgba(226, 232, 240, 0.95);
   border-radius: 8px;
-  background: var(--paper);
-  padding: 15px;
+  background: rgba(255, 255, 255, 0.96);
+  padding: 16px;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.07);
 }
 
 .status-card {
   display: grid;
   gap: 8px;
+  border: 1px solid transparent;
   border-radius: 8px;
   padding: 13px;
   margin: 12px 0;
   font-size: 13px;
   line-height: 1.42;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
 }
 
 .server-unavailable-card {
   border: 1px solid #bfdbfe;
-  background: #eff6ff;
+  background: linear-gradient(180deg, #eff6ff 0%, #f8fbff 100%);
   color: var(--blue-dark);
 }
 
 .date-review-card {
   border: 1px solid #fde68a;
-  background: #fffbeb;
+  background: linear-gradient(180deg, #fffbeb 0%, #fff7ed 100%);
   color: #92400e;
 }
 
@@ -1492,10 +1502,11 @@ button {
   min-height: 116px;
   border: 2px dashed rgba(30, 64, 175, 0.28);
   border-radius: 8px;
-  background: #eff6ff;
+  background: linear-gradient(180deg, #f8fbff 0%, #eff6ff 100%);
   color: var(--blue-dark);
   text-align: center;
   padding: 18px;
+  transition: border-color 160ms ease, background 160ms ease, box-shadow 160ms ease, transform 160ms ease;
 }
 
 .drop-zone span {
@@ -1506,20 +1517,23 @@ button {
 
 .drop-zone.drag-active {
   border-color: var(--green);
-  background: #ecfdf5;
+  background: linear-gradient(180deg, #ecfdf5 0%, #dcfce7 100%);
   color: var(--green);
+  box-shadow: 0 14px 30px rgba(22, 163, 74, 0.13);
+  transform: translateY(-1px);
 }
 
 .intake-card {
   display: grid;
   gap: 7px;
-  border: 1px solid #b7f7d1;
+  border: 1px solid rgba(183, 247, 209, 0.95);
   border-radius: 8px;
-  background: #ecfdf5;
+  background: linear-gradient(180deg, #ecfdf5 0%, #f7fee7 100%);
   color: #14532d;
   padding: 12px;
   font-size: 13px;
   line-height: 1.35;
+  box-shadow: 0 10px 24px rgba(22, 163, 74, 0.08);
 }
 
 .intake-card strong {
@@ -1532,11 +1546,12 @@ button {
   gap: 8px;
   border: 1px solid #bfdbfe;
   border-radius: 8px;
-  background: #f8fbff;
+  background: linear-gradient(180deg, #f8fbff 0%, #eff6ff 100%);
   color: #1f2937;
   padding: 12px;
   font-size: 13px;
   line-height: 1.45;
+  box-shadow: 0 10px 24px rgba(30, 64, 175, 0.07);
 }
 
 .short-privacy-notice strong {
@@ -1639,12 +1654,13 @@ button {
 .textarea {
   width: 100%;
   min-height: 48px;
-  border: 1px solid var(--line);
+  border: 1px solid #dbeafe;
   border-radius: 8px;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.96);
   color: var(--ink);
   padding: 11px 12px;
   outline: none;
+  transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
 }
 
 .textarea {
@@ -1657,6 +1673,7 @@ button {
 .textarea:focus {
   border-color: var(--blue);
   box-shadow: 0 0 0 3px rgba(22, 104, 227, 0.12);
+  background: #fff;
 }
 
 .check-row {
@@ -1680,15 +1697,17 @@ button {
 .delete-confirm-row {
   border: 1px solid #fee2e2;
   border-radius: 8px;
-  background: #fff7f8;
+  background: linear-gradient(180deg, #fff7f8 0%, #fff1f2 100%);
   padding: 10px;
+  box-shadow: 0 10px 22px rgba(220, 38, 38, 0.06);
 }
 
 .legal-agree-row {
   border: 1px solid #bfdbfe;
   border-radius: 8px;
-  background: #eff6ff;
+  background: linear-gradient(180deg, #eff6ff 0%, #f8fbff 100%);
   padding: 10px;
+  box-shadow: 0 10px 22px rgba(30, 64, 175, 0.06);
 }
 
 .app-full-legal-link {
@@ -1713,9 +1732,11 @@ button {
 
 .primary {
   width: 100%;
-  background: var(--blue);
+  background: linear-gradient(180deg, #2563eb 0%, var(--blue) 100%);
   color: white;
   padding: 12px 16px;
+  box-shadow: 0 12px 24px rgba(30, 64, 175, 0.18);
+  transition: transform 160ms ease, box-shadow 160ms ease, filter 160ms ease;
 }
 
 .file-label {
@@ -1734,9 +1755,11 @@ button {
 }
 
 .secondary {
-  background: #eaf2ff;
+  background: linear-gradient(180deg, #f8fbff 0%, #eaf2ff 100%);
   color: var(--blue-dark);
+  border: 1px solid #dbeafe;
   padding: 12px 14px;
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
 }
 
 .legal-link-button {
@@ -1754,9 +1777,20 @@ button {
 }
 
 .quiet {
-  background: var(--soft);
+  background: #f8fafc;
   color: #2e394d;
+  border: 1px solid var(--line);
   padding: 10px 12px;
+}
+
+.primary:hover,
+.primary:focus-visible,
+.secondary:hover,
+.secondary:focus-visible,
+.quiet:hover,
+.quiet:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 28px rgba(30, 64, 175, 0.16);
 }
 
 .link-btn {
@@ -1781,8 +1815,10 @@ button {
   font-size: 24px;
   display: inline-grid;
   place-items: center;
-  background: var(--soft);
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid #e2e8f0;
   color: var(--ink);
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08);
 }
 
 .grid-2 {
@@ -1802,6 +1838,14 @@ button {
   color: white;
   font-weight: 850;
   text-align: center;
+  box-shadow: 0 16px 34px rgba(15, 23, 42, 0.12);
+  transition: transform 160ms ease, box-shadow 160ms ease, filter 160ms ease;
+}
+
+.action:hover,
+.action:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 42px rgba(15, 23, 42, 0.16);
 }
 
 .action small {
@@ -1810,11 +1854,11 @@ button {
   font-weight: 650;
 }
 
-.action.blue { background: var(--blue); }
-.action.green { background: var(--green); }
+.action.blue { background: linear-gradient(180deg, #2563eb 0%, var(--blue) 100%); }
+.action.green { background: linear-gradient(180deg, #22c55e 0%, var(--green) 100%); }
 .action.client {
   min-height: 54px;
-  background: var(--client-soft);
+  background: linear-gradient(180deg, #f0fdf4 0%, #dcfce7 100%);
   color: var(--green);
   border: 1px solid var(--client-line);
   display: flex;
@@ -1826,12 +1870,21 @@ button {
   gap: 10px;
   justify-content: space-between;
   border: 1px solid var(--client-line);
-  background: var(--client-soft);
+  background: linear-gradient(180deg, #f0fdf4 0%, #ecfdf5 100%);
   border-radius: 8px;
-  padding: 12px;
+  padding: 14px;
   width: 100%;
   color: var(--blue);
   font-weight: 850;
+  box-shadow: 0 12px 28px rgba(22, 163, 74, 0.09);
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+}
+
+.nav-row:hover,
+.nav-row:focus-visible {
+  border-color: #86efac;
+  box-shadow: 0 16px 34px rgba(22, 163, 74, 0.13);
+  transform: translateY(-1px);
 }
 
 .nav-row > span {
@@ -1848,6 +1901,7 @@ button {
   border: 2px solid var(--blue);
   border-radius: 7px;
   background: #fff;
+  box-shadow: 0 8px 18px rgba(30, 64, 175, 0.1);
   flex: 0 0 auto;
 }
 
@@ -1873,19 +1927,28 @@ button {
 
 .list {
   display: grid;
-  gap: 10px;
-  margin-top: 16px;
+  gap: 11px;
+  margin-top: 18px;
 }
 
 .list-item {
   justify-content: space-between;
-  gap: 8px;
-  border: 1px solid var(--line);
+  gap: 10px;
+  border: 1px solid rgba(226, 232, 240, 0.95);
   border-radius: 8px;
-  padding: 12px 10px;
-  background: #fff;
+  padding: 13px 12px;
+  background: rgba(255, 255, 255, 0.96);
   text-align: left;
   width: 100%;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.055);
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+}
+
+.list-item:hover,
+.list-item:focus-visible {
+  border-color: #bfdbfe;
+  box-shadow: 0 14px 30px rgba(30, 64, 175, 0.1);
+  transform: translateY(-1px);
 }
 
 .list-main {
@@ -1921,9 +1984,9 @@ button {
 }
 
 .email-line {
-  border: 1px solid var(--line);
+  border: 1px solid #dbeafe;
   border-radius: 8px;
-  background: var(--soft);
+  background: #f8fbff;
   color: var(--blue-dark);
   font-weight: 850;
   overflow-wrap: anywhere;
@@ -1932,7 +1995,9 @@ button {
 
 .accountant-screen {
   background:
-    linear-gradient(180deg, #f8fbff 0%, #ffffff 165px);
+    linear-gradient(180deg, #f8fbff 0%, #ffffff 170px),
+    linear-gradient(90deg, rgba(30, 64, 175, 0.06) 0 1px, transparent 1px 100%);
+  background-size: auto, 44px 44px;
 }
 
 .accountant-hero {
@@ -1957,10 +2022,11 @@ button {
   justify-content: space-between;
   align-items: flex-start;
   gap: 10px;
-  border: 1px solid var(--line);
+  border: 1px solid #dbeafe;
   border-radius: 8px;
   padding: 12px;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
 }
 
 .connection-row span:first-child {
@@ -2014,12 +2080,13 @@ button {
 }
 
 .insight-card {
-  border: 1px solid var(--line);
+  border: 1px solid rgba(191, 219, 254, 0.95);
   border-radius: 8px;
-  background: var(--soft);
-  padding: 12px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  padding: 13px;
   display: grid;
   gap: 6px;
+  box-shadow: 0 12px 28px rgba(30, 64, 175, 0.08);
 }
 
 .insight-card span {
@@ -2476,11 +2543,12 @@ button {
 .whatsapp-connect-box {
   display: grid;
   gap: 9px;
-  border: 1px solid #b7efcf;
+  border: 1px solid rgba(183, 239, 207, 0.95);
   border-radius: 8px;
-  background: #f0fff6;
+  background: linear-gradient(180deg, #f0fff6 0%, #ecfdf5 100%);
   color: var(--green-dark);
   padding: 11px;
+  box-shadow: 0 10px 24px rgba(22, 163, 74, 0.08);
 }
 
 .whatsapp-connect-box p {
@@ -2492,7 +2560,7 @@ button {
 
 .whatsapp-connected-box {
   border-color: #bbf7d0;
-  background: #f0fdf4;
+  background: linear-gradient(180deg, #f0fdf4 0%, #dcfce7 100%);
 }
 
 .whatsapp-connected-box strong {
