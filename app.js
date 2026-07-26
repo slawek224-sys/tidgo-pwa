@@ -384,6 +384,8 @@ Object.assign(MARKETING_COPY.en, {
   whatsNewIntake: "WhatsApp and email intake are now available: send receipt photos or documents without opening the app.",
   whatsNewMtd: "TidGo is currently testing MTD connection/readiness, while staying focused on tidy digital records for your accountant.",
   whatsNewCta: "See more after you sign in.",
+  simpleValueTitle: "No bloated accounting suite",
+  simpleValueText: "TidGo is for the 5% most people actually need: receipts, income proof, tidy summaries and accountant handoff. No dashboards for the sake of dashboards. No paying for features you never open.",
   shareTidGo: "Share TidGo",
   shareTitle: "TidGo",
   shareText: "TidGo keeps receipts, income proof and simple records tidy for self-employed people and accountants.",
@@ -404,6 +406,8 @@ Object.assign(MARKETING_COPY.pl, {
   whatsNewIntake: "WhatsApp i email intake juz dzialaja: wysylaj zdjecia paragonow albo dokumenty bez otwierania aplikacji.",
   whatsNewMtd: "TidGo testuje obecnie warstwe MTD connection/readiness, ale nadal skupia sie na porzadnych cyfrowych rekordach dla ksiegowego.",
   whatsNewCta: "Zobacz wiecej po zalogowaniu.",
+  simpleValueTitle: "Bez nadmuchanego kombajnu ksiegowego",
+  simpleValueText: "TidGo jest do tych 5%, ktorych ludzie naprawde uzywaja: paragony, dowody przychodu, porzadne summary i przekazanie ksiegowemu. Bez wykresow dla samych wykresow. Bez placenia za funkcje, ktorych nigdy nie otwierasz.",
   shareTidGo: "Udostepnij TidGo",
   shareTitle: "TidGo",
   shareText: "TidGo trzyma paragony, dowody przychodu i proste rekordy w porzadku dla self-employed i ksiegowych.",
@@ -424,6 +428,8 @@ Object.assign(MARKETING_COPY.ro, {
   whatsNewIntake: "WhatsApp si email intake sunt disponibile: trimite poze cu bonuri sau documente fara sa deschizi aplicatia.",
   whatsNewMtd: "TidGo testeaza acum stratul de conectare/readiness MTD, dar ramane concentrat pe evidente digitale ordonate pentru contabil.",
   whatsNewCta: "Vezi mai multe dupa autentificare.",
+  simpleValueTitle: "Fara suita contabila umflata",
+  simpleValueText: "TidGo este pentru cei 5% pe care oamenii chiar ii folosesc: bonuri, dovezi de venit, rezumate ordonate si predare catre contabil. Fara dashboard-uri de dragul dashboard-urilor. Fara plata pentru functii pe care nu le deschizi.",
   shareTidGo: "Distribuie TidGo",
   shareTitle: "TidGo",
   shareText: "TidGo tine bonuri, dovezi de venit si evidente simple ordonate pentru self-employed si contabili.",
@@ -444,6 +450,8 @@ Object.assign(MARKETING_COPY.lt, {
   whatsNewIntake: "WhatsApp ir email intake jau veikia: siuskite kvitu nuotraukas ar dokumentus neatidarydami programeles.",
   whatsNewMtd: "TidGo dabar testuoja MTD connection/readiness sluoksni, bet lieka susitelkes i tvarkingus skaitmeninius irasus buhalteriui.",
   whatsNewCta: "Daugiau pamatysite prisijunge.",
+  simpleValueTitle: "Ne perpusta buhalterijos sistema",
+  simpleValueText: "TidGo skirtas tiems 5%, kuriu zmonems tikrai reikia: kvitai, pajamu irodymai, tvarkingos suvestines ir perdavimas buhalteriui. Jokiu dashboard'u vien del dashboard'u. Jokio mokejimo uz funkcijas, kuriu neatidarote.",
   shareTidGo: "Dalintis TidGo",
   shareTitle: "TidGo",
   shareText: "TidGo tvarko kvitus, pajamu irodymus ir paprastus irasus self-employed zmonems ir buhalteriams.",
@@ -3950,6 +3958,10 @@ function landing() {
             <span>${mk("trustControl")}</span>
             <span>${mk("trustEarly")}</span>
           </section>
+          <section class="landing-simple-value" aria-label="${escapeAttr(mk("simpleValueTitle"))}">
+            <strong>${mk("simpleValueTitle")}</strong>
+            <span>${mk("simpleValueText")}</span>
+          </section>
           <section class="landing-limits" aria-label="${escapeAttr(mk("notDoTitle"))}">
             <strong>${mk("notDoTitle")}</strong>
             <span>${mk("notDoText")}</span>
@@ -3986,6 +3998,7 @@ function landing() {
               <textarea class="input" name="message" rows="3" placeholder="${escapeAttr(mk("message"))}"></textarea>
               <div class="contact-submit-row">
                 <div class="social-links contact-social" aria-label="${escapeAttr(mk("socialTitle"))}">
+                  <button class="secondary share-button" type="button" data-action="shareTidGo">${mk("shareTidGo")}</button>
                   <a class="social-icon social-x" href="https://x.com/TidGoApp" target="_blank" rel="noopener noreferrer" aria-label="TidGo on X">
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h4.7l4.1 5.9L18 4h2.1l-6.3 7.2L21 20h-4.7l-4.6-6.6L6 20H3.9l6.8-7.8L4 4Zm3.7 1.6 9.4 12.8h1.7L9.4 5.6H7.7Z"/></svg>
                   </a>
@@ -3999,7 +4012,6 @@ function landing() {
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2a8.5 8.5 0 0 0-7.2 13l-.9 3.4 3.5-.9A8.5 8.5 0 1 0 12 3.2Zm0 2a6.5 6.5 0 0 1 5.4 10.1 6.5 6.5 0 0 1-8.9 1.5l-.4-.2-1.5.4.4-1.5-.3-.4A6.5 6.5 0 0 1 12 5.2Zm-2.2 3.2c-.2 0-.5.1-.7.3-.3.3-.8.8-.8 1.9 0 1.1.8 2.2.9 2.3.1.2 1.6 2.5 3.9 3.4 1.9.8 2.3.6 2.7.6.4-.1 1.3-.5 1.5-1 .2-.5.2-.9.1-1-.1-.1-.2-.2-.5-.3l-1.5-.7c-.2-.1-.4-.1-.6.2l-.6.8c-.1.2-.3.2-.5.1-.3-.1-1-.4-1.8-1.1-.7-.6-1.1-1.4-1.3-1.6-.1-.2 0-.4.1-.5l.4-.5c.1-.1.2-.2.2-.4.1-.1.1-.3 0-.4l-.7-1.6c-.2-.4-.4-.4-.6-.4h-.2Z"/></svg>
                   </a>
                 </div>
-                <button class="secondary share-button" type="button" data-action="shareTidGo">${mk("shareTidGo")}</button>
                 <button class="primary" type="submit">${mk("sendMessage")}</button>
               </div>
             </form>

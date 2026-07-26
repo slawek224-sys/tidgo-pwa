@@ -1120,7 +1120,7 @@ button {
 
 .contact-submit-row {
   display: grid;
-  grid-template-columns: 140px auto minmax(0, 1fr);
+  grid-template-columns: minmax(260px, auto) minmax(0, 1fr);
   align-items: center;
   column-gap: 14px;
 }
@@ -1139,6 +1139,14 @@ button {
 .contact-submit-row .share-button {
   justify-self: start;
   width: auto;
+}
+
+.contact-social .share-button {
+  min-height: 42px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 900;
 }
 
 .share-inline {
@@ -1207,6 +1215,29 @@ button {
   line-height: 1.45;
 }
 
+.landing-simple-value {
+  display: grid;
+  gap: 6px;
+  margin-top: 14px;
+  border: 1px solid rgba(191, 219, 254, 0.95);
+  border-radius: 8px;
+  background: linear-gradient(135deg, #ffffff 0%, #eff6ff 58%, #ecfdf5 100%);
+  color: #334155;
+  padding: 14px 16px;
+  box-shadow: 0 12px 28px rgba(30, 64, 175, 0.08);
+}
+
+.landing-simple-value strong {
+  color: var(--blue-dark);
+  font-size: 15px;
+}
+
+.landing-simple-value span {
+  color: #334155;
+  font-weight: 780;
+  line-height: 1.45;
+}
+
 .mtd-highlight-grid {
   margin: 12px 0 6px;
 }
@@ -1269,8 +1300,8 @@ button {
 
 .contact-social {
   display: grid !important;
-  grid-template-columns: repeat(4, 42px);
-  width: 189px;
+  grid-template-columns: auto repeat(4, 42px);
+  width: auto;
   justify-content: flex-start;
   align-items: center;
   gap: 7px;
