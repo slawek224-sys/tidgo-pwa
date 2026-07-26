@@ -378,6 +378,86 @@ Object.assign(MARKETING_COPY.lt, {
   copyright: "© 2026 TidGo. Visos teises saugomos."
 });
 
+Object.assign(MARKETING_COPY.en, {
+  whatsNewTitle: "What's new in TidGo",
+  whatsNewBadge: "New",
+  whatsNewIntake: "WhatsApp and email intake are now available: send receipt photos or documents without opening the app.",
+  whatsNewMtd: "TidGo is currently testing MTD connection/readiness, while staying focused on tidy digital records for your accountant.",
+  whatsNewCta: "See more after you sign in.",
+  shareTidGo: "Share TidGo",
+  shareTitle: "TidGo",
+  shareText: "TidGo keeps receipts, income proof and simple records tidy for self-employed people and accountants.",
+  shareCopied: "TidGo link copied.",
+  mtdTestingTitle: "MTD connection testing",
+  mtdTestingText: "TidGo is testing the MTD connection layer. Today it helps you keep digital records and quarter-ready summaries; it does not submit tax returns to HMRC yet.",
+  mtdLateTitle: "Missed a quarterly update?",
+  mtdLateText: "HMRC guidance says quarterly updates use cumulative totals. A later update can include earlier-quarter figures, but a missed deadline can still create a penalty point. TidGo's job is to help get the records tidy again before the next handoff.",
+  mtdSourceTitle: "Official source",
+  mtdSourceText: "Source: HMRC Developer Hub, Income Tax MTD end-to-end service guide for quarterly updates and cumulative obligations.",
+  launchPricingFullText: "TidGo is in early access for a small group of real users. It is free while we collect feedback, improve the app and test MTD readiness. Paid plans are expected after early-access testing, with a simple plan expected from £4.99/month. Users will be told clearly in advance and will always be able to export or delete their records.",
+  pricingText: "TidGo is free during early access. If paid plans are introduced, users will be told clearly in advance and will always be able to export or delete their records."
+});
+
+Object.assign(MARKETING_COPY.pl, {
+  whatsNewTitle: "Co nowego w TidGo",
+  whatsNewBadge: "Nowe",
+  whatsNewIntake: "WhatsApp i email intake juz dzialaja: wysylaj zdjecia paragonow albo dokumenty bez otwierania aplikacji.",
+  whatsNewMtd: "TidGo testuje obecnie warstwe MTD connection/readiness, ale nadal skupia sie na porzadnych cyfrowych rekordach dla ksiegowego.",
+  whatsNewCta: "Zobacz wiecej po zalogowaniu.",
+  shareTidGo: "Udostepnij TidGo",
+  shareTitle: "TidGo",
+  shareText: "TidGo trzyma paragony, dowody przychodu i proste rekordy w porzadku dla self-employed i ksiegowych.",
+  shareCopied: "Link TidGo skopiowany.",
+  mtdTestingTitle: "Testy polaczenia MTD",
+  mtdTestingText: "TidGo testuje warstwe polaczenia MTD. Dzisiaj pomaga trzymac cyfrowe rekordy i kwartalne podsumowania; jeszcze nie wysyla deklaracji do HMRC.",
+  mtdLateTitle: "Termin kwartalnego update'u juz minal?",
+  mtdLateText: "Wedlug HMRC quarterly updates uzywaja sum narastajacych. Pozniejszy update moze objac dane z wczesniejszego kwartalu, ale spozniony termin nadal moze oznaczac penalty point. Zadaniem TidGo jest pomoc szybko uporzadkowac rekordy przed nastepnym przekazaniem.",
+  mtdSourceTitle: "Oficjalne zrodlo",
+  mtdSourceText: "Zrodlo: HMRC Developer Hub, Income Tax MTD end-to-end service guide dotyczacy quarterly updates i sum narastajacych.",
+  launchPricingFullText: "TidGo jest w early access dla malej grupy prawdziwych uzytkownikow. Jest darmowe, kiedy zbieramy feedback, poprawiamy aplikacje i testujemy MTD readiness. Platne plany sa spodziewane po testach early access, z prostym planem spodziewanym od £4.99 miesiecznie. Uzytkownicy dostana jasna informacje z wyprzedzeniem i zawsze beda mogli wyeksportowac albo usunac swoje rekordy.",
+  pricingText: "TidGo jest darmowe w trakcie early access. Jesli wprowadzimy platne plany, uzytkownicy dostana jasna informacje z wyprzedzeniem i zawsze beda mogli wyeksportowac albo usunac swoje rekordy."
+});
+
+Object.assign(MARKETING_COPY.ro, {
+  whatsNewTitle: "Ce este nou in TidGo",
+  whatsNewBadge: "Nou",
+  whatsNewIntake: "WhatsApp si email intake sunt disponibile: trimite poze cu bonuri sau documente fara sa deschizi aplicatia.",
+  whatsNewMtd: "TidGo testeaza acum stratul de conectare/readiness MTD, dar ramane concentrat pe evidente digitale ordonate pentru contabil.",
+  whatsNewCta: "Vezi mai multe dupa autentificare.",
+  shareTidGo: "Distribuie TidGo",
+  shareTitle: "TidGo",
+  shareText: "TidGo tine bonuri, dovezi de venit si evidente simple ordonate pentru self-employed si contabili.",
+  shareCopied: "Linkul TidGo a fost copiat.",
+  mtdTestingTitle: "Testare conexiune MTD",
+  mtdTestingText: "TidGo testeaza stratul de conectare MTD. Astazi te ajuta sa pastrezi evidente digitale si rezumate trimestriale; inca nu trimite declaratii fiscale la HMRC.",
+  mtdLateTitle: "Ai ratat un quarterly update?",
+  mtdLateText: "Ghidul HMRC spune ca quarterly updates folosesc totaluri cumulative. Un update ulterior poate include cifre dintr-un trimestru anterior, dar un termen ratat poate crea in continuare un penalty point. TidGo te ajuta sa readuci evidentele in ordine inainte de urmatorul handoff.",
+  mtdSourceTitle: "Sursa oficiala",
+  mtdSourceText: "Sursa: HMRC Developer Hub, Income Tax MTD end-to-end service guide pentru quarterly updates si obligatii cumulative.",
+  launchPricingFullText: "TidGo este in early access pentru un grup mic de utilizatori reali. Este gratuit cat timp strangem feedback, imbunatatim aplicatia si testam MTD readiness. Planurile platite sunt asteptate dupa early access, cu un plan simplu estimat de la £4.99/luna. Utilizatorii vor fi anuntati clar din timp si vor putea mereu exporta sau sterge inregistrarile.",
+  pricingText: "TidGo este gratuit in early access. Daca apar planuri platite, utilizatorii vor fi anuntati clar din timp si vor putea mereu exporta sau sterge inregistrarile."
+});
+
+Object.assign(MARKETING_COPY.lt, {
+  whatsNewTitle: "Kas naujo TidGo",
+  whatsNewBadge: "Nauja",
+  whatsNewIntake: "WhatsApp ir email intake jau veikia: siuskite kvitu nuotraukas ar dokumentus neatidarydami programeles.",
+  whatsNewMtd: "TidGo dabar testuoja MTD connection/readiness sluoksni, bet lieka susitelkes i tvarkingus skaitmeninius irasus buhalteriui.",
+  whatsNewCta: "Daugiau pamatysite prisijunge.",
+  shareTidGo: "Dalintis TidGo",
+  shareTitle: "TidGo",
+  shareText: "TidGo tvarko kvitus, pajamu irodymus ir paprastus irasus self-employed zmonems ir buhalteriams.",
+  shareCopied: "TidGo nuoroda nukopijuota.",
+  mtdTestingTitle: "MTD connection testavimas",
+  mtdTestingText: "TidGo testuoja MTD connection sluoksni. Siandien jis padeda laikyti skaitmeninius irasus ir ketvircio suvestines; dar neteikia deklaraciju HMRC.",
+  mtdLateTitle: "Praleidote quarterly update?",
+  mtdLateText: "HMRC gidas sako, kad quarterly updates naudoja kaupiamuosius totalus. Velesnis update gali itraukti ankstesnio ketvircio skaicius, bet praleistas terminas vis tiek gali sukelti penalty point. TidGo padeda vel sutvarkyti irasus iki kito perdavimo.",
+  mtdSourceTitle: "Oficialus saltinis",
+  mtdSourceText: "Saltinis: HMRC Developer Hub, Income Tax MTD end-to-end service guide apie quarterly updates ir cumulative obligations.",
+  launchPricingFullText: "TidGo yra early access mazai tikru vartotoju grupei. Programa nemokama, kol renkame atsiliepimus, geriname ja ir testuojame MTD readiness. Mokami planai numatomi po early access, paprastas planas numatomas nuo £4.99/men. Vartotojai bus aiskiai informuoti is anksto ir visada gales eksportuoti arba istrinti savo irasus.",
+  pricingText: "TidGo nemokama early access metu. Jei bus ivesti mokami planai, vartotojai bus aiskiai informuoti is anksto ir visada gales eksportuoti arba istrinti savo irasus."
+});
+
 const ACCOUNTANT_COPY = {
   en: {
     forAccountants: "TidGo for Accountants",
@@ -2261,6 +2341,70 @@ Object.assign(COPY.bg, {
   });
 });
 
+Object.assign(COPY.en, {
+  shareTidGo: "Share TidGo",
+  shareText: "TidGo keeps receipts, income proof and simple records tidy for self-employed people and accountants.",
+  shareCopied: "TidGo link copied.",
+  whatsappOnboardingTitle: "WhatsApp intake is available",
+  whatsappOnboardingText: "After you create your account, open Settings to connect WhatsApp. Then you can send receipt photos to TidGo without opening the app."
+});
+
+Object.assign(COPY.pl, {
+  shareTidGo: "Udostepnij TidGo",
+  shareText: "TidGo trzyma paragony, dowody przychodu i proste rekordy w porzadku dla self-employed i ksiegowych.",
+  shareCopied: "Link TidGo skopiowany.",
+  whatsappOnboardingTitle: "WhatsApp intake jest dostepny",
+  whatsappOnboardingText: "Po utworzeniu konta wejdz w Ustawienia i polacz WhatsApp. Potem mozesz wysylac zdjecia paragonow do TidGo bez otwierania aplikacji."
+});
+
+Object.assign(COPY.ro, {
+  shareTidGo: "Distribuie TidGo",
+  shareText: "TidGo tine bonuri, dovezi de venit si evidente simple ordonate pentru self-employed si contabili.",
+  shareCopied: "Linkul TidGo a fost copiat.",
+  whatsappOnboardingTitle: "WhatsApp intake este disponibil",
+  whatsappOnboardingText: "Dupa ce creezi contul, deschide Settings pentru a conecta WhatsApp. Apoi poti trimite poze cu bonuri catre TidGo fara sa deschizi aplicatia."
+});
+
+Object.assign(COPY.uk, {
+  shareTidGo: "Share TidGo",
+  shareText: "TidGo keeps receipts, income proof and simple records tidy for self-employed people and accountants.",
+  shareCopied: "TidGo link copied.",
+  whatsappOnboardingTitle: "WhatsApp intake is available",
+  whatsappOnboardingText: "After you create your account, open Settings to connect WhatsApp. Then you can send receipt photos to TidGo without opening the app."
+});
+
+Object.assign(COPY.lt, {
+  shareTidGo: "Dalintis TidGo",
+  shareText: "TidGo tvarko kvitus, pajamu irodymus ir paprastus irasus self-employed zmonems ir buhalteriams.",
+  shareCopied: "TidGo nuoroda nukopijuota.",
+  whatsappOnboardingTitle: "WhatsApp intake veikia",
+  whatsappOnboardingText: "Sukure paskyra atidarykite Settings ir prijunkite WhatsApp. Tada galesite siusti kvitu nuotraukas i TidGo neatidare programeles."
+});
+
+Object.assign(COPY.lv, {
+  shareTidGo: "Kopigot TidGo",
+  shareText: "TidGo uztur cekus, ienakumu pieradijumus un vienkarsus ierakstus kartiba self-employed cilvekiem un gramatveziem.",
+  shareCopied: "TidGo saite nokopeta.",
+  whatsappOnboardingTitle: "WhatsApp intake ir pieejams",
+  whatsappOnboardingText: "Pec konta izveides atveriet Settings, lai pieslegtu WhatsApp. Pec tam varat sutit ceku foto uz TidGo, neatverot lietotni."
+});
+
+Object.assign(COPY.es, {
+  shareTidGo: "Compartir TidGo",
+  shareText: "TidGo mantiene recibos, pruebas de ingreso y registros simples ordenados para self-employed y contables.",
+  shareCopied: "Enlace de TidGo copiado.",
+  whatsappOnboardingTitle: "WhatsApp intake esta disponible",
+  whatsappOnboardingText: "Despues de crear la cuenta, abre Settings para conectar WhatsApp. Luego podras enviar fotos de recibos a TidGo sin abrir la app."
+});
+
+Object.assign(COPY.bg, {
+  shareTidGo: "Share TidGo",
+  shareText: "TidGo keeps receipts, income proof and simple records tidy for self-employed people and accountants.",
+  shareCopied: "TidGo link copied.",
+  whatsappOnboardingTitle: "WhatsApp intake is available",
+  whatsappOnboardingText: "After you create your account, open Settings to connect WhatsApp. Then you can send receipt photos to TidGo without opening the app."
+});
+
 const LEGAL_TEXT = {
   en: {
     privacy: {
@@ -2910,6 +3054,7 @@ function pageCta() {
     <div class="marketing-page-actions">
       <a class="primary landing-link marketing-open-app" href="/app/">${mk("openApp")}</a>
       <a class="secondary landing-link marketing-open-portal" href="/accountant/">${mk("openPortal")}</a>
+      <button class="secondary landing-link marketing-share" type="button" data-action="shareTidGo">${mk("shareTidGo")}</button>
       <a class="secondary landing-link marketing-back-home" href="/">${mk("backHome")}</a>
     </div>
   `;
@@ -3573,6 +3718,27 @@ async function openWhatsAppConnect() {
   window.location.href = url;
 }
 
+async function shareTidGo() {
+  const marketingScreen = ["landing", "marketingPage", "appDemo", "accountantDemo"].includes(state.screen);
+  const title = marketingScreen ? mk("shareTitle") : "TidGo";
+  const text = marketingScreen ? mk("shareText") : t("shareText");
+  const url = `${location.origin || "https://tidgo.co.uk"}/`;
+  try {
+    if (navigator.share) {
+      await navigator.share({ title, text, url });
+      return;
+    }
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(url);
+      toast(marketingScreen ? mk("shareCopied") : t("shareCopied"));
+      return;
+    }
+    toast(url);
+  } catch (error) {
+    if (error?.name !== "AbortError") toast(marketingScreen ? mk("shareCopied") : t("shareCopied"));
+  }
+}
+
 async function loadAccountantClients(email = state.accountantPortalEmail) {
   const cleanEmail = (email || "").trim();
   if (!cleanEmail) {
@@ -3770,6 +3936,15 @@ function landing() {
             <h1>${mk("heroTitle")}</h1>
             <p>${mk("heroText")}</p>
           </div>
+          <section class="landing-news" aria-label="${escapeAttr(mk("whatsNewTitle"))}">
+            <span class="new-badge">${mk("whatsNewBadge")}</span>
+            <div>
+              <strong>${mk("whatsNewTitle")}</strong>
+              <span>${mk("whatsNewIntake")}</span>
+              <span>${mk("whatsNewMtd")}</span>
+              <small>${mk("whatsNewCta")}</small>
+            </div>
+          </section>
           <section class="landing-trust-strip" aria-label="TidGo basics">
             <span>${mk("trustSimple")}</span>
             <span>${mk("trustControl")}</span>
@@ -3824,6 +3999,7 @@ function landing() {
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2a8.5 8.5 0 0 0-7.2 13l-.9 3.4 3.5-.9A8.5 8.5 0 1 0 12 3.2Zm0 2a6.5 6.5 0 0 1 5.4 10.1 6.5 6.5 0 0 1-8.9 1.5l-.4-.2-1.5.4.4-1.5-.3-.4A6.5 6.5 0 0 1 12 5.2Zm-2.2 3.2c-.2 0-.5.1-.7.3-.3.3-.8.8-.8 1.9 0 1.1.8 2.2.9 2.3.1.2 1.6 2.5 3.9 3.4 1.9.8 2.3.6 2.7.6.4-.1 1.3-.5 1.5-1 .2-.5.2-.9.1-1-.1-.1-.2-.2-.5-.3l-1.5-.7c-.2-.1-.4-.1-.6.2l-.6.8c-.1.2-.3.2-.5.1-.3-.1-1-.4-1.8-1.1-.7-.6-1.1-1.4-1.3-1.6-.1-.2 0-.4.1-.5l.4-.5c.1-.1.2-.2.2-.4.1-.1.1-.3 0-.4l-.7-1.6c-.2-.4-.4-.4-.6-.4h-.2Z"/></svg>
                   </a>
                 </div>
+                <button class="secondary share-button" type="button" data-action="shareTidGo">${mk("shareTidGo")}</button>
                 <button class="primary" type="submit">${mk("sendMessage")}</button>
               </div>
             </form>
@@ -3945,6 +4121,20 @@ function marketingPage() {
         <h1>${mk("mtdTitle").replace(":", "")}</h1>
         <p class="marketing-lead">${mk("mtdLead")}</p>
         <p>${mk("mtdText")}</p>
+        <div class="marketing-card-grid mtd-highlight-grid">
+          <article>
+            <strong>${mk("mtdTestingTitle")}</strong>
+            <span>${mk("mtdTestingText")}</span>
+          </article>
+          <article>
+            <strong>${mk("mtdLateTitle")}</strong>
+            <span>${mk("mtdLateText")}</span>
+          </article>
+          <article>
+            <strong>${mk("mtdSourceTitle")}</strong>
+            <span>${mk("mtdSourceText")}</span>
+          </article>
+        </div>
         <div class="mtd-topic-grid marketing-topic-grid">
           ${mtdTopics().map(([titleKey, textKey, href]) => `
             <a class="marketing-topic" href="${href}">
@@ -4192,6 +4382,10 @@ function onboarding() {
         </div>
         <label class="field"><span>${t("email")}</span><input class="input" name="email" type="email" autocomplete="email" required></label>
         <p class="hint">${t("emailHint")}</p>
+        <div class="intake-card onboarding-whatsapp-note">
+          <strong>${t("whatsappOnboardingTitle")}</strong>
+          <span>${t("whatsappOnboardingText")}</span>
+        </div>
         ${shortPrivacyNoticeBlock(true)}
         <label class="check-row">
           <input type="checkbox" name="legal_agree" required>
@@ -4275,6 +4469,7 @@ function home() {
         <button class="action blue" data-action="expenseChoice"><span>${t("addExpense")}</span><small>${t("photoDone")}</small></button>
         <button class="action green" data-action="incomeForm"><span>${t("addIncome")}</span><small>${t("amountNote")}</small></button>
       </div>
+      <button class="secondary share-inline" type="button" data-action="shareTidGo">${t("shareTidGo")}</button>
       <div class="list">
         ${items.length ? visibleItems.map(itemRow).join("") : `<div class="empty">${t("empty")}</div>`}
         ${items.length > transactionLimit ? `<button class="link-btn see-all-btn" data-action="showMoreTransactions">${t("seeMore")}</button>` : ""}
@@ -4584,6 +4779,7 @@ function accountantLanding() {
           ` : ""}
         `}
       </form>
+      <button class="secondary share-inline" type="button" data-action="shareTidGo">${t("shareTidGo")}</button>
       <div class="card stack">
         <strong>${at("handoffTitle")}</strong>
         <span class="hint">${at("handoffText")}</span>
@@ -5603,6 +5799,10 @@ document.addEventListener("click", async (event) => {
     return;
   }
   if (action === "home") return go("home");
+  if (action === "shareTidGo") {
+    await shareTidGo();
+    return;
+  }
   if (action === "recover") return go("recover");
   if (action === "settings") return go("settings");
   if (action === "retryRefresh") {

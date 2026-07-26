@@ -476,6 +476,63 @@ button {
   margin-top: 12px;
 }
 
+.landing-news {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+  margin-top: 18px;
+  border: 1px solid rgba(34, 197, 94, 0.34);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(236, 253, 245, 0.98) 0%, rgba(239, 246, 255, 0.98) 100%);
+  color: #14532d;
+  padding: 14px 16px;
+  box-shadow: 0 16px 34px rgba(22, 163, 74, 0.12);
+}
+
+.landing-news div {
+  display: grid;
+  gap: 5px;
+}
+
+.landing-news strong {
+  color: var(--green-dark);
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.landing-news span,
+.landing-news small {
+  color: #14532d;
+  font-weight: 750;
+  line-height: 1.4;
+}
+
+.landing-news small {
+  color: var(--blue-dark);
+}
+
+.new-badge {
+  display: inline-grid;
+  place-items: center;
+  min-height: 30px;
+  border-radius: 999px;
+  background: var(--green);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 950;
+  letter-spacing: 0;
+  padding: 6px 10px;
+  box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.34);
+  animation: tidgoPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes tidgoPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.34); transform: translateY(0); }
+  50% { box-shadow: 0 0 0 8px rgba(22, 163, 74, 0); transform: translateY(-1px); }
+}
+
 .landing-trust-strip span {
   display: flex;
   align-items: center;
@@ -976,6 +1033,12 @@ button {
   color: var(--green);
 }
 
+.marketing-page-actions .marketing-share {
+  border-color: #bfdbfe;
+  background: #eff6ff;
+  color: var(--blue);
+}
+
 .marketing-page-actions .marketing-back-home {
   border-color: var(--green);
   background: var(--green);
@@ -1057,7 +1120,7 @@ button {
 
 .contact-submit-row {
   display: grid;
-  grid-template-columns: 140px minmax(0, 1fr);
+  grid-template-columns: 140px auto minmax(0, 1fr);
   align-items: center;
   column-gap: 14px;
 }
@@ -1066,6 +1129,21 @@ button {
   width: auto;
   min-width: 170px;
   justify-self: end;
+}
+
+.share-button,
+.share-inline {
+  white-space: nowrap;
+}
+
+.contact-submit-row .share-button {
+  justify-self: start;
+  width: auto;
+}
+
+.share-inline {
+  width: 100%;
+  margin-top: 12px;
 }
 
 .landing-contact textarea {
@@ -1127,6 +1205,15 @@ button {
   color: #14532d;
   font-weight: 750;
   line-height: 1.45;
+}
+
+.mtd-highlight-grid {
+  margin: 12px 0 6px;
+}
+
+.mtd-highlight-grid article:first-child {
+  border-color: rgba(34, 197, 94, 0.36);
+  background: linear-gradient(180deg, #ecfdf5 0%, #f8fbff 100%);
 }
 
 .landing-showcase-links {
@@ -2293,9 +2380,20 @@ button {
     grid-template-columns: minmax(0, 1fr);
   }
 
+  .contact-submit-row {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 10px;
+  }
+
   .contact-social {
     justify-content: flex-start;
-    width: 189px;
+    width: auto;
+  }
+
+  .contact-submit-row .share-button,
+  .contact-submit-row .primary {
+    width: 100%;
+    justify-self: stretch;
   }
 
   .cookie-consent {
