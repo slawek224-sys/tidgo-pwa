@@ -4,6 +4,16 @@ const FEEDBACK_EMAIL = "hello@tidgo.co.uk";
 const GA_MEASUREMENT_ID = "G-FTS1ZS0PF5";
 const CURRENCIES = ["GBP", "EUR", "USD", "PLN", "RON", "UAH", "BGN", "CZK", "HUF"];
 const CATEGORIES = ["food", "fuel", "tools", "transport", "other"];
+const UI_LOCALES = {
+  en: "en-GB",
+  pl: "pl-PL",
+  ro: "ro-RO",
+  uk: "uk-UA",
+  lt: "lt-LT",
+  lv: "lv-LV",
+  es: "es-ES",
+  bg: "bg-BG"
+};
 const LANGUAGES = {
   en: "English",
   pl: "Polski",
@@ -823,6 +833,13 @@ const COPY = {
     agreeLegal: "I agree to TidGo's Privacy Policy and Terms.",
     sendCodeAgain: "Send code again",
     codeSent: "Code sent. Check your email.",
+    codeSentIfExists: "Code sent if this email exists.",
+    validAmount: "Enter a valid amount.",
+    pdfLoading: "PDF tool is still loading. Try again in a few seconds.",
+    pdfCreateFailed: "Could not create PDF.",
+    pdfSavedNoShare: "PDF saved. Your browser cannot open phone sharing for files.",
+    openPdf: "Open PDF",
+    expensePdfUnsupported: "For now, expense upload needs an image or screenshot. PDF support needs backend storage.",
     hello: "Hello",
     summary: "Summaries",
     monthly: "Monthly",
@@ -947,6 +964,13 @@ const COPY = {
     agreeLegal: "Zgadzam sie z Polityka prywatnosci i Regulaminem TidGo.",
     sendCodeAgain: "Wyslij kod ponownie",
     codeSent: "Kod wyslany. Sprawdz email.",
+    codeSentIfExists: "Kod wyslany, jesli ten email istnieje.",
+    validAmount: "Wpisz poprawna kwote.",
+    pdfLoading: "Narzędzie PDF jeszcze sie laduje. Sprobuj za kilka sekund.",
+    pdfCreateFailed: "Nie udalo sie utworzyc PDF.",
+    pdfSavedNoShare: "PDF zapisany. Ta przegladarka nie moze otworzyc udostepniania plikow.",
+    openPdf: "Otworz PDF",
+    expensePdfUnsupported: "Na razie wydatek wymaga zdjecia albo screenshota. PDF wymaga jeszcze backend storage.",
     hello: "Czesc",
     summary: "Podsumowania",
     monthly: "Miesieczne",
@@ -3061,8 +3085,23 @@ async function restoreDeviceUser() {
   }
 }
 
+function uiLocale() {
+  return UI_LOCALES[state.language] || "en-GB";
+}
+
 function money(amount, currency = "GBP") {
-  return `${Number(amount || 0).toFixed(2)} ${currency || "GBP"}`;
+  const code = (currency || "GBP").toUpperCase();
+  const value = Number(amount || 0);
+  const options = {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  };
+  if (code === "GBP") {
+    const formatted = new Intl.NumberFormat(uiLocale(), options).format(Number.isFinite(value) ? value : 0);
+    return `£${formatted}`;
+  }
+  const formatted = new Intl.NumberFormat(uiLocale(), options).format(Number.isFinite(value) ? value : 0);
+  return `${formatted} ${code}`;
 }
 
 function appDate(value) {
@@ -3087,7 +3126,7 @@ function appDateKey(value) {
 }
 
 function day(value) {
-  return appDate(value).toLocaleDateString(undefined, { day: "2-digit", month: "short" });
+  return appDate(value).toLocaleDateString(uiLocale(), { day: "2-digit", month: "short" });
 }
 
 function dateInputValue(value) {
@@ -3106,7 +3145,7 @@ function anchorSummaryDateToMonthStart() {
 }
 
 function monthLabel(date = state.summaryDate) {
-  return date.toLocaleDateString(undefined, { month: "long", year: "numeric" });
+  return date.toLocaleDateString(uiLocale(), { month: "long", year: "numeric" });
 }
 
 function quarterRange(date = state.summaryDate) {
@@ -3161,7 +3200,7 @@ function periodLabel(date = state.summaryDate) {
 function periodRangeLabel(date = state.summaryDate) {
   if (state.summaryPeriod !== "quarter") return "";
   const range = quarterRange(date);
-  const format = (value) => value.toLocaleDateString(undefined, { day: "numeric", month: "short", year: "numeric" });
+  const format = (value) => value.toLocaleDateString(uiLocale(), { day: "numeric", month: "short", year: "numeric" });
   return `${format(range.start)} - ${format(range.end)}`;
 }
 
@@ -4319,7 +4358,7 @@ function incomeDetail() {
         ${recordDateNeedsReview(entry) ? dateReviewCard() : ""}
         <label class="field"><span>${t("date")}</span><input class="input" type="date" name="date" value="${dateInputValue(entry.timestamp || entry.created_at)}"></label>
         ${proofName ? `<div class="card muted">${t("proofAttached")}: ${escapeHtml(proofName)}</div>` : ""}
-        ${proofIsPdf && proofUrl ? `<a class="secondary proof-link" href="${escapeAttr(proofUrl)}" target="_blank" rel="noopener">${t("proofAttached")} - open PDF</a>` : ""}
+        ${proofIsPdf && proofUrl ? `<a class="secondary proof-link" href="${escapeAttr(proofUrl)}" target="_blank" rel="noopener">${t("proofAttached")} - ${t("openPdf")}</a>` : ""}
         ${proofImage ? imagePreviewButton(proofImage, t("proofAttached")) : ""}
         ${incomeProofPickerField(proofImage || proofName || proofUrl ? t("replaceProof") : t("attachProof"))}
         <button class="primary" type="submit">${t("save")}</button>
@@ -4949,7 +4988,7 @@ function monthKey(date) {
 }
 
 function shortMonthLabel(date) {
-  return appDate(date).toLocaleDateString(undefined, { month: "short", year: "numeric" });
+  return appDate(date).toLocaleDateString(uiLocale(), { month: "short", year: "numeric" });
 }
 
 function recentMonthStats(count = 6) {
@@ -5045,7 +5084,7 @@ function accountantClientCsv() {
 function createAccountantClientPdfFile() {
   const jsPdf = window.jspdf?.jsPDF;
   if (!jsPdf) {
-    throw new Error("PDF tool is still loading. Try again in a few seconds.");
+    throw new Error(t("pdfLoading"));
   }
 
   const client = (state.accountantClients || []).find((item) => item.user_id === state.accountantSelectedClientId);
@@ -5232,7 +5271,7 @@ function go(screen) {
 async function uploadReceipt(file, isClientExpense) {
   if (!file || !state.user?.id) return;
   if (!file.type?.startsWith("image/")) {
-    toast("For now, expense upload needs an image or screenshot. PDF support needs backend storage.");
+    toast(t("expensePdfUnsupported"));
     return;
   }
   setBusy(true);
@@ -5265,7 +5304,7 @@ async function uploadReceipt(file, isClientExpense) {
 async function replaceReceiptImage(file) {
   if (!file || !state.user?.id || !state.selected) return;
   if (!file.type?.startsWith("image/")) {
-    toast("For now, expense upload needs an image or screenshot. PDF support needs backend storage.");
+    toast(t("expensePdfUnsupported"));
     return;
   }
   const oldReceiptId = state.selected;
@@ -5352,7 +5391,7 @@ function buildPrintHtml() {
 async function createSummaryPdfFile() {
   const jsPdf = window.jspdf?.jsPDF;
   if (!jsPdf) {
-    throw new Error("PDF tool is still loading. Try again in a few seconds.");
+    throw new Error(t("pdfLoading"));
   }
 
   const doc = new jsPdf({ unit: "pt", format: "a4" });
@@ -5694,7 +5733,7 @@ document.addEventListener("click", async (event) => {
       URL.revokeObjectURL(url);
       toast("Client PDF downloaded.");
     } catch (error) {
-      toast(error.message || "Could not create PDF.");
+      toast(error.message || t("pdfCreateFailed"));
     }
     return;
   }
@@ -5865,10 +5904,10 @@ document.addEventListener("click", async (event) => {
         link.download = file.name;
         link.click();
         URL.revokeObjectURL(url);
-        toast("PDF saved. Your browser cannot open phone sharing for files.");
+        toast(t("pdfSavedNoShare"));
       }
     } catch (error) {
-      toast(error.message || "Could not create PDF.");
+      toast(error.message || t("pdfCreateFailed"));
     } finally {
       setBusy(false);
     }
@@ -6106,7 +6145,7 @@ document.addEventListener("submit", async (event) => {
       const submitter = event.submitter?.value;
       if (submitter === "request") {
         await api("/api/auth/recovery/request", { method: "POST", body: JSON.stringify({ email: data.email }) });
-        return toast("Code sent if this email exists.");
+        return toast(t("codeSentIfExists"));
       }
       const user = await api("/api/auth/recovery/verify", { method: "POST", body: JSON.stringify({ email: data.email, code: data.code }) });
       state.language = user.language || state.language;
@@ -6123,7 +6162,7 @@ document.addEventListener("submit", async (event) => {
     if (form.id === "receiptForm") {
       const category = document.querySelector("[data-category].active")?.dataset.category || "other";
       const amount = normalizeAmount(data.amount);
-      if (!Number.isFinite(amount) || amount < 0) throw new Error("Enter a valid amount.");
+      if (!Number.isFinite(amount) || amount < 0) throw new Error(t("validAmount"));
       const updatedReceipt = await api(`/api/receipts/${state.selected}`, {
         method: "PATCH",
         body: JSON.stringify({
@@ -6140,7 +6179,7 @@ document.addEventListener("submit", async (event) => {
     }
     if (form.id === "incomeCreateForm") {
       const amount = normalizeAmount(data.amount);
-      if (!Number.isFinite(amount) || amount <= 0) throw new Error("Enter a valid amount.");
+      if (!Number.isFinite(amount) || amount <= 0) throw new Error(t("validAmount"));
       const created = await api("/api/income", {
         method: "POST",
         body: JSON.stringify({
@@ -6173,7 +6212,7 @@ document.addEventListener("submit", async (event) => {
     }
     if (form.id === "incomeEditForm") {
       const amount = normalizeAmount(data.amount);
-      if (!Number.isFinite(amount) || amount <= 0) throw new Error("Enter a valid amount.");
+      if (!Number.isFinite(amount) || amount <= 0) throw new Error(t("validAmount"));
       const updated = await api(`/api/income/${state.selected}`, {
         method: "PATCH",
         body: JSON.stringify({ amount, currency: data.currency, description: data.description || null })
