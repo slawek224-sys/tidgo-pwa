@@ -4,19 +4,45 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#1E40AF" />
-    <meta name="description" content="Preview the TidGo app flow before signing in: capture receipts, review details and create simple summaries." />
+    <meta name="description" content="Preview the TidGo app flow before signing in: capture receipts, review details and create simple summaries for self-employed records." />
     <meta name="robots" content="index,follow" />
     <link rel="canonical" href="https://tidgo.co.uk/app-demo/" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="TidGo" />
     <meta property="og:title" content="TidGo app demo - Receipt capture flow" />
-    <meta property="og:description" content="Preview the TidGo app flow before signing in: capture receipts, review details and create simple summaries." />
+    <meta property="og:description" content="Preview the TidGo app flow before signing in: capture receipts, review details and create simple summaries for self-employed records." />
     <meta property="og:url" content="https://tidgo.co.uk/app-demo/" />
     <meta property="og:image" content="https://tidgo.co.uk/assets/demo/landing-receipts-banner.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="TidGo app demo - Receipt capture flow" />
-    <meta name="twitter:description" content="Preview the TidGo app flow before signing in: capture receipts, review details and create simple summaries." />
+    <meta name="twitter:description" content="Preview the TidGo app flow before signing in: capture receipts, review details and create simple summaries for self-employed records." />
     <meta name="twitter:image" content="https://tidgo.co.uk/assets/demo/landing-receipts-banner.png" />
+    <script type="application/ld+json">
+{
+    "@context":  "https://schema.org",
+    "@type":  "SoftwareApplication",
+    "name":  "TidGo",
+    "alternateName":  "TidGo receipt records app",
+    "applicationCategory":  "BusinessApplication",
+    "operatingSystem":  "Web, Android, iOS planned",
+    "url":  "https://tidgo.co.uk/",
+    "image":  "https://tidgo.co.uk/assets/demo/landing-receipts-banner.png",
+    "description":  "Preview the TidGo app flow before signing in: capture receipts, review details and create simple summaries for self-employed records.",
+    "offers":  {
+                   "@type":  "Offer",
+                   "price":  "4.99",
+                   "priceCurrency":  "GBP",
+                   "availability":  "https://schema.org/PreOrder",
+                   "description":  "Free during early access. Planned simple pricing from £4.99/month after early access, with clear notice before paid plans apply."
+               },
+    "publisher":  {
+                      "@type":  "Organization",
+                      "name":  "TidGo Ltd",
+                      "url":  "https://tidgo.co.uk/",
+                      "email":  "hello@tidgo.co.uk"
+                  }
+}
+    </script>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="TidGo" />
@@ -24,7 +50,7 @@
     <link rel="manifest" href="/manifest.json" />
     <link rel="icon" href="/icon-192.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="stylesheet" href="/styles.css?v=tidgo-seo-1" />
+    <link rel="stylesheet" href="/styles.css?v=tidgo-seo-2" />
   </head>
   <body>
     <div id="app">
@@ -35,11 +61,12 @@
           <h1>TidGo app demo</h1>
           <p>See the self-employed receipt flow before signing in. TidGo is built around one simple habit: take the photo now, send a cleaner pack later.</p>
           <ul>
-            <li>Receipt photos, income proof and summaries in one place.</li>
+            <li>Receipt photos, CIS documents, income proof and summaries in one place.</li>
             <li>WhatsApp and email intake for easier document collection.</li>
             <li>Read-only accountant portal and PDF/CSV packs.</li>
+            <li>Free during early access; planned simple pricing from £4.99/month after launch.</li>
           </ul>
-          <p class="seo-note">TidGo is simple record-keeping software. It does not submit tax returns to HMRC and does not replace professional tax or accounting advice.</p>
+          <p class="seo-note">TidGo helps with simple Making Tax Digital record preparation. It does not submit tax returns to HMRC and does not replace professional tax or accounting advice.</p>
           <nav class="seo-links" aria-label="TidGo links">
             <a href="/app/">Open app</a>
             <a href="/accountant/">Open accountant portal</a>
@@ -52,6 +79,6 @@
     <input id="expensePhotoPicker" class="hidden" type="file" accept="image/*" capture="environment" />
     <input id="expenseFilePicker" class="hidden" type="file" accept="image/*,.pdf" />
     <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
-    <script type="module" src="/app.js?v=tidgo-seo-1"></script>
+    <script type="module" src="/app.js?v=tidgo-seo-2"></script>
   </body>
 </html>
