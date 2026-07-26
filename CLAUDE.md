@@ -29,3 +29,23 @@ Each top-level folder is a standalone page (own `index.html`), e.g.: `accountant
 
 ### Switching between agents (Claude Code / Codex)
 If you're picking this up after the other tool worked on it: run `git log --oneline -15` and read this file before making changes. Check `git branch -a` for in-progress branches from the other agent. Don't assume you know the latest state.
+
+### Git workflow (multi-machine / multi-agent)
+This project gets worked on from more than one machine and by more than one agent (Claude Code and Codex). GitHub is the only bridge between them - never copy the project folder or a ZIP between machines, always go through git.
+
+Before starting any work, always run:
+```
+git pull
+git status
+```
+If `git status` shows uncommitted changes, stop and flag it to the user before proceeding - it likely means another agent or machine has unfinished work that has not been pushed yet.
+
+After finishing a change, always run:
+```
+git add .
+git commit -m "short description of the change"
+git push
+```
+
+Golden rule: only one agent/machine works on this repo at a time ("one worker at a time"). Do not start new work on top of an unpushed, uncommitted state.
+
