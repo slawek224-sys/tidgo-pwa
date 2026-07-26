@@ -1,0 +1,13 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Env / secrets (none currently used by this static site, but reserved for future use)
+.env
+.env.*
+!.env.example
+
+# In case any tooling gets added later
+node_modules/
