@@ -3927,7 +3927,7 @@ function render() {
 }
 
 function qrCodeUrl(target) {
-  return `https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=12&data=${encodeURIComponent(target)}`;
+  return `https://api.qrserver.com/v1/create-qr-code/?size=280x280&margin=12&data=${encodeURIComponent(target)}`;
 }
 
 function landingSocialLinks() {
@@ -3968,8 +3968,8 @@ function landing() {
             <span class="new-badge">${mk("whatsNewBadge")}</span>
             <div>
               <strong>${mk("whatsNewTitle")}</strong>
-              <span>${mk("whatsNewIntake")}</span>
-              <span>${mk("whatsNewMtd")}</span>
+              <span class="landing-news-line landing-news-intake">${mk("whatsNewIntake")}</span>
+              <span class="landing-news-line landing-news-mtd">${mk("whatsNewMtd")}</span>
               <small>${mk("whatsNewCta")}</small>
             </div>
           </section>
@@ -4489,7 +4489,7 @@ function home() {
         <button class="action blue" data-action="expenseChoice"><span>${t("addExpense")}</span><small>${t("photoDone")}</small></button>
         <button class="action green" data-action="incomeForm"><span>${t("addIncome")}</span><small>${t("amountNote")}</small></button>
       </div>
-      <button class="secondary share-inline" type="button" data-action="shareTidGo">${t("shareTidGo")}</button>
+      <button class="secondary share-inline app-share-button" type="button" data-action="shareTidGo">${t("shareTidGo")}</button>
       <div class="list">
         ${items.length ? visibleItems.map(itemRow).join("") : `<div class="empty">${t("empty")}</div>`}
         ${items.length > transactionLimit ? `<button class="link-btn see-all-btn" data-action="showMoreTransactions">${t("seeMore")}</button>` : ""}
@@ -4789,7 +4789,7 @@ function accountantLanding() {
         ${state.accountantPortalEmail ? `
           <div class="grid-2">
             <button class="primary" type="button" data-action="openAccountantClientList">${at("openClientList")}</button>
-            <button class="secondary" type="button" data-action="signOutAccountant">${at("signOut")}</button>
+            <button class="secondary accountant-signout-button" type="button" data-action="signOutAccountant">${at("signOut")}</button>
           </div>
         ` : `
           <button class="primary" type="submit" name="step" value="request">${at("sendLoginCode")}</button>
@@ -4799,7 +4799,7 @@ function accountantLanding() {
           ` : ""}
         `}
       </form>
-      <button class="secondary share-inline" type="button" data-action="shareTidGo">${t("shareTidGo")}</button>
+      <button class="secondary share-inline accountant-share-button" type="button" data-action="shareTidGo">${t("shareTidGo")}</button>
       <div class="card stack">
         <strong>${at("handoffTitle")}</strong>
         <span class="hint">${at("handoffText")}</span>

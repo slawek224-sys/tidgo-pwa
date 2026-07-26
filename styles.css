@@ -502,11 +502,26 @@ button {
   line-height: 1.2;
 }
 
-.landing-news span,
+.landing-news-line,
 .landing-news small {
   color: #14532d;
   font-weight: 750;
   line-height: 1.4;
+}
+
+.landing-news-line {
+  display: block;
+}
+
+.landing-news-intake {
+  color: #14532d;
+}
+
+.landing-news-mtd {
+  margin-top: 5px;
+  border-top: 1px solid rgba(30, 64, 175, 0.14);
+  padding-top: 7px;
+  color: #1e3a8a;
 }
 
 .landing-news small {
@@ -629,17 +644,17 @@ button {
   display: flex;
   align-items: center;
   justify-items: center;
-  gap: 10px;
+  gap: 12px;
   width: 100%;
   border: 1px solid #dbeafe;
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.86);
-  padding: 10px;
+  padding: 12px;
 }
 
 .qr-code {
-  width: 92px;
-  height: 92px;
+  width: 124px;
+  height: 124px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: #fff;
@@ -1161,6 +1176,37 @@ button {
 .share-inline {
   width: 100%;
   margin-top: 12px;
+}
+
+.app-share-button,
+.accountant-share-button {
+  border-color: var(--client-line);
+  background: var(--client-soft);
+  color: var(--green);
+  font-weight: 900;
+}
+
+.app-share-button:hover,
+.app-share-button:focus-visible,
+.accountant-share-button:hover,
+.accountant-share-button:focus-visible {
+  border-color: rgba(22, 163, 74, 0.42);
+  background: #dcfce7;
+  color: var(--green-dark);
+}
+
+.accountant-signout-button {
+  border-color: var(--green);
+  background: var(--green);
+  color: #fff;
+  font-weight: 900;
+}
+
+.accountant-signout-button:hover,
+.accountant-signout-button:focus-visible {
+  border-color: var(--green-dark);
+  background: var(--green-dark);
+  color: #fff;
 }
 
 .landing-contact textarea {
@@ -2384,8 +2430,8 @@ button {
   }
 
   .qr-code {
-    width: 94px;
-    height: 94px;
+    width: 112px;
+    height: 112px;
   }
 
   .landing-strip {
