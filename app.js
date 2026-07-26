@@ -5142,7 +5142,29 @@ function sortTime(value) {
   return Number.isNaN(time) ? 0 : time;
 }
 
+function dateReviewStorageKey() {
+  return `rb_date_review_confirmed_${state.user?.id || "guest"}`;
+}
+
+function dateReviewConfirmedIds() {
+  const ids = read(dateReviewStorageKey(), []);
+  return Array.isArray(ids) ? ids.map(String) : [];
+}
+
+function dateReviewConfirmed(item = {}) {
+  const id = item.id || item._id || item.receipt_id || item.receiptId;
+  return Boolean(id && dateReviewConfirmedIds().includes(String(id)));
+}
+
+function rememberDateReviewConfirmed(id) {
+  if (!id) return;
+  const ids = new Set(dateReviewConfirmedIds());
+  ids.add(String(id));
+  write(dateReviewStorageKey(), Array.from(ids).slice(-500));
+}
+
 function recordDateNeedsReview(item = {}) {
+  if (dateReviewConfirmed(item)) return false;
   return Boolean(
     item.date_needs_review ||
     item.dateNeedsReview ||
@@ -6418,6 +6440,7 @@ document.addEventListener("submit", async (event) => {
         })
       });
       await refresh();
+      rememberDateReviewConfirmed(state.selected);
       state.receipts = state.receipts.map((item) => item.id === state.selected ? clearDateReviewFields({ ...item, ...updatedReceipt }) : item);
       focusSummaryOnRecord(state.receipts.find((item) => item.id === state.selected) || clearDateReviewFields(updatedReceipt));
       toast(t("saved"));
