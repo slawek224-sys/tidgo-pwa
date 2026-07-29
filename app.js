@@ -1,4 +1,4 @@
-const API_BASE = "https://donezo-api-53t9.onrender.com";
+﻿const API_BASE = "https://donezo-api-53t9.onrender.com";
 const TIDGO_WHATSAPP_NUMBER = "447466382511";
 const FEEDBACK_EMAIL = "hello@tidgo.co.uk";
 const GA_MEASUREMENT_ID = "G-FTS1ZS0PF5";
@@ -2558,13 +2558,13 @@ const FULL_LEGAL_MARKDOWN = {
 **Last updated:** 22 July 2026
 **Version:** 0.9 — Closed Testing / Beta
 
-> **Beta notice:** TidGo is currently in closed testing (Google Play closed testing) and the PWA is under continuous development until the service is formally launched as a subscription product. This policy reflects how we handle your data **today**. It will be updated with registered company details and final infrastructure information before public launch.
+> **Beta notice:** TidGo is currently in closed testing (Google Play closed testing) and the PWA is under continuous development until the service is formally launched as a subscription product. This policy reflects how we handle your data during closed testing. We will review and update it before public launch if our infrastructure or processing activities change.
 
 ## 1. Who we are
 
 TidGo ("TidGo", "we", "us", "our") is a record-keeping app designed for **self-employed individuals, sole traders, landlords, and individuals with simple income and expense records** (including those keeping records under Making Tax Digital). It helps you collect receipt photos and income proof documents, and produce simple monthly or quarterly summaries.
 
-TidGo is designed for **simple record-keeping only**. It does not support limited company accounts, VAT returns, payroll or corporation tax. If you need any of these, please use appropriate accounting software.
+TidGo is **record-keeping software supporting an accountant-led workflow**. It is not a full accounting system, tax filing service or substitute for an accountant. It does not support limited company accounts, VAT returns, payroll or corporation tax.
 
 TidGo is **not** accounting software, **not** tax advice, and does **not** submit tax returns to HMRC or any tax authority.
 
@@ -2621,10 +2621,10 @@ We do **not** sell your personal data. We do **not** use WhatsApp for marketing 
 
 We use trusted third-party providers to run TidGo. They process data on our behalf under contractual safeguards:
 
-- **MongoDB Atlas** — database storage for account data, records and extracted receipt details. During the current testing phase, receipt and income proof images are also stored here as compressed image data. Hosted on **AWS, Ireland (eu-west-1)** — data remains within the EU/EEA, no international transfer applies. Note: automated Atlas backups are currently inactive during the testing phase; the backup retention policy will be updated when backups are enabled before production launch.
+- **MongoDB Atlas** — database storage for account data, structured record details and extracted receipt data. Hosted on **AWS, Ireland (eu-west-1)** — data remains within the EU/EEA, no international transfer applies. Note: automated Atlas backups are currently inactive during the testing phase; the backup retention policy will be updated when backups are enabled before production launch.
 - **Render** — application hosting and API (backend). Hosted in **Oregon, United States**. International transfer applies — covered by Render's Data Processing Agreement incorporating SCCs with the UK Addendum.
 - **OpenAI (API)** — receipt reading (OCR) and classification. US-based — international transfer safeguards apply (see Section 5). API data is not used to train OpenAI's models by default; abuse-monitoring logs are retained for up to 30 days.
-- **IONOS** (IONOS Cloud Limited) — domain and email forwarding for tidgo.co.uk. Data processed in the **UK or EEA**. Covered by IONOS Data Processing Agreement v2.0 (03/2026), subject to English law. IONOS holds ISO 27001 certification. No international transfer applies.
+- **IONOS** (IONOS Cloud Limited) — domain registration and administrative email services for tidgo.co.uk. Data processed in the **UK or EEA**. Covered by IONOS Data Processing Agreement v2.0 (03/2026), subject to English law. IONOS holds ISO 27001 certification. No international transfer applies.
 - **Resend** — outbound service and account recovery emails, and inbound email receiving (emails sent to our intake address are received by Resend and delivered to our backend via webhook). US-based — certified under the **EU-US Data Privacy Framework (DPF) and UK Extension to the EU-US DPF**, and SOC 2 and GDPR compliant. DPA available at resend.com/legal/dpa.
 - **Scaleway Object Storage (EU)** — stores receipt photos, income proof documents and generated PDF reports. Scaleway is a French company (Scaleway S.A.S., Paris) — all services are located within the European Union by default; no international transfer applies. When you view a receipt or download a report, our backend generates a short-lived signed URL; your device downloads the file directly from Scaleway without passing through our application servers. When you generate a monthly or quarterly PDF report, TidGo may temporarily retrieve stored receipt and proof files from Scaleway to create the report. Generated reports may also be stored in Scaleway so they can be downloaded again without regenerating them. Covered by Scaleway Data Processing Agreement (version June 1st, 2024), governed by French law.
 - **Meta / WhatsApp** — WhatsApp message and document intake, only if you choose to connect WhatsApp. Your use of WhatsApp is also governed by WhatsApp's own terms and privacy policy.
@@ -2643,7 +2643,7 @@ Some of our providers process data outside the UK. Our database (MongoDB Atlas) 
 - **Resend** (email) — certified under the EU-US Data Privacy Framework and **UK Extension to the EU-US DPF**
 - **Meta** (WhatsApp, where applicable) — transfers covered by Meta's Data Processing Terms (effective 23 August 2025) incorporating the **UK Data Transfer Addendum** for UK GDPR transfers
 
-All providers have Data Processing Agreements in place with appropriate safeguards for UK GDPR compliance.
+Each provider listed above has a Data Processing Agreement or equivalent data processing terms in place, providing appropriate safeguards for UK GDPR compliance.
 
 Where data is transferred outside the UK, we rely on safeguards recognised under UK law, such as UK adequacy regulations, the UK Extension to the EU–US Data Privacy Framework, or the UK International Data Transfer Agreement / Addendum (IDTA), as applicable to each provider.
 
@@ -2693,7 +2693,7 @@ You can add documents to your TidGo account in several ways:
 
 - We use the sender email address solely to match the incoming message and its attachments to the correct TidGo account.
 - Emails and attachments are processed only to add the documents to your account; the intake channel is not used for marketing.
-- Incoming emails to our intake address are routed via IONOS (email forwarding) and Resend (inbound email receiving), then delivered to our backend. See Section 4 for details of these providers.
+- IONOS provides domain registration for tidgo.co.uk. Resend receives emails sent to our intake address and delivers them securely to our backend. See Section 4 for details of these providers.
 
 ## 10. Security
 
@@ -2703,7 +2703,7 @@ We take reasonable technical and organisational measures to protect your data:
 - Data is stored with reputable third-party cloud providers.
 - We implement appropriate technical and organisational security measures to protect your data, including: encrypted connections (HTTPS/TLS 1.2 or higher) for all data in transit; encryption at rest using AES for stored data; access controls based on the principle of least privilege; and multi-factor authentication where technically feasible. Our hosting provider (Render) holds annual SOC 2 and ISO 27001 certifications and conducts independent third-party security testing. No system is 100% secure; if we become aware of a breach affecting your data, we will notify you and the ICO as required by law.
 
-No system is 100% secure. Please do not upload documents you do not want stored in TidGo.
+
 
 ## 11. Your rights
 
@@ -2753,8 +2753,7 @@ This Privacy Policy is governed by the laws of **England and Wales**. Any disput
 
 Questions, requests or complaints:
 **hello@tidgo.co.uk** / **support@tidgo.co.uk**
-128 City Road, London, EC1V 2NX
-`,
+128 City Road, London, EC1V 2NX`,
   terms: `# TidGo Terms & Conditions
 
 **Last updated:** 22 July 2026
@@ -2788,7 +2787,7 @@ TidGo does not decide whether an expense is tax deductible, whether your records
 
 ## 3. Eligibility
 
-You must be at least **18 years old** and capable of entering into a binding contract to use TidGo. TidGo is intended for business use by self-employed individuals, sole traders and small businesses.
+You must be at least **18 years old** and capable of entering into a binding contract to use TidGo. TidGo is intended for self-employed individuals, sole traders, landlords and other unincorporated users with simple income and expense records.
 
 ## 4. Your account
 
@@ -2899,8 +2898,7 @@ These Terms are governed by the laws of **England and Wales**. Any disputes aris
 
 Questions about these Terms:
 **hello@tidgo.co.uk** / **support@tidgo.co.uk**
-128 City Road, London, EC1V 2NX
-`
+128 City Road, London, EC1V 2NX`
 };
 
 const INCOME_SOURCE_KEYS = ["self_employed", "cis", "landlord", "paye_side", "other"];
