@@ -4606,13 +4606,12 @@ function adminLanding() {
   shell(`
     <section class="screen admin-screen">
       <div class="admin-hero">
-        <span class="eyebrow">TidGo admin</span>
-        <h1>User control room</h1>
-        <p>Manage trials, free access, lifetime users and account status. Backend admin auth must protect every action before production use.</p>
+        <span class="eyebrow">TidGo Admin</span>
+        <h1>Control Room</h1>
       </div>
       <form class="card stack admin-login-card" id="adminLoginForm">
-        <h2>Admin access</h2>
-        <span class="hint">${state.adminEmail ? `Signed in as ${escapeHtml(state.adminEmail)}` : "Enter an approved admin email. Backend should only send codes to emails listed in ADMIN_EMAILS."}</span>
+        <h2>${state.adminEmail && state.adminToken ? "Admin Access" : "Sign in"}</h2>
+        ${state.adminEmail && state.adminToken ? `<span class="hint">Signed in as ${escapeHtml(state.adminEmail)}</span>` : ""}
         ${state.adminEmail && state.adminToken ? `
           <div class="total-row"><span>Admin email</span><strong>${escapeHtml(state.adminEmail)}</strong></div>
           <div class="button-row">
@@ -4649,12 +4648,7 @@ function adminLanding() {
             ${filtered.length ? filtered.map(adminUserCard).join("") : `<div class="empty">${users.length ? "No users match this search." : "No users loaded yet."}</div>`}
           </div>
         </section>
-      ` : `
-        <section class="card stack">
-          <h2>Backend contract</h2>
-          <p class="hint">Needed endpoints: request code, verify code, list users and update user plan/status. The backend must decide access; the PWA only displays the panel.</p>
-        </section>
-      `}
+      ` : ""}
     </section>
   `);
 }
