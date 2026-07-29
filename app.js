@@ -2918,6 +2918,13 @@ const state = {
   accountantSelectedClientId: null,
   accountantClientListOpen: false,
   accountantClientSearch: "",
+  adminEmail: read("tg_admin_email", ""),
+  adminPendingEmail: read("tg_admin_pending_email", ""),
+  adminCodeSent: false,
+  adminToken: sessionStorage.getItem("tg_admin_token") || "",
+  adminUsers: [],
+  adminError: "",
+  adminSearch: "",
   whatsappChangeCodeSent: false,
   whatsappChangeUnlocked: false,
   whatsappChangeOpen: false,
@@ -2971,6 +2978,10 @@ function isAccountantDemoRoute() {
   return location.pathname.replace(/\/+$/, "") === "/accountant-demo";
 }
 
+function isAdminRoute() {
+  return location.pathname.replace(/\/+$/, "") === "/admin";
+}
+
 function marketingPageSlug() {
   const path = location.pathname.replace(/\/+$/, "") || "/";
   const routes = {
@@ -3001,10 +3012,11 @@ function isMarketingPageRoute() {
 }
 
 function isLandingRoute() {
-  return !isAccountantRoute() && !isAppRoute() && !isAppDemoRoute() && !isAccountantDemoRoute() && !isMarketingPageRoute();
+  return !isAccountantRoute() && !isAppRoute() && !isAppDemoRoute() && !isAccountantDemoRoute() && !isAdminRoute() && !isMarketingPageRoute();
 }
 
 function initialScreen() {
+  if (isAdminRoute()) return "adminLanding";
   if (isAccountantRoute()) return "accountantLanding";
   if (isAppDemoRoute()) return "appDemo";
   if (isAccountantDemoRoute()) return "accountantDemo";
@@ -3814,6 +3826,73 @@ async function loadAccountantClients(email = state.accountantPortalEmail) {
   return state.accountantClients;
 }
 
+async function adminApi(path, options = {}) {
+  const headers = {
+    ...(state.adminToken ? { Authorization: `Bearer ${state.adminToken}` } : {}),
+    ...(options.headers || {})
+  };
+  return api(path, { ...options, headers });
+}
+
+async function requestAdminCode(email) {
+  const cleanEmail = (email || "").trim();
+  if (!cleanEmail) throw new Error("Enter admin email");
+  await api("/api/admin/auth/request", {
+    method: "POST",
+    body: JSON.stringify({ email: cleanEmail })
+  });
+  state.adminPendingEmail = cleanEmail;
+  state.adminCodeSent = true;
+  write("tg_admin_pending_email", cleanEmail);
+}
+
+async function verifyAdminCode(email, code) {
+  const cleanEmail = (email || "").trim();
+  const cleanCode = (code || "").trim();
+  if (!cleanEmail) throw new Error("Enter admin email");
+  if (!cleanCode) throw new Error("Enter login code");
+  const response = await api("/api/admin/auth/verify", {
+    method: "POST",
+    body: JSON.stringify({ email: cleanEmail, code: cleanCode })
+  });
+  state.adminEmail = response.admin_email || cleanEmail;
+  state.adminPendingEmail = "";
+  state.adminCodeSent = false;
+  state.adminToken = response.token || "";
+  state.adminError = "";
+  write("tg_admin_email", state.adminEmail);
+  forget("tg_admin_pending_email");
+  if (state.adminToken) sessionStorage.setItem("tg_admin_token", state.adminToken);
+  return loadAdminUsers();
+}
+
+async function loadAdminUsers() {
+  const users = await adminApi("/api/admin/users");
+  state.adminUsers = Array.isArray(users) ? users : (users?.users || []);
+  state.adminError = "";
+  return state.adminUsers;
+}
+
+function adminUserPatchFromForm(data) {
+  return {
+    account_plan: data.account_plan || "early_access",
+    account_status: data.account_status || "active",
+    free_until: data.free_until || null,
+    lifetime_free: Boolean(data.lifetime_free),
+    admin_notes: data.admin_notes || ""
+  };
+}
+
+async function updateAdminUser(userId, data) {
+  if (!userId) throw new Error("Missing user id");
+  const updated = await adminApi(`/api/admin/users/${encodeURIComponent(userId)}`, {
+    method: "PATCH",
+    body: JSON.stringify(adminUserPatchFromForm(data))
+  });
+  state.adminUsers = state.adminUsers.map((user) => String(user.id || user.user_id || user._id) === String(userId) ? { ...user, ...updated } : user);
+  return updated;
+}
+
 async function requestAccountantCode(email) {
   const cleanEmail = (email || "").trim();
   if (!cleanEmail) throw new Error("Enter accountant email");
@@ -3945,7 +4024,7 @@ function serverUnavailableCard() {
 }
 
 function render() {
-  const publicScreens = ["landing", "marketingPage", "appDemo", "accountantDemo", "accountantLanding", "accountantDemoClient"];
+  const publicScreens = ["landing", "marketingPage", "appDemo", "accountantDemo", "accountantLanding", "accountantDemoClient", "adminLanding"];
   const legalScreens = ["legalConsent", "privacy", "terms"];
   if (!publicScreens.includes(state.screen) && !state.user) {
     state.screen = state.screen === "recover" || state.screen === "verifySignup" ? state.screen : "onboarding";
@@ -3961,6 +4040,7 @@ function render() {
     accountantDemo,
     accountantLanding,
     accountantDemoClient,
+    adminLanding,
     onboarding,
     legalConsent,
     verifySignup,
@@ -4444,6 +4524,139 @@ function accountantDemo() {
     mk("accountantTitle"),
     "web"
   );
+}
+
+function adminMetric(label, value) {
+  return `
+    <div class="admin-metric">
+      <span>${escapeHtml(label)}</span>
+      <strong>${escapeHtml(value)}</strong>
+    </div>
+  `;
+}
+
+function adminUserId(user) {
+  return String(user.id || user.user_id || user._id || "");
+}
+
+function adminDisplayEmail(user) {
+  return user.email_masked || user.email || user.recovery_email || "-";
+}
+
+function adminNumber(value) {
+  const number = Number(value || 0);
+  return Number.isFinite(number) ? number.toLocaleString("en-GB") : "0";
+}
+
+function adminUserCard(user) {
+  const userId = adminUserId(user);
+  const plan = user.account_plan || user.plan || "early_access";
+  const status = user.account_status || user.subscription_status || "active";
+  const freeUntil = user.free_until ? String(user.free_until).slice(0, 10) : "";
+  const lifetime = Boolean(user.lifetime_free);
+  return `
+    <form class="admin-user-card" data-admin-user-form="${escapeAttr(userId)}">
+      <div class="admin-user-head">
+        <div>
+          <strong>${escapeHtml(user.customer_ref || userId || "User")}</strong>
+          <span>${escapeHtml(adminDisplayEmail(user))}</span>
+        </div>
+        <small>${escapeHtml(user.last_active_at ? `Last active ${String(user.last_active_at).slice(0, 10)}` : "No recent activity")}</small>
+      </div>
+      <div class="admin-user-stats">
+        ${adminMetric("Receipts", adminNumber(user.receipts_count || user.usage_receipts_total))}
+        ${adminMetric("Income", adminNumber(user.income_count || user.usage_income_total))}
+        ${adminMetric("WhatsApp", adminNumber(user.whatsapp_records_count || user.usage_whatsapp_total))}
+        ${adminMetric("Storage", `${adminNumber(user.storage_mb || user.usage_storage_mb)} MB`)}
+      </div>
+      <div class="admin-controls">
+        <label class="field"><span>Plan</span>
+          <select class="input" name="account_plan">
+            ${["early_access", "free_trial", "paid", "lifetime_free", "blocked"].map((item) => `<option value="${item}" ${plan === item ? "selected" : ""}>${item}</option>`).join("")}
+          </select>
+        </label>
+        <label class="field"><span>Status</span>
+          <select class="input" name="account_status">
+            ${["active", "payment_required", "tester", "suspicious", "blocked"].map((item) => `<option value="${item}" ${status === item ? "selected" : ""}>${item}</option>`).join("")}
+          </select>
+        </label>
+        <label class="field"><span>Free until</span><input class="input" name="free_until" type="date" value="${escapeAttr(freeUntil)}"></label>
+        <label class="checkbox-row admin-checkbox"><input type="checkbox" name="lifetime_free" ${lifetime ? "checked" : ""}> <span>Lifetime free</span></label>
+      </div>
+      <label class="field"><span>Admin notes</span><textarea class="input" name="admin_notes" rows="2" placeholder="Tester notes, support notes, why this user is free...">${escapeHtml(user.admin_notes || "")}</textarea></label>
+      <div class="admin-actions">
+        <button class="primary" type="submit">Save user</button>
+        <span class="hint">${escapeHtml(user.accountant_connected ? "Accountant connected" : "No accountant connected")}</span>
+      </div>
+    </form>
+  `;
+}
+
+function adminLanding() {
+  const users = state.adminUsers || [];
+  const search = (state.adminSearch || "").trim().toLowerCase();
+  const filtered = users.filter((user) => {
+    if (!search) return true;
+    return [adminUserId(user), user.customer_ref, user.email, user.email_masked, user.first_name, user.trade, user.account_plan, user.account_status]
+      .filter(Boolean)
+      .join(" ")
+      .toLowerCase()
+      .includes(search);
+  });
+  shell(`
+    <section class="screen admin-screen">
+      <div class="admin-hero">
+        <span class="eyebrow">TidGo admin</span>
+        <h1>User control room</h1>
+        <p>Manage trials, free access, lifetime users and account status. Backend admin auth must protect every action before production use.</p>
+      </div>
+      <form class="card stack admin-login-card" id="adminLoginForm">
+        <h2>Admin access</h2>
+        <span class="hint">${state.adminEmail ? `Signed in as ${escapeHtml(state.adminEmail)}` : "Enter an approved admin email. Backend should only send codes to emails listed in ADMIN_EMAILS."}</span>
+        ${state.adminEmail && state.adminToken ? `
+          <div class="total-row"><span>Admin email</span><strong>${escapeHtml(state.adminEmail)}</strong></div>
+          <div class="button-row">
+            <button class="primary" type="submit" name="step" value="load">Load users</button>
+            <button class="secondary" type="button" data-action="signOutAdmin">Sign out</button>
+          </div>
+        ` : `
+          <label class="field"><span>Admin email</span><input class="input" name="admin_email" type="email" value="${escapeAttr(state.adminPendingEmail || state.adminEmail || "")}" required></label>
+          ${state.adminCodeSent || state.adminPendingEmail ? `<label class="field"><span>Login code</span><input class="input" name="code" inputmode="numeric" autocomplete="one-time-code" placeholder="123456"></label>` : ""}
+          <div class="button-row">
+            <button class="primary" type="submit" name="step" value="${state.adminCodeSent || state.adminPendingEmail ? "verify" : "request"}">${state.adminCodeSent || state.adminPendingEmail ? "Verify code" : "Send login code"}</button>
+            ${state.adminCodeSent || state.adminPendingEmail ? `<button class="secondary" type="submit" name="step" value="request">Send again</button>` : ""}
+          </div>
+        `}
+        ${state.adminError ? `<div class="empty">${escapeHtml(state.adminError)}</div>` : ""}
+      </form>
+      ${state.adminEmail && state.adminToken ? `
+        <section class="admin-summary">
+          ${adminMetric("Users", adminNumber(users.length))}
+          ${adminMetric("Receipts", adminNumber(users.reduce((sum, user) => sum + Number(user.receipts_count || user.usage_receipts_total || 0), 0)))}
+          ${adminMetric("WhatsApp records", adminNumber(users.reduce((sum, user) => sum + Number(user.whatsapp_records_count || user.usage_whatsapp_total || 0), 0)))}
+          ${adminMetric("Lifetime free", adminNumber(users.filter((user) => user.lifetime_free || user.account_plan === "lifetime_free").length))}
+        </section>
+        <section class="card stack">
+          <div class="admin-list-head">
+            <div>
+              <h2>Users</h2>
+              <span class="hint">Search by email, customer ref, plan, trade or user id.</span>
+            </div>
+            <button class="secondary" type="button" data-action="loadAdminUsers">Refresh</button>
+          </div>
+          <label class="field"><span>Search users</span><input class="input" data-admin-search value="${escapeAttr(state.adminSearch)}" placeholder="TID-000184, email, builder, paid..."></label>
+          <div class="admin-user-list">
+            ${filtered.length ? filtered.map(adminUserCard).join("") : `<div class="empty">${users.length ? "No users match this search." : "No users loaded yet."}</div>`}
+          </div>
+        </section>
+      ` : `
+        <section class="card stack">
+          <h2>Backend contract</h2>
+          <p class="hint">Needed endpoints: request code, verify code, list users and update user plan/status. The backend must decide access; the PWA only displays the panel.</p>
+        </section>
+      `}
+    </section>
+  `);
 }
 
 function onboarding() {
@@ -5918,6 +6131,33 @@ document.addEventListener("click", async (event) => {
     await shareTidGo();
     return;
   }
+  if (action === "signOutAdmin") {
+    state.adminEmail = "";
+    state.adminPendingEmail = "";
+    state.adminCodeSent = false;
+    state.adminToken = "";
+    state.adminUsers = [];
+    state.adminError = "";
+    state.adminSearch = "";
+    forget("tg_admin_email");
+    forget("tg_admin_pending_email");
+    sessionStorage.removeItem("tg_admin_token");
+    toast("Signed out.");
+    return render();
+  }
+  if (action === "loadAdminUsers") {
+    try {
+      setBusy(true);
+      await loadAdminUsers();
+      toast("Users loaded.");
+    } catch (error) {
+      state.adminError = error.message || "Admin API is not connected yet.";
+      toast(state.adminError);
+    } finally {
+      setBusy(false);
+    }
+    return render();
+  }
   if (action === "recover") return go("recover");
   if (action === "settings") return go("settings");
   if (action === "retryRefresh") {
@@ -6341,6 +6581,10 @@ document.addEventListener("input", (event) => {
     const empty = document.querySelector("[data-accountant-client-empty]");
     if (empty) empty.classList.toggle("hidden", visibleCount > 0);
   }
+  if (event.target.matches("[data-admin-search]")) {
+    state.adminSearch = event.target.value || "";
+    render();
+  }
 });
 
 document.addEventListener("dragover", (event) => {
@@ -6389,6 +6633,28 @@ document.addEventListener("submit", async (event) => {
   const data = Object.fromEntries(new FormData(form).entries());
   setBusy(true);
   try {
+    if (form.id === "adminLoginForm") {
+      const step = event.submitter?.value || "request";
+      const adminEmail = ((data.admin_email || state.adminEmail || state.adminPendingEmail || "")).trim();
+      if (!adminEmail) throw new Error("Enter admin email");
+      if (step === "request") {
+        await requestAdminCode(adminEmail);
+        toast("Admin login code sent.");
+      } else if (step === "verify") {
+        await verifyAdminCode(adminEmail, data.code || "");
+        toast("Admin signed in.");
+      } else {
+        await loadAdminUsers();
+        toast("Users loaded.");
+      }
+      return render();
+    }
+    if (form.matches("[data-admin-user-form]")) {
+      await updateAdminUser(form.dataset.adminUserForm, data);
+      toast("User updated.");
+      await loadAdminUsers();
+      return render();
+    }
     if (form.id === "landingContactForm" || form.id === "settingsFeedbackForm") {
       try {
         await api("/api/contact", {
