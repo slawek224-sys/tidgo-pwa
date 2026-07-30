@@ -1000,7 +1000,9 @@ const COPY = {
     quarterly: "Quarterly",
     taxQuarterly: "UK tax quarters",
     ukTaxQuarterly: "Quarterly for UK taxpayers",
+    mtdRunning: "MTD running summary",
     quarterReady: "Quarter-ready records",
+    mtdRunningReady: "Running MTD record summary",
     addExpense: "Add expense",
     addIncome: "Add income",
     photoDone: "Take photo",
@@ -1698,7 +1700,11 @@ Object.assign(COPY.en, {
   taxQuarterHint: "UK tax-year quarters from 6 Apr, 6 Jul, 6 Oct and 6 Jan.",
   duplicateDetails: "Open possible duplicate",
   duplicateHint: "These records look similar. Open one and compare the receipt photos.",
-  requestDocsBackendNeeded: "Request email needs a backend Resend endpoint before it can send to the client automatically."
+  requestDocsBackendNeeded: "Request email needs a backend Resend endpoint before it can send to the client automatically.",
+  mtdRunning: "MTD running summary",
+  mtdRunningReady: "Running MTD record summary",
+  mtdRunningHint: "Covers records from the start of the tax year to the end of this update period.",
+  mtdRunningDisclaimer: "For your accountant. TidGo does not submit this to HMRC."
 });
 
 Object.assign(COPY.pl, {
@@ -1812,7 +1818,11 @@ Object.assign(COPY.pl, {
   taxQuarterHint: "Kwartaly brytyjskiego roku podatkowego od 6 Apr, 6 Jul, 6 Oct i 6 Jan.",
   duplicateDetails: "Otworz mozliwy duplikat",
   duplicateHint: "Te rekordy wygladaja podobnie. Otworz jeden i porownaj zdjecia paragonow.",
-  requestDocsBackendNeeded: "Wysylka request email wymaga endpointu Resend w backendzie, zanim pojdzie automatycznie do klienta."
+  requestDocsBackendNeeded: "Wysylka request email wymaga endpointu Resend w backendzie, zanim pojdzie automatycznie do klienta.",
+  mtdRunning: "MTD running summary",
+  mtdRunningReady: "Narastajace MTD record summary",
+  mtdRunningHint: "Obejmuje rekordy od poczatku roku podatkowego do konca tego okresu.",
+  mtdRunningDisclaimer: "Dla Twojego ksiegowego. TidGo nie wysyla tego do HMRC."
 });
 
 Object.assign(COPY.ro, {
@@ -2108,6 +2118,48 @@ Object.assign(COPY.bg, {
   duplicateDetails: "Otvori vazmozhen dublikat",
   duplicateHint: "Tezi zapisi izgledat podobni. Otvorete edin i sravnete snimkite.",
   requestDocsBackendNeeded: "Email za zayavka iska Resend endpoint v backend predi avtomatichno izprashtane do klienta."
+});
+
+Object.assign(COPY.ro, {
+  mtdRunning: "Sumar MTD cumulativ",
+  mtdRunningReady: "Sumar cumulativ MTD pentru evidente",
+  mtdRunningHint: "Include evidentele de la inceputul anului fiscal pana la finalul acestei perioade.",
+  mtdRunningDisclaimer: "Pentru contabilul tau. TidGo nu trimite acest sumar catre HMRC."
+});
+
+Object.assign(COPY.uk, {
+  mtdRunning: "MTD running summary",
+  mtdRunningReady: "Narostaiuchyi MTD record summary",
+  mtdRunningHint: "Okhopliuie zapysy vid pochatku podatkovoho roku do kintsia tsoho periodu.",
+  mtdRunningDisclaimer: "Dlia vashoho bukhhaltera. TidGo ne nadsylaie tse do HMRC."
+});
+
+Object.assign(COPY.lt, {
+  mtdRunning: "MTD kaupiamoji suvestine",
+  mtdRunningReady: "Kaupiamoji MTD irasu suvestine",
+  mtdRunningHint: "Apima irasus nuo mokestiniu metu pradzios iki sio laikotarpio pabaigos.",
+  mtdRunningDisclaimer: "Skirta jusu buhalteriui. TidGo nesiuncia sio dokumento HMRC."
+});
+
+Object.assign(COPY.lv, {
+  mtdRunning: "MTD pieaugosais kopsavilkums",
+  mtdRunningReady: "Pieaugosais MTD ierakstu kopsavilkums",
+  mtdRunningHint: "Ietver ierakstus no nodoklu gada sakuma lidz si perioda beigam.",
+  mtdRunningDisclaimer: "Jusu gramatvedim. TidGo nesuta so kopsavilkumu HMRC."
+});
+
+Object.assign(COPY.es, {
+  mtdRunning: "Resumen MTD acumulado",
+  mtdRunningReady: "Resumen acumulado de registros MTD",
+  mtdRunningHint: "Cubre los registros desde el inicio del ano fiscal hasta el final de este periodo.",
+  mtdRunningDisclaimer: "Para tu contable. TidGo no envia este resumen a HMRC."
+});
+
+Object.assign(COPY.bg, {
+  mtdRunning: "MTD natrupvashto obobshtenie",
+  mtdRunningReady: "Natrupvashto MTD obobshtenie na zapisite",
+  mtdRunningHint: "Obhvashta zapisite ot nachaloto na danachnata godina do kraya na tozi period.",
+  mtdRunningDisclaimer: "Za vashiya schetovoditel. TidGo ne izprashta tova do HMRC."
 });
 
 Object.assign(COPY.ro, {
@@ -2954,7 +3006,7 @@ const state = {
   imageRotation: 0,
   summaryDate: new Date(),
   summaryPeriod: read("rb_summary_period", "month") === "quarter" ? "quarter" : "month",
-  quarterMode: read("rb_quarter_mode", "calendar") === "uk_tax" ? "uk_tax" : "calendar",
+  quarterMode: ["calendar", "uk_tax", "mtd_running"].includes(read("rb_quarter_mode", "calendar")) ? read("rb_quarter_mode", "calendar") : "calendar",
   transactionLimit: 4,
   loading: false,
   routeMotion: ""
@@ -3379,6 +3431,7 @@ function monthLabel(date = state.summaryDate) {
 }
 
 function quarterRange(date = state.summaryDate) {
+  if (state.quarterMode === "mtd_running") return mtdRunningQuarterRange(date);
   if (state.quarterMode === "uk_tax") return ukTaxQuarterRange(date);
   const year = date.getFullYear();
   const quarter = Math.floor(date.getMonth() / 3);
@@ -3420,9 +3473,19 @@ function ukTaxQuarterRange(date = state.summaryDate) {
   };
 }
 
+function mtdRunningQuarterRange(date = state.summaryDate) {
+  const period = ukTaxQuarterRange(date);
+  return {
+    ...period,
+    start: new Date(period.year, 3, 6),
+    mode: "mtd_running"
+  };
+}
+
 function periodLabel(date = state.summaryDate) {
   if (state.summaryPeriod !== "quarter") return monthLabel(date);
   const range = quarterRange(date);
+  if (range.mode === "mtd_running") return `MTD running Q${range.quarter} ${range.year}/${String(range.year + 1).slice(-2)}`;
   if (range.mode === "uk_tax") return `UK tax Q${range.quarter} ${range.year}/${String(range.year + 1).slice(-2)}`;
   return `Q${range.quarter} ${range.year}`;
 }
@@ -3440,7 +3503,7 @@ function periodSwitcherLabel() {
 }
 
 function shiftSummaryPeriod(direction) {
-  if (state.summaryPeriod === "quarter" && state.quarterMode === "uk_tax") {
+  if (state.summaryPeriod === "quarter" && (state.quarterMode === "uk_tax" || state.quarterMode === "mtd_running")) {
     const range = ukTaxQuarterRange(state.summaryDate);
     if (direction > 0) {
       state.summaryDate = new Date(range.endExclusive.getFullYear(), range.endExclusive.getMonth(), range.endExclusive.getDate(), 12);
@@ -3460,17 +3523,20 @@ function periodFilePart() {
 
 function quarterModeControls() {
   if (state.summaryPeriod !== "quarter") return "";
+  const hint = state.quarterMode === "mtd_running" ? t("mtdRunningHint") : state.quarterMode === "uk_tax" ? t("taxQuarterHint") : t("calendarQuarterHint");
   return `
-    <p class="hint quarter-hint">${state.quarterMode === "uk_tax" ? t("taxQuarterHint") : t("calendarQuarterHint")}</p>
+    <p class="hint quarter-hint">${hint}</p>
+    ${state.quarterMode === "mtd_running" ? `<p class="summary-disclaimer">${t("mtdRunningDisclaimer")}</p>` : ""}
   `;
 }
 
 function summaryPeriodControls() {
   return `
-    <div class="segmented segmented-three">
+    <div class="segmented segmented-four">
       <button class="${state.summaryPeriod === "month" ? "active" : ""}" data-action="setSummaryView" data-summary-view="month">${t("monthly")}</button>
       <button class="${state.summaryPeriod === "quarter" && state.quarterMode === "calendar" ? "active" : ""}" data-action="setSummaryView" data-summary-view="calendar">${t("quarterly")}</button>
       <button class="${state.summaryPeriod === "quarter" && state.quarterMode === "uk_tax" ? "active" : ""}" data-action="setSummaryView" data-summary-view="uk_tax">${t("ukTaxQuarterly")}</button>
+      <button class="${state.summaryPeriod === "quarter" && state.quarterMode === "mtd_running" ? "active" : ""}" data-action="setSummaryView" data-summary-view="mtd_running">${t("mtdRunning")}</button>
     </div>
     ${quarterModeControls()}
   `;
@@ -4876,6 +4942,11 @@ function incomeDetail() {
 
 function summary() {
   const { receipts, income } = monthEntries();
+  const subtitle = state.summaryPeriod === "quarter" && state.quarterMode === "mtd_running"
+    ? t("mtdRunningReady")
+    : state.summaryPeriod === "quarter"
+      ? t("quarterReady")
+      : t("note");
   shell(`
     <section class="screen">
       ${topbar(t("summary"), true)}
@@ -4889,7 +4960,7 @@ function summary() {
         <div class="total-row"><span>${t("income")}</span><strong>${formatTotals(income)}</strong></div>
         <div class="total-row"><span>${t("expenses")}</span><strong>${formatTotals(receipts)}</strong></div>
       </div>
-      <p class="subtitle">${state.summaryPeriod === "quarter" ? t("quarterReady") : t("note")}</p>
+      <p class="subtitle">${subtitle}</p>
       <button class="primary" data-action="sharePdf">${t("emailPdf")}</button>
       <button class="secondary" style="width:100%;margin-top:10px" data-action="printPdf">${t("printPdf")}</button>
       <div class="list">${[...income.map(incomeSummaryRow), ...receipts.map(receiptSummaryRow)].join("") || `<div class="empty">${t("noEntries")}</div>`}</div>
@@ -5667,6 +5738,10 @@ function createAccountantClientPdfFile() {
   line("Income: " + formatTotals(income), 12, "bold");
   line("Expenses: " + formatTotals(receipts), 12, "bold");
   y += 10;
+  if (state.summaryPeriod === "quarter" && state.quarterMode === "mtd_running") {
+    line(t("mtdRunningDisclaimer"), 10, "bold");
+    y += 4;
+  }
   line(dt("pdfLine"), 9);
   y += 14;
 
@@ -5937,6 +6012,7 @@ function buildPrintHtml() {
     <h1>TidGo - ${escapeHtml(periodLabel())}</h1>
     <p>${escapeHtml(state.user?.first_name || "")} ${state.user?.trade ? " · " + escapeHtml(state.user.trade) : ""}</p>
     <p>${escapeHtml(t("note"))}</p>
+    ${state.summaryPeriod === "quarter" && state.quarterMode === "mtd_running" ? `<p>${escapeHtml(t("mtdRunningDisclaimer"))}</p>` : ""}
     <p>${escapeHtml(dt("pdfLine"))}</p>
     <table><thead><tr><th>Date</th><th>Type</th><th>Description</th><th class="print-money">Amount</th></tr></thead><tbody>${tableRows}</tbody></table>
     ${photos}
@@ -5985,6 +6061,10 @@ async function createSummaryPdfFile() {
   y += 12;
   line(pdfText.note, 10);
   y += 6;
+  if (state.summaryPeriod === "quarter" && state.quarterMode === "mtd_running") {
+    line(t("mtdRunningDisclaimer"), 10, "bold");
+    y += 4;
+  }
   line(pdfText.pdfLine, 9);
   y += 14;
 
@@ -6422,7 +6502,7 @@ document.addEventListener("click", async (event) => {
     } else {
       const previousPeriod = state.summaryPeriod;
       state.summaryPeriod = "quarter";
-      state.quarterMode = view === "uk_tax" ? "uk_tax" : "calendar";
+      state.quarterMode = view === "uk_tax" ? "uk_tax" : view === "mtd_running" ? "mtd_running" : "calendar";
       if (previousPeriod === "month") anchorSummaryDateToMonthStart();
     }
     write("rb_summary_period", state.summaryPeriod);
@@ -6430,9 +6510,9 @@ document.addEventListener("click", async (event) => {
     return render();
   }
   if (action === "setQuarterMode") {
-    state.quarterMode = target.dataset.quarterMode === "uk_tax" ? "uk_tax" : "calendar";
+    state.quarterMode = target.dataset.quarterMode === "uk_tax" ? "uk_tax" : target.dataset.quarterMode === "mtd_running" ? "mtd_running" : "calendar";
     write("rb_quarter_mode", state.quarterMode);
-    if (state.quarterMode === "uk_tax") anchorSummaryDateToMonthStart();
+    if (state.quarterMode === "uk_tax" || state.quarterMode === "mtd_running") anchorSummaryDateToMonthStart();
     return render();
   }
   if (action === "printPdf") {
