@@ -4190,6 +4190,10 @@ function landing() {
             <h1>${mk("heroTitle")}</h1>
             <p>${mk("heroText")}</p>
           </div>
+          <div class="landing-mobile-quick-actions" aria-label="Quick TidGo links">
+            <a class="primary landing-link" href="/app/">${mk("openApp")}</a>
+            <a class="secondary landing-link" href="${accountantUrl}">${mk("openPortal")}</a>
+          </div>
           <section class="landing-news" aria-label="${escapeAttr(mk("whatsNewTitle"))}">
             <span class="new-badge"><span class="new-flame" aria-hidden="true">&#128293;</span>${mk("whatsNewBadge")}</span>
             <div>
