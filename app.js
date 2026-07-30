@@ -4810,12 +4810,14 @@ function recover() {
     <section class="screen">
       ${topbar(t("recover"), true)}
       <form class="stack" id="recoveryForm">
-        <div class="card stack recovery-block">
+        <div class="card stack recovery-block recovery-panel">
           <strong>${t("recoveryEmail")}</strong>
-          <label class="field"><span>${t("email")}</span><input class="input" name="email" type="email" required autocomplete="email"></label>
+          <label class="field recovery-field"><span>${t("email")}</span><input class="input recovery-input" name="email" type="email" required autocomplete="email" placeholder="you@example.com"></label>
           <button class="secondary recovery-send" name="step" value="request">${t("sendCode")}</button>
-          <label class="field"><span>${t("code")}</span><input class="input" name="code" inputmode="numeric" maxlength="6" autocomplete="one-time-code"></label>
-          <button class="primary" name="step" value="verify">${t("login")}</button>
+          <div class="recovery-code-box">
+            <label class="field recovery-field"><span>${t("code")}</span><input class="input recovery-input recovery-code-input" name="code" inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="123456"></label>
+            <button class="primary recovery-login" name="step" value="verify">${t("login")}</button>
+          </div>
         </div>
       </form>
     </section>
