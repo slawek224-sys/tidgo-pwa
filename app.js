@@ -3181,7 +3181,7 @@ function landingFooter() {
       <div class="landing-foot-copy">
         <span>${mk("footer")} <strong>${mk("copyright")}</strong></span>
         <span class="landing-company-line">${mk("companyFooter")}</span>
-        <span class="landing-legal-links"><a href="/privacy">${t("privacyTitle")}</a><a href="/terms">${t("termsTitle")}</a><a href="/delete-account">${mk("deleteAccountLink")}</a></span>
+        <span class="landing-legal-links"><a href="/our-story">${mk("navStory")}</a><a href="/privacy">${t("privacyTitle")}</a><a href="/terms">${t("termsTitle")}</a><a href="/delete-account">${mk("deleteAccountLink")}</a></span>
         <span class="landing-privacy-note">${mk("privacyNote")}</span>
       </div>
     </footer>
