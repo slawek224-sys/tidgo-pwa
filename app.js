@@ -45,7 +45,7 @@ const MARKETING_LANGUAGES = {
 
 const MARKETING_COPY = {
   en: {
-    navHow: "How it works", navWho: "Who is it for?", navIntake: "How intake works", navAccountantPack: "Show your accountant", navPricing: "Launch & pricing", navFaq: "FAQ", navMtd: "MTD explained", navContact: "Contact",
+    navHow: "How it works", navWho: "Who is it for?", navStory: "Our story", navIntake: "How intake works", navAccountantPack: "Show your accountant", navPricing: "Launch & pricing", navFaq: "FAQ", navMtd: "MTD explained", navContact: "Contact",
     heroEyebrow: "Receipts in. Tidy records out.", heroTitle: "One simple place for receipts.", heroText: "For self-employed people who need records tidy, and accountants who would rather not chase plastic bags full of receipts.",
     stepSnap: "Snap receipts", stepTidy: "Keep records tidy", stepPack: "Send a clean pack",
     trustSimple: "No complicated registration. Just email sign-in.",
@@ -57,7 +57,7 @@ const MARKETING_COPY = {
     contactTitle: "Want to try it or ask a question?", contactText: "Send a quick message. No sales maze, just a human reply.", yourEmail: "Your email", roleSelf: "I work for myself", roleAccountant: "I am an accountant", roleCurious: "Just curious", message: "Message", sendMessage: "Send message", messageSent: "Message sent. Thank you.", messagePending: "Automatic contact is being connected. Please try again after the next API deploy.",
     selfLabel: "I work for myself", selfTitle: "Open TidGo App", selfText: "Take receipt photos, add income, keep monthly records ready for your accountant.", scanApp: "Scan app", openApp: "Open app",
     accountantLabel: "I'm an accountant", accountantTitle: "Open Accountant Portal", accountantText: "View connected client records, download CSV/PDF packs, and reduce deadline panic.", scanPortal: "Scan portal", openPortal: "Open Accountant Portal", viewDemo: "View quick demo",
-    footer: "TidGo helps organise records. It is not accounting, tax advice or payroll software.", companyFooter: "TidGo Ltd. Company number 17356146. 128 City Road, London, EC1V 2NX. hello@tidgo.co.uk", home: "Home", appDemo: "App demo", accountantDemo: "Accountant demo", deleteAccountLink: "Delete account", backHome: "Back to homepage", step: "Step",
+    footer: "TidGo helps organise records. It is not accounting, tax advice or payroll software.", companyFooter: "TidGo Ltd. Company number 17356146. 128 City Road, London, EC1V 2NX. hello@tidgo.co.uk", home: "Home", appDemo: "App demo", accountantDemo: "Accountant demo", deleteAccountLink: "Delete account", backHome: "Back to homepage", step: "Step", foundingTester: "Become a Founding Tester",
     trySafe: "Try it safely: take a photo, check the result, download your summary, and delete your account/data any time from Settings.",
     appDemoKind: "For self-employed", appDemoTitle: "See the receipt flow before signing in.", appDemoText: "TidGo is built around one simple habit: take the photo now, send a cleaner pack later.",
     accountantDemoKind: "For accountants", accountantDemoTitle: "See the client handoff before signing in.", accountantDemoText: "The accountant portal is read-only. Clients keep records tidy; you get a cleaner pack when it is time to work.",
@@ -70,7 +70,7 @@ const MARKETING_COPY = {
     demoRecordsScreen: "Client records", demoRecordsTitle: "Download the client pack", demoRecordsText: "Open a client, check totals, request missing docs, then download CSV or PDF."
   },
   pl: {
-    navHow: "Jak to dziala", navWho: "Dla kogo?", navIntake: "Jak dodawac dokumenty", navAccountantPack: "Pokaz ksiegowemu", navPricing: "Start i ceny", navFaq: "FAQ", navMtd: "MTD wyjasnione", navContact: "Kontakt",
+    navHow: "Jak to dziala", navWho: "Dla kogo?", navStory: "Nasza historia", navIntake: "Jak dodawac dokumenty", navAccountantPack: "Pokaz ksiegowemu", navPricing: "Start i ceny", navFaq: "FAQ", navMtd: "MTD wyjasnione", navContact: "Kontakt",
     heroEyebrow: "Paragony wchodza. Porzadek wychodzi.", heroTitle: "Jedno proste miejsce na paragony.", heroText: "Dla self-employed, ktorzy chca miec rekordy w porzadku, i dla ksiegowych, ktorzy nie chca gonitwy za reklamowka paragonow.",
     stepSnap: "Zrob zdjecie", stepTidy: "Trzymaj porzadek", stepPack: "Wyslij czysta paczke",
     trustSimple: "Bez skomplikowanej rejestracji. Tylko logowanie emailem.",
@@ -82,7 +82,7 @@ const MARKETING_COPY = {
     contactTitle: "Chcesz przetestowac albo zapytac?", contactText: "Wyslij krotka wiadomosc. Bez lejka sprzedazowego, normalna odpowiedz od czlowieka.", yourEmail: "Twoj email", roleSelf: "Pracuje na siebie", roleAccountant: "Jestem ksiegowym", roleCurious: "Tylko sprawdzam", message: "Wiadomosc", sendMessage: "Wyslij wiadomosc", messageSent: "Wiadomosc wyslana. Dziekuje.", messagePending: "Automatyczny kontakt jest podpinany. Sprobuj po nastepnym deployu API.",
     selfLabel: "Pracuje na siebie", selfTitle: "Otworz aplikacje TidGo", selfText: "Rob zdjecia paragonow, dodawaj przychody i trzymaj miesieczne rekordy gotowe dla ksiegowego.", scanApp: "Skanuj app", openApp: "Otworz app",
     accountantLabel: "Jestem ksiegowym", accountantTitle: "Otworz portal ksiegowego", accountantText: "Zobacz rekordy klientow, pobierz CSV/PDF i ogranicz panike przed terminem.", scanPortal: "Skanuj portal", openPortal: "Otworz portal ksiegowego", viewDemo: "Zobacz szybkie demo",
-    footer: "TidGo pomaga porzadkowac rekordy. To nie jest ksiegowosc, porada podatkowa ani payroll.", companyFooter: "TidGo Ltd. Company number 17356146. 128 City Road, London, EC1V 2NX. hello@tidgo.co.uk", home: "Start", appDemo: "Demo app", accountantDemo: "Demo ksiegowego", deleteAccountLink: "Usun konto", backHome: "Wroc na strone glowna", step: "Krok",
+    footer: "TidGo pomaga porzadkowac rekordy. To nie jest ksiegowosc, porada podatkowa ani payroll.", companyFooter: "TidGo Ltd. Company number 17356146. 128 City Road, London, EC1V 2NX. hello@tidgo.co.uk", home: "Start", appDemo: "Demo app", accountantDemo: "Demo ksiegowego", deleteAccountLink: "Usun konto", backHome: "Wroc na strone glowna", step: "Krok", foundingTester: "Zostan Founding Tester",
     trySafe: "Sprawdz bez stresu: zrob zdjecie, zobacz wynik, pobierz summary i usun konto/dane w dowolnym momencie w ustawieniach.",
     appDemoKind: "Dla self-employed", appDemoTitle: "Zobacz flow paragonu bez logowania.", appDemoText: "TidGo opiera sie na jednym prostym nawyku: zrob zdjecie teraz, wyslij czystsza paczke pozniej.",
     accountantDemoKind: "Dla ksiegowych", accountantDemoTitle: "Zobacz przekazanie klienta bez logowania.", accountantDemoText: "Portal ksiegowego jest tylko do odczytu. Klient trzyma rekordy w porzadku, a ty dostajesz czystsza paczke do pracy.",
@@ -2818,8 +2818,8 @@ Questions, requests or complaints:
 128 City Road, London, EC1V 2NX`,
   terms: `# TidGo Terms & Conditions
 
-**Last updated:** 22 July 2026
-**Version:** 0.9 — Closed Testing / Beta
+**Last updated:** 30 July 2026
+**Version:** 0.10 — Closed Testing / Beta
 
 Please read these Terms & Conditions ("Terms") carefully before using TidGo. You accept these Terms by ticking the acceptance box when creating an account, and by continuing to use TidGo. If you do not agree, please do not use the service.
 
@@ -2866,6 +2866,7 @@ TidGo is currently in a **closed testing / beta phase**:
 - The PWA (web app) is **under continuous development** and will remain so until TidGo is formally launched as a subscription product.
 - Features may change, be added or removed at any time; occasional bugs, downtime or data-format changes may occur.
 - The service is provided **free of charge** during this phase. When TidGo launches as a subscription product, **you will always be clearly informed before any paid plan starts or applies to you**, and no charges will apply without your agreement.
+- Android closed testers may be offered free access to the TidGo Core plan as a reward for taking part in testing. To qualify, you must join the Google Play closed test, remain a tester for at least 14 days, genuinely try the app, and send short honest feedback or report problems. We do **not** require a positive review, star rating or public endorsement. "Free access" means free access to the TidGo Core plan for as long as the service remains available. It is non-transferable, and optional future paid add-ons are not included.
 
 ## 6. Your content and data
 
@@ -3053,6 +3054,9 @@ function marketingPageSlug() {
     "/show-this-to-your-accountant": "accountantPack",
     "/launch-pricing": "pricing",
     "/faq": "faq",
+    "/our-story": "story",
+    "/founding-tester": "androidTesters",
+    "/android-testers": "androidTesters",
     "/mtd": "mtd",
     "/mtd/what-is-mtd": "mtdWhat",
     "/mtd/who-needs-mtd": "mtdWho",
@@ -3141,6 +3145,7 @@ function marketingNav(active = "") {
       <a class="${active === "accountantPack" ? "active" : ""}" href="/show-this-to-your-accountant">${mk("navAccountantPack")}</a>
       <a class="${active === "pricing" ? "active" : ""}" href="/launch-pricing">${mk("navPricing")}</a>
       <a class="${active === "faq" ? "active" : ""}" href="/faq">${mk("navFaq")}</a>
+      <a class="${active === "story" ? "active" : ""}" href="/our-story">${mk("navStory")}</a>
       <a class="nav-mtd ${active === "mtd" ? "active" : ""}" href="/mtd">${mk("navMtd")}</a>
       <a href="/#contact">${mk("navContact")}</a>
     </nav>
@@ -4279,6 +4284,8 @@ function marketingPage() {
   const slug = marketingPageSlug();
   if (slug === "privacy" || slug === "terms") return marketingLegalPage(slug);
   if (slug === "deleteAccountInfo") return deleteAccountInfoPage();
+  if (slug === "story") return ourStoryPage();
+  if (slug === "androidTesters") return androidTestersPage();
   const simplePages = {
     how: {
       active: "how",
@@ -4419,6 +4426,115 @@ function marketingPage() {
       ${landingHeader(active)}
       <div class="marketing-page-layout">
         ${body}
+      </div>
+      ${landingFooter()}
+    </section>
+  `);
+}
+
+function ourStoryPage() {
+  shell(`
+    <section class="landing-screen marketing-page-screen">
+      ${landingHeader("story")}
+      <div class="marketing-page-layout story-layout">
+        <article class="marketing-page-card marketing-article story-article">
+          <span class="eyebrow">TidGo story</span>
+          <h1>From a carrier bag in the van to a simple tool - the TidGo story</h1>
+          <p class="marketing-lead">Why a van driver built a receipt app for the UK self-employed, CIS subcontractors, landlords and the accountants who have to clean up the records afterwards.</p>
+
+          <h2>31 January, 9pm - sound familiar?</h2>
+          <p>For years I was self-employed, driving a van around the UK and across Europe. And like most of us, I had exactly the same problem with paperwork.</p>
+          <p>Receipts were everywhere: in my pockets, on the dashboard, and eventually in one big carrier bag in the van. When Self Assessment came round, at 9pm on 31 January I would tip the whole bag out on the floor. The result?</p>
+          <ul>
+            <li>Half the receipts had faded to nothing - those costs were simply lost.</li>
+            <li>Sitting there stressed about whether I would file before midnight and avoid a penalty.</li>
+            <li>A worried partner who had to help me through the same chaos every single year.</li>
+          </ul>
+          <p>That is when I came up with my first, very basic trick: I started photographing receipts and dropping them into a folder on my phone. Not perfect, but at least the proof did not fade away with the ink.</p>
+
+          <h2>Why are Xero and QuickBooks too complicated for a builder?</h2>
+          <p>When health problems kept me at home for a while, Making Tax Digital was suddenly all over the news. I thought: right, time to take this seriously.</p>
+          <p>I went through the big accounting packages - Xero, QuickBooks, Sage, FreeAgent. Large, global companies. Genuinely good tools. And one thing became obvious very quickly: <strong>they are built for accountants, not for builders, drivers, painters or plumbers.</strong></p>
+          <p>They are packed with features: charts, forecasts, bank reconciliation and ten tabs many small users will never open. After ten hours of physical work, none of us wants to sit down and learn that. I know people who paid a year's subscription for one of these and logged in twice.</p>
+          <p>And there is something those companies do not think about at all: <strong>some of us are not only fighting the paperwork - we are fighting the language too.</strong> If tax is hard in your own language, in a second one it becomes a wall. That is why TidGo speaks several languages while the records your accountant receives stay clear and practical.</p>
+          <p>So I decided to build something different: a simple tool for ordinary people, made by someone who spent years behind the wheel and knows exactly what having no time feels like.</p>
+
+          <h2>How do you collect receipts by WhatsApp? This is how TidGo works</h2>
+          <p>I designed TidGo so you spend as little time on paperwork as possible.</p>
+          <p><strong>No passwords.</strong> You enter your email, enter the code from the message, and you are in. Nothing complicated to remember.</p>
+          <p><strong>Receipts by WhatsApp.</strong> You link your number once, then send a photo of the receipt on WhatsApp, like any other message. TidGo reads the amount, date and merchant, then files the expense against your account. You give it a quick look to check it is right - because it is your data and your responsibility. Your accountant checks at the end.</p>
+          <p><strong>CIS payslips straight from your inbox.</strong> Getting payslips, remittance notes or CIS statements by email? Forward the message to TidGo and the system files the income and keeps the proof attached. For CIS subcontractors this is often the biggest paper pile of the year.</p>
+          <p><strong>A view for your accountant.</strong> One click connects your accountant using just their email address. They get read-only access: they can see records and download what they need, but they cannot change your data. You can revoke that access whenever you like.</p>
+
+          <h2>What TidGo does not do - and why I say it out loud</h2>
+          <p>This matters as much as the feature list.</p>
+          <p>TidGo <strong>does not submit anything to HMRC</strong>. It does not replace your accountant. It does not handle VAT, limited company accounts, payroll or corporation tax. It is not full accounting software and it never will be.</p>
+          <p>TidGo does one job: <strong>it collects and tidies your digital records before they reach your accountant.</strong> The HMRC submission is done by your accountant or by MTD-compatible software. TidGo helps make sure they have something clean to work from.</p>
+
+          <h2>MTD starts with keeping records digital</h2>
+          <p>Making Tax Digital for Income Tax is moving more self-employed people and landlords toward digital records and quarterly workflows. The heart of it is simple: <strong>HMRC does not want your paper receipts. It wants your income and expenses recorded digitally.</strong> A carrier bag in the van is not digital.</p>
+          <p>You do not need to understand every corner of MTD to start. You need to stop losing receipts. For anything specific to your situation, ask your accountant or check GOV.UK - TidGo does not give tax advice.</p>
+
+          <h2>I built this for us</h2>
+          <p>TidGo was not built to bury you in charts and jargon. It was built so you never have to tip a carrier bag onto the floor at nine in the evening on 31 January.</p>
+          <p>There is no corporation behind this and no investors with a pitch deck. There is one person who drove a van for fifteen years, had this exact problem, and decided to fix it the simplest way he knew how.</p>
+          <p>The app is free while we are testing. If paid plans arrive, I will say so well in advance - and you will always be able to export or delete your records.</p>
+          <p>Right now I am looking for 20 Android closed testers: people who will use TidGo for real and tell me honestly what is wrong with it.</p>
+          <div class="story-callout">
+            <strong>Want to help shape TidGo?</strong>
+            <span>Join the Android closed test, use the app for at least 14 days, and send honest feedback. No positive review required.</span>
+            <a class="primary landing-link" href="/android-testers">Become an Android tester</a>
+          </div>
+          ${pageCta()}
+        </article>
+      </div>
+      ${landingFooter()}
+    </section>
+  `);
+}
+
+function androidTestersPage() {
+  shell(`
+    <section class="landing-screen marketing-page-screen">
+      ${landingHeader("story")}
+      <div class="marketing-page-layout tester-layout">
+        <article class="marketing-page-card marketing-article tester-intro">
+          <span class="eyebrow">Android closed testing</span>
+          <h1>Become a TidGo Android tester</h1>
+          <p class="marketing-lead">TidGo works in your browser right now. The Android app is in Google Play closed testing, and I am looking for 20 UK sole traders, CIS subcontractors, tradespeople and simple landlords who will test it properly.</p>
+          <p>Testing is simple: join the closed test, use TidGo for real for at least 14 days, send receipts the way you normally would, and tell me honestly what works, what breaks, and what could be simpler.</p>
+          <div class="tester-reward">
+            <strong>Tester reward</strong>
+            <span>Active Android testers get free access to the TidGo Core plan for as long as the service remains available. Non-transferable; optional future paid add-ons are not included.</span>
+          </div>
+          <div class="marketing-card-grid tester-conditions">
+            <article><strong>What counts as active?</strong><span>Join the closed test, remain a tester for at least 14 days, actually try the app, and send short feedback or bug notes.</span></article>
+            <article><strong>No fake praise</strong><span>We do not require a positive review, stars or public promotion. Honest feedback is the point.</span></article>
+          </div>
+        </article>
+
+        <form class="marketing-page-card tester-form" id="androidTesterForm">
+          <span class="eyebrow">Tester form</span>
+          <label class="field"><span>Name</span><input class="input" name="tester_name" required autocomplete="name" placeholder="Your name"></label>
+          <label class="field"><span>Gmail used in Google Play</span><input class="input" name="google_email" type="email" required autocomplete="email" placeholder="yourname@gmail.com"></label>
+          <p class="hint tester-hint">This must be the Google account on your Android phone, otherwise the test link will not work for you.</p>
+          <label class="field"><span>Business type</span><select class="select" name="business_type" required>
+            <option value="">Choose one</option>
+            <option>Sole trader</option>
+            <option>CIS subcontractor</option>
+            <option>Tradesperson</option>
+            <option>Landlord</option>
+            <option>Other</option>
+          </select></label>
+          <label class="field"><span>Phone model</span><input class="input" name="phone_model" required placeholder="Samsung S23, Pixel 8, etc."></label>
+          <label class="field"><span>Contact email, if different</span><input class="input" name="contact_email" type="email" placeholder="Optional"></label>
+          <label class="field"><span>WhatsApp number</span><input class="input" name="whatsapp_number" placeholder="Optional"></label>
+          <label class="check-row legal-agree-row"><input type="checkbox" name="use_14_days" required><span>I agree to use the TidGo Android app for at least 14 days during closed testing.</span></label>
+          <label class="check-row legal-agree-row"><input type="checkbox" name="send_feedback" required><span>I agree to send short honest feedback or report problems I find. Positive reviews are not required.</span></label>
+          <label class="check-row legal-agree-row"><input type="checkbox" name="privacy_consent" required><span>I agree to TidGo's <a href="/privacy/" target="_blank" rel="noopener">Privacy Policy</a> and <a href="/terms/" target="_blank" rel="noopener">Terms</a>.</span></label>
+          <button class="primary" type="submit">Apply to test TidGo Android</button>
+          <p class="hint tester-hint">If the form misbehaves, email hello@tidgo.co.uk from the address you want to use.</p>
+        </form>
       </div>
       ${landingFooter()}
     </section>
@@ -6767,6 +6883,35 @@ document.addEventListener("submit", async (event) => {
       toast("User updated.");
       await loadAdminUsers();
       return render();
+    }
+    if (form.id === "androidTesterForm") {
+      try {
+        const message = [
+          "Android closed tester application",
+          `Name: ${data.tester_name || ""}`,
+          `Google Play Gmail: ${data.google_email || ""}`,
+          `Contact email: ${data.contact_email || data.google_email || ""}`,
+          `Business type: ${data.business_type || ""}`,
+          `Phone model: ${data.phone_model || ""}`,
+          `WhatsApp number: ${data.whatsapp_number || ""}`,
+          "Agreed to 14 days: yes",
+          "Agreed to feedback: yes",
+          "Privacy/terms consent: yes"
+        ].join("\n");
+        await api("/api/contact", {
+          method: "POST",
+          body: JSON.stringify({
+            from_email: data.contact_email || data.google_email || null,
+            role: "Android closed tester",
+            message
+          })
+        });
+        form.reset();
+        toast(mk("messageSent"));
+      } catch (error) {
+        toast(mk("messagePending"));
+      }
+      return;
     }
     if (form.id === "landingContactForm" || form.id === "settingsFeedbackForm") {
       try {

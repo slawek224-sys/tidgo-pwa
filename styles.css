@@ -1209,6 +1209,95 @@ button {
   color: #fff;
 }
 
+.story-layout,
+.tester-layout {
+  max-width: 1080px;
+}
+
+.story-article {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.story-article h2 {
+  margin: 34px 0 10px;
+  color: var(--blue-dark);
+  font-size: clamp(23px, 3vw, 34px);
+  line-height: 1.08;
+}
+
+.story-article ul {
+  display: grid;
+  gap: 9px;
+  margin: 14px 0 18px;
+  padding-left: 22px;
+}
+
+.story-article li {
+  color: #334155;
+  font-weight: 750;
+  line-height: 1.5;
+}
+
+.story-callout,
+.tester-reward {
+  display: grid;
+  gap: 9px;
+  margin: 24px 0;
+  border: 1px solid var(--client-line);
+  border-radius: 8px;
+  background: linear-gradient(135deg, #f0fff6 0%, #ecfdf5 58%, #f8fbff 100%);
+  color: #14532d;
+  padding: 18px;
+  box-shadow: 0 16px 34px rgba(22, 163, 74, 0.1);
+}
+
+.story-callout strong,
+.tester-reward strong {
+  color: var(--green);
+  font-size: 19px;
+}
+
+.story-callout span,
+.tester-reward span {
+  color: #166534;
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+.story-callout .landing-link {
+  width: fit-content;
+  min-width: 220px;
+}
+
+.tester-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.85fr);
+  align-items: start;
+  gap: 18px;
+}
+
+.tester-intro,
+.tester-form {
+  height: fit-content;
+}
+
+.tester-form {
+  display: grid;
+  gap: 12px;
+  border-color: rgba(30, 64, 175, 0.18);
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+}
+
+.tester-conditions article {
+  background: #fff;
+}
+
+.tester-hint {
+  margin: -5px 0 2px;
+  font-size: 12px;
+}
+
 .platform-note {
   display: grid;
   gap: 3px;
@@ -2539,6 +2628,10 @@ button {
   .landing-showcase {
     grid-template-columns: minmax(0, 1fr);
   }
+
+  .tester-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 @media (max-width: 430px) {
@@ -2567,6 +2660,11 @@ button {
 
   .landing-actions {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .story-callout .landing-link {
+    width: 100%;
+    min-width: 0;
   }
 
   .demo-cta,
