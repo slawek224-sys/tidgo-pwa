@@ -25,6 +25,16 @@ const LANGUAGES = {
   bg: "Български"
 };
 
+const LANGUAGE_FLAGS = {
+  en: "gb",
+  pl: "pl",
+  ro: "ro",
+  uk: "ua",
+  lt: "lt",
+  lv: "lv",
+  es: "es",
+  bg: "bg"
+};
 
 const MARKETING_LANGUAGES = {
   en: { country: "gb", label: "English" },
@@ -923,7 +933,7 @@ const COPY = {
   en: {
     intro: "Receipts in. Tidy records out. Ready for your accountant.",
     chooseLanguage: "Choose language",
-    firstName: "First name",
+    firstName: "Your name or business name",
     trade: "Trade or job",
     incomeSources: "Income sources",
     incomeSourcesHint: "This helps TidGo understand your records. PAYE income is handled separately; TidGo keeps records for self-employment, CIS, landlord or side-income work. It is not VAT or LTD accounting software.",
@@ -1054,7 +1064,7 @@ const COPY = {
   pl: {
     intro: "Paragony wchodza. Porzadne rekordy wychodza. Gotowe dla ksiegowego.",
     chooseLanguage: "Wybierz jezyk",
-    firstName: "Imie",
+    firstName: "Imie, nazwisko albo nazwa firmy",
     trade: "Zawod",
     incomeSources: "Zrodla przychodu",
     incomeSourcesHint: "To pomaga TidGo zrozumiec Twoje rekordy. Dochod PAYE jest rozliczany osobno; TidGo trzyma rekordy dla self-employment, CIS, landlord albo dodatkowej pracy. To nie jest software do VAT ani ksiegowosci LTD.",
@@ -1189,7 +1199,7 @@ Object.assign(COPY, {
     ...COPY.en,
     intro: "Fotografia bonului intra, rezumatul lunii iese. Fara haos contabil.",
     chooseLanguage: "Alege limba",
-    firstName: "Prenume",
+    firstName: "Nume sau numele firmei",
     trade: "Meserie",
     email: "Email de recuperare",
     emailHint: "Emailul este necesar pentru acces la cont, recuperare si email intake.",
@@ -1254,7 +1264,7 @@ Object.assign(COPY, {
     ...COPY.en,
     intro: "Фото чека всередину, місячний підсумок назовні. Без бухгалтерського хаосу.",
     chooseLanguage: "Оберіть мову",
-    firstName: "Ім'я",
+    firstName: "Ім'я або назва бізнесу",
     trade: "Професія",
     email: "Email для відновлення",
     emailHint: "Email потрібен для доступу до акаунта, відновлення та email intake.",
@@ -1319,7 +1329,7 @@ Object.assign(COPY, {
     ...COPY.en,
     intro: "Kvito nuotrauka įeina, mėnesio suvestinė išeina. Be buhalterinio chaoso.",
     chooseLanguage: "Pasirinkite kalbą",
-    firstName: "Vardas",
+    firstName: "Vardas arba verslo pavadinimas",
     trade: "Profesija",
     email: "Atkūrimo el. paštas",
     emailHint: "El. paštas reikalingas paskyros prieigai, atkūrimui ir email intake.",
@@ -1384,7 +1394,7 @@ Object.assign(COPY, {
     ...COPY.en,
     intro: "Čeka foto iekšā, mēneša kopsavilkums ārā. Bez grāmatvedības haosa.",
     chooseLanguage: "Izvēlieties valodu",
-    firstName: "Vārds",
+    firstName: "Vārds vai uzņēmuma nosaukums",
     trade: "Profesija",
     email: "Atjaunošanas e-pasts",
     emailHint: "E-pasts ir vajadzīgs konta piekļuvei, atjaunošanai un email intake.",
@@ -1449,7 +1459,7 @@ Object.assign(COPY, {
     ...COPY.en,
     intro: "Foto del recibo dentro, resumen mensual fuera. Sin caos contable.",
     chooseLanguage: "Elige idioma",
-    firstName: "Nombre",
+    firstName: "Nombre o nombre del negocio",
     trade: "Oficio",
     email: "Email de recuperación",
     emailHint: "El email es necesario para acceder a la cuenta, recuperarla y usar email intake.",
@@ -1514,7 +1524,7 @@ Object.assign(COPY, {
     ...COPY.en,
     intro: "Снимка на бележката влиза, месечното обобщение излиза. Без счетоводен хаос.",
     chooseLanguage: "Изберете език",
-    firstName: "Име",
+    firstName: "Име или име на бизнеса",
     trade: "Професия",
     email: "Email за възстановяване",
     emailHint: "Email е необходим за достъп до акаунта, възстановяване и email intake.",
@@ -4657,10 +4667,15 @@ function onboarding() {
   shell(`
     <section class="screen">
       ${topbar("")}
-      <h1 class="title">TidGo</h1>
-      <p class="subtitle">${t("intro")}</p>
-      <form class="stack" id="onboardingForm">
-        <label class="field"><span>${t("chooseLanguage")}</span>${languageSelect()}</label>
+      <div class="onboarding-hero-card">
+        <span class="eyebrow">TidGo</span>
+        <h1 class="title">${t("intro")}</h1>
+      </div>
+      <form class="stack onboarding-form" id="onboardingForm">
+        <div class="field language-field">
+          <span>${t("chooseLanguage")}</span>
+          ${languageFlagPicker("onboarding-language-picker")}
+        </div>
         <label class="field"><span>${t("firstName")}</span><input class="input" name="first_name" autocomplete="given-name" required></label>
         <label class="field"><span>${t("trade")}</span><input class="input" name="trade" autocomplete="organization-title"></label>
         <div class="field">
@@ -5360,6 +5375,20 @@ function languageSelect() {
   return `<select class="select" name="language">${Object.entries(LANGUAGES).map(([code, name]) => `<option value="${code}"${state.language === code ? " selected" : ""}>${name}</option>`).join("")}</select>`;
 }
 
+function languageFlagPicker(className = "") {
+  return `
+    <div class="app-language-picker ${className}">
+      <input type="hidden" name="language" value="${escapeAttr(state.language)}">
+      ${Object.entries(LANGUAGES).map(([code, name]) => `
+        <button class="app-language-option ${state.language === code ? "active" : ""}" type="button" data-app-language="${code}">
+          <span class="flag flag-${LANGUAGE_FLAGS[code] || "gb"}" aria-hidden="true"></span>
+          <span>${escapeHtml(name)}</span>
+        </button>
+      `).join("")}
+    </div>
+  `;
+}
+
 function infoTip(text) {
   return `<span class="info-tip" tabindex="0" role="note" aria-label="${escapeAttr(text)}" title="${escapeAttr(text)}">i<span>${escapeHtml(text)}</span></span>`;
 }
@@ -6053,6 +6082,14 @@ document.addEventListener("click", async (event) => {
   if (marketingLanguageButton) {
     state.marketingLanguage = marketingLanguageButton.dataset.marketingLanguage;
     write("tg_marketing_language", state.marketingLanguage);
+    render();
+    return;
+  }
+
+  const appLanguageButton = event.target.closest("[data-app-language]");
+  if (appLanguageButton) {
+    state.language = appLanguageButton.dataset.appLanguage;
+    write("rb_language", state.language);
     render();
     return;
   }
