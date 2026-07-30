@@ -4452,46 +4452,50 @@ function ourStoryPage() {
         <article class="marketing-page-card marketing-article story-article">
           <span class="eyebrow">TidGo story</span>
           <h1>From a carrier bag in the van to a simple tool - the TidGo story</h1>
-          <p class="marketing-lead">Why a van driver built a receipt app for the UK self-employed, CIS subcontractors, landlords and the accountants who have to clean up the records afterwards.</p>
+          <p class="marketing-lead">Why a van driver built a receipt app for the UK self-employed. Send receipts by WhatsApp, forward CIS payslips, and hand tidy records to your accountant.</p>
 
           <h2>31 January, 9pm - sound familiar?</h2>
           <p>For years I was self-employed, driving a van around the UK and across Europe. And like most of us, I had exactly the same problem with paperwork.</p>
           <p>Receipts were everywhere: in my pockets, on the dashboard, and eventually in one big carrier bag in the van. When Self Assessment came round, at 9pm on 31 January I would tip the whole bag out on the floor. The result?</p>
           <ul>
             <li>Half the receipts had faded to nothing - those costs were simply lost.</li>
-            <li>Sitting there stressed about whether I would file before midnight and avoid a penalty.</li>
+            <li>Sitting there with a beer, stressed about whether I would file before midnight and avoid a penalty.</li>
             <li>A worried partner who had to help me through the same chaos every single year.</li>
           </ul>
           <p>That is when I came up with my first, very basic trick: I started photographing receipts and dropping them into a folder on my phone. Not perfect, but at least the proof did not fade away with the ink.</p>
 
-          <h2>Why are Xero and QuickBooks too complicated for a builder?</h2>
+          <h2>Why did accounting software feel too complicated for the way I worked?</h2>
           <p>When health problems kept me at home for a while, Making Tax Digital was suddenly all over the news. I thought: right, time to take this seriously.</p>
-          <p>I went through the big accounting packages - Xero, QuickBooks, Sage, FreeAgent. Large, global companies. Genuinely good tools. And one thing became obvious very quickly: <strong>they are built for accountants, not for builders, drivers, painters or plumbers.</strong></p>
-          <p>They are packed with features: charts, forecasts, bank reconciliation and ten tabs many small users will never open. After ten hours of physical work, none of us wants to sit down and learn that. I know people who paid a year's subscription for one of these and logged in twice.</p>
-          <p>And there is something those companies do not think about at all: <strong>some of us are not only fighting the paperwork - we are fighting the language too.</strong> If tax is hard in your own language, in a second one it becomes a wall. That is why TidGo speaks several languages while the records your accountant receives stay clear and practical.</p>
-          <p>So I decided to build something different: a simple tool for ordinary people, made by someone who spent years behind the wheel and knows exactly what having no time feels like.</p>
+          <p>I went through the big accounting packages - Xero, QuickBooks, Sage, FreeAgent. Large, global companies. Genuinely good tools. And to me one thing became obvious very quickly: <strong>they felt built for accountants, not for builders, drivers, painters or plumbers.</strong></p>
+          <p>They are packed with features. Charts, forecasts, bank reconciliation, ten tabs you will never open. I could see exactly why an accountant or a larger business would value all of it. But for the one job I needed doing every day, it was far too much. After ten hours of physical work, none of us wants to sit down and learn that. I know people who paid a year's subscription for one of these and logged in twice.</p>
+          <p>And there is something those companies do not seem to think about at all: <strong>some of us are not only fighting the paperwork - we are fighting the language too.</strong> If tax is hard in your own language, in a second one it becomes a wall. That is why TidGo currently works in eight languages - the ones spoken by many of the people it was built for - while the core records your accountant sees are presented in English. Nobody has to translate anything.</p>
+          <p>So I decided to build something different. A simple tool for ordinary people, made by someone who spent years behind the wheel and knows exactly what having no time feels like.</p>
 
           <h2>How do you collect receipts by WhatsApp? This is how TidGo works</h2>
           <p>I designed TidGo so you spend as little time on paperwork as possible.</p>
           <p><strong>No passwords.</strong> You enter your email, enter the code from the message, and you are in. Nothing complicated to remember.</p>
-          <p><strong>Receipts by WhatsApp.</strong> You link your number once, then send a photo of the receipt on WhatsApp, like any other message. TidGo reads the amount, date and merchant, then files the expense against your account. You give it a quick look to check it is right - because it is your data and your responsibility. Your accountant checks at the end.</p>
-          <p><strong>CIS payslips straight from your inbox.</strong> Getting payslips, remittance notes or CIS statements by email? Forward the message to TidGo and the system files the income and keeps the proof attached. For CIS subcontractors this is often the biggest paper pile of the year.</p>
-          <p><strong>A view for your accountant.</strong> One click connects your accountant using just their email address. They get read-only access: they can see records and download what they need, but they cannot change your data. You can revoke that access whenever you like.</p>
+          <p><strong>Receipts by WhatsApp - the most important part.</strong> You link your number once, then you just send a photo of the receipt on WhatsApp, like any other message. TidGo reads the amount, the date and the merchant, and files the expense against your account. Then you give it a quick look to confirm it is right - because it is your data and your responsibility - and your accountant can review the records too. Three sets of eyes, instead of blindly trusting a machine.</p>
+          <p>Day to day, you do not even need to open the app.</p>
+          <p><strong>CIS payslips straight from your inbox.</strong> Getting payslips, remittance notes or CIS statements by email? Forward the message to TidGo. It keeps the document attached and helps you record the income, asking you to check or add the amount when needed. For CIS subcontractors this is usually the biggest pile of paper of the year.</p>
+          <p><strong>A view for your accountant.</strong> One click connects your accountant using just their email address. They get read-only access - they can see the records and download what they need, but they cannot change anything. You can revoke that access whenever you like.</p>
 
           <h2>What TidGo does not do - and why I say it out loud</h2>
           <p>This matters as much as the feature list.</p>
-          <p>TidGo <strong>does not submit anything to HMRC</strong>. It does not replace your accountant. It does not handle VAT, limited company accounts, payroll or corporation tax. It is not full accounting software and it never will be.</p>
-          <p>TidGo does one job: <strong>it collects and tidies your digital records before they reach your accountant.</strong> The HMRC submission is done by your accountant or by MTD-compatible software. TidGo helps make sure they have something clean to work from.</p>
+          <p>TidGo <strong>does not submit anything to HMRC</strong>. It does not replace your accountant. It does not handle VAT, limited company accounts, payroll or corporation tax. It is not accounting software, and it is not trying to become one.</p>
+          <p>TidGo does one job: <strong>it collects and tidies your digital records before they reach your accountant.</strong> You or your accountant submit to HMRC using MTD-compatible software. My job is making sure there is something clean to work from.</p>
+          <p>I say this plainly because I have seen too many adverts that promise everything, and then the person behind them is afraid to answer the phone. I would rather tell you where the line is up front.</p>
 
           <h2>MTD starts with keeping records digital</h2>
-          <p>Making Tax Digital for Income Tax is moving more self-employed people and landlords toward digital records and quarterly workflows. The heart of it is simple: <strong>HMRC does not want your paper receipts. It wants your income and expenses recorded digitally.</strong> A carrier bag in the van is not digital.</p>
-          <p>You do not need to understand every corner of MTD to start. You need to stop losing receipts. For anything specific to your situation, ask your accountant or check GOV.UK - TidGo does not give tax advice.</p>
+          <p>Making Tax Digital for Income Tax is already live - the first group of self-employed people and landlords came into scope in 2026, and the thresholds drop further in the years that follow. Millions of people will be affected.</p>
+          <p>The heart of it is simple: <strong>MTD requires your relevant income and expenses to be recorded digitally, including the date, amount and category.</strong> A carrier bag of paper receipts alone is not a digital record.</p>
+          <p>You do not need to understand MTD. You just need to stop losing receipts. For anything specific to your situation, ask your accountant or check GOV.UK - I do not give tax advice.</p>
 
           <h2>I built this for us</h2>
           <p>TidGo was not built to bury you in charts and jargon. It was built so you never have to tip a carrier bag onto the floor at nine in the evening on 31 January.</p>
-          <p>There is no corporation behind this and no investors with a pitch deck. There is one person who drove a van for fifteen years, had this exact problem, and decided to fix it the simplest way he knew how.</p>
-          <p>The app is free while we are testing. If paid plans arrive, I will say so well in advance - and you will always be able to export or delete your records.</p>
-          <p>Right now I am looking for 20 Android closed testers: people who will use TidGo for real and tell me honestly what is wrong with it.</p>
+          <p>There is no big team behind this and no investors with a pitch deck. Just me - someone who drove a van for fifteen years, had this exact problem, and decided to fix it the simplest way he knew how.</p>
+          <p>TidGo is free during Early Access. After that, the planned price for TidGo Core is &pound;4.99 a month, and you will get clear notice before any payment begins. Your records are always yours: you can export or delete them at any time.</p>
+          <p>Right now I am looking for 20 founding testers - people who will use TidGo for real and tell me honestly what is wrong with it. If that sounds like you, <a href="/founding-tester">here is what it involves</a>.</p>
+          <p>Have a look at how simple receipts by WhatsApp can be. And tell me what is wrong with it - honestly. That is exactly why I am doing this.</p>
           ${androidTesterCallout()}
           ${pageCta()}
         </article>
