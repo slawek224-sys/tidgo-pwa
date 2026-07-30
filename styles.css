@@ -334,10 +334,20 @@ button {
   box-shadow: 0 8px 18px rgba(22, 163, 74, 0.12);
 }
 
+.landing-nav a.nav-story {
+  border: 1px solid rgba(30, 64, 175, 0.16);
+  border-radius: 999px;
+  background: linear-gradient(135deg, #eef6ff 0%, #ecfdf5 100%);
+  color: var(--blue);
+  padding: 7px 12px;
+  box-shadow: 0 8px 18px rgba(30, 64, 175, 0.1);
+}
+
 .landing-nav a.active {
   color: var(--green);
 }
 
+.landing-nav a.nav-story.active,
 .landing-nav a.nav-mtd.active {
   background: var(--green);
   border-color: var(--green);
@@ -1268,6 +1278,10 @@ button {
 .story-callout .landing-link {
   width: fit-content;
   min-width: 220px;
+}
+
+.landing-tester-callout {
+  margin: 10px 0 6px;
 }
 
 .tester-layout {

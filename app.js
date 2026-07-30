@@ -45,7 +45,7 @@ const MARKETING_LANGUAGES = {
 
 const MARKETING_COPY = {
   en: {
-    navHow: "How it works", navWho: "Who is it for?", navStory: "Our story", navIntake: "How intake works", navAccountantPack: "Show your accountant", navPricing: "Launch & pricing", navFaq: "FAQ", navMtd: "MTD explained", navContact: "Contact",
+    navHow: "How it works", navWho: "Who is it for?", navStory: "Founder story", navIntake: "How intake works", navAccountantPack: "Show your accountant", navPricing: "Launch & pricing", navFaq: "FAQ", navMtd: "MTD explained", navContact: "Contact",
     heroEyebrow: "Receipts in. Tidy records out.", heroTitle: "One simple place for receipts.", heroText: "For self-employed people who need records tidy, and accountants who would rather not chase plastic bags full of receipts.",
     stepSnap: "Snap receipts", stepTidy: "Keep records tidy", stepPack: "Send a clean pack",
     trustSimple: "No complicated registration. Just email sign-in.",
@@ -70,7 +70,7 @@ const MARKETING_COPY = {
     demoRecordsScreen: "Client records", demoRecordsTitle: "Download the client pack", demoRecordsText: "Open a client, check totals, request missing docs, then download CSV or PDF."
   },
   pl: {
-    navHow: "Jak to dziala", navWho: "Dla kogo?", navStory: "Nasza historia", navIntake: "Jak dodawac dokumenty", navAccountantPack: "Pokaz ksiegowemu", navPricing: "Start i ceny", navFaq: "FAQ", navMtd: "MTD wyjasnione", navContact: "Kontakt",
+    navHow: "Jak to dziala", navWho: "Dla kogo?", navStory: "Historia twórcy", navIntake: "Jak dodawac dokumenty", navAccountantPack: "Pokaz ksiegowemu", navPricing: "Start i ceny", navFaq: "FAQ", navMtd: "MTD wyjasnione", navContact: "Kontakt",
     heroEyebrow: "Paragony wchodza. Porzadek wychodzi.", heroTitle: "Jedno proste miejsce na paragony.", heroText: "Dla self-employed, ktorzy chca miec rekordy w porzadku, i dla ksiegowych, ktorzy nie chca gonitwy za reklamowka paragonow.",
     stepSnap: "Zrob zdjecie", stepTidy: "Trzymaj porzadek", stepPack: "Wyslij czysta paczke",
     trustSimple: "Bez skomplikowanej rejestracji. Tylko logowanie emailem.",
@@ -3139,16 +3139,27 @@ function marketingLanguagePicker() {
 function marketingNav(active = "") {
   return `
     <nav class="landing-nav" aria-label="TidGo navigation">
+      <a class="nav-story ${active === "story" ? "active" : ""}" href="/our-story">${mk("navStory")}</a>
       <a class="${active === "how" ? "active" : ""}" href="/how-it-works">${mk("navHow")}</a>
       <a class="${active === "who" ? "active" : ""}" href="/who-is-it-for">${mk("navWho")}</a>
       <a class="${active === "intake" ? "active" : ""}" href="/how-intake-works">${mk("navIntake")}</a>
       <a class="${active === "accountantPack" ? "active" : ""}" href="/show-this-to-your-accountant">${mk("navAccountantPack")}</a>
       <a class="${active === "pricing" ? "active" : ""}" href="/launch-pricing">${mk("navPricing")}</a>
       <a class="${active === "faq" ? "active" : ""}" href="/faq">${mk("navFaq")}</a>
-      <a class="${active === "story" ? "active" : ""}" href="/our-story">${mk("navStory")}</a>
       <a class="nav-mtd ${active === "mtd" ? "active" : ""}" href="/mtd">${mk("navMtd")}</a>
       <a href="/#contact">${mk("navContact")}</a>
     </nav>
+  `;
+}
+
+function androidTesterCallout(extraClass = "") {
+  const className = ["story-callout", extraClass].filter(Boolean).join(" ");
+  return `
+    <section class="${className}">
+      <strong>Want to help shape TidGo?</strong>
+      <span>Join the Android closed test, use the app for at least 14 days, and send honest feedback. No positive review required.</span>
+      <a class="primary landing-link" href="/android-testers">Become an Android tester</a>
+    </section>
   `;
 }
 
@@ -4225,6 +4236,7 @@ function landing() {
               </div>
             </div>
           </section>
+          ${androidTesterCallout("landing-tester-callout")}
           <section class="landing-contact" id="contact">
             <div class="landing-contact-copy">
               <div>
@@ -4480,11 +4492,7 @@ function ourStoryPage() {
           <p>There is no corporation behind this and no investors with a pitch deck. There is one person who drove a van for fifteen years, had this exact problem, and decided to fix it the simplest way he knew how.</p>
           <p>The app is free while we are testing. If paid plans arrive, I will say so well in advance - and you will always be able to export or delete your records.</p>
           <p>Right now I am looking for 20 Android closed testers: people who will use TidGo for real and tell me honestly what is wrong with it.</p>
-          <div class="story-callout">
-            <strong>Want to help shape TidGo?</strong>
-            <span>Join the Android closed test, use the app for at least 14 days, and send honest feedback. No positive review required.</span>
-            <a class="primary landing-link" href="/android-testers">Become an Android tester</a>
-          </div>
+          ${androidTesterCallout()}
           ${pageCta()}
         </article>
       </div>
