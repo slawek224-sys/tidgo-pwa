@@ -981,6 +981,19 @@ const COPY = {
     cookieAccept: "Allow analytics",
     cookieDecline: "Essential only",
     recoveryEmail: "Email recovery",
+    recoveryWhatsApp: "WhatsApp recovery",
+    recoveryWhatsAppIntro: "If your WhatsApp number is already linked to TidGo, send RECOVER TIDGO to TidGo on WhatsApp. Then enter that number and the code you receive.",
+    openWhatsAppRecovery: "Open WhatsApp recovery",
+    whatsappRecoveryNumber: "Linked WhatsApp number",
+    whatsappCode: "WhatsApp code",
+    verifyWhatsAppCode: "Recover with WhatsApp code",
+    changeEmailTitle: "Change recovery email",
+    changeEmailHint: "Use this if you want TidGo recovery and email intake to move to a new email address.",
+    newEmail: "New email",
+    emailChangeCodeHint: "We will send a code to the new email before changing it.",
+    requestEmailChange: "Send change code",
+    verifyEmailChange: "Confirm new email",
+    emailChanged: "Email changed.",
     verifyEmail: "Verify your email",
     verifyEmailHint: "We sent a 6-digit code to your email. Enter it to finish setting up TidGo on this device.",
     verifyAndStart: "Verify and start",
@@ -1114,6 +1127,19 @@ const COPY = {
     cookieAccept: "Zgadzam się na analitykę",
     cookieDecline: "Tylko niezbędne",
     recoveryEmail: "Odzyskiwanie emailem",
+    recoveryWhatsApp: "Odzyskiwanie przez WhatsApp",
+    recoveryWhatsAppIntro: "Jeśli numer WhatsApp jest już połączony z TidGo, wyślij RECOVER TIDGO do TidGo na WhatsAppie. Potem wpisz ten numer i kod, który otrzymasz.",
+    openWhatsAppRecovery: "Otwórz odzyskiwanie WhatsApp",
+    whatsappRecoveryNumber: "Połączony numer WhatsApp",
+    whatsappCode: "Kod z WhatsAppa",
+    verifyWhatsAppCode: "Odzyskaj kodem WhatsApp",
+    changeEmailTitle: "Zmień email odzyskiwania",
+    changeEmailHint: "Użyj tego, jeśli chcesz przenieść odzyskiwanie konta i email intake na nowy adres email.",
+    newEmail: "Nowy email",
+    emailChangeCodeHint: "Wyślemy kod na nowy email zanim go zmienimy.",
+    requestEmailChange: "Wyślij kod zmiany",
+    verifyEmailChange: "Potwierdź nowy email",
+    emailChanged: "Email zmieniony.",
     verifyEmail: "Potwierdź email",
     verifyEmailHint: "Wysłaliśmy 6-cyfrowy kod na twój email. Wpisz go, żeby dokończyć start TidGo na tym urządzeniu.",
     verifyAndStart: "Potwierdź i start",
@@ -2993,6 +3019,9 @@ const state = {
   whatsappChangeUnlocked: false,
   whatsappChangeOpen: false,
   whatsappChangeEmail: "",
+  emailChangeOpen: false,
+  emailChangeCodeSent: false,
+  emailChangeNewEmail: "",
   pendingSignupEmail: read("rb_pending_signup_email", ""),
   pendingSignupWhatsApp: read("rb_pending_signup_whatsapp", ""),
   pendingSignupIncomeSources: read("rb_pending_income_sources", []),
@@ -3883,6 +3912,11 @@ async function whatsappLinkMessage() {
 async function openWhatsAppConnect() {
   const message = await whatsappLinkMessage();
   const url = `https://wa.me/${TIDGO_WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  window.location.href = url;
+}
+
+function openWhatsAppRecovery() {
+  const url = `https://wa.me/${TIDGO_WHATSAPP_NUMBER}?text=${encodeURIComponent("RECOVER TIDGO")}`;
   window.location.href = url;
 }
 
@@ -4932,11 +4966,21 @@ function recover() {
       <form class="stack" id="recoveryForm">
         <div class="card stack recovery-block recovery-panel">
           <strong>${t("recoveryEmail")}</strong>
-          <label class="field recovery-field"><span>${t("email")}</span><input class="input recovery-input" name="email" type="email" required autocomplete="email" placeholder="you@example.com"></label>
+          <label class="field recovery-field"><span>${t("email")}</span><input class="input recovery-input" name="email" type="email" autocomplete="email" placeholder="you@example.com"></label>
           <button class="secondary recovery-send" name="step" value="request">${t("sendCode")}</button>
           <div class="recovery-code-box">
             <label class="field recovery-field"><span>${t("code")}</span><input class="input recovery-input recovery-code-input" name="code" inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="123456"></label>
             <button class="primary recovery-login" name="step" value="verify">${t("login")}</button>
+          </div>
+        </div>
+        <div class="card stack recovery-block recovery-panel">
+          <strong>${t("recoveryWhatsApp")}</strong>
+          <p class="hint">${t("recoveryWhatsAppIntro")}</p>
+          <button class="secondary whatsapp-connect-btn" type="button" data-action="openWhatsAppRecovery"><span class="wa-icon" aria-hidden="true">WA</span>${t("openWhatsAppRecovery")}</button>
+          <label class="field recovery-field"><span>${t("whatsappRecoveryNumber")}</span><input class="input recovery-input" name="whatsapp_phone" inputmode="tel" autocomplete="tel" placeholder="+44..."></label>
+          <div class="recovery-code-box">
+            <label class="field recovery-field"><span>${t("whatsappCode")}</span><input class="input recovery-input recovery-code-input" name="whatsapp_code" inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="123456"></label>
+            <button class="primary recovery-login" name="step" value="verify_whatsapp">${t("verifyWhatsAppCode")}</button>
           </div>
         </div>
       </form>
@@ -5159,6 +5203,26 @@ function settingsWhatsAppSection(existingWhatsApp = "") {
   `;
 }
 
+function settingsEmailChangeSection() {
+  const newEmail = state.emailChangeNewEmail || "";
+  if (!state.emailChangeOpen) {
+    return `<button class="secondary" type="button" data-action="startEmailChange">${t("changeEmailTitle")}</button>`;
+  }
+  return `
+    <div class="stack email-change-box">
+      <p class="hint">${t("changeEmailHint")}</p>
+      <label class="field"><span>${t("newEmail")}</span><input class="input" name="new_email" type="email" value="${escapeAttr(newEmail)}" placeholder="new@email.com"></label>
+      <p class="hint">${state.emailChangeCodeSent ? t("emailChangeCodeHint") : t("emailChangeCodeHint")}</p>
+      ${state.emailChangeCodeSent ? `<label class="field"><span>${t("code")}</span><input class="input" name="email_change_code" inputmode="numeric" autocomplete="one-time-code" placeholder="123456"></label>` : ""}
+      <div class="button-row">
+        <button class="secondary" type="button" data-action="requestEmailChangeCode">${state.emailChangeCodeSent ? t("sendCodeAgain") : t("requestEmailChange")}</button>
+        ${state.emailChangeCodeSent ? `<button class="primary" type="button" data-action="verifyEmailChangeCode">${t("verifyEmailChange")}</button>` : ""}
+        <button class="secondary" type="button" data-action="cancelEmailChange">${t("cancel")}</button>
+      </div>
+    </div>
+  `;
+}
+
 function settings() {
   const existingWhatsApp = state.user.whatsapp_linked_at ? (state.user.whatsapp_phone_normalized || state.user.whatsapp_phone || "") : "";
   const notificationPreference = state.user.notification_preference || "none";
@@ -5175,7 +5239,8 @@ function settings() {
           ${incomeSourceChoices(readIncomeSources())}
           <p class="hint">${t("incomeSourcesHint")}</p>
         </div>
-        <label class="field"><span>${t("email")}</span><input class="input" name="email" type="email" value="${escapeAttr(state.user.email || "")}"></label>
+        <label class="field"><span>${t("email")}</span><input class="input" name="email" type="email" value="${escapeAttr(state.user.email || "")}" readonly></label>
+        ${settingsEmailChangeSection()}
         ${settingsWhatsAppSection(existingWhatsApp)}
         <div class="field">
           <span>${t("notificationsTitle")}</span>
@@ -6322,6 +6387,22 @@ document.addEventListener("click", async (event) => {
     }
     return;
   }
+  if (target.dataset.action === "openWhatsAppRecovery") {
+    openWhatsAppRecovery();
+    return;
+  }
+  if (target.dataset.action === "startEmailChange") {
+    state.emailChangeOpen = true;
+    state.emailChangeCodeSent = false;
+    state.emailChangeNewEmail = "";
+    return render();
+  }
+  if (target.dataset.action === "cancelEmailChange") {
+    state.emailChangeOpen = false;
+    state.emailChangeCodeSent = false;
+    state.emailChangeNewEmail = "";
+    return render();
+  }
   if (target.dataset.openReceipt) {
     return navigate("receipt", { selected: target.dataset.openReceipt });
   }
@@ -6473,6 +6554,51 @@ document.addEventListener("click", async (event) => {
         await rememberUser({ ...state.user, ...user, id: state.user.id });
       }
       toast(t("whatsappChangeUnlocked"));
+      return render();
+    } catch (error) {
+      toast(error.message || t("backendDown"));
+    } finally {
+      setBusy(false);
+    }
+    return;
+  }
+  if (action === "requestEmailChangeCode") {
+    const box = target.closest(".email-change-box");
+    const newEmail = (box?.querySelector("[name='new_email']")?.value || state.emailChangeNewEmail || "").trim();
+    if (!newEmail) return toast(t("newEmail"));
+    try {
+      setBusy(true);
+      await api(`/api/users/${state.user.id}/email-change/request`, {
+        method: "POST",
+        body: JSON.stringify({ new_email: newEmail })
+      });
+      state.emailChangeNewEmail = newEmail;
+      state.emailChangeCodeSent = true;
+      toast(t("codeSent"));
+      return render();
+    } catch (error) {
+      toast(error.message || t("backendDown"));
+    } finally {
+      setBusy(false);
+    }
+    return;
+  }
+  if (action === "verifyEmailChangeCode") {
+    const box = target.closest(".email-change-box");
+    const newEmail = (box?.querySelector("[name='new_email']")?.value || state.emailChangeNewEmail || "").trim();
+    const code = (box?.querySelector("[name='email_change_code']")?.value || "").trim();
+    if (!newEmail || !code) return toast(t("code"));
+    try {
+      setBusy(true);
+      const user = await api(`/api/users/${state.user.id}/email-change/verify`, {
+        method: "POST",
+        body: JSON.stringify({ new_email: newEmail, code })
+      });
+      state.emailChangeOpen = false;
+      state.emailChangeCodeSent = false;
+      state.emailChangeNewEmail = "";
+      await rememberUser({ ...state.user, ...user });
+      toast(t("emailChanged"));
       return render();
     } catch (error) {
       toast(error.message || t("backendDown"));
@@ -7008,6 +7134,17 @@ document.addEventListener("submit", async (event) => {
         await api("/api/auth/recovery/request", { method: "POST", body: JSON.stringify({ email: data.email }) });
         return toast(t("codeSentIfExists"));
       }
+      if (submitter === "verify_whatsapp") {
+        const user = await api("/api/recovery/whatsapp/verify", {
+          method: "POST",
+          body: JSON.stringify({ whatsapp_phone: data.whatsapp_phone, code: data.whatsapp_code })
+        });
+        state.language = user.language || state.language;
+        await rememberUser(user);
+        write("rb_language", state.language);
+        await refresh();
+        return go("home");
+      }
       const user = await api("/api/auth/recovery/verify", { method: "POST", body: JSON.stringify({ email: data.email, code: data.code }) });
       state.language = user.language || state.language;
       await rememberUser(user);
@@ -7152,7 +7289,6 @@ document.addEventListener("submit", async (event) => {
       const patchBody = {
         first_name: data.first_name,
         trade: data.trade || null,
-        email: data.email || null,
         language: state.language,
         notification_preference: data.notification_preference || "none"
       };
