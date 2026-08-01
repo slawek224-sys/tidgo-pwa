@@ -45,7 +45,7 @@ const MARKETING_LANGUAGES = {
 
 const MARKETING_COPY = {
   en: {
-    navHow: "How it works", navWho: "Who is it for?", navStory: "Founder story", navIntake: "How intake works", navAccountantPack: "Show your accountant", navPricing: "Launch & pricing", navFaq: "FAQ", navMtd: "MTD explained", navContact: "Contact",
+    navHow: "How it works", navWho: "Who is it for?", navStory: "Founder story", navIntake: "How intake works", navFindAccountant: "Find an accountant", navAccountantPack: "Show your accountant", navPricing: "Launch & pricing", navFaq: "FAQ", navMtd: "MTD explained", navContact: "Contact",
     heroEyebrow: "Receipts in. Tidy records out.", heroTitle: "One simple place for receipts.", heroText: "For self-employed people who need records tidy, and accountants who would rather not chase plastic bags full of receipts.",
     stepSnap: "Snap receipts", stepTidy: "Keep records tidy", stepPack: "Send a clean pack",
     trustSimple: "No complicated registration. Just email sign-in.",
@@ -57,7 +57,7 @@ const MARKETING_COPY = {
     contactTitle: "Want to try it or ask a question?", contactText: "Send a quick message. No sales maze, just a human reply.", yourEmail: "Your email", roleSelf: "I work for myself", roleAccountant: "I am an accountant", roleCurious: "Just curious", message: "Message", sendMessage: "Send message", messageSent: "Message sent. Thank you.", messagePending: "Automatic contact is being connected. Please try again after the next API deploy.",
     selfLabel: "I work for myself", selfTitle: "Open TidGo App", selfText: "Take receipt photos, add income, keep monthly records ready for your accountant.", scanApp: "Scan app", openApp: "Open app",
     accountantLabel: "I'm an accountant", accountantTitle: "Open Accountant Portal", accountantText: "View connected client records, download CSV/PDF packs, and reduce deadline panic.", scanPortal: "Scan portal", openPortal: "Open Accountant Portal", viewDemo: "View quick demo",
-    footer: "TidGo helps organise records. It is not accounting, tax advice or payroll software.", companyFooter: "TidGo Ltd. Company number 17356146. 128 City Road, London, EC1V 2NX. hello@tidgo.co.uk", home: "Home", appDemo: "App demo", accountantDemo: "Accountant demo", deleteAccountLink: "Delete account", backHome: "Back to homepage", step: "Step", foundingTester: "Become a Founding Tester", testerCalloutTitle: "Want to help shape TidGo?", testerCalloutText: "Join the Android closed test, use the app for at least 14 days, and send honest feedback. No positive review required.", testerCalloutButton: "Become an Android tester",
+    footer: "TidGo helps organise records. It is not accounting, tax advice or payroll software.", companyFooter: "TidGo Ltd. Company number 17356146. 128 City Road, London, EC1V 2NX. hello@tidgo.co.uk", home: "Home", appDemo: "App demo", accountantDemo: "Accountant demo", deleteAccountLink: "Delete account", backHome: "Back to homepage", step: "Step", foundingTester: "Become a Founding Tester", testerCalloutTitle: "Want to help shape TidGo?", testerCalloutText: "Join the Android closed test, use the app for at least 14 days, and send honest feedback. No positive review required.", testerCalloutButton: "Become an Android tester", findAccountantTitle: "Find an accountant who understands tidy digital records", findAccountantText: "TidGo is building a small early access introduction list for self-employed people, landlords, CIS workers, accountants and bookkeepers. No public ranking yet. Tell us what you need and we will try to make a sensible introduction.", needAccountantTitle: "I need an accountant or bookkeeper", needAccountantText: "Tell us where you are, what you do and which language you prefer. TidGo may introduce you to an accountant or bookkeeper, but does not provide accounting advice or guarantee third-party services.", accountantJoinTitle: "I am an accountant or bookkeeper", accountantJoinText: "Join the early TidGo accountant list. We are looking for people who can help users with Self Assessment, CIS, landlords, MTD records and simple bookkeeping.", yourName: "Your name", businessType: "Work type or firm type", location: "Town or area", preferredLanguage: "Preferred language", phoneOptional: "Phone or WhatsApp (optional)", accountantFirm: "Firm name", servicesOffered: "Services offered", submitIntroRequest: "Send request", introSent: "Request sent. Thank you.", introPending: "Request could not be sent. Please email hello@tidgo.co.uk.", introDisclaimer: "TidGo may help with introductions, but it is not an accountant, tax adviser or broker. You choose and check any accountant yourself.",
     trySafe: "Try it safely: take a photo, check the result, download your summary, and delete your account/data any time from Settings.",
     appDemoKind: "For self-employed", appDemoTitle: "See the receipt flow before signing in.", appDemoText: "TidGo is built around one simple habit: take the photo now, send a cleaner pack later.",
     accountantDemoKind: "For accountants", accountantDemoTitle: "See the client handoff before signing in.", accountantDemoText: "The accountant portal is read-only. Clients keep records tidy; you get a cleaner pack when it is time to work.",
@@ -70,7 +70,7 @@ const MARKETING_COPY = {
     demoRecordsScreen: "Client records", demoRecordsTitle: "Download the client pack", demoRecordsText: "Open a client, check totals, request missing docs, then download CSV or PDF."
   },
   pl: {
-    navHow: "Jak to działa", navWho: "Dla kogo?", navStory: "Historia twórcy", navIntake: "Jak dodawać dokumenty", navAccountantPack: "Pokaż księgowemu", navPricing: "Start i ceny", navFaq: "FAQ", navMtd: "MTD wyjaśnione", navContact: "Kontakt",
+    navHow: "Jak to działa", navWho: "Dla kogo?", navStory: "Historia twórcy", navIntake: "Jak dodawać dokumenty", navFindAccountant: "Znajdź księgowego", navAccountantPack: "Pokaż księgowemu", navPricing: "Start i ceny", navFaq: "FAQ", navMtd: "MTD wyjaśnione", navContact: "Kontakt",
     heroEyebrow: "Paragony wchodzą. Porządek wychodzi.", heroTitle: "Jedno proste miejsce na paragony.", heroText: "Dla self-employed, którzy chcą mieć rekordy w porządku, i dla księgowych, którzy nie chcą gonitwy za reklamówką paragonów.",
     stepSnap: "Zrób zdjęcie", stepTidy: "Trzymaj porządek", stepPack: "Wyślij czystą paczkę",
     trustSimple: "Bez skomplikowanej rejestracji. Tylko logowanie emailem.",
@@ -82,7 +82,7 @@ const MARKETING_COPY = {
     contactTitle: "Chcesz przetestować albo zapytać?", contactText: "Wyślij krótką wiadomość. Bez lejka sprzedażowego, normalna odpowiedź od człowieka.", yourEmail: "Twój email", roleSelf: "Pracuję na siebie", roleAccountant: "Jestem księgowym", roleCurious: "Tylko sprawdzam", message: "Wiadomość", sendMessage: "Wyślij wiadomość", messageSent: "Wiadomość wysłana. Dziękuję.", messagePending: "Automatyczny kontakt jest podpinany. Spróbuj po następnym deployu API.",
     selfLabel: "Pracuję na siebie", selfTitle: "Otwórz aplikację TidGo", selfText: "Rób zdjęcia paragonów, dodawaj przychody i trzymaj miesięczne rekordy gotowe dla księgowego.", scanApp: "Skanuj app", openApp: "Otwórz app",
     accountantLabel: "Jestem księgowym", accountantTitle: "Otwórz portal księgowego", accountantText: "Zobacz rekordy klientów, pobierz CSV/PDF i ogranicz panikę przed terminem.", scanPortal: "Skanuj portal", openPortal: "Otwórz portal księgowego", viewDemo: "Zobacz szybkie demo",
-    footer: "TidGo pomaga porządkować rekordy. To nie jest księgowość, porada podatkowa ani payroll.", companyFooter: "TidGo Ltd. Company number 17356146. 128 City Road, London, EC1V 2NX. hello@tidgo.co.uk", home: "Start", appDemo: "Demo app", accountantDemo: "Demo księgowego", deleteAccountLink: "Usuń konto", backHome: "Wróć na stronę główną", step: "Krok", foundingTester: "Zostań Founding Tester", testerCalloutTitle: "Chcesz pomóc dopracować TidGo?", testerCalloutText: "Dołącz do zamkniętych testów Androida, używaj aplikacji przez co najmniej 14 dni i wyślij szczery feedback. Nie wymagamy pozytywnej opinii.", testerCalloutButton: "Zostań testerem Androida",
+    footer: "TidGo pomaga porządkować rekordy. To nie jest księgowość, porada podatkowa ani payroll.", companyFooter: "TidGo Ltd. Company number 17356146. 128 City Road, London, EC1V 2NX. hello@tidgo.co.uk", home: "Start", appDemo: "Demo app", accountantDemo: "Demo księgowego", deleteAccountLink: "Usuń konto", backHome: "Wróć na stronę główną", step: "Krok", foundingTester: "Zostań Founding Tester", testerCalloutTitle: "Chcesz pomóc dopracować TidGo?", testerCalloutText: "Dołącz do zamkniętych testów Androida, używaj aplikacji przez co najmniej 14 dni i wyślij szczery feedback. Nie wymagamy pozytywnej opinii.", testerCalloutButton: "Zostań testerem Androida", findAccountantTitle: "Znajdź księgowego, który rozumie uporządkowane cyfrowe rekordy", findAccountantText: "TidGo buduje małą listę kontaktową dla self-employed, landlordów, CIS workers, księgowych i bookkeeperów. Na razie bez publicznego rankingu. Napisz, czego potrzebujesz, a spróbujemy sensownie połączyć strony.", needAccountantTitle: "Szukam księgowego lub bookkeepera", needAccountantText: "Napisz, gdzie jesteś, czym się zajmujesz i w jakim języku wolisz rozmawiać. TidGo może pomóc w kontakcie, ale nie świadczy usług księgowych i nie gwarantuje usług firm trzecich.", accountantJoinTitle: "Jestem księgowym albo bookkeeperem", accountantJoinText: "Dołącz do wczesnej listy TidGo. Szukamy osób, które pomagają przy Self Assessment, CIS, landlordach, rekordach MTD i prostej księgowości.", yourName: "Imię i nazwisko", businessType: "Rodzaj pracy lub firmy", location: "Miasto lub okolica", preferredLanguage: "Preferowany język", phoneOptional: "Telefon lub WhatsApp (opcjonalnie)", accountantFirm: "Nazwa firmy", servicesOffered: "Usługi", submitIntroRequest: "Wyślij zgłoszenie", introSent: "Zgłoszenie wysłane. Dziękuję.", introPending: "Nie udało się wysłać. Napisz proszę na hello@tidgo.co.uk.", introDisclaimer: "TidGo może pomagać w kontaktach, ale nie jest księgowym, doradcą podatkowym ani brokerem. Sam wybierasz i sprawdzasz księgowego.",
     trySafe: "Sprawdź bez stresu: zrób zdjęcie, zobacz wynik, pobierz summary i usuń konto/dane w dowolnym momencie w ustawieniach.",
     appDemoKind: "Dla self-employed", appDemoTitle: "Zobacz flow paragonu bez logowania.", appDemoText: "TidGo opiera się na jednym prostym nawyku: zrób zdjęcie teraz, wyślij czystszą paczkę później.",
     accountantDemoKind: "Dla księgowych", accountantDemoTitle: "Zobacz przekazanie klienta bez logowania.", accountantDemoText: "Portal księgowego jest tylko do odczytu. Klient trzyma rekordy w porządku, a ty dostajesz czystszą paczkę do pracy.",
@@ -3081,6 +3081,7 @@ function marketingPageSlug() {
     "/how-it-works": "how",
     "/who-is-it-for": "who",
     "/how-intake-works": "intake",
+    "/find-accountant": "findAccountant",
     "/show-this-to-your-accountant": "accountantPack",
     "/launch-pricing": "pricing",
     "/faq": "faq",
@@ -3173,6 +3174,7 @@ function marketingNav(active = "") {
       <a class="${active === "how" ? "active" : ""}" href="/how-it-works">${mk("navHow")}</a>
       <a class="${active === "who" ? "active" : ""}" href="/who-is-it-for">${mk("navWho")}</a>
       <a class="${active === "intake" ? "active" : ""}" href="/how-intake-works">${mk("navIntake")}</a>
+      <a class="${active === "findAccountant" ? "active" : ""}" href="/find-accountant">${mk("navFindAccountant")}</a>
       <a class="${active === "accountantPack" ? "active" : ""}" href="/show-this-to-your-accountant">${mk("navAccountantPack")}</a>
       <a class="${active === "pricing" ? "active" : ""}" href="/launch-pricing">${mk("navPricing")}</a>
       <a class="${active === "faq" ? "active" : ""}" href="/faq">${mk("navFaq")}</a>
@@ -3211,7 +3213,7 @@ function landingFooter() {
       <div class="landing-foot-copy">
         <span>${mk("footer")} <strong>${mk("copyright")}</strong></span>
         <span class="landing-company-line">${mk("companyFooter")}</span>
-        <span class="landing-legal-links"><a href="/our-story">${mk("navStory")}</a><a href="/privacy">${t("privacyTitle")}</a><a href="/terms">${t("termsTitle")}</a><a href="/delete-account">${mk("deleteAccountLink")}</a></span>
+        <span class="landing-legal-links"><a href="/our-story">${mk("navStory")}</a><a href="/find-accountant">${mk("navFindAccountant")}</a><a href="/privacy">${t("privacyTitle")}</a><a href="/terms">${t("termsTitle")}</a><a href="/delete-account">${mk("deleteAccountLink")}</a></span>
         <span class="landing-privacy-note">${mk("privacyNote")}</span>
       </div>
     </footer>
@@ -4272,6 +4274,7 @@ function landing() {
               <div class="landing-showcase-links">
                 <a href="/how-it-works">${mk("navHow")}</a>
                 <a href="/how-intake-works">${mk("navIntake")}</a>
+                <a href="/find-accountant">${mk("navFindAccountant")}</a>
                 <a href="/show-this-to-your-accountant">${mk("navAccountantPack")}</a>
               </div>
             </div>
@@ -4332,12 +4335,63 @@ function landing() {
   `);
 }
 
+function findAccountantPage() {
+  shell(`
+    <section class="landing-screen marketing-page-screen">
+      ${landingHeader("findAccountant")}
+      <main class="marketing-page-shell">
+        <section class="marketing-page-card">
+          <span class="eyebrow">${mk("navFindAccountant")}</span>
+          <h1>${mk("findAccountantTitle")}</h1>
+          <p>${mk("findAccountantText")}</p>
+        </section>
+        <section class="intro-directory-grid">
+          <article class="marketing-page-card intro-form-card">
+            <h2>${mk("needAccountantTitle")}</h2>
+            <p>${mk("needAccountantText")}</p>
+            <form class="stack intro-request-form" data-intro-form="need-accountant">
+              <input type="hidden" name="role" value="Find accountant request">
+              <label class="field"><span>${mk("yourName")}</span><input class="input" name="name" required></label>
+              <label class="field"><span>${mk("yourEmail")}</span><input class="input" name="from_email" type="email" required></label>
+              <label class="field"><span>${mk("businessType")}</span><input class="input" name="business_type" placeholder="CIS, landlord, builder, driver..."></label>
+              <label class="field"><span>${mk("location")}</span><input class="input" name="location" placeholder="London, Northampton, online..."></label>
+              <label class="field"><span>${mk("preferredLanguage")}</span><input class="input" name="language_preference" placeholder="English, Polish, Romanian..."></label>
+              <label class="field"><span>${mk("message")}</span><textarea class="input" name="message" rows="4" required></textarea></label>
+              <button class="primary landing-link" type="submit">${mk("submitIntroRequest")}</button>
+            </form>
+          </article>
+          <article class="marketing-page-card intro-form-card">
+            <h2>${mk("accountantJoinTitle")}</h2>
+            <p>${mk("accountantJoinText")}</p>
+            <form class="stack intro-request-form" data-intro-form="accountant-join">
+              <input type="hidden" name="role" value="Accountant directory request">
+              <label class="field"><span>${mk("yourName")}</span><input class="input" name="name" required></label>
+              <label class="field"><span>${mk("yourEmail")}</span><input class="input" name="from_email" type="email" required></label>
+              <label class="field"><span>${mk("accountantFirm")}</span><input class="input" name="firm_name"></label>
+              <label class="field"><span>${mk("location")}</span><input class="input" name="location" placeholder="Town, region or online"></label>
+              <label class="field"><span>${mk("servicesOffered")}</span><textarea class="input" name="services" rows="3" placeholder="Self Assessment, CIS, bookkeeping, landlords, MTD..."></textarea></label>
+              <label class="field"><span>${mk("phoneOptional")}</span><input class="input" name="phone"></label>
+              <button class="primary landing-link" type="submit">${mk("submitIntroRequest")}</button>
+            </form>
+          </article>
+        </section>
+        <section class="marketing-page-card">
+          <p>${mk("introDisclaimer")}</p>
+        </section>
+        ${pageCta()}
+      </main>
+      ${landingFooter()}
+    </section>
+  `);
+}
+
 function marketingPage() {
   const slug = marketingPageSlug();
   if (slug === "privacy" || slug === "terms") return marketingLegalPage(slug);
   if (slug === "deleteAccountInfo") return deleteAccountInfoPage();
   if (slug === "story") return ourStoryPage();
   if (slug === "androidTesters") return androidTestersPage();
+  if (slug === "findAccountant") return findAccountantPage();
   const simplePages = {
     how: {
       active: "how",
@@ -6997,6 +7051,29 @@ document.addEventListener("submit", async (event) => {
   const data = Object.fromEntries(new FormData(form).entries());
   setBusy(true);
   try {
+    if (form.matches("[data-intro-form]")) {
+      const details = [
+        data.name ? `Name: ${data.name}` : "",
+        data.business_type ? `Work type: ${data.business_type}` : "",
+        data.firm_name ? `Firm: ${data.firm_name}` : "",
+        data.location ? `Location: ${data.location}` : "",
+        data.language_preference ? `Preferred language: ${data.language_preference}` : "",
+        data.services ? `Services: ${data.services}` : "",
+        data.phone ? `Phone/WhatsApp: ${data.phone}` : "",
+        data.message ? `Message: ${data.message}` : ""
+      ].filter(Boolean).join("\n");
+      await api("/api/contact", {
+        method: "POST",
+        body: JSON.stringify({
+          from_email: data.from_email || "",
+          role: data.role || "Accountant introduction request",
+          message: details
+        })
+      });
+      form.reset();
+      toast(mk("introSent"));
+      return;
+    }
     if (form.id === "adminLoginForm") {
       const step = event.submitter?.value || "request";
       const adminEmail = ((data.admin_email || state.adminEmail || state.adminPendingEmail || "")).trim();

@@ -1078,6 +1078,33 @@ button {
   line-height: 1.18;
 }
 
+.intro-directory-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.intro-form-card {
+  align-content: start;
+}
+
+.intro-form-card h2 {
+  margin: 0;
+  color: var(--blue-dark);
+  font-size: clamp(24px, 3vw, 34px);
+  letter-spacing: 0;
+}
+
+.intro-request-form {
+  margin-top: 4px;
+}
+
+.intro-request-form .primary {
+  justify-self: start;
+  width: auto;
+  min-width: 170px;
+}
+
 .legal-document {
   display: grid;
   gap: 14px;
@@ -2826,7 +2853,8 @@ button {
 
   .landing-showcase,
   .marketing-card-grid,
-  .marketing-topic-grid {
+  .marketing-topic-grid,
+  .intro-directory-grid {
     grid-template-columns: minmax(0, 1fr);
   }
 
