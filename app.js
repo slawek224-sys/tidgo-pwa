@@ -2988,6 +2988,7 @@ const state = {
   adminUsers: [],
   adminError: "",
   adminSearch: "",
+  adminSearchDraft: "",
   whatsappChangeCodeSent: false,
   whatsappChangeUnlocked: false,
   whatsappChangeOpen: false,
@@ -4834,7 +4835,11 @@ function adminLanding() {
             </div>
             <button class="secondary" type="button" data-action="loadAdminUsers">Refresh</button>
           </div>
-          <label class="field"><span>Search users</span><input class="input" data-admin-search value="${escapeAttr(state.adminSearch)}" placeholder="TID-000184, email, builder, paid..."></label>
+          <form class="admin-search-row" id="adminSearchForm">
+            <label class="field"><span>Search users</span><input class="input" name="admin_search" data-admin-search value="${escapeAttr(state.adminSearchDraft || state.adminSearch)}" placeholder="Search by name, email or customer ref"></label>
+            <button class="primary" type="submit">Find</button>
+            <button class="secondary" type="button" data-action="clearAdminSearch">Clear</button>
+          </form>
           <div class="admin-user-list">
             ${filtered.length ? filtered.map(adminUserCard).join("") : `<div class="empty">${users.length ? "No users match this search." : "No users loaded yet."}</div>`}
           </div>
@@ -6367,6 +6372,7 @@ document.addEventListener("click", async (event) => {
     state.adminUsers = [];
     state.adminError = "";
     state.adminSearch = "";
+    state.adminSearchDraft = "";
     forget("tg_admin_email");
     forget("tg_admin_pending_email");
     sessionStorage.removeItem("tg_admin_token");
@@ -6385,6 +6391,11 @@ document.addEventListener("click", async (event) => {
       setBusy(false);
     }
     return render();
+  }
+  if (action === "clearAdminSearch") {
+    state.adminSearch = "";
+    state.adminSearchDraft = "";
+    return go("adminLanding");
   }
   if (action === "recover") return go("recover");
   if (action === "settings") return go("settings");
@@ -6810,8 +6821,7 @@ document.addEventListener("input", (event) => {
     if (empty) empty.classList.toggle("hidden", visibleCount > 0);
   }
   if (event.target.matches("[data-admin-search]")) {
-    state.adminSearch = event.target.value || "";
-    render();
+    state.adminSearchDraft = event.target.value || "";
   }
 });
 
@@ -6876,6 +6886,11 @@ document.addEventListener("submit", async (event) => {
         toast("Users loaded.");
       }
       return render();
+    }
+    if (form.id === "adminSearchForm") {
+      state.adminSearchDraft = data.admin_search || "";
+      state.adminSearch = state.adminSearchDraft;
+      return go("adminLanding");
     }
     if (form.matches("[data-admin-user-form]")) {
       await updateAdminUser(form.dataset.adminUserForm, data);

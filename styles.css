@@ -3553,6 +3553,19 @@ button {
   margin: 0 0 4px;
 }
 
+.admin-search-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: end;
+  gap: 10px;
+}
+
+.admin-search-row .primary,
+.admin-search-row .secondary {
+  width: auto;
+  min-width: 92px;
+}
+
 .admin-user-list {
   display: grid;
   gap: 12px;
@@ -3615,5 +3628,15 @@ button {
   .admin-user-stats,
   .admin-controls {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .admin-search-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .admin-search-row .field {
+    grid-column: 1 / -1;
   }
 }
