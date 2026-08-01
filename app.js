@@ -3363,6 +3363,7 @@ async function rememberUser(user) {
     email: storedUser.email || "",
     whatsapp_phone: storedUser.whatsapp_phone || "",
     whatsapp_phone_normalized: storedUser.whatsapp_phone_normalized || "",
+    whatsapp_linked_at: storedUser.whatsapp_linked_at || "",
     income_sources: incomeSources,
     language: storedUser.language || state.language
   });
@@ -5154,7 +5155,7 @@ function settingsWhatsAppSection(existingWhatsApp = "") {
 }
 
 function settings() {
-  const existingWhatsApp = state.user.whatsapp_phone_normalized || state.user.whatsapp_phone || "";
+  const existingWhatsApp = state.user.whatsapp_linked_at ? (state.user.whatsapp_phone_normalized || state.user.whatsapp_phone || "") : "";
   const notificationPreference = state.user.notification_preference || "none";
   const legalAgreed = read("rb_legal_agreed", "") === "true";
   shell(`
@@ -7149,6 +7150,7 @@ document.addEventListener("submit", async (event) => {
         ...user,
         whatsapp_phone: user.whatsapp_phone || state.user.whatsapp_phone || "",
         whatsapp_phone_normalized: user.whatsapp_phone_normalized || state.user.whatsapp_phone_normalized || "",
+        whatsapp_linked_at: user.whatsapp_linked_at || state.user.whatsapp_linked_at || "",
         notification_preference: user.notification_preference || data.notification_preference || "none",
         income_sources: incomeSources
       });
