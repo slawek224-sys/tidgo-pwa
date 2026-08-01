@@ -45,7 +45,7 @@ const MARKETING_LANGUAGES = {
 
 const MARKETING_COPY = {
   en: {
-    navHow: "How it works", navWho: "Who is it for?", navStory: "Founder story", navIntake: "How intake works", navFindAccountant: "Find an accountant", navAccountantPack: "Show your accountant", navPricing: "Launch & pricing", navFaq: "FAQ", navMtd: "MTD explained", navContact: "Contact",
+    navHow: "How it works", navWho: "Who is it for?", navStory: "Founder story", navIntake: "How intake works", navFindAccountant: "Find an accountant", navAccountantPack: "Show your accountant", navPricing: "Launch & pricing", navFaq: "FAQ", navMtd: "MTD Learning Centre", navContact: "Contact",
     heroEyebrow: "Receipts in. Tidy records out.", heroTitle: "One simple place for receipts.", heroText: "For self-employed people who need records tidy, and accountants who would rather not chase plastic bags full of receipts.",
     stepSnap: "Snap receipts", stepTidy: "Keep records tidy", stepPack: "Send a clean pack",
     trustSimple: "No complicated registration. Just email sign-in.",
@@ -70,7 +70,7 @@ const MARKETING_COPY = {
     demoRecordsScreen: "Client records", demoRecordsTitle: "Download the client pack", demoRecordsText: "Open a client, check totals, request missing docs, then download CSV or PDF."
   },
   pl: {
-    navHow: "Jak to działa", navWho: "Dla kogo?", navStory: "Historia twórcy", navIntake: "Jak dodawać dokumenty", navFindAccountant: "Znajdź księgowego", navAccountantPack: "Pokaż księgowemu", navPricing: "Start i ceny", navFaq: "FAQ", navMtd: "MTD wyjaśnione", navContact: "Kontakt",
+    navHow: "Jak to działa", navWho: "Dla kogo?", navStory: "Historia twórcy", navIntake: "Jak dodawać dokumenty", navFindAccountant: "Znajdź księgowego", navAccountantPack: "Pokaż księgowemu", navPricing: "Start i ceny", navFaq: "FAQ", navMtd: "Centrum wiedzy MTD", navContact: "Kontakt",
     heroEyebrow: "Paragony wchodzą. Porządek wychodzi.", heroTitle: "Jedno proste miejsce na paragony.", heroText: "Dla self-employed, którzy chcą mieć rekordy w porządku, i dla księgowych, którzy nie chcą gonitwy za reklamówką paragonów.",
     stepSnap: "Zrób zdjęcie", stepTidy: "Trzymaj porządek", stepPack: "Wyślij czystą paczkę",
     trustSimple: "Bez skomplikowanej rejestracji. Tylko logowanie emailem.",
@@ -96,7 +96,7 @@ const MARKETING_COPY = {
   }
 };
 MARKETING_COPY.ro = { ...MARKETING_COPY.en,
-  navHow: "Cum functioneaza", navWho: "Pentru cine?", navStory: "Povestea fondatorului", navPricing: "Lansare si pret", navFaq: "FAQ", navMtd: "MTD pe scurt", navContact: "Contact",
+  navHow: "Cum functioneaza", navWho: "Pentru cine?", navStory: "Povestea fondatorului", navPricing: "Lansare si pret", navFaq: "FAQ", navMtd: "Centrul MTD", navContact: "Contact",
   navIntake: "Cum adaugi documente", navAccountantPack: "Arata contabilului",
   heroEyebrow: "Bonuri inauntru. Evidente ordonate afara.", heroTitle: "Un loc simplu pentru bonuri.", heroText: "Pentru persoane self-employed care vor evidente ordonate si contabili care nu vor sa alerge dupa pungi cu bonuri.",
   stepSnap: "Fotografiaza bonuri", stepTidy: "Tine evidenta ordonata", stepPack: "Trimite pachetul curat",
@@ -122,7 +122,7 @@ MARKETING_COPY.ro = { ...MARKETING_COPY.en,
   demoRecordsScreen: "Evidente client", demoRecordsTitle: "Descarca pachetul clientului", demoRecordsText: "Deschide clientul, verifica totalurile, cere documente lipsa si descarca CSV sau PDF."
 };
 MARKETING_COPY.lt = { ...MARKETING_COPY.en,
-  navHow: "Kaip veikia", navWho: "Kam skirta?", navStory: "Kūrėjo istorija", navPricing: "Startas ir kaina", navFaq: "DUK", navMtd: "MTD trumpai", navContact: "Kontaktai",
+  navHow: "Kaip veikia", navWho: "Kam skirta?", navStory: "Kūrėjo istorija", navPricing: "Startas ir kaina", navFaq: "DUK", navMtd: "MTD žinių centras", navContact: "Kontaktai",
   navIntake: "Kaip prideti dokumentus", navAccountantPack: "Parodyti buhalteriui",
   heroEyebrow: "Kvitai vidun. Tvarkingi irasai lauk.", heroTitle: "Viena paprasta vieta kvitams.", heroText: "Dirbantiems sau, kuriems reikia tvarkingu irasu, ir buhalteriams, kurie nenori gaudyti maisu su kvitais.",
   stepSnap: "Nufotografuok kvita", stepTidy: "Laikyk irasus tvarkingai", stepPack: "Issiusk tvarkinga paketa",
@@ -166,6 +166,13 @@ Object.assign(MARKETING_COPY.en, {
   mtdPhotos: "Can I use photos?",
   mtdSubmit: "Does TidGo submit to HMRC?",
   mtdAccountant: "Do I still need an accountant?",
+  mtdGettingStarted: "Getting started with MTD",
+  mtdSoleTraders: "MTD for sole traders",
+  mtdLandlords: "MTD for landlords",
+  mtdCis: "MTD for CIS workers",
+  mtdDigitalRecords: "Digital records",
+  mtdQuarterlyUpdates: "Quarterly updates",
+  mtdFaqs: "MTD FAQs",
   mtdWhatText: "Making Tax Digital is HMRC's move toward keeping tax records digitally and using approved software for parts of the tax process.",
   mtdWhoText: "It can affect self-employed people and landlords in the UK, depending on income level and start dates. Check HMRC or your accountant for your exact case.",
   mtdWhenText: "MTD rules are being introduced in stages. The important habit is simple: start keeping records digitally before the deadline panic arrives.",
@@ -174,6 +181,20 @@ Object.assign(MARKETING_COPY.en, {
   mtdPhotosText: "Photos can help create a digital record. TidGo stores receipt photos with the basic details so you can review them and share a cleaner pack.",
   mtdSubmitText: "No. TidGo does not submit returns to HMRC. It helps prepare and organise records before they go to you, your accountant or other software.",
   mtdAccountantText: "Usually yes. TidGo is not tax advice or accounting software. It helps you keep records ready so your accountant has less chaos to fix.",
+  mtdGettingStartedText: "Start with the first practical layer: keep income, expenses and supporting documents in digital form before the quarterly deadline pressure arrives.",
+  mtdSoleTradersText: "For sole traders, MTD starts with clear digital records for self-employment income and expenses, not with complicated dashboards.",
+  mtdLandlordsText: "Landlords need a simple way to keep property income, expenses and proof together, especially when receipts arrive by email or WhatsApp.",
+  mtdCisText: "CIS workers often have fuel, tools, materials, remittance notices and scattered proof. TidGo is built for that kind of messy record flow.",
+  mtdDigitalRecordsText: "Digital records are the foundation: dates, amounts, categories and supporting evidence stored in a way you can review and share.",
+  mtdQuarterlyUpdatesText: "Quarterly updates are summaries of income and expenses. They are not full tax returns, but the records behind them still need to be tidy.",
+  mtdFaqsText: "Short answers to the questions people actually ask before they speak to HMRC, software providers or their accountant.",
+  mtdGettingStartedDetail: "Making Tax Digital for Income Tax is being introduced in stages for sole traders and landlords. The simple first step is not panic-buying a huge accounting suite. It is making sure your business income, expenses and proof are kept digitally, close to the date of the transaction, so quarterly summaries are easier to prepare.",
+  mtdSoleTradersDetail: "If you are self-employed as a sole trader, your MTD routine should start with ordinary habits: capture receipts, keep income proof, check dates and amounts, and keep everything ready for your accountant or compatible software. TidGo focuses on this record-keeping layer and does not try to become full accounting software.",
+  mtdLandlordsDetail: "For landlords, MTD can involve property income and expenses. The practical challenge is often not tax theory; it is keeping invoices, repairs, mileage, agent statements and receipts in one place. TidGo helps collect and organise that proof, while your accountant or MTD-compatible software handles the formal tax workflow.",
+  mtdCisDetail: "CIS workers often work from the van, the site and the phone. Receipts, fuel, tools and remittance proof can arrive as photos, emails or screenshots. TidGo is designed as a simple front door for that evidence, so records can be checked before they become a deadline problem.",
+  mtdDigitalRecordsDetail: "HMRC guidance says digital records are used to create quarterly update totals. A useful record is more than a random photo in the camera roll: it needs a date, amount, category and supporting proof you can find again. TidGo keeps the proof beside the record, so review and export are easier.",
+  mtdQuarterlyUpdatesDetail: "HMRC describes quarterly updates as summaries of income and expenses for each self-employment or property business. They are not tax returns. TidGo does not submit them to HMRC, but it can help keep the underlying records and summaries ready for your accountant or MTD-compatible software.",
+  mtdFaqsDetail: "The short answer: TidGo helps with digital records and accountant handoff. It does not submit to HMRC, does not replace your accountant and does not handle VAT, payroll, LTD company accounts or corporation tax. If another package already works for you, great. TidGo is for people who need a simpler way to collect proof first.",
   faqBuildTitle: "Real questions make a better FAQ.",
   faqBuildText: "Send us what feels unclear: setup, receipts, PDF, accountant access, MTD, anything. We are building this FAQ from real user questions, not corporate fog.",
   launchTabTitle: "Launch and pricing",
@@ -234,6 +255,27 @@ Object.assign(MARKETING_COPY.pl, {
   mtdPhotosText: "Zdjęcia pomagają stworzyć cyfrowy rekord. TidGo przechowuje zdjęcia paragonów z podstawowymi danymi, żebyś mógł je sprawdzić i wysłać czystszą paczkę.",
   mtdSubmitText: "Nie. TidGo nie wysyła deklaracji do HMRC. Pomaga przygotować i uporządkować rekordy przed przekazaniem ich Tobie, księgowemu albo innemu programowi.",
   mtdAccountantText: "Zwykle tak. TidGo nie jest poradą podatkową ani pełną księgowością. Pomaga trzymać rekordy gotowe, żeby księgowy miał mniej chaosu do ratowania.",
+  mtdGettingStarted: "Pierwsze kroki z MTD",
+  mtdSoleTraders: "MTD dla sole traders",
+  mtdLandlords: "MTD dla landlordów",
+  mtdCis: "MTD dla CIS workers",
+  mtdDigitalRecords: "Cyfrowe rekordy",
+  mtdQuarterlyUpdates: "Quarterly updates",
+  mtdFaqs: "FAQ MTD",
+  mtdGettingStartedText: "Zacznij od praktycznej podstawy: przychody, wydatki i dowody w cyfrowej formie zanim przyjdzie presja terminu.",
+  mtdSoleTradersText: "Dla sole traderów MTD zaczyna się od jasnych cyfrowych rekordów przychodów i kosztów, nie od skomplikowanych dashboardów.",
+  mtdLandlordsText: "Landlord potrzebuje prostego sposobu na trzymanie przychodów z najmu, kosztów i dowodów w jednym miejscu.",
+  mtdCisText: "CIS workers często mają paliwo, narzędzia, materiały, remittance notices i rozrzucone dowody. TidGo pasuje do takiego chaosu.",
+  mtdDigitalRecordsText: "Cyfrowe rekordy to fundament: daty, kwoty, kategorie i dowody zapisane tak, żeby można było je sprawdzić i wysłać.",
+  mtdQuarterlyUpdatesText: "Quarterly updates to podsumowania przychodów i wydatków. To nie są pełne tax returns, ale rekordy za nimi muszą być uporządkowane.",
+  mtdFaqsText: "Krótkie odpowiedzi na pytania, które ludzie realnie zadają przed rozmową z HMRC, księgowym albo software providerem.",
+  mtdGettingStartedDetail: "Making Tax Digital dla Income Tax wchodzi etapami dla sole traderów i landlordów. Pierwszy praktyczny krok to nie kupowanie ogromnego programu księgowego w panice, tylko trzymanie przychodów, wydatków i dowodów cyfrowo, możliwie blisko daty transakcji.",
+  mtdSoleTradersDetail: "Jeśli jesteś sole traderem, praktyczna rutyna MTD zaczyna się od zwykłych nawyków: zapisuj paragony, trzymaj dowody przychodu, sprawdzaj daty i kwoty oraz miej wszystko gotowe dla księgowego albo software zgodnego z MTD.",
+  mtdLandlordsDetail: "Dla landlordów MTD może obejmować property income i property expenses. Praktyczny problem to często nie teoria podatkowa, tylko faktury, naprawy, agent statements i paragony w jednym miejscu.",
+  mtdCisDetail: "CIS workers często zbierają dowody z vana, budowy, telefonu, maila i WhatsAppa. TidGo ma być prostym wejściem dla takich dokumentów zanim staną się problemem przed terminem.",
+  mtdDigitalRecordsDetail: "Według HMRC cyfrowe rekordy służą do tworzenia kwartalnych totalów. Dobry rekord to nie przypadkowa fotka w galerii: potrzebuje daty, kwoty, kategorii i dowodu, który da się później znaleźć.",
+  mtdQuarterlyUpdatesDetail: "HMRC opisuje quarterly updates jako podsumowania przychodów i wydatków dla każdej działalności self-employment albo property business. TidGo nie wysyła ich do HMRC, ale pomaga przygotować rekordy i summary dla księgowego albo kompatybilnego software.",
+  mtdFaqsDetail: "Krótko: TidGo pomaga z cyfrowymi rekordami i przekazaniem księgowemu. Nie wysyła do HMRC, nie zastępuje księgowego i nie obsługuje VAT, payroll, LTD accounts ani corporation tax.",
   faqBuildTitle: "Prawdziwe pytania robią lepsze FAQ.",
   faqBuildText: "Wyślij nam, co jest niejasne: start, paragony, PDF, dostęp księgowego, MTD, cokolwiek. Budujemy FAQ z prawdziwych pytań, nie z firmowej mgły.",
   launchTabTitle: "Start i ceny",
@@ -3089,6 +3131,13 @@ function marketingPageSlug() {
     "/founding-tester": "androidTesters",
     "/android-testers": "androidTesters",
     "/mtd": "mtd",
+    "/mtd/getting-started": "mtdGettingStarted",
+    "/mtd/sole-traders": "mtdSoleTraders",
+    "/mtd/landlords": "mtdLandlords",
+    "/mtd/cis": "mtdCis",
+    "/mtd/digital-records": "mtdDigitalRecords",
+    "/mtd/quarterly-updates": "mtdQuarterlyUpdates",
+    "/mtd/faqs": "mtdFaqs",
     "/mtd/what-is-mtd": "mtdWhat",
     "/mtd/who-needs-mtd": "mtdWho",
     "/mtd/when-does-mtd-start": "mtdWhen",
@@ -3222,6 +3271,13 @@ function landingFooter() {
 
 function mtdTopics() {
   return [
+    ["mtdGettingStarted", "mtdGettingStartedText", "/mtd/getting-started"],
+    ["mtdSoleTraders", "mtdSoleTradersText", "/mtd/sole-traders"],
+    ["mtdLandlords", "mtdLandlordsText", "/mtd/landlords"],
+    ["mtdCis", "mtdCisText", "/mtd/cis"],
+    ["mtdDigitalRecords", "mtdDigitalRecordsText", "/mtd/digital-records"],
+    ["mtdQuarterlyUpdates", "mtdQuarterlyUpdatesText", "/mtd/quarterly-updates"],
+    ["mtdFaqs", "mtdFaqsText", "/mtd/faqs"],
     ["mtdWhat", "mtdWhatText", "/mtd/what-is-mtd"],
     ["mtdWho", "mtdWhoText", "/mtd/who-needs-mtd"],
     ["mtdWhen", "mtdWhenText", "/mtd/when-does-mtd-start"],
@@ -3231,6 +3287,18 @@ function mtdTopics() {
     ["mtdSubmit", "mtdSubmitText", "/mtd/does-tidgo-submit-to-hmrc"],
     ["mtdAccountant", "mtdAccountantText", "/mtd/do-i-need-an-accountant"]
   ];
+}
+
+function mtdSources() {
+  return `
+    <section class="article-sources">
+      <strong>Sources</strong>
+      <a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax" target="_blank" rel="noopener noreferrer">GOV.UK: Use Making Tax Digital for Income Tax</a>
+      <a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/create-digital-records" target="_blank" rel="noopener noreferrer">GOV.UK: Create digital records</a>
+      <a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/send-quarterly-updates" target="_blank" rel="noopener noreferrer">GOV.UK: Send quarterly updates</a>
+      <a href="https://developer.service.hmrc.gov.uk/guides/income-tax-mtd-end-to-end-service-guide/" target="_blank" rel="noopener noreferrer">HMRC Developer Hub: Income Tax MTD service guide</a>
+    </section>
+  `;
 }
 
 function pageCta() {
@@ -4493,17 +4561,20 @@ function marketingPage() {
             </a>
           `).join("")}
         </div>
+        ${mtdSources()}
         ${pageCta()}
       </section>
     `;
   } else if (mtdTopic) {
     const [titleKey, textKey] = mtdTopic;
+    const detail = mk(`${titleKey}Detail`);
     body = `
       <article class="marketing-page-card marketing-article">
         <span class="eyebrow">${mk("navMtd")}</span>
         <h1>${mk(titleKey)}</h1>
         <p>${mk(textKey)}</p>
-        <p>${mk("mtdText")}</p>
+        <p>${detail === `${titleKey}Detail` ? mk("mtdText") : detail}</p>
+        ${mtdSources()}
         ${pageCta()}
       </article>
     `;

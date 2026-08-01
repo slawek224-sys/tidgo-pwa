@@ -1585,6 +1585,32 @@ button {
   background: linear-gradient(180deg, #ecfdf5 0%, #f8fbff 100%);
 }
 
+.article-sources {
+  display: grid;
+  gap: 8px;
+  margin: 18px 0 4px;
+  padding: 14px;
+  border: 1px solid rgba(30, 64, 175, 0.18);
+  border-radius: 8px;
+  background: #f8fbff;
+}
+
+.article-sources strong {
+  color: var(--ink);
+  font-size: 14px;
+}
+
+.article-sources a {
+  color: var(--blue);
+  font-size: 13px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.article-sources a:hover {
+  text-decoration: underline;
+}
+
 .landing-showcase-links {
   display: flex;
   flex-wrap: wrap;
