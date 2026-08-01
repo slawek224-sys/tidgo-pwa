@@ -7062,16 +7062,20 @@ document.addEventListener("submit", async (event) => {
         data.phone ? `Phone/WhatsApp: ${data.phone}` : "",
         data.message ? `Message: ${data.message}` : ""
       ].filter(Boolean).join("\n");
-      await api("/api/contact", {
-        method: "POST",
-        body: JSON.stringify({
-          from_email: data.from_email || "",
-          role: data.role || "Accountant introduction request",
-          message: details
-        })
-      });
-      form.reset();
-      toast(mk("introSent"));
+      try {
+        await api("/api/contact", {
+          method: "POST",
+          body: JSON.stringify({
+            from_email: data.from_email || "",
+            role: data.role || "Accountant introduction request",
+            message: details
+          })
+        });
+        form.reset();
+        toast(mk("introSent"));
+      } catch (error) {
+        toast(mk("introPending"));
+      }
       return;
     }
     if (form.id === "adminLoginForm") {
