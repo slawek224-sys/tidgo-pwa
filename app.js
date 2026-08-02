@@ -1101,7 +1101,11 @@ const COPY = {
     secureShareRequired: "Phone sharing with a PDF needs the public HTTPS version. Local testing over http can only use Save PDF.",
     emailBody: "TidGo monthly summary PDF",
     noEntries: "No entries",
+    loadingRecords: "Loading your records...",
     note: "A tidy monthly bag. Tax and clever bits stay with the accountant.",
+    businessTypeTitle: "What is this record for?",
+    businessSelfEmployment: "Self-employment / CIS / side income",
+    businessProperty: "UK property / landlord",
     backendDown: "Cannot reach TidGo API right now. Render may be waking up; try again in a moment.",
     serverUnavailableTitle: "TidGo is temporarily unavailable",
     serverUnavailableText: "The app on your device is fine. The TidGo server is not answering right now, probably during a deploy or restart. Please try again shortly.",
@@ -1245,7 +1249,11 @@ const COPY = {
     secureShareRequired: "Wysyłanie PDF przez opcje telefonu wymaga publicznej wersji HTTPS. Lokalnie przez http działa tylko Zapisz PDF.",
     emailBody: "Miesięczne podsumowanie TidGo PDF",
     noEntries: "Brak wpisów",
+    loadingRecords: "Ładuję rekordy...",
     note: "Porządna miesięczna reklamówka. Podatki i mądre sztuczki zostają dla księgowego.",
+    businessTypeTitle: "Czego dotyczy ten wpis?",
+    businessSelfEmployment: "Self-employment / CIS / side income",
+    businessProperty: "UK property / landlord",
     backendDown: "Nie mogę teraz połączyć się z API TidGo. Render może się budzić; spróbuj za moment.",
     serverUnavailableTitle: "TidGo jest chwilowo niedostępne",
     serverUnavailableText: "Aplikacja na tym urządzeniu jest w porządku. Serwer TidGo teraz nie odpowiada, prawdopodobnie przez deploy albo restart. Spróbuj ponownie za chwilę.",
@@ -3073,6 +3081,9 @@ const state = {
   screen: initialScreen(),
   receipts: [],
   income: [],
+  recordsLoading: false,
+  pendingRecordKind: "",
+  pendingBusinessType: "",
   apiUnavailable: false,
   selected: null,
   imageViewer: null,
@@ -3449,6 +3460,28 @@ function writeIncomeSources(user, sources) {
 
 function formIncomeSources(data) {
   return INCOME_SOURCE_KEYS.filter((key) => data[`income_source_${key}`]);
+}
+
+function selectedBusinessTypeLabel() {
+  return state.pendingBusinessType === "uk-property" ? t("businessProperty") : t("businessSelfEmployment");
+}
+
+function defaultBusinessType() {
+  const sources = readIncomeSources();
+  return sources.includes("landlord") && sources.length === 1 ? "uk-property" : "self-employment";
+}
+
+function shouldAskBusinessType() {
+  const sources = readIncomeSources();
+  return sources.includes("landlord") && sources.some((source) => source !== "landlord");
+}
+
+function startRecordFlow(kind) {
+  state.pendingRecordKind = kind;
+  state.pendingBusinessType = "";
+  if (shouldAskBusinessType()) return go("businessTypeChoice");
+  state.pendingBusinessType = defaultBusinessType();
+  return go(kind === "income" ? "incomeForm" : "expenseChoice");
 }
 
 async function rememberUser(user) {
@@ -4183,6 +4216,7 @@ function accountantClientConsentId(client) {
 
 async function refresh() {
   if (!state.user?.id) return;
+  state.recordsLoading = true;
   try {
     const [profile, receipts, income, consents] = await Promise.all([
       api(`/api/users/${state.user.id}`).catch(() => null),
@@ -4207,6 +4241,8 @@ async function refresh() {
   } catch (error) {
     state.apiUnavailable = true;
     toast(error.message || t("backendDown"));
+  } finally {
+    state.recordsLoading = false;
   }
 }
 
@@ -4244,6 +4280,7 @@ function render() {
     verifySignup,
     recover,
     home,
+    businessTypeChoice,
     expenseChoice,
     receipt,
     incomeDetail,
@@ -5126,14 +5163,28 @@ function home() {
         <span><span class="summary-icon" aria-hidden="true"></span> ${t("summary")}</span><strong>›</strong>
       </button>
       <div class="grid-2" style="margin-top:14px">
-        <button class="action blue" data-action="expenseChoice"><span>${t("addExpense")}</span><small>${t("photoDone")}</small></button>
-        <button class="action green" data-action="incomeForm"><span>${t("addIncome")}</span><small>${t("amountNote")}</small></button>
+        <button class="action blue" data-action="startExpense"><span>${t("addExpense")}</span><small>${t("photoDone")}</small></button>
+        <button class="action green" data-action="startIncome"><span>${t("addIncome")}</span><small>${t("amountNote")}</small></button>
       </div>
       <button class="secondary share-inline app-share-button" type="button" data-action="shareTidGo">${t("shareTidGo")}</button>
       <div class="list">
-        ${items.length ? visibleItems.map(itemRow).join("") : `<div class="empty">${t("empty")}</div>`}
+        ${state.recordsLoading && !items.length ? `<div class="empty">${t("loadingRecords")}</div>` : items.length ? visibleItems.map(itemRow).join("") : `<div class="empty">${t("empty")}</div>`}
         ${items.length > transactionLimit ? `<button class="link-btn see-all-btn" data-action="showMoreTransactions">${t("seeMore")}</button>` : ""}
         ${transactionLimit > 4 ? `<button class="link-btn see-all-btn" data-action="showLessTransactions">${t("showLess")}</button>` : ""}
+      </div>
+    </section>
+  `);
+}
+
+function businessTypeChoice() {
+  const nextLabel = state.pendingRecordKind === "income" ? t("addIncome") : t("addExpense");
+  shell(`
+    <section class="screen">
+      ${topbar(nextLabel, true)}
+      <div class="card stack">
+        <strong>${t("businessTypeTitle")}</strong>
+        <button class="secondary" type="button" data-action="chooseBusinessType" data-business-type="self-employment">${t("businessSelfEmployment")}</button>
+        <button class="secondary" type="button" data-action="chooseBusinessType" data-business-type="uk-property">${t("businessProperty")}</button>
       </div>
     </section>
   `);
@@ -5145,6 +5196,7 @@ function expenseChoice() {
       ${topbar(t("addExpense"), true)}
       <div class="card stack">
         <strong>${t("addExpense")}</strong>
+        ${shouldAskBusinessType() ? `<span class="hint">${escapeHtml(selectedBusinessTypeLabel())}</span>` : ""}
         <span class="hint">${t("expenseHint")}</span>
         <div class="drop-zone" data-drop-upload="expense">
           <strong>${t("dragDropTitle")}</strong>
@@ -5191,6 +5243,7 @@ function incomeForm() {
     <section class="screen">
       ${topbar(t("addIncome"), true)}
       <form class="stack" id="incomeCreateForm">
+        ${shouldAskBusinessType() ? `<p class="hint">${escapeHtml(selectedBusinessTypeLabel())}</p>` : ""}
         <label class="field"><span>${t("amount")}</span><input class="input" name="amount" inputmode="decimal" required></label>
         <label class="field"><span>${t("currency")}</span><select class="select" name="currency">${currencyOptions("GBP")}</select></label>
         <label class="field"><span>${t("description")}</span><textarea class="textarea" name="description"></textarea></label>
@@ -5349,7 +5402,7 @@ function settingsEmailChangeSection() {
 }
 
 function settings() {
-  const existingWhatsApp = state.user.whatsapp_linked_at ? (state.user.whatsapp_phone_normalized || state.user.whatsapp_phone || "") : "";
+  const existingWhatsApp = state.user.whatsapp_phone_normalized || state.user.whatsapp_phone || "";
   const notificationPreference = state.user.notification_preference || "none";
   const legalAgreed = read("rb_legal_agreed", "") === "true";
   shell(`
@@ -6226,6 +6279,7 @@ async function uploadReceipt(file, isClientExpense) {
         user_id: state.user.id,
         image_base64,
         is_client_expense: isClientExpense,
+        business_type: state.pendingBusinessType || defaultBusinessType(),
         humour_style: state.humour,
         language: state.language
       })
@@ -6831,7 +6885,13 @@ document.addEventListener("click", async (event) => {
   if (action === "privacy") return go("privacy");
   if (action === "terms") return go("terms");
   if (action === "summary") return go("summary");
-  if (action === "incomeForm") return go("incomeForm");
+  if (action === "startExpense") return startRecordFlow("expense");
+  if (action === "startIncome") return startRecordFlow("income");
+  if (action === "chooseBusinessType") {
+    state.pendingBusinessType = target.dataset.businessType === "uk-property" ? "uk-property" : "self-employment";
+    return go(state.pendingRecordKind === "income" ? "incomeForm" : "expenseChoice");
+  }
+  if (action === "incomeForm") return startRecordFlow("income");
   if (action === "pickIncomeProofPhoto" || action === "pickIncomeProofFile") {
     const form = target.closest("form");
     const field = action === "pickIncomeProofPhoto" ? "proof_photo" : "proof_file";
@@ -6854,7 +6914,7 @@ document.addEventListener("click", async (event) => {
     state.transactionLimit = 4;
     return render();
   }
-  if (action === "expenseChoice") return go("expenseChoice");
+  if (action === "expenseChoice") return startRecordFlow("expense");
   if (action === "pickExpensePhoto") {
     if (expensePhotoPicker) expensePhotoPicker.value = "";
     return expensePhotoPicker?.click();
@@ -7344,7 +7404,8 @@ document.addEventListener("submit", async (event) => {
           amount,
           currency: data.currency,
           description: data.description || null,
-          date: data.date ? new Date(`${data.date}T12:00:00`).toISOString() : null
+          date: data.date ? new Date(`${data.date}T12:00:00`).toISOString() : null,
+          business_type: state.pendingBusinessType || defaultBusinessType()
         })
       });
       const proof = incomeProofFile(form);
@@ -7442,7 +7503,8 @@ document.addEventListener("submit", async (event) => {
         first_name: data.first_name,
         trade: data.trade || null,
         language: state.language,
-        notification_preference: data.notification_preference || "none"
+        notification_preference: data.notification_preference || "none",
+        income_sources: incomeSources
       };
       const user = await api(`/api/users/${state.user.id}`, {
         method: "PATCH",
@@ -7498,6 +7560,9 @@ window.addEventListener("popstate", (event) => {
   }
   if (state.screen === "boot") {
     state.screen = state.user ? "home" : "onboarding";
+  }
+  if (state.user?.id && !isAccountantRoute()) {
+    state.recordsLoading = true;
   }
   history.replaceState(routeState(), "", location.pathname + location.search);
   render();
