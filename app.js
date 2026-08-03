@@ -5889,13 +5889,13 @@ function incomeSourceChoices(selected = []) {
 
 function transactions() {
   return [
-    ...state.receipts.filter((item) => !item.is_client_expense).map((item) => ({ type: "receipt", timestamp: item.timestamp, sortTimestamp: recordAddedAt(item), item })),
-    ...state.income.map((item) => ({ type: "income", timestamp: item.timestamp, sortTimestamp: recordAddedAt(item), item }))
+    ...state.receipts.filter((item) => !item.is_client_expense).map((item) => ({ type: "receipt", timestamp: item.timestamp, sortTimestamp: recordSortDate(item), item })),
+    ...state.income.map((item) => ({ type: "income", timestamp: item.timestamp, sortTimestamp: recordSortDate(item), item }))
   ].sort((a, b) => sortTime(b.sortTimestamp) - sortTime(a.sortTimestamp));
 }
 
-function recordAddedAt(item = {}) {
-  return item.created_at || item.createdAt || item.uploaded_at || item.uploadedAt || item.updated_at || item.timestamp || item.date || "";
+function recordSortDate(item = {}) {
+  return item.timestamp || item.date || item.receipt_date || item.record_date || item.created_at || item.createdAt || item.uploaded_at || item.uploadedAt || item.updated_at || "";
 }
 
 function sortTime(value) {
