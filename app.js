@@ -3214,6 +3214,17 @@ function mk(key) {
   return (MARKETING_COPY[state.marketingLanguage] || MARKETING_COPY.en)[key] || MARKETING_COPY.en[key] || key;
 }
 
+function marketingLegalTitle(kind) {
+  const titles = {
+    en: { privacy: "Privacy Policy", terms: "Terms" },
+    pl: { privacy: "Polityka prywatności", terms: "Regulamin" },
+    ro: { privacy: "Politica de confidențialitate", terms: "Termeni" },
+    lt: { privacy: "Privatumo politika", terms: "Sąlygos" }
+  };
+  const languageTitles = titles[state.marketingLanguage] || titles.en;
+  return languageTitles[kind] || titles.en[kind] || kind;
+}
+
 function marketingLanguagePicker() {
   return `
     <div class="marketing-language-switcher" aria-label="Marketing page language">
@@ -3273,7 +3284,7 @@ function landingFooter() {
       <div class="landing-foot-copy">
         <span>${mk("footer")} <strong>${mk("copyright")}</strong></span>
         <span class="landing-company-line">${mk("companyFooter")}</span>
-        <span class="landing-legal-links"><a href="/our-story">${mk("navStory")}</a><a href="/find-accountant">${mk("navFindAccountant")}</a><a href="/privacy">${t("privacyTitle")}</a><a href="/terms">${t("termsTitle")}</a><a href="/delete-account">${mk("deleteAccountLink")}</a></span>
+        <span class="landing-legal-links"><a href="/our-story">${mk("navStory")}</a><a href="/find-accountant">${mk("navFindAccountant")}</a><a href="/privacy">${marketingLegalTitle("privacy")}</a><a href="/terms">${marketingLegalTitle("terms")}</a><a href="/delete-account">${mk("deleteAccountLink")}</a></span>
         <span class="landing-privacy-note">${mk("privacyNote")}</span>
       </div>
     </footer>
@@ -4765,7 +4776,7 @@ function deleteAccountInfoPage() {
 }
 
 function marketingLegalPage(kind) {
-  const title = kind === "privacy" ? t("privacyTitle") : t("termsTitle");
+  const title = marketingLegalTitle(kind);
   const copy = legalCopy(kind);
   const fullDocument = FULL_LEGAL_MARKDOWN[kind] ? markdownToLegalHtml(FULL_LEGAL_MARKDOWN[kind]) : `
     <h2>${escapeHtml(t("legalShort"))}</h2>
