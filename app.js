@@ -6281,11 +6281,23 @@ function formatTotals(items) {
 }
 
 function incomeSummaryRow(item) {
-  return `<div class="list-item"><span><strong>${t("income")}</strong><br><span class="list-meta">${day(item.timestamp)} · ${escapeHtml(item.description || "")}</span></span><span class="amount income">${money(item.amount, item.currency)}</span></div>`;
+  return `<button class="list-item" type="button" data-open-income="${escapeAttr(item.id)}">
+    <span class="list-main">
+      <span class="list-title">${t("income")}${reviewBadge(item)}</span>
+      <span class="list-meta">${day(item.timestamp)} · ${escapeHtml(item.description || "")}</span>
+    </span>
+    <span class="amount income">${money(item.amount, item.currency)}</span>
+  </button>`;
 }
 
 function receiptSummaryRow(item) {
-  return `<div class="list-item"><span><strong>${t("expenses")}</strong><br><span class="list-meta">${day(item.timestamp)} · ${escapeHtml(item.merchant || t(item.category))}</span></span><span class="amount expense">${money(item.amount, item.currency)}</span></div>`;
+  return `<button class="list-item" type="button" data-open-receipt="${escapeAttr(item.id)}">
+    <span class="list-main">
+      <span class="list-title">${t("expenses")}${reviewBadge(item)}</span>
+      <span class="list-meta">${day(item.timestamp)} · ${escapeHtml(item.merchant || t(item.category))}</span>
+    </span>
+    <span class="amount expense">${money(item.amount, item.currency)}</span>
+  </button>`;
 }
 
 function go(screen) {
