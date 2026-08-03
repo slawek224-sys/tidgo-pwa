@@ -96,7 +96,7 @@ const MARKETING_COPY = {
   }
 };
 MARKETING_COPY.ro = { ...MARKETING_COPY.en,
-  navHow: "Cum functioneaza", navWho: "Pentru cine?", navStory: "Povestea fondatorului", navPricing: "Lansare si pret", navFaq: "FAQ", navMtd: "Centrul MTD", navContact: "Contact",
+  navHow: "Cum functioneaza", navWho: "Pentru cine?", navStory: "Povestea fondatorului", navFindAccountant: "Gaseste un contabil", navPricing: "Lansare si pret", navFaq: "FAQ", navMtd: "Centrul MTD", navContact: "Contact",
   navIntake: "Cum adaugi documente", navAccountantPack: "Arata contabilului",
   heroEyebrow: "Bonuri inauntru. Evidente ordonate afara.", heroTitle: "Un loc simplu pentru bonuri.", heroText: "Pentru persoane self-employed care vor evidente ordonate si contabili care nu vor sa alerge dupa pungi cu bonuri.",
   stepSnap: "Fotografiaza bonuri", stepTidy: "Tine evidenta ordonata", stepPack: "Trimite pachetul curat",
@@ -122,7 +122,7 @@ MARKETING_COPY.ro = { ...MARKETING_COPY.en,
   demoRecordsScreen: "Evidente client", demoRecordsTitle: "Descarca pachetul clientului", demoRecordsText: "Deschide clientul, verifica totalurile, cere documente lipsa si descarca CSV sau PDF."
 };
 MARKETING_COPY.lt = { ...MARKETING_COPY.en,
-  navHow: "Kaip veikia", navWho: "Kam skirta?", navStory: "Kūrėjo istorija", navPricing: "Startas ir kaina", navFaq: "DUK", navMtd: "MTD žinių centras", navContact: "Kontaktai",
+  navHow: "Kaip veikia", navWho: "Kam skirta?", navStory: "Kūrėjo istorija", navFindAccountant: "Rasti buhalterį", navPricing: "Startas ir kaina", navFaq: "DUK", navMtd: "MTD žinių centras", navContact: "Kontaktai",
   navIntake: "Kaip prideti dokumentus", navAccountantPack: "Parodyti buhalteriui",
   heroEyebrow: "Kvitai vidun. Tvarkingi irasai lauk.", heroTitle: "Viena paprasta vieta kvitams.", heroText: "Dirbantiems sau, kuriems reikia tvarkingu irasu, ir buhalteriams, kurie nenori gaudyti maisu su kvitais.",
   stepSnap: "Nufotografuok kvita", stepTidy: "Laikyk irasus tvarkingai", stepPack: "Issiusk tvarkinga paketa",
