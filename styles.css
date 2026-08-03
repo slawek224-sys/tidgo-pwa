@@ -3710,3 +3710,32 @@ button {
     grid-column: 1 / -1;
   }
 }
+
+.screen .list .list-item {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) max-content;
+  align-items: center;
+  column-gap: 12px;
+}
+
+.screen .list .list-item .amount {
+  justify-self: end;
+  max-width: none;
+  min-width: max-content;
+  overflow: visible;
+  text-overflow: clip;
+  white-space: nowrap;
+}
+
+@media (max-width: 430px) {
+  .screen .list .list-item {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 6px;
+  }
+
+  .screen .list .list-item .amount {
+    justify-self: end;
+    margin-top: 0;
+  }
+}
