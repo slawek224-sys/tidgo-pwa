@@ -3225,6 +3225,23 @@ function marketingLegalTitle(kind) {
   return languageTitles[kind] || titles.en[kind] || kind;
 }
 
+function marketingOfficialLegalNotice() {
+  if (state.marketingLanguage === "en") return "";
+  const titles = {
+    pl: "Oficjalna wersja angielska",
+    ro: "Versiunea oficială în engleză",
+    lt: "Oficiali angliška versija"
+  };
+  const notices = {
+    pl: "Pełny dokument prawny jest dostępny po angielsku, ponieważ TidGo jest firmą zarejestrowaną w UK, a wersja angielska jest oficjalną wersją prawną.",
+    ro: "Documentul juridic complet este disponibil în limba engleză, deoarece TidGo este o companie înregistrată în UK, iar versiunea în limba engleză este versiunea juridică oficială.",
+    lt: "Pilnas teisinis dokumentas pateikiamas anglų kalba, nes TidGo yra JK registruota įmonė, o angliška versija yra oficiali teisinė versija."
+  };
+  const notice = notices[state.marketingLanguage] || notices.en;
+  const title = titles[state.marketingLanguage] || "Official English version";
+  return notice ? `<div class="platform-note legal-official-note"><strong>${escapeHtml(title)}</strong><span>${escapeHtml(notice)}</span></div>` : "";
+}
+
 function marketingLanguagePicker() {
   return `
     <div class="marketing-language-switcher" aria-label="Marketing page language">
@@ -4791,6 +4808,7 @@ function marketingLegalPage(kind) {
         <article class="marketing-page-card marketing-article">
           <span class="eyebrow">TidGo</span>
           <h1>${escapeHtml(title)}</h1>
+          ${marketingOfficialLegalNotice()}
           <div class="legal-document">
             ${fullDocument}
           </div>
