@@ -158,6 +158,8 @@ Object.assign(MARKETING_COPY.en, {
   scopeNotForTitle: "Not built for",
   scopeNotForText: "VAT returns, LTD/company accounts, payroll, corporation tax or full accounting workflows.",
   mtdIntro: "MTD guides are being written as short, practical pages.",
+  mtdQualifyingIncome: "What is qualifying income?",
+  mtdQualifyingIncomeText: "Qualifying income decides whether MTD applies to you. It is gross self-employment and property income before expenses, not profit.",
   mtdWhat: "What is MTD?",
   mtdWho: "Who needs MTD?",
   mtdWhen: "When does MTD start?",
@@ -3142,6 +3144,7 @@ function marketingPageSlug() {
     "/founding-tester": "androidTesters",
     "/android-testers": "androidTesters",
     "/mtd": "mtd",
+    "/mtd/qualifying-income": "mtdQualifyingIncome",
     "/mtd/getting-started": "mtdGettingStarted",
     "/mtd/sole-traders": "mtdSoleTraders",
     "/mtd/landlords": "mtdLandlords",
@@ -3310,6 +3313,7 @@ function landingFooter() {
 
 function mtdTopics() {
   return [
+    ["mtdQualifyingIncome", "mtdQualifyingIncomeText", "/mtd/qualifying-income"],
     ["mtdGettingStarted", "mtdGettingStartedText", "/mtd/getting-started"],
     ["mtdSoleTraders", "mtdSoleTradersText", "/mtd/sole-traders"],
     ["mtdLandlords", "mtdLandlordsText", "/mtd/landlords"],
@@ -3326,6 +3330,58 @@ function mtdTopics() {
     ["mtdSubmit", "mtdSubmitText", "/mtd/does-tidgo-submit-to-hmrc"],
     ["mtdAccountant", "mtdAccountantText", "/mtd/do-i-need-an-accountant"]
   ];
+}
+
+function mtdQualifyingIncomeArticle() {
+  return `
+    <article class="marketing-page-card marketing-article">
+      <span class="eyebrow">${mk("navMtd")}</span>
+      <h1>What is qualifying income for Making Tax Digital? <span class="muted">(It isn't your profit)</span></h1>
+      <h2>What is qualifying income?</h2>
+      <p>Qualifying income is the figure HMRC uses to decide whether Making Tax Digital for Income Tax applies to you. It is your <strong>gross income from self-employment and property, before you take off any expenses.</strong></p>
+      <p>That last part is where most people get caught out. It is not your profit. It is not what lands in your bank account after materials, fuel, tools and everything else. It is the total that came in.</p>
+      <p>If you turned over £62,000 last year and £20,000 of that went on expenses, your qualifying income is £62,000, not £42,000.</p>
+
+      <h2>Self-employment and property income are added together</h2>
+      <p>This is the second trap, and it catches people who look at each source separately and conclude that neither one reaches the threshold.</p>
+      <p>HMRC adds them up. In <a href="https://www.gov.uk/guidance/work-out-your-qualifying-income-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">their own worked example</a>, £25,000 of rental income plus £27,000 of self-employment income gives total qualifying income of £52,000.</p>
+      <p>Neither figure on its own is anywhere near £50,000. Together they are over it. If you drive a van during the week and let out a flat, you need to add both before deciding whether this applies to you.</p>
+
+      <h2>What does not count towards qualifying income?</h2>
+      <p>Plenty of income sits outside this calculation entirely. Employment income through PAYE, pensions, savings interest, dividends and capital gains do not form part of qualifying income.</p>
+      <p>So someone earning £70,000 in a job with £15,000 of freelance work on the side has qualifying income of £15,000. The salary is irrelevant to this particular test, though it still gets reported in the usual way.</p>
+      <p>A few specific exclusions are worth knowing about, and <a href="https://www.gov.uk/guidance/work-out-your-qualifying-income-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">HMRC lists them</a>: income from UK REITs or Property Authorised Investment Funds doesn't count, qualifying care relief doesn't count towards your qualifying income, and averaging relief doesn't affect it, relevant if you're a farmer or a creative artist.</p>
+      <p>One thing that does count and surprises people: a self-employment or property source that has <strong>ceased</strong> since your last tax return is still included in your qualifying income, as long as you have another continuing source.</p>
+
+      <h2>What are the thresholds?</h2>
+      <p>If your qualifying income was over £50,000 for the 2024 to 2025 tax year, <a href="https://www.gov.uk/guidance/find-out-if-and-when-you-need-to-use-making-tax-digital-for-income-tax" target="_blank" rel="noopener">you should have started using Making Tax Digital for Income Tax from 6 April 2026</a>, and you can still sign up. Lower thresholds follow in the years after, bringing in progressively more people.</p>
+      <p>At the other end, <a href="https://www.gov.uk/guidance/find-out-if-you-can-get-an-exemption-from-making-tax-digital-for-income-tax" target="_blank" rel="noopener">you are automatically exempt</a> and do not need to use Making Tax Digital for Income Tax if your qualifying income is £20,000 or less.</p>
+
+      <h2>How does HMRC work out your figure?</h2>
+      <p><a href="https://www.gov.uk/guidance/work-out-your-qualifying-income-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">HMRC assesses your qualifying income</a> for a tax year by looking at the Self Assessment return you submitted in the previous tax year. If your income is above the relevant threshold, they will write to you confirming that you need to use Making Tax Digital for Income Tax by the start of the next tax year.</p>
+      <p>Here is the part to pay attention to. Even if you do not receive a letter, you must still check your qualifying income yourself to find out whether you need to use the service and sign up.</p>
+      <p><strong>No letter is not the same as no obligation.</strong> Letters get lost, addresses go out of date, and the responsibility stays with you either way.</p>
+
+      <h2>How do I check my own position?</h2>
+      <p>HMRC has <a href="https://www.gov.uk/guidance/find-out-if-and-when-you-need-to-use-making-tax-digital-for-income-tax" target="_blank" rel="noopener">a tool that walks you through it</a>, based on the answers you give.</p>
+      <p>If your situation is complicated, for example foreign income, several businesses, or a source that stopped partway through the year, this is a question for your accountant rather than a website. Including this one. We don't give tax advice.</p>
+
+      <h2>The one thing worth doing today</h2>
+      <p>Whether or not the threshold catches you this year, it will catch a lot of people in the years ahead as the figures come down.</p>
+      <p>The habit that helps either way is boring and simple: keep your income and expense records digitally, as they happen, instead of in a carrier bag. If it turns out you're in scope, you're ready. If it turns out you're not, you've still got a tidier year behind you and a shorter conversation with your accountant.</p>
+      <p>That's the part <a href="/">TidGo</a> is built for: receipts and income proof collected as you go, in eight languages, ready to hand over. It doesn't submit anything to HMRC, and it isn't tax advice. It just means the records exist when someone asks for them.</p>
+
+      <section class="article-sources">
+        <strong>Sources</strong>
+        <a href="https://www.gov.uk/guidance/work-out-your-qualifying-income-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Work out your qualifying income for Making Tax Digital for Income Tax — GOV.UK</a>
+        <a href="https://www.gov.uk/guidance/find-out-if-and-when-you-need-to-use-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Find out if and when you need to use Making Tax Digital for Income Tax — GOV.UK</a>
+        <a href="https://www.gov.uk/guidance/find-out-if-you-can-get-an-exemption-from-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Find out if you can get an exemption from Making Tax Digital for Income Tax — GOV.UK</a>
+        <a href="https://www.gov.uk/guidance/sign-up-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Sign up for Making Tax Digital for Income Tax — GOV.UK</a>
+        <span>Last checked: August 2026. HMRC guidance changes, so verify figures at the links above.</span>
+      </section>
+      ${pageCta()}
+    </article>
+  `;
 }
 
 function mtdSources() {
@@ -4630,6 +4686,8 @@ function marketingPage() {
         ${pageCta()}
       </section>
     `;
+  } else if (slug === "mtdQualifyingIncome") {
+    body = mtdQualifyingIncomeArticle();
   } else if (mtdTopic) {
     const [titleKey, textKey] = mtdTopic;
     const detail = mk(`${titleKey}Detail`);
