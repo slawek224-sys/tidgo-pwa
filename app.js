@@ -241,6 +241,8 @@ Object.assign(MARKETING_COPY.pl, {
   scopeNotForTitle: "Nie do tego",
   scopeNotForText: "VAT returns, konta LTD/company accounts, payroll, corporation tax ani pełne procesy księgowe.",
   mtdIntro: "Poradniki MTD będą krótkimi, praktycznymi stronami.",
+  mtdQualifyingIncome: "Co to jest qualifying income?",
+  mtdQualifyingIncomeText: "Qualifying income decyduje, czy obejmie Cię MTD. To przychód brutto przed kosztami, nie zysk.",
   mtdWhat: "Co to jest MTD?",
   mtdWho: "Kogo dotyczy MTD?",
   mtdWhen: "Kiedy startuje MTD?",
@@ -3044,6 +3046,11 @@ Questions about these Terms:
 
 const INCOME_SOURCE_KEYS = ["self_employed", "cis", "landlord", "paye_side", "other"];
 
+function marketingLanguageFromPath() {
+  const first = location.pathname.split("/").filter(Boolean)[0];
+  return MARKETING_LANGUAGES[first] ? first : "";
+}
+
 const state = {
   user: read("rb_signed_out", false) ? null : read("rb_user", null),
   language: read("rb_language", "en"),
@@ -3077,7 +3084,7 @@ const state = {
   pendingSignupEmail: read("rb_pending_signup_email", ""),
   pendingSignupWhatsApp: read("rb_pending_signup_whatsapp", ""),
   pendingSignupIncomeSources: read("rb_pending_income_sources", []),
-  marketingLanguage: MARKETING_LANGUAGES[read("tg_marketing_language", "en")] ? read("tg_marketing_language", "en") : "en",
+  marketingLanguage: marketingLanguageFromPath() || (MARKETING_LANGUAGES[read("tg_marketing_language", "en")] ? read("tg_marketing_language", "en") : "en"),
   marketingSection: read("tg_marketing_section", "how"),
   incomeProofs: read("rb_income_proofs", {}),
   screen: initialScreen(),
@@ -3131,7 +3138,11 @@ function isAdminRoute() {
 }
 
 function marketingPageSlug() {
-  const path = location.pathname.replace(/\/+$/, "") || "/";
+  let path = location.pathname.replace(/\/+$/, "") || "/";
+  const parts = path.split("/").filter(Boolean);
+  if (parts.length > 1 && MARKETING_LANGUAGES[parts[0]]) {
+    path = `/${parts.slice(1).join("/")}`;
+  }
   const routes = {
     "/how-it-works": "how",
     "/who-is-it-for": "who",
@@ -3313,7 +3324,7 @@ function landingFooter() {
 
 function mtdTopics() {
   return [
-    ["mtdQualifyingIncome", "mtdQualifyingIncomeText", "/mtd/qualifying-income"],
+    ["mtdQualifyingIncome", "mtdQualifyingIncomeText", state.marketingLanguage === "pl" ? "/pl/mtd/qualifying-income" : "/mtd/qualifying-income"],
     ["mtdGettingStarted", "mtdGettingStartedText", "/mtd/getting-started"],
     ["mtdSoleTraders", "mtdSoleTradersText", "/mtd/sole-traders"],
     ["mtdLandlords", "mtdLandlordsText", "/mtd/landlords"],
@@ -3333,6 +3344,7 @@ function mtdTopics() {
 }
 
 function mtdQualifyingIncomeArticle() {
+  if (state.marketingLanguage === "pl") return mtdQualifyingIncomeArticlePl();
   return `
     <article class="marketing-page-card marketing-article">
       <span class="eyebrow">${mk("navMtd")}</span>
@@ -3378,6 +3390,59 @@ function mtdQualifyingIncomeArticle() {
         <a href="https://www.gov.uk/guidance/find-out-if-you-can-get-an-exemption-from-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Find out if you can get an exemption from Making Tax Digital for Income Tax — GOV.UK</a>
         <a href="https://www.gov.uk/guidance/sign-up-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Sign up for Making Tax Digital for Income Tax — GOV.UK</a>
         <span>Last checked: August 2026. HMRC guidance changes, so verify figures at the links above.</span>
+      </section>
+      ${pageCta()}
+    </article>
+  `;
+}
+
+function mtdQualifyingIncomeArticlePl() {
+  return `
+    <article class="marketing-page-card marketing-article">
+      <span class="eyebrow">${mk("navMtd")}</span>
+      <h1>Qualifying income: co to właściwie jest? <span class="muted">(To nie jest Twój zysk)</span></h1>
+
+      <h2>Czym jest qualifying income?</h2>
+      <p>Qualifying income to kwota, na podstawie której HMRC decyduje, czy obejmie Cię Making Tax Digital. To Twój <strong>przychód brutto z działalności i z wynajmu, przed odliczeniem jakichkolwiek kosztów.</strong></p>
+      <p>I właśnie na tym większość ludzi się przejeżdża. To nie jest zysk. To nie jest to, co zostaje na koncie po materiałach, paliwie, narzędziach i całej reszcie. To wszystko, co wpłynęło.</p>
+      <p>Jeśli w zeszłym roku miałeś £62,000 obrotu, a £20,000 poszło na koszty, Twoje qualifying income wynosi £62,000, nie £42,000.</p>
+
+      <h2>Działalność i wynajem sumują się razem</h2>
+      <p>To druga pułapka i łapie ludzi, którzy patrzą na każde źródło osobno i stwierdzają, że żadne nie dobija do progu.</p>
+      <p>HMRC je dodaje. W <a href="https://www.gov.uk/guidance/work-out-your-qualifying-income-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">przykładzie z oficjalnej strony</a> £25,000 z wynajmu plus £27,000 z działalności daje razem qualifying income £52,000.</p>
+      <p>Żadna z tych kwot osobno nie zbliża się do £50,000. Razem próg przekraczają. Jeśli w tygodniu jeździsz vanem, a przy okazji wynajmujesz mieszkanie, musisz dodać jedno do drugiego, zanim uznasz, że Cię to nie dotyczy.</p>
+
+      <h2>Co się NIE liczy do qualifying income?</h2>
+      <p>Sporo dochodów jest poza tym wyliczeniem. Wynagrodzenie z etatu (PAYE), emerytura, odsetki z oszczędności, dywidendy i zyski kapitałowe nie wchodzą do qualifying income.</p>
+      <p>Czyli ktoś, kto zarabia £70,000 na etacie i dorabia £15,000 na własnej działalności, ma qualifying income £15,000. Pensja nie ma tu żadnego znaczenia, choć oczywiście nadal rozlicza się ją normalnie.</p>
+      <p>Warto znać też kilka konkretnych wyłączeń, <a href="https://www.gov.uk/guidance/work-out-your-qualifying-income-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">które HMRC wymienia</a>: dochód z brytyjskich REIT-ów i funduszy PAIF się nie liczy, qualifying care relief się nie liczy, a averaging relief nie ma wpływu na wynik. To akurat dotyczy rolników i twórców.</p>
+      <p>Jedna rzecz, która się liczy i ludzi zaskakuje: źródło dochodu, które <strong>przestało istnieć</strong> od czasu Twojego ostatniego zeznania, i tak wchodzi do qualifying income, o ile masz jeszcze jakieś inne, trwające źródło.</p>
+
+      <h2>Jakie są progi?</h2>
+      <p>Jeśli Twoje qualifying income za rok podatkowy 2024/25 przekroczyło £50,000, <a href="https://www.gov.uk/guidance/find-out-if-and-when-you-need-to-use-making-tax-digital-for-income-tax" target="_blank" rel="noopener">powinieneś zacząć korzystać z MTD od 6 kwietnia 2026</a>, i nadal możesz się zarejestrować. W kolejnych latach progi schodzą niżej i obejmą znacznie więcej osób.</p>
+      <p>Z drugiej strony: <a href="https://www.gov.uk/guidance/find-out-if-you-can-get-an-exemption-from-making-tax-digital-for-income-tax" target="_blank" rel="noopener">jesteś automatycznie zwolniony</a> i nie musisz korzystać z MTD, jeśli Twoje qualifying income wynosi £20,000 lub mniej.</p>
+
+      <h2>Skąd HMRC bierze tę kwotę?</h2>
+      <p><a href="https://www.gov.uk/guidance/work-out-your-qualifying-income-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">HMRC wylicza Twoje qualifying income</a> na podstawie zeznania Self Assessment złożonego w poprzednim roku podatkowym. Jeśli kwota przekracza próg, urząd wysyła list z informacją, że od początku kolejnego roku podatkowego musisz korzystać z MTD.</p>
+      <p>I teraz najważniejsze. Nawet jeśli <strong>nie dostaniesz listu</strong>, i tak musisz sam sprawdzić swoje qualifying income i zarejestrować się, jeśli próg przekraczasz.</p>
+      <p><strong>Brak listu to nie brak obowiązku.</strong> Listy giną, adresy się dezaktualizują, a odpowiedzialność i tak zostaje po Twojej stronie.</p>
+
+      <h2>Jak sprawdzić swoją sytuację?</h2>
+      <p>HMRC udostępnia <a href="https://www.gov.uk/guidance/find-out-if-and-when-you-need-to-use-making-tax-digital-for-income-tax" target="_blank" rel="noopener">narzędzie, które przeprowadza przez pytania</a> i podaje wynik na podstawie Twoich odpowiedzi.</p>
+      <p>Jeśli Twoja sytuacja jest bardziej złożona, na przykład dochód z zagranicy, kilka działalności albo źródło, które zniknęło w trakcie roku, to pytanie do księgowego, a nie do strony internetowej. Łącznie z tą. My nie udzielamy porad podatkowych.</p>
+
+      <h2>Jedna rzecz, którą warto zrobić już dziś</h2>
+      <p>Niezależnie od tego, czy próg łapie Cię w tym roku, w kolejnych latach obejmie znacznie więcej osób.</p>
+      <p>Nawyk, który pomaga w obu przypadkach, jest nudny i prosty: zapisuj przychody i wydatki cyfrowo, na bieżąco, zamiast trzymać je w reklamówce. Jeśli okaże się, że jesteś w systemie, jesteś gotowy. Jeśli nie, i tak masz za sobą spokojniejszy rok i krótszą rozmowę z księgowym.</p>
+      <p>I dokładnie do tego powstało <a href="/pl">TidGo</a>: paragony i dowody przychodu zbierane na bieżąco, w ośmiu językach, gotowe do przekazania. TidGo niczego nie wysyła do HMRC i nie jest poradą podatkową. Sprawia tylko, że rekordy istnieją, kiedy ktoś o nie zapyta.</p>
+
+      <section class="article-sources">
+        <strong>Źródła</strong>
+        <a href="https://www.gov.uk/guidance/work-out-your-qualifying-income-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Work out your qualifying income for Making Tax Digital for Income Tax — GOV.UK</a>
+        <a href="https://www.gov.uk/guidance/find-out-if-and-when-you-need-to-use-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Find out if and when you need to use Making Tax Digital for Income Tax — GOV.UK</a>
+        <a href="https://www.gov.uk/guidance/find-out-if-you-can-get-an-exemption-from-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Find out if you can get an exemption from Making Tax Digital for Income Tax — GOV.UK</a>
+        <a href="https://www.gov.uk/guidance/sign-up-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Sign up for Making Tax Digital for Income Tax — GOV.UK</a>
+        <span>Sprawdzone: sierpień 2026. Wytyczne HMRC się zmieniają, więc jeśli czytasz to później, zweryfikuj kwoty pod powyższymi linkami.</span>
       </section>
       ${pageCta()}
     </article>
