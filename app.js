@@ -1,4 +1,4 @@
-﻿const API_BASE = "https://donezo-api-53t9.onrender.com";
+const API_BASE = "https://donezo-api-53t9.onrender.com";
 const TIDGO_WHATSAPP_NUMBER = "447466382511";
 const FEEDBACK_EMAIL = "hello@tidgo.co.uk";
 const GA_MEASUREMENT_ID = "G-FTS1ZS0PF5";
@@ -45,7 +45,7 @@ const MARKETING_LANGUAGES = {
 
 const MARKETING_COPY = {
   en: {
-    navHow: "How it works", navWho: "Who is it for?", navStory: "Founder story", navIntake: "How intake works", navFindAccountant: "Find an accountant", navAccountantPack: "Show your accountant", navPricing: "Launch & pricing", navFaq: "FAQ", navMtd: "MTD Learning Centre", navContact: "Contact",
+    navHow: "How it works", navWho: "Who is it for?", navStory: "Founder story", navIntake: "How intake works", navFindAccountant: "Find an accountant", navAccountantPack: "Show your accountant", navPricing: "Launch & pricing", navFaq: "FAQ", navMtd: "MTD Knowledge Base", navContact: "Contact",
     heroEyebrow: "Receipts in. Tidy records out.", heroTitle: "One simple place for receipts.", heroText: "For self-employed people who need records tidy, and accountants who would rather not chase plastic bags full of receipts.",
     stepSnap: "Snap receipts", stepTidy: "Keep records tidy", stepPack: "Send a clean pack",
     trustSimple: "No complicated registration. Just email sign-in.",
@@ -70,7 +70,7 @@ const MARKETING_COPY = {
     demoRecordsScreen: "Client records", demoRecordsTitle: "Download the client pack", demoRecordsText: "Open a client, check totals, request missing docs, then download CSV or PDF."
   },
   pl: {
-    navHow: "Jak to działa", navWho: "Dla kogo?", navStory: "Historia twórcy", navIntake: "Jak dodawać dokumenty", navFindAccountant: "Znajdź księgowego", navAccountantPack: "Pokaż księgowemu", navPricing: "Start i ceny", navFaq: "FAQ", navMtd: "Centrum wiedzy MTD", navContact: "Kontakt",
+    navHow: "Jak to działa", navWho: "Dla kogo?", navStory: "Historia twórcy", navIntake: "Jak dodawać dokumenty", navFindAccountant: "Znajdź księgowego", navAccountantPack: "Pokaż księgowemu", navPricing: "Start i ceny", navFaq: "FAQ", navMtd: "Baza wiedzy MTD", navContact: "Kontakt",
     heroEyebrow: "Paragony wchodzą. Porządek wychodzi.", heroTitle: "Jedno proste miejsce na paragony.", heroText: "Dla self-employed, którzy chcą mieć rekordy w porządku, i dla księgowych, którzy nie chcą gonitwy za reklamówką paragonów.",
     stepSnap: "Zrób zdjęcie", stepTidy: "Trzymaj porządek", stepPack: "Wyślij czystą paczkę",
     trustSimple: "Bez skomplikowanej rejestracji. Tylko logowanie emailem.",
@@ -96,7 +96,7 @@ const MARKETING_COPY = {
   }
 };
 MARKETING_COPY.ro = { ...MARKETING_COPY.en,
-  navHow: "Cum functioneaza", navWho: "Pentru cine?", navStory: "Povestea fondatorului", navFindAccountant: "Gaseste un contabil", navPricing: "Lansare si pret", navFaq: "FAQ", navMtd: "Centrul MTD", navContact: "Contact",
+  navHow: "Cum functioneaza", navWho: "Pentru cine?", navStory: "Povestea fondatorului", navFindAccountant: "Gaseste un contabil", navPricing: "Lansare si pret", navFaq: "FAQ", navMtd: "Baza de cunostinte MTD", navContact: "Contact",
   navIntake: "Cum adaugi documente", navAccountantPack: "Arata contabilului",
   heroEyebrow: "Bonuri inauntru. Evidente ordonate afara.", heroTitle: "Un loc simplu pentru bonuri.", heroText: "Pentru persoane self-employed care vor evidente ordonate si contabili care nu vor sa alerge dupa pungi cu bonuri.",
   stepSnap: "Fotografiaza bonuri", stepTidy: "Tine evidenta ordonata", stepPack: "Trimite pachetul curat",
@@ -122,7 +122,7 @@ MARKETING_COPY.ro = { ...MARKETING_COPY.en,
   demoRecordsScreen: "Evidente client", demoRecordsTitle: "Descarca pachetul clientului", demoRecordsText: "Deschide clientul, verifica totalurile, cere documente lipsa si descarca CSV sau PDF."
 };
 MARKETING_COPY.lt = { ...MARKETING_COPY.en,
-  navHow: "Kaip veikia", navWho: "Kam skirta?", navStory: "Kūrėjo istorija", navFindAccountant: "Rasti buhalterį", navPricing: "Startas ir kaina", navFaq: "DUK", navMtd: "MTD žinių centras", navContact: "Kontaktai",
+  navHow: "Kaip veikia", navWho: "Kam skirta?", navStory: "Kūrėjo istorija", navFindAccountant: "Rasti buhalterį", navPricing: "Startas ir kaina", navFaq: "DUK", navMtd: "MTD žinių bazė", navContact: "Kontaktai",
   navIntake: "Kaip prideti dokumentus", navAccountantPack: "Parodyti buhalteriui",
   heroEyebrow: "Kvitai vidun. Tvarkingi irasai lauk.", heroTitle: "Viena paprasta vieta kvitams.", heroText: "Dirbantiems sau, kuriems reikia tvarkingu irasu, ir buhalteriams, kurie nenori gaudyti maisu su kvitais.",
   stepSnap: "Nufotografuok kvita", stepTidy: "Laikyk irasus tvarkingai", stepPack: "Issiusk tvarkinga paketa",
@@ -245,6 +245,8 @@ Object.assign(MARKETING_COPY.pl, {
   mtdIntro: "Poradniki MTD będą krótkimi, praktycznymi stronami.",
   mtdQualifyingIncome: "Co to jest qualifying income?",
   mtdQualifyingIncomeText: "Qualifying income decyduje, czy obejmie Cię MTD. To przychód brutto przed kosztami, nie zysk.",
+  mtdGateway: "Government Gateway a MTD",
+  mtdGatewayText: "Konto Government Gateway albo GOV.UK One Login to tylko login. Rejestracja do Making Tax Digital to osobny krok.",
   mtdWhat: "Co to jest MTD?",
   mtdWho: "Kogo dotyczy MTD?",
   mtdWhen: "Kiedy startuje MTD?",
@@ -328,6 +330,8 @@ Object.assign(MARKETING_COPY.ro, {
   mtdIntro: "Ghidurile MTD vor fi pagini scurte si practice.",
   mtdQualifyingIncome: "Ce este qualifying income?",
   mtdQualifyingIncomeText: "Qualifying income decide daca MTD ti se aplica. Este venitul brut inainte de cheltuieli, nu profitul.",
+  mtdGateway: "Government Gateway si MTD",
+  mtdGatewayText: "Un cont Government Gateway sau GOV.UK One Login este doar autentificare. Inscrierea in Making Tax Digital este un pas separat.",
   mtdWhat: "Ce este MTD?",
   mtdWho: "Cine are nevoie de MTD?",
   mtdWhen: "Cand incepe MTD?",
@@ -390,6 +394,8 @@ Object.assign(MARKETING_COPY.lt, {
   mtdIntro: "MTD gidai bus trumpos ir praktiskos puslapio dalys.",
   mtdQualifyingIncome: "Kas yra qualifying income?",
   mtdQualifyingIncomeText: "Qualifying income lemia, ar tau taikomas MTD. Tai bendrosios pajamos pries islaidas, ne pelnas.",
+  mtdGateway: "Government Gateway ir MTD",
+  mtdGatewayText: "Government Gateway arba GOV.UK One Login paskyra yra tik prisijungimas. Registracija Making Tax Digital yra atskiras veiksmas.",
   mtdWhat: "Kas yra MTD?",
   mtdWho: "Kam reikia MTD?",
   mtdWhen: "Kada prasideda MTD?",
@@ -3332,7 +3338,7 @@ function landingFooter() {
 function mtdTopics() {
   return [
     ["mtdQualifyingIncome", "mtdQualifyingIncomeText", state.marketingLanguage === "en" ? "/mtd/qualifying-income" : `/${state.marketingLanguage}/mtd/qualifying-income`],
-    ["mtdGateway", "mtdGatewayText", "/mtd/government-gateway"],
+    ["mtdGateway", "mtdGatewayText", state.marketingLanguage === "en" ? "/mtd/government-gateway" : `/${state.marketingLanguage}/mtd/government-gateway`],
     ["mtdGettingStarted", "mtdGettingStartedText", "/mtd/getting-started"],
     ["mtdSoleTraders", "mtdSoleTradersText", "/mtd/sole-traders"],
     ["mtdLandlords", "mtdLandlordsText", "/mtd/landlords"],
@@ -3552,6 +3558,13 @@ function mtdQualifyingIncomeArticleLT() {
 }
 
 function mtdGovernmentGatewayArticle() {
+  if (state.marketingLanguage === "pl") return mtdGovernmentGatewayArticlePL();
+  if (state.marketingLanguage === "ro") return mtdGovernmentGatewayArticleRO();
+  if (state.marketingLanguage === "lt") return mtdGovernmentGatewayArticleLT();
+  return mtdGovernmentGatewayArticleEN();
+}
+
+function mtdGovernmentGatewayArticleEN() {
   return `
     <article class="marketing-page-card marketing-article">
       <span class="eyebrow">${mk("navMtd")}</span>
@@ -3613,6 +3626,177 @@ function mtdGovernmentGatewayArticle() {
         <a href="https://www.gov.uk/guidance/work-out-your-qualifying-income-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Work out your qualifying income — GOV.UK</a>
         <span>Last checked: August 2026. HMRC guidance and sign-in systems are changing, so verify at the links above if you're reading this later.</span>
       </section>
+      ${pageCta()}
+    </article>
+  `;
+}
+
+function mtdGovernmentGatewayArticlePL() {
+  return `
+    <article class="marketing-page-card marketing-article">
+      <span class="eyebrow">${mk("navMtd")}</span>
+      <h1>Government Gateway a MTD: posiadanie konta to nie to samo co rejestracja</h1>
+            <h2>Czy jeśli mam Government Gateway, to jestem już zapisany do MTD?</h2>
+            <p>Nie. To dwie zupełnie różne rzeczy, a mylenie ich to obecnie jeden z najczęstszych błędów.</p>
+            <p>Konto Government Gateway to <strong>login</strong>. Nazwa użytkownika i hasło, które wpuszczają Cię do usług online HMRC — i tyle. Nie rejestruje Cię do niczego, nie mówi urzędowi, czym się zajmujesz, i nie umieszcza Cię w Making Tax Digital.</p>
+            <p>Rejestracja do MTD to <strong>osobna czynność</strong>, wykonywana w osobnej usłudze, po której HMRC wyznacza Ci konkretne obowiązki. Dopóki jej nie zrobisz, nie ma Cię w systemie — niezależnie od tego, ile lat masz to konto.</p>
+            <h2>Czym właściwie jest Government Gateway?</h2>
+            <p>Najprościej: to klucz do drzwi wejściowych HMRC online. Jeśli kiedykolwiek składałeś Self Assessment przez internet, korzystałeś z aplikacji HMRC albo wnioskowałeś o tax-free childcare — już je masz.</p>
+            <p>To po prostu dane logowania. Co jest za tymi drzwiami, zależy wyłącznie od tego, do czego osobno się zarejestrowałeś.</p>
+            <p>Jedna rzecz warta uwagi: HMRC stopniowo przenosi nowych użytkowników na <strong>GOV.UK One Login</strong>, który zastępuje Government Gateway w usługach rządowych. Jeśli zakładasz konto teraz, możesz zobaczyć właśnie One Login. Zasada jest identyczna — to sposób logowania, nie rejestracja.</p>
+            <h2>Trzy kroki, które ludzie mylą</h2>
+            <p>Prawie wszyscy je ze sobą mieszają, więc rozpiszmy je osobno, po kolei:</p>
+            <p><strong>Konto do logowania</strong> — Government Gateway albo GOV.UK One Login. Same dane dostępowe.</p>
+            <p><strong>Rejestracja do Self Assessment</strong> — to informuje HMRC, że masz dochód do rozliczenia. Dostajesz UTR, dziesięciocyfrowy numer, który zostaje z Tobą na całe życie.</p>
+            <p><strong>Rejestracja do Making Tax Digital</strong> — osobna usługa, po pierwszych dwóch krokach, która wprowadza Cię w raportowanie kwartalne.</p>
+            <p>Możesz mieć krok 1 bez kroku 2. Możesz mieć kroki 1 i 2 bez kroku 3. Większość ludzi, którzy myślą, że „mają wszystko załatwione", zrobiła pierwszy i drugi, a zakłada, że trzeci zrobił się sam.</p>
+            <h2>Jeśli masz już konto Government Gateway</h2>
+            <p>Krok 1 masz za sobą. Zostaje:</p>
+            <p><strong>Sprawdź, czy jesteś zarejestrowany do Self Assessment.</strong> Jeśli co roku składasz zeznanie — jesteś. Jeśli nigdy nie składałeś, najprawdopodobniej nie jesteś i trzeba zacząć od rejestracji.</p>
+            <p><strong>Sprawdź, czy MTD w ogóle Cię dotyczy.</strong> To zależy od Twojego <a href="/pl/mtd/qualifying-income">qualifying income</a> — czyli przychodu brutto przed kosztami, przy czym działalność i wynajem sumują się razem. To nie jest Twój zysk.</p>
+            <p><strong>Zarejestruj się do MTD, używając tego samego loginu.</strong> <a href="https://www.gov.uk/guidance/sign-up-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Usługa rejestracji jest na GOV.UK</a>. Używasz tej samej nazwy użytkownika i hasła, które dostałeś przy rejestracji do Self Assessment. HMRC sprawdza Twoje uprawnienia na podstawie podanych danych. Jeśli masz księgowego z agent services account, może zarejestrować Cię za Ciebie.</p>
+            <h2>Jeśli nie masz konta Government Gateway</h2>
+            <p>Sporo osób go nie ma i nie ma w tym nic dziwnego — jeśli zawsze pracowałeś na etacie, dopiero zaczynasz na swoim albo ktoś inny zawsze zajmował się Twoimi podatkami, nie było powodu, żeby je zakładać.</p>
+            <p>Tutaj kolejność ma znaczenie:</p>
+            <p><strong>Najpierw załóż konto.</strong> Wejdź na <a href="https://www.gov.uk/log-in-register-hmrc-online-services" target="_blank" rel="noopener">stronę logowania HMRC</a> i wybierz utworzenie danych dostępowych. Potrzebujesz adresu e-mail, który faktycznie sprawdzasz — HMRC wyśle na niego kod potwierdzający. Jako sole trader wybierz konto typu indywidualnego/osobistego; formalnie Ty i Twoja działalność to ta sama osoba.</p>
+            <p><strong>Potem zarejestruj się do Self Assessment.</strong> <a href="https://www.gov.uk/register-for-self-assessment" target="_blank" rel="noopener">Robi się to na GOV.UK</a> i zajmuje jakieś piętnaście minut. Przygotuj numer National Insurance, datę rozpoczęcia pracy na swoim i jednozdaniowy opis tego, czym się zajmujesz — „hydraulik" albo „kierowca vana" w zupełności wystarczy.</p>
+            <p><strong>Potem czekaj na UTR, który przyjdzie pocztą.</strong> To jest ten moment, który ludzi zaskakuje: Unique Taxpayer Reference przychodzi na papierze, zwykle w ciągu około dziesięciu dni roboczych, dłużej jeśli mieszkasz za granicą. Bez niego nie zamkniesz całości, a odświeżanie strony nic nie przyspieszy.</p>
+            <p><strong>Potem zarejestruj się do MTD</strong>, jeśli Twoje qualifying income oznacza, że Cię to dotyczy.</p>
+            <p>Jeśli zaczynasz od zera, zaplanuj kilka tygodni — nie jedno popołudnie.</p>
+            <h2>Co się dzieje po rejestracji do MTD?</h2>
+            <p>To jest część, której prawie nikt nie tłumaczy, więc proszę bardzo.</p>
+            <p>Po rejestracji HMRC wyznacza Ci <strong>obowiązki (obligations)</strong> — konkretną listę tego, co masz raportować i kiedy. I rzecz kluczowa: są one wyznaczane <strong>osobno dla każdego źródła dochodu</strong>. Dwie działalności i jedna nieruchomość to trzy osobne zestawy obowiązków raportowych, a nie jedno wspólne rozliczenie.</p>
+            <p>Każdy z nich wymaga własnych kwot, uzupełnionych z Twoich rekordów i wysłanych przez oprogramowanie kompatybilne z MTD. Nie ma formularza na stronie HMRC, w który dałoby się je wpisać.</p>
+            <p>Z czego wynika konsekwencja, którą ludzie kompletnie przeoczają: <strong>kiedy już jesteś w MTD, roczne rozliczenie też musi przejść przez kompatybilne oprogramowanie albo przez księgowego.</strong> Dawna droga „zrobię to sam na stronie HMRC" przestaje być dla Ciebie dostępna. Dotyczy to zarówno tych, których przepisy złapały automatycznie, jak i tych, którzy zgłosili się wcześniej dobrowolnie.</p>
+            <p>To nie jest powód, żeby unikać rejestracji — dla większości ludzi i tak nie jest ona dobrowolna. Ale warto o tym wiedzieć wcześniej, zwłaszcza jeśli planujesz zgłosić się przed swoim terminem.</p>
+            <h2>A jeśli coś przeoczyłem?</h2>
+            <p>Jeśli nie masz pewności, na czym stoisz, uczciwa odpowiedź brzmi: strona internetowa Ci tego nie powie — łącznie z tą. Księgowy sprawdzi Twoją sytuację w kilka minut, a zasady znajdziesz w oficjalnych wytycznych HMRC.</p>
+            <p>My nie udzielamy porad podatkowych. Możemy natomiast powiedzieć jedno: nic z tego nie robi się łatwiejsze przez odkładanie, a etap „list przychodzi pocztą" sprawia, że kalendarz nie jest w pełni pod Twoją kontrolą.</p>
+            <h2>Co można zrobić w międzyczasie</h2>
+            <p>Kiedy czekasz na UTR albo zastanawiasz się, czy próg Cię łapie, jest jedna rzecz, która pomaga w każdym scenariuszu: zacznij zapisywać przychody i wydatki cyfrowo już teraz, zamiast trzymać je w reklamówce pod siedzeniem.</p>
+            <p>Do tego właśnie służy <a href="/pl">TidGo</a> — paragony, dowody przychodu i CIS payslipy zbierane na bieżąco, w ośmiu językach, gotowe do przekazania temu, kto ostatecznie będzie wysyłał raporty. TidGo niczego nie wysyła do HMRC i nie jest poradą podatkową. Sprawia tylko, że kiedy przyjdzie termin, rekordy istnieją.</p>
+            <section class="article-sources">
+              <strong>Źródła</strong>
+                    <p><a href="https://www.gov.uk/guidance/sign-up-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Sign up for Making Tax Digital for Income Tax</a> — GOV.UK</p>
+                    <p><a href="https://www.gov.uk/guidance/find-out-if-and-when-you-need-to-use-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Find out if and when you need to use Making Tax Digital for Income Tax</a> — GOV.UK</p>
+                    <p><a href="https://www.gov.uk/guidance/use-software-to-send-income-tax-updates" target="_blank" rel="noopener">Use software to send Income Tax updates</a> — GOV.UK</p>
+                    <p><a href="https://www.gov.uk/guidance/work-out-your-qualifying-income-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Work out your qualifying income</a> — GOV.UK</p>
+                    <span><em>Sprawdzone: sierpień 2026. Wytyczne HMRC i systemy logowania się zmieniają — jeśli czytasz to później, zweryfikuj pod powyższymi linkami.</em></span>
+                  </section>
+      ${pageCta()}
+    </article>
+  `;
+}
+
+function mtdGovernmentGatewayArticleRO() {
+  return `
+    <article class="marketing-page-card marketing-article">
+      <span class="eyebrow">${mk("navMtd")}</span>
+      <h1>Government Gateway și MTD: să ai cont nu înseamnă că ești înscris</h1>
+            <h2>Dacă am cont Government Gateway, înseamnă că sunt înscris în MTD?</h2>
+            <p>Nu. Sunt două lucruri complet diferite, iar confuzia dintre ele este acum una dintre cele mai frecvente greșeli.</p>
+            <p>Contul Government Gateway este <strong>o autentificare</strong>. Numele de utilizator și parola care îți dau acces la serviciile online HMRC — atât. Nu te înregistrează la nimic, nu îi spune fiscului cu ce te ocupi și nu te introduce în Making Tax Digital.</p>
+            <p>Înscrierea în MTD este <strong>o acțiune separată</strong>, făcută printr-un serviciu separat, după care HMRC îți stabilește obligații concrete. Până nu o faci, nu ești în sistem — indiferent de câți ani ai contul.</p>
+            <h2>Ce este, pe scurt, Government Gateway?</h2>
+            <p>Gândește-te la el ca la cheia de la ușa din față a HMRC online. Dacă ai depus vreodată o declarație Self Assessment online, ai folosit aplicația HMRC sau ai cerut tax-free childcare — deja ai unul.</p>
+            <p>Sunt doar date de acces. Ce se află dincolo de ușă depinde exclusiv de ce ai înregistrat separat.</p>
+            <p>Un lucru de știut: HMRC mută treptat utilizatorii noi pe <strong>GOV.UK One Login</strong>, care înlocuiește Government Gateway în serviciile guvernamentale. Dacă îți faci cont acum, s-ar putea să vezi One Login. Principiul e identic — este o metodă de autentificare, nu o înregistrare.</p>
+            <h2>Cei trei pași pe care lumea îi confundă</h2>
+            <p>Aproape toată lumea îi amestecă, așa că iată-i separat, în ordine:</p>
+            <p><strong>Un cont de autentificare</strong> — Government Gateway sau GOV.UK One Login. Doar credențiale.</p>
+            <p><strong>Înregistrarea la Self Assessment</strong> — îi spune HMRC că ai venituri de declarat. Primești un UTR, un număr din zece cifre care rămâne al tău pe viață.</p>
+            <p><strong>Înscrierea în Making Tax Digital</strong> — serviciu separat, după primii doi pași, care te introduce în raportarea trimestrială.</p>
+            <p>Poți avea pasul 1 fără pasul 2. Poți avea pașii 1 și 2 fără pasul 3. Majoritatea celor care cred că „au totul pus la punct" au făcut primii doi și presupun că al treilea s-a întâmplat de la sine.</p>
+            <h2>Dacă ai deja cont Government Gateway</h2>
+            <p>Pasul 1 este bifat. Mai rămâne:</p>
+            <p><strong>Verifică dacă ești înregistrat la Self Assessment.</strong> Dacă depui declarație în fiecare an, ești. Dacă nu ai depus niciodată, cel mai probabil nu ești și trebuie să începi cu înregistrarea.</p>
+            <p><strong>Verifică dacă MTD ți se aplică.</strong> Depinde de <a href="/ro/mtd/qualifying-income">qualifying income</a> — venitul brut înainte de cheltuieli, cu activitatea independentă și chiriile adunate. Nu este profitul tău.</p>
+            <p><strong>Înscrie-te în MTD, folosind aceleași date de autentificare.</strong> <a href="https://www.gov.uk/guidance/sign-up-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Serviciul de înscriere este pe GOV.UK</a>. Folosești același user ID și aceeași parolă primite la înregistrarea pentru Self Assessment. HMRC verifică eligibilitatea pe baza datelor furnizate. Dacă ai contabil cu agent services account, te poate înscrie el.</p>
+            <h2>Dacă nu ai cont Government Gateway</h2>
+            <p>Mulți oameni nu au și nu e nimic neobișnuit — dacă ai lucrat mereu pe PAYE, dacă abia începi pe cont propriu sau dacă altcineva s-a ocupat mereu de impozitele tale, nu ai avut motiv să îți faci unul.</p>
+            <p>Aici ordinea contează:</p>
+            <p><strong>Întâi fă-ți cont.</strong> Intră pe <a href="https://www.gov.uk/log-in-register-hmrc-online-services" target="_blank" rel="noopener">pagina de autentificare HMRC</a> și alege crearea datelor de acces. Îți trebuie o adresă de email pe care chiar o verifici — HMRC trimite acolo un cod de confirmare. Ca sole trader, alege tipul de cont individual/personal; legal, tu și activitatea ta sunteți aceeași persoană.</p>
+            <p><strong>Apoi înregistrează-te la Self Assessment.</strong> <a href="https://www.gov.uk/register-for-self-assessment" target="_blank" rel="noopener">Se face pe GOV.UK</a> și durează cam cincisprezece minute. Pregătește numărul de National Insurance, data la care ai început pe cont propriu și o descriere de o frază a activității — „instalator" sau „șofer de furgonetă" este suficient.</p>
+            <p><strong>Apoi așteaptă UTR-ul, care vine prin poștă.</strong> Aici se împiedică lumea: Unique Taxpayer Reference vine pe hârtie, de obicei în aproximativ zece zile lucrătoare, mai mult dacă locuiești în afara țării. Fără el nu poți închide procesul, iar reîmprospătarea paginii nu grăbește nimic.</p>
+            <p><strong>Apoi înscrie-te în MTD</strong>, dacă qualifying income înseamnă că ți se aplică.</p>
+            <p>Dacă pornești de la zero, planifică câteva săptămâni — nu o după-amiază.</p>
+            <h2>Ce se întâmplă după înscrierea în MTD?</h2>
+            <p>Aceasta este partea pe care aproape nimeni nu o explică.</p>
+            <p>După înscriere, HMRC îți stabilește <strong>obligații (obligations)</strong> — o listă concretă cu ce trebuie să raportezi și când. Esențial: ele se stabilesc <strong>separat pentru fiecare sursă de venit</strong>. Două activități și o proprietate închiriată înseamnă trei seturi separate de obligații de raportare, nu o declarație comună.</p>
+            <p>Fiecare cere propriile cifre, completate din înregistrările tale și trimise printr-un software compatibil cu MTD. Nu există niciun formular pe site-ul HMRC în care să le poți introduce.</p>
+            <p>De aici rezultă consecința pe care lumea o ratează complet: <strong>odată intrat în MTD, și declarația anuală trebuie să treacă printr-un software compatibil sau prin contabil.</strong> Vechea variantă „o fac singur pe site-ul HMRC" nu îți mai este disponibilă. Asta este valabil atât dacă regulile te-au prins automat, cât și dacă te-ai înscris voluntar mai devreme.</p>
+            <p>Nu e un motiv să eviți înscrierea — pentru majoritatea oamenilor oricum nu este opțională. Dar merită să știi înainte, mai ales dacă plănuiești să te înscrii înaintea termenului tău.</p>
+            <h2>Dacă am ratat ceva?</h2>
+            <p>Dacă nu ești sigur unde te afli, răspunsul onest este că un site nu îți poate spune — inclusiv acesta. Contabilul tău îți verifică situația în câteva minute, iar regulile sunt în ghidurile oficiale HMRC.</p>
+            <p>Noi nu oferim consultanță fiscală. Putem spune însă un lucru: nimic din toate astea nu devine mai ușor dacă amâni, iar etapa „scrisoarea vine prin poștă" face ca termenele să nu fie complet sub controlul tău.</p>
+            <h2>Ce poți face între timp</h2>
+            <p>Cât aștepți UTR-ul sau te lămurești dacă pragul te prinde, există un lucru care ajută în orice scenariu: începe să îți notezi veniturile și cheltuielile digital chiar acum, în loc să le ții într-o pungă sub scaun.</p>
+            <p>Exact pentru asta există <a href="/ro">TidGo</a> — bonuri, dovezi de venit și payslipuri CIS strânse pe parcurs, în opt limbi, gata de predat celui care va face raportarea. TidGo nu trimite nimic la HMRC și nu este consultanță fiscală. Face doar ca, atunci când vine termenul, înregistrările să existe.</p>
+            <section class="article-sources">
+              <strong>Surse</strong>
+                    <p><a href="https://www.gov.uk/guidance/sign-up-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Sign up for Making Tax Digital for Income Tax</a> — GOV.UK</p>
+                    <p><a href="https://www.gov.uk/guidance/find-out-if-and-when-you-need-to-use-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Find out if and when you need to use Making Tax Digital for Income Tax</a> — GOV.UK</p>
+                    <p><a href="https://www.gov.uk/guidance/use-software-to-send-income-tax-updates" target="_blank" rel="noopener">Use software to send Income Tax updates</a> — GOV.UK</p>
+                    <p><a href="https://www.gov.uk/guidance/work-out-your-qualifying-income-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Work out your qualifying income</a> — GOV.UK</p>
+                    <span><em>Verificat: august 2026. Ghidurile HMRC și sistemele de autentificare se schimbă — dacă citești mai târziu, verifică la linkurile de mai sus.</em></span>
+                  </section>
+      ${pageCta()}
+    </article>
+  `;
+}
+
+function mtdGovernmentGatewayArticleLT() {
+  return `
+    <article class="marketing-page-card marketing-article">
+      <span class="eyebrow">${mk("navMtd")}</span>
+      <h1>Government Gateway ir MTD: turėti paskyrą nereiškia būti užsiregistravus</h1>
+            <h2>Jei turiu Government Gateway paskyrą, ar jau esu užsiregistravęs MTD?</h2>
+            <p>Ne. Tai du visiškai skirtingi dalykai, o jų painiojimas šiuo metu yra viena dažniausių klaidų.</p>
+            <p>Government Gateway paskyra — tai <strong>prisijungimas</strong>. Naudotojo vardas ir slaptažodis, kurie įleidžia tave į HMRC internetines paslaugas — ir tiek. Ji tavęs niekur neužregistruoja, nepasako mokesčių inspekcijai, kuo užsiimi, ir neįtraukia tavęs į Making Tax Digital.</p>
+            <p>Registracija MTD — tai <strong>atskiras veiksmas</strong>, atliekamas atskiroje paslaugoje, po kurio HMRC nustato tau konkrečias prievoles. Kol jos neatliksi, sistemoje tavęs nėra — nesvarbu, kiek metų turi tą paskyrą.</p>
+            <h2>Kas iš tikrųjų yra Government Gateway?</h2>
+            <p>Paprasčiausiai — tai raktas nuo HMRC internetinių durų. Jei kada nors pildei Self Assessment deklaraciją internetu, naudojaisi HMRC programėle ar teikei prašymą dėl tax-free childcare — paskyrą jau turi.</p>
+            <p>Tai tiesiog prisijungimo duomenys. Kas yra už tų durų, priklauso tik nuo to, kur atskirai užsiregistravai.</p>
+            <p>Vienas dalykas, kurį verta žinoti: HMRC palaipsniui perkelia naujus naudotojus į <strong>GOV.UK One Login</strong>, kuris keičia Government Gateway visose valstybės paslaugose. Jei paskyrą kuri dabar, gali matyti būtent One Login. Principas tas pats — tai prisijungimo būdas, ne registracija.</p>
+            <h2>Trys žingsniai, kuriuos žmonės painioja</h2>
+            <p>Beveik visi juos sumaišo, tad štai jie atskirai, iš eilės:</p>
+            <p><strong>Paskyra prisijungimui</strong> — Government Gateway arba GOV.UK One Login. Tik prisijungimo duomenys.</p>
+            <p><strong>Registracija Self Assessment</strong> — ja praneši HMRC, kad turi deklaruotinų pajamų. Gauni UTR — dešimties skaitmenų numerį, kuris lieka tau visam gyvenimui.</p>
+            <p><strong>Registracija Making Tax Digital</strong> — atskira paslauga po pirmų dviejų žingsnių, kuri įtraukia tave į ketvirtinį raportavimą.</p>
+            <p>Gali turėti 1 žingsnį be 2. Gali turėti 1 ir 2 be 3. Dauguma tų, kurie mano, kad „viskas sutvarkyta", atliko pirmus du ir daro prielaidą, kad trečias įvyko savaime.</p>
+            <h2>Jei jau turi Government Gateway paskyrą</h2>
+            <p>Pirmas žingsnis atliktas. Lieka:</p>
+            <p><strong>Patikrink, ar esi užsiregistravęs Self Assessment.</strong> Jei kasmet teiki deklaraciją — esi. Jei niekada neteikei, greičiausiai nesi ir reikia pradėti nuo registracijos.</p>
+            <p><strong>Patikrink, ar MTD apskritai tau taikomas.</strong> Tai priklauso nuo tavo <a href="/lt/mtd/qualifying-income">qualifying income</a> — bendrųjų pajamų prieš išlaidas, sudedant veiklos ir nuomos pajamas kartu. Tai ne tavo pelnas.</p>
+            <p><strong>Užsiregistruok MTD naudodamas tuos pačius prisijungimo duomenis.</strong> <a href="https://www.gov.uk/guidance/sign-up-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Registracijos paslauga yra GOV.UK</a>. Naudoji tą patį user ID ir slaptažodį, kuriuos gavai registruodamasis Self Assessment. HMRC patikrina tinkamumą pagal pateiktus duomenis. Jei turi buhalterį su agent services account, jis gali užregistruoti tave.</p>
+            <h2>Jei Government Gateway paskyros neturi</h2>
+            <p>Daug kas jos neturi ir tai visiškai normalu — jei visada dirbai pagal PAYE, tik pradedi savarankiškai arba tavo mokesčiais visada rūpinosi kas nors kitas, priežasties ją kurti ir nebuvo.</p>
+            <p>Čia eiliškumas svarbus:</p>
+            <p><strong>Pirmiausia susikurk paskyrą.</strong> Eik į <a href="https://www.gov.uk/log-in-register-hmrc-online-services" target="_blank" rel="noopener">HMRC prisijungimo puslapį</a> ir pasirink prisijungimo duomenų kūrimą. Reikės el. pašto, kurį tikrai tikrini — HMRC atsiųs į jį patvirtinimo kodą. Kaip sole trader rinkis individualaus/asmeninio tipo paskyrą; teisiškai tu ir tavo veikla esate tas pats asmuo.</p>
+            <p><strong>Tada užsiregistruok Self Assessment.</strong> <a href="https://www.gov.uk/register-for-self-assessment" target="_blank" rel="noopener">Tai daroma GOV.UK</a> ir užtrunka apie penkiolika minučių. Pasiruošk National Insurance numerį, savarankiškos veiklos pradžios datą ir vieno sakinio veiklos aprašymą — „santechnikas" arba „furgono vairuotojas" visiškai pakanka.</p>
+            <p><strong>Tada lauk UTR, kuris ateis paštu.</strong> Būtent čia žmonės suklumpa: Unique Taxpayer Reference ateina popieriuje, paprastai per maždaug dešimt darbo dienų, ilgiau jei gyveni užsienyje. Be jo proceso neužbaigsi, o puslapio atnaujinimas nieko nepagreitins.</p>
+            <p><strong>Tada registruokis MTD</strong>, jei qualifying income reiškia, kad jis tau taikomas.</p>
+            <p>Jei pradedi nuo nulio, planuok kelias savaites — ne vieną popietę.</p>
+            <h2>Kas vyksta po registracijos MTD?</h2>
+            <p>Tai dalis, kurios beveik niekas nepaaiškina.</p>
+            <p>Užsiregistravus HMRC nustato tau <strong>prievoles (obligations)</strong> — konkretų sąrašą, ką ir kada turi raportuoti. Ir svarbiausia: jos nustatomos <strong>atskirai kiekvienam pajamų šaltiniui</strong>. Dvi veiklos ir vienas nuomojamas būstas reiškia tris atskirus raportavimo prievolių rinkinius, o ne vieną bendrą deklaraciją.</p>
+            <p>Kiekvienam reikia savų skaičių, užpildytų iš tavo įrašų ir pateiktų per su MTD suderinamą programinę įrangą. Jokios formos HMRC svetainėje, į kurią juos galėtum tiesiog įrašyti, nėra.</p>
+            <p>Iš to kyla pasekmė, kurią žmonės visiškai praleidžia: <strong>patekus į MTD, ir metinė deklaracija turi eiti per suderinamą programinę įrangą arba per buhalterį.</strong> Senasis kelias „padarysiu pats HMRC svetainėje" tau nebeprieinamas. Tai galioja ir tiems, kuriuos taisyklės pagavo automatiškai, ir tiems, kurie užsiregistravo savanoriškai anksčiau.</p>
+            <p>Tai nėra priežastis vengti registracijos — daugumai žmonių ji vis tiek nėra pasirinkimas. Bet verta žinoti iš anksto, ypač jei planuoji registruotis prieš savo terminą.</p>
+            <h2>O jei ką nors praleidau?</h2>
+            <p>Jei nesi tikras, kokia tavo padėtis, sąžiningas atsakymas toks: interneto svetainė tau to nepasakys — įskaitant šią. Buhalteris tavo situaciją patikrins per kelias minutes, o taisyklės yra oficialiose HMRC gairėse.</p>
+            <p>Mes mokesčių konsultacijų neteikiame. Bet vieną dalyką pasakyti galime: niekas iš to nepalengvėja atidėliojant, o etapas „laiškas ateina paštu" reiškia, kad kalendorius nėra visiškai tavo rankose.</p>
+            <h2>Ką galima padaryti tuo tarpu</h2>
+            <p>Kol lauki UTR arba aiškiniesi, ar riba tave pagauna, yra vienas dalykas, kuris padeda bet kuriuo atveju: pradėk fiksuoti pajamas ir išlaidas skaitmeniniu būdu jau dabar, o ne laikyk jas maišelyje po sėdyne.</p>
+            <p>Būtent tam ir yra <a href="/lt">TidGo</a> — kvitai, pajamų įrodymai ir CIS payslipai renkami eigoje, aštuoniomis kalbomis, paruošti perduoti tam, kas galiausiai teiks ataskaitas. TidGo nieko nesiunčia į HMRC ir nėra mokesčių konsultacija. Ji tik pasirūpina, kad atėjus terminui įrašai egzistuotų.</p>
+            <section class="article-sources">
+              <strong>Šaltiniai</strong>
+                    <p><a href="https://www.gov.uk/guidance/sign-up-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Sign up for Making Tax Digital for Income Tax</a> — GOV.UK</p>
+                    <p><a href="https://www.gov.uk/guidance/find-out-if-and-when-you-need-to-use-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Find out if and when you need to use Making Tax Digital for Income Tax</a> — GOV.UK</p>
+                    <p><a href="https://www.gov.uk/guidance/use-software-to-send-income-tax-updates" target="_blank" rel="noopener">Use software to send Income Tax updates</a> — GOV.UK</p>
+                    <p><a href="https://www.gov.uk/guidance/work-out-your-qualifying-income-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Work out your qualifying income</a> — GOV.UK</p>
+                    <span><em>Patikrinta: 2026 m. rugpjūtis. HMRC gairės ir prisijungimo sistemos keičiasi — jei skaitai vėliau, pasitikrink pagal nuorodas aukščiau.</em></span>
+                  </section>
       ${pageCta()}
     </article>
   `;

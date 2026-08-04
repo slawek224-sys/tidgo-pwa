@@ -1,4 +1,4 @@
-﻿const CACHE = "tidgo-pwa-v141";
+﻿const CACHE = "tidgo-pwa-v142";
 const ASSETS = [
   "./",
   "./index.html",
@@ -18,6 +18,9 @@ const ASSETS = [
   "./mtd/index.html",
   "./mtd/qualifying-income/index.html",
   "./mtd/government-gateway/index.html",
+  "./ro/mtd/government-gateway/index.html",
+  "./lt/mtd/government-gateway/index.html",
+  "./pl/mtd/government-gateway/index.html",
   "./pl/mtd/qualifying-income/index.html",
   "./lt/mtd/qualifying-income/index.html",
   "./ro/mtd/qualifying-income/index.html",
