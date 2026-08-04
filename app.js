@@ -160,6 +160,8 @@ Object.assign(MARKETING_COPY.en, {
   mtdIntro: "MTD guides are being written as short, practical pages.",
   mtdQualifyingIncome: "What is qualifying income?",
   mtdQualifyingIncomeText: "Qualifying income decides whether MTD applies to you. It is gross self-employment and property income before expenses, not profit.",
+  mtdGateway: "Government Gateway and MTD",
+  mtdGatewayText: "Having a Government Gateway or GOV.UK One Login account is not the same as signing up for Making Tax Digital.",
   mtdWhat: "What is MTD?",
   mtdWho: "Who needs MTD?",
   mtdWhen: "When does MTD start?",
@@ -3160,6 +3162,7 @@ function marketingPageSlug() {
     "/android-testers": "androidTesters",
     "/mtd": "mtd",
     "/mtd/qualifying-income": "mtdQualifyingIncome",
+    "/mtd/government-gateway": "mtdGateway",
     "/mtd/getting-started": "mtdGettingStarted",
     "/mtd/sole-traders": "mtdSoleTraders",
     "/mtd/landlords": "mtdLandlords",
@@ -3329,6 +3332,7 @@ function landingFooter() {
 function mtdTopics() {
   return [
     ["mtdQualifyingIncome", "mtdQualifyingIncomeText", state.marketingLanguage === "en" ? "/mtd/qualifying-income" : `/${state.marketingLanguage}/mtd/qualifying-income`],
+    ["mtdGateway", "mtdGatewayText", "/mtd/government-gateway"],
     ["mtdGettingStarted", "mtdGettingStartedText", "/mtd/getting-started"],
     ["mtdSoleTraders", "mtdSoleTradersText", "/mtd/sole-traders"],
     ["mtdLandlords", "mtdLandlordsText", "/mtd/landlords"],
@@ -3541,6 +3545,73 @@ function mtdQualifyingIncomeArticleLT() {
         <a href="https://www.gov.uk/guidance/find-out-if-you-can-get-an-exemption-from-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Find out if you can get an exemption from Making Tax Digital for Income Tax</a> — GOV.UK
         <a href="https://www.gov.uk/guidance/sign-up-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Sign up for Making Tax Digital for Income Tax</a> — GOV.UK
       <p><em>Patikrinta: 2026 m. rugpjūtis. HMRC gairės keičiasi — jei skaitai tai gerokai vėliau, sumas pasitikrink pagal nuorodas aukščiau.</em></p>
+      </section>
+      ${pageCta()}
+    </article>
+  `;
+}
+
+function mtdGovernmentGatewayArticle() {
+  return `
+    <article class="marketing-page-card marketing-article">
+      <span class="eyebrow">${mk("navMtd")}</span>
+      <h1>Government Gateway and MTD: having an account is not the same as signing up</h1>
+
+      <h2>Does having a Government Gateway account mean I'm signed up for MTD?</h2>
+      <p>No. These are two completely separate things, and assuming otherwise is one of the most common mistakes people make right now.</p>
+      <p>A Government Gateway account is <strong>a login</strong>. It's the username and password that get you into HMRC's online services, nothing more. It doesn't register you for anything, doesn't tell HMRC what you do, and doesn't put you into Making Tax Digital.</p>
+      <p>Signing up for Making Tax Digital is <strong>a separate action</strong>, done through a separate service, after which HMRC issues you a specific set of obligations. Until you do it, you are not in the system, no matter how long you've had your login.</p>
+
+      <h2>What is a Government Gateway account, in plain terms?</h2>
+      <p>Think of it as the front door key to HMRC online. If you've ever filed a Self Assessment return online, used the HMRC app, or claimed tax-free childcare, you already have one.</p>
+      <p>It's just credentials: a user ID and a password. What sits behind that door depends entirely on what you've separately registered for.</p>
+      <p>One thing worth knowing: HMRC is gradually moving new users over to <a href="https://www.gov.uk/guidance/accessing-hmrc-online-services-using-govuk-one-login" target="_blank" rel="noopener">GOV.UK One Login</a>, which is replacing Government Gateway across government services. If you're setting up an account now, you may see One Login instead. The principle is identical: it's a way of signing in, not a registration.</p>
+
+      <h2>The three steps people confuse</h2>
+      <p>Almost everyone mixes these up, so here they are separately, in order:</p>
+      <p><strong>1. An account to sign in with</strong>: Government Gateway or GOV.UK One Login. Just credentials.</p>
+      <p><strong>2. Registration for Self Assessment</strong>: this tells HMRC you have income to report. It gets you a UTR, a 10-digit number that stays with you for life.</p>
+      <p><strong>3. Signing up for Making Tax Digital</strong>: a separate service, done after the first two, which puts you into quarterly reporting.</p>
+      <p>You can have step 1 and not step 2. You can have steps 1 and 2 and not step 3. Most people who think they're "all set up" have done one and two, and assume three happened by itself.</p>
+
+      <h2>If you already have a Government Gateway account</h2>
+      <p>You're past step 1. What's left:</p>
+      <p><strong>Check that you're registered for Self Assessment.</strong> If you file a tax return every year, you are. If you've never filed one, you probably aren't, and you'll need to register first.</p>
+      <p><strong>Check whether MTD applies to you.</strong> That depends on your <a href="/mtd/qualifying-income">qualifying income</a>, which is your gross income before expenses, with self-employment and property added together. It isn't your profit.</p>
+      <p><strong>Sign up for MTD, using the same login.</strong> <a href="https://www.gov.uk/guidance/sign-up-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">The sign-up service is on GOV.UK</a>. You use the same user ID and password you got when you registered for Self Assessment. HMRC checks your eligibility from the details you provide. If you have an accountant with an agent services account, they can sign you up instead.</p>
+
+      <h2>If you don't have a Government Gateway account</h2>
+      <p>Plenty of people don't, and there's nothing unusual about that. If you've always worked PAYE, or you're new to self-employment, or someone else has always handled your tax, you've had no reason to create one.</p>
+      <p>The order matters here:</p>
+      <p><strong>First, create an account.</strong> Go to <a href="https://www.gov.uk/log-in-register-hmrc-online-services" target="_blank" rel="noopener">HMRC's sign-in page</a> and choose to create sign-in details. You'll need an email address you actually check. HMRC sends a confirmation code to it. As a sole trader, choose the individual or personal account type; legally you and your business are the same person.</p>
+      <p><strong>Then register for Self Assessment.</strong> This is <a href="https://www.gov.uk/register-for-self-assessment" target="_blank" rel="noopener">done on GOV.UK</a>. Have your National Insurance number ready, along with the date you started working for yourself and a short description of what you do.</p>
+      <p><strong>Then wait for your UTR.</strong> This is the part that catches people out: your Unique Taxpayer Reference usually arrives later. GOV.UK now says you may be able to get it sooner through the HMRC app or your personal tax account, but you should still plan time for the registration to complete.</p>
+      <p><strong>Then sign up for MTD</strong>, if your qualifying income means it applies to you.</p>
+      <p>If you're starting from zero, plan for a few weeks, not an afternoon.</p>
+
+      <h2>What happens after you sign up for MTD?</h2>
+      <p>Once you're signed up, HMRC issues you <strong>obligations</strong>: a defined list of what you have to report and when. Crucially, these are issued per income source. Two businesses and one rental property means separate sets of reporting obligations, not one combined return.</p>
+      <p>Each one needs its own figures, filled from your own records, and submitted through MTD-compatible software. There's no HMRC web form to type them into.</p>
+      <p>Which leads to the consequence people miss entirely: once you're in MTD, the annual return also has to go through compatible software or an accountant. The old route of doing it yourself on the HMRC website isn't available to you any more. That applies whether the rules caught you automatically or you volunteered early.</p>
+      <p>That's not a reason to avoid signing up. For most people it's not optional anyway. But it's worth knowing before you do it, particularly if you were planning to volunteer ahead of your deadline.</p>
+
+      <h2>What if I've missed something?</h2>
+      <p>If you're not sure where you stand, the honest answer is that a website can't tell you, including this one. Your accountant can check your position in minutes, and HMRC's own guidance covers the eligibility rules.</p>
+      <p>We don't give tax advice. What we can say is that none of this gets easier by leaving it, and registration steps mean the calendar is not entirely under your control.</p>
+
+      <h2>Getting your records ready in the meantime</h2>
+      <p>While you're waiting for a UTR to land or working out whether the threshold catches you, there's one thing you can do that helps in every scenario: start keeping your income and expenses digitally now, rather than in a bag under the seat.</p>
+      <p>That's what <a href="/">TidGo</a> is for: receipts, income proof and CIS payslips collected as they happen, in eight languages, ready to hand to whoever ends up doing your submission. TidGo doesn't submit to HMRC and it isn't tax advice. It just means that when the deadline arrives, the records exist.</p>
+
+      <section class="article-sources">
+        <strong>Sources</strong>
+        <a href="https://www.gov.uk/log-in-register-hmrc-online-services" target="_blank" rel="noopener">HMRC online services: sign in or set up an account — GOV.UK</a>
+        <a href="https://www.gov.uk/guidance/accessing-hmrc-online-services-using-govuk-one-login" target="_blank" rel="noopener">Accessing HMRC online services using GOV.UK One Login — GOV.UK</a>
+        <a href="https://www.gov.uk/register-for-self-assessment" target="_blank" rel="noopener">Check how to register for Self Assessment — GOV.UK</a>
+        <a href="https://www.gov.uk/guidance/sign-up-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Sign up for Making Tax Digital for Income Tax — GOV.UK</a>
+        <a href="https://www.gov.uk/guidance/use-software-to-send-income-tax-updates" target="_blank" rel="noopener">Use software to send Income Tax updates — GOV.UK</a>
+        <a href="https://www.gov.uk/guidance/work-out-your-qualifying-income-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Work out your qualifying income — GOV.UK</a>
+        <span>Last checked: August 2026. HMRC guidance and sign-in systems are changing, so verify at the links above if you're reading this later.</span>
       </section>
       ${pageCta()}
     </article>
@@ -4851,6 +4922,8 @@ function marketingPage() {
     `;
   } else if (slug === "mtdQualifyingIncome") {
     body = mtdQualifyingIncomeArticle();
+  } else if (slug === "mtdGateway") {
+    body = mtdGovernmentGatewayArticle();
   } else if (mtdTopic) {
     const [titleKey, textKey] = mtdTopic;
     const detail = mk(`${titleKey}Detail`);
