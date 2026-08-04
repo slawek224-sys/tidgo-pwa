@@ -324,6 +324,8 @@ Object.assign(MARKETING_COPY.ro, {
   scopeNotForTitle: "Nu este construit pentru",
   scopeNotForText: "Declaratii VAT, conturi LTD/company, payroll, corporation tax sau fluxuri complete de contabilitate.",
   mtdIntro: "Ghidurile MTD vor fi pagini scurte si practice.",
+  mtdQualifyingIncome: "Ce este qualifying income?",
+  mtdQualifyingIncomeText: "Qualifying income decide daca MTD ti se aplica. Este venitul brut inainte de cheltuieli, nu profitul.",
   mtdWhat: "Ce este MTD?",
   mtdWho: "Cine are nevoie de MTD?",
   mtdWhen: "Cand incepe MTD?",
@@ -384,6 +386,8 @@ Object.assign(MARKETING_COPY.lt, {
   scopeNotForTitle: "Neskirta",
   scopeNotForText: "VAT deklaracijoms, LTD/company accounts, payroll, corporation tax ar pilnai buhalterijai.",
   mtdIntro: "MTD gidai bus trumpos ir praktiskos puslapio dalys.",
+  mtdQualifyingIncome: "Kas yra qualifying income?",
+  mtdQualifyingIncomeText: "Qualifying income lemia, ar tau taikomas MTD. Tai bendrosios pajamos pries islaidas, ne pelnas.",
   mtdWhat: "Kas yra MTD?",
   mtdWho: "Kam reikia MTD?",
   mtdWhen: "Kada prasideda MTD?",
@@ -3324,7 +3328,7 @@ function landingFooter() {
 
 function mtdTopics() {
   return [
-    ["mtdQualifyingIncome", "mtdQualifyingIncomeText", state.marketingLanguage === "pl" ? "/pl/mtd/qualifying-income" : "/mtd/qualifying-income"],
+    ["mtdQualifyingIncome", "mtdQualifyingIncomeText", state.marketingLanguage === "en" ? "/mtd/qualifying-income" : `/${state.marketingLanguage}/mtd/qualifying-income`],
     ["mtdGettingStarted", "mtdGettingStartedText", "/mtd/getting-started"],
     ["mtdSoleTraders", "mtdSoleTradersText", "/mtd/sole-traders"],
     ["mtdLandlords", "mtdLandlordsText", "/mtd/landlords"],
@@ -3345,6 +3349,8 @@ function mtdTopics() {
 
 function mtdQualifyingIncomeArticle() {
   if (state.marketingLanguage === "pl") return mtdQualifyingIncomeArticlePl();
+  if (state.marketingLanguage === "ro") return mtdQualifyingIncomeArticleRO();
+  if (state.marketingLanguage === "lt") return mtdQualifyingIncomeArticleLT();
   return `
     <article class="marketing-page-card marketing-article">
       <span class="eyebrow">${mk("navMtd")}</span>
@@ -3443,6 +3449,98 @@ function mtdQualifyingIncomeArticlePl() {
         <a href="https://www.gov.uk/guidance/find-out-if-you-can-get-an-exemption-from-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Find out if you can get an exemption from Making Tax Digital for Income Tax — GOV.UK</a>
         <a href="https://www.gov.uk/guidance/sign-up-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Sign up for Making Tax Digital for Income Tax — GOV.UK</a>
         <span>Sprawdzone: sierpień 2026. Wytyczne HMRC się zmieniają, więc jeśli czytasz to później, zweryfikuj kwoty pod powyższymi linkami.</span>
+      </section>
+      ${pageCta()}
+    </article>
+  `;
+}
+
+function mtdQualifyingIncomeArticleRO() {
+  return `
+    <article class="marketing-page-card marketing-article">
+      <span class="eyebrow">${mk("navMtd")}</span>
+      <h1>Qualifying income — ce &#238;nseamnă de fapt? (Nu este profitul tău)</h1>
+      <h2>Ce este qualifying income?</h2>
+      <p>Qualifying income este suma pe baza căreia HMRC decide dacă Making Tax Digital ți se aplică. Este <strong>venitul tău brut din activitate independentă și din chirii — &#238;nainte să scazi orice cheltuială.</strong></p>
+      <p>Exact aici se &#238;ncurcă majoritatea oamenilor. Nu este profitul. Nu este ce răm&#226;ne &#238;n cont după materiale, combustibil, scule și tot restul. Este tot ce a intrat.</p>
+      <p>Dacă anul trecut ai avut &#163;62.000 rulaj, iar &#163;20.000 s-au dus pe cheltuieli, qualifying income este &#163;62.000 — nu &#163;42.000.</p>
+      <h2>Activitatea independentă și chiriile se adună</h2>
+      <p>Aceasta este a doua capcană și &#238;i prinde pe cei care se uită la fiecare sursă separat și trag concluzia că niciuna nu atinge pragul.</p>
+      <p>HMRC le adună. &#206;n <a href="https://www.gov.uk/guidance/work-out-your-qualifying-income-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">exemplul de pe pagina oficială</a>, &#163;25.000 din chirii plus &#163;27.000 din activitate independentă &#238;nseamnă un qualifying income total de &#163;52.000.</p>
+      <p>Nicio sumă luată separat nu se apropie de &#163;50.000. &#206;mpreună trec pragul. Dacă &#238;n timpul săptăm&#226;nii conduci o furgonetă și &#238;n plus mai &#238;nchiriezi un apartament, trebuie să le aduni &#238;nainte să decizi că nu te privește.</p>
+      <h2>Ce NU intră &#238;n qualifying income?</h2>
+      <p>Multe venituri răm&#226;n &#238;n afara acestui calcul. Venitul din angajare (PAYE), pensia, dob&#226;nzile din economii, dividendele și c&#226;știgurile de capital nu intră &#238;n qualifying income.</p>
+      <p>Așadar, cineva care c&#226;știgă &#163;70.000 dintr-un job și mai are &#163;15.000 din activitate pe cont propriu are qualifying income de &#163;15.000. Salariul nu contează pentru acest test — deși, evident, se declară &#238;n mod normal.</p>
+      <p>Merită știute și c&#226;teva excluderi punctuale, <a href="https://www.gov.uk/guidance/work-out-your-qualifying-income-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">pe care HMRC le enumeră</a>: venitul din REIT-uri britanice și din fonduri PAIF nu se ia &#238;n calcul, qualifying care relief nu se ia &#238;n calcul, iar averaging relief nu &#238;l influențează (asta &#238;i privește pe fermieri și pe artiști).</p>
+      <p>Un lucru care se ia &#238;n calcul și &#238;i surprinde pe oameni: o sursă de venit care <strong>a &#238;ncetat</strong> de la ultima ta declarație intră totuși &#238;n qualifying income — at&#226;ta timp c&#226;t mai ai o altă sursă activă.</p>
+      <h2>Care sunt pragurile?</h2>
+      <p>Dacă qualifying income pentru anul fiscal 2024/25 a depășit &#163;50.000, <a href="https://www.gov.uk/guidance/find-out-if-and-when-you-need-to-use-making-tax-digital-for-income-tax" target="_blank" rel="noopener">ar fi trebuit să &#238;ncepi să folosești MTD de la 6 aprilie 2026</a> — și &#238;ncă te poți &#238;nscrie. &#206;n anii următori pragurile coboară și vor cuprinde mult mai mulți oameni.</p>
+      <p>La celălalt capăt: <a href="https://www.gov.uk/guidance/find-out-if-you-can-get-an-exemption-from-making-tax-digital-for-income-tax" target="_blank" rel="noopener">ești scutit automat</a> și nu trebuie să folosești MTD dacă qualifying income este &#163;20.000 sau mai puțin.</p>
+      <h2>De unde ia HMRC această sumă?</h2>
+      <p><a href="https://www.gov.uk/guidance/work-out-your-qualifying-income-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">HMRC calculează qualifying income</a> pe baza declarației Self Assessment depuse &#238;n anul fiscal anterior. Dacă suma depășește pragul, &#238;ți trimite o scrisoare prin care confirmă că trebuie să folosești MTD de la &#238;nceputul anului fiscal următor.</p>
+      <p>Și acum partea importantă. Chiar dacă <strong>nu primești nicio scrisoare</strong>, tot trebuie să &#238;ți verifici singur qualifying income și să te &#238;nscrii dacă depășești pragul.</p>
+      <p><strong>Lipsa scrisorii nu &#238;nseamnă lipsa obligației.</strong> Scrisorile se pierd, adresele răm&#226;n neactualizate, iar răspunderea răm&#226;ne oricum la tine.</p>
+      <h2>Cum &#238;mi verific situația?</h2>
+      <p>HMRC pune la dispoziție <a href="https://www.gov.uk/guidance/find-out-if-and-when-you-need-to-use-making-tax-digital-for-income-tax" target="_blank" rel="noopener">un instrument care te trece prin &#238;ntrebări</a> și &#238;ți dă rezultatul pe baza răspunsurilor tale.</p>
+      <p>Dacă situația ta este mai complicată — venituri din străinătate, mai multe activități, o sursă care a dispărut &#238;n cursul anului — asta este o &#238;ntrebare pentru contabilul tău, nu pentru un site. Inclusiv pentru acesta. Noi nu oferim consultanță fiscală.</p>
+      <h2>Un singur lucru pe care merită să &#238;l faci azi</h2>
+      <p>Indiferent dacă pragul te prinde anul acesta, &#238;n anii următori va cuprinde mult mai multă lume.</p>
+      <p>Obiceiul care ajută &#238;n ambele cazuri este banal și simplu: notează-ți veniturile și cheltuielile digital, pe măsură ce apar, &#238;n loc să le ții &#238;ntr-o pungă. Dacă se dovedește că intri &#238;n sistem — ești pregătit. Dacă nu — tot ai &#238;n urmă un an mai ordonat și o discuție mai scurtă cu contabilul.</p>
+      <p>Exact pentru asta a fost făcut <a href="/ro" target="_blank" rel="noopener">TidGo</a> — bonuri și dovezi de venit str&#226;nse pe parcurs, &#238;n opt limbi, gata de predat. TidGo nu trimite nimic la HMRC și nu este consultanță fiscală. Face doar ca &#238;nregistrările să existe atunci c&#226;nd cineva le cere.</p>
+      <section class="article-sources">
+        <strong>Surse</strong>
+      <p>Toate cifrele de pe această pagină provin din ghidurile oficiale HMRC. Verifică-le singur:</p>
+        <a href="https://www.gov.uk/guidance/work-out-your-qualifying-income-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Work out your qualifying income for Making Tax Digital for Income Tax</a> — GOV.UK
+        <a href="https://www.gov.uk/guidance/find-out-if-and-when-you-need-to-use-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Find out if and when you need to use Making Tax Digital for Income Tax</a> — GOV.UK
+        <a href="https://www.gov.uk/guidance/find-out-if-you-can-get-an-exemption-from-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Find out if you can get an exemption from Making Tax Digital for Income Tax</a> — GOV.UK
+        <a href="https://www.gov.uk/guidance/sign-up-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Sign up for Making Tax Digital for Income Tax</a> — GOV.UK
+      <p><em>Verificat: august 2026. Ghidurile HMRC se schimbă — dacă citești asta mult mai t&#226;rziu, verifică sumele la linkurile de mai sus.</em></p>
+      </section>
+      ${pageCta()}
+    </article>
+  `;
+}
+
+function mtdQualifyingIncomeArticleLT() {
+  return `
+    <article class="marketing-page-card marketing-article">
+      <span class="eyebrow">${mk("navMtd")}</span>
+      <h1>Qualifying income — kas tai iš tikrųjų yra? (Tai ne tavo pelnas)</h1>
+      <h2>Kas yra qualifying income?</h2>
+      <p>Qualifying income — tai suma, pagal kurią HMRC sprendžia, ar tau taikomas Making Tax Digital. Tai tavo <strong>bendrosios pajamos iš savarankiškos veiklos ir iš nuomos — prieš atimant bet kokias išlaidas.</strong></p>
+      <p>Būtent čia daugumai žmonių ir nutinka klaida. Tai ne pelnas. Tai ne tai, kas lieka sąskaitoje po medžiagų, kuro, įrankių ir viso kito. Tai viskas, kas įplaukė.</p>
+      <p>Jei pernai apyvarta buvo &#163;62 000, o &#163;20 000 nuėjo išlaidoms, tavo qualifying income yra &#163;62 000 — ne &#163;42 000.</p>
+      <h2>Veiklos ir nuomos pajamos sudedamos kartu</h2>
+      <p>Tai antroji spąstų vieta, ir ji pagauna tuos, kurie žiūri į kiekvieną šaltinį atskirai ir nusprendžia, kad nė vienas nesiekia ribos.</p>
+      <p>HMRC juos sudeda. <a href="https://www.gov.uk/guidance/work-out-your-qualifying-income-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Oficialiame pavyzdyje</a> &#163;25 000 iš nuomos plius &#163;27 000 iš savarankiškos veiklos duoda bendrą qualifying income &#163;52 000.</p>
+      <p>Nė viena suma atskirai net nesiartina prie &#163;50 000. Kartu ribą peržengia. Jei savaitės dienomis vairuoji furgoną, o be to dar nuomoji butą, prieš nuspręsdamas, kad tavęs tai neliečia, turi juos sudėti.</p>
+      <h2>Kas NEĮEINA į qualifying income?</h2>
+      <p>Nemažai pajamų lieka už šio skaičiavimo ribų. Pajamos iš darbo santykių (PAYE), pensija, palūkanos už santaupas, dividendai ir kapitalo prieaugis į qualifying income neįeina.</p>
+      <p>Taigi žmogus, uždirbantis &#163;70 000 darbe ir dar &#163;15 000 iš savarankiškos veiklos, turi qualifying income &#163;15 000. Alga šiam vertinimui neturi reikšmės — nors, žinoma, ji vis tiek deklaruojama įprasta tvarka.</p>
+      <p>Verta žinoti ir kelias konkrečias išimtis, <a href="https://www.gov.uk/guidance/work-out-your-qualifying-income-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">kurias HMRC išvardija</a>: pajamos iš britų REIT ir PAIF fondų neskaičiuojamos, qualifying care relief neskaičiuojamas, o averaging relief rezultato nekeičia (tai aktualu ūkininkams ir kūrėjams).</p>
+      <p>Vienas dalykas, kuris skaičiuojamas ir žmones nustebina: pajamų šaltinis, kuris <strong>nutrūko</strong> po paskutinės tavo deklaracijos, vis tiek įtraukiamas į qualifying income — jei turi kitą, tebeveikiantį šaltinį.</p>
+      <h2>Kokios yra ribos?</h2>
+      <p>Jei tavo qualifying income 2024/25 mokestiniais metais viršijo &#163;50 000, <a href="https://www.gov.uk/guidance/find-out-if-and-when-you-need-to-use-making-tax-digital-for-income-tax" target="_blank" rel="noopener">MTD turėjai pradėti naudoti nuo 2026 m. balandžio 6 d.</a> — ir vis dar gali užsiregistruoti. Vėlesniais metais ribos leidžiasi žemyn ir apims kur kas daugiau žmonių.</p>
+      <p>Kitame gale: <a href="https://www.gov.uk/guidance/find-out-if-you-can-get-an-exemption-from-making-tax-digital-for-income-tax" target="_blank" rel="noopener">esi automatiškai atleistas</a> ir MTD naudoti neprivalai, jei tavo qualifying income yra &#163;20 000 arba mažiau.</p>
+      <h2>Iš kur HMRC ima šią sumą?</h2>
+      <p><a href="https://www.gov.uk/guidance/work-out-your-qualifying-income-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">HMRC apskaičiuoja tavo qualifying income</a> pagal Self Assessment deklaraciją, pateiktą praėjusiais mokestiniais metais. Jei suma viršija ribą, HMRC atsiunčia laišką, patvirtinantį, kad nuo kitų mokestinių metų pradžios turi naudoti MTD.</p>
+      <p>Ir dabar svarbiausia. Net jei <strong>laiško negausi</strong>, vis tiek privalai pats pasitikrinti savo qualifying income ir užsiregistruoti, jei ribą viršiji.</p>
+      <p><strong>Laiško nebuvimas nereiškia prievolės nebuvimo.</strong> Laiškai pasimeta, adresai pasensta, o atsakomybė vis tiek lieka tau.</p>
+      <h2>Kaip pasitikrinti savo situaciją?</h2>
+      <p>HMRC siūlo <a href="https://www.gov.uk/guidance/find-out-if-and-when-you-need-to-use-making-tax-digital-for-income-tax" target="_blank" rel="noopener">įrankį, kuris perveda per klausimus</a> ir pateikia rezultatą pagal tavo atsakymus.</p>
+      <p>Jei tavo situacija sudėtingesnė — pajamos iš užsienio, kelios veiklos, šaltinis, kuris dingo metų viduryje — tai klausimas buhalteriui, o ne interneto svetainei. Įskaitant šią. Mes mokesčių konsultacijų neteikiame.</p>
+      <h2>Vienas dalykas, kurį verta padaryti šiandien</h2>
+      <p>Nesvarbu, ar riba tave pagauna šiais metais — ateinančiais metais ji apims kur kas daugiau žmonių.</p>
+      <p>Įprotis, kuris padeda abiem atvejais, yra nuobodus ir paprastas: fiksuok pajamas ir išlaidas skaitmeniniu būdu iš karto, o ne laikyk jas maišelyje. Jei paaiškės, kad esi sistemoje — esi pasiruošęs. Jei ne — vis tiek už nugaros turėsi tvarkingesnius metus ir trumpesnį pokalbį su buhalteriu.</p>
+      <p>Būtent tam ir sukurta <a href="/lt" target="_blank" rel="noopener">TidGo</a> — kvitai ir pajamų įrodymai renkami eigoje, aštuoniomis kalbomis, paruošti perduoti. TidGo nieko nesiunčia į HMRC ir nėra mokesčių konsultacija. Ji tik pasirūpina, kad įrašai egzistuotų tada, kai kas nors jų paprašo.</p>
+      <section class="article-sources">
+        <strong>Šaltiniai</strong>
+      <p>Visi šiame puslapyje pateikti skaičiai paimti iš oficialių HMRC gairių. Pasitikrink pats:</p>
+        <a href="https://www.gov.uk/guidance/work-out-your-qualifying-income-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Work out your qualifying income for Making Tax Digital for Income Tax</a> — GOV.UK
+        <a href="https://www.gov.uk/guidance/find-out-if-and-when-you-need-to-use-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Find out if and when you need to use Making Tax Digital for Income Tax</a> — GOV.UK
+        <a href="https://www.gov.uk/guidance/find-out-if-you-can-get-an-exemption-from-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Find out if you can get an exemption from Making Tax Digital for Income Tax</a> — GOV.UK
+        <a href="https://www.gov.uk/guidance/sign-up-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Sign up for Making Tax Digital for Income Tax</a> — GOV.UK
+      <p><em>Patikrinta: 2026 m. rugpjūtis. HMRC gairės keičiasi — jei skaitai tai gerokai vėliau, sumas pasitikrink pagal nuorodas aukščiau.</em></p>
       </section>
       ${pageCta()}
     </article>

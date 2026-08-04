@@ -1,4 +1,4 @@
-﻿const CACHE = "tidgo-pwa-v139";
+﻿const CACHE = "tidgo-pwa-v140";
 const ASSETS = [
   "./",
   "./index.html",
@@ -18,6 +18,8 @@ const ASSETS = [
   "./mtd/index.html",
   "./mtd/qualifying-income/index.html",
   "./pl/mtd/qualifying-income/index.html",
+  "./lt/mtd/qualifying-income/index.html",
+  "./ro/mtd/qualifying-income/index.html",
   "./mtd/what-is-mtd/index.html",
   "./mtd/who-needs-mtd/index.html",
   "./mtd/when-does-mtd-start/index.html",
@@ -90,8 +92,3 @@ self.addEventListener("fetch", (event) => {
     }))
   );
 });
-
-
-
-
-
