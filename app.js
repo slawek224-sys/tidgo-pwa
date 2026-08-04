@@ -4992,6 +4992,47 @@ function findAccountantPage() {
   `);
 }
 
+function accountantPackPage() {
+  shell(`
+    <section class="landing-screen marketing-page-screen">
+      ${landingHeader("accountantPack")}
+      <main class="marketing-page-shell">
+        <article class="marketing-page-card marketing-article">
+          <span class="eyebrow">For accountants and bookkeepers</span>
+          <h1>TidGo for accountants</h1>
+          <h2>Part 1 - Sending this to your accountant?</h2>
+          <p>Copy the message below and send it to your accountant or bookkeeper. Everything they need to evaluate TidGo is on this page.</p>
+          <blockquote><strong>Message to copy</strong><br><br>Hi,<br><br>I'm using TidGo to keep my receipts and income proof in one place during the year. It gives you free read-only access to my records. You can view everything and download a PDF/CSV pack, but nothing can be changed from your side, and I can revoke access at any time.<br><br>It doesn't replace anything you do. It just means I stop sending you photos across WhatsApp and email.<br><br>There's a demo and full details here: https://tidgo.co.uk/show-this-to-your-accountant</blockquote>
+          <button class="secondary landing-link" type="button" data-copy-text="Hi,%0A%0AI'm using TidGo to keep my receipts and income proof in one place during the year. It gives you free read-only access to my records. You can view everything and download a PDF/CSV pack, but nothing can be changed from your side, and I can revoke access at any time.%0A%0AIt doesn't replace anything you do. It just means I stop sending you photos across WhatsApp and email.%0A%0AThere's a demo and full details here: https://tidgo.co.uk/show-this-to-your-accountant">Copy message</button>
+          <h2>Part 2 - For accountants and bookkeepers</h2>
+          <h3>What is TidGo?</h3>
+          <p>TidGo is a record collection layer that sits before your accounting workflow. Clients send receipts, income proof and CIS payslips by photo, WhatsApp or email during the year. You get a read-only view of tidy, English-language records and a clean export pack when you need it.</p>
+          <p>It is not accounting software. It does not submit to HMRC. It does not do bookkeeping, VAT, payroll or company accounts. It does one job: your client arrives organised instead of arriving with a carrier bag.</p>
+          <h3>What does it cost accountants?</h3>
+          <p>Nothing. Accountant access is free and always will be. TidGo is paid for by the client's own subscription. There is no per-client fee, no practice licence, no commission on referrals, and no paid placement on our accountant directory.</p>
+          <h3>What can you see?</h3>
+          <ul><li>Receipt photos and income proof, with extracted date, amount, merchant and category.</li><li>Monthly, calendar-quarter and UK tax-quarter summaries.</li><li>CIS payslips, remittance notices and other forwarded documents, with the original attached.</li><li>PDF and CSV export packs.</li></ul>
+          <p>You cannot edit or delete anything. The client can revoke access at any time.</p>
+          <h3>Where the Needs Review flag helps you</h3>
+          <p>When extraction is not confident about a figure, a date or a merchant, the record is flagged for review rather than filed silently. For you, uncertain items are already marked, so you know where to look instead of spot-checking everything.</p>
+          <h3>How your client sends records</h3>
+          <p>Clients can use WhatsApp, email forwarding, in-app photo upload or typed entries. They confirm what was extracted. You review the records when it is time to work.</p>
+          <h3>Data protection</h3>
+          <p>TidGo Ltd is registered with the ICO. Structured data is held in the EU, documents and images are stored in EU object storage, and the client controls who sees their records. Full detail: <a href="/privacy">Privacy Policy</a> and <a href="/terms">Terms</a>.</p>
+          <h3>What TidGo does not do</h3>
+          <p>TidGo does not submit to HMRC, does not replace accountants, does not do bookkeeping, VAT returns, payroll, limited company accounts or corporation tax, and does not give tax advice.</p>
+          <h3>Try it before you commit</h3>
+          <p><a href="/accountant-demo">See the accountant demo</a> with sample client data. If it is not useful, tell your client to disconnect you. Nothing is locked in either direction.</p>
+          <h3>Questions?</h3>
+          <p>Email <a href="mailto:hello@tidgo.co.uk">hello@tidgo.co.uk</a>. Blunt feedback from accountants is genuinely more useful to us than praise.</p>
+          ${pageCta()}
+        </article>
+      </main>
+      ${landingFooter()}
+    </section>
+  `);
+}
+
 function marketingPage() {
   const slug = marketingPageSlug();
   if (slug === "privacy" || slug === "terms") return marketingLegalPage(slug);
@@ -4999,6 +5040,7 @@ function marketingPage() {
   if (slug === "story") return ourStoryPage();
   if (slug === "androidTesters") return androidTestersPage();
   if (slug === "findAccountant") return findAccountantPage();
+  if (slug === "accountantPack") return accountantPackPage();
   const simplePages = {
     how: {
       active: "how",
@@ -5032,17 +5074,6 @@ function marketingPage() {
         [mk("intakeWhatsAppTitle"), mk("intakeWhatsAppText")],
         [mk("intakeEmailTitle"), mk("intakeEmailText")],
         [mk("intakeFutureTitle"), mk("intakeFutureText")]
-      ]
-    },
-    accountantPack: {
-      active: "accountantPack",
-      eyebrow: mk("navAccountantPack"),
-      title: mk("accountantShareTitle"),
-      text: mk("accountantShareText"),
-      cards: [
-        [mk("accountantMessageTitle"), mk("accountantMessageText")],
-        [mk("accountantDemoPackTitle"), mk("accountantDemoPackText")],
-        [mk("accountantDemoKind"), mk("accountantDemoText")]
       ]
     },
     pricing: {
@@ -5201,41 +5232,41 @@ function androidTestersPage() {
       ${landingHeader("story")}
       <div class="marketing-page-layout tester-layout">
         <article class="marketing-page-card marketing-article tester-intro">
-          <span class="eyebrow">Android closed testing</span>
-          <h1>Become a TidGo Android tester</h1>
-          <p class="marketing-lead">TidGo works in your browser right now. The Android app is in Google Play closed testing, and I am looking for 20 UK sole traders, CIS subcontractors, tradespeople and simple landlords who will test it properly.</p>
-          <p>Testing is simple: join the closed test, use TidGo for real for at least 14 days, send receipts the way you normally would, and tell me honestly what works, what breaks, and what could be simpler.</p>
+          <span class="eyebrow">Founding Tester</span>
+          <h1>Become a TidGo Founding Tester</h1>
+          <p class="marketing-lead">TidGo works in your browser right now. The Android app is in closed testing, and the iPhone version is in development.</p>
+          <p>I'm looking for 20 UK sole traders, CIS subcontractors and tradespeople, with landlords who keep simple records welcome too, who will use TidGo for real and tell me honestly what works, what does not, and what could be simpler.</p>
+          <p>Setup takes about ten minutes. All I ask is that you send receipts the way you normally would, and tell me when something annoys you at least a couple of times over a few weeks.</p>
           <div class="tester-reward">
-            <strong>Tester reward</strong>
-            <span>Active Android testers get free access to the TidGo Core plan for as long as the service remains available. Non-transferable; optional future paid add-ons are not included.</span>
+            <strong>Founding Tester terms</strong>
+            <span>Active Founding Testers receive access to the TidGo Core plan at no monthly charge, for as long as the Core plan exists. It is personal, non-transferable and fair use applies.</span>
           </div>
           <div class="marketing-card-grid tester-conditions">
-            <article><strong>What counts as active?</strong><span>Join the closed test, remain a tester for at least 14 days, actually try the app, and send short feedback or bug notes.</span></article>
-            <article><strong>No fake praise</strong><span>We do not require a positive review, stars or public promotion. Honest feedback is the point.</span></article>
+            <article><strong>What active means</strong><span>Use TidGo for at least a few weeks and send feedback at least twice. No minimum number of receipts.</span></article>
+            <article><strong>No fake praise</strong><span>No positive review, stars or public promotion required. Honest feedback is the point.</span></article>
           </div>
+          <p>If the form misbehaves, email <a href="mailto:hello@tidgo.co.uk">hello@tidgo.co.uk</a>.</p>
         </article>
 
         <form class="marketing-page-card tester-form" id="androidTesterForm">
-          <span class="eyebrow">Tester form</span>
+          <span class="eyebrow">Founding Tester form</span>
           <label class="field"><span>Name</span><input class="input" name="tester_name" required autocomplete="name" placeholder="Your name"></label>
-          <label class="field"><span>Gmail used in Google Play</span><input class="input" name="google_email" type="email" required autocomplete="email" placeholder="yourname@gmail.com"></label>
+          <label class="field"><span>Google account email used on your Android phone</span><input class="input" name="google_email" type="email" required autocomplete="email" placeholder="yourname@gmail.com"></label>
           <p class="hint tester-hint">This must be the Google account on your Android phone, otherwise the test link will not work for you.</p>
-          <label class="field"><span>Business type</span><select class="select" name="business_type" required>
+          <label class="field"><span>What do you do?</span><select class="select" name="business_type" required>
             <option value="">Choose one</option>
-            <option>Sole trader</option>
+            <option>sole trader</option>
             <option>CIS subcontractor</option>
-            <option>Tradesperson</option>
-            <option>Landlord</option>
-            <option>Other</option>
+            <option>tradesperson</option>
+            <option>landlord</option>
+            <option>other</option>
           </select></label>
-          <label class="field"><span>Phone model</span><input class="input" name="phone_model" required placeholder="Samsung S23, Pixel 8, etc."></label>
           <label class="field"><span>Contact email, if different</span><input class="input" name="contact_email" type="email" placeholder="Optional"></label>
           <label class="field"><span>WhatsApp number</span><input class="input" name="whatsapp_number" placeholder="Optional"></label>
-          <label class="check-row legal-agree-row"><input type="checkbox" name="use_14_days" required><span>I agree to use the TidGo Android app for at least 14 days during closed testing.</span></label>
-          <label class="check-row legal-agree-row"><input type="checkbox" name="send_feedback" required><span>I agree to send short honest feedback or report problems I find. Positive reviews are not required.</span></label>
+          <label class="check-row legal-agree-row"><input type="checkbox" name="use_14_days" required><span>I agree to use TidGo for at least a few weeks during testing.</span></label>
+          <label class="check-row legal-agree-row"><input type="checkbox" name="send_feedback" required><span>I agree to send short honest feedback at least twice or report problems I find.</span></label>
           <label class="check-row legal-agree-row"><input type="checkbox" name="privacy_consent" required><span>I agree to TidGo's <a href="/privacy/" target="_blank" rel="noopener">Privacy Policy</a> and <a href="/terms/" target="_blank" rel="noopener">Terms</a>.</span></label>
-          <button class="primary" type="submit">Apply to test TidGo Android</button>
-          <p class="hint tester-hint">If the form misbehaves, email hello@tidgo.co.uk from the address you want to use.</p>
+          <button class="primary" type="submit">Become a Founding Tester</button>
         </form>
       </div>
       ${landingFooter()}
@@ -7066,6 +7097,18 @@ document.addEventListener("click", async (event) => {
     return;
   }
 
+  const copyButton = event.target.closest("[data-copy-text]");
+  if (copyButton) {
+    const text = decodeURIComponent(copyButton.dataset.copyText || "");
+    try {
+      await navigator.clipboard.writeText(text);
+      toast("Message copied.");
+    } catch {
+      toast("Copy failed. Select the message manually.");
+    }
+    return;
+  }
+
   const target = event.target.closest("button, [data-open-receipt], [data-open-income], [data-open-accountant-client]");
   if (!target) return;
 
@@ -7758,12 +7801,11 @@ document.addEventListener("submit", async (event) => {
     if (form.id === "androidTesterForm") {
       try {
         const message = [
-          "Android closed tester application",
+          "Founding Tester application",
           `Name: ${data.tester_name || ""}`,
           `Google Play Gmail: ${data.google_email || ""}`,
           `Contact email: ${data.contact_email || data.google_email || ""}`,
           `Business type: ${data.business_type || ""}`,
-          `Phone model: ${data.phone_model || ""}`,
           `WhatsApp number: ${data.whatsapp_number || ""}`,
           "Agreed to 14 days: yes",
           "Agreed to feedback: yes",
@@ -7773,7 +7815,7 @@ document.addEventListener("submit", async (event) => {
           method: "POST",
           body: JSON.stringify({
             from_email: data.contact_email || data.google_email || null,
-            role: "Android closed tester",
+            role: "Founding Tester",
             message
           })
         });
