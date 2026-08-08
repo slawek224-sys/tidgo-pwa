@@ -1095,6 +1095,23 @@ button {
   letter-spacing: 0;
 }
 
+.accountant-pack-inline {
+  margin-top: 6px;
+}
+
+.accountant-pack-inline blockquote {
+  margin: 16px 0;
+  padding: 16px;
+  border-left: 4px solid #22c55e;
+  border-radius: 8px;
+  background: #f8fbff;
+  color: #334155;
+}
+
+.accountant-explainer-grid {
+  margin: 18px 0;
+}
+
 .intro-request-form {
   margin-top: 4px;
 }

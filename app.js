@@ -3292,7 +3292,6 @@ function marketingNav(active = "") {
       <a class="${active === "who" ? "active" : ""}" href="/who-is-it-for">${mk("navWho")}</a>
       <a class="${active === "intake" ? "active" : ""}" href="/how-intake-works">${mk("navIntake")}</a>
       <a class="${active === "findAccountant" ? "active" : ""}" href="/find-accountant">${mk("navFindAccountant")}</a>
-      <a class="${active === "accountantPack" ? "active" : ""}" href="/show-this-to-your-accountant">${mk("navAccountantPack")}</a>
       <a class="${active === "pricing" ? "active" : ""}" href="/launch-pricing">${mk("navPricing")}</a>
       <a class="${active === "faq" ? "active" : ""}" href="/faq">${mk("navFaq")}</a>
       <a class="nav-mtd ${active === "mtd" ? "active" : ""}" href="/mtd">${mk("navMtd")}</a>
@@ -5068,7 +5067,6 @@ function landing() {
                 <a href="/how-it-works">${mk("navHow")}</a>
                 <a href="/how-intake-works">${mk("navIntake")}</a>
                 <a href="/find-accountant">${mk("navFindAccountant")}</a>
-                <a href="/show-this-to-your-accountant">${mk("navAccountantPack")}</a>
               </div>
             </div>
           </section>
@@ -5171,6 +5169,32 @@ function findAccountantPage() {
         <section class="marketing-page-card">
           <p>${mk("introDisclaimer")}</p>
         </section>
+        <article class="marketing-page-card marketing-article accountant-pack-inline">
+          <span class="eyebrow">${mk("navAccountantPack")}</span>
+          <h2>TidGo for accountants and bookkeepers</h2>
+          <p>If you already have an accountant, copy the message below and send it to them. If you need one, use the form above and TidGo may help with an introduction.</p>
+          <blockquote><strong>${mk("accountantMessageTitle")}</strong><br><br>${mk("accountantMessageText")}</blockquote>
+          <button class="secondary landing-link" type="button" data-copy-text="${encodeURIComponent(mk("accountantMessageText"))}">Copy message</button>
+          <div class="marketing-card-grid accountant-explainer-grid">
+            <article>
+              <strong>Read-only access</strong>
+              <span>Your accountant can view records and download PDF/CSV packs, but cannot edit or delete your data.</span>
+            </article>
+            <article>
+              <strong>Free for accountants</strong>
+              <span>Accountant access is free. TidGo is paid for by the client account, not the practice.</span>
+            </article>
+            <article>
+              <strong>What they see</strong>
+              <span>Receipt photos, income proof, CIS documents, review flags, summaries and export packs.</span>
+            </article>
+            <article>
+              <strong>What TidGo does not do</strong>
+              <span>TidGo does not submit to HMRC, replace accountants, do VAT, payroll, limited company accounts or tax advice.</span>
+            </article>
+          </div>
+          <p><a href="/accountant-demo">Open the accountant demo</a> with sample client data.</p>
+        </article>
         ${pageCta()}
       </main>
       ${landingFooter()}
