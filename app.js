@@ -472,12 +472,12 @@ Object.assign(MARKETING_COPY.en, {
   shareTitle: "TidGo",
   shareText: "TidGo keeps receipts, income proof and simple records tidy for self-employed people and accountants.",
   shareCopied: "TidGo link copied.",
-  mtdTestingTitle: "MTD connection testing",
-  mtdTestingText: "TidGo helps you keep digital records and quarter-ready summaries for your accountant's MTD workflow. It does not submit tax returns to HMRC yet.",
+  mtdTestingTitle: "MTD submission testing",
+  mtdTestingText: "TidGo is currently testing an MTD connection in HMRC's sandbox. Today, TidGo helps you keep digital records and quarter-ready summaries for your accountant. The goal is to add direct MTD submissions later, after testing and approval.",
   mtdLateTitle: "Missed a quarterly update?",
   mtdLateText: "HMRC guidance says quarterly updates use cumulative totals. A later update can include earlier-quarter figures, but a missed deadline can still create a penalty point. TidGo's job is to help get the records tidy again before the next handoff.",
   mtdSourceTitle: "Official source",
-  mtdSourceText: "Source: GOV.UK guidance on Making Tax Digital for Income Tax and quarterly updates.",
+  mtdSourceText: "Read the public GOV.UK guidance on Making Tax Digital for Income Tax and quarterly updates.",
   launchPricingFullText: "TidGo is in early access for a small group of real users. It is free while we collect feedback, improve the app and prepare clearer guides. Users will be told clearly in advance and will always be able to export or delete their records.",
   pricingText: "TidGo is free during early access. If paid plans are introduced, users will be told clearly in advance and will always be able to export or delete their records."
 });
@@ -508,12 +508,12 @@ Object.assign(MARKETING_COPY.pl, {
   shareTitle: "TidGo",
   shareText: "TidGo trzyma paragony, dowody przychodu i proste rekordy w porządku dla self-employed i księgowych.",
   shareCopied: "Link TidGo skopiowany.",
-  mtdTestingTitle: "Testy połączenia MTD",
-  mtdTestingText: "TidGo pomaga trzymać cyfrowe rekordy i kwartalne podsumowania dla workflow MTD u księgowego. Jeszcze nie wysyła deklaracji do HMRC.",
+  mtdTestingTitle: "Testy wysyłki MTD",
+  mtdTestingText: "TidGo testuje obecnie połączenie MTD w sandboxie HMRC. Dzisiaj pomaga trzymać cyfrowe rekordy i kwartalne podsumowania dla księgowego. Celem jest dodanie bezpośredniej wysyłki MTD później, po testach i zatwierdzeniu.",
   mtdLateTitle: "Termin kwartalnego update'u już minął?",
   mtdLateText: "Według HMRC quarterly updates używają sum narastających. Późniejszy update może objąć dane z wcześniejszego kwartału, ale spóźniony termin nadal może oznaczać penalty point. Zadaniem TidGo jest pomóc szybko uporządkować rekordy przed następnym przekazaniem.",
   mtdSourceTitle: "Oficjalne źródło",
-  mtdSourceText: "Źródło: GOV.UK guidance o Making Tax Digital for Income Tax i quarterly updates.",
+  mtdSourceText: "Przeczytaj publiczne GOV.UK guidance o Making Tax Digital for Income Tax i quarterly updates.",
   launchPricingFullText: "TidGo jest w early access dla małej grupy prawdziwych użytkowników. Jest darmowe, kiedy zbieramy feedback, poprawiamy aplikację i przygotowujemy jaśniejsze poradniki. Użytkownicy dostaną jasną informację z wyprzedzeniem i zawsze będą mogli wyeksportować albo usunąć swoje rekordy.",
   pricingText: "TidGo jest darmowe w trakcie early access. Jeśli wprowadzimy płatne plany, użytkownicy dostaną jasną informację z wyprzedzeniem i zawsze będą mogli wyeksportować albo usunąć swoje rekordy."
 });
@@ -544,12 +544,12 @@ Object.assign(MARKETING_COPY.ro, {
   shareTitle: "TidGo",
   shareText: "TidGo tine bonuri, dovezi de venit si evidente simple ordonate pentru self-employed si contabili.",
   shareCopied: "Linkul TidGo a fost copiat.",
-  mtdTestingTitle: "Testare conexiune MTD",
-  mtdTestingText: "TidGo te ajuta sa pastrezi evidente digitale si rezumate trimestriale pentru workflow-ul MTD al contabilului. Inca nu trimite declaratii fiscale la HMRC.",
+  mtdTestingTitle: "Testare trimitere MTD",
+  mtdTestingText: "TidGo testeaza in prezent conexiunea MTD in sandbox-ul HMRC. Astazi te ajuta sa pastrezi evidente digitale si rezumate trimestriale pentru contabil. Scopul este sa adaugam trimiteri MTD directe mai tarziu, dupa testare si aprobare.",
   mtdLateTitle: "Ai ratat un quarterly update?",
   mtdLateText: "Ghidul HMRC spune ca quarterly updates folosesc totaluri cumulative. Un update ulterior poate include cifre dintr-un trimestru anterior, dar un termen ratat poate crea in continuare un penalty point. TidGo te ajuta sa readuci evidentele in ordine inainte de urmatorul handoff.",
   mtdSourceTitle: "Sursa oficiala",
-  mtdSourceText: "Sursa: GOV.UK guidance despre Making Tax Digital for Income Tax si quarterly updates.",
+  mtdSourceText: "Citeste ghidul public GOV.UK despre Making Tax Digital for Income Tax si quarterly updates.",
   launchPricingFullText: "TidGo este in early access pentru un grup mic de utilizatori reali. Este gratuit cat timp strangem feedback, imbunatatim aplicatia si pregatim ghiduri mai clare. Utilizatorii vor fi anuntati clar din timp si vor putea mereu exporta sau sterge inregistrarile.",
   pricingText: "TidGo este gratuit in early access. Daca apar planuri platite, utilizatorii vor fi anuntati clar din timp si vor putea mereu exporta sau sterge inregistrarile."
 });
@@ -580,12 +580,12 @@ Object.assign(MARKETING_COPY.lt, {
   shareTitle: "TidGo",
   shareText: "TidGo tvarko kvitus, pajamu irodymus ir paprastus irasus self-employed zmonems ir buhalteriams.",
   shareCopied: "TidGo nuoroda nukopijuota.",
-  mtdTestingTitle: "MTD connection testavimas",
-  mtdTestingText: "TidGo padeda laikyti skaitmeninius irasus ir ketvircio suvestines buhalterio MTD workflow. Dar neteikia deklaraciju HMRC.",
+  mtdTestingTitle: "MTD submission testavimas",
+  mtdTestingText: "TidGo siuo metu testuoja MTD jungti HMRC sandbox aplinkoje. Dabar TidGo padeda laikyti skaitmeninius irasus ir ketvircio suvestines buhalteriui. Tikslas - veliau prideti tiesiogini MTD pateikima po testu ir patvirtinimo.",
   mtdLateTitle: "Praleidote quarterly update?",
   mtdLateText: "HMRC gidas sako, kad quarterly updates naudoja kaupiamuosius totalus. Velesnis update gali itraukti ankstesnio ketvircio skaicius, bet praleistas terminas vis tiek gali sukelti penalty point. TidGo padeda vel sutvarkyti irasus iki kito perdavimo.",
   mtdSourceTitle: "Oficialus saltinis",
-  mtdSourceText: "Saltinis: GOV.UK guidance apie Making Tax Digital for Income Tax ir quarterly updates.",
+  mtdSourceText: "Skaitykite viesas GOV.UK gaires apie Making Tax Digital for Income Tax ir quarterly updates.",
   launchPricingFullText: "TidGo yra early access mazai tikru vartotoju grupei. Programa nemokama, kol renkame atsiliepimus, geriname ja ir ruosiame aiskesnius gidus. Vartotojai bus aiskiai informuoti is anksto ir visada gales eksportuoti arba istrinti savo irasus.",
   pricingText: "TidGo nemokama early access metu. Jei bus ivesti mokami planai, vartotojai bus aiskiai informuoti is anksto ir visada gales eksportuoti arba istrinti savo irasus."
 });
@@ -3339,15 +3339,15 @@ function landingFooter() {
 
 function mtdTopics() {
   return [
-    ["mtdQualifyingIncome", "mtdQualifyingIncomeText", state.marketingLanguage === "en" ? "/mtd/qualifying-income" : `/${state.marketingLanguage}/mtd/qualifying-income`],
-    ["mtdGateway", "mtdGatewayText", state.marketingLanguage === "en" ? "/mtd/government-gateway" : `/${state.marketingLanguage}/mtd/government-gateway`],
-    ["mtdReceiptsMyth", "mtdReceiptsMythText", state.marketingLanguage === "en" ? "/mtd/do-i-have-to-photograph-receipts" : `/${state.marketingLanguage}/mtd/do-i-have-to-photograph-receipts`],
     ["mtdGettingStarted", "mtdGettingStartedText", "/mtd/getting-started"],
+    ["mtdQualifyingIncome", "mtdQualifyingIncomeText", state.marketingLanguage === "en" ? "/mtd/qualifying-income" : `/${state.marketingLanguage}/mtd/qualifying-income`],
+    ["mtdQuarterlyUpdates", "mtdQuarterlyUpdatesText", "/mtd/quarterly-updates"],
+    ["mtdReceiptsMyth", "mtdReceiptsMythText", state.marketingLanguage === "en" ? "/mtd/do-i-have-to-photograph-receipts" : `/${state.marketingLanguage}/mtd/do-i-have-to-photograph-receipts`],
+    ["mtdGateway", "mtdGatewayText", state.marketingLanguage === "en" ? "/mtd/government-gateway" : `/${state.marketingLanguage}/mtd/government-gateway`],
     ["mtdSoleTraders", "mtdSoleTradersText", "/mtd/sole-traders"],
     ["mtdLandlords", "mtdLandlordsText", "/mtd/landlords"],
     ["mtdCis", "mtdCisText", "/mtd/cis"],
     ["mtdDigitalRecords", "mtdDigitalRecordsText", "/mtd/digital-records"],
-    ["mtdQuarterlyUpdates", "mtdQuarterlyUpdatesText", "/mtd/quarterly-updates"],
     ["mtdFaqs", "mtdFaqsText", "/mtd/faqs"],
     ["mtdWhat", "mtdWhatText", "/mtd/what-is-mtd"],
     ["mtdWho", "mtdWhoText", "/mtd/who-needs-mtd"],
@@ -5300,14 +5300,14 @@ function marketingPage() {
             <strong>${mk("mtdTestingTitle")}</strong>
             <span>${mk("mtdTestingText")}</span>
           </article>
-          <article>
+          <a class="mtd-highlight-link" href="/mtd/quarterly-updates">
             <strong>${mk("mtdLateTitle")}</strong>
             <span>${mk("mtdLateText")}</span>
-          </article>
-          <article>
+          </a>
+          <a class="mtd-highlight-link" href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/send-quarterly-updates" target="_blank" rel="noopener noreferrer">
             <strong>${mk("mtdSourceTitle")}</strong>
             <span>${mk("mtdSourceText")}</span>
-          </article>
+          </a>
         </div>
         <div class="mtd-topic-grid marketing-topic-grid">
           ${mtdTopics().map(([titleKey, textKey, href]) => `
