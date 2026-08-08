@@ -3169,6 +3169,7 @@ function marketingPageSlug() {
     "/mtd": "mtd",
     "/mtd/qualifying-income": "mtdQualifyingIncome",
     "/mtd/government-gateway": "mtdGateway",
+    "/mtd/do-i-have-to-photograph-receipts": "mtdReceiptsMyth",
     "/mtd/getting-started": "mtdGettingStarted",
     "/mtd/sole-traders": "mtdSoleTraders",
     "/mtd/landlords": "mtdLandlords",
@@ -3340,6 +3341,7 @@ function mtdTopics() {
   return [
     ["mtdQualifyingIncome", "mtdQualifyingIncomeText", state.marketingLanguage === "en" ? "/mtd/qualifying-income" : `/${state.marketingLanguage}/mtd/qualifying-income`],
     ["mtdGateway", "mtdGatewayText", state.marketingLanguage === "en" ? "/mtd/government-gateway" : `/${state.marketingLanguage}/mtd/government-gateway`],
+    ["mtdReceiptsMyth", "mtdReceiptsMythText", state.marketingLanguage === "en" ? "/mtd/do-i-have-to-photograph-receipts" : `/${state.marketingLanguage}/mtd/do-i-have-to-photograph-receipts`],
     ["mtdGettingStarted", "mtdGettingStartedText", "/mtd/getting-started"],
     ["mtdSoleTraders", "mtdSoleTradersText", "/mtd/sole-traders"],
     ["mtdLandlords", "mtdLandlordsText", "/mtd/landlords"],
@@ -3556,6 +3558,190 @@ function mtdQualifyingIncomeArticleLT() {
       ${pageCta()}
     </article>
   `;
+}
+
+const MTD_RECEIPTS_MYTH_ARTICLES = {
+  en: `<h1>Do I have to photograph every receipt for Making Tax Digital?</h1>
+<h2>The short answer</h2>
+<p>No. HMRC does not require you to scan, photograph or upload individual receipts and invoices for Making Tax Digital.</p>
+<p>What has to be digital is the <strong>record</strong> of each transaction: <a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/create-digital-records" target="_blank" rel="noopener">the amount, the date, and the category</a>. That's it. Three pieces of information, created and stored in software that works with Making Tax Digital.</p>
+<p>If plenty of apps have told you otherwise, that's worth knowing about — the companies selling scanning have an interest in the myth.</p>
+<h2>But you still have to keep the receipts</h2>
+<p>Here's the part the short answer leaves out, and it matters more than the headline.</p>
+<p>HMRC guidance is explicit: you must continue <a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/create-digital-records" target="_blank" rel="noopener">keeping records the way you normally do for Self Assessment</a>. You still need the original records or supporting documents — bank statements, invoices, receipts — that you used to prepare your return.</p>
+<p>And you need to keep them for <a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/create-digital-records" target="_blank" rel="noopener">at least five years after the 31 January submission deadline</a> for that tax year.</p>
+<p>So the obligation isn't <em>photograph everything</em>. The obligation is <em>still have it in five years if HMRC asks</em>.</p>
+<h2>Which is where paper becomes the problem</h2>
+<p>A thermal till receipt from a builders' merchant is unreadable long before five years are up. Anyone who has emptied a bag of receipts in January knows what a two-year-old fuel receipt looks like: a blank slip of shiny paper.</p>
+<p>Photographing a receipt isn't a legal requirement. It's just the only realistic way of meeting a legal requirement that lasts five years, using paper that lasts about two.</p>
+<p>You can keep the paper in a folder if you prefer, and HMRC is perfectly happy with that. It just has to still say something when someone reads it.</p>
+<h2>Is any of this new?</h2>
+<p>No — and this is worth being clear about, because a lot of the noise around MTD implies otherwise.</p>
+<p>The requirement to keep supporting documents for five years existed long before Making Tax Digital. Nothing about that has changed.</p>
+<p>What MTD added is narrower than most people think: <strong>the record itself — amount, date, category — now has to be digital, and created in compatible software.</strong> The supporting document behind it can stay on paper.</p>
+<h2>Good news most people haven't heard: you may not need categories at all</h2>
+<p>Buried in the same guidance is something that makes this far less work than people expect.</p>
+<p>If your turnover from a source of self-employment is <a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/create-digital-records" target="_blank" rel="noopener">under £90,000</a>, you can use simpler categorisation. For a sole trader that means you only need to record <strong>whether a transaction is income or an expense</strong>. Not fuel, not tools, not office costs — just in or out.</p>
+<p>Two things to watch. If you receive UK residential property income, you have to go one step further and record whether an expense is a <a href="https://www.gov.uk/guidance/income-tax-when-you-rent-out-a-property-working-out-your-rental-income#tax-relief-change" target="_blank" rel="noopener">restricted finance cost</a>. And if your turnover later reaches £90,000, you'll need to categorise that source in full — including records from the start of that tax year — before you can send a quarterly update.</p>
+<p>If you're unsure whether you'll cross the threshold, categorise in full from the start. Redoing a year of records is worse than doing it properly once.</p>
+<h2>Two more rules worth knowing</h2>
+<p><strong>Several businesses means several sets of records.</strong> If you have more than one sole trader business, each one needs <a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/create-digital-records" target="_blank" rel="noopener">its own digital records and its own quarterly updates</a>. An electrician who also does driving instruction keeps two sets, not one.</p>
+<p>Property works differently: all your UK properties count as a single UK property business, so no separate records per property. Foreign properties are the exception — those need separate records for each one.</p>
+<p><strong>No copying and pasting between programs.</strong> Once a digital record has been sent to HMRC in a quarterly update, you <a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/create-digital-records" target="_blank" rel="noopener">must not manually move it</a> — no retyping it into another cell or another program, no cut and paste. If you use more than one piece of software, they have to be digitally linked.</p>
+<p>This one catches people who keep records in a spreadsheet and then type the totals into something else. That's exactly what the rule prohibits.</p>
+<h2>So what should you actually do?</h2>
+<p>Keep it simple:</p>
+<p>Record the amount, the date and (if your turnover requires it) the category, as close to the transaction as you can. Keep the receipt or invoice behind it — paper or digital, your choice — for five years. Make sure it'll still be readable when that five years is up.</p>
+<p>For anything specific to your own situation, ask your accountant or check GOV.UK. We don't give tax advice, and a website can't see your books.</p>
+<h2>Where TidGo fits</h2>
+<p><a href="/">TidGo</a> exists for the second half of that: receipts and income proof captured as they happen, so the evidence is still there in five years and your accountant isn't working from a bag of blank paper.</p>
+<p>We're telling you HMRC doesn't require photos even though photos are what we do, because the honest version of the argument is the better one. The paper fades. That's reason enough.</p>
+<p>TidGo doesn't submit anything to HMRC and it isn't tax advice. It collects and tidies records so that whoever does your submission has something clean to work from.</p>
+<section class="article-sources">
+<strong>Sources</strong>
+<ul>
+<li><a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/create-digital-records" target="_blank" rel="noopener">Use Making Tax Digital for Income Tax — Create digital records</a> — GOV.UK</li>
+<li><a href="https://www.gov.uk/keeping-your-pay-tax-records" target="_blank" rel="noopener">Keeping your pay and tax records</a> — GOV.UK</li>
+<li><a href="https://www.gov.uk/guidance/penalties-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Penalties for Making Tax Digital for Income Tax</a> — GOV.UK</li>
+</ul>
+<p><em>Last checked: August 2026, against guidance updated 16 July 2026. HMRC guidance changes — verify at the links above if you're reading this later.</em></p>
+</section>`,
+  pl: `<h1>Czy muszę fotografować wszystkie paragony do MTD?</h1>
+<h2>Krótka odpowiedź</h2>
+<p>Nie. HMRC nie wymaga skanowania, fotografowania ani wgrywania pojedynczych paragonów i faktur na potrzeby Making Tax Digital.</p>
+<p>Cyfrowy musi być <strong>zapis transakcji</strong>: <a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/create-digital-records" target="_blank" rel="noopener">kwota, data i kategoria</a>. Tyle. Trzy informacje, utworzone i przechowywane w oprogramowaniu kompatybilnym z MTD.</p>
+<p>Jeśli sporo aplikacji mówiło Ci co innego — warto wiedzieć, że firmy sprzedające skanowanie mają interes w podtrzymywaniu tego mitu.</p>
+<h2>Ale paragony i tak musisz mieć</h2>
+<p>I to jest ta część, którą krótka odpowiedź pomija, a która znaczy więcej niż sam nagłówek.</p>
+<p>Wytyczne HMRC mówią wprost: musisz nadal <a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/create-digital-records" target="_blank" rel="noopener">prowadzić dokumentację tak jak dotąd na potrzeby Self Assessment</a>. Nadal potrzebujesz oryginalnych dokumentów albo ich kopii — wyciągów bankowych, faktur, paragonów — na podstawie których przygotowałeś rozliczenie.</p>
+<p>I musisz je przechowywać przez <a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/create-digital-records" target="_blank" rel="noopener">co najmniej pięć lat od terminu 31 stycznia</a> dla danego roku podatkowego.</p>
+<p>Czyli obowiązek nie brzmi <em>sfotografuj wszystko</em>. Brzmi <em>miej to za pięć lat, gdyby HMRC zapytało</em>.</p>
+<h2>I tu papier staje się problemem</h2>
+<p>Paragon z kasy termicznej ze składu budowlanego jest nieczytelny na długo przed upływem pięciu lat. Każdy, kto kiedyś wysypał reklamówkę paragonów w styczniu, wie, jak wygląda dwuletni paragon za paliwo: błyszcząca, pusta kartka.</p>
+<p>Fotografowanie paragonu nie jest wymogiem prawnym. Jest po prostu jedynym realnym sposobem spełnienia wymogu, który trwa pięć lat, przy papierze, który wytrzymuje dwa.</p>
+<p>Możesz trzymać papier w segregatorze, jeśli wolisz — HMRC nie ma z tym problemu. Musi tylko coś na nim być widać, kiedy ktoś sięgnie.</p>
+<h2>Czy to coś nowego?</h2>
+<p>Nie — i warto to powiedzieć jasno, bo szum wokół MTD sugeruje coś innego.</p>
+<p>Obowiązek przechowywania dokumentów przez pięć lat istniał na długo przed Making Tax Digital. W tej kwestii nic się nie zmieniło.</p>
+<p>MTD dodało coś węższego, niż większość ludzi sądzi: <strong>sam zapis — kwota, data, kategoria — musi być teraz cyfrowy i utworzony w kompatybilnym oprogramowaniu.</strong> Dokument źródłowy może zostać papierowy.</p>
+<h2>Dobra wiadomość, o której mało kto słyszał: kategorie mogą nie być potrzebne</h2>
+<p>W tych samych wytycznych jest coś, co czyni całą sprawę znacznie prostszą, niż ludzie się spodziewają.</p>
+<p>Jeśli obrót z Twojej działalności nie przekracza <a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/create-digital-records" target="_blank" rel="noopener">£90 000</a>, możesz korzystać z uproszczonej kategoryzacji. Dla sole tradera oznacza to, że wystarczy zapisać, <strong>czy transakcja to przychód, czy wydatek</strong>. Nie paliwo, nie narzędzia, nie koszty biura — po prostu do środka albo na zewnątrz.</p>
+<p>Dwie rzeczy do pilnowania. Jeśli masz przychód z wynajmu nieruchomości mieszkalnej w UK, musisz dodatkowo oznaczyć, czy wydatek to <a href="https://www.gov.uk/guidance/income-tax-when-you-rent-out-a-property-working-out-your-rental-income#tax-relief-change" target="_blank" rel="noopener">restricted finance cost</a>. A jeśli obrót później osiągnie £90 000, trzeba będzie skategoryzować to źródło w pełni — łącznie z rekordami od początku danego roku podatkowego — zanim wyślesz raport kwartalny.</p>
+<p>Jeśli nie masz pewności, czy przekroczysz próg, kategoryzuj od początku. Poprawianie roku wstecz jest gorsze niż zrobienie tego porządnie za pierwszym razem.</p>
+<h2>Dwie zasady, o których warto wiedzieć</h2>
+<p><strong>Kilka działalności to kilka zestawów rekordów.</strong> Jeśli prowadzisz więcej niż jedną działalność jako sole trader, każda potrzebuje <a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/create-digital-records" target="_blank" rel="noopener">własnych rekordów cyfrowych i własnych raportów kwartalnych</a>. Elektryk, który dodatkowo uczy jazdy, prowadzi dwa zestawy, nie jeden.</p>
+<p>Z nieruchomościami jest inaczej: wszystkie Twoje nieruchomości w UK liczą się jako jeden „UK property business", więc nie ma osobnych rekordów per mieszkanie. Wyjątkiem są nieruchomości zagraniczne — dla każdej trzeba prowadzić osobne rekordy.</p>
+<p><strong>Zakaz kopiuj-wklej między programami.</strong> Kiedy rekord cyfrowy został już wysłany do HMRC w raporcie kwartalnym, <a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/create-digital-records" target="_blank" rel="noopener">nie wolno przenosić go ręcznie</a> — ani przepisując do innej komórki czy programu, ani przez kopiuj-wklej. Jeśli używasz więcej niż jednego programu, muszą być połączone cyfrowo.</p>
+<p>Ta zasada łapie ludzi, którzy prowadzą rekordy w arkuszu, a potem przepisują sumy gdzie indziej. To jest dokładnie to, czego przepis zabrania.</p>
+<h2>Co więc realnie robić?</h2>
+<p>Prosto:</p>
+<p>Zapisz kwotę, datę i — jeśli Twój obrót tego wymaga — kategorię, możliwie blisko daty transakcji. Zachowaj paragon albo fakturę, która za tym stoi — papierowo albo cyfrowo, Twój wybór — przez pięć lat. I zadbaj, żeby po tych pięciu latach dało się to jeszcze odczytać.</p>
+<p>W sprawach dotyczących Twojej konkretnej sytuacji zapytaj księgowego albo sprawdź GOV.UK. My nie udzielamy porad podatkowych, a strona internetowa nie zajrzy Ci w papiery.</p>
+<h2>Gdzie w tym wszystkim TidGo</h2>
+<p><a href="/pl">TidGo</a> istnieje dla tej drugiej połowy: paragony i dowody przychodu zbierane na bieżąco, żeby dowód nadal istniał za pięć lat, a księgowy nie pracował na torbie pustych kartek.</p>
+<p>Mówimy Ci, że HMRC nie wymaga zdjęć, mimo że zdjęcia to nasza robota — bo uczciwa wersja tego argumentu jest lepsza. Papier blaknie. To wystarczający powód.</p>
+<p>TidGo niczego nie wysyła do HMRC i nie jest poradą podatkową. Zbiera i porządkuje rekordy, żeby ten, kto robi Twoje rozliczenie, miał z czego pracować.</p>
+<h3>Źródła</h3>
+<ul>
+<li><a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/create-digital-records" target="_blank" rel="noopener">Use Making Tax Digital for Income Tax — Create digital records</a> — GOV.UK</li>
+<li><a href="https://www.gov.uk/keeping-your-pay-tax-records" target="_blank" rel="noopener">Keeping your pay and tax records</a> — GOV.UK</li>
+<li><a href="https://www.gov.uk/guidance/penalties-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Penalties for Making Tax Digital for Income Tax</a> — GOV.UK</li>
+</ul>
+<p><em>Sprawdzone: sierpień 2026, wobec wytycznych zaktualizowanych 16 lipca 2026. Wytyczne HMRC się zmieniają — jeśli czytasz to później, zweryfikuj pod powyższymi linkami.</em></p>`,
+  ro: `<h1>Trebuie să fotografiez toate bonurile pentru Making Tax Digital?</h1>
+<h2>Răspunsul scurt</h2>
+<p>Nu. HMRC nu cere să scanezi, să fotografiezi sau să încarci bonuri și facturi individuale pentru Making Tax Digital.</p>
+<p>Ce trebuie să fie digital este <strong>înregistrarea tranzacției</strong>: <a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/create-digital-records" target="_blank" rel="noopener">suma, data și categoria</a>. Atât. Trei informații, create și păstrate într-un software compatibil cu Making Tax Digital.</p>
+<p>Dacă multe aplicații ți-au spus altceva, merită să știi: firmele care vând scanare au un interes în menținerea acestui mit.</p>
+<h2>Dar bonurile tot trebuie păstrate</h2>
+<p>Aici e partea pe care răspunsul scurt o omite și care contează mai mult decât titlul.</p>
+<p>Ghidul HMRC este explicit: trebuie să continui <a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/create-digital-records" target="_blank" rel="noopener">să ții evidența așa cum o faci în mod normal pentru Self Assessment</a>. Ai în continuare nevoie de documentele originale sau de copii ale lor — extrase bancare, facturi, bonuri — pe baza cărora ți-ai pregătit declarația.</p>
+<p>Și trebuie să le păstrezi <a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/create-digital-records" target="_blank" rel="noopener">cel puțin cinci ani de la termenul de 31 ianuarie</a> al anului fiscal respectiv.</p>
+<p>Deci obligația nu este <em>fotografiază tot</em>. Obligația este <em>să le mai ai peste cinci ani, dacă HMRC întreabă</em>.</p>
+<h2>Și aici hârtia devine problema</h2>
+<p>Un bon de casă termic de la un depozit de materiale devine ilizibil cu mult înainte să treacă cinci ani. Oricine a răsturnat vreodată o pungă de bonuri în ianuarie știe cum arată un bon de combustibil de doi ani: o hârtie lucioasă, goală.</p>
+<p>Fotografierea bonului nu este o cerință legală. Este pur și simplu singura metodă realistă de a respecta o cerință care ține cinci ani, cu o hârtie care rezistă vreo doi.</p>
+<p>Poți ține hârtiile într-un dosar, dacă preferi — HMRC nu are nimic împotrivă. Trebuie doar să se mai vadă ceva pe ele când cineva le citește.</p>
+<h2>Este ceva nou?</h2>
+<p>Nu — și merită spus clar, pentru că zgomotul din jurul MTD sugerează altceva.</p>
+<p>Obligația de a păstra documentele justificative cinci ani exista cu mult înainte de Making Tax Digital. Nimic nu s-a schimbat aici.</p>
+<p>Ce a adăugat MTD este mai îngust decât cred majoritatea: <strong>înregistrarea în sine — sumă, dată, categorie — trebuie acum să fie digitală și creată într-un software compatibil.</strong> Documentul justificativ din spate poate rămâne pe hârtie.</p>
+<h2>Vestea bună de care puțini au auzit: s-ar putea să nu ai nevoie de categorii</h2>
+<p>În același ghid se află ceva ce face totul mult mai simplu decât se așteaptă lumea.</p>
+<p>Dacă cifra de afaceri dintr-o sursă de activitate independentă este sub <a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/create-digital-records" target="_blank" rel="noopener">£90.000</a>, poți folosi categorisirea simplificată. Pentru un sole trader asta înseamnă că trebuie doar să înregistrezi <strong>dacă o tranzacție este venit sau cheltuială</strong>. Nu combustibil, nu scule, nu costuri de birou — doar intrare sau ieșire.</p>
+<p>Două lucruri de urmărit. Dacă ai venituri din închirierea unei locuințe în UK, trebuie să mergi un pas mai departe și să înregistrezi dacă o cheltuială este <a href="https://www.gov.uk/guidance/income-tax-when-you-rent-out-a-property-working-out-your-rental-income#tax-relief-change" target="_blank" rel="noopener">restricted finance cost</a>. Iar dacă cifra de afaceri ajunge ulterior la £90.000, va trebui să categorisești complet acea sursă — inclusiv înregistrările de la începutul acelui an fiscal — înainte de a putea trimite o raportare trimestrială.</p>
+<p>Dacă nu ești sigur că vei depăși pragul, categorisește complet de la început. Refacerea unui an întreg de înregistrări e mai rea decât să faci lucrurile ca lumea din prima.</p>
+<h2>Încă două reguli de știut</h2>
+<p><strong>Mai multe activități înseamnă mai multe seturi de înregistrări.</strong> Dacă ai mai mult de o activitate ca sole trader, fiecare are nevoie de <a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/create-digital-records" target="_blank" rel="noopener">propriile înregistrări digitale și propriile raportări trimestriale</a>. Un electrician care predă și școala de șoferi ține două seturi, nu unul.</p>
+<p>Cu proprietățile e altfel: toate proprietățile tale din UK contează ca o singură „UK property business", deci nu ai nevoie de înregistrări separate pentru fiecare. Excepția o fac proprietățile din străinătate — pentru fiecare sunt necesare înregistrări separate.</p>
+<p><strong>Fără copy-paste între programe.</strong> După ce o înregistrare digitală a fost trimisă la HMRC într-o raportare trimestrială, <a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/create-digital-records" target="_blank" rel="noopener">nu ai voie să o muți manual</a> — nici rescriind-o în altă celulă sau alt program, nici prin copy-paste. Dacă folosești mai multe programe, ele trebuie legate digital.</p>
+<p>Regula asta îi prinde pe cei care țin evidența într-un spreadsheet și apoi tastează totalurile în altă parte. Exact asta interzice regula.</p>
+<h2>Ce ai de făcut, concret?</h2>
+<p>Simplu:</p>
+<p>Înregistrează suma, data și — dacă cifra ta de afaceri o cere — categoria, cât mai aproape de data tranzacției. Păstrează bonul sau factura din spate — pe hârtie sau digital, cum vrei — timp de cinci ani. Și asigură-te că peste cinci ani se mai poate citi.</p>
+<p>Pentru orice ține de situația ta concretă, întreabă-ți contabilul sau verifică GOV.UK. Noi nu oferim consultanță fiscală, iar un site nu îți poate vedea actele.</p>
+<h2>Unde se încadrează TidGo</h2>
+<p><a href="/ro">TidGo</a> există pentru a doua jumătate: bonuri și dovezi de venit strânse pe parcurs, ca dovada să existe și peste cinci ani, iar contabilul să nu lucreze cu o pungă de hârtii goale.</p>
+<p>Îți spunem că HMRC nu cere fotografii, deși fotografiile sunt exact ce facem noi — pentru că versiunea onestă a argumentului este cea mai bună. Hârtia se decolorează. Atât e de ajuns.</p>
+<p>TidGo nu trimite nimic la HMRC și nu este consultanță fiscală. Strânge și ordonează înregistrările, ca cel care face raportarea să aibă ceva curat de la care să pornească.</p>
+<section class="article-sources">
+<strong>Surse</strong>
+<ul>
+<li><a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/create-digital-records" target="_blank" rel="noopener">Use Making Tax Digital for Income Tax — Create digital records</a> — GOV.UK</li>
+<li><a href="https://www.gov.uk/keeping-your-pay-tax-records" target="_blank" rel="noopener">Keeping your pay and tax records</a> — GOV.UK</li>
+<li><a href="https://www.gov.uk/guidance/penalties-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Penalties for Making Tax Digital for Income Tax</a> — GOV.UK</li>
+</ul>
+<p><em>Verificat: august 2026, față de ghidul actualizat la 16 iulie 2026. Ghidurile HMRC se schimbă — dacă citești mai târziu, verifică la linkurile de mai sus.</em></p>
+</section>`,
+  lt: `<h1>Ar privalau fotografuoti visus kvitus dėl Making Tax Digital?</h1>
+<h2>Trumpas atsakymas</h2>
+<p>Ne. HMRC nereikalauja skenuoti, fotografuoti ar įkelti atskirų kvitų ir sąskaitų dėl Making Tax Digital.</p>
+<p>Skaitmeninis turi būti <strong>sandorio įrašas</strong>: <a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/create-digital-records" target="_blank" rel="noopener">suma, data ir kategorija</a>. Tiek. Trys duomenys, sukurti ir saugomi su MTD suderinamoje programinėje įrangoje.</p>
+<p>Jei nemažai programėlių tau sakė kitaip — verta žinoti, kad skenavimą parduodančios įmonės yra suinteresuotos šiuo mitu.</p>
+<h2>Bet kvitus vis tiek privalai turėti</h2>
+<p>Štai dalis, kurią trumpas atsakymas praleidžia ir kuri svarbesnė už antraštę.</p>
+<p>HMRC gairės aiškios: privalai toliau <a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/create-digital-records" target="_blank" rel="noopener">tvarkyti apskaitą taip, kaip įprastai darai Self Assessment tikslais</a>. Tau vis tiek reikia originalių dokumentų arba jų kopijų — banko išrašų, sąskaitų, kvitų — pagal kuriuos parengei deklaraciją.</p>
+<p>Ir privalai juos saugoti <a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/create-digital-records" target="_blank" rel="noopener">bent penkerius metus po tų mokestinių metų sausio 31 d. termino</a>.</p>
+<p>Taigi prievolė yra ne <em>nufotografuok viską</em>. Prievolė yra <em>turėk tai po penkerių metų, jei HMRC paklaus</em>.</p>
+<h2>Ir čia popierius tampa problema</h2>
+<p>Terminis kasos kvitas iš statybinių medžiagų sandėlio tampa neįskaitomas gerokai anksčiau nei praeina penkeri metai. Kiekvienas, kas kada nors sausį išvertė maišą kvitų, žino, kaip atrodo dvejų metų senumo kuro kvitas: blizgus, tuščias lapelis.</p>
+<p>Kvito fotografavimas nėra teisinis reikalavimas. Tai tiesiog vienintelis realus būdas įvykdyti penkerius metus galiojantį reikalavimą naudojant popierių, kuris išsilaiko maždaug dvejus.</p>
+<p>Popierių gali laikyti segtuve, jei taip patogiau — HMRC tam neprieštarauja. Tik ant jo dar turi kažkas matytis, kai kas nors į jį pažiūrės.</p>
+<h2>Ar tai kas nors nauja?</h2>
+<p>Ne — ir tai verta pasakyti aiškiai, nes triukšmas aplink MTD leidžia manyti kitaip.</p>
+<p>Prievolė saugoti pagrindžiančius dokumentus penkerius metus egzistavo gerokai anksčiau nei Making Tax Digital. Šioje vietoje niekas nepasikeitė.</p>
+<p>MTD pridėjo kai ką siauresnio, nei dauguma mano: <strong>pats įrašas — suma, data, kategorija — dabar turi būti skaitmeninis ir sukurtas suderinamoje programinėje įrangoje.</strong> Už jo esantis dokumentas gali likti popierinis.</p>
+<h2>Gera žinia, apie kurią mažai kas girdėjo: kategorijų gali ir neprireikti</h2>
+<p>Tose pačiose gairėse yra kai kas, kas visą reikalą padaro kur kas paprastesnį, nei žmonės tikisi.</p>
+<p>Jei tavo savarankiškos veiklos šaltinio apyvarta mažesnė nei <a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/create-digital-records" target="_blank" rel="noopener">£90 000</a>, gali naudoti supaprastintą kategorizavimą. Sole trader atveju tai reiškia, kad tereikia užfiksuoti, <strong>ar sandoris yra pajamos, ar išlaidos</strong>. Ne kuras, ne įrankiai, ne biuro išlaidos — tiesiog į vidų arba į išorę.</p>
+<p>Du dalykai, kuriuos verta stebėti. Jei gauni pajamų iš gyvenamosios paskirties nuomos UK, turi žengti dar vieną žingsnį ir nurodyti, ar išlaida yra <a href="https://www.gov.uk/guidance/income-tax-when-you-rent-out-a-property-working-out-your-rental-income#tax-relief-change" target="_blank" rel="noopener">restricted finance cost</a>. O jei apyvarta vėliau pasieks £90 000, tą šaltinį reikės sukategorizuoti visa apimtimi — įskaitant įrašus nuo tų mokestinių metų pradžios — prieš siunčiant ketvirtinę ataskaitą.</p>
+<p>Jei nesi tikras, ar peržengsi ribą, kategorizuok iš karto pilnai. Perdaryti metų įrašus blogiau, nei vieną kartą padaryti kaip reikia.</p>
+<h2>Dar dvi taisyklės, kurias verta žinoti</h2>
+<p><strong>Kelios veiklos — keli įrašų rinkiniai.</strong> Jei turi daugiau nei vieną sole trader veiklą, kiekvienai reikia <a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/create-digital-records" target="_blank" rel="noopener">savų skaitmeninių įrašų ir savų ketvirtinių ataskaitų</a>. Elektrikas, kuris dar moko vairuoti, veda du rinkinius, ne vieną.</p>
+<p>Su nekilnojamuoju turtu kitaip: visi tavo objektai UK laikomi viena „UK property business", tad atskirų įrašų kiekvienam nereikia. Išimtis — užsienyje esantis turtas: kiekvienam objektui reikia atskirų įrašų.</p>
+<p><strong>Jokio kopijuoti-įklijuoti tarp programų.</strong> Kai skaitmeninis įrašas jau išsiųstas HMRC ketvirtinėje ataskaitoje, <a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/create-digital-records" target="_blank" rel="noopener">negalima jo perkelti rankiniu būdu</a> — nei perrašant į kitą langelį ar kitą programą, nei kopijuojant ir įklijuojant. Jei naudoji daugiau nei vieną programą, jos turi būti susietos skaitmeniškai.</p>
+<p>Ši taisyklė pagauna tuos, kurie veda įrašus skaičiuoklėje, o paskui sumas surenka kitur. Būtent tai ir draudžiama.</p>
+<h2>Tai ką realiai daryti?</h2>
+<p>Paprastai:</p>
+<p>Užfiksuok sumą, datą ir — jei to reikalauja tavo apyvarta — kategoriją kuo arčiau sandorio datos. Išsaugok už jo esantį kvitą ar sąskaitą — popieriuje ar skaitmeniškai, tavo pasirinkimas — penkerius metus. Ir pasirūpink, kad po tų penkerių metų dar būtų įmanoma perskaityti.</p>
+<p>Dėl visko, kas susiję su tavo konkrečia situacija, pasitark su buhalteriu arba patikrink GOV.UK. Mes mokesčių konsultacijų neteikiame, o interneto svetainė į tavo dokumentus nepažiūrės.</p>
+<h2>Kur čia TidGo</h2>
+<p><a href="/lt">TidGo</a> egzistuoja dėl antrosios dalies: kvitai ir pajamų įrodymai renkami eigoje, kad įrodymas dar egzistuotų po penkerių metų, o buhalteris nedirbtų su maišu tuščių lapelių.</p>
+<p>Sakome tau, kad HMRC nereikalauja nuotraukų, nors nuotraukos — būtent tai, ką mes darome. Nes sąžininga argumento versija yra geresnė. Popierius išblunka. To pakanka.</p>
+<p>TidGo nieko nesiunčia į HMRC ir nėra mokesčių konsultacija. Ji surenka ir sutvarko įrašus, kad tas, kas teiks tavo ataskaitas, turėtų nuo ko pradėti.</p>
+<h3>Šaltiniai</h3>
+<ul>
+<li><a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/create-digital-records" target="_blank" rel="noopener">Use Making Tax Digital for Income Tax — Create digital records</a> — GOV.UK</li>
+<li><a href="https://www.gov.uk/keeping-your-pay-tax-records" target="_blank" rel="noopener">Keeping your pay and tax records</a> — GOV.UK</li>
+<li><a href="https://www.gov.uk/guidance/penalties-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Penalties for Making Tax Digital for Income Tax</a> — GOV.UK</li>
+</ul>
+<p><em>Patikrinta: 2026 m. rugpjūtis, pagal 2026 m. liepos 16 d. atnaujintas gaires. HMRC gairės keičiasi — jei skaitai vėliau, pasitikrink pagal nuorodas aukščiau.</em></p>`
+};
+
+function mtdReceiptsMythArticle() {
+  const html = MTD_RECEIPTS_MYTH_ARTICLES[state.marketingLanguage] || MTD_RECEIPTS_MYTH_ARTICLES.en;
+  return `<article class="marketing-page-card marketing-article"><span class="eyebrow">${mk("navMtd")}</span>${html}${pageCta()}</article>`;
 }
 
 function mtdGovernmentGatewayArticle() {
@@ -5140,6 +5326,8 @@ function marketingPage() {
     body = mtdQualifyingIncomeArticle();
   } else if (slug === "mtdGateway") {
     body = mtdGovernmentGatewayArticle();
+  } else if (slug === "mtdReceiptsMyth") {
+    body = mtdReceiptsMythArticle();
   } else if (mtdTopic) {
     const [titleKey, textKey] = mtdTopic;
     const detail = mk(`${titleKey}Detail`);
