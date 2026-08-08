@@ -5227,47 +5227,180 @@ function ourStoryPage() {
   `);
 }
 
+const FOUNDING_TESTER_COPY = {
+  en: {
+    eyebrow: "Founding Tester",
+    title: "Become a TidGo Founding Tester",
+    lead: "TidGo works in your browser right now. The Android app is in closed testing, and the iPhone version is in development.",
+    introOne: "I'm looking for 20 UK sole traders, CIS subcontractors and tradespeople, with landlords who keep simple records welcome too, who will use TidGo for real and tell me honestly what works, what does not, and what could be simpler.",
+    introTwo: "Setup takes about ten minutes. All I ask is that you send receipts the way you normally would, and tell me when something annoys you at least a couple of times over a few weeks.",
+    termsTitle: "Founding Tester terms",
+    termsText: "Active Founding Testers receive access to the TidGo Core plan at no monthly charge, for as long as the Core plan exists. It is personal, non-transferable and fair use applies.",
+    activeTitle: "What active means",
+    activeText: "Use TidGo for at least a few weeks and send feedback at least twice. No minimum number of receipts.",
+    praiseTitle: "No fake praise",
+    praiseText: "No positive review, stars or public promotion required. Honest feedback is the point.",
+    fallback: "If the form misbehaves, email",
+    formEyebrow: "Founding Tester form",
+    name: "Name",
+    namePlaceholder: "Your name",
+    googleEmail: "Google account email used on your Android phone",
+    googleHint: "This must be the Google account on your Android phone, otherwise the test link will not work for you.",
+    workType: "What do you do?",
+    chooseOne: "Choose one",
+    contactEmail: "Contact email, if different",
+    optional: "Optional",
+    whatsapp: "WhatsApp number",
+    useApp: "I agree to use TidGo for at least a few weeks during testing.",
+    feedback: "I agree to send short honest feedback at least twice or report problems I find.",
+    consentPrefix: "I agree to TidGo's",
+    privacy: "Privacy Policy",
+    andText: "and",
+    terms: "Terms",
+    submit: "Become a Founding Tester",
+    options: ["sole trader", "CIS subcontractor", "tradesperson", "landlord", "other"]
+  },
+  pl: {
+    eyebrow: "Founding Tester",
+    title: "Zostań Founding Testerem TidGo",
+    lead: "TidGo działa już w przeglądarce. Aplikacja Android jest w zamkniętych testach, a wersja na iPhone jest w przygotowaniu.",
+    introOne: "Szukam 20 osób w UK: sole traders, CIS subcontractors, tradespeople oraz landlordów prowadzących proste rekordy, którzy użyją TidGo naprawdę i powiedzą uczciwie, co działa, co przeszkadza i co można uprościć.",
+    introTwo: "Start zajmuje około dziesięciu minut. Chodzi tylko o to, żeby wysyłać paragony tak jak zwykle i dać szczery feedback kilka razy w trakcie testów.",
+    termsTitle: "Warunki Founding Tester",
+    termsText: "Aktywni Founding Testerzy dostają dostęp do planu TidGo Core bez miesięcznej opłaty tak długo, jak plan Core istnieje. Dostęp jest osobisty, nieprzenoszalny i objęty zasadą fair use.",
+    activeTitle: "Co znaczy aktywny tester",
+    activeText: "Używaj TidGo przez co najmniej kilka tygodni i wyślij feedback co najmniej dwa razy. Nie ma minimalnej liczby paragonów.",
+    praiseTitle: "Bez sztucznego zachwalania",
+    praiseText: "Nie wymagamy pozytywnej opinii, gwiazdek ani publicznej promocji. Liczy się uczciwy feedback.",
+    fallback: "Jeśli formularz nie działa, napisz na",
+    formEyebrow: "Formularz Founding Tester",
+    name: "Imię i nazwisko",
+    namePlaceholder: "Twoje imię i nazwisko",
+    googleEmail: "Adres konta Google używany na telefonie z Androidem",
+    googleHint: "To musi być konto Google używane na Twoim telefonie z Androidem, inaczej link testowy nie zadziała.",
+    workType: "Czym się zajmujesz?",
+    chooseOne: "Wybierz",
+    contactEmail: "Kontaktowy email, jeśli inny",
+    optional: "Opcjonalnie",
+    whatsapp: "Numer WhatsApp",
+    useApp: "Zgadzam się używać TidGo przez co najmniej kilka tygodni w trakcie testów.",
+    feedback: "Zgadzam się wysłać krótki uczciwy feedback co najmniej dwa razy albo zgłosić znalezione problemy.",
+    consentPrefix: "Akceptuję",
+    privacy: "Privacy Policy",
+    andText: "oraz",
+    terms: "Terms",
+    submit: "Zostań Founding Testerem",
+    options: ["sole trader", "CIS subcontractor", "tradesperson", "landlord", "inne"]
+  },
+  ro: {
+    eyebrow: "Founding Tester",
+    title: "Devino Founding Tester TidGo",
+    lead: "TidGo functioneaza deja in browser. Aplicatia Android este in testare inchisa, iar versiunea pentru iPhone este in dezvoltare.",
+    introOne: "Caut 20 de utilizatori din UK: sole traders, subcontractori CIS, meseriasi si proprietari care tin evidente simple, dispusi sa foloseasca TidGo pe bune si sa spuna sincer ce merge, ce nu merge si ce poate fi mai simplu.",
+    introTwo: "Configurarea dureaza aproximativ zece minute. Te rog doar sa trimiti bonuri asa cum ai face-o normal si sa imi spui de cateva ori in timpul testarii ce te incurca.",
+    termsTitle: "Conditii Founding Tester",
+    termsText: "Testerii activi primesc acces la planul TidGo Core fara taxa lunara, atat timp cat planul Core exista. Accesul este personal, netransferabil si se aplica fair use.",
+    activeTitle: "Ce inseamna activ",
+    activeText: "Foloseste TidGo cel putin cateva saptamani si trimite feedback de cel putin doua ori. Nu exista un numar minim de bonuri.",
+    praiseTitle: "Fara laude false",
+    praiseText: "Nu cerem recenzii pozitive, stele sau promovare publica. Feedbackul sincer este scopul.",
+    fallback: "Daca formularul nu functioneaza, trimite email la",
+    formEyebrow: "Formular Founding Tester",
+    name: "Nume",
+    namePlaceholder: "Numele tau",
+    googleEmail: "Emailul contului Google folosit pe telefonul Android",
+    googleHint: "Trebuie sa fie contul Google de pe telefonul tau Android, altfel linkul de test nu va functiona.",
+    workType: "Cu ce te ocupi?",
+    chooseOne: "Alege",
+    contactEmail: "Email de contact, daca este diferit",
+    optional: "Optional",
+    whatsapp: "Numar WhatsApp",
+    useApp: "Sunt de acord sa folosesc TidGo cel putin cateva saptamani in timpul testarii.",
+    feedback: "Sunt de acord sa trimit feedback sincer de cel putin doua ori sau sa raportez problemele gasite.",
+    consentPrefix: "Sunt de acord cu",
+    privacy: "Privacy Policy",
+    andText: "si",
+    terms: "Terms",
+    submit: "Devino Founding Tester",
+    options: ["sole trader", "subcontractor CIS", "meserias", "landlord", "altceva"]
+  },
+  lt: {
+    eyebrow: "Founding Tester",
+    title: "Tapk TidGo Founding Testeriu",
+    lead: "TidGo jau veikia naršyklėje. Android programėlė yra uždarame testavime, o iPhone versija kuriama.",
+    introOne: "Ieškau 20 žmonių Jungtinėje Karalystėje: sole traders, CIS subcontractors, tradespeople ir landlordų, kurie tvarko paprastus įrašus, naudotų TidGo realiai ir pasakytų, kas veikia, kas trukdo ir ką galima supaprastinti.",
+    introTwo: "Pradžia užtrunka apie dešimt minučių. Tereikia siųsti kvitus taip, kaip įprastai, ir kelis kartus testavimo metu duoti sąžiningą atsiliepimą.",
+    termsTitle: "Founding Tester sąlygos",
+    termsText: "Aktyvūs Founding Testeriai gauna prieigą prie TidGo Core plano be mėnesinio mokesčio tol, kol Core planas egzistuoja. Prieiga yra asmeninė, neperduodama ir taikomas fair use.",
+    activeTitle: "Ką reiškia aktyvus testeris",
+    activeText: "Naudok TidGo bent kelias savaites ir atsiųsk atsiliepimą bent du kartus. Minimalaus kvitų skaičiaus nėra.",
+    praiseTitle: "Be netikrų pagyrimų",
+    praiseText: "Nereikalaujame teigiamo atsiliepimo, žvaigždučių ar viešos reklamos. Tikslas yra sąžiningas feedbackas.",
+    fallback: "Jei forma neveikia, parašyk el. paštu",
+    formEyebrow: "Founding Tester forma",
+    name: "Vardas",
+    namePlaceholder: "Tavo vardas",
+    googleEmail: "Google paskyros el. paštas, naudojamas Android telefone",
+    googleHint: "Tai turi būti Google paskyra tavo Android telefone, kitaip testavimo nuoroda neveiks.",
+    workType: "Kuo užsiimi?",
+    chooseOne: "Pasirink",
+    contactEmail: "Kontaktinis el. paštas, jei kitas",
+    optional: "Nebūtina",
+    whatsapp: "WhatsApp numeris",
+    useApp: "Sutinku naudoti TidGo bent kelias savaites testavimo metu.",
+    feedback: "Sutinku bent du kartus atsiųsti trumpą sąžiningą atsiliepimą arba pranešti apie rastas problemas.",
+    consentPrefix: "Sutinku su TidGo",
+    privacy: "Privacy Policy",
+    andText: "ir",
+    terms: "Terms",
+    submit: "Tapti Founding Testeriu",
+    options: ["sole trader", "CIS subcontractor", "tradesperson", "landlord", "kita"]
+  }
+};
+
+function foundingTesterCopy() {
+  return FOUNDING_TESTER_COPY[state.marketingLanguage] || FOUNDING_TESTER_COPY.en;
+}
+
 function androidTestersPage() {
+  const c = foundingTesterCopy();
+  const options = c.options.map((option) => `<option>${escapeHtml(option)}</option>`).join("");
   shell(`
     <section class="landing-screen marketing-page-screen">
       ${landingHeader("foundingTester")}
       <div class="marketing-page-layout tester-layout">
         <article class="marketing-page-card marketing-article tester-intro">
-          <span class="eyebrow">Founding Tester</span>
-          <h1>Become a TidGo Founding Tester</h1>
-          <p class="marketing-lead">TidGo works in your browser right now. The Android app is in closed testing, and the iPhone version is in development.</p>
-          <p>I'm looking for 20 UK sole traders, CIS subcontractors and tradespeople, with landlords who keep simple records welcome too, who will use TidGo for real and tell me honestly what works, what does not, and what could be simpler.</p>
-          <p>Setup takes about ten minutes. All I ask is that you send receipts the way you normally would, and tell me when something annoys you at least a couple of times over a few weeks.</p>
+          <span class="eyebrow">${escapeHtml(c.eyebrow)}</span>
+          <h1>${escapeHtml(c.title)}</h1>
+          <p class="marketing-lead">${escapeHtml(c.lead)}</p>
+          <p>${escapeHtml(c.introOne)}</p>
+          <p>${escapeHtml(c.introTwo)}</p>
           <div class="tester-reward">
-            <strong>Founding Tester terms</strong>
-            <span>Active Founding Testers receive access to the TidGo Core plan at no monthly charge, for as long as the Core plan exists. It is personal, non-transferable and fair use applies.</span>
+            <strong>${escapeHtml(c.termsTitle)}</strong>
+            <span>${escapeHtml(c.termsText)}</span>
           </div>
           <div class="marketing-card-grid tester-conditions">
-            <article><strong>What active means</strong><span>Use TidGo for at least a few weeks and send feedback at least twice. No minimum number of receipts.</span></article>
-            <article><strong>No fake praise</strong><span>No positive review, stars or public promotion required. Honest feedback is the point.</span></article>
+            <article><strong>${escapeHtml(c.activeTitle)}</strong><span>${escapeHtml(c.activeText)}</span></article>
+            <article><strong>${escapeHtml(c.praiseTitle)}</strong><span>${escapeHtml(c.praiseText)}</span></article>
           </div>
-          <p>If the form misbehaves, email <a href="mailto:hello@tidgo.co.uk">hello@tidgo.co.uk</a>.</p>
+          <p>${escapeHtml(c.fallback)} <a href="mailto:hello@tidgo.co.uk">hello@tidgo.co.uk</a>.</p>
         </article>
 
         <form class="marketing-page-card tester-form" id="androidTesterForm">
-          <span class="eyebrow">Founding Tester form</span>
-          <label class="field"><span>Name</span><input class="input" name="tester_name" required autocomplete="name" placeholder="Your name"></label>
-          <label class="field"><span>Google account email used on your Android phone</span><input class="input" name="google_email" type="email" required autocomplete="email" placeholder="yourname@gmail.com"></label>
-          <p class="hint tester-hint">This must be the Google account on your Android phone, otherwise the test link will not work for you.</p>
-          <label class="field"><span>What do you do?</span><select class="select" name="business_type" required>
-            <option value="">Choose one</option>
-            <option>sole trader</option>
-            <option>CIS subcontractor</option>
-            <option>tradesperson</option>
-            <option>landlord</option>
-            <option>other</option>
+          <span class="eyebrow">${escapeHtml(c.formEyebrow)}</span>
+          <label class="field"><span>${escapeHtml(c.name)}</span><input class="input" name="tester_name" required autocomplete="name" placeholder="${escapeHtml(c.namePlaceholder)}"></label>
+          <label class="field"><span>${escapeHtml(c.googleEmail)}</span><input class="input" name="google_email" type="email" required autocomplete="email" placeholder="yourname@gmail.com"></label>
+          <p class="hint tester-hint">${escapeHtml(c.googleHint)}</p>
+          <label class="field"><span>${escapeHtml(c.workType)}</span><select class="select" name="business_type" required>
+            <option value="">${escapeHtml(c.chooseOne)}</option>
+            ${options}
           </select></label>
-          <label class="field"><span>Contact email, if different</span><input class="input" name="contact_email" type="email" placeholder="Optional"></label>
-          <label class="field"><span>WhatsApp number</span><input class="input" name="whatsapp_number" placeholder="Optional"></label>
-          <label class="check-row legal-agree-row"><input type="checkbox" name="use_14_days" required><span>I agree to use TidGo for at least a few weeks during testing.</span></label>
-          <label class="check-row legal-agree-row"><input type="checkbox" name="send_feedback" required><span>I agree to send short honest feedback at least twice or report problems I find.</span></label>
-          <label class="check-row legal-agree-row"><input type="checkbox" name="privacy_consent" required><span>I agree to TidGo's <a href="/privacy/" target="_blank" rel="noopener">Privacy Policy</a> and <a href="/terms/" target="_blank" rel="noopener">Terms</a>.</span></label>
-          <button class="primary" type="submit">Become a Founding Tester</button>
+          <label class="field"><span>${escapeHtml(c.contactEmail)}</span><input class="input" name="contact_email" type="email" placeholder="${escapeHtml(c.optional)}"></label>
+          <label class="field"><span>${escapeHtml(c.whatsapp)}</span><input class="input" name="whatsapp_number" placeholder="${escapeHtml(c.optional)}"></label>
+          <label class="check-row legal-agree-row"><input type="checkbox" name="use_14_days" required><span>${escapeHtml(c.useApp)}</span></label>
+          <label class="check-row legal-agree-row"><input type="checkbox" name="send_feedback" required><span>${escapeHtml(c.feedback)}</span></label>
+          <label class="check-row legal-agree-row"><input type="checkbox" name="privacy_consent" required><span>${escapeHtml(c.consentPrefix)} <a href="/privacy/" target="_blank" rel="noopener">${escapeHtml(c.privacy)}</a> ${escapeHtml(c.andText)} <a href="/terms/" target="_blank" rel="noopener">${escapeHtml(c.terms)}</a>.</span></label>
+          <button class="primary" type="submit">${escapeHtml(c.submit)}</button>
         </form>
       </div>
       ${landingFooter()}
