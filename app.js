@@ -3176,6 +3176,7 @@ function marketingPageSlug() {
     "/mtd/cis": "mtdCis",
     "/mtd/digital-records": "mtdDigitalRecords",
     "/mtd/quarterly-updates": "mtdQuarterlyUpdates",
+    "/mtd/missed-7-august-deadline": "mtdMissedDeadline",
     "/mtd/faqs": "mtdFaqs",
     "/mtd/what-is-mtd": "mtdWhat",
     "/mtd/who-needs-mtd": "mtdWho",
@@ -3550,8 +3551,162 @@ function mtdQualifyingIncomeArticleLT() {
   `;
 }
 
+const MTD_MISSED_DEADLINE_ARTICLES = {
+  en: `<h1>Missed the 7 August MTD deadline? Here's what actually happens</h1>
+<h2>The short answer</h2>
+<p>If you missed yesterday's 7 August 2026 deadline for your first Making Tax Digital quarterly update, <strong>no penalty points are coming</strong>. HMRC has confirmed a soft landing for the entire 2026/27 tax year: no penalty points will be issued for late quarterly updates during this first year, no matter how many you miss.</p>
+<p>No letter demanding money. No immediate fine. A clean slate going into next year.</p>
+<p>That is not the same as saying the obligation has gone away. It hasn't. But the consequences are far smaller than some posts circulating today suggest.</p>
+<h2>What the soft landing actually covers</h2>
+<p>During the 2026/27 tax year, no penalty points will be issued for late quarterly updates. This means that even if you miss one — or all four — of your quarterly deadlines in this first year, you won't receive penalty points.</p>
+<p>Miss one, miss two, miss all four — you enter 2027/28 with a clean slate.</p>
+<p>This applies to the April 2026 cohort only — sole traders and landlords with qualifying income above £50,000. It applies only to the 2026-27 tax year, not to an individual's first year of MTD. Therefore, if you join MTD in 2027-28 because your qualifying income exceeds £30,000, penalty points will apply from your first quarterly update.</p>
+<h2>What the soft landing does NOT cover</h2>
+<p>Three things still apply in full, and mixing them up is how people get into trouble:</p>
+<p><strong>1. The final declaration.</strong> The soft landing does not apply to your digital tax return. If you submit your 2026/27 digital tax return late — after 31 January 2028 — penalty points may apply under the standard rules.</p>
+<p><strong>2. Late payment penalties.</strong> The soft landing also does not protect against late payment penalties, which operate on a separate regime. Your 2026/27 tax is still due by 31 January 2028 regardless of quarterly filing.</p>
+<p><strong>3. Non-digital records.</strong> If you're not keeping digital records at all, that's a separate issue with its own penalty regime — up to £3,000 per quarter.</p>
+<h2>The obligation hasn't disappeared — it's stacked</h2>
+<p>The work doesn't disappear — it stacks. Updates are cumulative: the Q2 update due 7 November 2026 covers 6 April to 5 October.</p>
+<p>This is actually good news if you missed Q1: the cumulative method means each update runs from the beginning of the tax year to the end of the relevant period. Your Q2 submission will include Q1's figures automatically. You don't file Q1 separately — you catch up in Q2, and the figures are complete.</p>
+<p>Send Q1 as soon as you can anyway. The soft landing is a one-year grace period, not a permanent exemption, and HMRC expects genuine engagement with the system, not indefinite delay.</p>
+<h2>The point-based system from 2027/28</h2>
+<p>From the 2027/28 tax year onwards, the points-based penalty system kicks in fully. Each late quarterly update earns a penalty point. Hit four points, and HMRC issues a fixed £200 penalty. Every additional missed deadline after that triggers another £200 fine.</p>
+<p>So the soft landing isn't just a free pass — it's a year to build the habit before the system bites.</p>
+<h2>What to do if you haven't sent Q1 yet</h2>
+<ol>
+<li>Send it as soon as your records are ready. No penalty for being late in 2026/27, but you must send all four quarterly updates before you can submit your final declaration in January 2028.</li>
+<li>If your software isn't set up, set it up now — not before Q2 in November.</li>
+<li>If you're not sure whether you're even in scope, check <a href="https://www.gov.uk/guidance/work-out-your-qualifying-income-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">GOV.UK's qualifying income guidance</a> or ask your accountant.</li>
+</ol>
+<p>The 7 November deadline for Q2 is the one to focus on now. Use the time between now and then to get your records clean.</p>
+<h2>Where TidGo fits</h2>
+<p><a href="/">TidGo</a> collects receipts, income proof and CIS payslips as they happen, so your records are ready before the next quarterly deadline rather than scrambled together the night before. It doesn't submit to HMRC — that part goes through your accountant or MTD-compatible software. It just means the records exist when you need them.</p>
+<section class="article-sources">
+<strong>Sources</strong>
+<ul>
+<li><a href="https://www.gov.uk/guidance/penalties-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Penalties for Making Tax Digital for Income Tax</a> — GOV.UK</li>
+<li><a href="https://www.gov.uk/government/publications/changes-to-making-tax-digital-for-income-tax-penalty-points" target="_blank" rel="noopener">Penalty reform for MTD ITSA — soft landing</a> — GOV.UK</li>
+<li><a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/send-quarterly-updates" target="_blank" rel="noopener">Use Making Tax Digital for Income Tax — send quarterly updates</a> — GOV.UK</li>
+</ul>
+<p><em>Last checked: 8 August 2026. Verify at GOV.UK if reading later.</em></p>
+</section>`,
+  pl: `<h1>Nie wysłałeś raportu MTD do 7 sierpnia? Co się naprawdę dzieje</h1>
+<h2>Krótka odpowiedź</h2>
+<p>Jeśli przegapiłeś wczorajszy termin 7 sierpnia 2026 — pierwszy raport kwartalny Making Tax Digital — <strong>żadne punkty karne nie idą w Twoją stronę</strong>. HMRC potwierdziło period przejściowy (soft landing) na cały rok podatkowy 2026/27: za spóźnione raporty kwartalne w tym pierwszym roku nie będą przyznawane żadne punkty karne, niezależnie od tego, ile ich przegapisz.</p>
+<p>Żadnego listu z żądaniem zapłaty. Żadnej natychmiastowej kary. Czysty rekord na wejście do następnego roku.</p>
+<p>To nie znaczy, że obowiązek zniknął. Nie zniknął. Ale konsekwencje są znacznie mniejsze, niż sugerują niektóre posty krążące dziś po internecie.</p>
+<h2>Co soft landing faktycznie obejmuje</h2>
+<p>W roku podatkowym 2026/27 nie będą przyznawane punkty karne za spóźnione raporty kwartalne. Nawet jeśli przegapisz jeden raport, dwa albo wszystkie cztery — do roku 2027/28 wchodzisz z czystym kontem.</p>
+<p>Dotyczy to wyłącznie pierwszej grupy — czyli sole traderów i landlordów z qualifying income powyżej £50 000, którzy weszli do MTD w kwietniu 2026. Soft landing obejmuje tylko rok 2026/27, nie pierwszy rok każdego podatnika indywidualnie. Jeśli wejdziesz do MTD w 2027/28, bo Twój qualifying income przekroczy £30 000 — punkty karne obowiązują od pierwszego raportu.</p>
+<h2>Czego soft landing NIE obejmuje</h2>
+<p>Trzy rzeczy nadal obowiązują w pełni i ich mylenie może być kosztowne:</p>
+<p><strong>1. Final declaration — roczne zeznanie MTD.</strong> Soft landing nie chroni Twojego rocznego rozliczenia. Jeśli złożysz je po terminie (po 31 stycznia 2028), mogą naliczyć się punkty karne według standardowych zasad.</p>
+<p><strong>2. Kary za spóźnioną płatność.</strong> To osobny system i soft landing go nie obejmuje. Twój podatek za 2026/27 jest należny do 31 stycznia 2028 niezależnie od tego, czy wysyłasz raporty kwartalne na czas.</p>
+<p><strong>3. Brak cyfrowych rekordów.</strong> Jeśli w ogóle nie prowadzisz rekordów cyfrowo, to jest osobna kwestia z własnym systemem kar — do £3 000 za kwartał.</p>
+<h2>Obowiązek nie zniknął — nakłada się</h2>
+<p>Raporty kwartalne MTD są kumulatywne. Raport Q2 (termin 7 listopada 2026) obejmuje dane od 6 kwietnia do 5 października. To znaczy, że jeśli nie wysłałeś Q1, Twój Q2 i tak będzie zawierał dane z tego okresu. Nie musisz składać Q1 osobno — nadrabiasz automatycznie przy Q2, a łączne liczby wychodzą kompletne.</p>
+<p>Wyślij Q1 jak najszybciej mimo to. Soft landing to roczna ulga, a nie trwałe zwolnienie — HMRC oczekuje realnego zaangażowania, a nie odkładania w nieskończoność.</p>
+<h2>System punktowy od 2027/28</h2>
+<p>Od roku podatkowego 2027/28 system punktowy wchodzi w pełni. Każde spóźnienie z raportem kwartalnym to jeden punkt. Po czterech punktach kara £200, a każde kolejne spóźnienie powyżej progu to kolejne £200.</p>
+<p>Soft landing to nie darmowy przejazd — to rok na zbudowanie nawyku, zanim system zacznie gryźć.</p>
+<h2>Co zrobić, jeśli nie wysłałeś Q1</h2>
+<ol>
+<li>Wyślij go najszybciej, jak rekordy są gotowe. W 2026/27 nie ma kary za spóźnienie, ale musisz wysłać wszystkie cztery raporty kwartalne, zanim złożysz final declaration w styczniu 2028.</li>
+<li>Jeśli oprogramowanie nie jest jeszcze skonfigurowane — skonfiguruj teraz, a nie przed Q2 w listopadzie.</li>
+<li>Jeśli nie masz pewności, czy w ogóle jesteś objęty — sprawdź <a href="https://www.gov.uk/guidance/work-out-your-qualifying-income-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">wytyczne HMRC o qualifying income</a> albo zapytaj księgowego.</li>
+</ol>
+<p>Termin Q2 to 7 listopada. Czas między teraz a nim — na porządkowanie rekordów.</p>
+<h2>Gdzie w tym wszystkim TidGo</h2>
+<p><a href="/pl">TidGo</a> zbiera paragony, dowody przychodu i CIS payslipy na bieżąco, żeby rekordy były gotowe przed kolejnym terminem kwartalnym, a nie składane naprędce w ostatniej chwili. TidGo nie wysyła nic do HMRC — to robi Twój księgowy albo kompatybilne oprogramowanie. Pilnuje tylko, żeby rekordy istniały, gdy są potrzebne.</p>
+<h3>Źródła</h3>
+<ul>
+<li><a href="https://www.gov.uk/guidance/penalties-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Penalties for Making Tax Digital for Income Tax</a> — GOV.UK</li>
+<li><a href="https://www.gov.uk/government/publications/changes-to-making-tax-digital-for-income-tax-penalty-points" target="_blank" rel="noopener">Penalty reform for MTD ITSA — soft landing</a> — GOV.UK</li>
+<li><a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/send-quarterly-updates" target="_blank" rel="noopener">Use Making Tax Digital for Income Tax — send quarterly updates</a> — GOV.UK</li>
+</ul>
+<p><em>Sprawdzone: 8 sierpnia 2026. Zweryfikuj na GOV.UK, jeśli czytasz to później.</em></p>`,
+  ro: `<h1>Nu ai trimis raportarea MTD până pe 7 august? Iată ce se întâmplă</h1>
+<h2>Răspunsul scurt</h2>
+<p>Dacă ai ratat termenul de ieri, 7 august 2026 — prima raportare trimestrială Making Tax Digital — <strong>niciun punct de penalizare nu vine spre tine</strong>. HMRC a confirmat o perioadă de tranziție (soft landing) pentru întregul an fiscal 2026/27: nu se vor acorda puncte de penalizare pentru raportările trimestriale întârziate în acest prim an, indiferent de câte ratezi.</p>
+<p>Nicio scrisoare care să ceară bani. Nicio amendă imediată. Un slate curat la intrarea în anul următor.</p>
+<p>Asta nu înseamnă că obligația a dispărut. Nu a dispărut. Dar consecințele sunt mult mai mici decât sugerează unele postări care circulă astăzi.</p>
+<h2>Ce acoperă soft landing-ul</h2>
+<p>În anul fiscal 2026/27, nu se acordă puncte de penalizare pentru raportările trimestriale întârziate. Chiar dacă ratezi una, două sau toate patru — intri în 2027/28 cu un dosar curat.</p>
+<p>Aceasta se aplică doar primei cohorte — sole traderi și landlords cu qualifying income peste £50.000, care au intrat în MTD în aprilie 2026. Soft landing-ul se aplică doar anului 2026/27, nu primului an individual al fiecărui contribuabil. Dacă intri în MTD în 2027/28, pentru că qualifying income-ul tău depășește £30.000 — punctele de penalizare se aplică de la prima raportare.</p>
+<h2>Ce NU acoperă soft landing-ul</h2>
+<p>Trei lucruri se aplică în continuare în totalitate și confundarea lor poate fi costisitoare:</p>
+<p><strong>1. Final declaration — declarația anuală MTD.</strong> Soft landing-ul nu protejează declarația ta anuală. Dacă o depui după termen (după 31 ianuarie 2028), punctele de penalizare se pot aplica conform regulilor standard.</p>
+<p><strong>2. Penalitățile pentru plata întârziată.</strong> Acesta este un sistem separat și soft landing-ul nu îl acoperă. Taxa ta pentru 2026/27 este datorată până la 31 ianuarie 2028, indiferent dacă trimiți raportările trimestriale la timp.</p>
+<p><strong>3. Lipsa înregistrărilor digitale.</strong> Dacă nu ții deloc evidențe digitale, aceasta este o problemă separată cu propriul sistem de penalități — până la £3.000 pe trimestru.</p>
+<h2>Obligația nu a dispărut — se acumulează</h2>
+<p>Raportările trimestriale MTD sunt cumulative. Raportarea Q2 (termen 7 noiembrie 2026) acoperă datele de la 6 aprilie la 5 octombrie. Asta înseamnă că dacă nu ai trimis Q1, raportarea Q2 va include oricum datele din acea perioadă. Nu trebuie să depui Q1 separat — recuperezi automat la Q2, iar totalurile cumulate vor fi complete.</p>
+<p>Trimite Q1 cât mai curând oricum. Soft landing-ul este o facilitate de un an, nu o scutire permanentă — HMRC se așteaptă la o implicare reală în sistem, nu la amânare la nesfârșit.</p>
+<h2>Sistemul de puncte din 2027/28</h2>
+<p>Din anul fiscal 2027/28, sistemul de puncte intră în vigoare complet. Fiecare întârziere la o raportare trimestrială înseamnă un punct. La patru puncte, penalitate £200, iar fiecare întârziere ulterioară peste prag înseamnă încă £200.</p>
+<p>Soft landing-ul nu este un abonament gratuit — este un an pentru a construi obiceiul înainte ca sistemul să înceapă să muște.</p>
+<h2>Ce faci dacă nu ai trimis Q1</h2>
+<ol>
+<li>Trimite-l cât mai curând ce înregistrările sunt gata. În 2026/27 nu există penalitate pentru întârziere, dar trebuie să trimiți toate cele patru raportări trimestriale înainte de a putea depune final declaration în ianuarie 2028.</li>
+<li>Dacă software-ul nu este configurat — configurează-l acum, nu înainte de Q2 în noiembrie.</li>
+<li>Dacă nu ești sigur că ești în scope — verifică <a href="https://www.gov.uk/guidance/work-out-your-qualifying-income-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">ghidul HMRC despre qualifying income</a> sau întreabă contabilul.</li>
+</ol>
+<p>Termenul pentru Q2 este 7 noiembrie. Folosește timpul dintre acum și atunci pentru a-ți organiza înregistrările.</p>
+<h2>Unde se încadrează TidGo</h2>
+<p><a href="/ro">TidGo</a> strânge bonuri, dovezi de venit și payslipuri CIS pe parcurs, ca înregistrările să fie gata înaintea următorului termen trimestrial, nu asamblate în grabă în ultima clipă. TidGo nu trimite nimic la HMRC — asta o face contabilul tău sau software-ul compatibil. Se asigură doar că înregistrările există când ai nevoie de ele.</p>
+<section class="article-sources">
+<strong>Surse</strong>
+<ul>
+<li><a href="https://www.gov.uk/guidance/penalties-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Penalties for Making Tax Digital for Income Tax</a> — GOV.UK</li>
+<li><a href="https://www.gov.uk/government/publications/changes-to-making-tax-digital-for-income-tax-penalty-points" target="_blank" rel="noopener">Penalty reform for MTD ITSA — soft landing</a> — GOV.UK</li>
+<li><a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/send-quarterly-updates" target="_blank" rel="noopener">Use Making Tax Digital for Income Tax — send quarterly updates</a> — GOV.UK</li>
+</ul>
+<p><em>Verificat: 8 august 2026. Verifică pe GOV.UK dacă citești mai târziu.</em></p>
+</section>`,
+  lt: `<h1>Praleidai MTD terminą rugpjūčio 7 d.? Štai kas iš tikrųjų vyksta</h1>
+<h2>Trumpas atsakymas</h2>
+<p>Jei praleidai vakarykštį 2026 m. rugpjūčio 7 d. terminą — pirmąją Making Tax Digital ketvirtinę ataskaitą — <strong>jokių baudos taškų nesulauksi</strong>. HMRC patvirtino pereinamąjį laikotarpį (soft landing) visam 2026/27 mokestinių metų laikotarpiui: pavėluotoms ketvirtinėms ataskaitoms šiais pirmaisiais metais baudos taškai neskaičiuojami, nesvarbu, kiek jų praleisi.</p>
+<p>Jokio laiško su pinigų reikalavimu. Jokios skubios baudos. Švari pradžia kitais metais.</p>
+<p>Tai nereiškia, kad prievolė dingo. Nedingo. Tačiau pasekmės yra daug mažesnės, nei siūlo kai kurie šiandien internete cirkuliuojantys įrašai.</p>
+<h2>Ką iš tikrųjų apima soft landing</h2>
+<p>2026/27 mokestiniais metais baudos taškai už pavėluotas ketvirtines ataskaitas neskaičiuojami. Net jei praleisi vieną, dvi ar visas keturias — į 2027/28 metus įeini švariai.</p>
+<p>Tai taikoma tik pirmajai kohortai — sole trader ir landlord su qualifying income virš £50 000, kurie į MTD įstojo 2026 m. balandį. Soft landing taikomas tik 2026/27 metams, o ne pirmiesiems kiekvieno mokesčių mokėtojo MTD metams. Jei į MTD įstosi 2027/28, nes tavo qualifying income viršys £30 000 — baudos taškai skaičiuojami nuo pirmos ataskaitos.</p>
+<h2>Ko soft landing NEAPIMA</h2>
+<p>Trys dalykai vis dar galioja visa apimtimi ir jų painiojimas gali brangiai kainuoti:</p>
+<p><strong>1. Final declaration — metinė MTD deklaracija.</strong> Soft landing neapsaugo tavo metinės deklaracijos. Jei ją pateiksi pavėluotai (po 2028 m. sausio 31 d.), baudos taškai gali būti taikomi pagal standartines taisykles.</p>
+<p><strong>2. Baudos už pavėluotą mokėjimą.</strong> Tai atskira sistema, kurios soft landing neapima. Tavo 2026/27 mokestis vis tiek turi būti sumokėtas iki 2028 m. sausio 31 d., nepaisant to, ar siunti ketvirtines ataskaitas laiku.</p>
+<p><strong>3. Skaitmeninių įrašų nebuvimas.</strong> Jei apskritai netvarkai skaitmeninių įrašų, tai atskiras klausimas su sava baudų sistema — iki £3 000 per ketvirtį.</p>
+<h2>Prievolė nedingo — ji kaupiasi</h2>
+<p>MTD ketvirtinės ataskaitos yra kumuliacinės. Q2 ataskaita (terminas 2026 m. lapkričio 7 d.) apima duomenis nuo balandžio 6 d. iki spalio 5 d. Tai reiškia, kad jei nesiuntei Q1, tavo Q2 vis tiek apims to laikotarpio duomenis. Nereikia pateikti Q1 atskirai — automatiškai pasivejami Q2, o bendros sumos bus pilnos.</p>
+<p>Vis tiek išsiųsk Q1 kuo greičiau. Soft landing yra vienerių metų lengvata, o ne nuolatinė išimtis — HMRC tikisi realaus dalyvavimo sistemoje, o ne vilkinimo iki begalybės.</p>
+<h2>Taškų sistema nuo 2027/28</h2>
+<p>Nuo 2027/28 mokestinių metų taškų sistema įsigalioja visa apimtimi. Kiekvienas pavėluotas ketvirtinis pranešimas — vienas taškas. Surinkus keturis taškus — £200 bauda, o kiekvienas kitas praleidimas virš ribos — dar £200.</p>
+<p>Soft landing nėra nemokamas bilietas — tai metai įpročiui suformuoti, kol sistema nepradėjo gelti.</p>
+<h2>Ką daryti, jei Q1 nesiuntei</h2>
+<ol>
+<li>Išsiųsk jį kuo greičiau, kai įrašai bus paruošti. 2026/27 metais baudos už pavėlavimą nėra, tačiau privalai išsiųsti visas keturias ketvirtines ataskaitas, prieš galėdamas pateikti final declaration 2028 m. sausį.</li>
+<li>Jei programinė įranga dar nesukonfigūruota — konfigūruok dabar, o ne prieš Q2 lapkritį.</li>
+<li>Jei nesi tikras, ar apskritai esi scope — patikrink <a href="https://www.gov.uk/guidance/work-out-your-qualifying-income-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">HMRC qualifying income gaires</a> arba paklausk buhalterio.</li>
+</ol>
+<p>Q2 terminas — lapkričio 7 d. Laikas nuo dabar iki tada — įrašams sutvarkyti.</p>
+<h2>Kur čia TidGo</h2>
+<p><a href="/lt">TidGo</a> renka kvitus, pajamų įrodymus ir CIS payslipus eigoje, kad įrašai būtų paruošti prieš kitą ketvirtinį terminą, o ne surinkti skubotai paskutinę minutę. TidGo nieko nesiunčia į HMRC — tai daro tavo buhalteris arba suderinama programinė įranga. Tik pasirūpina, kad įrašai egzistuotų, kai jų reikia.</p>
+<h3>Šaltiniai</h3>
+<ul>
+<li><a href="https://www.gov.uk/guidance/penalties-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Penalties for Making Tax Digital for Income Tax</a> — GOV.UK</li>
+<li><a href="https://www.gov.uk/government/publications/changes-to-making-tax-digital-for-income-tax-penalty-points" target="_blank" rel="noopener">Penalty reform for MTD ITSA — soft landing</a> — GOV.UK</li>
+<li><a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/send-quarterly-updates" target="_blank" rel="noopener">Use Making Tax Digital for Income Tax — send quarterly updates</a> — GOV.UK</li>
+</ul>
+<p><em>Patikrinta: 2026 m. rugpjūčio 8 d. Jei skaitai vėliau, patikrink GOV.UK.</em></p>`
+};
+
+function mtdMissedDeadlineArticle() {
+  const html = MTD_MISSED_DEADLINE_ARTICLES[state.marketingLanguage] || MTD_MISSED_DEADLINE_ARTICLES.en;
+  return `<article class="marketing-page-card marketing-article"><span class="eyebrow">${mk("navMtd")}</span>${html}${pageCta()}</article>`;
+}
+
 const MTD_RECEIPTS_MYTH_ARTICLES = {
-  en: `<h1>Do I have to photograph every receipt for Making Tax Digital?</h1>
+  en: `<h1>Receipt photos and MTD: what HMRC actually requires</h1>
 <h2>The short answer</h2>
 <p>No. HMRC does not require you to scan, photograph or upload individual receipts and invoices for Making Tax Digital.</p>
 <p>What has to be digital is the <strong>record</strong> of each transaction: <a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/create-digital-records" target="_blank" rel="noopener">the amount, the date, and the category</a>. That's it. Three pieces of information, created and stored in software that works with Making Tax Digital.</p>
@@ -3596,7 +3751,7 @@ const MTD_RECEIPTS_MYTH_ARTICLES = {
 </ul>
 <p><em>Last checked: August 2026, against guidance updated 16 July 2026. HMRC guidance changes — verify at the links above if you're reading this later.</em></p>
 </section>`,
-  pl: `<h1>Czy muszę fotografować wszystkie paragony do MTD?</h1>
+  pl: `<h1>Zdjęcia paragonów i MTD: czego naprawdę wymaga HMRC</h1>
 <h2>Krótka odpowiedź</h2>
 <p>Nie. HMRC nie wymaga skanowania, fotografowania ani wgrywania pojedynczych paragonów i faktur na potrzeby Making Tax Digital.</p>
 <p>Cyfrowy musi być <strong>zapis transakcji</strong>: <a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/create-digital-records" target="_blank" rel="noopener">kwota, data i kategoria</a>. Tyle. Trzy informacje, utworzone i przechowywane w oprogramowaniu kompatybilnym z MTD.</p>
@@ -3639,7 +3794,7 @@ const MTD_RECEIPTS_MYTH_ARTICLES = {
 <li><a href="https://www.gov.uk/guidance/penalties-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Penalties for Making Tax Digital for Income Tax</a> — GOV.UK</li>
 </ul>
 <p><em>Sprawdzone: sierpień 2026, wobec wytycznych zaktualizowanych 16 lipca 2026. Wytyczne HMRC się zmieniają — jeśli czytasz to później, zweryfikuj pod powyższymi linkami.</em></p>`,
-  ro: `<h1>Trebuie să fotografiez toate bonurile pentru Making Tax Digital?</h1>
+  ro: `<h1>Poze cu bonuri și MTD: ce cere de fapt HMRC</h1>
 <h2>Răspunsul scurt</h2>
 <p>Nu. HMRC nu cere să scanezi, să fotografiezi sau să încarci bonuri și facturi individuale pentru Making Tax Digital.</p>
 <p>Ce trebuie să fie digital este <strong>înregistrarea tranzacției</strong>: <a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/create-digital-records" target="_blank" rel="noopener">suma, data și categoria</a>. Atât. Trei informații, create și păstrate într-un software compatibil cu Making Tax Digital.</p>
@@ -3684,7 +3839,7 @@ const MTD_RECEIPTS_MYTH_ARTICLES = {
 </ul>
 <p><em>Verificat: august 2026, față de ghidul actualizat la 16 iulie 2026. Ghidurile HMRC se schimbă — dacă citești mai târziu, verifică la linkurile de mai sus.</em></p>
 </section>`,
-  lt: `<h1>Ar privalau fotografuoti visus kvitus dėl Making Tax Digital?</h1>
+  lt: `<h1>Kvitų nuotraukos ir MTD: ko iš tikrųjų reikalauja HMRC</h1>
 <h2>Trumpas atsakymas</h2>
 <p>Ne. HMRC nereikalauja skenuoti, fotografuoti ar įkelti atskirų kvitų ir sąskaitų dėl Making Tax Digital.</p>
 <p>Skaitmeninis turi būti <strong>sandorio įrašas</strong>: <a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/create-digital-records" target="_blank" rel="noopener">suma, data ir kategorija</a>. Tiek. Trys duomenys, sukurti ir saugomi su MTD suderinamoje programinėje įrangoje.</p>
@@ -5315,7 +5470,7 @@ function marketingPage() {
             <strong>${mk("mtdTestingTitle")}</strong>
             <span>${mk("mtdTestingText")}</span>
           </article>
-          <a class="mtd-highlight-link" href="/mtd/quarterly-updates">
+          <a class="mtd-highlight-link" href="${state.marketingLanguage === "en" ? "/mtd/missed-7-august-deadline" : `/${state.marketingLanguage}/mtd/missed-7-august-deadline`}">
             <strong>${mk("mtdLateTitle")}</strong>
             <span>${mk("mtdLateText")}</span>
           </a>
@@ -5336,6 +5491,8 @@ function marketingPage() {
     body = mtdQualifyingIncomeArticle();
   } else if (slug === "mtdGateway") {
     body = mtdGovernmentGatewayArticle();
+  } else if (slug === "mtdMissedDeadline") {
+    body = mtdMissedDeadlineArticle();
   } else if (slug === "mtdReceiptsMyth") {
     body = mtdReceiptsMythArticle();
   } else if (mtdTopic) {
