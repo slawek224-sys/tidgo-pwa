@@ -96,7 +96,7 @@ const MARKETING_COPY = {
   }
 };
 MARKETING_COPY.ro = { ...MARKETING_COPY.en,
-  navHow: "Cum functioneaza", navWho: "Pentru cine?", navStory: "Povestea fondatorului", navFindAccountant: "Gaseste un contabil", navPricing: "Lansare si pret", navFaq: "FAQ", navMtd: "Baza de cunostinte MTD", navContact: "Contact",
+  navHow: "Cum functioneaza", navWho: "Pentru cine?", navStory: "Povestea fondatorului", foundingTester: "Devino Founding Tester", navFindAccountant: "Gaseste un contabil", navPricing: "Lansare si pret", navFaq: "FAQ", navMtd: "Baza de cunostinte MTD", navContact: "Contact",
   navIntake: "Cum adaugi documente", navAccountantPack: "Arata contabilului",
   heroEyebrow: "Bonuri inauntru. Evidente ordonate afara.", heroTitle: "Un loc simplu pentru bonuri.", heroText: "Pentru persoane self-employed care vor evidente ordonate si contabili care nu vor sa alerge dupa pungi cu bonuri.",
   stepSnap: "Fotografiaza bonuri", stepTidy: "Tine evidenta ordonata", stepPack: "Trimite pachetul curat",
@@ -122,7 +122,7 @@ MARKETING_COPY.ro = { ...MARKETING_COPY.en,
   demoRecordsScreen: "Evidente client", demoRecordsTitle: "Descarca pachetul clientului", demoRecordsText: "Deschide clientul, verifica totalurile, cere documente lipsa si descarca CSV sau PDF."
 };
 MARKETING_COPY.lt = { ...MARKETING_COPY.en,
-  navHow: "Kaip veikia", navWho: "Kam skirta?", navStory: "Kūrėjo istorija", navFindAccountant: "Rasti buhalterį", navPricing: "Startas ir kaina", navFaq: "DUK", navMtd: "MTD žinių bazė", navContact: "Kontaktai",
+  navHow: "Kaip veikia", navWho: "Kam skirta?", navStory: "Kūrėjo istorija", foundingTester: "Tapk Founding Testeriu", navFindAccountant: "Rasti buhalterį", navPricing: "Startas ir kaina", navFaq: "DUK", navMtd: "MTD žinių bazė", navContact: "Kontaktai",
   navIntake: "Kaip prideti dokumentus", navAccountantPack: "Parodyti buhalteriui",
   heroEyebrow: "Kvitai vidun. Tvarkingi irasai lauk.", heroTitle: "Viena paprasta vieta kvitams.", heroText: "Dirbantiems sau, kuriems reikia tvarkingu irasu, ir buhalteriams, kurie nenori gaudyti maisu su kvitais.",
   stepSnap: "Nufotografuok kvita", stepTidy: "Laikyk irasus tvarkingai", stepPack: "Issiusk tvarkinga paketa",
@@ -3286,6 +3286,7 @@ function marketingNav(active = "") {
   return `
     <nav class="landing-nav" aria-label="TidGo navigation">
       <a class="nav-story ${active === "story" ? "active" : ""}" href="/our-story">${mk("navStory")}</a>
+      <a class="${active === "foundingTester" ? "active" : ""}" href="/founding-tester">${mk("foundingTester")}</a>
       <a class="${active === "how" ? "active" : ""}" href="/how-it-works">${mk("navHow")}</a>
       <a class="${active === "who" ? "active" : ""}" href="/who-is-it-for">${mk("navWho")}</a>
       <a class="${active === "intake" ? "active" : ""}" href="/how-intake-works">${mk("navIntake")}</a>
@@ -5229,7 +5230,7 @@ function ourStoryPage() {
 function androidTestersPage() {
   shell(`
     <section class="landing-screen marketing-page-screen">
-      ${landingHeader("story")}
+      ${landingHeader("foundingTester")}
       <div class="marketing-page-layout tester-layout">
         <article class="marketing-page-card marketing-article tester-intro">
           <span class="eyebrow">Founding Tester</span>
