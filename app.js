@@ -157,7 +157,7 @@ Object.assign(MARKETING_COPY.en, {
   scopeFitText: "Simple self-employed, landlord, CIS and side-income records: receipts, income proof and tidy summaries.",
   scopeNotForTitle: "Not built for",
   scopeNotForText: "VAT returns, LTD/company accounts, payroll, corporation tax or full accounting workflows.",
-  mtdIntro: "MTD guides are being written as short, practical pages.",
+  mtdIntro: "MTD guides are being written as short, practical pages. Each guide links back to the relevant public GOV.UK or HMRC source where the rule comes from.",
   mtdQualifyingIncome: "What is qualifying income?",
   mtdQualifyingIncomeText: "Qualifying income decides whether MTD applies to you. It is gross self-employment and property income before expenses, not profit.",
   mtdGateway: "Government Gateway and MTD",
@@ -181,9 +181,9 @@ Object.assign(MARKETING_COPY.en, {
   mtdWhoText: "It can affect self-employed people and landlords in the UK, depending on income level and start dates. Check HMRC or your accountant for your exact case.",
   mtdWhenText: "MTD rules are being introduced in stages. The important habit is simple: start keeping records digitally before the deadline panic arrives.",
   mtdRecordsText: "You should keep clear digital records of income, expenses and proof such as receipts or invoices. GOV.UK says self-employed records are normally kept for at least 5 years after the 31 January deadline for that tax year.",
-  mtdPaperText: "Paper receipts may still exist, but once MTD applies to you, relying only on a bag of paper is not a good plan. Photos and digital records make handoff easier.",
-  mtdPhotosText: "Photos can help create a digital record. TidGo stores receipt photos with the basic details so you can review them and share a cleaner pack.",
-  mtdSubmitText: "No. TidGo does not submit returns to HMRC. It helps prepare and organise records before they go to you, your accountant or other software.",
+  mtdPaperText: "Covered in the receipt-photo guide: HMRC does not require receipt photos, but you still need proof that survives the record-keeping period.",
+  mtdPhotosText: "Covered in the receipt-photo guide: photos are not mandatory, but they are often the practical way to keep evidence readable.",
+  mtdSubmitText: "TidGo is currently testing MTD submission flows in HMRC's sandbox. Today it helps prepare records for your accountant or other software.",
   mtdAccountantText: "Usually yes. TidGo is not tax advice or accounting software. It helps you keep records ready so your accountant has less chaos to fix.",
   mtdGettingStartedText: "Start with the first practical layer: keep income, expenses and supporting documents in digital form before the quarterly deadline pressure arrives.",
   mtdSoleTradersText: "For sole traders, MTD starts with clear digital records for self-employment income and expenses, not with complicated dashboards.",
@@ -3346,16 +3346,7 @@ function mtdTopics() {
     ["mtdSoleTraders", "mtdSoleTradersText", "/mtd/sole-traders"],
     ["mtdLandlords", "mtdLandlordsText", "/mtd/landlords"],
     ["mtdCis", "mtdCisText", "/mtd/cis"],
-    ["mtdDigitalRecords", "mtdDigitalRecordsText", "/mtd/digital-records"],
-    ["mtdFaqs", "mtdFaqsText", "/mtd/faqs"],
-    ["mtdWhat", "mtdWhatText", "/mtd/what-is-mtd"],
-    ["mtdWho", "mtdWhoText", "/mtd/who-needs-mtd"],
-    ["mtdWhen", "mtdWhenText", "/mtd/when-does-mtd-start"],
-    ["mtdRecords", "mtdRecordsText", "/mtd/what-records-do-i-need"],
-    ["mtdPaper", "mtdPaperText", "/mtd/paper-receipts"],
-    ["mtdPhotos", "mtdPhotosText", "/mtd/can-i-use-photos"],
-    ["mtdSubmit", "mtdSubmitText", "/mtd/does-tidgo-submit-to-hmrc"],
-    ["mtdAccountant", "mtdAccountantText", "/mtd/do-i-need-an-accountant"]
+    ["mtdFaqs", "mtdFaqsText", "/mtd/faqs"]
   ];
 }
 
@@ -5327,10 +5318,6 @@ function marketingPage() {
           <a class="mtd-highlight-link" href="/mtd/quarterly-updates">
             <strong>${mk("mtdLateTitle")}</strong>
             <span>${mk("mtdLateText")}</span>
-          </a>
-          <a class="mtd-highlight-link" href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/send-quarterly-updates" target="_blank" rel="noopener noreferrer">
-            <strong>${mk("mtdSourceTitle")}</strong>
-            <span>${mk("mtdSourceText")}</span>
           </a>
         </div>
         <div class="mtd-topic-grid marketing-topic-grid">
