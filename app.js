@@ -1123,6 +1123,12 @@ const COPY = {
     businessSelfEmployment: "Self-employment / CIS / side income",
     businessProperty: "UK property / landlord",
     businessCategory: "Business category",
+    businessRecordsTitle: "Business records",
+    businessRecordsHint: "UK property stays as one bucket. Add up to three self-employment/CIS businesses only if you really need separate records.",
+    selfEmploymentBusiness1: "Self-employment business 1",
+    selfEmploymentBusiness2: "Self-employment business 2",
+    selfEmploymentBusiness3: "Self-employment business 3",
+    businessNamePlaceholder: "Business name",
     propertyIncomeHint: "For rent or other UK property income, enter the amount manually. You can attach a bank statement screenshot, PDF or transfer confirmation as proof.",
     backendDown: "Cannot reach TidGo API right now. Render may be waking up; try again in a moment.",
     serverUnavailableTitle: "TidGo is temporarily unavailable",
@@ -3101,12 +3107,14 @@ const state = {
   marketingLanguage: marketingLanguageFromPath() || (MARKETING_LANGUAGES[read("tg_marketing_language", "en")] ? read("tg_marketing_language", "en") : "en"),
   marketingSection: read("tg_marketing_section", "how"),
   incomeProofs: read("rb_income_proofs", {}),
+  recordBusinessMeta: read("rb_record_business_meta", {}),
   screen: initialScreen(),
   receipts: [],
   income: [],
   recordsLoading: false,
   pendingRecordKind: "",
   pendingBusinessType: "",
+  pendingBusinessSlotId: "",
   apiUnavailable: false,
   selected: null,
   imageViewer: null,
@@ -4297,31 +4305,128 @@ function formIncomeSources(data) {
   return INCOME_SOURCE_KEYS.filter((key) => data[`income_source_${key}`]);
 }
 
+function businessSlotsKey(user = state.user) {
+  return user?.id ? `rb_business_slots_${user.id}` : "rb_business_slots_guest";
+}
+
+function defaultBusinessSlots(user = state.user) {
+  const sources = readIncomeSources(user);
+  const trade = String(user?.trade || "").trim();
+  const slots = [];
+  if (sources.some((source) => source !== "landlord")) {
+    slots.push({ id: "se-1", type: "self-employment", label: trade || t("businessSelfEmployment") });
+  }
+  if (sources.includes("landlord")) {
+    slots.push({ id: "uk-property", type: "uk-property", label: t("businessProperty") });
+  }
+  return slots.length ? slots : [{ id: "se-1", type: "self-employment", label: t("businessSelfEmployment") }];
+}
+
+function cleanBusinessSlots(slots, user = state.user) {
+  const sources = readIncomeSources(user);
+  const hasSelfEmployment = sources.some((source) => source !== "landlord");
+  const hasProperty = sources.includes("landlord");
+  const sourceSlots = Array.isArray(slots) ? slots : [];
+  const out = [];
+  if (hasSelfEmployment) {
+    ["se-1", "se-2", "se-3"].forEach((id) => {
+      const existing = sourceSlots.find((slot) => slot?.id === id);
+      const label = String(existing?.label || "").trim();
+      if (id === "se-1" || label) {
+        out.push({ id, type: "self-employment", label: label || (id === "se-1" ? (user?.trade || t("businessSelfEmployment")) : "") });
+      }
+    });
+  }
+  if (hasProperty) out.push({ id: "uk-property", type: "uk-property", label: t("businessProperty") });
+  return out.length ? out : defaultBusinessSlots(user);
+}
+
+function readBusinessSlots(user = state.user) {
+  const storedRaw = read(businessSlotsKey(user), []);
+  if (Array.isArray(storedRaw) && storedRaw.length) return cleanBusinessSlots(storedRaw, user);
+  if (Array.isArray(user?.business_slots) && user.business_slots.length) return cleanBusinessSlots(user.business_slots, user);
+  return defaultBusinessSlots(user);
+}
+
+function writeBusinessSlots(user, slots) {
+  const clean = cleanBusinessSlots(slots, user);
+  write(businessSlotsKey(user), clean);
+  return clean;
+}
+
+function formBusinessSlots(data) {
+  const slots = [];
+  ["se-1", "se-2", "se-3"].forEach((id) => {
+    const label = String(data[`business_slot_${id}`] || "").trim();
+    if (id === "se-1" || label) slots.push({ id, type: "self-employment", label });
+  });
+  if (readIncomeSources().includes("landlord")) slots.push({ id: "uk-property", type: "uk-property", label: t("businessProperty") });
+  return cleanBusinessSlots(slots);
+}
+
+function businessSlotById(id, fallbackType = "") {
+  const slots = readBusinessSlots();
+  return slots.find((slot) => slot.id === id) || slots.find((slot) => slot.type === fallbackType) || slots[0] || defaultBusinessSlots()[0];
+}
+
+function recordBusinessMeta(id) {
+  return id ? (state.recordBusinessMeta[id] || {}) : {};
+}
+
+function saveRecordBusinessMeta(id, slot) {
+  if (!id || !slot) return;
+  state.recordBusinessMeta[id] = { business_type: slot.type, business_slot_id: slot.id, business_slot_label: slot.label };
+  write("rb_record_business_meta", state.recordBusinessMeta);
+}
+
+function applyRecordBusinessMeta(item = {}) {
+  const meta = recordBusinessMeta(item.id);
+  const slot = businessSlotById(meta.business_slot_id || item.business_slot_id, meta.business_type || item.business_type);
+  return {
+    ...item,
+    business_type: meta.business_type || item.business_type || slot?.type,
+    business_slot_id: meta.business_slot_id || item.business_slot_id || slot?.id,
+    business_slot_label: meta.business_slot_label || item.business_slot_label || slot?.label
+  };
+}
+
+function businessLabelForRecord(item = {}) {
+  const meta = recordBusinessMeta(item.id);
+  return meta.business_slot_label || item.business_slot_label || businessSlotById(meta.business_slot_id || item.business_slot_id, meta.business_type || item.business_type)?.label || "";
+}
+
 function selectedBusinessTypeLabel() {
-  return normalizeBusinessType(state.pendingBusinessType) === "uk-property" ? t("businessProperty") : t("businessSelfEmployment");
+  const slot = businessSlotById(state.pendingBusinessSlotId, normalizeBusinessType(state.pendingBusinessType));
+  return slot?.label || (normalizeBusinessType(state.pendingBusinessType) === "uk-property" ? t("businessProperty") : t("businessSelfEmployment"));
 }
 
 function defaultBusinessType() {
-  const sources = readIncomeSources();
-  return sources.includes("landlord") && sources.length === 1 ? "uk-property" : "self-employment";
+  return businessSlotById(readBusinessSlots()[0]?.id)?.type || "self-employment";
+}
+
+function defaultBusinessSlotId() {
+  return readBusinessSlots()[0]?.id || "se-1";
 }
 
 function shouldAskBusinessType() {
-  const sources = readIncomeSources();
-  return sources.includes("landlord") && sources.some((source) => source !== "landlord");
+  return readBusinessSlots().length > 1;
 }
 
 function startRecordFlow(kind) {
   state.pendingRecordKind = kind;
   state.pendingBusinessType = "";
+  state.pendingBusinessSlotId = "";
   if (shouldAskBusinessType()) return go("businessTypeChoice");
-  state.pendingBusinessType = defaultBusinessType();
+  const slot = businessSlotById(defaultBusinessSlotId());
+  state.pendingBusinessType = slot.type;
+  state.pendingBusinessSlotId = slot.id;
   return go(kind === "income" ? "incomeForm" : "expenseChoice");
 }
 
 async function rememberUser(user) {
   const incomeSources = writeIncomeSources(user, user?.income_sources || readIncomeSources(user));
-  const storedUser = { ...user, income_sources: incomeSources };
+  const businessSlots = writeBusinessSlots({ ...user, income_sources: incomeSources }, user?.business_slots || readBusinessSlots({ ...user, income_sources: incomeSources }));
+  const storedUser = { ...user, income_sources: incomeSources, business_slots: businessSlots };
   state.user = storedUser;
   forget("rb_signed_out");
   await deviceSet("rb_user", storedUser);
@@ -4333,6 +4438,7 @@ async function rememberUser(user) {
     whatsapp_phone_normalized: storedUser.whatsapp_phone_normalized || "",
     whatsapp_linked_at: storedUser.whatsapp_linked_at || "",
     income_sources: incomeSources,
+    business_slots: businessSlots,
     language: storedUser.language || state.language
   });
 }
@@ -5194,8 +5300,8 @@ async function refresh() {
         write("rb_language", state.language);
       }
     }
-    state.receipts = receipts || [];
-    state.income = attachIncomeProofs(income);
+    state.receipts = (receipts || []).map(applyRecordBusinessMeta);
+    state.income = attachIncomeProofs((income || []).map(applyRecordBusinessMeta));
     state.accountantConsents = consents || [];
   } catch (error) {
     state.apiUnavailable = true;
@@ -6331,13 +6437,13 @@ function home() {
 
 function businessTypeChoice() {
   const nextLabel = state.pendingRecordKind === "income" ? t("addIncome") : t("addExpense");
+  const slots = readBusinessSlots();
   shell(`
     <section class="screen">
       ${topbar(nextLabel, true)}
       <div class="card stack">
         <strong>${t("businessTypeTitle")}</strong>
-        <button class="secondary" type="button" data-action="chooseBusinessType" data-business-type="self-employment">${t("businessSelfEmployment")}</button>
-        <button class="secondary" type="button" data-action="chooseBusinessType" data-business-type="uk-property">${t("businessProperty")}</button>
+        ${slots.map((slot) => `<button class="secondary" type="button" data-action="chooseBusinessType" data-business-type="${escapeAttr(slot.type)}" data-business-slot-id="${escapeAttr(slot.id)}">${escapeHtml(slot.label)}</button>`).join("")}
       </div>
     </section>
   `);
@@ -6378,7 +6484,7 @@ function receipt() {
       ${recordDateNeedsReview(receipt) ? dateReviewCard() : ""}
       <form class="stack" id="receiptForm" style="margin-top:14px">
         ${receiptReplaceField()}
-        ${businessTypeField(receipt.business_type || defaultBusinessType())}
+        ${businessTypeField(receipt.business_type || defaultBusinessType(), receipt.business_slot_id || recordBusinessMeta(receipt.id).business_slot_id || "")}
         <label class="field"><span>${t("amount")}</span><input class="input" name="amount" inputmode="decimal" value="${receipt.amount || 0}"></label>
         <label class="field"><span>${t("currency")}</span><select class="select" name="currency" disabled>${currencyOptions(receipt.currency || "GBP")}</select></label>
         <label class="field"><span>${t("merchant")}</span><input class="input" name="merchant" value="${escapeAttr(receipt.merchant || "")}"></label>
@@ -6423,7 +6529,7 @@ function incomeDetail() {
     <section class="screen">
       ${topbar(t("income"), true)}
       <form class="stack" id="incomeEditForm">
-        ${businessTypeField(entry.business_type || defaultBusinessType())}
+        ${businessTypeField(entry.business_type || defaultBusinessType(), entry.business_slot_id || recordBusinessMeta(entry.id).business_slot_id || "")}
         <label class="field"><span>${t("amount")}</span><input class="input" name="amount" inputmode="decimal" value="${entry.amount || 0}"></label>
         <label class="field"><span>${t("currency")}</span><select class="select" name="currency">${currencyOptions(entry.currency || "GBP")}</select></label>
         <label class="field"><span>${t("description")}</span><textarea class="textarea" name="description">${escapeHtml(entry.description || "")}</textarea></label>
@@ -6557,6 +6663,25 @@ function settingsEmailChangeSection() {
   `;
 }
 
+function settingsBusinessRecordsSection() {
+  const slots = readBusinessSlots();
+  const byId = Object.fromEntries(slots.map((slot) => [slot.id, slot]));
+  const hasSelfEmployment = readIncomeSources().some((source) => source !== "landlord");
+  if (!hasSelfEmployment && !readIncomeSources().includes("landlord")) return "";
+  return `
+    <div class="card stack">
+      <strong>${t("businessRecordsTitle")}</strong>
+      <p class="hint">${t("businessRecordsHint")}</p>
+      ${hasSelfEmployment ? `
+        <label class="field"><span>${t("selfEmploymentBusiness1")}</span><input class="input" name="business_slot_se-1" value="${escapeAttr(byId["se-1"]?.label || state.user.trade || "")}" placeholder="${escapeAttr(t("businessNamePlaceholder"))}"></label>
+        <label class="field"><span>${t("selfEmploymentBusiness2")}</span><input class="input" name="business_slot_se-2" value="${escapeAttr(byId["se-2"]?.label || "")}" placeholder="${escapeAttr(t("businessNamePlaceholder"))}"></label>
+        <label class="field"><span>${t("selfEmploymentBusiness3")}</span><input class="input" name="business_slot_se-3" value="${escapeAttr(byId["se-3"]?.label || "")}" placeholder="${escapeAttr(t("businessNamePlaceholder"))}"></label>
+      ` : ""}
+      ${readIncomeSources().includes("landlord") ? `<div class="intake-card"><strong>${t("businessProperty")}</strong><span>${t("propertyIncomeHint")}</span></div>` : ""}
+    </div>
+  `;
+}
+
 function settings() {
   const existingWhatsApp = state.user.whatsapp_phone_normalized || state.user.whatsapp_phone || "";
   const notificationPreference = state.user.notification_preference || "none";
@@ -6573,6 +6698,7 @@ function settings() {
           ${incomeSourceChoices(readIncomeSources())}
           <p class="hint">${t("incomeSourcesHint")}</p>
         </div>
+        ${settingsBusinessRecordsSection()}
         <label class="field"><span>${t("email")}</span><input class="input" name="email" type="email" value="${escapeAttr(state.user.email || "")}" readonly></label>
         ${settingsEmailChangeSection()}
         ${settingsWhatsAppSection(existingWhatsApp)}
@@ -6997,20 +7123,18 @@ function normalizeBusinessType(value) {
   return value === "uk-property" ? "uk-property" : "self-employment";
 }
 
-function businessTypeOptions(active = "self-employment") {
-  const selected = normalizeBusinessType(active);
-  return [
-    ["self-employment", t("businessSelfEmployment")],
-    ["uk-property", t("businessProperty")]
-  ].map(([value, label]) => `<option value="${value}"${selected === value ? " selected" : ""}>${escapeHtml(label)}</option>`).join("");
+function businessSlotOptions(activeId = "") {
+  const slots = readBusinessSlots();
+  const selected = activeId || slots[0]?.id || "se-1";
+  return slots.map((slot) => `<option value="${escapeAttr(slot.id)}"${selected === slot.id ? " selected" : ""}>${escapeHtml(slot.label)}</option>`).join("");
 }
 
-function businessTypeField(active = "self-employment") {
+function businessTypeField(active = "self-employment", activeSlotId = "") {
   if (!shouldAskBusinessType()) return "";
   return `
     <label class="field">
       <span>${t("businessCategory")}</span>
-      <select class="select" name="business_type">${businessTypeOptions(active)}</select>
+      <select class="select" name="business_slot_id">${businessSlotOptions(activeSlotId || businessSlotById("", normalizeBusinessType(active))?.id)}</select>
     </label>
   `;
 }
@@ -7110,19 +7234,21 @@ function dateReviewCard() {
 function itemRow(row) {
   if (row.type === "income") {
     const item = row.item;
+    const businessLabel = businessLabelForRecord(item);
     return `<button class="list-item" data-open-income="${item.id}">
       <span class="list-main">
         <span class="list-title">${escapeHtml(item.description || t("income"))}${reviewBadge(item)}</span>
-        <span class="list-meta">${day(item.timestamp)}</span>
+        <span class="list-meta">${day(item.timestamp)}${businessLabel ? ` - ${escapeHtml(businessLabel)}` : ""}</span>
       </span>
       <span class="amount income">${money(item.amount, item.currency)}</span>
     </button>`;
   }
   const item = row.item;
+  const businessLabel = businessLabelForRecord(item);
   return `<button class="list-item" data-open-receipt="${item.id}">
     <span class="list-main">
       <span class="list-title">${escapeHtml(item.merchant || t("unknown"))}${reviewBadge(item)}</span>
-      <span class="list-meta">${t(item.category)} - ${day(item.timestamp)}</span>
+      <span class="list-meta">${t(item.category)} - ${day(item.timestamp)}${businessLabel ? ` - ${escapeHtml(businessLabel)}` : ""}</span>
     </span>
     <span class="amount expense">${money(item.amount, item.currency)}</span>
   </button>`;
@@ -7463,17 +7589,21 @@ async function uploadReceipt(file, isClientExpense) {
   try {
     const image_base64 = await fileToDataUrl(file);
     showScanOverlay(image_base64);
+    const slot = businessSlotById(state.pendingBusinessSlotId || defaultBusinessSlotId(), normalizeBusinessType(state.pendingBusinessType || defaultBusinessType()));
     const receipt = await api("/api/receipts", {
       method: "POST",
       body: JSON.stringify({
         user_id: state.user.id,
         image_base64,
         is_client_expense: isClientExpense,
-        business_type: normalizeBusinessType(state.pendingBusinessType || defaultBusinessType()),
+        business_type: slot.type,
+        business_slot_id: slot.id,
+        business_slot_label: slot.label,
         humour_style: state.humour,
         language: state.language
       })
     });
+    saveRecordBusinessMeta(receipt.id, slot);
     await refresh();
     focusSummaryOnRecord(state.receipts.find((item) => item.id === receipt.id) || receipt);
     state.selected = receipt.id;
@@ -7500,17 +7630,21 @@ async function replaceReceiptImage(file) {
   try {
     const image_base64 = await fileToDataUrl(file);
     showScanOverlay(image_base64);
+    const slot = businessSlotById(oldReceipt?.business_slot_id, oldReceipt?.business_type || defaultBusinessType());
     const receipt = await api("/api/receipts", {
       method: "POST",
       body: JSON.stringify({
         user_id: state.user.id,
         image_base64,
         is_client_expense: false,
-        business_type: normalizeBusinessType(oldReceipt?.business_type || defaultBusinessType()),
+        business_type: slot.type,
+        business_slot_id: slot.id,
+        business_slot_label: slot.label,
         humour_style: state.humour,
         language: state.language
       })
     });
+    saveRecordBusinessMeta(receipt.id, slot);
     await api(`/api/receipts/${oldReceiptId}`, { method: "DELETE" });
     await refresh();
     focusSummaryOnRecord(state.receipts.find((item) => item.id === receipt.id) || receipt);
@@ -8094,7 +8228,9 @@ document.addEventListener("click", async (event) => {
   if (action === "startExpense") return startRecordFlow("expense");
   if (action === "startIncome") return startRecordFlow("income");
   if (action === "chooseBusinessType") {
-    state.pendingBusinessType = target.dataset.businessType === "uk-property" ? "uk-property" : "self-employment";
+    const slot = businessSlotById(target.dataset.businessSlotId, target.dataset.businessType);
+    state.pendingBusinessType = slot.type;
+    state.pendingBusinessSlotId = slot.id;
     return go(state.pendingRecordKind === "income" ? "incomeForm" : "expenseChoice");
   }
   if (action === "incomeForm") return startRecordFlow("income");
@@ -8579,14 +8715,16 @@ document.addEventListener("submit", async (event) => {
       const category = document.querySelector("[data-category].active")?.dataset.category || "other";
       const amount = normalizeAmount(data.amount);
       if (!Number.isFinite(amount) || amount < 0) throw new Error(t("validAmount"));
-      const businessType = normalizeBusinessType(data.business_type || receipt.business_type || defaultBusinessType());
+      const slot = businessSlotById(data.business_slot_id || receipt.business_slot_id, receipt.business_type || defaultBusinessType());
       const updatedReceipt = await api(`/api/receipts/${state.selected}`, {
         method: "PATCH",
         body: JSON.stringify({
           amount,
           merchant: data.merchant || null,
           category,
-          business_type: businessType,
+          business_type: slot.type,
+          business_slot_id: slot.id,
+          business_slot_label: slot.label,
           date: data.date ? new Date(`${data.date}T12:00:00`).toISOString() : null,
           date_needs_review: false,
           needs_date_review: false,
@@ -8595,9 +8733,10 @@ document.addEventListener("submit", async (event) => {
           date_confirmed: true
         })
       });
+      saveRecordBusinessMeta(state.selected, slot);
       await refresh();
       rememberDateReviewConfirmed(state.selected);
-      state.receipts = state.receipts.map((item) => item.id === state.selected ? clearDateReviewFields({ ...item, ...updatedReceipt, business_type: businessType }) : item);
+      state.receipts = state.receipts.map((item) => item.id === state.selected ? clearDateReviewFields({ ...item, ...updatedReceipt, business_type: slot.type, business_slot_id: slot.id, business_slot_label: slot.label }) : item);
       focusSummaryOnRecord(state.receipts.find((item) => item.id === state.selected) || clearDateReviewFields(updatedReceipt));
       toast(t("saved"));
       return go("home");
@@ -8605,6 +8744,7 @@ document.addEventListener("submit", async (event) => {
     if (form.id === "incomeCreateForm") {
       const amount = normalizeAmount(data.amount);
       if (!Number.isFinite(amount) || amount <= 0) throw new Error(t("validAmount"));
+      const slot = businessSlotById(state.pendingBusinessSlotId || defaultBusinessSlotId(), normalizeBusinessType(state.pendingBusinessType || defaultBusinessType()));
       const created = await api("/api/income", {
         method: "POST",
         body: JSON.stringify({
@@ -8613,9 +8753,12 @@ document.addEventListener("submit", async (event) => {
           currency: data.currency,
           description: data.description || null,
           date: data.date ? new Date(`${data.date}T12:00:00`).toISOString() : null,
-          business_type: normalizeBusinessType(state.pendingBusinessType || defaultBusinessType())
+          business_type: slot.type,
+          business_slot_id: slot.id,
+          business_slot_label: slot.label
         })
       });
+      saveRecordBusinessMeta(created.id, slot);
       const proof = incomeProofFile(form);
       if (proof && created?.id) {
         const preview = await imageThumbnailDataUrl(proof);
@@ -8629,7 +8772,9 @@ document.addEventListener("submit", async (event) => {
           amount,
           currency: data.currency,
           description: data.description || created.description || "",
-          business_type: normalizeBusinessType(state.pendingBusinessType || created.business_type || defaultBusinessType()),
+          business_type: slot.type,
+          business_slot_id: slot.id,
+          business_slot_label: slot.label,
           timestamp: created.timestamp || created.created_at || (data.date ? new Date(`${data.date}T12:00:00`).toISOString() : new Date().toISOString())
         };
         state.income = attachIncomeProofs([...state.income.filter((item) => item.id !== created.id), localIncome]);
@@ -8641,11 +8786,12 @@ document.addEventListener("submit", async (event) => {
       const entry = state.income.find((item) => item.id === state.selected) || {};
       const amount = normalizeAmount(data.amount);
       if (!Number.isFinite(amount) || amount <= 0) throw new Error(t("validAmount"));
-      const businessType = normalizeBusinessType(data.business_type || entry.business_type || defaultBusinessType());
+      const slot = businessSlotById(data.business_slot_id || entry.business_slot_id, entry.business_type || defaultBusinessType());
       const updated = await api(`/api/income/${state.selected}`, {
         method: "PATCH",
-        body: JSON.stringify({ amount, currency: data.currency, description: data.description || null, business_type: businessType, date: data.date ? new Date(`${data.date}T12:00:00`).toISOString() : null })
+        body: JSON.stringify({ amount, currency: data.currency, description: data.description || null, business_type: slot.type, business_slot_id: slot.id, business_slot_label: slot.label, date: data.date ? new Date(`${data.date}T12:00:00`).toISOString() : null })
       });
+      saveRecordBusinessMeta(state.selected, slot);
       const proof = incomeProofFile(form);
       if (proof && state.selected) {
         const preview = await imageThumbnailDataUrl(proof);
@@ -8659,7 +8805,9 @@ document.addEventListener("submit", async (event) => {
         amount,
         currency: data.currency,
         description: data.description || "",
-        business_type: businessType,
+        business_type: slot.type,
+        business_slot_id: slot.id,
+        business_slot_label: slot.label,
         timestamp: updated?.timestamp || item.timestamp
       } : item));
       toast(t("saved"));
@@ -8711,12 +8859,14 @@ document.addEventListener("submit", async (event) => {
       state.language = data.language;
       state.humour = data.humour;
       const incomeSources = formIncomeSources(data);
+      const businessSlots = cleanBusinessSlots(formBusinessSlots(data), { ...state.user, income_sources: incomeSources, trade: data.trade || state.user.trade || "" });
       const patchBody = {
         first_name: data.first_name,
         trade: data.trade || null,
         language: state.language,
         notification_preference: data.notification_preference || "none",
-        income_sources: incomeSources
+        income_sources: incomeSources,
+        business_slots: businessSlots
       };
       const user = await api(`/api/users/${state.user.id}`, {
         method: "PATCH",
@@ -8729,7 +8879,8 @@ document.addEventListener("submit", async (event) => {
         whatsapp_phone_normalized: user.whatsapp_phone_normalized || state.user.whatsapp_phone_normalized || "",
         whatsapp_linked_at: user.whatsapp_linked_at || state.user.whatsapp_linked_at || "",
         notification_preference: user.notification_preference || data.notification_preference || "none",
-        income_sources: incomeSources
+        income_sources: incomeSources,
+        business_slots: businessSlots
       });
       write("rb_language", state.language);
       write("rb_humour", state.humour);
