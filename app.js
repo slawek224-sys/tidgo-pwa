@@ -168,6 +168,8 @@ Object.assign(MARKETING_COPY.en, {
   mtdRecords: "What records do I need?",
   mtdPaper: "What if I still keep paper receipts?",
   mtdPhotos: "Can I use photos?",
+  mtdReceiptsMyth: "Do I have to photograph every receipt for MTD?",
+  mtdReceiptsMythText: "No. HMRC requires digital records, not a photo of every paper receipt. Photos are often the simplest way to keep proof readable and easy to find.",
   mtdSubmit: "Does TidGo submit to HMRC?",
   mtdAccountant: "Do I still need an accountant?",
   mtdGettingStarted: "Getting started with MTD",
