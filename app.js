@@ -4783,6 +4783,34 @@ function scanLabel() {
   return labels[state.language] || labels.en;
 }
 
+function scanStillWorkingLabel() {
+  const labels = {
+    en: "Still working...",
+    pl: "Jeszcze pracuje...",
+    ro: "Inca lucrez...",
+    uk: "Shche pratsiuie...",
+    lt: "Dar dirbu...",
+    lv: "Vel stradaju...",
+    es: "Aun trabajando...",
+    bg: "Oshte rabotya..."
+  };
+  return labels[state.language] || labels.en;
+}
+
+function scanSlowConnectionLabel() {
+  const labels = {
+    en: "Slow connection. Keep this open while TidGo finishes.",
+    pl: "Slaby internet. Zostaw to okno otwarte, az TidGo skonczy.",
+    ro: "Conexiune slaba. Tine fereastra deschisa pana termina TidGo.",
+    uk: "Povilne ziednannia. Zalyshte vikno vidkrytym, doky TidGo zakinchyt.",
+    lt: "Letas rysys. Palikite langa atidaryta, kol TidGo baigs.",
+    lv: "Lens savienojums. Atstajiet logu atvertu, kamer TidGo pabeidz.",
+    es: "Conexion lenta. Deja esta ventana abierta hasta que TidGo termine.",
+    bg: "Bavna vruzka. Ostavete prozoretsa otvoren, dokato TidGo priklyuchi."
+  };
+  return labels[state.language] || labels.en;
+}
+
 function showScanOverlay(imageDataUrl) {
   hideScanOverlay();
   const node = document.createElement("div");
@@ -4798,14 +4826,31 @@ function showScanOverlay(imageDataUrl) {
         <span class="scan-corner bl"></span>
         <span class="scan-corner br"></span>
       </div>
-      <strong>${escapeHtml(scanLabel())}</strong>
+      <strong data-scan-title>${escapeHtml(scanLabel())}</strong>
+      <p data-scan-detail></p>
     </div>
   `;
   document.body.appendChild(node);
+  const title = node.querySelector("[data-scan-title]");
+  const detail = node.querySelector("[data-scan-detail]");
+  node._scanTimers = [
+    window.setTimeout(() => {
+      node.classList.add("scan-waiting");
+      if (title) title.textContent = scanStillWorkingLabel();
+    }, 5200),
+    window.setTimeout(() => {
+      node.classList.add("scan-slow");
+      if (title) title.textContent = scanStillWorkingLabel();
+      if (detail) detail.textContent = scanSlowConnectionLabel();
+    }, 12000)
+  ];
 }
 
 function hideScanOverlay() {
-  document.querySelector(".scan-overlay")?.remove();
+  document.querySelectorAll(".scan-overlay").forEach((node) => {
+    (node._scanTimers || []).forEach((timer) => window.clearTimeout(timer));
+    node.remove();
+  });
 }
 
 function playSuccessPing() {
