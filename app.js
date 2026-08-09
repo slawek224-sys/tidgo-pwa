@@ -1122,6 +1122,8 @@ const COPY = {
     businessTypeTitle: "What is this record for?",
     businessSelfEmployment: "Self-employment / CIS / side income",
     businessProperty: "UK property / landlord",
+    businessCategory: "Business category",
+    propertyIncomeHint: "For rent or other UK property income, enter the amount manually. You can attach a bank statement screenshot, PDF or transfer confirmation as proof.",
     backendDown: "Cannot reach TidGo API right now. Render may be waking up; try again in a moment.",
     serverUnavailableTitle: "TidGo is temporarily unavailable",
     serverUnavailableText: "The app on your device is fine. The TidGo server is not answering right now, probably during a deploy or restart. Please try again shortly.",
@@ -4296,7 +4298,7 @@ function formIncomeSources(data) {
 }
 
 function selectedBusinessTypeLabel() {
-  return state.pendingBusinessType === "uk-property" ? t("businessProperty") : t("businessSelfEmployment");
+  return normalizeBusinessType(state.pendingBusinessType) === "uk-property" ? t("businessProperty") : t("businessSelfEmployment");
 }
 
 function defaultBusinessType() {
@@ -6376,6 +6378,7 @@ function receipt() {
       ${recordDateNeedsReview(receipt) ? dateReviewCard() : ""}
       <form class="stack" id="receiptForm" style="margin-top:14px">
         ${receiptReplaceField()}
+        ${businessTypeField(receipt.business_type || defaultBusinessType())}
         <label class="field"><span>${t("amount")}</span><input class="input" name="amount" inputmode="decimal" value="${receipt.amount || 0}"></label>
         <label class="field"><span>${t("currency")}</span><select class="select" name="currency" disabled>${currencyOptions(receipt.currency || "GBP")}</select></label>
         <label class="field"><span>${t("merchant")}</span><input class="input" name="merchant" value="${escapeAttr(receipt.merchant || "")}"></label>
@@ -6399,6 +6402,7 @@ function incomeForm() {
         <label class="field"><span>${t("currency")}</span><select class="select" name="currency">${currencyOptions("GBP")}</select></label>
         <label class="field"><span>${t("description")}</span><textarea class="textarea" name="description"></textarea></label>
         <label class="field"><span>${t("date")}</span><input class="input" type="date" name="date" value="${dateInputValue()}"></label>
+        ${normalizeBusinessType(state.pendingBusinessType || defaultBusinessType()) === "uk-property" ? `<p class="hint income-manual-check">${t("propertyIncomeHint")}</p>` : ""}
         ${incomeProofPickerField()}
         <button class="primary" type="submit">${t("save")}</button>
         <p class="hint income-manual-check">${t("incomeManualCheck")}</p>
@@ -6419,6 +6423,7 @@ function incomeDetail() {
     <section class="screen">
       ${topbar(t("income"), true)}
       <form class="stack" id="incomeEditForm">
+        ${businessTypeField(entry.business_type || defaultBusinessType())}
         <label class="field"><span>${t("amount")}</span><input class="input" name="amount" inputmode="decimal" value="${entry.amount || 0}"></label>
         <label class="field"><span>${t("currency")}</span><select class="select" name="currency">${currencyOptions(entry.currency || "GBP")}</select></label>
         <label class="field"><span>${t("description")}</span><textarea class="textarea" name="description">${escapeHtml(entry.description || "")}</textarea></label>
@@ -6988,6 +6993,28 @@ function categoryChips(active = "other") {
   return CATEGORIES.map((category) => `<button class="chip ${active === category ? "active" : ""}" type="button" data-category="${category}">${t(category)}</button>`).join("");
 }
 
+function normalizeBusinessType(value) {
+  return value === "uk-property" ? "uk-property" : "self-employment";
+}
+
+function businessTypeOptions(active = "self-employment") {
+  const selected = normalizeBusinessType(active);
+  return [
+    ["self-employment", t("businessSelfEmployment")],
+    ["uk-property", t("businessProperty")]
+  ].map(([value, label]) => `<option value="${value}"${selected === value ? " selected" : ""}>${escapeHtml(label)}</option>`).join("");
+}
+
+function businessTypeField(active = "self-employment") {
+  if (!shouldAskBusinessType()) return "";
+  return `
+    <label class="field">
+      <span>${t("businessCategory")}</span>
+      <select class="select" name="business_type">${businessTypeOptions(active)}</select>
+    </label>
+  `;
+}
+
 function incomeSourceChoices(selected = []) {
   const active = new Set(cleanIncomeSources(selected));
   const labels = {
@@ -7442,7 +7469,7 @@ async function uploadReceipt(file, isClientExpense) {
         user_id: state.user.id,
         image_base64,
         is_client_expense: isClientExpense,
-        business_type: state.pendingBusinessType || defaultBusinessType(),
+        business_type: normalizeBusinessType(state.pendingBusinessType || defaultBusinessType()),
         humour_style: state.humour,
         language: state.language
       })
@@ -7468,6 +7495,7 @@ async function replaceReceiptImage(file) {
     return;
   }
   const oldReceiptId = state.selected;
+  const oldReceipt = state.receipts.find((item) => item.id === oldReceiptId);
   setBusy(true);
   try {
     const image_base64 = await fileToDataUrl(file);
@@ -7478,6 +7506,7 @@ async function replaceReceiptImage(file) {
         user_id: state.user.id,
         image_base64,
         is_client_expense: false,
+        business_type: normalizeBusinessType(oldReceipt?.business_type || defaultBusinessType()),
         humour_style: state.humour,
         language: state.language
       })
@@ -8546,15 +8575,18 @@ document.addEventListener("submit", async (event) => {
       return go("home");
     }
     if (form.id === "receiptForm") {
+      const receipt = state.receipts.find((item) => item.id === state.selected) || {};
       const category = document.querySelector("[data-category].active")?.dataset.category || "other";
       const amount = normalizeAmount(data.amount);
       if (!Number.isFinite(amount) || amount < 0) throw new Error(t("validAmount"));
+      const businessType = normalizeBusinessType(data.business_type || receipt.business_type || defaultBusinessType());
       const updatedReceipt = await api(`/api/receipts/${state.selected}`, {
         method: "PATCH",
         body: JSON.stringify({
           amount,
           merchant: data.merchant || null,
           category,
+          business_type: businessType,
           date: data.date ? new Date(`${data.date}T12:00:00`).toISOString() : null,
           date_needs_review: false,
           needs_date_review: false,
@@ -8565,7 +8597,7 @@ document.addEventListener("submit", async (event) => {
       });
       await refresh();
       rememberDateReviewConfirmed(state.selected);
-      state.receipts = state.receipts.map((item) => item.id === state.selected ? clearDateReviewFields({ ...item, ...updatedReceipt }) : item);
+      state.receipts = state.receipts.map((item) => item.id === state.selected ? clearDateReviewFields({ ...item, ...updatedReceipt, business_type: businessType }) : item);
       focusSummaryOnRecord(state.receipts.find((item) => item.id === state.selected) || clearDateReviewFields(updatedReceipt));
       toast(t("saved"));
       return go("home");
@@ -8581,7 +8613,7 @@ document.addEventListener("submit", async (event) => {
           currency: data.currency,
           description: data.description || null,
           date: data.date ? new Date(`${data.date}T12:00:00`).toISOString() : null,
-          business_type: state.pendingBusinessType || defaultBusinessType()
+          business_type: normalizeBusinessType(state.pendingBusinessType || defaultBusinessType())
         })
       });
       const proof = incomeProofFile(form);
@@ -8597,6 +8629,7 @@ document.addEventListener("submit", async (event) => {
           amount,
           currency: data.currency,
           description: data.description || created.description || "",
+          business_type: normalizeBusinessType(state.pendingBusinessType || created.business_type || defaultBusinessType()),
           timestamp: created.timestamp || created.created_at || (data.date ? new Date(`${data.date}T12:00:00`).toISOString() : new Date().toISOString())
         };
         state.income = attachIncomeProofs([...state.income.filter((item) => item.id !== created.id), localIncome]);
@@ -8605,11 +8638,13 @@ document.addEventListener("submit", async (event) => {
       return go("home");
     }
     if (form.id === "incomeEditForm") {
+      const entry = state.income.find((item) => item.id === state.selected) || {};
       const amount = normalizeAmount(data.amount);
       if (!Number.isFinite(amount) || amount <= 0) throw new Error(t("validAmount"));
+      const businessType = normalizeBusinessType(data.business_type || entry.business_type || defaultBusinessType());
       const updated = await api(`/api/income/${state.selected}`, {
         method: "PATCH",
-        body: JSON.stringify({ amount, currency: data.currency, description: data.description || null })
+        body: JSON.stringify({ amount, currency: data.currency, description: data.description || null, business_type: businessType, date: data.date ? new Date(`${data.date}T12:00:00`).toISOString() : null })
       });
       const proof = incomeProofFile(form);
       if (proof && state.selected) {
@@ -8624,6 +8659,7 @@ document.addEventListener("submit", async (event) => {
         amount,
         currency: data.currency,
         description: data.description || "",
+        business_type: businessType,
         timestamp: updated?.timestamp || item.timestamp
       } : item));
       toast(t("saved"));
