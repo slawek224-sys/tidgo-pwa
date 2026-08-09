@@ -631,7 +631,8 @@ const PRICING_PAGE_COPY = {
       ["Export and delete", "Export your full records as PDF or CSV at any time. Delete your account and all data whenever you choose."]
     ],
     comingTitle: "Coming soon - MTD submissions",
-    comingText: "We are currently completing HMRC production approval for direct quarterly updates and final declaration submission. When approved, this will be added to the existing plan. Subscribers at that point will not pay more.",
+    comingText: "We are currently completing HMRC production approval for direct quarterly updates to HMRC. When approved, this will be added to the existing plan. Subscribers at that point will not pay more.",
+    comingScope: "Quarterly updates are running totals of income and expenses - four per year. The year-end declaration remains your accountant's work. We are not replacing that.",
     comingNote: "No date is confirmed yet. Founding Testers will hear first.",
     earlyTitle: "Early Access ends 1 September 2026",
     earlyText: "TidGo has been free during Early Access. From 1 September 2026, new subscribers pay £4.99 per month.",
@@ -662,7 +663,8 @@ const PRICING_PAGE_COPY = {
       ["Eksport i usuniecie", "Wyeksportuj pelne rekordy jako PDF lub CSV w kazdej chwili. Usun konto i wszystkie dane kiedy chcesz."]
     ],
     comingTitle: "Wkrotce - wysylka MTD",
-    comingText: "Konczymy procedure zatwierdzenia przez HMRC do bezposredniej wysylki kwartalnych raportow i final declaration. Po zatwierdzeniu zostanie to dodane do istniejacego planu. Subskrybenci w tym momencie nie zaplaca wiecej.",
+    comingText: "Konczymy procedure zatwierdzenia przez HMRC do bezposredniej wysylki kwartalnych raportow do HMRC. Po zatwierdzeniu zostanie to dodane do istniejacego planu. Subskrybenci w tym momencie nie zaplaca wiecej.",
+    comingScope: "Quarterly updates to narastajace sumy przychodow i wydatkow - cztery razy w roku. Roczna deklaracja pozostaje praca Twojego ksiegowego. Nie zastepujemy tego.",
     comingNote: "Daty nie ma jeszcze potwierdzonej. Founding Testerzy dowiedza sie pierwsi.",
     earlyTitle: "Early Access konczy sie 1 wrzesnia 2026",
     earlyText: "TidGo bylo bezplatne podczas Early Access. Od 1 wrzesnia 2026 nowi subskrybenci placa £4.99 miesiecznie.",
@@ -693,7 +695,8 @@ const PRICING_PAGE_COPY = {
       ["Export si stergere", "Exporta toate evidentele ca PDF sau CSV oricand. Sterge contul si toate datele cand doresti."]
     ],
     comingTitle: "In curand - trimiteri MTD",
-    comingText: "Finalizam aprobarea HMRC pentru trimiterea directa a actualizarilor trimestriale si a final declaration. Cand este aprobat, va fi adaugat la planul existent. Abonatii de atunci nu vor plati mai mult.",
+    comingText: "Finalizam aprobarea HMRC pentru trimiterea directa a actualizarilor trimestriale catre HMRC. Cand este aprobat, va fi adaugat la planul existent. Abonatii de atunci nu vor plati mai mult.",
+    comingScope: "Actualizarile trimestriale sunt totaluri cumulative ale veniturilor si cheltuielilor - patru pe an. Declaratia de la finalul anului ramane treaba contabilului tau. Nu o inlocuim.",
     comingNote: "Nu exista inca o data confirmata. Founding Testerii vor afla primii.",
     earlyTitle: "Early Access se incheie pe 1 septembrie 2026",
     earlyText: "TidGo a fost gratuit in perioada Early Access. Din 1 septembrie 2026, noii abonati platesc £4.99 pe luna.",
@@ -724,7 +727,8 @@ const PRICING_PAGE_COPY = {
       ["Eksportas ir istrynimas", "Eksportuok visus irasus kaip PDF ar CSV bet kada. Istrink paskyra ir visus duomenis kada nori."]
     ],
     comingTitle: "Netrukus - MTD pateikimai",
-    comingText: "Baigiame HMRC patvirtinimo procedura tiesioginiam ketvirtiniu ataskaitu ir final declaration pateikimui. Kai bus patvirtinta, tai bus prideta prie esamo plano. Tuo metu prenumeratoriai nemokes daugiau.",
+    comingText: "Baigiame HMRC patvirtinimo procedura tiesioginiam ketvirtiniu ataskaitu pateikimui HMRC. Kai bus patvirtinta, tai bus prideta prie esamo plano. Tuo metu prenumeratoriai nemokes daugiau.",
+    comingScope: "Ketvirtiniai atnaujinimai yra kaupiamosios pajamu ir islaidu sumos - keturis kartus per metus. Metu pabaigos deklaracija lieka tavo buhalterio darbas. Mes jos nepakeiciame.",
     comingNote: "Data dar nepatvirtinta. Founding Testeriai suzinos pirmieji.",
     earlyTitle: "Early Access baigiasi 2026 m. rugsejo 1 d.",
     earlyText: "TidGo buvo nemokama Early Access laikotarpiu. Nuo 2026 m. rugsejo 1 d. nauji prenumeratoriai moka £4.99 per menesi.",
@@ -5914,6 +5918,7 @@ function launchPricingPage() {
           <span class="eyebrow">MTD</span>
           <h2>${escapeHtml(copy.comingTitle)}</h2>
           <p><strong>${escapeHtml(copy.comingText)}</strong></p>
+          <p>${escapeHtml(copy.comingScope)}</p>
           <p>${escapeHtml(copy.comingNote)}</p>
         </section>
         <section class="marketing-page-card pricing-early-card">
