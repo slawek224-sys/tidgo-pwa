@@ -3034,6 +3034,165 @@ button {
   box-shadow: var(--shadow);
 }
 
+.scan-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(15, 23, 42, 0.94);
+}
+
+.scan-card {
+  display: grid;
+  gap: 22px;
+  justify-items: center;
+  color: white;
+  text-align: center;
+}
+
+.scan-frame {
+  position: relative;
+  width: min(72vw, 270px);
+  height: min(70vh, 350px);
+  overflow: hidden;
+  border-radius: 18px;
+  background: #111827;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.38);
+}
+
+.scan-frame img,
+.scan-placeholder {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.scan-placeholder {
+  background: #1f2937;
+}
+
+.scan-tint {
+  position: absolute;
+  inset: 0;
+  background: rgba(22, 163, 74, 0.08);
+}
+
+.scan-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 3px;
+  background: #22c55e;
+  box-shadow: 0 0 16px rgba(34, 197, 94, 0.95);
+  animation: scan-line 1.35s ease-in-out infinite alternate;
+}
+
+.scan-corner {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-color: #22c55e;
+}
+
+.scan-corner.tl {
+  top: 10px;
+  left: 10px;
+  border-top: 3px solid;
+  border-left: 3px solid;
+  border-top-left-radius: 6px;
+}
+
+.scan-corner.tr {
+  top: 10px;
+  right: 10px;
+  border-top: 3px solid;
+  border-right: 3px solid;
+  border-top-right-radius: 6px;
+}
+
+.scan-corner.bl {
+  bottom: 10px;
+  left: 10px;
+  border-bottom: 3px solid;
+  border-left: 3px solid;
+  border-bottom-left-radius: 6px;
+}
+
+.scan-corner.br {
+  right: 10px;
+  bottom: 10px;
+  border-right: 3px solid;
+  border-bottom: 3px solid;
+  border-bottom-right-radius: 6px;
+}
+
+.success-ping {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  display: grid;
+  place-items: center;
+}
+
+.success-ping-circle {
+  width: 96px;
+  height: 96px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: #16a34a;
+  color: white;
+  box-shadow: 0 0 34px rgba(22, 163, 74, 0.58);
+  animation: success-ping 1.05s ease forwards;
+}
+
+.success-ping-circle span {
+  font-size: 54px;
+  line-height: 1;
+  font-weight: 900;
+  transform: translateY(-2px);
+}
+
+@keyframes scan-line {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(calc(min(70vh, 350px) - 3px));
+  }
+}
+
+@keyframes success-ping {
+  0% {
+    opacity: 0;
+    transform: scale(0.55);
+  }
+
+  18% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+
+  34% {
+    transform: scale(1);
+  }
+
+  78% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+}
+
 .modal-backdrop {
   position: fixed;
   inset: 0;

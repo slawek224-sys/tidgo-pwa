@@ -4769,6 +4769,85 @@ function toast(message) {
   window.setTimeout(() => node.remove(), 4200);
 }
 
+function scanLabel() {
+  const labels = {
+    en: "Reading your receipt...",
+    pl: "Czytam Twoj paragon...",
+    ro: "Citesc bonul tau...",
+    uk: "Chytaiu vash chek...",
+    lt: "Skaitau jusu kvita...",
+    lv: "Lasu jusu ceku...",
+    es: "Leyendo tu recibo...",
+    bg: "Cheta kasovata belezhka..."
+  };
+  return labels[state.language] || labels.en;
+}
+
+function showScanOverlay(imageDataUrl) {
+  hideScanOverlay();
+  const node = document.createElement("div");
+  node.className = "scan-overlay";
+  node.innerHTML = `
+    <div class="scan-card" role="status" aria-live="polite">
+      <div class="scan-frame">
+        ${imageDataUrl ? `<img src="${escapeAttr(imageDataUrl)}" alt="">` : `<div class="scan-placeholder"></div>`}
+        <span class="scan-tint"></span>
+        <span class="scan-line"></span>
+        <span class="scan-corner tl"></span>
+        <span class="scan-corner tr"></span>
+        <span class="scan-corner bl"></span>
+        <span class="scan-corner br"></span>
+      </div>
+      <strong>${escapeHtml(scanLabel())}</strong>
+    </div>
+  `;
+  document.body.appendChild(node);
+}
+
+function hideScanOverlay() {
+  document.querySelector(".scan-overlay")?.remove();
+}
+
+function playSuccessPing() {
+  try {
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContextClass) return;
+    const ctx = new AudioContextClass();
+    const playTone = (frequency, start, duration) => {
+      const oscillator = ctx.createOscillator();
+      const gain = ctx.createGain();
+      oscillator.type = "sine";
+      oscillator.frequency.value = frequency;
+      oscillator.connect(gain);
+      gain.connect(ctx.destination);
+      gain.gain.setValueAtTime(0.0001, start);
+      gain.gain.exponentialRampToValueAtTime(0.14, start + 0.018);
+      gain.gain.exponentialRampToValueAtTime(0.0001, start + duration);
+      oscillator.start(start);
+      oscillator.stop(start + duration + 0.03);
+    };
+    const now = ctx.currentTime;
+    playTone(660, now, 0.13);
+    playTone(880, now + 0.1, 0.2);
+    window.setTimeout(() => ctx.close?.(), 700);
+  } catch {}
+}
+
+function showSuccessPing(message = t("saved"), delayToast = true) {
+  document.querySelector(".success-ping")?.remove();
+  const node = document.createElement("div");
+  node.className = "success-ping";
+  node.innerHTML = `
+    <div class="success-ping-circle" role="status" aria-live="polite">
+      <span>✓</span>
+    </div>
+  `;
+  document.body.appendChild(node);
+  playSuccessPing();
+  if (delayToast) window.setTimeout(() => toast(message), 780);
+  window.setTimeout(() => node.remove(), 1150);
+}
+
 function confirmDownload(kind = "user") {
   const old = document.querySelector(".modal-backdrop");
   if (old) old.remove();
@@ -7309,9 +7388,9 @@ async function uploadReceipt(file, isClientExpense) {
     return;
   }
   setBusy(true);
-  toast(t("photoReady"));
   try {
     const image_base64 = await fileToDataUrl(file);
+    showScanOverlay(image_base64);
     const receipt = await api("/api/receipts", {
       method: "POST",
       body: JSON.stringify({
@@ -7328,10 +7407,11 @@ async function uploadReceipt(file, isClientExpense) {
     state.selected = receipt.id;
     state.screen = "receipt";
     render();
-    toast(receipt.ai_comment || t("saved"));
+    showSuccessPing(receipt.ai_comment || t("saved"));
   } catch (error) {
     toast(error.message || t("backendDown"));
   } finally {
+    hideScanOverlay();
     setBusy(false);
   }
 }
@@ -7344,9 +7424,9 @@ async function replaceReceiptImage(file) {
   }
   const oldReceiptId = state.selected;
   setBusy(true);
-  toast(t("photoReady"));
   try {
     const image_base64 = await fileToDataUrl(file);
+    showScanOverlay(image_base64);
     const receipt = await api("/api/receipts", {
       method: "POST",
       body: JSON.stringify({
@@ -7363,10 +7443,11 @@ async function replaceReceiptImage(file) {
     state.selected = receipt.id;
     state.screen = "receipt";
     render();
-    toast(receipt.ai_comment || t("saved"));
+    showSuccessPing(receipt.ai_comment || t("saved"));
   } catch (error) {
     toast(error.message || t("backendDown"));
   } finally {
+    hideScanOverlay();
     setBusy(false);
   }
 }
