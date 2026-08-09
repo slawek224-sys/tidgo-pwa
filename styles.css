@@ -1196,6 +1196,61 @@ button {
   color: var(--blue-dark);
 }
 
+.article-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin: 6px 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.article-table {
+  width: 100%;
+  min-width: 620px;
+  border-collapse: collapse;
+  background: #ffffff;
+}
+
+.article-table th,
+.article-table td {
+  border-bottom: 1px solid var(--line);
+  padding: 12px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.article-table th {
+  background: #eaf2ff;
+  color: var(--blue-dark);
+  font-weight: 800;
+}
+
+.article-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.article-related {
+  display: grid;
+  gap: 10px;
+  margin: 10px 0;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #f8fbff;
+}
+
+.article-related h2 {
+  margin: 0;
+}
+
+.article-related ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 14px;
+  margin: 0;
+  padding-left: 18px;
+}
+
 .marketing-card-grid,
 .marketing-topic-grid {
   display: grid;
