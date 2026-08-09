@@ -477,7 +477,7 @@ Object.assign(MARKETING_COPY.en, {
   mtdTestingTitle: "MTD submission testing",
   mtdTestingText: "TidGo is currently testing an MTD connection in HMRC's sandbox. Today, TidGo helps you keep digital records and quarter-ready summaries for your accountant. The goal is to add direct MTD submissions later, after testing and approval.",
   mtdLateTitle: "Missed a quarterly update?",
-  mtdLateText: "HMRC guidance says quarterly updates use cumulative totals. A later update can include earlier-quarter figures, but a missed deadline can still create a penalty point. TidGo's job is to help get the records tidy again before the next handoff.",
+  mtdLateText: "Missed the 7 August deadline? No penalty points in 2026/27. Here's what actually happens.",
   mtdSourceTitle: "Official source",
   mtdSourceText: "Read the public GOV.UK guidance on Making Tax Digital for Income Tax and quarterly updates.",
   launchPricingFullText: "TidGo is in early access for a small group of real users. It is free while we collect feedback, improve the app and prepare clearer guides. Users will be told clearly in advance and will always be able to export or delete their records.",
@@ -513,7 +513,7 @@ Object.assign(MARKETING_COPY.pl, {
   mtdTestingTitle: "Testy wysyłki MTD",
   mtdTestingText: "TidGo testuje obecnie połączenie MTD w sandboxie HMRC. Dzisiaj pomaga trzymać cyfrowe rekordy i kwartalne podsumowania dla księgowego. Celem jest dodanie bezpośredniej wysyłki MTD później, po testach i zatwierdzeniu.",
   mtdLateTitle: "Termin kwartalnego update'u już minął?",
-  mtdLateText: "Według HMRC quarterly updates używają sum narastających. Późniejszy update może objąć dane z wcześniejszego kwartału, ale spóźniony termin nadal może oznaczać penalty point. Zadaniem TidGo jest pomóc szybko uporządkować rekordy przed następnym przekazaniem.",
+  mtdLateText: "Termin 7 sierpnia min??? W roku 2026/27 nie ma penalty points. Zobacz, co naprawd? dzieje si? dalej.",
   mtdSourceTitle: "Oficjalne źródło",
   mtdSourceText: "Przeczytaj publiczne GOV.UK guidance o Making Tax Digital for Income Tax i quarterly updates.",
   launchPricingFullText: "TidGo jest w early access dla małej grupy prawdziwych użytkowników. Jest darmowe, kiedy zbieramy feedback, poprawiamy aplikację i przygotowujemy jaśniejsze poradniki. Użytkownicy dostaną jasną informację z wyprzedzeniem i zawsze będą mogli wyeksportować albo usunąć swoje rekordy.",
@@ -549,7 +549,7 @@ Object.assign(MARKETING_COPY.ro, {
   mtdTestingTitle: "Testare trimitere MTD",
   mtdTestingText: "TidGo testeaza in prezent conexiunea MTD in sandbox-ul HMRC. Astazi te ajuta sa pastrezi evidente digitale si rezumate trimestriale pentru contabil. Scopul este sa adaugam trimiteri MTD directe mai tarziu, dupa testare si aprobare.",
   mtdLateTitle: "Ai ratat un quarterly update?",
-  mtdLateText: "Ghidul HMRC spune ca quarterly updates folosesc totaluri cumulative. Un update ulterior poate include cifre dintr-un trimestru anterior, dar un termen ratat poate crea in continuare un penalty point. TidGo te ajuta sa readuci evidentele in ordine inainte de urmatorul handoff.",
+  mtdLateText: "Ai ratat termenul de 7 august? In 2026/27 nu exista penalty points. Iata ce se intampla de fapt.",
   mtdSourceTitle: "Sursa oficiala",
   mtdSourceText: "Citeste ghidul public GOV.UK despre Making Tax Digital for Income Tax si quarterly updates.",
   launchPricingFullText: "TidGo este in early access pentru un grup mic de utilizatori reali. Este gratuit cat timp strangem feedback, imbunatatim aplicatia si pregatim ghiduri mai clare. Utilizatorii vor fi anuntati clar din timp si vor putea mereu exporta sau sterge inregistrarile.",
@@ -585,7 +585,7 @@ Object.assign(MARKETING_COPY.lt, {
   mtdTestingTitle: "MTD submission testavimas",
   mtdTestingText: "TidGo siuo metu testuoja MTD jungti HMRC sandbox aplinkoje. Dabar TidGo padeda laikyti skaitmeninius irasus ir ketvircio suvestines buhalteriui. Tikslas - veliau prideti tiesiogini MTD pateikima po testu ir patvirtinimo.",
   mtdLateTitle: "Praleidote quarterly update?",
-  mtdLateText: "HMRC gidas sako, kad quarterly updates naudoja kaupiamuosius totalus. Velesnis update gali itraukti ankstesnio ketvircio skaicius, bet praleistas terminas vis tiek gali sukelti penalty point. TidGo padeda vel sutvarkyti irasus iki kito perdavimo.",
+  mtdLateText: "Praleidote rugpjucio 7 d. termina? 2026/27 metais penalty points nera. Stai kas is tikruju vyksta toliau.",
   mtdSourceTitle: "Oficialus saltinis",
   mtdSourceText: "Skaitykite viesas GOV.UK gaires apie Making Tax Digital for Income Tax ir quarterly updates.",
   launchPricingFullText: "TidGo yra early access mazai tikru vartotoju grupei. Programa nemokama, kol renkame atsiliepimus, geriname ja ir ruosiame aiskesnius gidus. Vartotojai bus aiskiai informuoti is anksto ir visada gales eksportuoti arba istrinti savo irasus.",
@@ -3507,10 +3507,7 @@ function mtdTopics() {
     ["mtdQuarterlyUpdates", "mtdQuarterlyUpdatesText", mtdQuarterlyUpdatesHref()],
     ["mtdReceiptsMyth", "mtdReceiptsMythText", state.marketingLanguage === "en" ? "/mtd/do-i-have-to-photograph-receipts" : `/${state.marketingLanguage}/mtd/do-i-have-to-photograph-receipts`],
     ["mtdGateway", "mtdGatewayText", state.marketingLanguage === "en" ? "/mtd/government-gateway" : `/${state.marketingLanguage}/mtd/government-gateway`],
-    ["mtdSoleTraders", "mtdSoleTradersText", "/mtd/sole-traders"],
-    ["mtdLandlords", "mtdLandlordsText", "/mtd/landlords"],
-    ["mtdCis", "mtdCisText", state.marketingLanguage === "en" ? "/mtd/cis" : `/${state.marketingLanguage}/mtd/cis`],
-    ["mtdFaqs", "mtdFaqsText", "/mtd/faqs"]
+    ["mtdCis", "mtdCisText", state.marketingLanguage === "en" ? "/mtd/cis" : `/${state.marketingLanguage}/mtd/cis`]
   ];
 }
 
