@@ -592,6 +592,156 @@ Object.assign(MARKETING_COPY.lt, {
   pricingText: "TidGo nemokama early access metu. Jei bus ivesti mokami planai, vartotojai bus aiskiai informuoti is anksto ir visada gales eksportuoti arba istrinti savo irasus."
 });
 
+const EARLY_ACCESS_BANNER_COPY = {
+  en: {
+    title: "Early Access ends 1 September 2026",
+    text: "TidGo is free until then. Sign up now and get 14 days free when paid plans begin - no card required during Early Access.",
+    button: "Start free - no card needed"
+  },
+  pl: {
+    title: "Early Access konczy sie 1 wrzesnia 2026",
+    text: "Do tej daty TidGo jest bezplatne. Zapisz sie teraz i dostan 14 dni za darmo, gdy zaczna sie platne plany - bez karty w czasie Early Access.",
+    button: "Zacznij za darmo - bez karty"
+  },
+  ro: {
+    title: "Early Access se incheie pe 1 septembrie 2026",
+    text: "Pana atunci TidGo este gratuit. Inscrie-te acum si primesti 14 zile gratuit cand incep planurile platite - fara card in perioada Early Access.",
+    button: "Incepe gratuit - fara card"
+  },
+  lt: {
+    title: "Early Access baigiasi 2026 m. rugsejo 1 d.",
+    text: "Iki tol TidGo yra nemokama. Uzsiregistruok dabar ir gauk 14 dienu nemokamai, kai prasides mokami planai - korteles nereikia Early Access laikotarpiu.",
+    button: "Pradek nemokamai - be korteles"
+  }
+};
+
+const PRICING_PAGE_COPY = {
+  en: {
+    title: "TidGo pricing",
+    lead: "One plan. One price. No surprises.",
+    price: "£4.99 per month",
+    intro: "Cancel any time. No contracts. No annual commitment. No questions asked.",
+    ownership: "Your records are always yours - you can export or delete everything at any time, including after cancelling.",
+    includedTitle: "What's included",
+    sections: [
+      ["Record keeping", "Receipts by WhatsApp photo, forwarded email, or in-app upload. Income entries with optional proof document. CIS payslips and remittance notices by email."],
+      ["Eight languages, English output", "The app works in eight languages. Records and reports your accountant receives are always in English - because HMRC and accountants work in English. That's intentional, not a limitation."],
+      ["Accountant access - always free", "Your accountant gets free read-only access to your records. No fee per client, no practice licence. They can view records, request missing documents and download a clean PDF or CSV pack."],
+      ["MTD-ready records", "TidGo keeps your records organised and ready for your accountant's MTD workflow. It does not currently submit to HMRC directly - your accountant or MTD-compatible software does that."],
+      ["Export and delete", "Export your full records as PDF or CSV at any time. Delete your account and all data whenever you choose."]
+    ],
+    comingTitle: "Coming soon - MTD submissions",
+    comingText: "We are currently completing HMRC production approval for direct quarterly updates and final declaration submission. When approved, this will be added to the existing plan. Subscribers at that point will not pay more.",
+    comingNote: "No date is confirmed yet. Founding Testers will hear first.",
+    earlyTitle: "Early Access ends 1 September 2026",
+    earlyText: "TidGo has been free during Early Access. From 1 September 2026, new subscribers pay £4.99 per month.",
+    earlyNow: "If you sign up before 1 September 2026: you get 14 days free, then £4.99 per month.",
+    earlyExisting: "If you are already using TidGo: you will receive clear notice before any charge begins. You will always have time to export your records if you decide not to continue.",
+    faqTitle: "Frequently asked questions",
+    faqs: [
+      ["Can I cancel any time?", "Yes. Cancel in settings, no email required, no questions asked. Your records remain accessible for 30 days after cancellation so you can export them."],
+      ["Is there an annual plan?", "No. Monthly only. We don't think it's fair to lock people in for a year."],
+      ["What happens to my data if I cancel?", "Your records stay accessible for 30 days. After that they are deleted. Export them before you go - it takes one click."],
+      ["Does the accountant pay anything?", "No. Accountant access is free and always will be."],
+      ["Will the price change?", "We will give clear advance notice of any price change - at least 30 days. You will always be able to export your records before any change takes effect."],
+      ["Is TidGo MTD-compliant software?", "TidGo helps you keep digital records ready for MTD. It does not currently submit quarterly updates to HMRC directly. That part is done by your accountant or MTD-compatible software. We are working on direct submission."]
+    ]
+  },
+  pl: {
+    title: "Cennik TidGo",
+    lead: "Jeden plan. Jedna cena. Zero niespodzianek.",
+    price: "£4.99 miesiecznie",
+    intro: "Anuluj kiedy chcesz. Bez umow. Bez rocznych zobowiazan. Bez pytan.",
+    ownership: "Twoje rekordy zawsze naleza do Ciebie - mozesz wyeksportowac lub usunac wszystko w kazdej chwili, rowniez po anulowaniu.",
+    includedTitle: "Co jest w planie",
+    sections: [
+      ["Zbieranie rekordow", "Paragony przez zdjecie na WhatsAppie, przekazany mail lub upload w aplikacji. Wpisy przychodow z opcjonalnym dowodem. Payslipy CIS i remittance notices mailem."],
+      ["Osiem jezykow, raporty po angielsku", "Aplikacja dziala w osmiu jezykach. Rekordy i raporty, ktore dostaje Twoj ksiegowy, sa zawsze po angielsku - bo HMRC i ksiegowi pracuja po angielsku. To celowa decyzja, nie ograniczenie."],
+      ["Dostep dla ksiegowego - zawsze bezplatny", "Twoj ksiegowy dostaje bezplatny dostep tylko do odczytu. Bez oplaty za klienta, bez licencji. Moze przegladac rekordy, prosic o brakujace dokumenty i pobierac czysty pack PDF lub CSV."],
+      ["Rekordy gotowe pod MTD", "TidGo porzadkuje Twoje rekordy i przygotowuje je do workflow MTD Twojego ksiegowego. Obecnie nie wysyla bezposrednio do HMRC - robi to Twoj ksiegowy albo kompatybilne oprogramowanie."],
+      ["Eksport i usuniecie", "Wyeksportuj pelne rekordy jako PDF lub CSV w kazdej chwili. Usun konto i wszystkie dane kiedy chcesz."]
+    ],
+    comingTitle: "Wkrotce - wysylka MTD",
+    comingText: "Konczymy procedure zatwierdzenia przez HMRC do bezposredniej wysylki kwartalnych raportow i final declaration. Po zatwierdzeniu zostanie to dodane do istniejacego planu. Subskrybenci w tym momencie nie zaplaca wiecej.",
+    comingNote: "Daty nie ma jeszcze potwierdzonej. Founding Testerzy dowiedza sie pierwsi.",
+    earlyTitle: "Early Access konczy sie 1 wrzesnia 2026",
+    earlyText: "TidGo bylo bezplatne podczas Early Access. Od 1 wrzesnia 2026 nowi subskrybenci placa £4.99 miesiecznie.",
+    earlyNow: "Jesli zapiszesz sie przed 1 wrzesnia 2026: dostajesz 14 dni za darmo, potem £4.99 miesiecznie.",
+    earlyExisting: "Jesli juz uzywasz TidGo: dostaniesz wyrazne powiadomienie, zanim jakiekolwiek oplaty sie zaczna. Zawsze bedziesz miec czas, zeby wyeksportowac swoje rekordy, jesli zdecydujesz, ze nie chcesz kontynuowac.",
+    faqTitle: "Najczestsze pytania",
+    faqs: [
+      ["Czy moge anulowac w kazdej chwili?", "Tak. Anuluj w ustawieniach, bez maila, bez pytan. Twoje rekordy sa dostepne przez 30 dni po anulowaniu, zebys mogl je wyeksportowac."],
+      ["Czy jest plan roczny?", "Nie. Tylko miesieczny. Uwazamy, ze wiazanie ludzi na rok nie jest uczciwe."],
+      ["Co sie dzieje z moimi danymi po anulowaniu?", "Rekordy sa dostepne przez 30 dni. Potem zostaja usuniete. Wyeksportuj je przed odejsciem - to jedno klikniecie."],
+      ["Czy ksiegowy za cos placi?", "Nie. Dostep dla ksiegowego jest bezplatny i zawsze taki pozostanie."],
+      ["Czy cena sie zmieni?", "O kazdej zmianie ceny poinformujemy z co najmniej 30-dniowym wyprzedzeniem. Zawsze bedziesz mogl wyeksportowac swoje rekordy przed wejsciem jakiejkolwiek zmiany."],
+      ["Czy TidGo to oprogramowanie zgodne z MTD?", "TidGo pomaga prowadzic cyfrowe rekordy gotowe pod MTD. Obecnie nie wysyla kwartalnych raportow do HMRC bezposrednio. To robi Twoj ksiegowy albo kompatybilne oprogramowanie. Pracujemy nad bezposrednia wysylka."]
+    ]
+  },
+  ro: {
+    title: "Preturi TidGo",
+    lead: "Un plan. Un pret. Fara surprize.",
+    price: "£4.99 pe luna",
+    intro: "Anulezi oricand. Fara contracte. Fara angajament anual. Fara intrebari.",
+    ownership: "Inregistrarile tale iti apartin intotdeauna - poti exporta sau sterge totul oricand, inclusiv dupa anulare.",
+    includedTitle: "Ce este inclus",
+    sections: [
+      ["Colectarea evidentelor", "Bonuri prin fotografie pe WhatsApp, email transmis mai departe sau incarcare in aplicatie. Inregistrari de venituri cu document justificativ optional. Payslipuri CIS si remittance notices prin email."],
+      ["Opt limbi, rapoarte in engleza", "Aplicatia functioneaza in opt limbi. Evidentele si rapoartele pe care le primeste contabilul tau sunt intotdeauna in engleza - pentru ca HMRC si contabilii lucreaza in engleza."],
+      ["Acces pentru contabil - intotdeauna gratuit", "Contabilul tau primeste acces gratuit doar pentru citire. Nicio taxa per client, nicio licenta. Poate vizualiza evidentele, solicita documente lipsa si descarca un pachet PDF sau CSV."],
+      ["Evidente pregatite pentru MTD", "TidGo iti organizeaza evidentele si le pregateste pentru fluxul MTD al contabilului tau. In prezent nu trimite direct la HMRC - face asta contabilul tau sau software-ul compatibil."],
+      ["Export si stergere", "Exporta toate evidentele ca PDF sau CSV oricand. Sterge contul si toate datele cand doresti."]
+    ],
+    comingTitle: "In curand - trimiteri MTD",
+    comingText: "Finalizam aprobarea HMRC pentru trimiterea directa a actualizarilor trimestriale si a final declaration. Cand este aprobat, va fi adaugat la planul existent. Abonatii de atunci nu vor plati mai mult.",
+    comingNote: "Nu exista inca o data confirmata. Founding Testerii vor afla primii.",
+    earlyTitle: "Early Access se incheie pe 1 septembrie 2026",
+    earlyText: "TidGo a fost gratuit in perioada Early Access. Din 1 septembrie 2026, noii abonati platesc £4.99 pe luna.",
+    earlyNow: "Daca te inscrii inainte de 1 septembrie 2026: primesti 14 zile gratuit, apoi £4.99 pe luna.",
+    earlyExisting: "Daca folosesti deja TidGo: vei primi o notificare clara inainte ca orice taxa sa inceapa.",
+    faqTitle: "Intrebari frecvente",
+    faqs: [
+      ["Pot anula oricand?", "Da. Anulezi din setari, fara email, fara intrebari. Evidentele raman accesibile 30 de zile dupa anulare."],
+      ["Exista un plan anual?", "Nu. Doar lunar. Nu consideram corect sa legam oamenii pe un an."],
+      ["Ce se intampla cu datele mele dupa anulare?", "Evidentele sunt accesibile 30 de zile. Apoi sunt sterse. Exporta-le inainte sa pleci."],
+      ["Contabilul plateste ceva?", "Nu. Accesul pentru contabil este gratuit si va ramane asa intotdeauna."],
+      ["Se va schimba pretul?", "Vom anunta orice modificare de pret cu cel putin 30 de zile inainte."],
+      ["TidGo trimite direct la HMRC?", "Nu in prezent. TidGo pregateste evidentele pentru MTD, iar trimiterea se face prin contabilul tau sau software compatibil. Lucram la trimiterea directa."]
+    ]
+  },
+  lt: {
+    title: "TidGo kainos",
+    lead: "Vienas planas. Viena kaina. Jokiu staigmenu.",
+    price: "£4.99 per menesi",
+    intro: "Atsauk bet kada. Jokiu sutarciu. Jokiu metiniu isipareigojimu. Jokiu klausimu.",
+    ownership: "Tavo irasai visada priklauso tau - gali eksportuoti ar istrinti viska bet kada, iskaitant po atsaukimo.",
+    includedTitle: "Kas itraukta",
+    sections: [
+      ["Irasu rinkimas", "Kvitai per WhatsApp nuotrauka, persiunciama el. laiska arba ikelima programeleje. Pajamu irasai su pasirinktinu irodanciu dokumentu. CIS payslipai ir remittance notices el. pastu."],
+      ["Astuonios kalbos, ataskaitos angliskai", "Programele veikia astuoniomis kalbomis. Irasai ir ataskaitos, kuriuos gauna tavo buhalteris, visada yra anglu kalba - nes HMRC ir buhalteriai dirba angliskai."],
+      ["Prieiga buhalteriui - visada nemokama", "Tavo buhalteris gauna nemokama tik skaitymo prieiga. Jokio mokescio per klienta, jokios licencijos. Gali perziureti irasus, prasyti trukstamu dokumentu ir atsisiusti PDF ar CSV paketa."],
+      ["Irasai paruosti MTD", "TidGo tvarko tavo irasus ir paruosia juos tavo buhalterio MTD darbo eigai. Siuo metu nesiuncia tiesiogiai i HMRC - tai daro tavo buhalteris arba suderinama programine iranga."],
+      ["Eksportas ir istrynimas", "Eksportuok visus irasus kaip PDF ar CSV bet kada. Istrink paskyra ir visus duomenis kada nori."]
+    ],
+    comingTitle: "Netrukus - MTD pateikimai",
+    comingText: "Baigiame HMRC patvirtinimo procedura tiesioginiam ketvirtiniu ataskaitu ir final declaration pateikimui. Kai bus patvirtinta, tai bus prideta prie esamo plano. Tuo metu prenumeratoriai nemokes daugiau.",
+    comingNote: "Data dar nepatvirtinta. Founding Testeriai suzinos pirmieji.",
+    earlyTitle: "Early Access baigiasi 2026 m. rugsejo 1 d.",
+    earlyText: "TidGo buvo nemokama Early Access laikotarpiu. Nuo 2026 m. rugsejo 1 d. nauji prenumeratoriai moka £4.99 per menesi.",
+    earlyNow: "Jei uzsiregistruosi iki 2026 m. rugsejo 1 d.: gausi 14 dienu nemokamai, tada £4.99 per menesi.",
+    earlyExisting: "Jei jau naudoji TidGo: gausi aisku pranesima pries pradedant bet kokius mokescius.",
+    faqTitle: "Dazniausiai uzduodami klausimai",
+    faqs: [
+      ["Ar galiu atsaukti bet kada?", "Taip. Atsauk nustatymuose, be el. laisko, be klausimu. Irasai pasiekiami 30 dienu po atsaukimo."],
+      ["Ar yra metinis planas?", "Ne. Tik menesinis. Nemanome, kad teisinga suristi zmones metams."],
+      ["Kas nutinka su mano duomenimis atsaukus?", "Irasai pasiekiami 30 dienu. Po to istrinami. Eksportuok juos pries iseidamas."],
+      ["Ar buhalteris uz ka nors moka?", "Ne. Prieiga buhalteriui yra nemokama ir tokia visada isliks."],
+      ["Ar pasikeis kaina?", "Apie bet koki kainos pakeitima pranesime likus ne maziau kaip 30 dienu."],
+      ["Ar TidGo siuncia tiesiogiai i HMRC?", "Siuo metu ne. TidGo paruosia irasus MTD, o pateikima atlieka tavo buhalteris arba suderinama programine iranga. Dirbame prie tiesioginio pateikimo."]
+    ]
+  }
+};
+
 const ACCOUNTANT_COPY = {
   en: {
     forAccountants: "TidGo for Accountants",
@@ -5508,6 +5658,7 @@ function landing() {
               <small>${mk("whatsNewCta")}</small>
             </div>
           </section>
+          ${earlyAccessBanner()}
           <section class="landing-trust-strip" aria-label="TidGo basics">
             <span>${mk("trustSimple")}</span>
             <span>${mk("trustControl")}</span>
@@ -5599,6 +5750,20 @@ function landing() {
       ${landingFooter()}
     </section>
   `);
+}
+
+function earlyAccessBanner() {
+  const copy = EARLY_ACCESS_BANNER_COPY[state.marketingLanguage] || EARLY_ACCESS_BANNER_COPY.en;
+  return `
+          <section class="early-access-banner" aria-label="${escapeAttr(copy.title)}">
+            <div>
+              <span class="early-access-kicker">Early Access</span>
+              <strong>${escapeHtml(copy.title)}</strong>
+              <p>${escapeHtml(copy.text)}</p>
+            </div>
+            <a class="early-access-button" href="/app/">${escapeHtml(copy.button)}</a>
+          </section>
+  `;
 }
 
 function findAccountantPage() {
@@ -5718,6 +5883,65 @@ function accountantPackPage() {
   `);
 }
 
+function launchPricingPage() {
+  const copy = PRICING_PAGE_COPY[state.marketingLanguage] || PRICING_PAGE_COPY.en;
+  shell(`
+    <section class="landing-screen marketing-page-screen">
+      ${landingHeader("pricing")}
+      <main class="marketing-page-layout pricing-page">
+        <article class="marketing-page-card pricing-hero-card">
+          <span class="eyebrow">${mk("navPricing")}</span>
+          <h1>${escapeHtml(copy.title)}</h1>
+          <p class="marketing-lead">${escapeHtml(copy.lead)}</p>
+          <div class="pricing-price-box">
+            <strong>${escapeHtml(copy.price)}</strong>
+            <span>${escapeHtml(copy.intro)}</span>
+          </div>
+          <p>${escapeHtml(copy.ownership)}</p>
+          <div class="marketing-page-actions">
+            <a class="primary landing-link" href="/app/">${escapeHtml((EARLY_ACCESS_BANNER_COPY[state.marketingLanguage] || EARLY_ACCESS_BANNER_COPY.en).button)}</a>
+          </div>
+        </article>
+        <section class="marketing-page-card">
+          <h2>${escapeHtml(copy.includedTitle)}</h2>
+          <div class="marketing-card-grid pricing-feature-grid">
+            ${copy.sections.map(([title, text]) => `
+              <article>
+                <strong>${escapeHtml(title)}</strong>
+                <span>${escapeHtml(text)}</span>
+              </article>
+            `).join("")}
+          </div>
+        </section>
+        <section class="marketing-page-card pricing-mtd-card">
+          <span class="eyebrow">MTD</span>
+          <h2>${escapeHtml(copy.comingTitle)}</h2>
+          <p><strong>${escapeHtml(copy.comingText)}</strong></p>
+          <p>${escapeHtml(copy.comingNote)}</p>
+        </section>
+        <section class="marketing-page-card pricing-early-card">
+          <h2>${escapeHtml(copy.earlyTitle)}</h2>
+          <p>${escapeHtml(copy.earlyText)}</p>
+          <p><strong>${escapeHtml(copy.earlyNow)}</strong></p>
+          <p>${escapeHtml(copy.earlyExisting)}</p>
+        </section>
+        <section class="marketing-page-card pricing-faq-card">
+          <h2>${escapeHtml(copy.faqTitle)}</h2>
+          <div class="pricing-faq-list">
+            ${copy.faqs.map(([question, answer]) => `
+              <article>
+                <strong>${escapeHtml(question)}</strong>
+                <span>${escapeHtml(answer)}</span>
+              </article>
+            `).join("")}
+          </div>
+        </section>
+      </main>
+      ${landingFooter()}
+    </section>
+  `);
+}
+
 function marketingPage() {
   const slug = marketingPageSlug();
   if (slug === "privacy" || slug === "terms") return marketingLegalPage(slug);
@@ -5726,6 +5950,7 @@ function marketingPage() {
   if (slug === "androidTesters") return androidTestersPage();
   if (slug === "findAccountant") return findAccountantPage();
   if (slug === "accountantPack") return accountantPackPage();
+  if (slug === "pricing") return launchPricingPage();
   const simplePages = {
     how: {
       active: "how",
