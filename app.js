@@ -6086,22 +6086,56 @@ function marketingPage() {
   } else {
     const page = simplePages[slug] || simplePages.how;
     active = page.active;
-    body = `
-      <section class="marketing-page-card">
-        <span class="eyebrow">${page.eyebrow}</span>
-        <h1>${page.title}</h1>
-        <p>${page.text}</p>
-        <div class="marketing-card-grid">
-          ${page.cards.map(([title, text]) => `
-            <article>
-              <strong>${title}</strong>
-              <span>${text}</span>
+    if (slug === "who") {
+      body = `
+        <section class="marketing-page-card who-page-card">
+          <span class="eyebrow">${page.eyebrow}</span>
+          <h1>${page.title}</h1>
+          <p>${page.text}</p>
+          <div class="who-door-grid">
+            <article class="who-door-card who-self-door">
+              <strong>${mk("selfLabel")}</strong>
+              <span>${mk("selfText")}</span>
+              <div class="who-door-note">
+                <b>${mk("scopeFitTitle")}</b>
+                <span>${mk("scopeFitText")}</span>
+              </div>
+              <a class="primary landing-link who-door-action" href="/app/">${mk("openApp")}</a>
             </article>
-          `).join("")}
-        </div>
-        ${pageCta()}
-      </section>
-    `;
+            <article class="who-door-card who-accountant-door">
+              <strong>${mk("accountantLabel")}</strong>
+              <span>${mk("accountantText")}</span>
+              <div class="who-door-note">
+                <b>${mk("scopeNotForTitle")}</b>
+                <span>${mk("scopeNotForText")}</span>
+              </div>
+              <a class="secondary landing-link who-door-action marketing-open-portal" href="/accountant/">${mk("openPortal")}</a>
+            </article>
+          </div>
+          <div class="who-page-bottom-actions">
+            <button class="secondary landing-link marketing-share" type="button" data-action="shareTidGo">${mk("shareTidGo")}</button>
+            <a class="secondary landing-link marketing-back-home" href="/">${mk("backHome")}</a>
+          </div>
+        </section>
+      `;
+    } else {
+      body = `
+        <section class="marketing-page-card">
+          <span class="eyebrow">${page.eyebrow}</span>
+          <h1>${page.title}</h1>
+          <p>${page.text}</p>
+          <div class="marketing-card-grid">
+            ${page.cards.map(([title, text]) => `
+              <article>
+                <strong>${title}</strong>
+                <span>${text}</span>
+              </article>
+            `).join("")}
+          </div>
+          ${pageCta()}
+        </section>
+      `;
+    }
   }
   shell(`
     <section class="landing-screen marketing-page-screen">
