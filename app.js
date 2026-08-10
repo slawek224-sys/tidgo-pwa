@@ -5851,6 +5851,15 @@ function accountantPackPage() {
         <article class="marketing-page-card marketing-article">
           <span class="eyebrow">For accountants and bookkeepers</span>
           <h1>TidGo for accountants</h1>
+          <p>TidGo gives your client a simple way to collect receipts, income proof and CIS documents during the year. You get free read-only access, flagged items and clean PDF/CSV packs when it is time to work.</p>
+          <section class="accountant-priority-section">
+          <h2>What TidGo collects. What you still do.</h2>
+          <p>TidGo collects what has a receipt, payslip or document - captured as it happens through WhatsApp, email or the app. That covers most of the day-to-day: fuel, materials, CIS payslips, invoices and income proof.</p>
+          <p><strong>What TidGo does not replace - and does not try to:</strong></p>
+          <ul><li>Bank statement analysis for direct debits, subscriptions and expenses without a separate receipt.</li><li>Proportion calculations for mixed-use expenses such as phone, car and home office.</li><li>Relief claims, capital allowances, CGT and anything requiring professional judgement.</li><li>The final annual declaration - that stays with you.</li></ul>
+          <p>Your client arrives with the receipts and payslips already organised. You collect the rest from bank statements at year end, as always. The difference is that the first part arrives tidy instead of in a bag.</p>
+          <p><strong>We actively recommend that every TidGo user works with an accountant at least once a year.</strong> Not because the software is incomplete, but because tax optimisation requires a professional who can see the full picture.</p>
+          </section>
           <h2>Part 1 - Sending this to your accountant?</h2>
           <p>Copy the message below and send it to your accountant or bookkeeper. Everything they need to evaluate TidGo is on this page.</p>
           <blockquote><strong>Message to copy</strong><br><br>Hi,<br><br>I'm using TidGo to keep my receipts and income proof in one place during the year. It gives you free read-only access to my records. You can view everything and download a PDF/CSV pack, but nothing can be changed from your side, and I can revoke access at any time.<br><br>It doesn't replace anything you do. It just means I stop sending you photos across WhatsApp and email.<br><br>There's a demo and full details here: https://tidgo.co.uk/show-this-to-your-accountant</blockquote>
@@ -5858,6 +5867,7 @@ function accountantPackPage() {
           <h2>Part 2 - For accountants and bookkeepers</h2>
           <h3>What is TidGo?</h3>
           <p>TidGo is a record collection layer that sits before your accounting workflow. Clients send receipts, income proof and CIS payslips by photo, WhatsApp or email during the year. You get a read-only view of tidy, English-language records and a clean export pack when you need it.</p>
+          <p>We tell users clearly that TidGo is not a substitute for professional tax judgement. It is the front-end collection layer, not the accountant.</p>
           <p>It is not accounting software. It does not submit to HMRC. It does not do bookkeeping, VAT, payroll or company accounts. It does one job: your client arrives organised instead of arriving with a carrier bag.</p>
           <h3>What does it cost accountants?</h3>
           <p>Nothing. Accountant access is free and always will be. TidGo is paid for by the client's own subscription. There is no per-client fee, no practice licence, no commission on referrals, and no paid placement on our accountant directory.</p>
@@ -5872,6 +5882,7 @@ function accountantPackPage() {
           <p>TidGo Ltd is registered with the ICO. Structured data is held in the EU, documents and images are stored in EU object storage, and the client controls who sees their records. Full detail: <a href="/privacy">Privacy Policy</a> and <a href="/terms">Terms</a>.</p>
           <h3>What TidGo does not do</h3>
           <p>TidGo does not submit to HMRC, does not replace accountants, does not do bookkeeping, VAT returns, payroll, limited company accounts or corporation tax, and does not give tax advice.</p>
+          <p>The quarterly submission and the final declaration stay where they belong - with you, or with MTD-compatible software. The final declaration is where reliefs, allowances and other income sources come in. That is professional work, and we do not pretend an app should be doing it.</p>
           <h3>Try it before you commit</h3>
           <p><a href="/accountant-demo">See the accountant demo</a> with sample client data. If it is not useful, tell your client to disconnect you. Nothing is locked in either direction.</p>
           <h3>Questions?</h3>

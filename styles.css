@@ -1168,6 +1168,38 @@ button {
   color: #334155;
 }
 
+.accountant-priority-section {
+  display: grid;
+  gap: 12px;
+  max-width: 880px;
+  padding: clamp(18px, 3vw, 26px);
+  border: 1px solid #bfdbfe;
+  border-left: 5px solid var(--green);
+  border-radius: 8px;
+  background: linear-gradient(135deg, #f8fbff 0%, #eef9f1 100%);
+}
+
+.accountant-priority-section h2 {
+  margin: 0;
+  color: var(--blue-dark);
+  font-size: clamp(24px, 3vw, 34px);
+  line-height: 1.15;
+  letter-spacing: 0;
+}
+
+.accountant-priority-section p,
+.accountant-priority-section li {
+  max-width: none;
+  color: #1f2937;
+}
+
+.accountant-priority-section ul {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 22px;
+}
+
 .accountant-explainer-grid {
   margin: 18px 0;
 }
