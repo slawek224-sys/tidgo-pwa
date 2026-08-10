@@ -1281,6 +1281,9 @@ const COPY = {
     businessCategory: "Business category",
     businessRecordsTitle: "Business records",
     businessRecordsHint: "UK property stays as one bucket. Add up to three self-employment/CIS businesses only if you really need separate records.",
+    summaryBusinessFilter: "Summary for",
+    allBusinessRecords: "All records",
+    summaryBusinessHint: "Use All records for a general accountant pack. Choose one business when you need MTD-style figures for that business only.",
     selfEmploymentBusiness1: "Self-employment business 1",
     selfEmploymentBusiness2: "Self-employment business 2",
     selfEmploymentBusiness3: "Self-employment business 3",
@@ -1434,6 +1437,9 @@ const COPY = {
     businessTypeTitle: "Czego dotyczy ten wpis?",
     businessSelfEmployment: "Self-employment / CIS / side income",
     businessProperty: "UK property / landlord",
+    summaryBusinessFilter: "Podsumowanie dla",
+    allBusinessRecords: "Wszystkie rekordy",
+    summaryBusinessHint: "Wybierz Wszystkie rekordy dla ogolnego packa dla ksiegowego. Wybierz jeden biznes, gdy potrzebujesz liczb tylko dla tej dzialalnosci.",
     backendDown: "Nie mogę teraz połączyć się z API TidGo. Render może się budzić; spróbuj za moment.",
     serverUnavailableTitle: "TidGo jest chwilowo niedostępne",
     serverUnavailableText: "Aplikacja na tym urządzeniu jest w porządku. Serwer TidGo teraz nie odpowiada, prawdopodobnie przez deploy albo restart. Spróbuj ponownie za chwilę.",
@@ -3278,6 +3284,7 @@ const state = {
   summaryDate: new Date(),
   summaryPeriod: read("rb_summary_period", "month") === "quarter" ? "quarter" : "month",
   quarterMode: ["calendar", "uk_tax", "mtd_running"].includes(read("rb_quarter_mode", "calendar")) ? read("rb_quarter_mode", "calendar") : "calendar",
+  summaryBusinessSlotId: read("rb_summary_business_slot_id", "all") || "all",
   transactionLimit: 4,
   loading: false,
   routeMotion: ""
@@ -6934,6 +6941,7 @@ function summary() {
     <section class="screen">
       ${topbar(t("summary"), true)}
       ${summaryPeriodControls()}
+      ${summaryBusinessScopeControls()}
       <div class="month-switcher">
         <button class="icon-btn" data-action="prevMonth">‹</button>
         ${periodSwitcherLabel()}
@@ -7516,6 +7524,46 @@ function businessTypeField(active = "self-employment", activeSlotId = "") {
   `;
 }
 
+function currentSummaryBusinessSlotId() {
+  const slots = readBusinessSlots();
+  if (state.summaryBusinessSlotId === "all") return "all";
+  return slots.some((slot) => slot.id === state.summaryBusinessSlotId) ? state.summaryBusinessSlotId : "all";
+}
+
+function summaryBusinessScopeLabel() {
+  const id = currentSummaryBusinessSlotId();
+  if (id === "all") return t("allBusinessRecords");
+  return businessSlotById(id)?.label || t("allBusinessRecords");
+}
+
+function recordMatchesSummaryBusiness(item = {}) {
+  const id = currentSummaryBusinessSlotId();
+  if (id === "all") return true;
+  const selected = businessSlotById(id);
+  const meta = recordBusinessMeta(item.id);
+  const explicitSlotId = meta.business_slot_id || item.business_slot_id || "";
+  if (explicitSlotId) return explicitSlotId === id;
+  const type = normalizeBusinessType(meta.business_type || item.business_type || selected?.type);
+  if (selected?.type === "uk-property") return type === "uk-property";
+  return selected?.type === type && id === defaultBusinessSlotId();
+}
+
+function summaryBusinessScopeControls() {
+  const slots = readBusinessSlots();
+  if (slots.length <= 1) return "";
+  const active = currentSummaryBusinessSlotId();
+  return `
+    <div class="summary-business-filter">
+      <strong>${t("summaryBusinessFilter")}</strong>
+      <div class="segmented summary-business-segmented">
+        <button class="${active === "all" ? "active" : ""}" type="button" data-action="setSummaryBusinessSlot" data-business-slot-id="all">${t("allBusinessRecords")}</button>
+        ${slots.map((slot) => `<button class="${active === slot.id ? "active" : ""}" type="button" data-action="setSummaryBusinessSlot" data-business-slot-id="${escapeAttr(slot.id)}">${escapeHtml(slot.label)}</button>`).join("")}
+      </div>
+      <p class="hint">${t("summaryBusinessHint")}</p>
+    </div>
+  `;
+}
+
 function incomeSourceChoices(selected = []) {
   const active = new Set(cleanIncomeSources(selected));
   const labels = {
@@ -7633,8 +7681,8 @@ function itemRow(row) {
 
 function monthEntries() {
   return {
-    receipts: state.receipts.filter((item) => !item.is_client_expense).filter(recordInCurrentPeriod),
-    income: state.income.filter(recordInCurrentPeriod)
+    receipts: state.receipts.filter((item) => !item.is_client_expense).filter(recordInCurrentPeriod).filter(recordMatchesSummaryBusiness),
+    income: state.income.filter(recordInCurrentPeriod).filter(recordMatchesSummaryBusiness)
   };
 }
 
@@ -8082,6 +8130,7 @@ function buildPrintHtml() {
   return `
     <h1>TidGo - ${escapeHtml(periodLabel())}</h1>
     <p>${escapeHtml(state.user?.first_name || "")} ${state.user?.trade ? " · " + escapeHtml(state.user.trade) : ""}</p>
+    <p>${escapeHtml(t("summaryBusinessFilter"))}: ${escapeHtml(summaryBusinessScopeLabel())}</p>
     <p>${escapeHtml(t("note"))}</p>
     ${state.summaryPeriod === "quarter" && state.quarterMode === "mtd_running" ? `<p>${escapeHtml(t("mtdRunningDisclaimer"))}</p>` : ""}
     <p>${escapeHtml(dt("pdfLine"))}</p>
@@ -8126,6 +8175,7 @@ async function createSummaryPdfFile() {
   doc.setTextColor(23, 32, 51);
   line("TidGo - " + periodLabel(), 22, "bold");
   line([state.user?.first_name, state.user?.trade].filter(Boolean).join(" | "), 11);
+  line(`${t("summaryBusinessFilter")}: ${summaryBusinessScopeLabel()}`, 10, "bold");
   y += 8;
   line(pdfText.income + ": " + formatTotals(income), 12, "bold");
   line(pdfText.expenses + ": " + formatTotals(receipts), 12, "bold");
@@ -8671,6 +8721,12 @@ document.addEventListener("click", async (event) => {
     state.quarterMode = target.dataset.quarterMode === "uk_tax" ? "uk_tax" : target.dataset.quarterMode === "mtd_running" ? "mtd_running" : "calendar";
     write("rb_quarter_mode", state.quarterMode);
     if (state.quarterMode === "uk_tax" || state.quarterMode === "mtd_running") anchorSummaryDateToMonthStart();
+    return render();
+  }
+  if (action === "setSummaryBusinessSlot") {
+    const slotId = target.dataset.businessSlotId || "all";
+    state.summaryBusinessSlotId = slotId === "all" || readBusinessSlots().some((slot) => slot.id === slotId) ? slotId : "all";
+    write("rb_summary_business_slot_id", state.summaryBusinessSlotId);
     return render();
   }
   if (action === "printPdf") {
