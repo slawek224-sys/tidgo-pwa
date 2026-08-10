@@ -3963,9 +3963,9 @@ button {
 
 .summary-business-filter {
   display: grid;
-  gap: 8px;
-  margin: 10px 0;
-  padding: 12px;
+  gap: 6px;
+  margin: 6px 0 10px;
+  padding: 9px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: #f8fbff;
@@ -3973,16 +3973,28 @@ button {
 
 .summary-business-filter > strong {
   color: var(--blue-dark);
-  font-size: 14px;
+  font-size: 12px;
+  line-height: 1.2;
 }
 
 .summary-business-segmented {
   flex-wrap: wrap;
+  gap: 5px;
 }
 
 .summary-business-segmented button {
-  min-width: 120px;
-  flex: 1 1 140px;
+  flex: 1 1 105px;
+  min-height: 34px;
+  min-width: 0;
+  padding: 7px 8px;
+  font-size: 12px;
+  line-height: 1.15;
+}
+
+.summary-business-filter .hint {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.25;
 }
 
 .month-switcher {
