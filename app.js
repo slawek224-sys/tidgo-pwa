@@ -1290,6 +1290,8 @@ const COPY = {
     addBusiness: "Add business",
     removeBusiness: "Remove business",
     removeBusinessConfirm: "Remove this business from the active list? Existing records will not be deleted. They stay in All records until you move them to another business.",
+    archivedBusiness: "Archived business",
+    moveRecordHint: "Move this record to another active business if it was filed in the wrong place.",
     businessNamePlaceholder: "Business name",
     propertyIncomeHint: "For rent or other UK property income, enter the amount manually. You can attach a bank statement screenshot, PDF or transfer confirmation as proof.",
     backendDown: "Cannot reach TidGo API right now. Render may be waking up; try again in a moment.",
@@ -1446,6 +1448,8 @@ const COPY = {
     addBusiness: "Dodaj biznes",
     removeBusiness: "Usuń biznes",
     removeBusinessConfirm: "Usunąć ten biznes z aktywnej listy? Istniejące rekordy nie zostaną usunięte. Zostaną w Wszystkie rekordy, dopóki nie przeniesiesz ich do innego biznesu.",
+    archivedBusiness: "Archiwalny biznes",
+    moveRecordHint: "Przenieś ten rekord do innego aktywnego biznesu, jeśli trafił w złe miejsce.",
     backendDown: "Nie mogę teraz połączyć się z API TidGo. Render może się budzić; spróbuj za moment.",
     serverUnavailableTitle: "TidGo jest chwilowo niedostępne",
     serverUnavailableText: "Aplikacja na tym urządzeniu jest w porządku. Serwer TidGo teraz nie odpowiada, prawdopodobnie przez deploy albo restart. Spróbuj ponownie za chwilę.",
@@ -2725,6 +2729,8 @@ Object.assign(COPY.bg, {
     continueToApp: COPY.en.continueToApp,
     replaceReceiptPhoto: COPY.en.replaceReceiptPhoto,
     replaceReceiptHint: COPY.en.replaceReceiptHint,
+    archivedBusiness: COPY.en.archivedBusiness,
+    moveRecordHint: COPY.en.moveRecordHint,
     legalSettingsTitle: COPY.en.legalSettingsTitle,
     legalSettingsText: COPY.en.legalSettingsText,
     notificationsTitle: COPY.en.notificationsTitle,
@@ -6868,6 +6874,8 @@ function expenseChoice() {
 function receipt() {
   const receipt = state.receipts.find((item) => item.id === state.selected);
   if (!receipt) return go("home");
+  const receiptMeta = recordBusinessMeta(receipt.id);
+  const showBusinessMove = shouldAskBusinessType() || Boolean(receipt.business_slot_id || receiptMeta.business_slot_id);
   shell(`
     <section class="screen">
       ${topbar(t("expenses"), true)}
@@ -6875,7 +6883,7 @@ function receipt() {
       ${recordDateNeedsReview(receipt) ? dateReviewCard() : ""}
       <form class="stack" id="receiptForm" style="margin-top:14px">
         ${receiptReplaceField()}
-        ${businessTypeField(receipt.business_type || defaultBusinessType(), receipt.business_slot_id || recordBusinessMeta(receipt.id).business_slot_id || "")}
+        ${businessTypeField(receiptMeta.business_type || receipt.business_type || defaultBusinessType(), receiptMeta.business_slot_id || receipt.business_slot_id || "", showBusinessMove)}
         <label class="field"><span>${t("amount")}</span><input class="input" name="amount" inputmode="decimal" value="${receipt.amount || 0}"></label>
         <label class="field"><span>${t("currency")}</span><select class="select" name="currency" disabled>${currencyOptions(receipt.currency || "GBP")}</select></label>
         <label class="field"><span>${t("merchant")}</span><input class="input" name="merchant" value="${escapeAttr(receipt.merchant || "")}"></label>
@@ -6911,6 +6919,8 @@ function incomeForm() {
 function incomeDetail() {
   const entry = state.income.find((item) => item.id === state.selected);
   if (!entry) return go("home");
+  const entryMeta = recordBusinessMeta(entry.id);
+  const showBusinessMove = shouldAskBusinessType() || Boolean(entry.business_slot_id || entryMeta.business_slot_id);
   const proof = proofForIncome(entry.id);
   const proofUrl = incomeProofFileUrl(entry, proof);
   const proofIsPdf = incomeProofIsPdf(entry, proofUrl, proof);
@@ -6920,7 +6930,7 @@ function incomeDetail() {
     <section class="screen">
       ${topbar(t("income"), true)}
       <form class="stack" id="incomeEditForm">
-        ${businessTypeField(entry.business_type || defaultBusinessType(), entry.business_slot_id || recordBusinessMeta(entry.id).business_slot_id || "")}
+        ${businessTypeField(entryMeta.business_type || entry.business_type || defaultBusinessType(), entryMeta.business_slot_id || entry.business_slot_id || "", showBusinessMove)}
         <label class="field"><span>${t("amount")}</span><input class="input" name="amount" inputmode="decimal" value="${entry.amount || 0}"></label>
         <label class="field"><span>${t("currency")}</span><select class="select" name="currency">${currencyOptions(entry.currency || "GBP")}</select></label>
         <label class="field"><span>${t("description")}</span><textarea class="textarea" name="description">${escapeHtml(entry.description || "")}</textarea></label>
@@ -7528,18 +7538,25 @@ function normalizeBusinessType(value) {
   return value === "uk-property" ? "uk-property" : "self-employment";
 }
 
-function businessSlotOptions(activeId = "") {
+function businessSlotOptions(activeId = "", activeType = "") {
   const slots = readBusinessSlots();
-  const selected = activeId || slots[0]?.id || "se-1";
-  return slots.map((slot) => `<option value="${escapeAttr(slot.id)}"${selected === slot.id ? " selected" : ""}>${escapeHtml(slot.label)}</option>`).join("");
+  const selected = activeId || businessSlotById("", normalizeBusinessType(activeType))?.id || slots[0]?.id || "se-1";
+  const hasSelected = slots.some((slot) => slot.id === selected);
+  const options = slots.map((slot) => `<option value="${escapeAttr(slot.id)}"${selected === slot.id ? " selected" : ""}>${escapeHtml(slot.label)}</option>`);
+  if (selected && !hasSelected) {
+    const label = recordBusinessMeta(state.selected)?.business_slot_label || t("archivedBusiness");
+    options.unshift(`<option value="${escapeAttr(selected)}" selected>${escapeHtml(label)} (${escapeHtml(t("archivedBusiness"))})</option>`);
+  }
+  return options.join("");
 }
 
-function businessTypeField(active = "self-employment", activeSlotId = "") {
-  if (!shouldAskBusinessType()) return "";
+function businessTypeField(active = "self-employment", activeSlotId = "", force = false) {
+  if (!force && !shouldAskBusinessType()) return "";
   return `
     <label class="field">
       <span>${t("businessCategory")}</span>
-      <select class="select" name="business_slot_id">${businessSlotOptions(activeSlotId || businessSlotById("", normalizeBusinessType(active))?.id)}</select>
+      <select class="select" name="business_slot_id">${businessSlotOptions(activeSlotId || businessSlotById("", normalizeBusinessType(active))?.id, active)}</select>
+      <small>${t("moveRecordHint")}</small>
     </label>
   `;
 }
@@ -9197,7 +9214,8 @@ document.addEventListener("submit", async (event) => {
       const category = document.querySelector("[data-category].active")?.dataset.category || "other";
       const amount = normalizeAmount(data.amount);
       if (!Number.isFinite(amount) || amount < 0) throw new Error(t("validAmount"));
-      const slot = businessSlotById(data.business_slot_id || receipt.business_slot_id, receipt.business_type || defaultBusinessType());
+      const receiptMeta = recordBusinessMeta(state.selected);
+      const slot = businessSlotById(data.business_slot_id || receiptMeta.business_slot_id || receipt.business_slot_id, receiptMeta.business_type || receipt.business_type || defaultBusinessType());
       const updatedReceipt = await api(`/api/receipts/${state.selected}`, {
         method: "PATCH",
         body: JSON.stringify({
@@ -9268,7 +9286,8 @@ document.addEventListener("submit", async (event) => {
       const entry = state.income.find((item) => item.id === state.selected) || {};
       const amount = normalizeAmount(data.amount);
       if (!Number.isFinite(amount) || amount <= 0) throw new Error(t("validAmount"));
-      const slot = businessSlotById(data.business_slot_id || entry.business_slot_id, entry.business_type || defaultBusinessType());
+      const entryMeta = recordBusinessMeta(state.selected);
+      const slot = businessSlotById(data.business_slot_id || entryMeta.business_slot_id || entry.business_slot_id, entryMeta.business_type || entry.business_type || defaultBusinessType());
       const updated = await api(`/api/income/${state.selected}`, {
         method: "PATCH",
         body: JSON.stringify({ amount, currency: data.currency, description: data.description || null, business_type: slot.type, business_slot_id: slot.id, business_slot_label: slot.label, date: data.date ? new Date(`${data.date}T12:00:00`).toISOString() : null })
