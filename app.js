@@ -1287,6 +1287,7 @@ const COPY = {
     selfEmploymentBusiness1: "Self-employment business 1",
     selfEmploymentBusiness2: "Self-employment business 2",
     selfEmploymentBusiness3: "Self-employment business 3",
+    addBusiness: "Add business",
     businessNamePlaceholder: "Business name",
     propertyIncomeHint: "For rent or other UK property income, enter the amount manually. You can attach a bank statement screenshot, PDF or transfer confirmation as proof.",
     backendDown: "Cannot reach TidGo API right now. Render may be waking up; try again in a moment.",
@@ -1440,6 +1441,7 @@ const COPY = {
     summaryBusinessFilter: "Podsumowanie dla",
     allBusinessRecords: "Wszystkie rekordy",
     summaryBusinessHint: "Wszystkie rekordy dla ksiegowego. Jeden biznes dla liczb pod MTD.",
+    addBusiness: "Dodaj biznes",
     backendDown: "Nie mogę teraz połączyć się z API TidGo. Render może się budzić; spróbuj za moment.",
     serverUnavailableTitle: "TidGo jest chwilowo niedostępne",
     serverUnavailableText: "Aplikacja na tym urządzeniu jest w porządku. Serwer TidGo teraz nie odpowiada, prawdopodobnie przez deploy albo restart. Spróbuj ponownie za chwilę.",
@@ -7053,16 +7055,28 @@ function settingsBusinessRecordsSection() {
   const slots = readBusinessSlots();
   const byId = Object.fromEntries(slots.map((slot) => [slot.id, slot]));
   const hasSelfEmployment = readIncomeSources().some((source) => source !== "landlord");
+  const selfEmploymentFields = ["se-1", "se-2", "se-3"].map((id, index) => {
+    const slot = byId[id];
+    const isFirst = id === "se-1";
+    const isVisible = isFirst || Boolean(slot?.label);
+    const label = t(`selfEmploymentBusiness${index + 1}`);
+    const value = slot?.label || (isFirst ? state.user.trade || "" : "");
+    return `
+      <div class="business-slot-row ${isVisible ? "" : "business-slot-collapsed"}" data-business-slot-row="${id}">
+        <label class="field">
+          <span>${label}</span>
+          <input class="input" name="business_slot_${id}" value="${escapeAttr(value)}" placeholder="${escapeAttr(t("businessNamePlaceholder"))}"${isVisible ? "" : " disabled"}>
+        </label>
+        ${!isVisible ? `<button class="secondary mini-btn add-business-btn" type="button" data-action="addBusinessSlot" data-business-slot-id="${id}">${t("addBusiness")}</button>` : ""}
+      </div>
+    `;
+  }).join("");
   if (!hasSelfEmployment && !readIncomeSources().includes("landlord")) return "";
   return `
     <div class="card stack">
       <strong>${t("businessRecordsTitle")}</strong>
       <p class="hint">${t("businessRecordsHint")}</p>
-      ${hasSelfEmployment ? `
-        <label class="field"><span>${t("selfEmploymentBusiness1")}</span><input class="input" name="business_slot_se-1" value="${escapeAttr(byId["se-1"]?.label || state.user.trade || "")}" placeholder="${escapeAttr(t("businessNamePlaceholder"))}"></label>
-        <label class="field"><span>${t("selfEmploymentBusiness2")}</span><input class="input" name="business_slot_se-2" value="${escapeAttr(byId["se-2"]?.label || "")}" placeholder="${escapeAttr(t("businessNamePlaceholder"))}"></label>
-        <label class="field"><span>${t("selfEmploymentBusiness3")}</span><input class="input" name="business_slot_se-3" value="${escapeAttr(byId["se-3"]?.label || "")}" placeholder="${escapeAttr(t("businessNamePlaceholder"))}"></label>
-      ` : ""}
+      ${hasSelfEmployment ? selfEmploymentFields : ""}
       ${readIncomeSources().includes("landlord") ? `<div class="intake-card"><strong>${t("businessProperty")}</strong><span>${t("propertyIncomeHint")}</span></div>` : ""}
     </div>
   `;
@@ -8729,6 +8743,17 @@ document.addEventListener("click", async (event) => {
     state.summaryBusinessSlotId = slotId === "all" || readBusinessSlots().some((slot) => slot.id === slotId) ? slotId : "all";
     write("rb_summary_business_slot_id", state.summaryBusinessSlotId);
     return render();
+  }
+  if (action === "addBusinessSlot") {
+    const row = target.closest("[data-business-slot-row]");
+    const input = row?.querySelector("input");
+    if (row && input) {
+      row.classList.remove("business-slot-collapsed");
+      input.disabled = false;
+      target.remove();
+      input.focus();
+    }
+    return;
   }
   if (action === "printPdf") {
     if (!(await confirmDownload("user"))) return;

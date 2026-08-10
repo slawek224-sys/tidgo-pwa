@@ -3848,6 +3848,29 @@ button {
   align-items: center;
 }
 
+.business-slot-row {
+  display: grid;
+  gap: 8px;
+}
+
+.business-slot-collapsed {
+  margin-top: -2px;
+}
+
+.business-slot-collapsed .field {
+  display: none;
+}
+
+.add-business-btn {
+  justify-self: start;
+  min-height: 34px;
+  padding: 7px 11px;
+  border-color: #bfdbfe;
+  background: #eff6ff;
+  color: var(--blue);
+  font-size: 12px;
+}
+
 .whatsapp-connect-btn {
   display: inline-flex;
   align-items: center;
