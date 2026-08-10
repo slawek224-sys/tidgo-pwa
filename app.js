@@ -618,7 +618,7 @@ const EARLY_ACCESS_BANNER_COPY = {
 const PRICING_PAGE_COPY = {
   en: {
     title: "TidGo pricing",
-    lead: "One plan. One price. No surprises.",
+    lead: "Clear pricing for simple record keeping.",
     price: "£4.99 per month",
     intro: "Cancel any time. No contracts. No annual commitment. No questions asked.",
     ownership: "Your records are always yours. While your account is active, you can export or delete your records at any time. After cancellation, your records stay available for 30 days so you can export them before they are deleted.",
@@ -650,7 +650,7 @@ const PRICING_PAGE_COPY = {
   },
   pl: {
     title: "Cennik TidGo",
-    lead: "Jeden plan. Jedna cena. Zero niespodzianek.",
+    lead: "Jasna cena za proste prowadzenie rekordow.",
     price: "£4.99 miesiecznie",
     intro: "Anuluj kiedy chcesz. Bez umow. Bez rocznych zobowiazan. Bez pytan.",
     ownership: "Twoje rekordy zawsze naleza do Ciebie. Gdy konto jest aktywne, mozesz je wyeksportowac albo usunac w kazdej chwili. Po anulowaniu rekordy zostaja dostepne przez 30 dni, zebys mogl je pobrac przed usunieciem.",
@@ -682,7 +682,7 @@ const PRICING_PAGE_COPY = {
   },
   ro: {
     title: "Preturi TidGo",
-    lead: "Un plan. Un pret. Fara surprize.",
+    lead: "Pret clar pentru evidente simple.",
     price: "£4.99 pe luna",
     intro: "Anulezi oricand. Fara contracte. Fara angajament anual. Fara intrebari.",
     ownership: "Inregistrarile tale iti apartin intotdeauna. Cat timp contul este activ, le poti exporta sau sterge oricand. Dupa anulare, inregistrarile raman disponibile 30 de zile ca sa le poti exporta inainte de stergere.",
@@ -714,7 +714,7 @@ const PRICING_PAGE_COPY = {
   },
   lt: {
     title: "TidGo kainos",
-    lead: "Vienas planas. Viena kaina. Jokiu staigmenu.",
+    lead: "Aiski kaina paprastiems irasams.",
     price: "£4.99 per menesi",
     intro: "Atsauk bet kada. Jokiu sutarciu. Jokiu metiniu isipareigojimu. Jokiu klausimu.",
     ownership: "Tavo irasai visada priklauso tau. Kol paskyra aktyvi, gali juos eksportuoti arba istrinti bet kada. Po atsaukimo irasai lieka pasiekiami 30 dienu, kad galetum juos eksportuoti pries istrynima.",
