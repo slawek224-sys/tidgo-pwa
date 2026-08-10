@@ -3871,6 +3871,16 @@ button {
   font-size: 12px;
 }
 
+.remove-business-btn {
+  justify-self: start;
+  min-height: 32px;
+  padding: 6px 10px;
+  border-color: #fecaca;
+  background: #fff7ed;
+  color: #b45309;
+  font-size: 12px;
+}
+
 .whatsapp-connect-btn {
   display: inline-flex;
   align-items: center;

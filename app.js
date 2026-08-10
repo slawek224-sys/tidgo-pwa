@@ -1288,6 +1288,8 @@ const COPY = {
     selfEmploymentBusiness2: "Self-employment business 2",
     selfEmploymentBusiness3: "Self-employment business 3",
     addBusiness: "Add business",
+    removeBusiness: "Remove business",
+    removeBusinessConfirm: "Remove this business from the active list? Existing records will not be deleted. They stay in All records until you move them to another business.",
     businessNamePlaceholder: "Business name",
     propertyIncomeHint: "For rent or other UK property income, enter the amount manually. You can attach a bank statement screenshot, PDF or transfer confirmation as proof.",
     backendDown: "Cannot reach TidGo API right now. Render may be waking up; try again in a moment.",
@@ -1442,6 +1444,8 @@ const COPY = {
     allBusinessRecords: "Wszystkie rekordy",
     summaryBusinessHint: "Wszystkie rekordy dla ksiegowego. Jeden biznes dla liczb pod MTD.",
     addBusiness: "Dodaj biznes",
+    removeBusiness: "Usuń biznes",
+    removeBusinessConfirm: "Usunąć ten biznes z aktywnej listy? Istniejące rekordy nie zostaną usunięte. Zostaną w Wszystkie rekordy, dopóki nie przeniesiesz ich do innego biznesu.",
     backendDown: "Nie mogę teraz połączyć się z API TidGo. Render może się budzić; spróbuj za moment.",
     serverUnavailableTitle: "TidGo jest chwilowo niedostępne",
     serverUnavailableText: "Aplikacja na tym urządzeniu jest w porządku. Serwer TidGo teraz nie odpowiada, prawdopodobnie przez deploy albo restart. Spróbuj ponownie za chwilę.",
@@ -7067,6 +7071,7 @@ function settingsBusinessRecordsSection() {
           <span>${label}</span>
           <input class="input" name="business_slot_${id}" value="${escapeAttr(value)}" placeholder="${escapeAttr(t("businessNamePlaceholder"))}"${isVisible ? "" : " disabled"}>
         </label>
+        ${isVisible && !isFirst ? `<button class="secondary mini-btn remove-business-btn" type="button" data-action="removeBusinessSlot" data-business-slot-id="${id}">${t("removeBusiness")}</button>` : ""}
         ${!isVisible ? `<button class="secondary mini-btn add-business-btn" type="button" data-action="addBusinessSlot" data-business-slot-id="${id}">${t("addBusiness")}</button>` : ""}
       </div>
     `;
@@ -8752,6 +8757,24 @@ document.addEventListener("click", async (event) => {
       input.disabled = false;
       target.remove();
       input.focus();
+    }
+    return;
+  }
+  if (action === "removeBusinessSlot") {
+    if (!confirm(t("removeBusinessConfirm"))) return;
+    const row = target.closest("[data-business-slot-row]");
+    const input = row?.querySelector("input");
+    const slotId = target.dataset.businessSlotId || "";
+    if (row && input && slotId) {
+      input.value = "";
+      input.disabled = true;
+      row.classList.add("business-slot-collapsed");
+      target.remove();
+      row.insertAdjacentHTML("beforeend", `<button class="secondary mini-btn add-business-btn" type="button" data-action="addBusinessSlot" data-business-slot-id="${escapeAttr(slotId)}">${t("addBusiness")}</button>`);
+      if (state.summaryBusinessSlotId === slotId) {
+        state.summaryBusinessSlotId = "all";
+        write("rb_summary_business_slot_id", "all");
+      }
     }
     return;
   }
