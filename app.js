@@ -176,6 +176,7 @@ Object.assign(MARKETING_COPY.en, {
   mtdSoleTraders: "MTD for sole traders",
   mtdLandlords: "MTD for landlords",
   mtdCis: "MTD for CIS subcontractors",
+  mtdCisMyths: "CIS myths most accounting apps get wrong",
   mtdDigitalRecords: "Digital records",
   mtdQuarterlyUpdates: "Quarterly updates",
   mtdFaqs: "MTD FAQs",
@@ -191,6 +192,7 @@ Object.assign(MARKETING_COPY.en, {
   mtdSoleTradersText: "For sole traders, MTD starts with clear digital records for self-employment income and expenses, not with complicated dashboards.",
   mtdLandlordsText: "Landlords need a simple way to keep property income, expenses and proof together, especially when receipts arrive by email or WhatsApp.",
   mtdCisText: "Gross income, payslips, CIS deductions and quarterly updates: the practical record-keeping layer for subcontractors.",
+  mtdCisMythsText: "Unnecessary invoices, net income traps and expensive tools built for work CIS subcontractors often do not need.",
   mtdDigitalRecordsText: "Digital records are the foundation: dates, amounts, categories and supporting evidence stored in a way you can review and share.",
   mtdQuarterlyUpdatesText: "Quarterly updates are summaries of income and expenses. They are not full tax returns, but the records behind them still need to be tidy.",
   mtdFaqsText: "Short answers to the questions people actually ask before they speak to HMRC, software providers or their accountant.",
@@ -269,6 +271,7 @@ Object.assign(MARKETING_COPY.pl, {
   mtdSoleTraders: "MTD dla sole traders",
   mtdLandlords: "MTD dla landlordów",
   mtdCis: "MTD dla CIS workers",
+  mtdCisMyths: "Mity CIS, ktore aplikacje ksiegowe czesto robia zle",
   mtdDigitalRecords: "Cyfrowe rekordy",
   mtdQuarterlyUpdates: "Quarterly updates",
   mtdFaqs: "FAQ MTD",
@@ -276,6 +279,7 @@ Object.assign(MARKETING_COPY.pl, {
   mtdSoleTradersText: "Dla sole traderów MTD zaczyna się od jasnych cyfrowych rekordów przychodów i kosztów, nie od skomplikowanych dashboardów.",
   mtdLandlordsText: "Landlord potrzebuje prostego sposobu na trzymanie przychodów z najmu, kosztów i dowodów w jednym miejscu.",
   mtdCisText: "CIS workers często mają paliwo, narzędzia, materiały, remittance notices i rozrzucone dowody. TidGo pasuje do takiego chaosu.",
+  mtdCisMythsText: "Niepotrzebne faktury, pulapka kwoty netto i drogie narzedzia zbudowane do pracy, ktorej CIS subcontractor czesto nie potrzebuje.",
   mtdDigitalRecordsText: "Cyfrowe rekordy to fundament: daty, kwoty, kategorie i dowody zapisane tak, żeby można było je sprawdzić i wysłać.",
   mtdQuarterlyUpdatesText: "Quarterly updates to podsumowania przychodów i wydatków. To nie są pełne tax returns, ale rekordy za nimi muszą być uporządkowane.",
   mtdFaqsText: "Krótkie odpowiedzi na pytania, które ludzie realnie zadają przed rozmową z HMRC, księgowym albo software providerem.",
@@ -350,6 +354,8 @@ Object.assign(MARKETING_COPY.ro, {
   mtdPhotosText: "Fotografiile pot ajuta la crearea unei evidente digitale. TidGo pastreaza poza bonului cu detalii de baza pentru verificare si trimitere.",
   mtdSubmitText: "Nu. TidGo nu trimite declaratii la HMRC. Ajuta la pregatirea si organizarea evidentelor pentru tine, contabil sau alt software.",
   mtdAccountantText: "De obicei, da. TidGo nu este consultanta fiscala sau contabilitate completa. Te ajuta sa ai evidente pregatite, cu mai putin haos.",
+  mtdCisMyths: "Mituri CIS pe care multe aplicatii contabile le gresesc",
+  mtdCisMythsText: "Facturi inutile, capcana venitului net si software scump construit pentru lucruri de care subcontractorii CIS de multe ori nu au nevoie.",
   faqBuildTitle: "Intrebarile reale fac un FAQ mai bun.",
   faqBuildText: "Trimite-ne ce nu este clar: start, bonuri, PDF, acces contabil, MTD, orice. Construim FAQ-ul din intrebari reale, nu din ceata corporate.",
   launchTabTitle: "Lansare si pret",
@@ -414,6 +420,8 @@ Object.assign(MARKETING_COPY.lt, {
   mtdPhotosText: "Nuotraukos padeda sukurti skaitmenini irasa. TidGo saugo kvito nuotrauka su pagrindiniais duomenimis, kad galetumete patikrinti ir perduoti.",
   mtdSubmitText: "Ne. TidGo neteikia deklaraciju HMRC. Jis padeda parengti ir sutvarkyti irasus jums, buhalteriui arba kitai programai.",
   mtdAccountantText: "Dazniausiai taip. TidGo nera mokesciu konsultacija ar pilna buhalterija. Jis padeda paruosti irasus ir sumazinti chaosa.",
+  mtdCisMyths: "CIS mitai, kuriuos apskaitos programeles daznai supranta klaidingai",
+  mtdCisMythsText: "Nereikalingos saskaitos, neto pajamu spastai ir brangi programine iranga darbui, kurio CIS subrangovams daznai nereikia.",
   faqBuildTitle: "Tikri klausimai sukuria geresni DUK.",
   faqBuildText: "Parasykite, kas neaisku: startas, kvitai, PDF, buhalterio prieiga, MTD, bet kas. DUK kuriame is tikru klausimu, ne is korporacines miglos.",
   launchTabTitle: "Startas ir kaina",
@@ -3356,6 +3364,7 @@ function marketingPageSlug() {
     "/mtd/qualifying-income": "mtdQualifyingIncome",
     "/mtd/government-gateway": "mtdGateway",
     "/mtd/do-i-have-to-photograph-receipts": "mtdReceiptsMyth",
+    "/mtd/cis-myths": "mtdCisMyths",
     "/mtd/getting-started": "mtdGettingStarted",
     "/mtd/sole-traders": "mtdSoleTraders",
     "/mtd/landlords": "mtdLandlords",
@@ -3532,7 +3541,8 @@ function mtdTopics() {
     ["mtdQuarterlyUpdates", "mtdQuarterlyUpdatesText", mtdQuarterlyUpdatesHref()],
     ["mtdReceiptsMyth", "mtdReceiptsMythText", state.marketingLanguage === "en" ? "/mtd/do-i-have-to-photograph-receipts" : `/${state.marketingLanguage}/mtd/do-i-have-to-photograph-receipts`],
     ["mtdGateway", "mtdGatewayText", state.marketingLanguage === "en" ? "/mtd/government-gateway" : `/${state.marketingLanguage}/mtd/government-gateway`],
-    ["mtdCis", "mtdCisText", state.marketingLanguage === "en" ? "/mtd/cis" : `/${state.marketingLanguage}/mtd/cis`]
+    ["mtdCis", "mtdCisText", state.marketingLanguage === "en" ? "/mtd/cis" : `/${state.marketingLanguage}/mtd/cis`],
+    ["mtdCisMyths", "mtdCisMythsText", state.marketingLanguage === "en" ? "/mtd/cis-myths" : `/${state.marketingLanguage}/mtd/cis-myths`]
   ];
 }
 
@@ -3577,7 +3587,7 @@ function mtdWhatArticle() {
 }
 
 function mtdKnowledgeHref(slug) {
-  const localized = ["qualifying-income", "government-gateway", "do-i-have-to-photograph-receipts", "digital-records", "cis", "quarterly-updates"];
+  const localized = ["qualifying-income", "government-gateway", "do-i-have-to-photograph-receipts", "digital-records", "cis", "cis-myths", "quarterly-updates"];
   if (state.marketingLanguage !== "en" && localized.includes(slug)) {
     return `/${state.marketingLanguage}/mtd/${slug}`;
   }
@@ -4166,6 +4176,142 @@ const MTD_RECEIPTS_MYTH_ARTICLES = {
 function mtdReceiptsMythArticle() {
   const html = MTD_RECEIPTS_MYTH_ARTICLES[state.marketingLanguage] || MTD_RECEIPTS_MYTH_ARTICLES.en;
   return `<article class="marketing-page-card marketing-article"><span class="eyebrow">${mk("navMtd")}</span>${html}${pageCta()}</article>`;
+}
+
+const MTD_CIS_MYTHS_ARTICLES = {
+  en: {
+    title: "Common Tax and MTD myths for UK tradespeople: what many accounting apps get wrong about CIS",
+    lead: "Working under the Construction Industry Scheme? Do not let overcomplicated software create the wrong records before Making Tax Digital rules apply.",
+    html: `
+      <h2>Why this matters</h2>
+      <p>When you work on site or on the road, the tax system is already heavy enough. With Making Tax Digital for Income Tax on the way, many apps are selling features that sound useful but do not always match how CIS subcontractors actually work.</p>
+      <p>The danger is simple: if software pushes you toward the wrong record-keeping habit, your accountant has to untangle it later. CIS needs clean records, not a fake corporate workflow.</p>
+
+      <h2>Myth 1: you need to send formal sales invoices to your main contractor</h2>
+      <p>Some accounting apps push every self-employed person toward invoice creation. In real CIS work, that is often not how the paperwork arrives.</p>
+      <p>If you are a CIS subcontractor working under a main contractor, the contractor normally calculates your pay, deducts CIS tax at source, and gives you a CIS payment and deduction statement or remittance note. That document matters. It proves the gross amount, the deduction and the net payment.</p>
+      <p>The trap is paying for an invoicing suite when what you really need is a fast way to store remittance slips, payslips, fuel receipts, tool receipts and materials proof where your accountant can find them.</p>
+
+      <h2>Myth 2: MTD quarterly records should use net CIS income</h2>
+      <p>This is the expensive mistake. For MTD records, your income is the gross amount before CIS tax is deducted. If the statement shows &pound;2,000 gross, &pound;400 CIS deducted and &pound;1,600 paid to you, the income record starts from &pound;2,000, not &pound;1,600.</p>
+      <p>The CIS deduction is tax already suffered. It is not an ordinary business expense and it should not quietly reduce your turnover in the records used for quarterly updates.</p>
+      <p>HMRC already receives CIS deduction information from contractors. Your accountant can reconcile those figures at year end. TidGo's job is to help keep the gross income proof and the deduction evidence together, so the person doing the submission has clean records to work from.</p>
+
+      <h2>Myth 3: you need a big accounting suite to be ready for MTD</h2>
+      <p>MTD does not mean every tradesperson needs a dashboard full of stock tracking, customer portals and invoice templates. The practical first layer is simpler: keep digital records of income, expenses and supporting proof.</p>
+      <p>For many CIS subcontractors, that means fuel, parking, tools, materials, phone bills, CIS statements and income proof. If those records are tidy, your accountant or MTD-compatible software can do the formal work with less mess.</p>
+
+      <h2>Where TidGo fits</h2>
+      <p>TidGo is built around the paperwork people actually have: WhatsApp receipt photos, email payslips, remittance notes, manual income entries and clean English PDF/CSV exports for the accountant.</p>
+      <p>It does not replace your accountant and it does not promise to calculate your final CIS tax position for you. It helps capture the right evidence in the right shape: gross income recorded clearly, CIS deduction proof kept beside it, and expenses stored as they happen.</p>
+      <p>For the deeper rule explanation, read the <a href="__CIS_HREF__">MTD for CIS subcontractors guide</a>, the <a href="__QUALIFYING_HREF__">qualifying income guide</a> and the <a href="__DIGITAL_RECORDS_HREF__">digital records guide</a>.</p>
+    `,
+    sourcesChecked: "Last checked: August 2026. Verify at GOV.UK if reading later."
+  },
+  pl: {
+    title: "Mity CIS i MTD: co wiele aplikacji ksiegowych robi zle",
+    lead: "Pracujesz pod Construction Industry Scheme? Nie pozwol, zeby zbyt skomplikowany program pomieszal Ci rekordy zanim MTD zacznie dotyczyc Twojej pracy.",
+    html: `
+      <h2>Dlaczego to ma znaczenie</h2>
+      <p>CIS nie dziala tak samo jak zwykla mala firma wysylajaca faktury klientom. Jezeli aplikacja wymusza zly sposob zapisu, księgowy musi to pozniej odkrecać.</p>
+
+      <h2>Mit 1: musisz wystawiac formalne faktury main contractorowi</h2>
+      <p>W wielu przypadkach CIS subcontractor nie pracuje jak klasyczna firma B2B z pelnym procesem fakturowania. Main contractor wylicza zaplate, potraca CIS u zrodla i wystawia CIS payment and deduction statement albo remittance note.</p>
+      <p>To ten dokument jest kluczowy. Pokazuje kwote brutto, potracenie CIS i kwote netto wyplacona Tobie. Dlatego praktycznie potrzebujesz prostego miejsca na payslipy, remittance slips, paragony za paliwo, narzedzia i materialy, a nie wielkiego systemu do fakturowania po kazdej zmianie.</p>
+
+      <h2>Mit 2: do MTD wpisuje sie dochod netto po CIS</h2>
+      <p>To najgrozniejsza pomylka. Do rekordow MTD przychodem jest kwota brutto przed potraceniem CIS. Jezeli dokument pokazuje &pound;2,000 brutto, &pound;400 potracenia CIS i &pound;1,600 wyplaty, rekord przychodu zaczyna sie od &pound;2,000, nie od &pound;1,600.</p>
+      <p>Potracenie CIS to podatek zaplacony z gory. Nie jest zwyklym kosztem biznesowym i nie powinien po cichu zmniejszac obrotu w rekordach pod kwartalne aktualizacje.</p>
+      <p>HMRC dostaje informacje o potraceniach CIS od contractorow. Księgowy moze to uzgodnic na koniec roku. TidGo pomaga trzymac dowod przychodu brutto i informacje o potraceniu razem, zeby dane byly czyste.</p>
+
+      <h2>Mit 3: potrzebujesz drogiego kombajnu ksiegowego</h2>
+      <p>MTD nie oznacza, ze kazdy tradesperson potrzebuje panelu ze stock tracking, customer portal i rozbudowanymi szablonami faktur. Pierwsza praktyczna warstwa jest prostsza: cyfrowe rekordy przychodow, wydatkow i dowodow.</p>
+      <p>Dla wielu osob w CIS oznacza to paliwo, parking, narzedzia, materialy, telefon, CIS statements i dowody przychodu. Jezeli to jest uporzadkowane, księgowy albo software MTD ma z czego pracowac.</p>
+
+      <h2>Gdzie pasuje TidGo</h2>
+      <p>TidGo jest zbudowane pod dokumenty, ktore ludzie realnie maja: zdjecia paragonow z WhatsAppa, payslipy z maila, remittance notes, reczne wpisy przychodu i czyste PDF/CSV po angielsku dla ksiegowego.</p>
+      <p>TidGo nie zastepuje ksiegowego i nie obiecuje automatycznego wyliczania koncowego podatku CIS. Pomaga zapisac wlasciwy dowod we wlasciwej formie: przychod brutto jasno zapisany, potracenie CIS obok jako informacja i wydatki zebrane na biezaco.</p>
+      <p>Wiecej szczegolow znajdziesz w <a href="__CIS_HREF__">poradniku MTD dla CIS</a>, <a href="__QUALIFYING_HREF__">poradniku o qualifying income</a> i <a href="__DIGITAL_RECORDS_HREF__">poradniku o cyfrowych rekordach</a>.</p>
+    `,
+    sourcesChecked: "Sprawdzone: sierpien 2026. Zweryfikuj na GOV.UK, jesli czytasz pozniej."
+  },
+  ro: {
+    title: "Mituri CIS si MTD: ce gresesc multe aplicatii de contabilitate",
+    lead: "Lucrezi sub Construction Industry Scheme? Nu lasa un software complicat sa iti strice evidentele inainte ca regulile MTD sa se aplice.",
+    html: `
+      <h2>De ce conteaza</h2>
+      <p>CIS nu functioneaza intotdeauna ca o mica firma care emite facturi clientilor. Daca aplicatia te impinge spre un obicei gresit, contabilul trebuie sa repare mai tarziu.</p>
+
+      <h2>Mitul 1: trebuie sa trimiti facturi formale contractorului principal</h2>
+      <p>In multe situatii, main contractor calculeaza plata, deduce CIS la sursa si iti da un CIS payment and deduction statement sau remittance note.</p>
+      <p>Acest document este important: arata suma bruta, deducerea CIS si suma neta platita. De multe ori ai nevoie de un loc simplu pentru remittance slips, payslipuri, bonuri de combustibil, scule si materiale, nu de o suita mare de facturare.</p>
+
+      <h2>Mitul 2: pentru MTD folosesti venitul net dupa CIS</h2>
+      <p>Aceasta este eroarea scumpa. Pentru evidentele MTD, venitul este suma bruta inainte de deducerea CIS. Daca documentul arata &pound;2,000 brut, &pound;400 CIS dedus si &pound;1,600 platit, inregistrarea de venit porneste de la &pound;2,000, nu de la &pound;1,600.</p>
+      <p>Deducerea CIS este impozit deja retinut. Nu este o cheltuiala obisnuita si nu ar trebui sa reduca cifra de afaceri folosita pentru actualizarile trimestriale.</p>
+
+      <h2>Mitul 3: ai nevoie de software contabil scump</h2>
+      <p>MTD nu inseamna ca fiecare tradesperson are nevoie de stock tracking, customer portals si modele complicate de facturi. Primul strat practic este mai simplu: evidente digitale pentru venituri, cheltuieli si documente justificative.</p>
+
+      <h2>Unde intra TidGo</h2>
+      <p>TidGo este construit pentru documentele reale: poze cu bonuri pe WhatsApp, payslipuri pe email, remittance notes, venit introdus manual si exporturi PDF/CSV curate in engleza pentru contabil.</p>
+      <p>TidGo nu inlocuieste contabilul si nu promite sa calculeze automat pozitia finala CIS. Ajuta sa pastrezi venitul brut, dovada deducerii CIS si cheltuielile in acelasi loc.</p>
+      <p>Citeste si <a href="__CIS_HREF__">ghidul MTD pentru CIS</a>, <a href="__QUALIFYING_HREF__">ghidul despre qualifying income</a> si <a href="__DIGITAL_RECORDS_HREF__">ghidul despre evidente digitale</a>.</p>
+    `,
+    sourcesChecked: "Verificat: august 2026. Verifica pe GOV.UK daca citesti mai tarziu."
+  },
+  lt: {
+    title: "CIS ir MTD mitai: ka daznai klaidingai daro apskaitos programeles",
+    lead: "Dirbate pagal Construction Industry Scheme? Neleiskite per sudetingai programai sujaukti irasu pries MTD taisykliu taikyma.",
+    html: `
+      <h2>Kodel tai svarbu</h2>
+      <p>CIS ne visada veikia kaip iprasta smulki imone, kuri klientams siuncia saskaitas. Jei programele stumia i klaidinga procesa, buhalteris veliau turi tai taisyti.</p>
+
+      <h2>Mitas 1: privalote siusti oficialias saskaitas pagrindiniam rangovui</h2>
+      <p>Daznai main contractor apskaiciuoja uzmokesti, isskaiciuoja CIS mokesti ir pateikia CIS payment and deduction statement arba remittance note.</p>
+      <p>Tas dokumentas yra svarbiausias: jis rodo bruto suma, CIS atskaityma ir neto ismoka. Praktiskai jums reikia paprastos vietos payslipams, remittance slips, kuro, irankiu ir medziagu kvitams, o ne dideles saskaitu sistemos.</p>
+
+      <h2>Mitas 2: MTD irasams naudojamos neto pajamos po CIS</h2>
+      <p>Tai brangi klaida. MTD irasams pajamos yra bruto suma pries CIS atskaityma. Jei dokumente yra &pound;2,000 bruto, &pound;400 CIS atskaityta ir &pound;1,600 ismoketa, pajamu irasas prasideda nuo &pound;2,000, ne nuo &pound;1,600.</p>
+      <p>CIS atskaitymas yra jau sumoketas mokestis. Tai nera iprasta verslo islaida ir neturetu tyliai mazinti apyvartos ketvirtiniu atnaujinimu irasuose.</p>
+
+      <h2>Mitas 3: reikia brangios buhalterines sistemos</h2>
+      <p>MTD nereiskia, kad kiekvienam tradesperson reikia stock tracking, customer portal ir sudetingu saskaitu sablonu. Pirmas praktinis sluoksnis yra paprastesnis: skaitmeniniai pajamu, islaidu ir irodymu irasai.</p>
+
+      <h2>Kur tinka TidGo</h2>
+      <p>TidGo sukurtas realiems dokumentams: WhatsApp kvitu nuotraukoms, el. pastu gautiems payslipams, remittance notes, ranka ivestoms pajamoms ir tvarkingiems anglisku PDF/CSV eksportams buhalteriui.</p>
+      <p>TidGo nepakeicia buhalterio ir nezada automatiskai apskaiciuoti galutines CIS mokescio pozicijos. Jis padeda laikyti bruto pajamas, CIS atskaitymo irodyma ir islaidas vienoje vietoje.</p>
+      <p>Skaitykite ir <a href="__CIS_HREF__">MTD CIS gida</a>, <a href="__QUALIFYING_HREF__">qualifying income gida</a> ir <a href="__DIGITAL_RECORDS_HREF__">skaitmeniniu irasu gida</a>.</p>
+    `,
+    sourcesChecked: "Patikrinta: 2026 m. rugpjutis. Jei skaitote veliau, pasitikrinkite GOV.UK."
+  }
+};
+
+function mtdCisMythsArticle() {
+  const copy = MTD_CIS_MYTHS_ARTICLES[state.marketingLanguage] || MTD_CIS_MYTHS_ARTICLES.en;
+  const articleHtml = copy.html
+    .replaceAll("__CIS_HREF__", mtdKnowledgeHref("cis"))
+    .replaceAll("__QUALIFYING_HREF__", mtdKnowledgeHref("qualifying-income"))
+    .replaceAll("__DIGITAL_RECORDS_HREF__", mtdKnowledgeHref("digital-records"));
+  return `
+    <article class="marketing-page-card marketing-article">
+      <span class="eyebrow">${mk("navMtd")}</span>
+      <h1>${copy.title}</h1>
+      <p>${copy.lead}</p>
+      ${articleHtml}
+      <div class="article-sources">
+        <h2>Sources</h2>
+        <ul>
+          <li><a href="https://www.gov.uk/what-is-the-construction-industry-scheme" target="_blank" rel="noopener">Construction Industry Scheme - GOV.UK</a></li>
+          <li><a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Use Making Tax Digital for Income Tax - GOV.UK</a></li>
+          <li><a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/create-digital-records" target="_blank" rel="noopener">Create digital records for MTD - GOV.UK</a></li>
+          <li><a href="https://developer.service.hmrc.gov.uk/guides/income-tax-mtd-end-to-end-service-guide/documentation/make-updates-at-tax-year-end.html" target="_blank" rel="noopener">HMRC Income Tax MTD end-to-end service guide</a></li>
+        </ul>
+        <p><em>${copy.sourcesChecked}</em></p>
+      </div>
+      ${pageCta()}
+    </article>
+  `;
 }
 
 function mtdGovernmentGatewayArticle() {
@@ -6106,6 +6252,8 @@ function marketingPage() {
     body = mtdReceiptsMythArticle();
   } else if (slug === "mtdCis") {
     body = mtdCisArticle();
+  } else if (slug === "mtdCisMyths") {
+    body = mtdCisMythsArticle();
   } else if (slug === "mtdDigitalRecords") {
     body = mtdDigitalRecordsArticle();
   } else if (mtdTopic) {
