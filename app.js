@@ -45,7 +45,7 @@ const MARKETING_LANGUAGES = {
 
 const MARKETING_COPY = {
   en: {
-    navHow: "How it works", navWho: "Who is it for?", navStory: "Founder story", navIntake: "How intake works", navFindAccountant: "Find an accountant", navAccountantPack: "Show your accountant", navPricing: "Launch & pricing", navFaq: "FAQ", navMtd: "MTD Knowledge Base", navContact: "Contact",
+    navHow: "How it works", navWho: "Who is it for?", navStory: "Founder story", navIntake: "How intake works", navFindAccountant: "Find an accountant", navAccountantPack: "For accountants", navPricing: "Launch & pricing", navFaq: "FAQ", navMtd: "MTD Knowledge Base", navContact: "Contact",
     heroEyebrow: "Receipts in. Tidy records out.", heroTitle: "One simple place for receipts.", heroText: "For self-employed people who need records tidy, and accountants who would rather not chase plastic bags full of receipts.",
     stepSnap: "Snap receipts", stepTidy: "Keep records tidy", stepPack: "Send a clean pack",
     trustSimple: "No complicated registration. Just email sign-in.",
@@ -70,7 +70,7 @@ const MARKETING_COPY = {
     demoRecordsScreen: "Client records", demoRecordsTitle: "Download the client pack", demoRecordsText: "Open a client, check totals, request missing docs, then download CSV or PDF."
   },
   pl: {
-    navHow: "Jak to działa", navWho: "Dla kogo?", navStory: "Historia twórcy", navIntake: "Jak dodawać dokumenty", navFindAccountant: "Znajdź księgowego", navAccountantPack: "Pokaż księgowemu", navPricing: "Start i ceny", navFaq: "FAQ", navMtd: "Baza wiedzy MTD", navContact: "Kontakt",
+    navHow: "Jak to działa", navWho: "Dla kogo?", navStory: "Historia twórcy", navIntake: "Jak dodawać dokumenty", navFindAccountant: "Znajdź księgowego", navAccountantPack: "Dla księgowych", navPricing: "Start i ceny", navFaq: "FAQ", navMtd: "Baza wiedzy MTD", navContact: "Kontakt",
     heroEyebrow: "Paragony wchodzą. Porządek wychodzi.", heroTitle: "Jedno proste miejsce na paragony.", heroText: "Dla self-employed, którzy chcą mieć rekordy w porządku, i dla księgowych, którzy nie chcą gonitwy za reklamówką paragonów.",
     stepSnap: "Zrób zdjęcie", stepTidy: "Trzymaj porządek", stepPack: "Wyślij czystą paczkę",
     trustSimple: "Bez skomplikowanej rejestracji. Tylko logowanie emailem.",
@@ -3466,6 +3466,7 @@ function marketingNav(active = "") {
       <a class="${active === "who" ? "active" : ""}" href="/who-is-it-for">${mk("navWho")}</a>
       <a class="${active === "intake" ? "active" : ""}" href="/how-intake-works">${mk("navIntake")}</a>
       <a class="${active === "findAccountant" ? "active" : ""}" href="/find-accountant">${mk("navFindAccountant")}</a>
+      <a class="${active === "accountantPack" ? "active" : ""}" href="/show-this-to-your-accountant">${mk("navAccountantPack")}</a>
       <a class="${active === "pricing" ? "active" : ""}" href="/launch-pricing">${mk("navPricing")}</a>
       <a class="${active === "faq" ? "active" : ""}" href="/faq">${mk("navFaq")}</a>
       <a class="nav-mtd ${active === "mtd" ? "active" : ""}" href="/mtd">${mk("navMtd")}</a>
@@ -5841,7 +5842,7 @@ function findAccountantPage() {
               <span>TidGo does not submit to HMRC, replace accountants, do VAT, payroll, limited company accounts or tax advice.</span>
             </article>
           </div>
-          <p><a href="/accountant-demo">Open the accountant demo</a> with sample client data.</p>
+          <p><a href="/accountant-demo">Open the accountant demo</a> with sample client data, or <a href="/show-this-to-your-accountant">read the full accountant overview</a>.</p>
         </article>
         ${pageCta()}
       </main>
