@@ -5159,10 +5159,24 @@ function scanLabel() {
   return labels[state.language] || labels.en;
 }
 
+function scanPhotoReceivedLabel() {
+  const labels = {
+    en: "Photo received.",
+    pl: "Zdjecie przyjete.",
+    ro: "Poza primita.",
+    uk: "Foto otrymano.",
+    lt: "Nuotrauka gauta.",
+    lv: "Foto sanemts.",
+    es: "Foto recibida.",
+    bg: "Snimkata e prieta."
+  };
+  return labels[state.language] || labels.en;
+}
+
 function scanStillWorkingLabel() {
   const labels = {
-    en: "Still working...",
-    pl: "Jeszcze pracuje...",
+    en: "Reading the details...",
+    pl: "Czytam szczegoly...",
     ro: "Inca lucrez...",
     uk: "Shche pratsiuie...",
     lt: "Dar dirbu...",
@@ -5173,16 +5187,16 @@ function scanStillWorkingLabel() {
   return labels[state.language] || labels.en;
 }
 
-function scanSlowConnectionLabel() {
+function scanLongerLabel() {
   const labels = {
-    en: "Slow connection. Keep this open while TidGo finishes.",
-    pl: "Slaby internet. Zostaw to okno otwarte, az TidGo skonczy.",
-    ro: "Conexiune slaba. Tine fereastra deschisa pana termina TidGo.",
-    uk: "Povilne ziednannia. Zalyshte vikno vidkrytym, doky TidGo zakinchyt.",
-    lt: "Letas rysys. Palikite langa atidaryta, kol TidGo baigs.",
-    lv: "Lens savienojums. Atstajiet logu atvertu, kamer TidGo pabeidz.",
-    es: "Conexion lenta. Deja esta ventana abierta hasta que TidGo termine.",
-    bg: "Bavna vruzka. Ostavete prozoretsa otvoren, dokato TidGo priklyuchi."
+    en: "Almost there. Keep this open while TidGo finishes reading the receipt.",
+    pl: "Prawie gotowe. Zostaw to okno otwarte, az TidGo skonczy czytac paragon.",
+    ro: "Aproape gata. Tine fereastra deschisa pana termina TidGo.",
+    uk: "Maizhe hotovo. Zalyshte vikno vidkrytym, doky TidGo zakinchyt.",
+    lt: "Beveik baigta. Palikite langa atidaryta, kol TidGo baigs.",
+    lv: "Gandriz gatavs. Atstajiet logu atvertu, kamer TidGo pabeidz.",
+    es: "Casi listo. Deja esta ventana abierta hasta que TidGo termine.",
+    bg: "Pochti gotovo. Ostavete prozoretsa otvoren, dokato TidGo priklyuchi."
   };
   return labels[state.language] || labels.en;
 }
@@ -5211,14 +5225,17 @@ function showScanOverlay(imageDataUrl) {
   const detail = node.querySelector("[data-scan-detail]");
   node._scanTimers = [
     window.setTimeout(() => {
+      if (title) title.textContent = scanPhotoReceivedLabel();
+    }, 900),
+    window.setTimeout(() => {
       node.classList.add("scan-waiting");
       if (title) title.textContent = scanStillWorkingLabel();
-    }, 5200),
+    }, 2600),
     window.setTimeout(() => {
       node.classList.add("scan-slow");
       if (title) title.textContent = scanStillWorkingLabel();
-      if (detail) detail.textContent = scanSlowConnectionLabel();
-    }, 12000)
+      if (detail) detail.textContent = scanLongerLabel();
+    }, 7600)
   ];
 }
 
@@ -8049,7 +8066,7 @@ async function uploadReceipt(file, isClientExpense) {
   }
   setBusy(true);
   try {
-    const image_base64 = await fileToDataUrl(file);
+    const image_base64 = await receiptImageDataUrl(file);
     showScanOverlay(image_base64);
     const slot = businessSlotById(state.pendingBusinessSlotId || defaultBusinessSlotId(), normalizeBusinessType(state.pendingBusinessType || defaultBusinessType()));
     const receipt = await api("/api/receipts", {
@@ -8090,7 +8107,7 @@ async function replaceReceiptImage(file) {
   const oldReceipt = state.receipts.find((item) => item.id === oldReceiptId);
   setBusy(true);
   try {
-    const image_base64 = await fileToDataUrl(file);
+    const image_base64 = await receiptImageDataUrl(file);
     showScanOverlay(image_base64);
     const slot = businessSlotById(oldReceipt?.business_slot_id, oldReceipt?.business_type || defaultBusinessType());
     const receipt = await api("/api/receipts", {
@@ -8129,6 +8146,11 @@ function fileToDataUrl(file) {
     reader.onerror = reject;
     reader.readAsDataURL(file);
   });
+}
+
+async function receiptImageDataUrl(file) {
+  const compressed = await imageThumbnailDataUrl(file, 1800, 0.82);
+  return compressed || await fileToDataUrl(file);
 }
 
 async function imageThumbnailDataUrl(file, maxSize = 520, quality = 0.72) {
