@@ -1910,8 +1910,8 @@ Object.assign(COPY.en, {
     accessDeclined: "Access declined.",
     accessRevoked: "Access revoked.",
     signOutDevice: "Sign out on this device",
-    signOutHint: "Use this only when you want to test recovery or move to another account. It does not delete your receipts.",
-    signOutConfirm: "This will sign you out on this device and show the email recovery screen. Your receipts will not be deleted.",
+    signOutHint: "Use this when you want to test recovery or move to another account. It clears this device session and disconnects WhatsApp for this account where supported. It does not delete your receipts.",
+    signOutConfirm: "This will sign you out on this device, clear the saved WhatsApp session and show the email recovery screen. Your receipts will not be deleted.",
     accountantAccess: "Accountant access",
     accountantEmail: "Accountant email",
     accountantHint: "Accountant portal is coming later. For now, check your records before sending them on.",
@@ -2028,8 +2028,8 @@ Object.assign(COPY.pl, {
     accessDeclined: "Dostęp odrzucony.",
     accessRevoked: "Dostęp cofnięty.",
     signOutDevice: "Wyloguj na tym urządzeniu",
-    signOutHint: "Użyj tylko, gdy chcesz przetestować odzyskiwanie albo przejść na inne konto. To nie usuwa paragonów.",
-    signOutConfirm: "To wyloguje Cię na tym urządzeniu i pokaże ekran odzyskiwania emailem. Paragony nie zostaną usunięte.",
+    signOutHint: "Użyj, gdy chcesz przetestować odzyskiwanie albo przejść na inne konto. To czyści sesję na tym urządzeniu i odłącza WhatsApp dla tego konta, jeśli API już to obsługuje. To nie usuwa paragonów.",
+    signOutConfirm: "To wyloguje Cię na tym urządzeniu, wyczyści zapisaną sesję WhatsApp i pokaże ekran odzyskiwania emailem. Paragony nie zostaną usunięte.",
     accountantAccess: "Dostęp dla księgowego",
     accountantEmail: "Email księgowego",
     accountantHint: "Portal księgowego będzie później. Na razie sprawdź rekordy przed wysłaniem dalej.",
@@ -4696,6 +4696,44 @@ async function deviceForget(key) {
   }
 }
 
+function clearWhatsAppSessionState() {
+  state.whatsappChangeCodeSent = false;
+  state.whatsappChangeUnlocked = false;
+  state.whatsappChangeOpen = false;
+  state.whatsappChangeEmail = "";
+  state.pendingSignupWhatsApp = "";
+  forget("rb_pending_signup_whatsapp");
+}
+
+async function clearSignedInUserSession() {
+  await deviceForget("rb_user");
+  await deviceForget("rb_last_user");
+  forget("rb_pending_signup_email");
+  forget("rb_pending_income_sources");
+  write("rb_signed_out", true);
+  clearWhatsAppSessionState();
+  state.pendingSignupEmail = "";
+  state.pendingSignupIncomeSources = [];
+  state.user = null;
+  state.receipts = [];
+  state.income = [];
+  state.accountantConsents = [];
+  state.selected = null;
+}
+
+async function requestWhatsAppUnlinkForUser(userId) {
+  if (!userId) return;
+  try {
+    await api("/api/whatsapp/unlink", {
+      method: "POST",
+      timeoutMs: 6000,
+      body: JSON.stringify({ user_id: userId })
+    });
+  } catch {
+    // Older API deploys do not have this endpoint yet; local sign-out must still work.
+  }
+}
+
 function cleanIncomeSources(values) {
   return Array.isArray(values) ? values.filter((value) => INCOME_SOURCE_KEYS.includes(value)) : [];
 }
@@ -4893,9 +4931,6 @@ async function rememberUser(user) {
     id: storedUser.id,
     first_name: storedUser.first_name,
     email: storedUser.email || "",
-    whatsapp_phone: storedUser.whatsapp_phone || "",
-    whatsapp_phone_normalized: storedUser.whatsapp_phone_normalized || "",
-    whatsapp_linked_at: storedUser.whatsapp_linked_at || "",
     income_sources: incomeSources,
     business_slots: businessSlots,
     language: storedUser.language || state.language
@@ -9179,32 +9214,14 @@ document.addEventListener("click", async (event) => {
     }
     if (!confirm(t("deleteWarning"))) return;
     await api(`/api/users/${state.user.id}`, { method: "DELETE" });
-    await deviceForget("rb_user");
-    await deviceForget("rb_last_user");
-    forget("rb_pending_signup_email");
-    forget("rb_pending_signup_whatsapp");
-    forget("rb_pending_income_sources");
-    write("rb_signed_out", true);
-    state.pendingSignupEmail = "";
-    state.pendingSignupWhatsApp = "";
-    state.pendingSignupIncomeSources = [];
-    state.user = null;
+    await clearSignedInUserSession();
     return go("onboarding");
   }
   if (action === "signOutDevice") {
     if (!confirm(t("signOutConfirm"))) return;
-    await deviceForget("rb_user");
-    await deviceForget("rb_last_user");
-    forget("rb_pending_signup_email");
-    forget("rb_pending_signup_whatsapp");
-    forget("rb_pending_income_sources");
-    write("rb_signed_out", true);
-    state.pendingSignupEmail = "";
-    state.pendingSignupWhatsApp = "";
-    state.pendingSignupIncomeSources = [];
-    state.user = null;
-    state.receipts = [];
-    state.income = [];
+    const signedOutUserId = state.user?.id;
+    await requestWhatsAppUnlinkForUser(signedOutUserId);
+    await clearSignedInUserSession();
     return go("recover");
   }
 });
