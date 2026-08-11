@@ -5411,16 +5411,16 @@ function showScanOverlay(imageDataUrl) {
   node._scanTimers = [
     window.setTimeout(() => {
       if (title) title.textContent = scanPhotoReceivedLabel();
-    }, 900),
+    }, 520),
     window.setTimeout(() => {
       node.classList.add("scan-waiting");
       if (title) title.textContent = scanStillWorkingLabel();
-    }, 2600),
+    }, 1700),
     window.setTimeout(() => {
       node.classList.add("scan-slow");
       if (title) title.textContent = scanStillWorkingLabel();
       if (detail) detail.textContent = scanLongerLabel();
-    }, 7600)
+    }, 5600)
   ];
 }
 
@@ -8363,7 +8363,7 @@ function fileToDataUrl(file) {
 }
 
 async function receiptImageDataUrl(file) {
-  const compressed = await imageThumbnailDataUrl(file, 1800, 0.82);
+  const compressed = await imageThumbnailDataUrl(file, 1400, 0.72);
   return compressed || await fileToDataUrl(file);
 }
 
