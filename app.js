@@ -5274,7 +5274,16 @@ function shell(content) {
   const accountantMode = state.screen === "accountantLanding" || state.screen === "accountantDemoClient";
   const landingMode = ["landing", "marketingPage", "appDemo", "accountantDemo"].includes(state.screen);
   const motionClass = state.routeMotion ? ` route-enter route-${state.routeMotion}` : "";
+  const previousShell = state.routeMotion && !landingMode && !state.imageViewer ? app.querySelector(".shell") : null;
+  const exitShell = previousShell ? previousShell.cloneNode(true) : null;
   app.innerHTML = `<main class="shell ${accountantMode ? "accountant-shell" : ""} ${landingMode ? "landing-shell" : ""}${motionClass}">${content}</main><section id="printRoot" class="print-root"></section>${imageViewerOverlay()}`;
+  if (exitShell) {
+    exitShell.setAttribute("aria-hidden", "true");
+    exitShell.classList.remove("route-enter", "route-forward", "route-back");
+    exitShell.classList.add("route-exit", state.routeMotion === "back" ? "route-exit-back" : "route-exit-forward");
+    app.prepend(exitShell);
+    window.setTimeout(() => exitShell.remove(), 280);
+  }
   if (state.routeMotion && !landingMode && !state.imageViewer) {
     window.scrollTo(0, 0);
   }

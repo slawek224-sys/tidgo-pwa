@@ -128,11 +128,28 @@ button {
 }
 
 .route-enter {
-  animation: routeFadeIn 230ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: routeFadeIn 260ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  will-change: opacity, transform;
 }
 
 .route-enter.route-back {
   animation-name: routeBackIn;
+}
+
+.route-exit {
+  position: fixed;
+  inset: 0 auto auto 50%;
+  width: min(100%, 460px);
+  min-height: 100dvh;
+  pointer-events: none;
+  z-index: 20;
+  transform: translateX(-50%);
+  animation: routeExitForward 240ms cubic-bezier(0.4, 0, 0.2, 1) both;
+  will-change: opacity, transform;
+}
+
+.route-exit.route-exit-back {
+  animation-name: routeExitBack;
 }
 
 .landing-shell.route-enter {
@@ -142,27 +159,54 @@ button {
 @keyframes routeFadeIn {
   from {
     opacity: 0;
-    transform: translateX(18px) translateY(4px);
+    transform: translateX(34px) translateY(4px) scale(0.985);
   }
   to {
     opacity: 1;
-    transform: translateX(0) translateY(0);
+    transform: translateX(0) translateY(0) scale(1);
   }
 }
 
 @keyframes routeBackIn {
   from {
     opacity: 0;
-    transform: translateX(-18px) translateY(4px);
+    transform: translateX(-34px) translateY(4px) scale(0.985);
   }
   to {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateX(0) translateY(0) scale(1);
+  }
+}
+
+@keyframes routeExitForward {
+  from {
+    opacity: 1;
+    transform: translateX(-50%) translateX(0) scale(1);
+    filter: blur(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-50%) translateX(-26px) scale(0.99);
+    filter: blur(1px);
+  }
+}
+
+@keyframes routeExitBack {
+  from {
+    opacity: 1;
+    transform: translateX(-50%) translateX(0) scale(1);
+    filter: blur(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-50%) translateX(26px) scale(0.99);
+    filter: blur(1px);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .route-enter {
+  .route-enter,
+  .route-exit {
     animation: none;
   }
 }
