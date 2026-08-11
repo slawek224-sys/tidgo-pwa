@@ -4805,6 +4805,12 @@ function applyRecordBusinessMeta(item = {}) {
   };
 }
 
+function normalizeReceiptResponse(response = {}) {
+  const receipt = response.receipt || response.data || response;
+  const id = receipt.id || receipt.receipt_id || receipt._id || response.id || response.receipt_id || response._id;
+  return id ? { ...receipt, id: String(id) } : receipt;
+}
+
 function upsertReceiptLocal(receipt = {}, fallback = {}) {
   if (!receipt?.id && !fallback?.id) return null;
   const existing = state.receipts.find((item) => item.id === (receipt.id || fallback.id)) || {};
@@ -5424,6 +5430,22 @@ function showScanOverlay(imageDataUrl) {
   ];
 }
 
+function updateScanOverlayImage(imageDataUrl) {
+  const image = document.querySelector(".scan-overlay .scan-frame img");
+  const placeholder = document.querySelector(".scan-overlay .scan-placeholder");
+  if (!imageDataUrl) return;
+  if (image) {
+    image.src = imageDataUrl;
+    return;
+  }
+  if (placeholder) {
+    const img = document.createElement("img");
+    img.src = imageDataUrl;
+    img.alt = "";
+    placeholder.replaceWith(img);
+  }
+}
+
 function hideScanOverlay() {
   document.querySelectorAll(".scan-overlay").forEach((node) => {
     (node._scanTimers || []).forEach((timer) => window.clearTimeout(timer));
@@ -5778,6 +5800,19 @@ async function refresh() {
     toast(error.message || t("backendDown"));
   } finally {
     state.recordsLoading = false;
+  }
+}
+
+async function refreshReceiptsOnly() {
+  if (!state.user?.id) return [];
+  try {
+    const receipts = await api(`/api/receipts/${state.user.id}`);
+    state.receipts = (receipts || []).map(applyRecordBusinessMeta);
+    return state.receipts;
+  } catch (error) {
+    state.apiUnavailable = true;
+    toast(error.message || t("backendDown"));
+    return state.receipts || [];
   }
 }
 
@@ -8265,10 +8300,11 @@ async function uploadReceipt(file, isClientExpense) {
   }
   setBusy(true);
   try {
+    showScanOverlay("");
     const image_base64 = await receiptImageDataUrl(file);
-    showScanOverlay(image_base64);
+    updateScanOverlayImage(image_base64);
     const slot = businessSlotById(state.pendingBusinessSlotId || defaultBusinessSlotId(), normalizeBusinessType(state.pendingBusinessType || defaultBusinessType()));
-    const receipt = await api("/api/receipts", {
+    const receiptResponse = await api("/api/receipts", {
       method: "POST",
       body: JSON.stringify({
         user_id: state.user.id,
@@ -8281,6 +8317,7 @@ async function uploadReceipt(file, isClientExpense) {
         language: state.language
       })
     });
+    const receipt = normalizeReceiptResponse(receiptResponse);
     saveRecordBusinessMeta(receipt.id, slot);
     const localReceipt = upsertReceiptLocal(receipt, {
       user_id: state.user.id,
@@ -8290,8 +8327,10 @@ async function uploadReceipt(file, isClientExpense) {
       business_slot_id: slot.id,
       business_slot_label: slot.label
     });
-    focusSummaryOnRecord(localReceipt || receipt);
-    state.selected = receipt.id;
+    const receipts = await refreshReceiptsOnly();
+    const storedReceipt = receipts.find((item) => item.id === receipt.id) || localReceipt || receipts[0] || receipt;
+    focusSummaryOnRecord(storedReceipt);
+    state.selected = storedReceipt.id || receipt.id;
     state.screen = "receipt";
     render();
     showSuccessPing(receipt.ai_comment || t("saved"));
@@ -8313,10 +8352,11 @@ async function replaceReceiptImage(file) {
   const oldReceipt = state.receipts.find((item) => item.id === oldReceiptId);
   setBusy(true);
   try {
+    showScanOverlay("");
     const image_base64 = await receiptImageDataUrl(file);
-    showScanOverlay(image_base64);
+    updateScanOverlayImage(image_base64);
     const slot = businessSlotById(oldReceipt?.business_slot_id, oldReceipt?.business_type || defaultBusinessType());
-    const receipt = await api("/api/receipts", {
+    const receiptResponse = await api("/api/receipts", {
       method: "POST",
       body: JSON.stringify({
         user_id: state.user.id,
@@ -8329,6 +8369,7 @@ async function replaceReceiptImage(file) {
         language: state.language
       })
     });
+    const receipt = normalizeReceiptResponse(receiptResponse);
     saveRecordBusinessMeta(receipt.id, slot);
     await api(`/api/receipts/${oldReceiptId}`, { method: "DELETE" });
     removeReceiptLocal(oldReceiptId);
@@ -8340,8 +8381,10 @@ async function replaceReceiptImage(file) {
       business_slot_id: slot.id,
       business_slot_label: slot.label
     });
-    focusSummaryOnRecord(localReceipt || receipt);
-    state.selected = receipt.id;
+    const receipts = await refreshReceiptsOnly();
+    const storedReceipt = receipts.find((item) => item.id === receipt.id) || localReceipt || receipts[0] || receipt;
+    focusSummaryOnRecord(storedReceipt);
+    state.selected = storedReceipt.id || receipt.id;
     state.screen = "receipt";
     render();
     showSuccessPing(receipt.ai_comment || t("saved"));
