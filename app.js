@@ -7028,7 +7028,7 @@ function home() {
       </div>
       <button class="secondary share-inline app-share-button" type="button" data-action="shareTidGo">${t("shareTidGo")}</button>
       <div class="list">
-        ${state.recordsLoading && !items.length ? `<div class="empty">${t("loadingRecords")}</div>` : items.length ? visibleItems.map(itemRow).join("") : `<div class="empty">${t("empty")}</div>`}
+        ${state.recordsLoading && !items.length ? recordSkeletonRows() : items.length ? visibleItems.map(itemRow).join("") : `<div class="empty">${t("empty")}</div>`}
         ${items.length > transactionLimit ? `<button class="link-btn see-all-btn" data-action="showMoreTransactions">${t("seeMore")}</button>` : ""}
         ${transactionLimit > 4 ? `<button class="link-btn see-all-btn" data-action="showLessTransactions">${t("showLess")}</button>` : ""}
       </div>
@@ -8239,6 +8239,18 @@ function receiptSummaryRow(item) {
     </span>
     <span class="amount expense">${money(item.amount, item.currency)}</span>
   </button>`;
+}
+
+function recordSkeletonRows(count = 4) {
+  return Array.from({ length: count }, (_, index) => `
+    <div class="list-item skeleton-row" aria-hidden="true" style="--skeleton-delay:${index * 70}ms">
+      <span class="list-main">
+        <span class="skeleton-line skeleton-title"></span>
+        <span class="skeleton-line skeleton-meta"></span>
+      </span>
+      <span class="skeleton-pill"></span>
+    </div>
+  `).join("");
 }
 
 function go(screen) {
