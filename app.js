@@ -4805,6 +4805,44 @@ function applyRecordBusinessMeta(item = {}) {
   };
 }
 
+function upsertReceiptLocal(receipt = {}, fallback = {}) {
+  if (!receipt?.id && !fallback?.id) return null;
+  const existing = state.receipts.find((item) => item.id === (receipt.id || fallback.id)) || {};
+  const merged = applyRecordBusinessMeta({
+    ...existing,
+    ...fallback,
+    ...receipt,
+    timestamp: receipt.timestamp || receipt.created_at || fallback.timestamp || fallback.created_at || existing.timestamp || new Date().toISOString()
+  });
+  state.receipts = [merged, ...state.receipts.filter((item) => item.id !== merged.id)];
+  return merged;
+}
+
+function replaceReceiptLocal(receiptId, receipt = {}, fallback = {}) {
+  if (!receiptId) return null;
+  const existing = state.receipts.find((item) => item.id === receiptId) || {};
+  const merged = applyRecordBusinessMeta({
+    ...existing,
+    ...fallback,
+    ...receipt,
+    id: receipt.id || receiptId,
+    timestamp: receipt.timestamp || receipt.created_at || fallback.timestamp || fallback.created_at || existing.timestamp
+  });
+  state.receipts = state.receipts.map((item) => item.id === receiptId ? merged : item);
+  if (!state.receipts.some((item) => item.id === merged.id)) state.receipts = [merged, ...state.receipts];
+  return merged;
+}
+
+function removeReceiptLocal(receiptId) {
+  if (!receiptId) return;
+  state.receipts = state.receipts.filter((item) => item.id !== receiptId);
+}
+
+function removeIncomeLocal(incomeId) {
+  if (!incomeId) return;
+  state.income = state.income.filter((item) => item.id !== incomeId);
+}
+
 function businessLabelForRecord(item = {}) {
   const meta = recordBusinessMeta(item.id);
   return meta.business_slot_label || item.business_slot_label || businessSlotById(meta.business_slot_id || item.business_slot_id, meta.business_type || item.business_type)?.label || "";
@@ -8232,8 +8270,15 @@ async function uploadReceipt(file, isClientExpense) {
       })
     });
     saveRecordBusinessMeta(receipt.id, slot);
-    await refresh();
-    focusSummaryOnRecord(state.receipts.find((item) => item.id === receipt.id) || receipt);
+    const localReceipt = upsertReceiptLocal(receipt, {
+      user_id: state.user.id,
+      image_base64,
+      is_client_expense: isClientExpense,
+      business_type: slot.type,
+      business_slot_id: slot.id,
+      business_slot_label: slot.label
+    });
+    focusSummaryOnRecord(localReceipt || receipt);
     state.selected = receipt.id;
     state.screen = "receipt";
     render();
@@ -8274,8 +8319,16 @@ async function replaceReceiptImage(file) {
     });
     saveRecordBusinessMeta(receipt.id, slot);
     await api(`/api/receipts/${oldReceiptId}`, { method: "DELETE" });
-    await refresh();
-    focusSummaryOnRecord(state.receipts.find((item) => item.id === receipt.id) || receipt);
+    removeReceiptLocal(oldReceiptId);
+    const localReceipt = upsertReceiptLocal(receipt, {
+      user_id: state.user.id,
+      image_base64,
+      is_client_expense: false,
+      business_type: slot.type,
+      business_slot_id: slot.id,
+      business_slot_label: slot.label
+    });
+    focusSummaryOnRecord(localReceipt || receipt);
     state.selected = receipt.id;
     state.screen = "receipt";
     render();
@@ -9046,12 +9099,12 @@ document.addEventListener("click", async (event) => {
   }
   if (action === "deleteReceipt" && confirm(t("deleteReceiptWarning"))) {
     await api(`/api/receipts/${state.selected}`, { method: "DELETE" });
-    await refresh();
+    removeReceiptLocal(state.selected);
     return go("home");
   }
   if (action === "deleteIncome" && confirm(t("deleteIncomeWarning"))) {
     await api(`/api/income/${state.selected}`, { method: "DELETE" });
-    await refresh();
+    removeIncomeLocal(state.selected);
     return go("home");
   }
   if (action === "deleteAccount") {
@@ -9405,10 +9458,17 @@ document.addEventListener("submit", async (event) => {
         })
       });
       saveRecordBusinessMeta(state.selected, slot);
-      await refresh();
       rememberDateReviewConfirmed(state.selected);
-      state.receipts = state.receipts.map((item) => item.id === state.selected ? clearDateReviewFields({ ...item, ...updatedReceipt, business_type: slot.type, business_slot_id: slot.id, business_slot_label: slot.label }) : item);
-      focusSummaryOnRecord(state.receipts.find((item) => item.id === state.selected) || clearDateReviewFields(updatedReceipt));
+      const localReceipt = replaceReceiptLocal(state.selected, clearDateReviewFields(updatedReceipt), {
+        amount,
+        merchant: data.merchant || "",
+        category,
+        business_type: slot.type,
+        business_slot_id: slot.id,
+        business_slot_label: slot.label,
+        timestamp: data.date ? new Date(`${data.date}T12:00:00`).toISOString() : receipt.timestamp
+      });
+      focusSummaryOnRecord(localReceipt || clearDateReviewFields(updatedReceipt));
       toast(t("saved"));
       return go("home");
     }
