@@ -5189,8 +5189,13 @@ function incomeProofIsPdf(item = {}, url = "", proof = null) {
 }
 
 function reviewBadge(item = {}) {
-  if (!recordDateNeedsReview(item)) return "";
-  return `<span class="needs-review-badge" title="${escapeAttr(t("dateNeedsReview"))}" aria-label="${escapeAttr(t("dateNeedsReview"))}">!</span>`;
+  if (recordPossibleDuplicate(item)) {
+    return `<span class="needs-review-badge" title="${escapeAttr(t("possibleDuplicate"))}" aria-label="${escapeAttr(t("possibleDuplicate"))}">!</span>`;
+  }
+  if (recordNeedsReview(item)) {
+    return `<span class="needs-review-badge" title="${escapeAttr(t("needsReview"))}" aria-label="${escapeAttr(t("needsReview"))}">!</span>`;
+  }
+  return "";
 }
 
 function incomeProofPickerField(label = t("attachProof")) {
@@ -7955,6 +7960,14 @@ function recordDateNeedsReview(item = {}) {
   );
 }
 
+function recordPossibleDuplicate(item = {}) {
+  return Boolean(item.possible_duplicate || item.possibleDuplicate || item.duplicate_of_receipt_id || item.duplicateOfReceiptId);
+}
+
+function recordNeedsReview(item = {}) {
+  return Boolean(recordDateNeedsReview(item) || recordPossibleDuplicate(item) || item.status === "needs_review" || item.needs_review || item.needsReview);
+}
+
 function clearDateReviewFields(item = {}) {
   return {
     ...item,
@@ -8049,6 +8062,7 @@ function reviewFlags() {
   receipts.forEach((item) => {
     if (!item.merchant) flags.push({ label: t("missingMerchant"), receiptId: item.id });
     if (!item.category || item.category === "other") flags.push({ label: t("missingCategory"), receiptId: item.id });
+    if (recordPossibleDuplicate(item)) flags.push({ label: t("possibleDuplicate"), receiptId: item.id, detail: t("duplicateHint") });
   });
   income.forEach((item) => {
     if (!incomeProofImage(item, proofForIncome(item.id)) && !incomeProofName(item, proofForIncome(item.id))) flags.push({ label: t("incomeWithoutProof"), incomeId: item.id });
