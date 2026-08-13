@@ -2386,6 +2386,12 @@ button:active,
   color: #92400e;
 }
 
+.duplicate-review-card {
+  border: 1px solid #fbbf24;
+  background: linear-gradient(180deg, #fff7ed 0%, #fffbeb 100%);
+  color: #78350f;
+}
+
 .status-card strong {
   font-size: 14px;
 }

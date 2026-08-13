@@ -1981,6 +1981,8 @@ Object.assign(COPY.en, {
   taxQuarterHint: "UK tax-year quarters from 6 Apr, 6 Jul, 6 Oct and 6 Jan.",
   duplicateDetails: "Open possible duplicate",
   duplicateHint: "These records look similar. Open one and compare the receipt photos.",
+  duplicateReviewTitle: "This looks like a possible duplicate",
+  duplicateReviewHint: "TidGo found a very similar receipt already saved on this account. Check the photo, date, amount and merchant before using this record in a summary.",
   requestDocsBackendNeeded: "Request email needs a backend Resend endpoint before it can send to the client automatically.",
   mtdRunning: "MTD running summary",
   mtdRunningReady: "Running MTD record summary",
@@ -2099,6 +2101,8 @@ Object.assign(COPY.pl, {
   taxQuarterHint: "Kwartaly brytyjskiego roku podatkowego od 6 Apr, 6 Jul, 6 Oct i 6 Jan.",
   duplicateDetails: "Otworz mozliwy duplikat",
   duplicateHint: "Te rekordy wyglądają podobnie. Otwórz jeden i porównaj zdjęcia paragonów.",
+  duplicateReviewTitle: "To wygląda jak możliwy duplikat",
+  duplicateReviewHint: "TidGo znalazło bardzo podobny paragon zapisany już na tym koncie. Sprawdź zdjęcie, datę, kwotę i sprzedawcę przed użyciem tego rekordu w podsumowaniu.",
   requestDocsBackendNeeded: "Wysyłka request email wymaga endpointu Resend w backendzie, zanim pójdzie automatycznie do klienta.",
   mtdRunning: "MTD running summary",
   mtdRunningReady: "Narastające MTD record summary",
@@ -2150,6 +2154,8 @@ Object.assign(COPY.ro, {
   taxQuarterHint: "Trimestre ale anului fiscal UK de la 6 Apr, 6 Iul, 6 Oct si 6 Ian.",
   duplicateDetails: "Deschide posibil duplicat",
   duplicateHint: "Aceste inregistrari par similare. Deschide una si compara pozele bonurilor.",
+  duplicateReviewTitle: "Acesta pare un posibil duplicat",
+  duplicateReviewHint: "TidGo a gasit un bon foarte similar deja salvat in acest cont. Verifica poza, data, suma si comerciantul inainte sa folosesti acest record intr-un sumar.",
   requestDocsBackendNeeded: "Emailul de cerere are nevoie de endpoint Resend in backend inainte sa fie trimis automat clientului."
 });
 
@@ -2233,6 +2239,8 @@ Object.assign(COPY.lt, {
   taxQuarterHint: "UK mokestiniu metu ketvirciai nuo Apr 6, Jul 6, Oct 6 ir Jan 6.",
   duplicateDetails: "Atidaryti galima dublikata",
   duplicateHint: "Sie irasai atrodo panasus. Atidarykite viena ir palyginkite kvitu nuotraukas.",
+  duplicateReviewTitle: "Tai gali būti dublikatas",
+  duplicateReviewHint: "TidGo rado labai panašų kvitą, jau išsaugotą šioje paskyroje. Patikrink nuotrauką, datą, sumą ir pardavėją prieš naudodamas šį įrašą suvestinėje.",
   requestDocsBackendNeeded: "Prasymo emailui reikia Resend endpointo backend'e, pries siunciant klientui automatiskai."
 });
 
@@ -2365,6 +2373,8 @@ Object.assign(COPY.uk, {
   taxQuarterHint: "Kvartaly UK podatkovoho roku vid 6 Apr, 6 Jul, 6 Oct i 6 Jan.",
   duplicateDetails: "Vidkryty mozlyvyi dublikat",
   duplicateHint: "Tsi zapysy skhozhi. Vidkryite odyn i porivniaite foto chekiv.",
+  duplicateReviewTitle: "Це може бути дублікат",
+  duplicateReviewHint: "TidGo знайшов дуже схожий чек, уже збережений у цьому акаунті. Перевірте фото, дату, суму й продавця перед використанням цього запису у підсумку.",
   requestDocsBackendNeeded: "Email-zapyt potrebuie Resend endpoint u backend, persh nizh avtomatychno nadislaty kliientu."
 });
 
@@ -2376,6 +2386,8 @@ Object.assign(COPY.lv, {
   taxQuarterHint: "UK nodoklu gada ceturksni no 6 Apr, 6 Jul, 6 Oct un 6 Jan.",
   duplicateDetails: "Atvert iespejamu dublikatu",
   duplicateHint: "Sie ieraksti izskatas lidzigi. Atver vienu un salidzini ceku foto.",
+  duplicateReviewTitle: "Tas var būt dublikāts",
+  duplicateReviewHint: "TidGo atrada ļoti līdzīgu čeku, kas jau ir saglabāts šajā kontā. Pirms izmantošanas kopsavilkumā pārbaudi foto, datumu, summu un tirgotāju.",
   requestDocsBackendNeeded: "Pieprasijuma emailam vajag Resend endpoint backend'a, pirms tas sutis klientam automatiski."
 });
 
@@ -2387,6 +2399,8 @@ Object.assign(COPY.es, {
   taxQuarterHint: "Trimestres del ano fiscal UK desde 6 Apr, 6 Jul, 6 Oct y 6 Jan.",
   duplicateDetails: "Abrir posible duplicado",
   duplicateHint: "Estos registros parecen similares. Abre uno y compara las fotos.",
+  duplicateReviewTitle: "Esto parece un posible duplicado",
+  duplicateReviewHint: "TidGo encontro un recibo muy parecido ya guardado en esta cuenta. Revisa la foto, fecha, importe y comercio antes de usar este registro en un resumen.",
   requestDocsBackendNeeded: "El email de solicitud necesita un endpoint Resend en backend antes de enviarse automaticamente al cliente."
 });
 
@@ -2398,6 +2412,8 @@ Object.assign(COPY.bg, {
   taxQuarterHint: "UK danachni trimesecia ot 6 Apr, 6 Jul, 6 Oct i 6 Jan.",
   duplicateDetails: "Otvori vazmozhen dublikat",
   duplicateHint: "Tezi zapisi izgledat podobni. Otvorete edin i sravnete snimkite.",
+  duplicateReviewTitle: "Това може да е дубликат",
+  duplicateReviewHint: "TidGo намери много подобна бележка, която вече е записана в този акаунт. Проверете снимката, датата, сумата и търговеца, преди да използвате този запис в справка.",
   requestDocsBackendNeeded: "Email za zayavka iska Resend endpoint v backend predi avtomatichno izprashtane do klienta."
 });
 
@@ -7168,6 +7184,7 @@ function receipt() {
     <section class="screen">
       ${topbar(t("expenses"), true)}
       ${imagePreviewButton(receipt.image_base64, "Receipt photo")}
+      ${recordPossibleDuplicate(receipt) ? duplicateReviewCard() : ""}
       ${recordDateNeedsReview(receipt) ? dateReviewCard() : ""}
       <form class="stack" id="receiptForm" style="margin-top:14px">
         ${receiptReplaceField()}
@@ -7985,6 +8002,15 @@ function dateReviewCard() {
     <div class="status-card date-review-card">
       <strong>${t("dateNeedsReview")}</strong>
       <span>${t("dateNeedsReviewHint")}</span>
+    </div>
+  `;
+}
+
+function duplicateReviewCard() {
+  return `
+    <div class="status-card duplicate-review-card">
+      <strong>${t("duplicateReviewTitle")}</strong>
+      <span>${t("duplicateReviewHint")}</span>
     </div>
   `;
 }
