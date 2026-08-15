@@ -7275,6 +7275,7 @@ function summary() {
       </div>
       <p class="subtitle">${subtitle}</p>
       <button class="primary" data-action="sharePdf">${t("emailPdf")}</button>
+      <button class="secondary" style="width:100%;margin-top:10px" data-action="downloadUserCsv">${t("downloadCsv")}</button>
       <button class="secondary" style="width:100%;margin-top:10px" data-action="printPdf">${t("printPdf")}</button>
       <div class="list">${[...income.map(incomeSummaryRow), ...receipts.map(receiptSummaryRow)].join("") || `<div class="empty">${t("noEntries")}</div>`}</div>
     </section>
@@ -9168,6 +9169,13 @@ document.addEventListener("click", async (event) => {
     const fileName = `TidGo-${state.user.first_name || "client"}-${periodFilePart()}.csv`;
     downloadFile(fileName, accountantCsv(), "text/csv");
     toast(t("accountantHeroToast"));
+    return;
+  }
+  if (action === "downloadUserCsv") {
+    if (!(await confirmDownload("user"))) return;
+    const fileName = `TidGo-${state.user.first_name || "records"}-${periodFilePart()}.csv`;
+    downloadFile(fileName, accountantCsv(), "text/csv");
+    toast(t("downloadCsv"));
     return;
   }
   if (action === "downloadAccountantPack") {
