@@ -7426,11 +7426,7 @@ function settings() {
         <div class="field">
           <span>${t("notificationsTitle")}</span>
           <p class="hint">${t("notificationsHint")}</p>
-          <select class="select" name="notification_preference">
-          <option value="email"${notificationPreference === "email" ? " selected" : ""}>${t("notifyEmail")}</option>
-          <option value="push"${notificationPreference === "push" ? " selected" : ""}>${t("notifyPush")}</option>
-          <option value="none"${notificationPreference === "none" ? " selected" : ""}>${t("notifyNone")}</option>
-          </select>
+          ${notificationPreferenceChoices(notificationPreference)}
         </div>
         <div class="intake-card">
           <strong>${t("intakeTitle")}</strong>
@@ -7921,7 +7917,27 @@ function incomeSourceChoices(selected = []) {
       ${INCOME_SOURCE_KEYS.map((key) => `
         <label class="source-pill">
           <input type="checkbox" name="income_source_${key}" value="1"${active.has(key) ? " checked" : ""}>
+          <i aria-hidden="true"></i>
           <span>${escapeHtml(labels[key])}</span>
+        </label>
+      `).join("")}
+    </div>
+  `;
+}
+
+function notificationPreferenceChoices(active = "none") {
+  const options = [
+    ["email", t("notifyEmail")],
+    ["push", t("notifyPush")],
+    ["none", t("notifyNone")]
+  ];
+  const selected = ["email", "push", "none"].includes(active) ? active : "none";
+  return `
+    <div class="preference-toggle" role="radiogroup" aria-label="${escapeAttr(t("notificationsTitle"))}">
+      ${options.map(([value, label]) => `
+        <label class="preference-pill">
+          <input type="radio" name="notification_preference" value="${value}"${selected === value ? " checked" : ""}>
+          <span>${escapeHtml(label)}</span>
         </label>
       `).join("")}
     </div>
