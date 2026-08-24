@@ -486,6 +486,8 @@ Object.assign(MARKETING_COPY.en, {
   mtdTestingText: "TidGo is currently testing an MTD connection in HMRC's sandbox. MTD quarterly submissions are in development, pending HMRC production approval. HMRC's next update is expected by the end of September 2026.",
   mtdLateTitle: "Missed a quarterly update?",
   mtdLateText: "Missed the 7 August deadline? No penalty points in 2026/27. Here's what actually happens.",
+  mtdAutoSignup: "Automatically signed up by HMRC?",
+  mtdAutoSignupText: "Received a letter saying HMRC signed you up for MTD automatically? Here's what it means and what to do next.",
   mtdSourceTitle: "Official source",
   mtdSourceText: "Read the public GOV.UK guidance on Making Tax Digital for Income Tax and quarterly updates.",
   launchPricingFullText: "TidGo is in early access for a small group of real users. It is free while we collect feedback, improve the app and prepare clearer guides. Users will be told clearly in advance and will always be able to export or delete their records.",
@@ -522,6 +524,8 @@ Object.assign(MARKETING_COPY.pl, {
   mtdTestingText: "TidGo testuje obecnie polaczenie MTD w sandboxie HMRC. Kwartalne wysylki MTD sa w trakcie developmentu i czekaja na produkcyjne zatwierdzenie HMRC. Kolejny update HMRC jest spodziewany do konca wrzesnia 2026.",
   mtdLateTitle: "Termin kwartalnego update'u już minął?",
   mtdLateText: "Termin 7 sierpnia min??? W roku 2026/27 nie ma penalty points. Zobacz, co naprawd? dzieje si? dalej.",
+  mtdAutoSignup: "HMRC automatycznie zapisało Cię do MTD?",
+  mtdAutoSignupText: "Dostałeś list, że HMRC zapisało Cię automatycznie do MTD? Zobacz, co to znaczy i co zrobić dalej.",
   mtdSourceTitle: "Oficjalne źródło",
   mtdSourceText: "Przeczytaj publiczne GOV.UK guidance o Making Tax Digital for Income Tax i quarterly updates.",
   launchPricingFullText: "TidGo jest w early access dla małej grupy prawdziwych użytkowników. Jest darmowe, kiedy zbieramy feedback, poprawiamy aplikację i przygotowujemy jaśniejsze poradniki. Użytkownicy dostaną jasną informację z wyprzedzeniem i zawsze będą mogli wyeksportować albo usunąć swoje rekordy.",
@@ -558,6 +562,8 @@ Object.assign(MARKETING_COPY.ro, {
   mtdTestingText: "TidGo testeaza in prezent conexiunea MTD in sandbox-ul HMRC. Trimiterile trimestriale MTD sunt in development, in asteptarea aprobarii HMRC pentru productie. Urmatorul update HMRC este asteptat pana la finalul lui septembrie 2026.",
   mtdLateTitle: "Ai ratat un quarterly update?",
   mtdLateText: "Ai ratat termenul de 7 august? In 2026/27 nu exista penalty points. Iata ce se intampla de fapt.",
+  mtdAutoSignup: "HMRC te-a inscris automat la MTD?",
+  mtdAutoSignupText: "Ai primit o scrisoare ca HMRC te-a inscris automat la MTD? Iata ce inseamna si ce trebuie sa faci mai departe.",
   mtdSourceTitle: "Sursa oficiala",
   mtdSourceText: "Citeste ghidul public GOV.UK despre Making Tax Digital for Income Tax si quarterly updates.",
   launchPricingFullText: "TidGo este in early access pentru un grup mic de utilizatori reali. Este gratuit cat timp strangem feedback, imbunatatim aplicatia si pregatim ghiduri mai clare. Utilizatorii vor fi anuntati clar din timp si vor putea mereu exporta sau sterge inregistrarile.",
@@ -594,6 +600,8 @@ Object.assign(MARKETING_COPY.lt, {
   mtdTestingText: "TidGo siuo metu testuoja MTD jungti HMRC sandbox aplinkoje. Ketvirtiniai MTD pateikimai yra kuriami ir laukia HMRC production patvirtinimo. Kitas HMRC update laukiamas iki 2026 m. rugsejo pabaigos.",
   mtdLateTitle: "Praleidote quarterly update?",
   mtdLateText: "Praleidote rugpjucio 7 d. termina? 2026/27 metais penalty points nera. Stai kas is tikruju vyksta toliau.",
+  mtdAutoSignup: "HMRC automatiškai įtraukė jus į MTD?",
+  mtdAutoSignupText: "Gavote laišką, kad HMRC automatiškai įtraukė jus į MTD? Štai ką tai reiškia ir ką daryti toliau.",
   mtdSourceTitle: "Oficialus saltinis",
   mtdSourceText: "Skaitykite viesas GOV.UK gaires apie Making Tax Digital for Income Tax ir quarterly updates.",
   launchPricingFullText: "TidGo yra early access mazai tikru vartotoju grupei. Programa nemokama, kol renkame atsiliepimus, geriname ja ir ruosiame aiskesnius gidus. Vartotojai bus aiskiai informuoti is anksto ir visada gales eksportuoti arba istrinti savo irasus.",
@@ -3377,6 +3385,7 @@ function marketingPageSlug() {
     "/founding-tester": "androidTesters",
     "/android-testers": "androidTesters",
     "/mtd": "mtd",
+    "/mtd/automatically-signed-up": "mtdAutoSignup",
     "/mtd/qualifying-income": "mtdQualifyingIncome",
     "/mtd/government-gateway": "mtdGateway",
     "/mtd/do-i-have-to-photograph-receipts": "mtdReceiptsMyth",
@@ -3551,6 +3560,7 @@ function landingFooter() {
 
 function mtdTopics() {
   return [
+    ["mtdAutoSignup", "mtdAutoSignupText", state.marketingLanguage === "en" ? "/mtd/automatically-signed-up" : `/${state.marketingLanguage}/mtd/automatically-signed-up`],
     ["mtdWhat", "mtdWhatText", state.marketingLanguage === "en" ? "/mtd/what-is-mtd" : `/${state.marketingLanguage}/mtd/what-is-mtd`],
     ["mtdQualifyingIncome", "mtdQualifyingIncomeText", state.marketingLanguage === "en" ? "/mtd/qualifying-income" : `/${state.marketingLanguage}/mtd/qualifying-income`],
     ["mtdDigitalRecords", "mtdDigitalRecordsText", state.marketingLanguage === "en" ? "/mtd/digital-records" : `/${state.marketingLanguage}/mtd/digital-records`],
@@ -3603,7 +3613,7 @@ function mtdWhatArticle() {
 }
 
 function mtdKnowledgeHref(slug) {
-  const localized = ["qualifying-income", "government-gateway", "do-i-have-to-photograph-receipts", "digital-records", "cis", "cis-myths", "quarterly-updates"];
+  const localized = ["automatically-signed-up", "qualifying-income", "government-gateway", "do-i-have-to-photograph-receipts", "digital-records", "cis", "cis-myths", "quarterly-updates"];
   if (state.marketingLanguage !== "en" && localized.includes(slug)) {
     return `/${state.marketingLanguage}/mtd/${slug}`;
   }
@@ -4324,6 +4334,193 @@ function mtdCisMythsArticle() {
           <li><a href="https://developer.service.hmrc.gov.uk/guides/income-tax-mtd-end-to-end-service-guide/documentation/make-updates-at-tax-year-end.html" target="_blank" rel="noopener">HMRC Income Tax MTD end-to-end service guide</a></li>
         </ul>
         <p><em>${copy.sourcesChecked}</em></p>
+      </div>
+      ${pageCta()}
+    </article>
+  `;
+}
+
+const MTD_AUTO_SIGNUP_ARTICLES = {
+  en: {
+    title: "Automatically signed up for MTD by HMRC? What it means and what to do next",
+    lead: "HMRC may sign some taxpayers up to Making Tax Digital automatically from September 2026. That does not connect TidGo, Xero, FreeAgent or any other software.",
+    checked: "Last checked: August 2026. HMRC guidance is still evolving, so verify on GOV.UK if reading later.",
+    html: `
+      <h2>The short version</h2>
+      <p>If HMRC sends you a letter saying you have been automatically signed up for Making Tax Digital for Income Tax, it means HMRC has put you into the MTD system because your latest Self Assessment return shows qualifying income above the threshold.</p>
+      <p>It does <strong>not</strong> mean any app has been connected for you. Automatic sign-up does not connect TidGo, Xero, FreeAgent or any other application.</p>
+      <p>You still need to choose compatible software, connect it to HMRC, keep digital records and send any quarterly updates that are due.</p>
+
+      <h2>Why HMRC may do this</h2>
+      <p>For 2026/27, MTD for Income Tax starts with people whose qualifying income is above &pound;50,000. HMRC has said it may automatically sign up people who should be in MTD but have not signed up themselves.</p>
+      <p>This is based on your latest tax return information. It is about your HMRC status, not your software.</p>
+
+      <h2>HMRC enrolment is not software authorisation</h2>
+      <p>There are two separate layers:</p>
+      <p><strong>HMRC enrolment:</strong> HMRC decides you are in MTD and creates obligations for you.</p>
+      <p><strong>Software authorisation:</strong> you open your chosen software, choose “connect to HMRC”, sign in with your Government Gateway or GOV.UK One Login details, and give permission for that software to talk to HMRC.</p>
+      <p>Without that second step, your software cannot read your obligations or submit updates.</p>
+
+      <h2>What to do after receiving the letter</h2>
+      <ol>
+        <li>Read the HMRC letter carefully and check the tax year and income threshold.</li>
+        <li>Log in to HMRC online services and check your Self Assessment and MTD details.</li>
+        <li>Choose compatible software or speak to your accountant.</li>
+        <li>Authorise the software through HMRC using the connect flow.</li>
+        <li>Check open obligations and catch up on any missed quarterly updates.</li>
+      </ol>
+
+      <h2>If you already missed the first quarterly deadline</h2>
+      <p>The first 2026/27 quarterly update deadline was 7 August 2026. HMRC says no penalty points apply for late quarterly updates in 2026/27, but missed updates still need to be submitted before the year-end return.</p>
+      <p>For the specific 7 August deadline situation, read our <a href="__MISSED_HREF__">missed quarterly update guide</a>.</p>
+
+      <h2>Where TidGo fits</h2>
+      <p>TidGo helps you keep digital records: receipts, income proof, CIS payslips and tidy summaries. TidGo is testing MTD connection flows, pending HMRC production approval. Until that approval is in place, TidGo is the record-keeping and accountant handoff layer.</p>
+      <p>The important habit is the same either way: collect the proof now, keep dates and amounts tidy, and give your accountant clean records before the quarterly pressure arrives.</p>
+
+      <h2>Note about GOV.UK wording</h2>
+      <p>Some older GOV.UK pages may still say HMRC will not sign clients up automatically. Newer HMRC guidance includes automatic sign-up wording and a sample letter. Always check the latest HMRC guidance linked below.</p>
+    `
+  },
+  pl: {
+    title: "HMRC automatycznie zapisało Cię do MTD? Co to znaczy i co zrobić dalej",
+    lead: "Od września 2026 HMRC może automatycznie zapisać część podatników do Making Tax Digital. To nie oznacza, że jakakolwiek aplikacja została podłączona za Ciebie.",
+    checked: "Sprawdzone: sierpień 2026. Guidance HMRC nadal się zmienia, więc jeśli czytasz później, sprawdź aktualną wersję na GOV.UK.",
+    html: `
+      <h2>Krótka wersja</h2>
+      <p>Jeśli HMRC wysłało Ci list, że zostałeś automatycznie zapisany do Making Tax Digital for Income Tax, oznacza to, że HMRC umieściło Cię w systemie MTD na podstawie ostatniego Self Assessment i qualifying income powyżej progu.</p>
+      <p>To <strong>nie</strong> znaczy, że TidGo, Xero, FreeAgent albo jakakolwiek inna aplikacja została automatycznie podłączona.</p>
+      <p>Nadal musisz wybrać compatible software, połączyć je z HMRC, prowadzić cyfrowe rekordy i wysłać zaległe albo bieżące quarterly updates.</p>
+
+      <h2>Dlaczego HMRC może to zrobić</h2>
+      <p>Dla roku 2026/27 MTD for Income Tax zaczyna się od osób z qualifying income powyżej &pound;50,000. HMRC informuje, że może automatycznie zapisać osoby, które powinny być w MTD, ale same się nie zapisały.</p>
+      <p>To dotyczy Twojego statusu w HMRC. Nie dotyczy automatycznego wyboru programu.</p>
+
+      <h2>HMRC enrolment to nie software authorisation</h2>
+      <p>Są dwie osobne warstwy:</p>
+      <p><strong>HMRC enrolment:</strong> HMRC decyduje, że jesteś w MTD i tworzy obowiązki kwartalne.</p>
+      <p><strong>Software authorisation:</strong> otwierasz wybrane oprogramowanie, wybierasz “connect to HMRC”, logujesz się przez Government Gateway albo GOV.UK One Login i dajesz zgodę, żeby program komunikował się z HMRC.</p>
+      <p>Bez tego drugiego kroku program nie odczyta obligations i nie wyśle updates.</p>
+
+      <h2>Co zrobić po otrzymaniu listu</h2>
+      <ol>
+        <li>Przeczytaj list HMRC i sprawdź rok podatkowy oraz próg dochodu.</li>
+        <li>Zaloguj się do HMRC online services i sprawdź Self Assessment oraz MTD details.</li>
+        <li>Wybierz compatible software albo porozmawiaj z księgowym.</li>
+        <li>Autoryzuj software przez HMRC w procesie connect.</li>
+        <li>Sprawdź open obligations i nadrób zaległe quarterly updates.</li>
+      </ol>
+
+      <h2>Jeśli pierwszy termin już minął</h2>
+      <p>Pierwszy termin quarterly update za 2026/27 minął 7 sierpnia 2026. HMRC mówi, że w 2026/27 nie będzie penalty points za spóźnione quarterly updates, ale zaległe updates nadal trzeba wysłać przed rocznym zeznaniem.</p>
+      <p>O sytuacji po terminie 7 sierpnia piszemy osobno w <a href="__MISSED_HREF__">artykule o missed quarterly update</a>.</p>
+
+      <h2>Gdzie w tym TidGo</h2>
+      <p>TidGo pomaga trzymać cyfrowe rekordy: paragony, dowody przychodu, CIS payslips i uporządkowane summary. TidGo testuje połączenie MTD, czekając na production approval HMRC. Do czasu zatwierdzenia TidGo jest warstwą zbierania rekordów i przekazania księgowemu.</p>
+      <p>Najważniejszy nawyk jest ten sam: zbieraj dowody na bieżąco, pilnuj dat i kwot, i daj księgowemu czyste rekordy zanim przyjdzie kwartalna presja.</p>
+
+      <h2>Uwaga o GOV.UK</h2>
+      <p>Niektóre starsze strony GOV.UK mogą nadal mówić, że HMRC nie będzie automatycznie zapisywać klientów. Nowsze guidance HMRC zawiera już wording o automatic sign-up i wzór listu. Zawsze sprawdzaj najnowsze guidance HMRC z linków poniżej.</p>
+    `
+  },
+  ro: {
+    title: "Inscris automat la MTD de HMRC? Ce inseamna si ce trebuie sa faci",
+    lead: "Din septembrie 2026, HMRC poate inscrie automat unii contribuabili la Making Tax Digital. Asta nu conecteaza automat nicio aplicatie.",
+    checked: "Verificat: august 2026. Ghidurile HMRC inca evolueaza, deci verifica GOV.UK daca citesti mai tarziu.",
+    html: `
+      <h2>Versiunea scurta</h2>
+      <p>Daca HMRC iti trimite o scrisoare ca ai fost inscris automat la Making Tax Digital for Income Tax, inseamna ca HMRC te-a pus in sistemul MTD pe baza ultimului Self Assessment si a qualifying income peste prag.</p>
+      <p>Asta <strong>nu</strong> inseamna ca TidGo, Xero, FreeAgent sau alta aplicatie a fost conectata automat pentru tine.</p>
+      <p>Tot trebuie sa alegi software compatibil, sa il conectezi la HMRC, sa tii evidente digitale si sa trimiti quarterly updates restante sau curente.</p>
+
+      <h2>De ce poate face HMRC asta</h2>
+      <p>Pentru 2026/27, MTD for Income Tax incepe cu persoanele care au qualifying income peste &pound;50,000. HMRC a spus ca poate inscrie automat persoane care ar trebui sa fie in MTD, dar nu s-au inscris singure.</p>
+      <p>Asta tine de statutul tau la HMRC, nu de software-ul tau.</p>
+
+      <h2>Inscrierea HMRC nu este autorizarea software-ului</h2>
+      <p>Sunt doua straturi separate:</p>
+      <p><strong>HMRC enrolment:</strong> HMRC decide ca esti in MTD si creeaza obligatiile trimestriale.</p>
+      <p><strong>Software authorisation:</strong> deschizi software-ul ales, alegi “connect to HMRC”, te autentifici cu Government Gateway sau GOV.UK One Login si dai permisiune software-ului sa comunice cu HMRC.</p>
+      <p>Fara al doilea pas, software-ul nu poate citi obligations si nu poate trimite updates.</p>
+
+      <h2>Ce faci dupa ce primesti scrisoarea</h2>
+      <ol>
+        <li>Citeste scrisoarea HMRC si verifica anul fiscal si pragul de venit.</li>
+        <li>Autentifica-te in HMRC online services si verifica Self Assessment si MTD details.</li>
+        <li>Alege software compatibil sau vorbeste cu contabilul tau.</li>
+        <li>Autorizeaza software-ul prin fluxul HMRC connect.</li>
+        <li>Verifica open obligations si recupereaza orice quarterly updates ratate.</li>
+      </ol>
+
+      <h2>Daca ai ratat primul termen</h2>
+      <p>Primul termen quarterly update pentru 2026/27 a fost 7 august 2026. HMRC spune ca in 2026/27 nu exista penalty points pentru quarterly updates intarziate, dar updates restante trebuie totusi trimise inainte de declaratia de final de an.</p>
+      <p>Pentru situatia specifica dupa 7 august, citeste <a href="__MISSED_HREF__">ghidul despre missed quarterly update</a>.</p>
+
+      <h2>Unde se incadreaza TidGo</h2>
+      <p>TidGo te ajuta sa tii evidente digitale: bonuri, dovezi de venit, payslipuri CIS si rezumate ordonate. TidGo testeaza conexiunea MTD, in asteptarea aprobarii HMRC pentru productie. Pana atunci, TidGo este stratul de colectare a evidentelor si predare catre contabil.</p>
+
+      <h2>Nota despre GOV.UK</h2>
+      <p>Unele pagini GOV.UK mai vechi pot spune inca faptul ca HMRC nu va inscrie automat clientii. Ghidurile mai noi HMRC includ automatic sign-up si un model de scrisoare. Verifica mereu cele mai recente linkuri HMRC de mai jos.</p>
+    `
+  },
+  lt: {
+    title: "HMRC automatiškai įtraukė jus į MTD? Ką tai reiškia ir ką daryti",
+    lead: "Nuo 2026 m. rugsėjo HMRC gali automatiškai įtraukti kai kuriuos mokesčių mokėtojus į Making Tax Digital. Tai automatiškai neprijungia jokios programos.",
+    checked: "Patikrinta: 2026 m. rugpjūtis. HMRC gairės dar keičiasi, todėl jei skaitote vėliau, pasitikrinkite GOV.UK.",
+    html: `
+      <h2>Trumpa versija</h2>
+      <p>Jei HMRC atsiuntė laišką, kad jus automatiškai įtraukė į Making Tax Digital for Income Tax, tai reiškia, kad HMRC įtraukė jus į MTD sistemą pagal paskutinę Self Assessment deklaraciją ir qualifying income virš ribos.</p>
+      <p>Tai <strong>nereiškia</strong>, kad TidGo, Xero, FreeAgent ar kita programa buvo automatiškai prijungta už jus.</p>
+      <p>Vis tiek turite pasirinkti suderinamą programinę įrangą, prijungti ją prie HMRC, tvarkyti skaitmeninius įrašus ir pateikti einamus arba praleistus quarterly updates.</p>
+
+      <h2>Kodėl HMRC gali tai padaryti</h2>
+      <p>2026/27 metais MTD for Income Tax prasideda žmonėms, kurių qualifying income viršija &pound;50,000. HMRC nurodo, kad gali automatiškai įtraukti žmones, kurie turėtų būti MTD sistemoje, bet patys neužsiregistravo.</p>
+      <p>Tai susiję su jūsų HMRC statusu, o ne su jūsų pasirinkta programa.</p>
+
+      <h2>HMRC įtraukimas nėra programos autorizavimas</h2>
+      <p>Yra du atskiri sluoksniai:</p>
+      <p><strong>HMRC enrolment:</strong> HMRC nusprendžia, kad esate MTD sistemoje, ir sukuria ketvirtines obligations.</p>
+      <p><strong>Software authorisation:</strong> atidarote pasirinktą programą, pasirenkate “connect to HMRC”, prisijungiate su Government Gateway arba GOV.UK One Login ir leidžiate programai bendrauti su HMRC.</p>
+      <p>Be antro žingsnio programa negali perskaityti obligations ir pateikti updates.</p>
+
+      <h2>Ką daryti gavus laišką</h2>
+      <ol>
+        <li>Perskaitykite HMRC laišką ir patikrinkite mokestinius metus bei pajamų ribą.</li>
+        <li>Prisijunkite prie HMRC online services ir patikrinkite Self Assessment bei MTD details.</li>
+        <li>Pasirinkite suderinamą programą arba pasikalbėkite su buhalteriu.</li>
+        <li>Autorizuokite programą per HMRC connect procesą.</li>
+        <li>Patikrinkite open obligations ir pateikite praleistus quarterly updates.</li>
+      </ol>
+
+      <h2>Jei pirmasis terminas jau praėjo</h2>
+      <p>Pirmasis 2026/27 quarterly update terminas buvo 2026 m. rugpjūčio 7 d. HMRC sako, kad 2026/27 metais penalty points už pavėluotus quarterly updates netaikomi, bet praleisti updates vis tiek turi būti pateikti prieš metų pabaigos deklaraciją.</p>
+      <p>Apie rugpjūčio 7 d. situaciją skaitykite <a href="__MISSED_HREF__">missed quarterly update gide</a>.</p>
+
+      <h2>Kur čia TidGo</h2>
+      <p>TidGo padeda tvarkyti skaitmeninius įrašus: kvitus, pajamų įrodymus, CIS payslipus ir tvarkingas suvestines. TidGo testuoja MTD jungtį ir laukia HMRC production approval. Kol jo nėra, TidGo yra įrašų rinkimo ir perdavimo buhalteriui sluoksnis.</p>
+
+      <h2>Pastaba apie GOV.UK</h2>
+      <p>Kai kurie senesni GOV.UK puslapiai dar gali sakyti, kad HMRC automatiškai neįtrauks klientų. Naujesnės HMRC gairės jau mini automatic sign-up ir laiško pavyzdį. Visada tikrinkite naujausias HMRC nuorodas žemiau.</p>
+    `
+  }
+};
+
+function mtdAutoSignupArticle() {
+  const copy = MTD_AUTO_SIGNUP_ARTICLES[state.marketingLanguage] || MTD_AUTO_SIGNUP_ARTICLES.en;
+  return `
+    <article class="marketing-page-card marketing-article">
+      <span class="eyebrow">${mk("navMtd")}</span>
+      <h1>${copy.title}</h1>
+      <p>${copy.lead}</p>
+      ${copy.html.replaceAll("__MISSED_HREF__", state.marketingLanguage === "en" ? "/mtd/missed-7-august-deadline" : `/${state.marketingLanguage}/mtd/missed-7-august-deadline`)}
+      <div class="article-sources">
+        <h2>Sources</h2>
+        <ul>
+          <li><a href="https://www.gov.uk/guidance/get-ready-for-mtd-an-agent-toolkit/guidance-and-other-useful-information" target="_blank" rel="noopener">HMRC guidance and sample automatic sign-up letter</a></li>
+          <li><a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/get-your-software-ready" target="_blank" rel="noopener">HMRC guidance: get your software ready and connect to HMRC</a></li>
+          <li><a href="https://www.gov.uk/guidance/penalties-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Penalties for Making Tax Digital for Income Tax</a></li>
+        </ul>
+        <p><em>${copy.checked}</em></p>
       </div>
       ${pageCta()}
     </article>
@@ -6378,6 +6575,8 @@ function marketingPage() {
     `;
   } else if (slug === "mtdWhat") {
     body = mtdWhatArticle();
+  } else if (slug === "mtdAutoSignup") {
+    body = mtdAutoSignupArticle();
   } else if (slug === "mtdQualifyingIncome") {
     body = mtdQualifyingIncomeArticle();
   } else if (slug === "mtdGateway") {
