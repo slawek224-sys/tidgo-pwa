@@ -1,79 +1,82 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://tidgo.co.uk/</loc></url>
-  <url><loc>https://tidgo.co.uk/app/</loc></url>
   <url><loc>https://tidgo.co.uk/accountant/</loc></url>
-  <url><loc>https://tidgo.co.uk/how-it-works/</loc></url>
-  <url><loc>https://tidgo.co.uk/who-is-it-for/</loc></url>
-  <url><loc>https://tidgo.co.uk/how-intake-works/</loc></url>
-  <url><loc>https://tidgo.co.uk/find-accountant/</loc></url>
-  <url><loc>https://tidgo.co.uk/show-this-to-your-accountant/</loc></url>
-  <url><loc>https://tidgo.co.uk/launch-pricing/</loc></url>
-  <url><loc>https://tidgo.co.uk/pl/launch-pricing/</loc></url>
-  <url><loc>https://tidgo.co.uk/ro/launch-pricing/</loc></url>
-  <url><loc>https://tidgo.co.uk/lt/launch-pricing/</loc></url>
-  <url><loc>https://tidgo.co.uk/faq/</loc></url>
-  <url><loc>https://tidgo.co.uk/our-story</loc></url>
+  <url><loc>https://tidgo.co.uk/accountant-demo/</loc></url>
   <url><loc>https://tidgo.co.uk/android-testers/</loc></url>
+  <url><loc>https://tidgo.co.uk/app/</loc></url>
+  <url><loc>https://tidgo.co.uk/app-demo/</loc></url>
+  <url><loc>https://tidgo.co.uk/delete-account/</loc></url>
+  <url><loc>https://tidgo.co.uk/faq/</loc></url>
+  <url><loc>https://tidgo.co.uk/find-accountant/</loc></url>
   <url><loc>https://tidgo.co.uk/founding-tester/</loc></url>
+  <url><loc>https://tidgo.co.uk/how-intake-works/</loc></url>
+  <url><loc>https://tidgo.co.uk/how-it-works/</loc></url>
+  <url><loc>https://tidgo.co.uk/launch-pricing/</loc></url>
   <url><loc>https://tidgo.co.uk/lt/founding-tester/</loc></url>
-  <url><loc>https://tidgo.co.uk/ro/founding-tester/</loc></url>
-  <url><loc>https://tidgo.co.uk/pl/founding-tester/</loc></url>
+  <url><loc>https://tidgo.co.uk/lt/launch-pricing/</loc></url>
+  <url><loc>https://tidgo.co.uk/lt/mtd/</loc></url>
+  <url><loc>https://tidgo.co.uk/lt/mtd/automatically-signed-up/</loc></url>
+  <url><loc>https://tidgo.co.uk/lt/mtd/cis/</loc></url>
+  <url><loc>https://tidgo.co.uk/lt/mtd/cis-myths/</loc></url>
+  <url><loc>https://tidgo.co.uk/lt/mtd/digital-records/</loc></url>
+  <url><loc>https://tidgo.co.uk/lt/mtd/do-i-have-to-photograph-receipts/</loc></url>
+  <url><loc>https://tidgo.co.uk/lt/mtd/government-gateway/</loc></url>
+  <url><loc>https://tidgo.co.uk/lt/mtd/missed-7-august-deadline/</loc></url>
+  <url><loc>https://tidgo.co.uk/lt/mtd/qualifying-income/</loc></url>
+  <url><loc>https://tidgo.co.uk/lt/mtd/quarterly-updates/</loc></url>
+  <url><loc>https://tidgo.co.uk/lt/mtd/what-is-mtd/</loc></url>
   <url><loc>https://tidgo.co.uk/mtd/</loc></url>
   <url><loc>https://tidgo.co.uk/mtd/automatically-signed-up/</loc></url>
-  <url><loc>https://tidgo.co.uk/pl/mtd/automatically-signed-up/</loc></url>
-  <url><loc>https://tidgo.co.uk/ro/mtd/automatically-signed-up/</loc></url>
-  <url><loc>https://tidgo.co.uk/lt/mtd/automatically-signed-up/</loc></url>
-  <url><loc>https://tidgo.co.uk/mtd/qualifying-income/</loc></url>
-  <url><loc>https://tidgo.co.uk/mtd/government-gateway/</loc></url>
-  <url><loc>https://tidgo.co.uk/ro/mtd/government-gateway/</loc></url>
-  <url><loc>https://tidgo.co.uk/lt/mtd/government-gateway/</loc></url>
-  <url><loc>https://tidgo.co.uk/pl/mtd/government-gateway/</loc></url>
-  <url><loc>https://tidgo.co.uk/pl/mtd/qualifying-income/</loc></url>
-  <url><loc>https://tidgo.co.uk/lt/mtd/qualifying-income/</loc></url>
-  <url><loc>https://tidgo.co.uk/ro/mtd/qualifying-income/</loc></url>
-  <url><loc>https://tidgo.co.uk/mtd/getting-started/</loc></url>
-  <url><loc>https://tidgo.co.uk/mtd/sole-traders/</loc></url>
-  <url><loc>https://tidgo.co.uk/mtd/landlords/</loc></url>
-  <url><loc>https://tidgo.co.uk/mtd/cis/</loc></url>
-  <url><loc>https://tidgo.co.uk/mtd/digital-records/</loc></url>
-  <url><loc>https://tidgo.co.uk/mtd/quarterly-updates/</loc></url>
-  <url><loc>https://tidgo.co.uk/mtd/faqs/</loc></url>
-  <url><loc>https://tidgo.co.uk/mtd/what-is-mtd/</loc></url>
-  <url><loc>https://tidgo.co.uk/mtd/who-needs-mtd/</loc></url>
-  <url><loc>https://tidgo.co.uk/mtd/when-does-mtd-start/</loc></url>
-  <url><loc>https://tidgo.co.uk/mtd/what-records-do-i-need/</loc></url>
-  <url><loc>https://tidgo.co.uk/mtd/paper-receipts/</loc></url>
   <url><loc>https://tidgo.co.uk/mtd/can-i-use-photos/</loc></url>
-  <url><loc>https://tidgo.co.uk/mtd/does-tidgo-submit-to-hmrc/</loc></url>
-  <url><loc>https://tidgo.co.uk/mtd/do-i-need-an-accountant/</loc></url>
-  <url><loc>https://tidgo.co.uk/app-demo/</loc></url>
-  <url><loc>https://tidgo.co.uk/accountant-demo/</loc></url>
-  <url><loc>https://tidgo.co.uk/privacy/</loc></url>
-  <url><loc>https://tidgo.co.uk/terms/</loc></url>
-  <url><loc>https://tidgo.co.uk/delete-account/</loc></url>
-  <url><loc>https://tidgo.co.uk/mtd/do-i-have-to-photograph-receipts/</loc></url>
+  <url><loc>https://tidgo.co.uk/mtd/cis/</loc></url>
   <url><loc>https://tidgo.co.uk/mtd/cis-myths/</loc></url>
-  <url><loc>https://tidgo.co.uk/pl/mtd/do-i-have-to-photograph-receipts/</loc></url>
-  <url><loc>https://tidgo.co.uk/ro/mtd/do-i-have-to-photograph-receipts/</loc></url>
-  <url><loc>https://tidgo.co.uk/lt/mtd/do-i-have-to-photograph-receipts/</loc></url>
+  <url><loc>https://tidgo.co.uk/mtd/digital-records/</loc></url>
+  <url><loc>https://tidgo.co.uk/mtd/does-tidgo-submit-to-hmrc/</loc></url>
+  <url><loc>https://tidgo.co.uk/mtd/do-i-have-to-photograph-receipts/</loc></url>
+  <url><loc>https://tidgo.co.uk/mtd/do-i-need-an-accountant/</loc></url>
+  <url><loc>https://tidgo.co.uk/mtd/faqs/</loc></url>
+  <url><loc>https://tidgo.co.uk/mtd/getting-started/</loc></url>
+  <url><loc>https://tidgo.co.uk/mtd/government-gateway/</loc></url>
+  <url><loc>https://tidgo.co.uk/mtd/landlords/</loc></url>
   <url><loc>https://tidgo.co.uk/mtd/missed-7-august-deadline/</loc></url>
-  <url><loc>https://tidgo.co.uk/pl/mtd/missed-7-august-deadline/</loc></url>
-  <url><loc>https://tidgo.co.uk/ro/mtd/missed-7-august-deadline/</loc></url>
-  <url><loc>https://tidgo.co.uk/lt/mtd/missed-7-august-deadline/</loc></url>
+  <url><loc>https://tidgo.co.uk/mtd/paper-receipts/</loc></url>
+  <url><loc>https://tidgo.co.uk/mtd/qualifying-income/</loc></url>
+  <url><loc>https://tidgo.co.uk/mtd/quarterly-updates/</loc></url>
+  <url><loc>https://tidgo.co.uk/mtd/sole-traders/</loc></url>
+  <url><loc>https://tidgo.co.uk/mtd/what-is-mtd/</loc></url>
+  <url><loc>https://tidgo.co.uk/mtd/what-records-do-i-need/</loc></url>
+  <url><loc>https://tidgo.co.uk/mtd/when-does-mtd-start/</loc></url>
+  <url><loc>https://tidgo.co.uk/mtd/who-needs-mtd/</loc></url>
+  <url><loc>https://tidgo.co.uk/our-story/</loc></url>
+  <url><loc>https://tidgo.co.uk/pl/founding-tester/</loc></url>
+  <url><loc>https://tidgo.co.uk/pl/launch-pricing/</loc></url>
+  <url><loc>https://tidgo.co.uk/pl/mtd/</loc></url>
+  <url><loc>https://tidgo.co.uk/pl/mtd/automatically-signed-up/</loc></url>
   <url><loc>https://tidgo.co.uk/pl/mtd/cis/</loc></url>
-  <url><loc>https://tidgo.co.uk/ro/mtd/cis/</loc></url>
-  <url><loc>https://tidgo.co.uk/lt/mtd/cis/</loc></url>
   <url><loc>https://tidgo.co.uk/pl/mtd/cis-myths/</loc></url>
-  <url><loc>https://tidgo.co.uk/ro/mtd/cis-myths/</loc></url>
-  <url><loc>https://tidgo.co.uk/lt/mtd/cis-myths/</loc></url>
-  <url><loc>https://tidgo.co.uk/pl/mtd/what-is-mtd/</loc></url>
-  <url><loc>https://tidgo.co.uk/ro/mtd/what-is-mtd/</loc></url>
-  <url><loc>https://tidgo.co.uk/lt/mtd/what-is-mtd/</loc></url>
   <url><loc>https://tidgo.co.uk/pl/mtd/digital-records/</loc></url>
-  <url><loc>https://tidgo.co.uk/ro/mtd/digital-records/</loc></url>
-  <url><loc>https://tidgo.co.uk/lt/mtd/digital-records/</loc></url>
+  <url><loc>https://tidgo.co.uk/pl/mtd/do-i-have-to-photograph-receipts/</loc></url>
+  <url><loc>https://tidgo.co.uk/pl/mtd/government-gateway/</loc></url>
+  <url><loc>https://tidgo.co.uk/pl/mtd/missed-7-august-deadline/</loc></url>
+  <url><loc>https://tidgo.co.uk/pl/mtd/qualifying-income/</loc></url>
   <url><loc>https://tidgo.co.uk/pl/mtd/quarterly-updates/</loc></url>
+  <url><loc>https://tidgo.co.uk/pl/mtd/what-is-mtd/</loc></url>
+  <url><loc>https://tidgo.co.uk/privacy/</loc></url>
+  <url><loc>https://tidgo.co.uk/ro/founding-tester/</loc></url>
+  <url><loc>https://tidgo.co.uk/ro/launch-pricing/</loc></url>
+  <url><loc>https://tidgo.co.uk/ro/mtd/</loc></url>
+  <url><loc>https://tidgo.co.uk/ro/mtd/automatically-signed-up/</loc></url>
+  <url><loc>https://tidgo.co.uk/ro/mtd/cis/</loc></url>
+  <url><loc>https://tidgo.co.uk/ro/mtd/cis-myths/</loc></url>
+  <url><loc>https://tidgo.co.uk/ro/mtd/digital-records/</loc></url>
+  <url><loc>https://tidgo.co.uk/ro/mtd/do-i-have-to-photograph-receipts/</loc></url>
+  <url><loc>https://tidgo.co.uk/ro/mtd/government-gateway/</loc></url>
+  <url><loc>https://tidgo.co.uk/ro/mtd/missed-7-august-deadline/</loc></url>
+  <url><loc>https://tidgo.co.uk/ro/mtd/qualifying-income/</loc></url>
   <url><loc>https://tidgo.co.uk/ro/mtd/quarterly-updates/</loc></url>
-  <url><loc>https://tidgo.co.uk/lt/mtd/quarterly-updates/</loc></url>
+  <url><loc>https://tidgo.co.uk/ro/mtd/what-is-mtd/</loc></url>
+  <url><loc>https://tidgo.co.uk/show-this-to-your-accountant/</loc></url>
+  <url><loc>https://tidgo.co.uk/terms/</loc></url>
+  <url><loc>https://tidgo.co.uk/who-is-it-for/</loc></url>
 </urlset>
