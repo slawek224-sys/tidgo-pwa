@@ -4814,7 +4814,8 @@ function mtdGovernmentGatewayArticleEN() {
       <span class="eyebrow">${mk("navMtd")}</span>
       <h1>Government Gateway and MTD: having an account is not the same as signing up</h1>
 
-      <h2>Does having a Government Gateway account mean I'm signed up for MTD?</h2>
+      
+      <p>If you're reading this because you couldn't find where to log in for MTD — you're in the right place, just for the wrong reason.</p><h2>Does having a Government Gateway account mean I'm signed up for MTD?</h2>
       <p>No. These are two completely separate things, and assuming otherwise is one of the most common mistakes people make right now.</p>
       <p>A Government Gateway account is <strong>a login</strong>. It's the username and password that get you into HMRC's online services, nothing more. It doesn't register you for anything, doesn't tell HMRC what you do, and doesn't put you into Making Tax Digital.</p>
       <p>Signing up for Making Tax Digital is <strong>a separate action</strong>, done through a separate service, after which HMRC issues you a specific set of obligations. Until you do it, you are not in the system, no matter how long you've had your login.</p>
@@ -4880,7 +4881,8 @@ function mtdGovernmentGatewayArticlePL() {
     <article class="marketing-page-card marketing-article">
       <span class="eyebrow">${mk("navMtd")}</span>
       <h1>Government Gateway a MTD: posiadanie konta to nie to samo co rejestracja</h1>
-            <h2>Czy jeśli mam Government Gateway, to jestem już zapisany do MTD?</h2>
+            
+      <p>Jeśli tu trafiłeś bo szukałeś gdzie się zalogować do MTD — jesteś we właściwym miejscu, tylko z niewłaściwego powodu.</p><h2>Czy jeśli mam Government Gateway, to jestem już zapisany do MTD?</h2>
             <p>Nie. To dwie zupełnie różne rzeczy, a mylenie ich to obecnie jeden z najczęstszych błędów.</p>
             <p>Konto Government Gateway to <strong>login</strong>. Nazwa użytkownika i hasło, które wpuszczają Cię do usług online HMRC — i tyle. Nie rejestruje Cię do niczego, nie mówi urzędowi, czym się zajmujesz, i nie umieszcza Cię w Making Tax Digital.</p>
             <p>Rejestracja do MTD to <strong>osobna czynność</strong>, wykonywana w osobnej usłudze, po której HMRC wyznacza Ci konkretne obowiązki. Dopóki jej nie zrobisz, nie ma Cię w systemie — niezależnie od tego, ile lat masz to konto.</p>
@@ -4937,7 +4939,8 @@ function mtdGovernmentGatewayArticleRO() {
     <article class="marketing-page-card marketing-article">
       <span class="eyebrow">${mk("navMtd")}</span>
       <h1>Government Gateway și MTD: să ai cont nu înseamnă că ești înscris</h1>
-            <h2>Dacă am cont Government Gateway, înseamnă că sunt înscris în MTD?</h2>
+            
+      <p>Dacă ai ajuns aici pentru că nu găseai unde să te loghezi pentru MTD — ești în locul potrivit, doar din motivul greșit.</p><h2>Dacă am cont Government Gateway, înseamnă că sunt înscris în MTD?</h2>
             <p>Nu. Sunt două lucruri complet diferite, iar confuzia dintre ele este acum una dintre cele mai frecvente greșeli.</p>
             <p>Contul Government Gateway este <strong>o autentificare</strong>. Numele de utilizator și parola care îți dau acces la serviciile online HMRC — atât. Nu te înregistrează la nimic, nu îi spune fiscului cu ce te ocupi și nu te introduce în Making Tax Digital.</p>
             <p>Înscrierea în MTD este <strong>o acțiune separată</strong>, făcută printr-un serviciu separat, după care HMRC îți stabilește obligații concrete. Până nu o faci, nu ești în sistem — indiferent de câți ani ai contul.</p>
@@ -4994,7 +4997,8 @@ function mtdGovernmentGatewayArticleLT() {
     <article class="marketing-page-card marketing-article">
       <span class="eyebrow">${mk("navMtd")}</span>
       <h1>Government Gateway ir MTD: turėti paskyrą nereiškia būti užsiregistravus</h1>
-            <h2>Jei turiu Government Gateway paskyrą, ar jau esu užsiregistravęs MTD?</h2>
+            
+      <p>Jei čia patekote todėl, kad neradote kur prisijungti prie MTD — esate tinkamoje vietoje, tik dėl netinkamos priežasties.</p><h2>Jei turiu Government Gateway paskyrą, ar jau esu užsiregistravęs MTD?</h2>
             <p>Ne. Tai du visiškai skirtingi dalykai, o jų painiojimas šiuo metu yra viena dažniausių klaidų.</p>
             <p>Government Gateway paskyra — tai <strong>prisijungimas</strong>. Naudotojo vardas ir slaptažodis, kurie įleidžia tave į HMRC internetines paslaugas — ir tiek. Ji tavęs niekur neužregistruoja, nepasako mokesčių inspekcijai, kuo užsiimi, ir neįtraukia tavęs į Making Tax Digital.</p>
             <p>Registracija MTD — tai <strong>atskiras veiksmas</strong>, atliekamas atskiroje paslaugoje, po kurio HMRC nustato tau konkrečias prievoles. Kol jos neatliksi, sistemoje tavęs nėra — nesvarbu, kiek metų turi tą paskyrą.</p>
