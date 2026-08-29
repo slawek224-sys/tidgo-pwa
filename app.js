@@ -6685,57 +6685,86 @@ function findAccountantPage() {
   `);
 }
 
-function accountantPackPage() {
-  shell(`
-    <section class="landing-screen marketing-page-screen">
-      ${landingHeader("accountantPack")}
-      <main class="marketing-page-shell">
-        <article class="marketing-page-card marketing-article">
-          <span class="eyebrow">For accountants and bookkeepers</span>
-          <h1>TidGo for accountants</h1>
-          <p>TidGo gives your client a simple way to collect receipts, income proof and CIS documents during the year. You get free read-only access, flagged items and clean PDF/CSV packs when it is time to work.</p>
-          <section class="accountant-priority-section">
-          <h2>What TidGo collects. What you still do.</h2>
-          <p>TidGo collects what has a receipt, payslip or document - captured as it happens through WhatsApp, email or the app. That covers most of the day-to-day: fuel, materials, CIS payslips, invoices and income proof.</p>
-          <p><strong>What TidGo does not replace - and does not try to:</strong></p>
-          <ul><li>Bank statement analysis for direct debits, subscriptions and expenses without a separate receipt.</li><li>Proportion calculations for mixed-use expenses such as phone, car and home office.</li><li>Relief claims, capital allowances, CGT and anything requiring professional judgement.</li><li>The final annual declaration - that stays with you.</li></ul>
-          <p>Your client arrives with the receipts and payslips already organised. You collect the rest from bank statements at year end, as always. The difference is that the first part arrives tidy instead of in a bag.</p>
-          <p><strong>We actively recommend that every TidGo user works with an accountant at least once a year.</strong> Not because the software is incomplete, but because tax optimisation requires a professional who can see the full picture.</p>
-          </section>
-          <h2>Part 1 - Sending this to your accountant?</h2>
-          <p>Copy the message below and send it to your accountant or bookkeeper. Everything they need to evaluate TidGo is on this page.</p>
-          <blockquote><strong>Message to copy</strong><br><br>Hi,<br><br>I'm using TidGo to keep my receipts and income proof in one place during the year. It gives you free read-only access to my records. You can view everything and download a PDF/CSV pack, but nothing can be changed from your side, and I can revoke access at any time.<br><br>It doesn't replace anything you do. It just means I stop sending you photos across WhatsApp and email.<br><br>There's a demo and full details here: https://tidgo.co.uk/show-this-to-your-accountant</blockquote>
-          <button class="secondary landing-link" type="button" data-copy-text="Hi,%0A%0AI'm using TidGo to keep my receipts and income proof in one place during the year. It gives you free read-only access to my records. You can view everything and download a PDF/CSV pack, but nothing can be changed from your side, and I can revoke access at any time.%0A%0AIt doesn't replace anything you do. It just means I stop sending you photos across WhatsApp and email.%0A%0AThere's a demo and full details here: https://tidgo.co.uk/show-this-to-your-accountant">Copy message</button>
-          <h2>Part 2 - For accountants and bookkeepers</h2>
-          <h3>What is TidGo?</h3>
-          <p>TidGo is a record collection layer that sits before your accounting workflow. Clients send receipts, income proof and CIS payslips by photo, WhatsApp or email during the year. You get a read-only view of tidy, English-language records and a clean export pack when you need it.</p>
-          <p>We tell users clearly that TidGo is not a substitute for professional tax judgement. It is the front-end collection layer, not the accountant.</p>
-          <p>It is not accounting software. It does not submit to HMRC. It does not do bookkeeping, VAT, payroll or company accounts. It does one job: your client arrives organised instead of arriving with a carrier bag.</p>
-          <h3>What does it cost accountants?</h3>
-          <p>Nothing. Accountant access is free and always will be. TidGo is paid for by the client's own subscription. There is no per-client fee, no practice licence, no commission on referrals, and no paid placement on our accountant directory.</p>
-          <h3>What can you see?</h3>
-          <ul><li>Receipt photos and income proof, with extracted date, amount, merchant and category.</li><li>Monthly, calendar-quarter and UK tax-quarter summaries.</li><li>CIS payslips, remittance notices and other forwarded documents, with the original attached.</li><li>PDF and CSV export packs.</li></ul>
-          <p>You cannot edit or delete anything. The client can revoke access at any time.</p>
-          <h3>Where the Needs Review flag helps you</h3>
-          <p>When extraction is not confident about a figure, a date or a merchant, the record is flagged for review rather than filed silently. For you, uncertain items are already marked, so you know where to look instead of spot-checking everything.</p>
-          <h3>How your client sends records</h3>
-          <p>Clients can use WhatsApp, email forwarding, in-app photo upload or typed entries. They confirm what was extracted. You review the records when it is time to work.</p>
-          <h3>Data protection</h3>
-          <p>TidGo Ltd is registered with the ICO. Structured data is held in the EU, documents and images are stored in EU object storage, and the client controls who sees their records. Full detail: <a href="/privacy">Privacy Policy</a> and <a href="/terms">Terms</a>.</p>
-          <h3>What TidGo does not do</h3>
-          <p>TidGo does not submit to HMRC, does not replace accountants, does not do bookkeeping, VAT returns, payroll, limited company accounts or corporation tax, and does not give tax advice.</p>
-          <p>The quarterly submission and the final declaration stay where they belong - with you, or with MTD-compatible software. The final declaration is where reliefs, allowances and other income sources come in. That is professional work, and we do not pretend an app should be doing it.</p>
-          <h3>Try it before you commit</h3>
-          <p><a href="/accountant-demo">See the accountant demo</a> with sample client data. If it is not useful, tell your client to disconnect you. Nothing is locked in either direction.</p>
-          <h3>Questions?</h3>
-          <p>Email <a href="mailto:hello@tidgo.co.uk">hello@tidgo.co.uk</a>. Blunt feedback from accountants is genuinely more useful to us than praise.</p>
-          ${pageCta()}
-        </article>
-      </main>
-      ${landingFooter()}
-    </section>
-  `);
+const ACCOUNTANT_PACK_COPY = {
+  "en": {
+    "eyebrow": "For accountants and bookkeepers",
+    "title": "TidGo for accountants",
+    "lead": "TidGo gives your client a simple way to collect receipts, income proof and CIS documents during the year. You get free read-only access, flagged items and clean PDF/CSV packs when it is time to work.",
+    "firstTitle": "What TidGo collects. What you still do.",
+    "firstText": "TidGo collects what has a receipt, payslip or document: fuel, materials, CIS payslips, invoices and income proof. Your client arrives organised. You still handle bank statement review, proportions, reliefs, capital allowances and the final annual declaration.",
+    "clientTitle": "Sending this to your accountant?",
+    "clientText": "Copy the message below and send it to your accountant or bookkeeper. Everything they need to evaluate TidGo is on this page.",
+    "copyButton": "Copy message",
+    "message": "Hi,\n\nI'm using TidGo to keep my receipts and income proof in one place during the year. It gives you free read-only access to my records. You can view everything and download a PDF/CSV pack, but nothing can be changed from your side, and I can revoke access at any time.\n\nIt doesn't replace anything you do. It just means I stop sending you photos across WhatsApp and email.\n\nThere's a demo and full details here: https://tidgo.co.uk/show-this-to-your-accountant",
+    "accountantTitle": "For accountants and bookkeepers",
+    "paragraphs": [
+      "TidGo is a record collection layer before your accounting workflow. Clients send receipts, income proof and CIS payslips by photo, WhatsApp or email during the year.",
+      "Accountant access is free. You get a read-only view, flagged items, monthly and UK tax-quarter summaries, PDF packs and CSV exports. You cannot edit or delete anything.",
+      "TidGo does not submit to HMRC, replace accountants, do bookkeeping, VAT returns, payroll, limited company accounts or corporation tax, and does not give tax advice.",
+      "See the accountant demo with sample client data, or email hello@tidgo.co.uk. Blunt feedback from accountants is genuinely more useful than praise."
+    ]
+  },
+  "pl": {
+    "eyebrow": "Dla księgowych i bookkeeperów",
+    "title": "TidGo dla księgowych",
+    "lead": "TidGo daje klientowi prosty sposób zbierania paragonów, dowodów przychodu i dokumentów CIS przez cały rok. Ty dostajesz darmowy dostęp tylko do odczytu, oznaczone pozycje do sprawdzenia i czyste paczki PDF/CSV.",
+    "firstTitle": "Co zbiera TidGo. Co dalej robisz Ty.",
+    "firstText": "TidGo zbiera to, co ma paragon, payslip albo dokument: paliwo, materiały, payslipy CIS, faktury i dowody przychodu. Klient przychodzi uporządkowany. Ty nadal robisz analizę wyciągów bankowych, proporcje, ulgi, capital allowances i roczną final declaration.",
+    "clientTitle": "Wysyłasz to do księgowego?",
+    "clientText": "Skopiuj wiadomość poniżej i wyślij ją do swojego księgowego albo bookkeepera. Wszystko, czego potrzebuje do oceny TidGo, jest na tej stronie.",
+    "copyButton": "Kopiuj wiadomość",
+    "message": "Cześć,\n\nUżywam TidGo, żeby trzymać paragony i dowody przychodu w jednym miejscu przez cały rok. Możesz dostać darmowy dostęp tylko do odczytu do moich rekordów. Możesz wszystko zobaczyć i pobrać paczkę PDF/CSV, ale nic nie możesz zmienić, a ja mogę cofnąć dostęp w każdej chwili.\n\nTo nie zastępuje Twojej pracy. Po prostu przestanę wysyłać zdjęcia paragonów po WhatsAppie i mailach.\n\nDemo i szczegóły są tutaj: https://tidgo.co.uk/show-this-to-your-accountant",
+    "accountantTitle": "Dla księgowych i bookkeeperów",
+    "paragraphs": [
+      "TidGo to warstwa zbierania rekordów przed Twoją pracą księgową. Klienci wysyłają paragony, dowody przychodu i payslipy CIS zdjęciem, WhatsAppem albo mailem.",
+      "Dostęp księgowego jest darmowy. Widzisz rekordy tylko do odczytu, oznaczone pozycje do sprawdzenia, podsumowania miesięczne i kwartały podatkowe UK, paczki PDF i eksport CSV. Nie możesz nic edytować ani usunąć.",
+      "TidGo nie wysyła nic do HMRC, nie zastępuje księgowych, nie robi bookkeeping, VAT returns, payroll, limited company accounts ani corporation tax i nie udziela porad podatkowych.",
+      "Zobacz demo księgowego z przykładowymi danymi klienta albo napisz na hello@tidgo.co.uk. Szczery feedback od księgowych jest dla nas cenniejszy niż pochwały."
+    ]
+  },
+  "ro": {
+    "eyebrow": "Pentru contabili si bookkeeperi",
+    "title": "TidGo pentru contabili",
+    "lead": "TidGo oferă clientului o metodă simplă de a colecta bonuri, dovezi de venit și documente CIS pe parcursul anului. Tu primești acces gratuit doar pentru citire, elemente marcate pentru verificare și exporturi curate PDF/CSV.",
+    "firstTitle": "Ce colectează TidGo. Ce faci în continuare tu.",
+    "firstText": "TidGo colectează documentele: combustibil, materiale, payslipuri CIS, facturi și dovezi de venit. Clientul vine organizat. Tu te ocupi în continuare de extrase bancare, proporții, deduceri, capital allowances și final declaration anuală.",
+    "clientTitle": "Trimiți asta contabilului?",
+    "clientText": "Copiază mesajul de mai jos și trimite-l contabilului sau bookkeeperului tău.",
+    "copyButton": "Copiază mesajul",
+    "message": "Bună,\n\nFolosesc TidGo ca să țin bonurile și dovezile de venit într-un singur loc pe parcursul anului. Îți pot oferi acces gratuit doar pentru citire la evidențele mele. Poți vedea totul și descărca un pachet PDF/CSV, dar nu poți modifica nimic, iar eu pot retrage accesul oricând.\n\nNu înlocuiește nimic din ce faci. Doar înseamnă că nu îți mai trimit poze prin WhatsApp și email.\n\nDemo și detalii aici: https://tidgo.co.uk/show-this-to-your-accountant",
+    "accountantTitle": "Pentru contabili și bookkeeperi",
+    "paragraphs": [
+      "TidGo este stratul de colectare a evidențelor înainte de fluxul tău contabil. Clienții trimit bonuri, dovezi de venit și payslipuri CIS prin poză, WhatsApp sau email.",
+      "Accesul contabilului este gratuit. Primești o vedere doar pentru citire, elemente marcate, sumar lunar, trimestre fiscale UK, pachete PDF și export CSV.",
+      "TidGo nu trimite la HMRC, nu înlocuiește contabilii, nu face bookkeeping, VAT returns, payroll, limited company accounts sau corporation tax și nu oferă consultanță fiscală.",
+      "Vezi demo-ul pentru contabil sau scrie la hello@tidgo.co.uk. Feedbackul direct de la contabili este mai util decât laudele."
+    ]
+  },
+  "lt": {
+    "eyebrow": "Buhalteriams",
+    "title": "TidGo buhalteriams",
+    "lead": "TidGo suteikia klientui paprastą būdą rinkti kvitus, pajamų įrodymus ir CIS dokumentus ištisus metus. Tu gauni nemokamą tik skaitymo prieigą, pažymėtus įrašus ir tvarkingus PDF/CSV eksportus.",
+    "firstTitle": "Ką renka TidGo. Ką vis dar darai tu.",
+    "firstText": "TidGo renka dokumentus: kurą, medžiagas, CIS payslipus, sąskaitas ir pajamų įrodymus. Klientas ateina tvarkingai pasiruošęs. Tu vis dar tvarkai banko išrašus, proporcijas, lengvatas, capital allowances ir metinę final declaration.",
+    "clientTitle": "Siunčiate tai buhalteriui?",
+    "clientText": "Nukopijuok žinutę žemiau ir nusiųsk savo buhalteriui.",
+    "copyButton": "Kopijuoti žinutę",
+    "message": "Sveiki,\n\nNaudoju TidGo, kad kvitus ir pajamų įrodymus laikyčiau vienoje vietoje visus metus. Galiu suteikti jums nemokamą tik skaitymo prieigą prie savo įrašų. Galite viską peržiūrėti ir atsisiųsti PDF/CSV paketą, bet nieko negalite keisti, o aš galiu bet kada atšaukti prieigą.\n\nTai nepakeičia jūsų darbo. Tai tik reiškia, kad nebesiųsiu nuotraukų per WhatsApp ir el. paštą.\n\nDemo ir visa informacija: https://tidgo.co.uk/show-this-to-your-accountant",
+    "accountantTitle": "Buhalteriams",
+    "paragraphs": [
+      "TidGo yra įrašų surinkimo sluoksnis prieš tavo buhalterinį darbą. Klientai siunčia kvitus, pajamų įrodymus ir CIS payslipus nuotrauka, WhatsApp arba el. paštu.",
+      "Buhalterio prieiga yra nemokama. Gauni tik skaitymo vaizdą, pažymėtus įrašus, mėnesines ir UK tax quarter santraukas, PDF paketus ir CSV eksportus.",
+      "TidGo nesiunčia HMRC, nepakeičia buhalterių, nedaro bookkeeping, VAT returns, payroll, limited company accounts ar corporation tax ir neteikia mokesčių konsultacijų.",
+      "Peržiūrėk buhalterio demo arba rašyk hello@tidgo.co.uk. Tiesus buhalterių feedbackas mums vertingesnis už pagyras."
+    ]
+  }
+};
+
+function accountantPackCopy() {
+  return ACCOUNTANT_PACK_COPY[state.marketingLanguage] || ACCOUNTANT_PACK_COPY.en;
 }
+
+function accountantPackPage() {\n  const copy = accountantPackCopy();\n  const priorityParas = copy.priorityParas.map((item) => `<p>${escapeHtml(item)}</p>`).join("");\n  const bullets = copy.bullets.map((item) => `<li>${escapeHtml(item)}</li>`).join("");\n  const messageHtml = escapeHtml(copy.message).replace(/\n/g, "<br>");\n  const sections = copy.paragraphs.map((text) => `<p>${escapeHtml(text)}</p>`).join("");\n  const encodedMessage = encodeURIComponent(copy.message);\n  shell(`\n    <section class="landing-screen marketing-page-screen">\n      ${landingHeader("accountantPack")}\n      <main class="marketing-page-shell">\n        <article class="marketing-page-card marketing-article">\n          <span class="eyebrow">${escapeHtml(copy.eyebrow)}</span>\n          <h1>${escapeHtml(copy.title)}</h1>\n          <p>${escapeHtml(copy.lead)}</p>\n          <section class="accountant-priority-section">\n            <h2>${escapeHtml(copy.firstTitle)}</h2>\n            ${priorityParas}\n            <p><strong>${escapeHtml(copy.doesNotReplace)}</strong></p>\n            <ul>${bullets}</ul>\n          </section>\n          <h2>${escapeHtml(copy.clientTitle)}</h2>\n          <p>${escapeHtml(copy.clientText)}</p>\n          <blockquote><strong>${escapeHtml(copy.copyButton)}</strong><br><br>${messageHtml}</blockquote>\n          <button class="secondary landing-link" type="button" data-copy-text="${encodedMessage}">${escapeHtml(copy.copyButton)}</button>\n          <h2>${escapeHtml(copy.accountantTitle)}</h2>\n          ${sections}\n          <p><a href="/accountant-demo">Open the accountant demo</a></p>\n          ${pageCta()}\n        </article>\n      </main>\n      ${landingFooter()}\n    </section>\n  `);\n}
 
 function launchPricingPage() {
   const copy = PRICING_PAGE_COPY[state.marketingLanguage] || PRICING_PAGE_COPY.en;
@@ -7049,7 +7078,7 @@ const FOUNDING_TESTER_COPY = {
     title: "Become a TidGo Founding Tester",
     lead: "TidGo works in your browser right now. The Android app is in closed testing, and the iPhone version is in development.",
     introOne: "I'm looking for 20 UK sole traders, CIS subcontractors and tradespeople, with landlords who keep simple records welcome too, who will use TidGo for real and tell me honestly what works, what does not, and what could be simpler.",
-    introTwo: "Setup takes about ten minutes. All I ask is that you send receipts the way you normally would, and tell me when something annoys you at least a couple of times over a few weeks.",
+    introTwo: "Setup takes about two minutes, including installing the app. All I ask is that you send receipts the way you normally would, and tell me when something annoys you at least a couple of times over a few weeks.",
     termsTitle: "Founding Tester terms",
     termsText: "Active Founding Testers receive access to the TidGo Core plan at no monthly charge, for as long as the Core plan exists. It is personal, non-transferable and fair use applies.",
     activeTitle: "What active means",
@@ -7081,7 +7110,7 @@ const FOUNDING_TESTER_COPY = {
     title: "Zostań Founding Testerem TidGo",
     lead: "TidGo działa już w przeglądarce. Aplikacja Android jest w zamkniętych testach, a wersja na iPhone jest w przygotowaniu.",
     introOne: "Szukam 20 osób w UK: sole traders, CIS subcontractors, tradespeople oraz landlordów prowadzących proste rekordy, którzy użyją TidGo naprawdę i powiedzą uczciwie, co działa, co przeszkadza i co można uprościć.",
-    introTwo: "Start zajmuje około dziesięciu minut. Chodzi tylko o to, żeby wysyłać paragony tak jak zwykle i dać szczery feedback kilka razy w trakcie testów.",
+    introTwo: "Start zajmuje około dwóch minut, łącznie z zainstalowaniem aplikacji. Chodzi tylko o to, żeby wysyłać paragony tak jak zwykle i dać szczery feedback kilka razy w trakcie testów.",
     termsTitle: "Warunki Founding Tester",
     termsText: "Aktywni Founding Testerzy dostają dostęp do planu TidGo Core bez miesięcznej opłaty tak długo, jak plan Core istnieje. Dostęp jest osobisty, nieprzenoszalny i objęty zasadą fair use.",
     activeTitle: "Co znaczy aktywny tester",
@@ -7113,7 +7142,7 @@ const FOUNDING_TESTER_COPY = {
     title: "Devino Founding Tester TidGo",
     lead: "TidGo functioneaza deja in browser. Aplicatia Android este in testare inchisa, iar versiunea pentru iPhone este in dezvoltare.",
     introOne: "Caut 20 de utilizatori din UK: sole traders, subcontractori CIS, meseriasi si proprietari care tin evidente simple, dispusi sa foloseasca TidGo pe bune si sa spuna sincer ce merge, ce nu merge si ce poate fi mai simplu.",
-    introTwo: "Configurarea dureaza aproximativ zece minute. Te rog doar sa trimiti bonuri asa cum ai face-o normal si sa imi spui de cateva ori in timpul testarii ce te incurca.",
+    introTwo: "Configurarea durează aproximativ două minute, inclusiv instalarea aplicației. Te rog doar să trimiți bonuri așa cum ai face-o normal și să îmi spui de câteva ori în timpul testării ce te încurcă.",
     termsTitle: "Conditii Founding Tester",
     termsText: "Testerii activi primesc acces la planul TidGo Core fara taxa lunara, atat timp cat planul Core exista. Accesul este personal, netransferabil si se aplica fair use.",
     activeTitle: "Ce inseamna activ",
@@ -7145,7 +7174,7 @@ const FOUNDING_TESTER_COPY = {
     title: "Tapk TidGo Founding Testeriu",
     lead: "TidGo jau veikia naršyklėje. Android programėlė yra uždarame testavime, o iPhone versija kuriama.",
     introOne: "Ieškau 20 žmonių Jungtinėje Karalystėje: sole traders, CIS subcontractors, tradespeople ir landlordų, kurie tvarko paprastus įrašus, naudotų TidGo realiai ir pasakytų, kas veikia, kas trukdo ir ką galima supaprastinti.",
-    introTwo: "Pradžia užtrunka apie dešimt minučių. Tereikia siųsti kvitus taip, kaip įprastai, ir kelis kartus testavimo metu duoti sąžiningą atsiliepimą.",
+    introTwo: "Pradžia užtrunka apie dvi minutes, įskaitant programėlės įdiegimą. Tereikia siųsti kvitus taip, kaip įprastai, ir kelis kartus testavimo metu duoti sąžiningą atsiliepimą.",
     termsTitle: "Founding Tester sąlygos",
     termsText: "Aktyvūs Founding Testeriai gauna prieigą prie TidGo Core plano be mėnesinio mokesčio tol, kol Core planas egzistuoja. Prieiga yra asmeninė, neperduodama ir taikomas fair use.",
     activeTitle: "Ką reiškia aktyvus testeris",
