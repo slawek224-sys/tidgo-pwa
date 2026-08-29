@@ -6368,6 +6368,7 @@ function landing() {
               <small>${mk("whatsNewCta")}</small>
             </div>
           </section>
+          ${youtubeVideosSection()}
           ${earlyAccessBanner()}
           <section class="landing-trust-strip" aria-label="TidGo basics">
             <span>${mk("trustSimple")}</span>
@@ -6406,8 +6407,8 @@ function landing() {
               </div>
             </div>
           </section>
-          ${youtubeVideosSection()}
           ${androidTesterCallout("landing-tester-callout")}
+
           <section class="landing-contact" id="contact">
             <div class="landing-contact-copy">
               <div>
@@ -6472,13 +6473,13 @@ const TIDGO_YOUTUBE_VIDEOS = [
   },
   {
     id: "yNG5Jhb3c9Y",
-    titleKey: "videoLanguagesTitle",
-    textKey: "videoLanguagesText"
+    titleKey: "videoAccountantTitle",
+    textKey: "videoAccountantText"
   },
   {
     id: "BdD7mZcR8zc",
-    titleKey: "videoAccountantTitle",
-    textKey: "videoAccountantText"
+    titleKey: "videoLanguagesTitle",
+    textKey: "videoLanguagesText"
   }
 ];
 
