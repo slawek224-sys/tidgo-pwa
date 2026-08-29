@@ -486,7 +486,8 @@ Object.assign(MARKETING_COPY.en, {
   mtdTestingText: "TidGo is currently testing an MTD connection in HMRC's sandbox. MTD quarterly submissions are in development, pending HMRC production approval. HMRC's next update is expected by the end of September 2026.",
   mtdLateTitle: "Missed a quarterly update?",
   mtdLateText: "Missed the 7 August deadline? No penalty points in 2026/27. Here's what actually happens.",
-  mtdAutoSignup: "Automatically signed up by HMRC?",
+  mtdResponsibilities: "MTD: what you do and what your accountant does",
+  mtdResponsibilitiesText: "A plain table showing what MTD actually requires, what is optional, and why a quarterly update is not a quarterly tax return.",  mtdAutoSignup: "Automatically signed up by HMRC?",
   mtdAutoSignupText: "Received a letter saying HMRC signed you up for MTD automatically? Here's what it means and what to do next.",
   mtdSourceTitle: "Official source",
   mtdSourceText: "Read the public GOV.UK guidance on Making Tax Digital for Income Tax and quarterly updates.",
@@ -524,7 +525,8 @@ Object.assign(MARKETING_COPY.pl, {
   mtdTestingText: "TidGo testuje obecnie po&#322;&#261;czenie MTD w sandboxie HMRC. Kwartalne wysy&#322;ki MTD s&#261; w trakcie developmentu i czekaj&#261; na produkcyjne zatwierdzenie HMRC. Kolejny update HMRC jest spodziewany do ko&#324;ca wrze&#347;nia 2026.",
   mtdLateTitle: "Termin kwartalnego update'u już minął?",
   mtdLateText: "Termin 7 sierpnia min&#261;&#322;? W roku 2026/27 nie ma penalty points. Zobacz, co naprawd&#281; dzieje si&#281; dalej.",
-  mtdAutoSignup: "HMRC automatycznie zapisało Cię do MTD?",
+  mtdResponsibilities: "MTD: co robisz Ty, a co robi ksi\u0119gowy",
+  mtdResponsibilitiesText: "Prosta tabela pokazuj\u0105ca, czego MTD naprawd\u0119 wymaga, co jest opcjonalne i dlaczego quarterly update nie jest kwartalnym tax return.",  mtdAutoSignup: "HMRC automatycznie zapisało Cię do MTD?",
   mtdAutoSignupText: "Dostałeś list, że HMRC zapisało Cię automatycznie do MTD? Zobacz, co to znaczy i co zrobić dalej.",
   mtdSourceTitle: "Oficjalne źródło",
   mtdSourceText: "Przeczytaj publiczne GOV.UK guidance o Making Tax Digital for Income Tax i quarterly updates.",
@@ -562,7 +564,8 @@ Object.assign(MARKETING_COPY.ro, {
   mtdTestingText: "TidGo testeaza in prezent conexiunea MTD in sandbox-ul HMRC. Trimiterile trimestriale MTD sunt in development, in asteptarea aprobarii HMRC pentru productie. Urmatorul update HMRC este asteptat pana la finalul lui septembrie 2026.",
   mtdLateTitle: "Ai ratat un quarterly update?",
   mtdLateText: "Ai ratat termenul de 7 august? In 2026/27 nu exista penalty points. Iata ce se intampla de fapt.",
-  mtdAutoSignup: "HMRC te-a inscris automat la MTD?",
+  mtdResponsibilities: "MTD: ce faci tu si ce face contabilul",
+  mtdResponsibilitiesText: "Un tabel simplu care arata ce cere MTD, ce este optional si de ce un quarterly update nu este o declaratie fiscala trimestriala.",  mtdAutoSignup: "HMRC te-a inscris automat la MTD?",
   mtdAutoSignupText: "Ai primit o scrisoare ca HMRC te-a inscris automat la MTD? Iata ce inseamna si ce trebuie sa faci mai departe.",
   mtdSourceTitle: "Sursa oficiala",
   mtdSourceText: "Citeste ghidul public GOV.UK despre Making Tax Digital for Income Tax si quarterly updates.",
@@ -600,7 +603,8 @@ Object.assign(MARKETING_COPY.lt, {
   mtdTestingText: "TidGo siuo metu testuoja MTD jungti HMRC sandbox aplinkoje. Ketvirtiniai MTD pateikimai yra kuriami ir laukia HMRC production patvirtinimo. Kitas HMRC update laukiamas iki 2026 m. rugsejo pabaigos.",
   mtdLateTitle: "Praleidote quarterly update?",
   mtdLateText: "Praleidote rugpjucio 7 d. termina? 2026/27 metais penalty points nera. Stai kas is tikruju vyksta toliau.",
-  mtdAutoSignup: "HMRC automatiškai įtraukė jus į MTD?",
+  mtdResponsibilities: "MTD: ka darote jus ir ka daro buhalteris",
+  mtdResponsibilitiesText: "Paprasta lentele apie tai, ko MTD is tikruju reikalauja, kas neprivaloma ir kodel quarterly update nera ketvirtine mokesciu deklaracija.",  mtdAutoSignup: "HMRC automatiškai įtraukė jus į MTD?",
   mtdAutoSignupText: "Gavote laišką, kad HMRC automatiškai įtraukė jus į MTD? Štai ką tai reiškia ir ką daryti toliau.",
   mtdSourceTitle: "Oficialus saltinis",
   mtdSourceText: "Skaitykite viesas GOV.UK gaires apie Making Tax Digital for Income Tax ir quarterly updates.",
@@ -3385,6 +3389,7 @@ function marketingPageSlug() {
     "/founding-tester": "androidTesters",
     "/android-testers": "androidTesters",
     "/mtd": "mtd",
+    "/mtd/what-you-do-accountant-does": "mtdResponsibilities",
     "/mtd/automatically-signed-up": "mtdAutoSignup",
     "/mtd/qualifying-income": "mtdQualifyingIncome",
     "/mtd/government-gateway": "mtdGateway",
@@ -3560,6 +3565,7 @@ function landingFooter() {
 
 function mtdTopics() {
   return [
+    ["mtdResponsibilities", "mtdResponsibilitiesText", state.marketingLanguage === "en" ? "/mtd/what-you-do-accountant-does" : `/${state.marketingLanguage}/mtd/what-you-do-accountant-does`],
     ["mtdAutoSignup", "mtdAutoSignupText", state.marketingLanguage === "en" ? "/mtd/automatically-signed-up" : `/${state.marketingLanguage}/mtd/automatically-signed-up`],
     ["mtdWhat", "mtdWhatText", state.marketingLanguage === "en" ? "/mtd/what-is-mtd" : `/${state.marketingLanguage}/mtd/what-is-mtd`],
     ["mtdQualifyingIncome", "mtdQualifyingIncomeText", state.marketingLanguage === "en" ? "/mtd/qualifying-income" : `/${state.marketingLanguage}/mtd/qualifying-income`],
@@ -3613,7 +3619,7 @@ function mtdWhatArticle() {
 }
 
 function mtdKnowledgeHref(slug) {
-  const localized = ["automatically-signed-up", "qualifying-income", "government-gateway", "do-i-have-to-photograph-receipts", "digital-records", "cis", "cis-myths", "quarterly-updates"];
+  const localized = ["what-you-do-accountant-does", "automatically-signed-up", "qualifying-income", "government-gateway", "do-i-have-to-photograph-receipts", "digital-records", "cis", "cis-myths", "quarterly-updates"];
   if (state.marketingLanguage !== "en" && localized.includes(slug)) {
     return `/${state.marketingLanguage}/mtd/${slug}`;
   }
@@ -4505,6 +4511,159 @@ const MTD_AUTO_SIGNUP_ARTICLES = {
   }
 };
 
+
+const MTD_RESPONSIBILITIES_ARTICLES = {
+  en: {
+    title: "MTD: what you do and what your accountant does",
+    lead: "Making Tax Digital for Income Tax creates more regular record-keeping and quarterly updates. It does not create a quarterly tax return.",
+    intro: "This is the simple split most people need before they panic-buy software or pay for bookkeeping they may not need.",
+    headers: ["Element", "Required for MTD?", "Must an accountant do it?"],
+    rows: [
+      ["Digital income records", "Yes", "No"],
+      ["Digital expense records", "Yes", "No"],
+      ["Keeping source documents", "Yes*", "No"],
+      ["Categorising records", "Yes", "No"],
+      ["Quarterly summary/update", "Yes", "No"],
+      ["Accounting adjustments every quarter", "No", "No"],
+      ["Tax adjustments every quarter", "No", "No"],
+      ["Quarterly tax return", "No - it does not exist", "No"],
+      ["Bookkeeping service", "No", "Optional"],
+      ["Accountant support", "No", "Optional"],
+      ["Tax advice", "No", "Optional"],
+      ["Annual tax return / final declaration", "Yes, once a year", "Can be outsourced"]
+    ],
+    note: "*HMRC requires digital records and supporting evidence to be kept. It does not mean you must photograph every receipt, but your proof must survive and be findable.",
+    body: `
+      <h2>The important bit</h2>
+      <p>A quarterly update is a summary of income and expenses created from your digital records. It is not a full tax return, and HMRC says you do not need to make accounting or tax adjustments before sending it.</p>
+      <p>Your accountant may still be very useful, especially for the year-end declaration, tax planning, corrections, allowances and anything complicated. But MTD itself does not mean every receipt needs to be touched by an accountant every quarter.</p>
+      <h2>Where TidGo fits</h2>
+      <p>TidGo is built for the record-keeping layer: income, expenses, source documents and tidy summaries. The accountant's heavier work remains where it belongs: judgement, review and year-end tax work.</p>
+    `,
+    checked: "Last checked: August 2026. Check GOV.UK if reading later."
+  },
+  pl: {
+    title: "MTD: co robisz Ty, a co robi ksi&#281;gowy",
+    lead: "Making Tax Digital dla Income Tax oznacza regularne cyfrowe rekordy i quarterly updates. Nie oznacza kwartalnego tax return.",
+    intro: "To prosty podzia&#322;, kt&#243;rego ludzie potrzebuj&#261;, zanim kupi&#261; za du&#380;y program albo zap&#322;ac&#261; za us&#322;ug&#281;, kt&#243;rej wcale nie musz&#261; potrzebowa&#263;.",
+    headers: ["Element", "Wymaga MTD?", "Czy musi robi&#263; ksi&#281;gowy?"],
+    rows: [
+      ["Digital records income", "Tak", "Nie"],
+      ["Digital records expenses", "Tak", "Nie"],
+      ["Przechowywanie dokument&#243;w &#378;r&#243;d&#322;owych", "Tak*", "Nie"],
+      ["Kategoryzowanie records", "Tak", "Nie"],
+      ["Quarterly summary/update", "Tak", "Nie"],
+      ["Accounting adjustments co kwarta&#322;", "Nie", "Nie"],
+      ["Tax adjustments co kwarta&#322;", "Nie", "Nie"],
+      ["Quarterly tax return", "Nie - nie istnieje", "Nie"],
+      ["Bookkeeping service", "Nie", "Opcjonalne"],
+      ["Accountant support", "Nie", "Opcjonalne"],
+      ["Tax advice", "Nie", "Opcjonalne"],
+      ["Annual tax return / final declaration", "Tak, raz w roku", "Mo&#380;na zleci&#263;"]
+    ],
+    note: "*HMRC wymaga cyfrowych rekord&#243;w i dowod&#243;w &#378;r&#243;d&#322;owych. To nie znaczy, &#380;e musisz fotografowa&#263; ka&#380;dy paragon, ale dow&#243;d musi przetrwa&#263; i da&#263; si&#281; znale&#378;&#263;.",
+    body: `
+      <h2>Najwa&#380;niejsza rzecz</h2>
+      <p>Quarterly update to podsumowanie przychod&#243;w i wydatk&#243;w stworzone z cyfrowych rekord&#243;w. To nie jest pe&#322;ne zeznanie podatkowe, a HMRC m&#243;wi, &#380;e przed jego wys&#322;aniem nie trzeba robi&#263; accounting ani tax adjustments.</p>
+      <p>Ksi&#281;gowy nadal mo&#380;e by&#263; bardzo potrzebny, zw&#322;aszcza przy final declaration, planowaniu podatkowym, poprawkach, ulgach i trudniejszych przypadkach. Ale samo MTD nie oznacza, &#380;e ka&#380;dy paragon musi przej&#347;&#263; przez ksi&#281;gowego co kwarta&#322;.</p>
+      <h2>Gdzie w tym jest TidGo</h2>
+      <p>TidGo jest od warstwy rekord&#243;w: przychody, wydatki, dokumenty &#378;r&#243;d&#322;owe i czytelne podsumowania. Ci&#281;&#380;sza praca ksi&#281;gowego zostaje tam, gdzie jej miejsce: ocena, review i roczne rozliczenie podatkowe.</p>
+    `,
+    checked: "Sprawdzone: sierpie&#324; 2026. Je&#347;li czytasz p&#243;&#378;niej, sprawd&#378; GOV.UK."
+  },
+  ro: {
+    title: "MTD: ce faci tu si ce face contabilul",
+    lead: "Making Tax Digital pentru Income Tax inseamna evidente digitale regulate si quarterly updates. Nu inseamna o declaratie fiscala trimestriala.",
+    intro: "Acesta este impartirea simpla de care multi oameni au nevoie inainte sa cumpere software prea mare sau sa plateasca pentru servicii de care poate nu au nevoie.",
+    headers: ["Element", "Cere MTD?", "Trebuie facut de contabil?"],
+    rows: [
+      ["Digital records income", "Da", "Nu"],
+      ["Digital records expenses", "Da", "Nu"],
+      ["Pastrarea documentelor sursa", "Da*", "Nu"],
+      ["Categorisirea records", "Da", "Nu"],
+      ["Quarterly summary/update", "Da", "Nu"],
+      ["Accounting adjustments trimestrial", "Nu", "Nu"],
+      ["Tax adjustments trimestrial", "Nu", "Nu"],
+      ["Quarterly tax return", "Nu - nu exista", "Nu"],
+      ["Bookkeeping service", "Nu", "Optional"],
+      ["Accountant support", "Nu", "Optional"],
+      ["Tax advice", "Nu", "Optional"],
+      ["Annual tax return / final declaration", "Da, o data pe an", "Poate fi externalizat"]
+    ],
+    note: "*HMRC cere evidente digitale si documente justificative. Nu inseamna ca trebuie sa fotografiezi fiecare bon, dar dovada trebuie pastrata si usor de gasit.",
+    body: `
+      <h2>Partea importanta</h2>
+      <p>Un quarterly update este un rezumat al veniturilor si cheltuielilor creat din evidentele tale digitale. Nu este o declaratie fiscala completa, iar HMRC spune ca nu trebuie sa faci accounting sau tax adjustments inainte de trimitere.</p>
+      <p>Contabilul poate ramane foarte util, mai ales pentru final declaration, planificare fiscala, corectii, allowances si situatii complicate. Dar MTD nu inseamna ca fiecare bon trebuie verificat de contabil in fiecare trimestru.</p>
+      <h2>Unde se potriveste TidGo</h2>
+      <p>TidGo este pentru stratul de evidenta: venituri, cheltuieli, documente sursa si rezumate clare. Munca mai grea a contabilului ramane acolo unde conteaza: analiza, review si partea fiscala de final de an.</p>
+    `,
+    checked: "Verificat: august 2026. Verifica GOV.UK daca citesti mai tarziu."
+  },
+  lt: {
+    title: "MTD: ka darote jus ir ka daro buhalteris",
+    lead: "Making Tax Digital pajamu mokesciui reiskia reguliarius skaitmeninius irasus ir quarterly updates. Tai nereiskia ketvirtines mokesciu deklaracijos.",
+    intro: "Tai paprastas padalijimas, kurio daugeliui reikia pries perkant per didele apskaitos programa ar mokant uz paslauga, kurios galbut nereikia.",
+    headers: ["Elementas", "Ar reikalauja MTD?", "Ar privalo daryti buhalteris?"],
+    rows: [
+      ["Digital records income", "Taip", "Ne"],
+      ["Digital records expenses", "Taip", "Ne"],
+      ["Saltiniu dokumentu saugojimas", "Taip*", "Ne"],
+      ["Irasu kategorijavimas", "Taip", "Ne"],
+      ["Quarterly summary/update", "Taip", "Ne"],
+      ["Accounting adjustments kiekviena ketvirti", "Ne", "Ne"],
+      ["Tax adjustments kiekviena ketvirti", "Ne", "Ne"],
+      ["Quarterly tax return", "Ne - neegzistuoja", "Ne"],
+      ["Bookkeeping service", "Ne", "Pasirinktinai"],
+      ["Accountant support", "Ne", "Pasirinktinai"],
+      ["Tax advice", "Ne", "Pasirinktinai"],
+      ["Annual tax return / final declaration", "Taip, karta per metus", "Galima perduoti"]
+    ],
+    note: "*HMRC reikalauja skaitmeniniu irasu ir pagrindzianciu dokumentu saugojimo. Tai nereiskia, kad privalote fotografuoti kiekviena kvita, bet irodymas turi islikti ir buti randamas.",
+    body: `
+      <h2>Svarbiausia dalis</h2>
+      <p>Quarterly update yra pajamu ir islaidu suvestine, sukurta is jusu skaitmeniniu irasu. Tai nera pilna mokesciu deklaracija, o HMRC sako, kad pries siunciant nereikia daryti accounting ar tax adjustments.</p>
+      <p>Buhalteris vis tiek gali buti labai naudingas, ypac final declaration, mokesciu planavimui, pataisoms, allowances ir sudetingoms situacijoms. Bet MTD nereiskia, kad kiekvienas kvitas kas ketvirti turi buti patikrintas buhalterio.</p>
+      <h2>Kur tinka TidGo</h2>
+      <p>TidGo skirtas irasu sluoksniui: pajamos, islaidos, saltinio dokumentai ir tvarkingos suvestines. Sunkesnis buhalterio darbas lieka ten, kur jo reikia: ivertinimas, review ir metu pabaigos mokesciai.</p>
+    `,
+    checked: "Patikrinta: 2026 m. rugpjutis. Jei skaitote veliau, patikrinkite GOV.UK."
+  }
+};
+
+function mtdResponsibilitiesArticle() {
+  const copy = MTD_RESPONSIBILITIES_ARTICLES[state.marketingLanguage] || MTD_RESPONSIBILITIES_ARTICLES.en;
+  return `
+    <article class="marketing-page-card marketing-article">
+      <span class="eyebrow">${mk("navMtd")}</span>
+      <h1>${copy.title}</h1>
+      <p>${copy.lead}</p>
+      <p>${copy.intro}</p>
+      <div class="article-table-wrap">
+        <table class="article-table">
+          <thead>
+            <tr>${copy.headers.map((header) => `<th>${header}</th>`).join("")}</tr>
+          </thead>
+          <tbody>
+            ${copy.rows.map((row) => `<tr>${row.map((cell) => `<td>${cell}</td>`).join("")}</tr>`).join("")}
+          </tbody>
+        </table>
+      </div>
+      <p><em>${copy.note}</em></p>
+      ${copy.body}
+      <div class="article-sources">
+        <h2>Sources</h2>
+        <ul>
+          <li><a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/before-you-use-this-guide" target="_blank" rel="noopener">GOV.UK: Use Making Tax Digital for Income Tax - before you use this guide</a></li>
+          <li><a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/create-digital-records" target="_blank" rel="noopener">GOV.UK: Create digital records</a></li>
+          <li><a href="https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/send-quarterly-updates" target="_blank" rel="noopener">GOV.UK: Send quarterly updates</a></li>
+        </ul>
+        <p><em>${copy.checked}</em></p>
+      </div>
+      ${pageCta()}
+    </article>
+  `;
+}
 function mtdAutoSignupArticle() {
   const copy = MTD_AUTO_SIGNUP_ARTICLES[state.marketingLanguage] || MTD_AUTO_SIGNUP_ARTICLES.en;
   return `
@@ -6573,6 +6732,8 @@ function marketingPage() {
         ${pageCta()}
       </section>
     `;
+  } else if (slug === "mtdResponsibilities") {
+    body = mtdResponsibilitiesArticle();
   } else if (slug === "mtdWhat") {
     body = mtdWhatArticle();
   } else if (slug === "mtdAutoSignup") {
