@@ -98,4 +98,24 @@
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
+  <url>
+    <loc>https://tidgo.co.uk/mtd/can-i-use-spreadsheets/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://tidgo.co.uk/pl/mtd/can-i-use-spreadsheets/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://tidgo.co.uk/ro/mtd/can-i-use-spreadsheets/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://tidgo.co.uk/lt/mtd/can-i-use-spreadsheets/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
 </urlset>
