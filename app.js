@@ -478,7 +478,15 @@ Object.assign(MARKETING_COPY.en, {
   accountantText: "View client records with permission, see what still needs review and download clean English CSV/PDF packs without chasing bags of receipts before every deadline.",
   howTitle: "You handle WhatsApp. Your accountant handles MTD.",
   howText: "Keep sending receipts and income information the way you already send messages. TidGo organises everything into tidy English records your accountant can review each quarter.",
-  shareTidGo: "Share TidGo",
+   videoSectionTitle: "See TidGo in 30 seconds",
+  videoSectionText: "Three short videos: receipts by WhatsApp, TidGo in different languages, and a cleaner pack for your accountant.",
+  videoWhatsAppTitle: "Send receipts by WhatsApp",
+  videoWhatsAppText: "Snap it, send it, keep it with your records.",
+  videoLanguagesTitle: "Use TidGo in your language",
+  videoLanguagesText: "A simpler record app for people who think in more than one language.",
+  videoAccountantTitle: "Your accountant gets a cleaner pack",
+  videoAccountantText: "Less paper chaos, clearer monthly and quarterly summaries.",
+  videoWatch: "Watch on YouTube", shareTidGo: "Share TidGo",
   shareTitle: "TidGo",
   shareText: "TidGo keeps receipts, income proof and simple records tidy for self-employed people and accountants.",
   shareCopied: "TidGo link copied.",
@@ -517,7 +525,15 @@ Object.assign(MARKETING_COPY.pl, {
   accountantText: "Zobacz rekordy klienta za jego zgodą, sprawdź co wymaga uwagi i pobierz czytelny angielski CSV/PDF pack bez gonienia za reklamówkami paragonów przed terminem.",
   howTitle: "Ty ogarniasz WhatsAppa. Księgowy ogarnia MTD.",
   howText: "Wysyłaj paragony i informacje o przychodzie tak, jak już wysyłasz wiadomości. TidGo układa wszystko w czytelne angielskie rekordy do kwartalnego sprawdzenia przez księgowego.",
-  shareTidGo: "Udostępnij TidGo",
+   videoSectionTitle: "Zobacz TidGo w 30 sekund",
+  videoSectionText: "Trzy krotkie filmy: paragony przez WhatsApp, TidGo w roznych jezykach i czystsza paczka dla ksiegowego.",
+  videoWhatsAppTitle: "Wysylaj paragony przez WhatsApp",
+  videoWhatsAppText: "Zrob zdjecie, wyslij, trzymaj razem z rekordami.",
+  videoLanguagesTitle: "Uzywaj TidGo w swoim jezyku",
+  videoLanguagesText: "Prostsza aplikacja do rekordow dla ludzi, ktorzy mysla w wiecej niz jednym jezyku.",
+  videoAccountantTitle: "Ksiegowy dostaje czystsza paczke",
+  videoAccountantText: "Mniej papierowego chaosu, czytelniejsze podsumowania miesieczne i kwartalne.",
+  videoWatch: "Obejrzyj na YouTube", shareTidGo: "Udostępnij TidGo",
   shareTitle: "TidGo",
   shareText: "TidGo trzyma paragony, dowody przychodu i proste rekordy w porządku dla self-employed i księgowych.",
   shareCopied: "Link TidGo skopiowany.",
@@ -556,7 +572,15 @@ Object.assign(MARKETING_COPY.ro, {
   accountantText: "Vezi evidentele clientului cu acordul lui, vezi ce mai trebuie verificat si descarca pachete clare CSV/PDF in engleza fara sa alergi dupa pungi cu bonuri inainte de termen.",
   howTitle: "Tu folosesti WhatsApp. Contabilul se ocupa de MTD.",
   howText: "Trimite bonuri si informatii despre venit asa cum trimiti deja mesaje. TidGo le organizeaza in evidente clare in engleza, pe care contabilul le poate verifica trimestrial.",
-  shareTidGo: "Distribuie TidGo",
+   videoSectionTitle: "Vezi TidGo in 30 de secunde",
+  videoSectionText: "Trei videoclipuri scurte: bonuri prin WhatsApp, TidGo in mai multe limbi si un pachet mai curat pentru contabil.",
+  videoWhatsAppTitle: "Trimite bonuri prin WhatsApp",
+  videoWhatsAppText: "Fotografiezi, trimiti si pastrezi dovada langa evidenta.",
+  videoLanguagesTitle: "Foloseste TidGo in limba ta",
+  videoLanguagesText: "O aplicatie mai simpla pentru oameni care gandesc in mai multe limbi.",
+  videoAccountantTitle: "Contabilul primeste un pachet mai clar",
+  videoAccountantText: "Mai putin haos cu hartii, rezumate lunare si trimestriale mai curate.",
+  videoWatch: "Vezi pe YouTube", shareTidGo: "Distribuie TidGo",
   shareTitle: "TidGo",
   shareText: "TidGo tine bonuri, dovezi de venit si evidente simple ordonate pentru self-employed si contabili.",
   shareCopied: "Linkul TidGo a fost copiat.",
@@ -595,7 +619,15 @@ Object.assign(MARKETING_COPY.lt, {
   accountantText: "Matykite kliento irasus su jo leidimu, pamatykite ka reikia patikrinti ir atsisiuskite aiskus angliskus CSV/PDF paketus be kvitu maisu vaikymosi pries terminus.",
   howTitle: "Jus naudojate WhatsApp. Buhalteris tvarko MTD.",
   howText: "Siuskite kvitus ir pajamu informacija taip, kaip jau siunciate zinutes. TidGo sudeda viska i tvarkingus angliskus irasus, kuriuos buhalteris gali perziureti kas ketvirti.",
-  shareTidGo: "Dalintis TidGo",
+   videoSectionTitle: "Pamatykite TidGo per 30 sekundziu",
+  videoSectionText: "Trys trumpi video: kvitai per WhatsApp, TidGo keliomis kalbomis ir tvarkingesnis paketas buhalteriui.",
+  videoWhatsAppTitle: "Siuskite kvitus per WhatsApp",
+  videoWhatsAppText: "Nufotografuokite, issiuskite ir laikykite prie irasu.",
+  videoLanguagesTitle: "Naudokite TidGo savo kalba",
+  videoLanguagesText: "Paprastesne irasu programele zmonems, kurie galvoja daugiau nei viena kalba.",
+  videoAccountantTitle: "Buhalteris gauna tvarkingesni paketa",
+  videoAccountantText: "Maziau popieriu chaoso, aiskesnes menesio ir ketvircio suvestines.",
+  videoWatch: "Ziureti YouTube", shareTidGo: "Dalintis TidGo",
   shareTitle: "TidGo",
   shareText: "TidGo tvarko kvitus, pajamu irodymus ir paprastus irasus self-employed zmonems ir buhalteriams.",
   shareCopied: "TidGo nuoroda nukopijuota.",
@@ -6374,6 +6406,7 @@ function landing() {
               </div>
             </div>
           </section>
+          ${youtubeVideosSection()}
           ${androidTesterCallout("landing-tester-callout")}
           <section class="landing-contact" id="contact">
             <div class="landing-contact-copy">
@@ -6428,6 +6461,49 @@ function landing() {
       ${landingFooter()}
     </section>
   `);
+}
+
+
+const TIDGO_YOUTUBE_VIDEOS = [
+  {
+    id: "_88PJe4njt8",
+    titleKey: "videoWhatsAppTitle",
+    textKey: "videoWhatsAppText"
+  },
+  {
+    id: "yNG5Jhb3c9Y",
+    titleKey: "videoLanguagesTitle",
+    textKey: "videoLanguagesText"
+  },
+  {
+    id: "BdD7mZcR8zc",
+    titleKey: "videoAccountantTitle",
+    textKey: "videoAccountantText"
+  }
+];
+
+function youtubeVideosSection() {
+  return `
+    <section class="landing-videos" aria-label="${escapeAttr(mk("videoSectionTitle"))}">
+      <div class="landing-section-heading">
+        <strong>${mk("videoSectionTitle")}</strong>
+        <span>${mk("videoSectionText")}</span>
+      </div>
+      <div class="landing-video-grid">
+        ${TIDGO_YOUTUBE_VIDEOS.map((video) => `
+          <a class="landing-video-card" href="https://www.youtube.com/watch?v=${video.id}" target="_blank" rel="noopener noreferrer">
+            <span class="landing-video-thumb">
+              <img src="https://img.youtube.com/vi/${video.id}/hqdefault.jpg" alt="${escapeAttr(mk(video.titleKey))}" loading="lazy">
+              <span class="landing-video-play" aria-hidden="true">Play</span>
+            </span>
+            <strong>${mk(video.titleKey)}</strong>
+            <span>${mk(video.textKey)}</span>
+            <em>${mk("videoWatch")}</em>
+          </a>
+        `).join("")}
+      </div>
+    </section>
+  `;
 }
 
 function earlyAccessBanner() {
