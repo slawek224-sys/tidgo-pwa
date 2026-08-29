@@ -4524,8 +4524,8 @@ const MTD_RESPONSIBILITIES_ARTICLES = {
       ["Keep source documents and proof", "&#10003; Yes*", "&#10005; No"],
       ["Put records into basic categories", "&#10003; Yes", "&#10005; No"],
       ["Send a quarterly update/summary", "&#10003; Yes", "&#10005; No"],
-      ["Do accounting adjustments every quarter", "&#10005; No", "&#10005; No"],
-      ["Do tax adjustments every quarter", "&#10005; No", "&#10005; No"],
+      ["Do formal accounting adjustments before each quarterly update", "&#10005; No", "&#10005; No"],
+      ["Do formal tax adjustments before each quarterly update", "&#10005; No", "&#10005; No"],
       ["Submit a quarterly tax return", "&#10005; No - it does not exist", "&#10005; No"],
       ["Use a bookkeeping service", "&#10005; No", "&#63; Optional"],
       ["Use accountant support", "&#10005; No", "&#63; Optional"],
@@ -4536,7 +4536,7 @@ const MTD_RESPONSIBILITIES_ARTICLES = {
     body: `
       <h2>The important bit</h2>
       <p>A quarterly update is a summary of income and expenses created from your digital records. It is not a full tax return, and HMRC says you do not need to make accounting or tax adjustments before sending it.</p>
-      <p>Your accountant may still be very useful, especially for the year-end declaration, tax planning, corrections, allowances and anything complicated. But MTD itself does not mean every receipt needs to be touched by an accountant every quarter.</p>
+      <p>Your accountant may still be very useful, especially for the year-end declaration, tax planning, corrections, allowances and anything complicated. But MTD itself does not mean every receipt needs to be touched by an accountant every quarter.</p><p>This does not mean mistakes stay frozen. If you spot a wrong amount, date or category, correct the digital record as soon as possible. The next cumulative quarterly update includes the corrected record totals.</p><p>This does not mean mistakes stay frozen. If you spot a wrong amount, date or category, correct the digital record as soon as possible. The next cumulative quarterly update includes the corrected record totals.</p>
       <h2>Where TidGo fits</h2>
       <p>TidGo is built for the record-keeping layer: income, expenses, source documents and tidy summaries. The accountant's heavier work remains where it belongs: judgement, review and year-end tax work.</p>
     `,
@@ -4553,8 +4553,8 @@ const MTD_RESPONSIBILITIES_ARTICLES = {
       ["Przechowywanie paragon&#243;w, faktur i innych dowod&#243;w", "&#10003; Tak*", "&#10005; Nie"],
       ["Przypisywanie rekord&#243;w do podstawowych kategorii", "&#10003; Tak", "&#10005; Nie"],
       ["Wys&#322;anie kwartalnego podsumowania do HMRC", "&#10003; Tak", "&#10005; Nie"],
-      ["Kwartalne korekty ksi&#281;gowe", "&#10005; Nie", "&#10005; Nie"],
-      ["Kwartalne korekty podatkowe", "&#10005; Nie", "&#10005; Nie"],
+      ["Formalne korekty ksi&#281;gowe przed ka&#380;dym quarterly update", "&#10005; Nie", "&#10005; Nie"],
+      ["Formalne korekty podatkowe przed ka&#380;dym quarterly update", "&#10005; Nie", "&#10005; Nie"],
       ["Kwartalne zeznanie podatkowe", "&#10005; Nie - takie co&#347; nie istnieje", "&#10005; Nie"],
       ["Us&#322;uga prowadzenia bookkeeping", "&#10005; Nie", "&#63; Opcjonalnie"],
       ["Wsparcie ksi&#281;gowego", "&#10005; Nie", "&#63; Opcjonalnie"],
@@ -4565,7 +4565,7 @@ const MTD_RESPONSIBILITIES_ARTICLES = {
     body: `
       <h2>Najwa&#380;niejsza rzecz</h2>
       <p>Quarterly update to podsumowanie przychod&#243;w i wydatk&#243;w stworzone z cyfrowych rekord&#243;w. To nie jest pe&#322;ne zeznanie podatkowe, a HMRC m&#243;wi, &#380;e przed jego wys&#322;aniem nie trzeba robi&#263; korekt ksi&#281;gowych ani podatkowych.</p>
-      <p>Ksi&#281;gowy nadal mo&#380;e by&#263; bardzo potrzebny, zw&#322;aszcza przy final declaration, planowaniu podatkowym, poprawkach, ulgach i trudniejszych przypadkach. Ale samo MTD nie oznacza, &#380;e ka&#380;dy paragon musi przej&#347;&#263; przez ksi&#281;gowego co kwarta&#322;.</p>
+      <p>Ksi&#281;gowy nadal mo&#380;e by&#263; bardzo potrzebny, zw&#322;aszcza przy final declaration, planowaniu podatkowym, poprawkach, ulgach i trudniejszych przypadkach. Ale samo MTD nie oznacza, &#380;e ka&#380;dy paragon musi przej&#347;&#263; przez ksi&#281;gowego co kwarta&#322;.</p><p>To nie znaczy, &#380;e b&#322;&#281;dy zostaj&#261; zamro&#380;one. Je&#347;li zauwa&#380;ysz z&#322;&#261; kwot&#281;, dat&#281; albo kategori&#281;, popraw cyfrowy rekord jak najszybciej. Nast&#281;pny cumulative quarterly update uwzgl&#281;dni poprawione sumy.</p><p>To nie znaczy, &#380;e b&#322;&#281;dy zostaj&#261; zamro&#380;one. Je&#347;li zauwa&#380;ysz z&#322;&#261; kwot&#281;, dat&#281; albo kategori&#281;, popraw cyfrowy rekord jak najszybciej. Nast&#281;pny cumulative quarterly update uwzgl&#281;dni poprawione sumy.</p>
       <h2>Gdzie w tym jest TidGo</h2>
       <p>TidGo jest od warstwy rekord&#243;w: przychody, wydatki, dokumenty &#378;r&#243;d&#322;owe i czytelne podsumowania. Ci&#281;&#380;sza praca ksi&#281;gowego zostaje tam, gdzie jej miejsce: ocena, review i roczne rozliczenie podatkowe.</p>
     `,
@@ -4582,8 +4582,8 @@ const MTD_RESPONSIBILITIES_ARTICLES = {
       ["Pastrezi bonuri, facturi si alte dovezi", "&#10003; Da*", "&#10005; Nu"],
       ["Pui evidentele in categorii de baza", "&#10003; Da", "&#10005; Nu"],
       ["Trimiti un rezumat trimestrial catre HMRC", "&#10003; Da", "&#10005; Nu"],
-      ["Faci ajustari contabile trimestrial", "&#10005; Nu", "&#10005; Nu"],
-      ["Faci ajustari fiscale trimestrial", "&#10005; Nu", "&#10005; Nu"],
+      ["Faci ajustari contabile formale inainte de fiecare quarterly update", "&#10005; Nu", "&#10005; Nu"],
+      ["Faci ajustari fiscale formale inainte de fiecare quarterly update", "&#10005; Nu", "&#10005; Nu"],
       ["Depui o declaratie fiscala trimestriala", "&#10005; Nu - nu exista", "&#10005; Nu"],
       ["Folosesti un serviciu de bookkeeping", "&#10005; Nu", "&#63; Optional"],
       ["Folosesti sprijin de la contabil", "&#10005; Nu", "&#63; Optional"],
@@ -4594,7 +4594,7 @@ const MTD_RESPONSIBILITIES_ARTICLES = {
     body: `
       <h2>Partea importanta</h2>
       <p>Un quarterly update este un rezumat al veniturilor si cheltuielilor creat din evidentele tale digitale. Nu este o declaratie fiscala completa, iar HMRC spune ca nu trebuie sa faci ajustari contabile sau fiscale inainte de trimitere.</p>
-      <p>Contabilul poate ramane foarte util, mai ales pentru final declaration, planificare fiscala, corectii, allowances si situatii complicate. Dar MTD nu inseamna ca fiecare bon trebuie verificat de contabil in fiecare trimestru.</p>
+      <p>Contabilul poate ramane foarte util, mai ales pentru final declaration, planificare fiscala, corectii, allowances si situatii complicate. Dar MTD nu inseamna ca fiecare bon trebuie verificat de contabil in fiecare trimestru.</p><p>Asta nu inseamna ca greselile raman blocate. Daca observi o suma, data sau categorie gresita, corecteaza evidenta digitala cat mai repede. Urmatorul cumulative quarterly update include totalurile corectate.</p><p>Asta nu inseamna ca greselile raman blocate. Daca observi o suma, data sau categorie gresita, corecteaza evidenta digitala cat mai repede. Urmatorul cumulative quarterly update include totalurile corectate.</p>
       <h2>Unde se potriveste TidGo</h2>
       <p>TidGo este pentru stratul de evidenta: venituri, cheltuieli, documente sursa si rezumate clare. Munca mai grea a contabilului ramane acolo unde conteaza: analiza, review si partea fiscala de final de an.</p>
     `,
@@ -4611,8 +4611,8 @@ const MTD_RESPONSIBILITIES_ARTICLES = {
       ["Saugoti kvitus, saskaitas ir kitus irodymus", "&#10003; Taip*", "&#10005; Ne"],
       ["Priskirti irasus pagrindinems kategorijoms", "&#10003; Taip", "&#10005; Ne"],
       ["Siusti ketvirtine suvestine HMRC", "&#10003; Taip", "&#10005; Ne"],
-      ["Daryti apskaitos korekcijas kas ketvirti", "&#10005; Ne", "&#10005; Ne"],
-      ["Daryti mokestines korekcijas kas ketvirti", "&#10005; Ne", "&#10005; Ne"],
+      ["Daryti oficialias apskaitos korekcijas pries kiekviena quarterly update", "&#10005; Ne", "&#10005; Ne"],
+      ["Daryti oficialias mokestines korekcijas pries kiekviena quarterly update", "&#10005; Ne", "&#10005; Ne"],
       ["Pateikti ketvirtine mokesciu deklaracija", "&#10005; Ne - ji neegzistuoja", "&#10005; Ne"],
       ["Naudoti bookkeeping paslauga", "&#10005; Ne", "&#63; Pasirinktinai"],
       ["Naudoti buhalterio pagalba", "&#10005; Ne", "&#63; Pasirinktinai"],
@@ -4623,7 +4623,7 @@ const MTD_RESPONSIBILITIES_ARTICLES = {
     body: `
       <h2>Svarbiausia dalis</h2>
       <p>Quarterly update yra pajamu ir islaidu suvestine, sukurta is jusu skaitmeniniu irasu. Tai nera pilna mokesciu deklaracija, o HMRC sako, kad pries siunciant nereikia daryti apskaitos ar mokestiniu korekciju.</p>
-      <p>Buhalteris vis tiek gali buti labai naudingas, ypac final declaration, mokesciu planavimui, pataisoms, allowances ir sudetingoms situacijoms. Bet MTD nereiskia, kad kiekvienas kvitas kas ketvirti turi buti patikrintas buhalterio.</p>
+      <p>Buhalteris vis tiek gali buti labai naudingas, ypac final declaration, mokesciu planavimui, pataisoms, allowances ir sudetingoms situacijoms. Bet MTD nereiskia, kad kiekvienas kvitas kas ketvirti turi buti patikrintas buhalterio.</p><p>Tai nereiskia, kad klaidos lieka uzrakintos. Jei pastebite neteisinga suma, data ar kategorija, kuo greiciau pataisykite skaitmenini irasa. Kitas cumulative quarterly update itrauks pataisytas sumas.</p><p>Tai nereiskia, kad klaidos lieka uzrakintos. Jei pastebite neteisinga suma, data ar kategorija, kuo greiciau pataisykite skaitmenini irasa. Kitas cumulative quarterly update itrauks pataisytas sumas.</p>
       <h2>Kur tinka TidGo</h2>
       <p>TidGo skirtas irasu sluoksniui: pajamos, islaidos, saltinio dokumentai ir tvarkingos suvestines. Sunkesnis buhalterio darbas lieka ten, kur jo reikia: ivertinimas, review ir metu pabaigos mokesciai.</p>
     `,

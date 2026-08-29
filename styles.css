@@ -4589,3 +4589,26 @@ button:active,
     margin-top: 0;
   }
 }
+
+.article-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.article-table .yes-cell,
+.article-table .no-cell,
+.article-table .maybe-cell {
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.article-table .yes-cell {
+  color: #15803d;
+}
+
+.article-table .no-cell {
+  color: #b91c1c;
+}
+
+.article-table .maybe-cell {
+  color: #a16207;
+}
