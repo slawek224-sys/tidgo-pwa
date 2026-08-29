@@ -4517,20 +4517,20 @@ const MTD_RESPONSIBILITIES_ARTICLES = {
     title: "MTD: what you do and what your accountant does",
     lead: "Making Tax Digital for Income Tax creates more regular record-keeping and quarterly updates. It does not create a quarterly tax return.",
     intro: "This is the simple split most people need before they panic-buy software or pay for bookkeeping they may not need.",
-    headers: ["Element", "Required for MTD?", "Must an accountant do it?"],
+    headers: ["Task", "Required for MTD?", "Must an accountant do it?"],
     rows: [
-      ["Digital income records", "Yes", "No"],
-      ["Digital expense records", "Yes", "No"],
-      ["Keeping source documents", "Yes*", "No"],
-      ["Categorising records", "Yes", "No"],
-      ["Quarterly summary/update", "Yes", "No"],
-      ["Accounting adjustments every quarter", "No", "No"],
-      ["Tax adjustments every quarter", "No", "No"],
-      ["Quarterly tax return", "No - it does not exist", "No"],
-      ["Bookkeeping service", "No", "Optional"],
-      ["Accountant support", "No", "Optional"],
-      ["Tax advice", "No", "Optional"],
-      ["Annual tax return / final declaration", "Yes, once a year", "Can be outsourced"]
+      ["Keep digital income records", "&#10003; Yes", "&#10005; No"],
+      ["Keep digital expense records", "&#10003; Yes", "&#10005; No"],
+      ["Keep source documents and proof", "&#10003; Yes*", "&#10005; No"],
+      ["Put records into basic categories", "&#10003; Yes", "&#10005; No"],
+      ["Send a quarterly update/summary", "&#10003; Yes", "&#10005; No"],
+      ["Do accounting adjustments every quarter", "&#10005; No", "&#10005; No"],
+      ["Do tax adjustments every quarter", "&#10005; No", "&#10005; No"],
+      ["Submit a quarterly tax return", "&#10005; No - it does not exist", "&#10005; No"],
+      ["Use a bookkeeping service", "&#10005; No", "&#63; Optional"],
+      ["Use accountant support", "&#10005; No", "&#63; Optional"],
+      ["Get tax advice", "&#10005; No", "&#63; Optional"],
+      ["Submit the annual tax return / final declaration", "&#10003; Yes, once a year", "Can be outsourced"]
     ],
     note: "*HMRC requires digital records and supporting evidence to be kept. It does not mean you must photograph every receipt, but your proof must survive and be findable.",
     body: `
@@ -4544,27 +4544,27 @@ const MTD_RESPONSIBILITIES_ARTICLES = {
   },
   pl: {
     title: "MTD: co robisz Ty, a co robi ksi&#281;gowy",
-    lead: "Making Tax Digital dla Income Tax oznacza regularne cyfrowe rekordy i quarterly updates. Nie oznacza kwartalnego tax return.",
+    lead: "Making Tax Digital dla Income Tax oznacza regularne cyfrowe rekordy i quarterly updates. Nie oznacza kwartalnego zeznania podatkowego.",
     intro: "To prosty podzia&#322;, kt&#243;rego ludzie potrzebuj&#261;, zanim kupi&#261; za du&#380;y program albo zap&#322;ac&#261; za us&#322;ug&#281;, kt&#243;rej wcale nie musz&#261; potrzebowa&#263;.",
-    headers: ["Element", "Wymaga MTD?", "Czy musi robi&#263; ksi&#281;gowy?"],
+    headers: ["Czynno&#347;&#263;", "Czy wymaga tego MTD?", "Czy musi zrobi&#263; to ksi&#281;gowy?"],
     rows: [
-      ["Digital records income", "Tak", "Nie"],
-      ["Digital records expenses", "Tak", "Nie"],
-      ["Przechowywanie dokument&#243;w &#378;r&#243;d&#322;owych", "Tak*", "Nie"],
-      ["Kategoryzowanie records", "Tak", "Nie"],
-      ["Quarterly summary/update", "Tak", "Nie"],
-      ["Accounting adjustments co kwarta&#322;", "Nie", "Nie"],
-      ["Tax adjustments co kwarta&#322;", "Nie", "Nie"],
-      ["Quarterly tax return", "Nie - nie istnieje", "Nie"],
-      ["Bookkeeping service", "Nie", "Opcjonalne"],
-      ["Accountant support", "Nie", "Opcjonalne"],
-      ["Tax advice", "Nie", "Opcjonalne"],
-      ["Annual tax return / final declaration", "Tak, raz w roku", "Mo&#380;na zleci&#263;"]
+      ["Prowadzenie cyfrowych rekord&#243;w przychod&#243;w", "&#10003; Tak", "&#10005; Nie"],
+      ["Prowadzenie cyfrowych rekord&#243;w wydatk&#243;w", "&#10003; Tak", "&#10005; Nie"],
+      ["Przechowywanie paragon&#243;w, faktur i innych dowod&#243;w", "&#10003; Tak*", "&#10005; Nie"],
+      ["Przypisywanie rekord&#243;w do podstawowych kategorii", "&#10003; Tak", "&#10005; Nie"],
+      ["Wys&#322;anie kwartalnego podsumowania do HMRC", "&#10003; Tak", "&#10005; Nie"],
+      ["Kwartalne korekty ksi&#281;gowe", "&#10005; Nie", "&#10005; Nie"],
+      ["Kwartalne korekty podatkowe", "&#10005; Nie", "&#10005; Nie"],
+      ["Kwartalne zeznanie podatkowe", "&#10005; Nie - takie co&#347; nie istnieje", "&#10005; Nie"],
+      ["Us&#322;uga prowadzenia bookkeeping", "&#10005; Nie", "&#63; Opcjonalnie"],
+      ["Wsparcie ksi&#281;gowego", "&#10005; Nie", "&#63; Opcjonalnie"],
+      ["Porada podatkowa", "&#10005; Nie", "&#63; Opcjonalnie"],
+      ["Roczne zeznanie podatkowe / final declaration", "&#10003; Tak, raz w roku", "Mo&#380;na zleci&#263;"]
     ],
     note: "*HMRC wymaga cyfrowych rekord&#243;w i dowod&#243;w &#378;r&#243;d&#322;owych. To nie znaczy, &#380;e musisz fotografowa&#263; ka&#380;dy paragon, ale dow&#243;d musi przetrwa&#263; i da&#263; si&#281; znale&#378;&#263;.",
     body: `
       <h2>Najwa&#380;niejsza rzecz</h2>
-      <p>Quarterly update to podsumowanie przychod&#243;w i wydatk&#243;w stworzone z cyfrowych rekord&#243;w. To nie jest pe&#322;ne zeznanie podatkowe, a HMRC m&#243;wi, &#380;e przed jego wys&#322;aniem nie trzeba robi&#263; accounting ani tax adjustments.</p>
+      <p>Quarterly update to podsumowanie przychod&#243;w i wydatk&#243;w stworzone z cyfrowych rekord&#243;w. To nie jest pe&#322;ne zeznanie podatkowe, a HMRC m&#243;wi, &#380;e przed jego wys&#322;aniem nie trzeba robi&#263; korekt ksi&#281;gowych ani podatkowych.</p>
       <p>Ksi&#281;gowy nadal mo&#380;e by&#263; bardzo potrzebny, zw&#322;aszcza przy final declaration, planowaniu podatkowym, poprawkach, ulgach i trudniejszych przypadkach. Ale samo MTD nie oznacza, &#380;e ka&#380;dy paragon musi przej&#347;&#263; przez ksi&#281;gowego co kwarta&#322;.</p>
       <h2>Gdzie w tym jest TidGo</h2>
       <p>TidGo jest od warstwy rekord&#243;w: przychody, wydatki, dokumenty &#378;r&#243;d&#322;owe i czytelne podsumowania. Ci&#281;&#380;sza praca ksi&#281;gowego zostaje tam, gdzie jej miejsce: ocena, review i roczne rozliczenie podatkowe.</p>
@@ -4575,25 +4575,25 @@ const MTD_RESPONSIBILITIES_ARTICLES = {
     title: "MTD: ce faci tu si ce face contabilul",
     lead: "Making Tax Digital pentru Income Tax inseamna evidente digitale regulate si quarterly updates. Nu inseamna o declaratie fiscala trimestriala.",
     intro: "Acesta este impartirea simpla de care multi oameni au nevoie inainte sa cumpere software prea mare sau sa plateasca pentru servicii de care poate nu au nevoie.",
-    headers: ["Element", "Cere MTD?", "Trebuie facut de contabil?"],
+    headers: ["Sarcina", "Cere MTD?", "Trebuie facut de contabil?"],
     rows: [
-      ["Digital records income", "Da", "Nu"],
-      ["Digital records expenses", "Da", "Nu"],
-      ["Pastrarea documentelor sursa", "Da*", "Nu"],
-      ["Categorisirea records", "Da", "Nu"],
-      ["Quarterly summary/update", "Da", "Nu"],
-      ["Accounting adjustments trimestrial", "Nu", "Nu"],
-      ["Tax adjustments trimestrial", "Nu", "Nu"],
-      ["Quarterly tax return", "Nu - nu exista", "Nu"],
-      ["Bookkeeping service", "Nu", "Optional"],
-      ["Accountant support", "Nu", "Optional"],
-      ["Tax advice", "Nu", "Optional"],
-      ["Annual tax return / final declaration", "Da, o data pe an", "Poate fi externalizat"]
+      ["Pastrezi evidente digitale pentru venituri", "&#10003; Da", "&#10005; Nu"],
+      ["Pastrezi evidente digitale pentru cheltuieli", "&#10003; Da", "&#10005; Nu"],
+      ["Pastrezi bonuri, facturi si alte dovezi", "&#10003; Da*", "&#10005; Nu"],
+      ["Pui evidentele in categorii de baza", "&#10003; Da", "&#10005; Nu"],
+      ["Trimiti un rezumat trimestrial catre HMRC", "&#10003; Da", "&#10005; Nu"],
+      ["Faci ajustari contabile trimestrial", "&#10005; Nu", "&#10005; Nu"],
+      ["Faci ajustari fiscale trimestrial", "&#10005; Nu", "&#10005; Nu"],
+      ["Depui o declaratie fiscala trimestriala", "&#10005; Nu - nu exista", "&#10005; Nu"],
+      ["Folosesti un serviciu de bookkeeping", "&#10005; Nu", "&#63; Optional"],
+      ["Folosesti sprijin de la contabil", "&#10005; Nu", "&#63; Optional"],
+      ["Ceri consultanta fiscala", "&#10005; Nu", "&#63; Optional"],
+      ["Depui declaratia anuala / final declaration", "&#10003; Da, o data pe an", "Poate fi externalizat"]
     ],
     note: "*HMRC cere evidente digitale si documente justificative. Nu inseamna ca trebuie sa fotografiezi fiecare bon, dar dovada trebuie pastrata si usor de gasit.",
     body: `
       <h2>Partea importanta</h2>
-      <p>Un quarterly update este un rezumat al veniturilor si cheltuielilor creat din evidentele tale digitale. Nu este o declaratie fiscala completa, iar HMRC spune ca nu trebuie sa faci accounting sau tax adjustments inainte de trimitere.</p>
+      <p>Un quarterly update este un rezumat al veniturilor si cheltuielilor creat din evidentele tale digitale. Nu este o declaratie fiscala completa, iar HMRC spune ca nu trebuie sa faci ajustari contabile sau fiscale inainte de trimitere.</p>
       <p>Contabilul poate ramane foarte util, mai ales pentru final declaration, planificare fiscala, corectii, allowances si situatii complicate. Dar MTD nu inseamna ca fiecare bon trebuie verificat de contabil in fiecare trimestru.</p>
       <h2>Unde se potriveste TidGo</h2>
       <p>TidGo este pentru stratul de evidenta: venituri, cheltuieli, documente sursa si rezumate clare. Munca mai grea a contabilului ramane acolo unde conteaza: analiza, review si partea fiscala de final de an.</p>
@@ -4604,25 +4604,25 @@ const MTD_RESPONSIBILITIES_ARTICLES = {
     title: "MTD: ka darote jus ir ka daro buhalteris",
     lead: "Making Tax Digital pajamu mokesciui reiskia reguliarius skaitmeninius irasus ir quarterly updates. Tai nereiskia ketvirtines mokesciu deklaracijos.",
     intro: "Tai paprastas padalijimas, kurio daugeliui reikia pries perkant per didele apskaitos programa ar mokant uz paslauga, kurios galbut nereikia.",
-    headers: ["Elementas", "Ar reikalauja MTD?", "Ar privalo daryti buhalteris?"],
+    headers: ["Veiksmas", "Ar reikalauja MTD?", "Ar privalo daryti buhalteris?"],
     rows: [
-      ["Digital records income", "Taip", "Ne"],
-      ["Digital records expenses", "Taip", "Ne"],
-      ["Saltiniu dokumentu saugojimas", "Taip*", "Ne"],
-      ["Irasu kategorijavimas", "Taip", "Ne"],
-      ["Quarterly summary/update", "Taip", "Ne"],
-      ["Accounting adjustments kiekviena ketvirti", "Ne", "Ne"],
-      ["Tax adjustments kiekviena ketvirti", "Ne", "Ne"],
-      ["Quarterly tax return", "Ne - neegzistuoja", "Ne"],
-      ["Bookkeeping service", "Ne", "Pasirinktinai"],
-      ["Accountant support", "Ne", "Pasirinktinai"],
-      ["Tax advice", "Ne", "Pasirinktinai"],
-      ["Annual tax return / final declaration", "Taip, karta per metus", "Galima perduoti"]
+      ["Tvarkyti skaitmeninius pajamu irasus", "&#10003; Taip", "&#10005; Ne"],
+      ["Tvarkyti skaitmeninius islaidu irasus", "&#10003; Taip", "&#10005; Ne"],
+      ["Saugoti kvitus, saskaitas ir kitus irodymus", "&#10003; Taip*", "&#10005; Ne"],
+      ["Priskirti irasus pagrindinems kategorijoms", "&#10003; Taip", "&#10005; Ne"],
+      ["Siusti ketvirtine suvestine HMRC", "&#10003; Taip", "&#10005; Ne"],
+      ["Daryti apskaitos korekcijas kas ketvirti", "&#10005; Ne", "&#10005; Ne"],
+      ["Daryti mokestines korekcijas kas ketvirti", "&#10005; Ne", "&#10005; Ne"],
+      ["Pateikti ketvirtine mokesciu deklaracija", "&#10005; Ne - ji neegzistuoja", "&#10005; Ne"],
+      ["Naudoti bookkeeping paslauga", "&#10005; Ne", "&#63; Pasirinktinai"],
+      ["Naudoti buhalterio pagalba", "&#10005; Ne", "&#63; Pasirinktinai"],
+      ["Gauti mokesciu konsultacija", "&#10005; Ne", "&#63; Pasirinktinai"],
+      ["Pateikti metine deklaracija / final declaration", "&#10003; Taip, karta per metus", "Galima perduoti"]
     ],
     note: "*HMRC reikalauja skaitmeniniu irasu ir pagrindzianciu dokumentu saugojimo. Tai nereiskia, kad privalote fotografuoti kiekviena kvita, bet irodymas turi islikti ir buti randamas.",
     body: `
       <h2>Svarbiausia dalis</h2>
-      <p>Quarterly update yra pajamu ir islaidu suvestine, sukurta is jusu skaitmeniniu irasu. Tai nera pilna mokesciu deklaracija, o HMRC sako, kad pries siunciant nereikia daryti accounting ar tax adjustments.</p>
+      <p>Quarterly update yra pajamu ir islaidu suvestine, sukurta is jusu skaitmeniniu irasu. Tai nera pilna mokesciu deklaracija, o HMRC sako, kad pries siunciant nereikia daryti apskaitos ar mokestiniu korekciju.</p>
       <p>Buhalteris vis tiek gali buti labai naudingas, ypac final declaration, mokesciu planavimui, pataisoms, allowances ir sudetingoms situacijoms. Bet MTD nereiskia, kad kiekvienas kvitas kas ketvirti turi buti patikrintas buhalterio.</p>
       <h2>Kur tinka TidGo</h2>
       <p>TidGo skirtas irasu sluoksniui: pajamos, islaidos, saltinio dokumentai ir tvarkingos suvestines. Sunkesnis buhalterio darbas lieka ten, kur jo reikia: ivertinimas, review ir metu pabaigos mokesciai.</p>
@@ -4630,7 +4630,6 @@ const MTD_RESPONSIBILITIES_ARTICLES = {
     checked: "Patikrinta: 2026 m. rugpjutis. Jei skaitote veliau, patikrinkite GOV.UK."
   }
 };
-
 function mtdResponsibilitiesArticle() {
   const copy = MTD_RESPONSIBILITIES_ARTICLES[state.marketingLanguage] || MTD_RESPONSIBILITIES_ARTICLES.en;
   return `
@@ -4645,7 +4644,7 @@ function mtdResponsibilitiesArticle() {
             <tr>${copy.headers.map((header) => `<th>${header}</th>`).join("")}</tr>
           </thead>
           <tbody>
-            ${copy.rows.map((row) => `<tr>${row.map((cell) => `<td>${cell}</td>`).join("")}</tr>`).join("")}
+            ${copy.rows.map((row) => `<tr>${row.map((cell) => `<td class="${cell.includes('&#10003;') ? 'yes-cell' : cell.includes('&#10005;') ? 'no-cell' : cell.includes('&#63;') ? 'maybe-cell' : ''}">${cell}</td>`).join("")}</tr>`).join("")}
           </tbody>
         </table>
       </div>
@@ -8050,7 +8049,7 @@ function markdownTableToHtml(lines) {
     <div class="legal-table-wrap">
       <table class="legal-table">
         <thead><tr>${head.map((cell) => `<th>${cell}</th>`).join("")}</tr></thead>
-        <tbody>${body.map((row) => `<tr>${row.map((cell) => `<td>${cell}</td>`).join("")}</tr>`).join("")}</tbody>
+        <tbody>${body.map((row) => `<tr>${row.map((cell) => `<td class="${cell.includes('&#10003;') ? 'yes-cell' : cell.includes('&#10005;') ? 'no-cell' : cell.includes('&#63;') ? 'maybe-cell' : ''}">${cell}</td>`).join("")}</tr>`).join("")}</tbody>
       </table>
     </div>
   `;
