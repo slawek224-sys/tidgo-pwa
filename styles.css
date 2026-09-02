@@ -5137,3 +5137,12 @@ button:active,
 .screen .list .record-expense:not(.record-category-food):not(.record-category-fuel):not(.record-category-tools):not(.record-category-transport)::before {
   background-image: url("/assets/icons/tidgo-other.svg") !important;
 }
+
+/* Use a universal receipt icon for the main Add expense action */
+.action[data-action="startExpense"]::before {
+  background-image: url("/assets/icons/tidgo-receipt.svg") !important;
+}
+
+.screen .list .record-expense:not(.record-category-food):not(.record-category-fuel):not(.record-category-tools):not(.record-category-transport)::before {
+  background-image: url("/assets/icons/tidgo-receipt.svg") !important;
+}

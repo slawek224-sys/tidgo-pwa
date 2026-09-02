@@ -1,0 +1,21 @@
+﻿<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Receipt">
+  <defs>
+    <linearGradient id="paper" x1="12" y1="6" x2="52" y2="58" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f8fafc"/>
+      <stop offset=".45" stop-color="#dbeafe"/>
+      <stop offset="1" stop-color="#93c5fd"/>
+    </linearGradient>
+    <linearGradient id="edge" x1="10" y1="8" x2="54" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#38bdf8"/>
+      <stop offset=".55" stop-color="#2563eb"/>
+      <stop offset="1" stop-color="#1e3a8a"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#1e3a8a" flood-opacity=".28"/>
+    </filter>
+  </defs>
+  <path d="M18 8h28c2.8 0 5 2.2 5 5v42l-5-3.3-4.6 3.3-4.7-3.3-4.7 3.3-4.7-3.3-4.7 3.3-4.6-3.3-5 3.3V13c0-2.8 2.2-5 5-5Z" fill="url(#paper)" stroke="url(#edge)" stroke-width="3" filter="url(#shadow)"/>
+  <path d="M22 21h20M22 29h16M22 37h20" fill="none" stroke="#1e3a8a" stroke-width="3" stroke-linecap="round"/>
+  <path d="M41 45h3" fill="none" stroke="#16a34a" stroke-width="4" stroke-linecap="round"/>
+  <path d="M20 13c5-3 15-4 25-.6" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity=".78"/>
+</svg>
