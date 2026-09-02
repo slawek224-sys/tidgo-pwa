@@ -8566,7 +8566,7 @@ function itemRow(row) {
   if (row.type === "income") {
     const item = row.item;
     const businessLabel = businessLabelForRecord(item);
-    return `<button class="list-item" data-open-income="${item.id}">
+    return `<button class="list-item record-income" data-open-income="${item.id}">
       <span class="list-main">
         <span class="list-title">${escapeHtml(item.description || t("income"))}${reviewBadge(item)}</span>
         <span class="list-meta">${day(item.timestamp)}${businessLabel ? ` - ${escapeHtml(businessLabel)}` : ""}</span>
@@ -8576,7 +8576,7 @@ function itemRow(row) {
   }
   const item = row.item;
   const businessLabel = businessLabelForRecord(item);
-  return `<button class="list-item" data-open-receipt="${item.id}">
+  return `<button class="list-item record-expense record-category-${item.category || "other"}" data-open-receipt="${item.id}">
     <span class="list-main">
       <span class="list-title">${escapeHtml(item.merchant || t("unknown"))}${reviewBadge(item)}</span>
       <span class="list-meta">${t(item.category)} - ${day(item.timestamp)}${businessLabel ? ` - ${escapeHtml(businessLabel)}` : ""}</span>
@@ -8888,7 +8888,7 @@ function formatTotals(items) {
 }
 
 function incomeSummaryRow(item) {
-  return `<button class="list-item" type="button" data-open-income="${escapeAttr(item.id)}">
+  return `<button class="list-item record-income" type="button" data-open-income="${escapeAttr(item.id)}">
     <span class="list-main">
       <span class="list-title">${t("income")}${reviewBadge(item)}</span>
       <span class="list-meta">${day(item.timestamp)} · ${escapeHtml(item.description || "")}</span>
@@ -8898,7 +8898,7 @@ function incomeSummaryRow(item) {
 }
 
 function receiptSummaryRow(item) {
-  return `<button class="list-item" type="button" data-open-receipt="${escapeAttr(item.id)}">
+  return `<button class="list-item record-expense record-category-${item.category || "other"}" type="button" data-open-receipt="${escapeAttr(item.id)}">
     <span class="list-main">
       <span class="list-title">${t("expenses")}${reviewBadge(item)}</span>
       <span class="list-meta">${day(item.timestamp)} · ${escapeHtml(item.merchant || t(item.category))}</span>
