@@ -5101,3 +5101,39 @@ button:active,
 .action[data-action="startIncome"]::before {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 44 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3CradialGradient id='g' cx='32%25' cy='24%25' r='80%25'%3E%3Cstop offset='0' stop-color='%23bbf7d0'/%3E%3Cstop offset='0.46' stop-color='%2310b981'/%3E%3Cstop offset='1' stop-color='%23047857'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='22' cy='22' r='18' fill='url(%23g)'/%3E%3Ccircle cx='22' cy='22' r='13' fill='none' stroke='rgba(255,255,255,.42)' stroke-width='2'/%3E%3Cpath d='M22 12v20M16 18.5c1.2-2.8 4.5-3.8 7.5-2.8 2 .7 3.4 2.1 3.1 3.8-.3 2-2.5 2.5-5.2 2.8-2.8.4-5 .9-5.2 3-.2 1.9 1.7 3.5 4.5 3.8 3.3.3 5.8-.8 7-3.1' fill='none' stroke='white' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M13 13c3-3 8-5 14-3' fill='none' stroke='white' stroke-opacity='.42' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") !important;
 }
+
+
+/* Premium PWA illustrated category assets */
+.screen .list .list-item::before,
+.action[data-action="startExpense"]::before,
+.action[data-action="startIncome"]::before {
+  background-size: contain !important;
+  background-color: transparent !important;
+}
+
+.screen .list .record-income::before,
+.action[data-action="startIncome"]::before {
+  background-image: url("/assets/icons/tidgo-income-coin.svg") !important;
+}
+
+.screen .list .record-category-fuel::before,
+.action[data-action="startExpense"]::before {
+  background-image: url("/assets/icons/tidgo-fuel.svg") !important;
+}
+
+.screen .list .record-category-food::before {
+  background-image: url("/assets/icons/tidgo-food.svg") !important;
+}
+
+.screen .list .record-category-tools::before {
+  background-image: url("/assets/icons/tidgo-tools.svg") !important;
+}
+
+.screen .list .record-category-transport::before {
+  background-image: url("/assets/icons/tidgo-transport.svg") !important;
+}
+
+.screen .list .record-category-other::before,
+.screen .list .record-expense:not(.record-category-food):not(.record-category-fuel):not(.record-category-tools):not(.record-category-transport)::before {
+  background-image: url("/assets/icons/tidgo-other.svg") !important;
+}
