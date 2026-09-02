@@ -5146,3 +5146,8 @@ button:active,
 .screen .list .record-expense:not(.record-category-food):not(.record-category-fuel):not(.record-category-tools):not(.record-category-transport)::before {
   background-image: url("/assets/icons/tidgo-receipt.svg") !important;
 }
+
+.settings-save-button {
+  width: 100%;
+  margin-top: 10px;
+}
