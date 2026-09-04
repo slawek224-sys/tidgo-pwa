@@ -3737,6 +3737,79 @@ function mtdWhatArticle() {
     .replaceAll('${pageCta()}', pageCta());
 }
 
+function mtdTopicBadge(titleKey) {
+  const labels = {
+    en: {
+      mtdResponsibilities: "Who does what",
+      mtdAutoSignup: "HMRC letter",
+      mtdWho: "Start here",
+      mtdWhat: "Plain English",
+      mtdQualifyingIncome: "Thresholds",
+      mtdDigitalRecords: "Records",
+      mtdSpreadsheets: "Excel",
+      mtdQuarterlyUpdates: "Deadlines",
+      mtdReceiptsMyth: "Receipts",
+      mtdGateway: "Login",
+      mtdCis: "CIS",
+      mtdCisMyths: "CIS myths"
+    },
+    pl: {
+      mtdResponsibilities: "Kto co robi",
+      mtdAutoSignup: "List z HMRC",
+      mtdWho: "Zacznij tutaj",
+      mtdWhat: "Po ludzku",
+      mtdQualifyingIncome: "Progi",
+      mtdDigitalRecords: "Rekordy",
+      mtdSpreadsheets: "Excel",
+      mtdQuarterlyUpdates: "Terminy",
+      mtdReceiptsMyth: "Paragony",
+      mtdGateway: "Logowanie",
+      mtdCis: "CIS",
+      mtdCisMyths: "Mity CIS"
+    },
+    ro: {
+      mtdResponsibilities: "Cine ce face",
+      mtdAutoSignup: "Scrisoare HMRC",
+      mtdWho: "Incepe aici",
+      mtdWhat: "Pe inteles",
+      mtdQualifyingIncome: "Praguri",
+      mtdDigitalRecords: "Evidente",
+      mtdSpreadsheets: "Excel",
+      mtdQuarterlyUpdates: "Termene",
+      mtdReceiptsMyth: "Bonuri",
+      mtdGateway: "Login",
+      mtdCis: "CIS",
+      mtdCisMyths: "Mituri CIS"
+    },
+    lt: {
+      mtdResponsibilities: "Kas ka daro",
+      mtdAutoSignup: "HMRC laiskas",
+      mtdWho: "Pradek cia",
+      mtdWhat: "Paprastai",
+      mtdQualifyingIncome: "Ribos",
+      mtdDigitalRecords: "Irasai",
+      mtdSpreadsheets: "Excel",
+      mtdQuarterlyUpdates: "Terminai",
+      mtdReceiptsMyth: "Kvitai",
+      mtdGateway: "Prisijungimas",
+      mtdCis: "CIS",
+      mtdCisMyths: "CIS mitai"
+    }
+  };
+  const languageLabels = labels[state.marketingLanguage] || labels.en;
+  return languageLabels[titleKey] || labels.en[titleKey] || "Guide";
+}
+
+function mtdHubHeading() {
+  const copy = {
+    en: ["Pick the situation you are in", "Start with the thing that matches your day: HMRC letter, CIS payslip, Excel sheet, missed update or basic MTD rules."],
+    pl: ["Wybierz sytuacjÄ™, w ktÃ³rej jesteÅ›", "Zacznij od tego, co masz przed sobÄ…: list z HMRC, payslip CIS, arkusz Excel, zalegÅ‚y update albo podstawowe zasady MTD."],
+    ro: ["Alege situatia in care esti", "Incepe cu ce ai in fata: scrisoare HMRC, payslip CIS, Excel, update intarziat sau regulile de baza MTD."],
+    lt: ["Pasirink savo situacija", "Pradek nuo to, kas tau aktualu: HMRC laiskas, CIS payslipas, Excel lentele, paveluotas update arba pagrindines MTD taisykles."]
+  };
+  const c = copy[state.marketingLanguage] || copy.en;
+  return `<div class="mtd-situation-heading"><strong>${escapeHtml(c[0])}</strong><span>${escapeHtml(c[1])}</span></div>`;
+}
 function mtdKnowledgeHref(slug) {
   const localized = ["what-you-do-accountant-does", "automatically-signed-up", "qualifying-income", "government-gateway", "do-i-have-to-photograph-receipts", "digital-records", "cis", "cis-myths", "quarterly-updates"];
   if (state.marketingLanguage !== "en" && localized.includes(slug)) {
@@ -6459,6 +6532,7 @@ function landing() {
               <small>${mk("whatsNewCta")}</small>
             </div>
           </section>
+          ${landingRealLifeSection()}
           ${youtubeVideosSection()}
           ${earlyAccessBanner()}
           <section class="landing-trust-strip" aria-label="TidGo basics">
@@ -6598,6 +6672,69 @@ function youtubeVideosSection() {
   `;
 }
 
+function landingRealLifeSection() {
+  const copy = {
+    en: {
+      eyebrow: "Real-life records",
+      title: "From photo mess to accountant-ready records.",
+      text: "TidGo is built for the bit before the accountant: catch the receipt when it happens, keep the proof with the record, and stop rebuilding the year from memory.",
+      steps: [
+        ["Snap", "Receipt in the van, tool shop or lunch queue. Take the photo before it disappears."],
+        ["Tidy", "TidGo keeps the date, amount, category and proof together in one place."],
+        ["Send", "When your accountant asks, you export a cleaner PDF or CSV pack instead of a photo dump."]
+      ]
+    },
+    pl: {
+      eyebrow: "Prawdziwe rekordy",
+      title: "Od bajzlu ze zdjÄ™ciami do paczki dla ksiÄ™gowego.",
+      text: "TidGo jest zrobione do tego etapu przed ksiÄ™gowym: zÅ‚ap paragon od razu, trzymaj dowÃ³d razem z wpisem i nie odtwarzaj caÅ‚ego roku z pamiÄ™ci.",
+      steps: [
+        ["ZdjÄ™cie", "Paragon w vanie, sklepie z narzÄ™dziami albo kolejce po jedzenie. ZrÃ³b fotkÄ™ zanim zniknie."],
+        ["PorzÄ…dek", "TidGo trzyma datÄ™, kwotÄ™, kategoriÄ™ i dowÃ³d w jednym miejscu."],
+        ["Paczka", "Gdy ksiÄ™gowy zapyta, wysyÅ‚asz czystszy PDF albo CSV zamiast zrzutu losowych zdjÄ™Ä‡."]
+      ]
+    },
+    ro: {
+      eyebrow: "Evidente reale",
+      title: "De la poze imprastiate la evidente gata pentru contabil.",
+      text: "TidGo este facut pentru partea de dinaintea contabilului: prinzi bonul cand apare, pastrezi dovada langa inregistrare si nu refaci anul din memorie.",
+      steps: [
+        ["Poza", "Bon in duba, magazin de scule sau la pranz. Fa poza inainte sa dispara."],
+        ["Ordine", "TidGo tine data, suma, categoria si dovada impreuna."],
+        ["Pachet", "Cand contabilul cere, exporti un PDF sau CSV curat, nu o gramada de poze."]
+      ]
+    },
+    lt: {
+      eyebrow: "Tikri irasai",
+      title: "Nuo nuotrauku chaoso iki buhalteriui paruostu irasu.",
+      text: "TidGo sukurta tam etapui pries buhalteri: pagauk kvita kai jis atsiranda, laikyk irodyma prie iraso ir nereikes metu atkurti is atminties.",
+      steps: [
+        ["Nuotrauka", "Kvitas furgone, irankiu parduotuveje ar pietu eileje. Nufotografuok kol nedingo."],
+        ["Tvarka", "TidGo laiko data, suma, kategorija ir irodyma vienoje vietoje."],
+        ["Paketas", "Kai buhalteris papraso, eksportuoji tvarkingesni PDF arba CSV, ne atsitiktiniu nuotrauku kruva."]
+      ]
+    }
+  };
+  const c = copy[state.marketingLanguage] || copy.en;
+  return `
+          <section class="landing-life-strip" aria-label="${escapeAttr(c.title)}">
+            <div class="landing-section-heading">
+              <span>${escapeHtml(c.eyebrow)}</span>
+              <strong>${escapeHtml(c.title)}</strong>
+              <p>${escapeHtml(c.text)}</p>
+            </div>
+            <div class="landing-life-grid">
+              ${c.steps.map(([title, text], index) => `
+                <article class="landing-life-card life-step-${index + 1}">
+                  <span class="life-step-icon" aria-hidden="true"></span>
+                  <strong>${escapeHtml(title)}</strong>
+                  <span>${escapeHtml(text)}</span>
+                </article>
+              `).join("")}
+            </div>
+          </section>
+  `;
+}
 function earlyAccessBanner() {
   const copy = EARLY_ACCESS_BANNER_COPY[state.marketingLanguage] || EARLY_ACCESS_BANNER_COPY.en;
   return `
@@ -6887,9 +7024,11 @@ function marketingPage() {
             <span>${mk("mtdLateText")}</span>
           </a>
         </div>
+        ${mtdHubHeading()}
         <div class="mtd-topic-grid marketing-topic-grid">
           ${mtdTopics().map(([titleKey, textKey, href]) => `
-            <a class="marketing-topic" href="${href}">
+            <a class="marketing-topic mtd-situation-card" href="${href}">
+              <small class="mtd-topic-badge">${escapeHtml(mtdTopicBadge(titleKey))}</small>
               <strong>${mk(titleKey)}</strong>
               <span>${mk(textKey)}</span>
             </a>
