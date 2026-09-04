@@ -3803,7 +3803,7 @@ function mtdTopicBadge(titleKey) {
 function mtdHubHeading() {
   const copy = {
     en: ["Pick the situation you are in", "Start with the thing that matches your day: HMRC letter, CIS payslip, Excel sheet, missed update or basic MTD rules."],
-    pl: ["Wybierz sytuacjÄ™, w ktÃ³rej jesteÅ›", "Zacznij od tego, co masz przed sobÄ…: list z HMRC, payslip CIS, arkusz Excel, zalegÅ‚y update albo podstawowe zasady MTD."],
+    pl: ["Wybierz sytuacj\u0119, w kt\u00f3rej jeste\u015b", "Zacznij od tego, co masz przed sob\u0105: list z HMRC, payslip CIS, arkusz Excel, zaleg\u0142y update albo podstawowe zasady MTD."],
     ro: ["Alege situatia in care esti", "Incepe cu ce ai in fata: scrisoare HMRC, payslip CIS, Excel, update intarziat sau regulile de baza MTD."],
     lt: ["Pasirink savo situacija", "Pradek nuo to, kas tau aktualu: HMRC laiskas, CIS payslipas, Excel lentele, paveluotas update arba pagrindines MTD taisykles."]
   };
@@ -6686,12 +6686,12 @@ function landingRealLifeSection() {
     },
     pl: {
       eyebrow: "Prawdziwe rekordy",
-      title: "Od bajzlu ze zdjÄ™ciami do paczki dla ksiÄ™gowego.",
-      text: "TidGo jest zrobione do tego etapu przed ksiÄ™gowym: zÅ‚ap paragon od razu, trzymaj dowÃ³d razem z wpisem i nie odtwarzaj caÅ‚ego roku z pamiÄ™ci.",
+      title: "Od ba\u0142aganu ze zdj\u0119ciami do paczki dla ksi\u0119gowego.",
+      text: "TidGo jest zrobione do etapu przed ksi\u0119gowym: z\u0142ap paragon od razu, trzymaj dow\u00f3d razem z wpisem i nie odtwarzaj ca\u0142ego roku z pami\u0119ci.",
       steps: [
-        ["ZdjÄ™cie", "Paragon w vanie, sklepie z narzÄ™dziami albo kolejce po jedzenie. ZrÃ³b fotkÄ™ zanim zniknie."],
-        ["PorzÄ…dek", "TidGo trzyma datÄ™, kwotÄ™, kategoriÄ™ i dowÃ³d w jednym miejscu."],
-        ["Paczka", "Gdy ksiÄ™gowy zapyta, wysyÅ‚asz czystszy PDF albo CSV zamiast zrzutu losowych zdjÄ™Ä‡."]
+        ["Zdj\u0119cie", "Paragon w vanie, sklepie z narz\u0119dziami albo kolejce po jedzenie. Zr\u00f3b fotk\u0119 zanim zniknie."],
+        ["Porz\u0105dek", "TidGo trzyma dat\u0119, kwot\u0119, kategori\u0119 i dow\u00f3d w jednym miejscu."],
+        ["Paczka", "Gdy ksi\u0119gowy zapyta, wysy\u0142asz czystszy PDF albo CSV zamiast zrzutu losowych zdj\u0119\u0107."]
       ]
     },
     ro: {
