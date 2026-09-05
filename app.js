@@ -5444,11 +5444,17 @@ function replaceReceiptLocal(receiptId, receipt = {}, fallback = {}) {
   return merged;
 }
 
+function removeRecordBusinessMeta(recordId) {
+  if (!recordId || !state.recordBusinessMeta?.[recordId]) return;
+  delete state.recordBusinessMeta[recordId];
+  write("rb_record_business_meta", state.recordBusinessMeta);
+}
+
 function removeReceiptLocal(receiptId) {
   if (!receiptId) return;
   state.receipts = state.receipts.filter((item) => item.id !== receiptId);
+  removeRecordBusinessMeta(receiptId);
 }
-
 function removeIncomeLocal(incomeId) {
   if (!incomeId) return;
   state.income = state.income.filter((item) => item.id !== incomeId);
@@ -7859,11 +7865,12 @@ function receipt() {
         ${receiptReplaceField()}
         ${businessTypeField(receiptMeta.business_type || receipt.business_type || defaultBusinessType(), receiptMeta.business_slot_id || receipt.business_slot_id || "", showBusinessMove)}
         <label class="field"><span>${t("amount")}</span><input class="input" name="amount" inputmode="decimal" value="${receipt.amount || 0}"></label>
-        <label class="field"><span>${t("currency")}</span><select class="select" name="currency" disabled>${currencyOptions(receipt.currency || "GBP")}</select></label>
+        <label class="field"><span>${t("currency")}</span><input type="hidden" name="currency" value="${escapeAttr(receipt.currency || "GBP")}"><div class="chip-row currency-chip-row">${currencyChips(receipt.currency || "GBP")}</div></label>
         <label class="field"><span>${t("merchant")}</span><input class="input" name="merchant" value="${escapeAttr(receipt.merchant || "")}"></label>
         <label class="field"><span>${t("date")}</span><input class="input" type="date" name="date" value="${dateInputValue(receipt.timestamp || receipt.created_at)}"></label>
         <label class="field"><span>${t("category")}</span><div class="chip-row">${categoryChips(receipt.category)}</div></label>
         ${receipt.ai_comment ? `<div class="card muted">${escapeHtml(receipt.ai_comment)}</div>` : ""}
+        <button class="primary receipt-save-button" type="submit">${t("save")}</button>
       </form>
       <button class="danger" style="width:100%;margin-top:12px" data-action="deleteReceipt">${t("delete")}</button>
     </section>
@@ -8500,6 +8507,12 @@ function infoTip(text) {
 
 function currencyOptions(active) {
   return CURRENCIES.map((currency) => `<option value="${currency}"${active === currency ? " selected" : ""}>${currency}</option>`).join("");
+}
+
+function currencyChips(active = "GBP") {
+  const common = ["GBP", "EUR", "PLN", "USD", "HUF"];
+  const choices = common.includes(active) ? common : [active, ...common].filter(Boolean);
+  return choices.map((currency) => `<button class="chip ${active === currency ? "active" : ""}" type="button" data-currency="${currency}">${currency}</button>`).join("");
 }
 
 function categoryChips(active = "other") {
@@ -9409,6 +9422,14 @@ document.addEventListener("click", async (event) => {
     target.classList.add("active");
     return;
   }
+  if (target.dataset.currency) {
+    document.querySelectorAll("[data-currency]").forEach((item) => item.classList.remove("active"));
+    target.classList.add("active");
+    const form = target.closest("form");
+    const input = form?.querySelector("input[name=\"currency\"]");
+    if (input) input.value = target.dataset.currency;
+    return;
+  }
   if (target.dataset.action === "connectWhatsApp") {
     setBusy(true);
     try {
@@ -9931,8 +9952,11 @@ document.addEventListener("click", async (event) => {
     return;
   }
   if (action === "deleteReceipt" && confirm(t("deleteReceiptWarning"))) {
-    await api(`/api/receipts/${state.selected}`, { method: "DELETE" });
-    removeReceiptLocal(state.selected);
+    const receiptId = state.selected;
+    await api(`/api/receipts/${receiptId}`, { method: "DELETE" });
+    removeReceiptLocal(receiptId);
+    state.selected = "";
+    await refreshReceiptsOnly();
     return go("home");
   }
   if (action === "deleteIncome" && confirm(t("deleteIncomeWarning"))) {
@@ -10259,6 +10283,7 @@ document.addEventListener("submit", async (event) => {
         method: "PATCH",
         body: JSON.stringify({
           amount,
+          currency: data.currency || receipt.currency || "GBP",
           merchant: data.merchant || null,
           category,
           business_type: slot.type,
@@ -10276,6 +10301,7 @@ document.addEventListener("submit", async (event) => {
       rememberDateReviewConfirmed(state.selected);
       const localReceipt = replaceReceiptLocal(state.selected, clearDateReviewFields(updatedReceipt), {
         amount,
+        currency: data.currency || receipt.currency || "GBP",
         merchant: data.merchant || "",
         category,
         business_type: slot.type,
