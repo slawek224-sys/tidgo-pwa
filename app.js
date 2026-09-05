@@ -8701,6 +8701,19 @@ function clearDateReviewFields(item = {}) {
   };
 }
 
+function clearDuplicateReviewFields(item = {}) {
+  return {
+    ...item,
+    possible_duplicate: false,
+    possibleDuplicate: false,
+    duplicate_of_receipt_id: null,
+    duplicateOfReceiptId: null,
+    duplicate_reason: null,
+    duplicateReason: null,
+    status: item.status === "needs_review" ? "done" : item.status
+  };
+}
+
 function dateReviewCard() {
   return `
     <div class="status-card date-review-card">
@@ -10303,7 +10316,7 @@ document.addEventListener("submit", async (event) => {
       });
       saveRecordBusinessMeta(state.selected, slot);
       rememberDateReviewConfirmed(state.selected);
-      const localReceipt = replaceReceiptLocal(state.selected, clearDateReviewFields(updatedReceipt), {
+      const localReceipt = replaceReceiptLocal(state.selected, clearDuplicateReviewFields(clearDateReviewFields(updatedReceipt)), {
         amount,
         currency: data.currency || receipt.currency || "GBP",
         merchant: data.merchant || "",
