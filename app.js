@@ -2042,7 +2042,8 @@ Object.assign(COPY.en, {
   duplicateDetails: "Open possible duplicate",
   duplicateHint: "These records look similar. Open one and compare the receipt photos.",
   duplicateReviewTitle: "This looks like a possible duplicate",
-  duplicateReviewHint: "TidGo found a very similar receipt already saved on this account. Check the photo, date, amount and merchant before using this record in a summary.",
+  duplicateReviewHint: "TidGo found a very similar receipt already saved on this account. Check the photo, date, amount and merchant. If this record is correct, click Save anyway — I checked this record.",
+  saveDuplicate: "Save anyway — I checked this record",
   requestDocsBackendNeeded: "Request email needs a backend Resend endpoint before it can send to the client automatically.",
   mtdRunning: "MTD running summary",
   mtdRunningReady: "Running MTD record summary",
@@ -2162,7 +2163,8 @@ Object.assign(COPY.pl, {
   duplicateDetails: "Otworz mozliwy duplikat",
   duplicateHint: "Te rekordy wyglądają podobnie. Otwórz jeden i porównaj zdjęcia paragonów.",
   duplicateReviewTitle: "To wygląda jak możliwy duplikat",
-  duplicateReviewHint: "TidGo znalazło bardzo podobny paragon zapisany już na tym koncie. Sprawdź zdjęcie, datę, kwotę i sprzedawcę przed użyciem tego rekordu w podsumowaniu.",
+  duplicateReviewHint: "TidGo znalazło bardzo podobny paragon zapisany już na tym koncie. Sprawdź zdjęcie, datę, kwotę i sprzedawcę. Jeśli ten rekord jest poprawny, kliknij Zapisz mimo to — sprawdziłem ten rekord.",
+  saveDuplicate: "Zapisz mimo to — sprawdziłem ten rekord",
   requestDocsBackendNeeded: "Wysyłka request email wymaga endpointu Resend w backendzie, zanim pójdzie automatycznie do klienta.",
   mtdRunning: "MTD running summary",
   mtdRunningReady: "Narastające MTD record summary",
@@ -2215,7 +2217,8 @@ Object.assign(COPY.ro, {
   duplicateDetails: "Deschide posibil duplicat",
   duplicateHint: "Aceste inregistrari par similare. Deschide una si compara pozele bonurilor.",
   duplicateReviewTitle: "Acesta pare un posibil duplicat",
-  duplicateReviewHint: "TidGo a gasit un bon foarte similar deja salvat in acest cont. Verifica poza, data, suma si comerciantul inainte sa folosesti acest record intr-un sumar.",
+  duplicateReviewHint: "TidGo a gasit un bon foarte similar deja salvat in acest cont. Verifica poza, data, suma si comerciantul. Daca acest record este corect, apasa Salveaza oricum — am verificat acest record.",
+  saveDuplicate: "Salveaza oricum — am verificat acest record",
   requestDocsBackendNeeded: "Emailul de cerere are nevoie de endpoint Resend in backend inainte sa fie trimis automat clientului."
 });
 
@@ -2300,7 +2303,8 @@ Object.assign(COPY.lt, {
   duplicateDetails: "Atidaryti galima dublikata",
   duplicateHint: "Sie irasai atrodo panasus. Atidarykite viena ir palyginkite kvitu nuotraukas.",
   duplicateReviewTitle: "Tai gali būti dublikatas",
-  duplicateReviewHint: "TidGo rado labai panašų kvitą, jau išsaugotą šioje paskyroje. Patikrink nuotrauką, datą, sumą ir pardavėją prieš naudodamas šį įrašą suvestinėje.",
+  duplicateReviewHint: "TidGo rado labai panašų kvitą, jau išsaugotą šioje paskyroje. Patikrink nuotrauką, datą, sumą ir pardavėją. Jei šis įrašas teisingas, spausk Išsaugoti vis tiek — patikrinau šį įrašą.",
+  saveDuplicate: "Išsaugoti vis tiek — patikrinau šį įrašą",
   requestDocsBackendNeeded: "Prasymo emailui reikia Resend endpointo backend'e, pries siunciant klientui automatiskai."
 });
 
@@ -7870,7 +7874,7 @@ function receipt() {
         <label class="field"><span>${t("date")}</span><input class="input" type="date" name="date" value="${dateInputValue(receipt.timestamp || receipt.created_at)}"></label>
         <label class="field"><span>${t("category")}</span><div class="chip-row">${categoryChips(receipt.category)}</div></label>
         ${receipt.ai_comment ? `<div class="card muted">${escapeHtml(receipt.ai_comment)}</div>` : ""}
-        <button class="primary receipt-save-button" type="submit">${t("save")}</button>
+        <button class="primary receipt-save-button" type="submit">${recordPossibleDuplicate(receipt) ? t("saveDuplicate") : t("save")}</button>
       </form>
       <button class="danger" style="width:100%;margin-top:12px" data-action="deleteReceipt">${t("delete")}</button>
     </section>
