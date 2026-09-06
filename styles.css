@@ -5450,3 +5450,75 @@ button:active,
   width: 100%;
   margin-top: 0;
 }
+
+
+.record-filter {
+  background:
+    linear-gradient(135deg, rgba(248, 250, 252, 0.96), rgba(239, 246, 255, 0.92));
+  box-shadow:
+    0 10px 24px rgba(15, 23, 42, 0.06),
+    0 0 0 1px rgba(255, 255, 255, 0.72) inset;
+}
+
+.record-filter button {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition:
+    transform 150ms ease,
+    box-shadow 150ms ease,
+    background 150ms ease,
+    color 150ms ease;
+}
+
+.record-filter button small {
+  min-width: 24px;
+  padding: 3px 7px;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.18);
+  color: inherit;
+  font-size: 11px;
+  font-weight: 950;
+  line-height: 1;
+}
+
+.record-filter button[data-record-filter="needs_review"] {
+  color: #92400e;
+}
+
+.record-filter button[data-record-filter="needs_review"]::before {
+  content: "!";
+  display: inline-grid;
+  place-items: center;
+  width: 19px;
+  height: 19px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #f59e0b, #f97316);
+  color: #fff7ed;
+  font-size: 12px;
+  font-weight: 950;
+  box-shadow: 0 6px 14px rgba(249, 115, 22, 0.28);
+}
+
+.record-filter button[data-record-filter="needs_review"].active {
+  border: 1px solid rgba(251, 191, 36, 0.62);
+  background:
+    radial-gradient(circle at 18% 10%, rgba(255, 255, 255, 0.88), transparent 34%),
+    linear-gradient(135deg, #fff7ed 0%, #fed7aa 46%, #f59e0b 100%);
+  color: #78350f;
+  box-shadow:
+    0 12px 28px rgba(245, 158, 11, 0.22),
+    0 0 0 3px rgba(245, 158, 11, 0.12);
+}
+
+.record-filter button[data-record-filter="needs_review"].active small {
+  background: rgba(120, 53, 15, 0.14);
+}
+
+.record-filter button:hover,
+.record-filter button:focus-visible {
+  transform: translateY(-1px);
+}
