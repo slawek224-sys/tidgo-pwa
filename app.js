@@ -3375,6 +3375,7 @@ const state = {
   receipts: [],
   income: [],
   recordsLoading: false,
+  recordFilter: read("tg_record_filter", "all"),
   pendingRecordKind: "",
   pendingBusinessType: "",
   pendingBusinessSlotId: "",
@@ -3507,6 +3508,31 @@ function showSplash() {
     </main>
   `;
 }
+
+
+Object.assign(COPY.en, {
+  recordFilterAll: "All records",
+  recordFilterReview: "Needs review",
+  noNeedsReviewRecords: "Nothing needs review right now."
+});
+
+Object.assign(COPY.pl, {
+  recordFilterAll: "Wszystkie rekordy",
+  recordFilterReview: "Do sprawdzenia",
+  noNeedsReviewRecords: "Na razie nic nie wymaga sprawdzenia."
+});
+
+Object.assign(COPY.ro, {
+  recordFilterAll: "Toate inregistrarile",
+  recordFilterReview: "De verificat",
+  noNeedsReviewRecords: "Momentan nimic nu necesita verificare."
+});
+
+Object.assign(COPY.lt, {
+  recordFilterAll: "Visi irasai",
+  recordFilterReview: "Reikia patikrinti",
+  noNeedsReviewRecords: "Siuo metu nieko nereikia tikrinti."
+});
 
 function t(key) {
   return (COPY[state.language] || COPY.en)[key] || COPY.en[key] || key;
@@ -7790,9 +7816,13 @@ function recover() {
 }
 
 function home() {
-  const items = transactions();
+  const allItems = transactions();
+  const reviewItems = allItems.filter((row) => recordNeedsReview(row.item));
+  const recordFilter = state.recordFilter === "needs_review" ? "needs_review" : "all";
+  const items = recordFilter === "needs_review" ? reviewItems : allItems;
   const transactionLimit = Math.max(4, state.transactionLimit || 4);
   const visibleItems = items.slice(0, transactionLimit);
+  const emptyText = recordFilter === "needs_review" ? t("noNeedsReviewRecords") : t("empty");
   shell(`
     <section class="screen">
       ${topbar("")}
@@ -7806,8 +7836,12 @@ function home() {
         <button class="action green" data-action="startIncome"><span>${t("addIncome")}</span><small>${t("amountNote")}</small></button>
       </div>
       <button class="secondary share-inline app-share-button" type="button" data-action="shareTidGo">${t("shareTidGo")}</button>
+      <div class="segmented record-filter" aria-label="${escapeAttr(t("recordFilterReview"))}">
+        <button class="${recordFilter === "all" ? "active" : ""}" type="button" data-action="setRecordFilter" data-record-filter="all">${t("recordFilterAll")} <small>${allItems.length}</small></button>
+        <button class="${recordFilter === "needs_review" ? "active" : ""}" type="button" data-action="setRecordFilter" data-record-filter="needs_review">${t("recordFilterReview")} <small>${reviewItems.length}</small></button>
+      </div>
       <div class="list">
-        ${state.recordsLoading && !items.length ? recordSkeletonRows() : items.length ? visibleItems.map(itemRow).join("") : `<div class="empty">${t("empty")}</div>`}
+        ${state.recordsLoading && !items.length ? recordSkeletonRows() : items.length ? visibleItems.map(itemRow).join("") : `<div class="empty">${emptyText}</div>`}
         ${items.length > transactionLimit ? `<button class="link-btn see-all-btn" data-action="showMoreTransactions">${t("seeMore")}</button>` : ""}
         ${transactionLimit > 4 ? `<button class="link-btn see-all-btn" data-action="showLessTransactions">${t("showLess")}</button>` : ""}
       </div>
@@ -9434,6 +9468,13 @@ document.addEventListener("click", async (event) => {
   const target = event.target.closest("button, [data-open-receipt], [data-open-income], [data-open-accountant-client]");
   if (!target) return;
 
+  if (target.dataset.action === "setRecordFilter") {
+    state.recordFilter = target.dataset.recordFilter === "needs_review" ? "needs_review" : "all";
+    state.transactionLimit = 4;
+    write("tg_record_filter", state.recordFilter);
+    render();
+    return;
+  }
   if (target.dataset.category) {
     document.querySelectorAll("[data-category]").forEach((item) => item.classList.remove("active"));
     target.classList.add("active");
