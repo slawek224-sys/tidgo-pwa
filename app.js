@@ -3534,6 +3534,39 @@ Object.assign(COPY.lt, {
   noNeedsReviewRecords: "Siuo metu nieko nereikia tikrinti."
 });
 
+
+Object.assign(COPY.en, {
+  recordEditReceipt: "Receipt",
+  recordEditReview: "Review",
+  recordEditBusiness: "Business",
+  recordEditDetails: "Details",
+  assignedTo: "Assigned to"
+});
+
+Object.assign(COPY.pl, {
+  recordEditReceipt: "Paragon",
+  recordEditReview: "Sprawdzenie",
+  recordEditBusiness: "Biznes",
+  recordEditDetails: "Szczegóły",
+  assignedTo: "Przypisane do"
+});
+
+Object.assign(COPY.ro, {
+  recordEditReceipt: "Bon",
+  recordEditReview: "Verificare",
+  recordEditBusiness: "Business",
+  recordEditDetails: "Detalii",
+  assignedTo: "Asignat la"
+});
+
+Object.assign(COPY.lt, {
+  recordEditReceipt: "Kvitas",
+  recordEditReview: "Patikra",
+  recordEditBusiness: "Verslas",
+  recordEditDetails: "Informacija",
+  assignedTo: "Priskirta"
+});
+
 function t(key) {
   return (COPY[state.language] || COPY.en)[key] || COPY.en[key] || key;
 }
@@ -7893,24 +7926,49 @@ function receipt() {
   if (!receipt) return go("home");
   const receiptMeta = recordBusinessMeta(receipt.id);
   const showBusinessMove = shouldAskBusinessType() || Boolean(receipt.business_slot_id || receiptMeta.business_slot_id);
+  const isDuplicate = recordPossibleDuplicate(receipt);
+  const needsDateReview = recordDateNeedsReview(receipt);
+  const assignedLabel = businessLabelForRecord(receipt) || businessSlotById(receiptMeta.business_slot_id || receipt.business_slot_id, receiptMeta.business_type || receipt.business_type)?.label || "";
   shell(`
-    <section class="screen">
+    <section class="screen record-edit-screen">
       ${topbar(t("expenses"), true)}
-      ${imagePreviewButton(receipt.image_base64, "Receipt photo")}
-      ${recordPossibleDuplicate(receipt) ? duplicateReviewCard() : ""}
-      ${recordDateNeedsReview(receipt) ? dateReviewCard() : ""}
-      <form class="stack" id="receiptForm" style="margin-top:14px">
-        ${receiptReplaceField()}
-        ${businessTypeField(receiptMeta.business_type || receipt.business_type || defaultBusinessType(), receiptMeta.business_slot_id || receipt.business_slot_id || "", showBusinessMove)}
-        <label class="field"><span>${t("amount")}</span><input class="input" name="amount" inputmode="decimal" value="${receipt.amount || 0}"></label>
-        <label class="field"><span>${t("currency")}</span><input type="hidden" name="currency" value="${escapeAttr(receipt.currency || "GBP")}"><div class="chip-row currency-chip-row">${currencyChips(receipt.currency || "GBP")}</div></label>
-        <label class="field"><span>${t("merchant")}</span><input class="input" name="merchant" value="${escapeAttr(receipt.merchant || "")}"></label>
-        <label class="field"><span>${t("date")}</span><input class="input" type="date" name="date" value="${dateInputValue(receipt.timestamp || receipt.created_at)}"></label>
-        <label class="field"><span>${t("category")}</span><div class="chip-row">${categoryChips(receipt.category)}</div></label>
-        ${receipt.ai_comment ? `<div class="card muted">${escapeHtml(receipt.ai_comment)}</div>` : ""}
-        <button class="primary receipt-save-button" type="submit">${recordPossibleDuplicate(receipt) ? t("saveDuplicate") : t("save")}</button>
+      <div class="record-edit-title">
+        <strong>${escapeHtml(receipt.merchant || t("unknown"))}</strong>
+        <span>${money(receipt.amount || 0, receipt.currency || "GBP")}</span>
+      </div>
+      <div class="record-edit-section record-edit-photo">
+        <h2>${t("recordEditReceipt")}</h2>
+        ${imagePreviewButton(receipt.image_base64, "Receipt photo")}
+      </div>
+      ${isDuplicate || needsDateReview || receipt.ai_comment ? `
+        <div class="record-edit-section record-edit-review">
+          <h2>${t("recordEditReview")}</h2>
+          ${isDuplicate ? duplicateReviewCard() : ""}
+          ${needsDateReview ? dateReviewCard() : ""}
+          ${receipt.ai_comment ? `<div class="card muted">${escapeHtml(receipt.ai_comment)}</div>` : ""}
+        </div>
+      ` : ""}
+      <form class="stack record-edit-form" id="receiptForm">
+        <div class="record-edit-section">
+          <h2>${t("recordEditBusiness")}</h2>
+          ${assignedLabel ? `<p class="record-assigned-pill">${t("assignedTo")}: <strong>${escapeHtml(assignedLabel)}</strong></p>` : ""}
+          ${businessTypeField(receiptMeta.business_type || receipt.business_type || defaultBusinessType(), receiptMeta.business_slot_id || receipt.business_slot_id || "", showBusinessMove)}
+        </div>
+        <div class="record-edit-section">
+          <h2>${t("recordEditDetails")}</h2>
+          <label class="field"><span>${t("amount")}</span><input class="input" name="amount" inputmode="decimal" value="${receipt.amount || 0}"></label>
+          <label class="field"><span>${t("currency")}</span><input type="hidden" name="currency" value="${escapeAttr(receipt.currency || "GBP")}"><div class="chip-row currency-chip-row">${currencyChips(receipt.currency || "GBP")}</div></label>
+          <label class="field"><span>${t("merchant")}</span><input class="input" name="merchant" value="${escapeAttr(receipt.merchant || "")}"></label>
+          <label class="field"><span>${t("date")}</span><input class="input" type="date" name="date" value="${dateInputValue(receipt.timestamp || receipt.created_at)}"></label>
+          <label class="field"><span>${t("category")}</span><div class="chip-row">${categoryChips(receipt.category)}</div></label>
+        </div>
+        <div class="record-edit-section">
+          <h2>${t("replaceReceiptPhoto")}</h2>
+          ${receiptReplaceField()}
+        </div>
+        <button class="primary receipt-save-button" type="submit">${isDuplicate ? t("saveDuplicate") : t("save")}</button>
       </form>
-      <button class="danger" style="width:100%;margin-top:12px" data-action="deleteReceipt">${t("delete")}</button>
+      <button class="danger record-delete-button" type="button" data-action="deleteReceipt">${t("delete")}</button>
     </section>
   `);
 }

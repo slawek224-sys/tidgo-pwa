@@ -5379,3 +5379,74 @@ button:active,
     min-height: 0;
   }
 }
+
+.record-edit-screen {
+  gap: 14px;
+}
+
+.record-edit-title {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 15px;
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.98), rgba(239,246,255,0.92));
+  box-shadow: 0 16px 34px rgba(15, 23, 42, 0.08);
+}
+
+.record-edit-title strong {
+  min-width: 0;
+  font-size: 18px;
+  line-height: 1.16;
+  color: #0f172a;
+}
+
+.record-edit-title span {
+  flex: 0 0 auto;
+  font-size: 17px;
+  font-weight: 900;
+  color: #0f766e;
+}
+
+.record-edit-section {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  border-radius: 12px;
+  background: rgba(255,255,255,0.96);
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.06);
+}
+
+.record-edit-section h2 {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.2;
+  letter-spacing: 0;
+  color: #475569;
+  text-transform: uppercase;
+}
+
+.record-edit-form {
+  gap: 12px;
+}
+
+.record-assigned-pill {
+  display: inline-flex;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0;
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: #ecfeff;
+  color: #155e75;
+  font-size: 13px;
+  line-height: 1.25;
+}
+
+.record-delete-button {
+  width: 100%;
+  margin-top: 0;
+}
