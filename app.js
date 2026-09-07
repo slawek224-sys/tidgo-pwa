@@ -4492,6 +4492,11 @@ const MTD_CIS_MYTHS_ARTICLES = {
       <p>TidGo is built around the paperwork people actually have: WhatsApp receipt photos, email payslips, remittance notes, manual income entries and clean English PDF/CSV exports for the accountant.</p>
       <p>It does not replace your accountant and it does not promise to calculate your final CIS tax position for you. It helps capture the right evidence in the right shape: gross income recorded clearly, CIS deduction proof kept beside it, and expenses stored as they happen.</p>
       <p>For the deeper rule explanation, read the <a href="__CIS_HREF__">MTD for CIS subcontractors guide</a>, the <a href="__QUALIFYING_HREF__">qualifying income guide</a> and the <a href="__DIGITAL_RECORDS_HREF__">digital records guide</a>.</p>
+      <section class="article-inline-cta">
+        <strong>Keep the evidence before the year-end scramble.</strong>
+        <p>Fuel, tools, materials, parking, CIS statements and remittance notes all matter when your accountant checks the final position. TidGo helps keep those records tidy as you go, so you are not rebuilding the year from old photos and half-faded receipts.</p>
+        <a href="/app/">Start keeping tidy records</a>
+      </section>
     `,
     sourcesChecked: "Last checked: August 2026. Verify at GOV.UK if reading later."
   },
@@ -4519,6 +4524,11 @@ const MTD_CIS_MYTHS_ARTICLES = {
       <p>TidGo jest zbudowane pod dokumenty, ktore ludzie realnie maja: zdjecia paragonow z WhatsAppa, payslipy z maila, remittance notes, reczne wpisy przychodu i czyste PDF/CSV po angielsku dla ksiegowego.</p>
       <p>TidGo nie zastepuje ksiegowego i nie obiecuje automatycznego wyliczania koncowego podatku CIS. Pomaga zapisac wlasciwy dowod we wlasciwej formie: przychod brutto jasno zapisany, potracenie CIS obok jako informacja i wydatki zebrane na biezaco.</p>
       <p>Wiecej szczegolow znajdziesz w <a href="__CIS_HREF__">poradniku MTD dla CIS</a>, <a href="__QUALIFYING_HREF__">poradniku o qualifying income</a> i <a href="__DIGITAL_RECORDS_HREF__">poradniku o cyfrowych rekordach</a>.</p>
+      <section class="article-inline-cta">
+        <strong>Zbieraj dowody, zanim zacznie się roczne szukanie papierów.</strong>
+        <p>Paliwo, narzędzia, materiały, parking, CIS statements i remittance notes mają znaczenie, gdy księgowy sprawdza końcowy wynik. TidGo pomaga trzymać te rekordy w porządku na bieżąco, zamiast odtwarzać cały rok ze starych zdjęć i wyblakłych paragonów.</p>
+        <a href="/app/">Zacznij trzymać rekordy w porządku</a>
+      </section>
     `,
     sourcesChecked: "Sprawdzone: sierpien 2026. Zweryfikuj na GOV.UK, jesli czytasz pozniej."
   },
@@ -4544,6 +4554,11 @@ const MTD_CIS_MYTHS_ARTICLES = {
       <p>TidGo este construit pentru documentele reale: poze cu bonuri pe WhatsApp, payslipuri pe email, remittance notes, venit introdus manual si exporturi PDF/CSV curate in engleza pentru contabil.</p>
       <p>TidGo nu inlocuieste contabilul si nu promite sa calculeze automat pozitia finala CIS. Ajuta sa pastrezi venitul brut, dovada deducerii CIS si cheltuielile in acelasi loc.</p>
       <p>Citeste si <a href="__CIS_HREF__">ghidul MTD pentru CIS</a>, <a href="__QUALIFYING_HREF__">ghidul despre qualifying income</a> si <a href="__DIGITAL_RECORDS_HREF__">ghidul despre evidente digitale</a>.</p>
+      <section class="article-inline-cta">
+        <strong>Pastreaza dovezile inainte de graba de la sfarsit de an.</strong>
+        <p>Combustibilul, sculele, materialele, parcarea, declaratiile CIS si remittance notes conteaza cand contabilul verifica pozitia finala. TidGo te ajuta sa pastrezi aceste evidente ordonate pe parcurs, nu sa reconstruiesti anul din poze vechi si bonuri decolorate.</p>
+        <a href="/app/">Incepe sa tii evidente ordonate</a>
+      </section>
     `,
     sourcesChecked: "Verificat: august 2026. Verifica pe GOV.UK daca citesti mai tarziu."
   },
@@ -4569,6 +4584,11 @@ const MTD_CIS_MYTHS_ARTICLES = {
       <p>TidGo sukurtas realiems dokumentams: WhatsApp kvitu nuotraukoms, el. pastu gautiems payslipams, remittance notes, ranka ivestoms pajamoms ir tvarkingiems anglisku PDF/CSV eksportams buhalteriui.</p>
       <p>TidGo nepakeicia buhalterio ir nezada automatiskai apskaiciuoti galutines CIS mokescio pozicijos. Jis padeda laikyti bruto pajamas, CIS atskaitymo irodyma ir islaidas vienoje vietoje.</p>
       <p>Skaitykite ir <a href="__CIS_HREF__">MTD CIS gida</a>, <a href="__QUALIFYING_HREF__">qualifying income gida</a> ir <a href="__DIGITAL_RECORDS_HREF__">skaitmeniniu irasu gida</a>.</p>
+      <section class="article-inline-cta">
+        <strong>Saugokite irodymus dar pries metu pabaigos skubejima.</strong>
+        <p>Kuras, irankiai, medziagos, parkingas, CIS statements ir remittance notes yra svarbus, kai buhalteris tikrina galutine padeti. TidGo padeda laikyti siuos irasus tvarkingai eigoje, o ne atkurti visus metus is senu nuotrauku ir isblukusiu kvitu.</p>
+        <a href="/app/">Pradekite tvarkyti irasus</a>
+      </section>
     `,
     sourcesChecked: "Patikrinta: 2026 m. rugpjutis. Jei skaitote veliau, pasitikrinkite GOV.UK."
   }
