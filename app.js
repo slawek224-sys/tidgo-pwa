@@ -191,7 +191,7 @@ Object.assign(MARKETING_COPY.en, {
   mtdGettingStartedText: "Start with the first practical layer: keep income, expenses and supporting documents in digital form before the quarterly deadline pressure arrives.",
   mtdSoleTradersText: "For sole traders, MTD starts with clear digital records for self-employment income and expenses, not with complicated dashboards.",
   mtdLandlordsText: "Landlords need a simple way to keep property income, expenses and proof together, especially when receipts arrive by email or WhatsApp.",
-  mtdCisText: "Gross income, payslips, CIS deductions and quarterly updates: the practical record-keeping layer for subcontractors.",
+  mtdCisText: "CIS is gross income, not just the net bank payment. Payslips and remittance notes matter because a bank feed alone can miss the real MTD figure.",
   mtdCisMythsText: "Unnecessary invoices, net income traps and expensive tools built for work CIS subcontractors often do not need.",
   mtdDigitalRecordsText: "Digital records are the foundation: dates, amounts, categories and supporting evidence stored in a way you can review and share.",
   mtdQuarterlyUpdatesText: "Quarterly updates are summaries of income and expenses. They are not full tax returns, but the records behind them still need to be tidy.",
@@ -278,7 +278,7 @@ Object.assign(MARKETING_COPY.pl, {
   mtdGettingStartedText: "Zacznij od praktycznej podstawy: przychody, wydatki i dowody w cyfrowej formie zanim przyjdzie presja terminu.",
   mtdSoleTradersText: "Dla sole traderów MTD zaczyna się od jasnych cyfrowych rekordów przychodów i kosztów, nie od skomplikowanych dashboardów.",
   mtdLandlordsText: "Landlord potrzebuje prostego sposobu na trzymanie przychodów z najmu, kosztów i dowodów w jednym miejscu.",
-  mtdCisText: "CIS workers często mają paliwo, narzędzia, materiały, remittance notices i rozrzucone dowody. TidGo pasuje do takiego chaosu.",
+  mtdCisText: "CIS liczy się od kwoty brutto, nie tylko od przelewu netto z banku. Payslipy i remittance notes są ważne, bo sam bank feed może pokazać zły obraz pod MTD.",
   mtdCisMythsText: "Niepotrzebne faktury, pulapka kwoty netto i drogie narzedzia zbudowane do pracy, ktorej CIS subcontractor czesto nie potrzebuje.",
   mtdDigitalRecordsText: "Cyfrowe rekordy to fundament: daty, kwoty, kategorie i dowody zapisane tak, żeby można było je sprawdzić i wysłać.",
   mtdQuarterlyUpdatesText: "Quarterly updates to podsumowania przychodów i wydatków. To nie są pełne tax returns, ale rekordy za nimi muszą być uporządkowane.",
@@ -471,7 +471,7 @@ Object.assign(MARKETING_COPY.en, {
   whatsNewMtd: "TidGo helps keep digital records ready for your accountant's quarterly MTD workflow. TidGo does not submit to HMRC yet.",
   whatsNewCta: "See more after you sign in.",
   cisTitle: "Built for CIS paperwork too",
-  cisText: "Forward payslips, remittance notes and income proof. Add the amount manually when needed, keep the proof attached, and let your accountant review tidy English records.",
+  cisText: "Forward payslips, remittance notes and income proof. TidGo keeps gross CIS income and deduction evidence together, because a net bank payment alone is not the full story.",
   simpleValueTitle: "No bloated accounting suite",
   simpleValueText: "TidGo focuses on the work most small users actually need: receipts, income proof, tidy summaries and accountant handoff. No dashboards for the sake of dashboards. No paying for features you never open.",
   selfText: "Send receipt photos, record income and attach CIS paperwork when you have it. TidGo keeps everything tidy for your accountant: monthly or quarterly.",
@@ -496,7 +496,7 @@ Object.assign(MARKETING_COPY.en, {
   mtdLateText: "Missed the 7 August deadline? No penalty points in 2026/27. Here's what actually happens.",
   mtdResponsibilities: "MTD: what you do and what your accountant does",
   mtdResponsibilitiesText: "A plain table showing what MTD actually requires, what is optional, and why a quarterly update is not a quarterly tax return.",  mtdAutoSignup: "Automatically signed up by HMRC?",
-  mtdAutoSignupText: "Received a letter saying HMRC signed you up for MTD automatically? Here's what it means and what to do next.",
+  mtdAutoSignupText: "Received a letter saying HMRC signed you up automatically? That does not connect any app. Start here: check your records, choose software, then catch up.",
   mtdSourceTitle: "Official source",
   mtdSourceText: "Read the public GOV.UK guidance on Making Tax Digital for Income Tax and quarterly updates.",
   launchPricingFullText: "TidGo is in early access for a small group of real users. It is free while we collect feedback, improve the app and prepare clearer guides. Users will be told clearly in advance and will always be able to export or delete their records.",
@@ -522,7 +522,7 @@ Object.assign(MARKETING_COPY.pl, {
   whatsNewMtd: "TidGo pomaga trzymać cyfrowe rekordy gotowe do kwartalnego workflow MTD u księgowego. TidGo jeszcze nie wysyła danych do HMRC.",
   whatsNewCta: "Zobacz więcej po zalogowaniu.",
   cisTitle: "Także pod dokumenty CIS",
-  cisText: "Przekazuj payslipy, remittance notes i dowody przychodu. W razie potrzeby wpisz kwotę ręcznie, trzymaj dokument podpięty i daj księgowemu porządne rekordy po angielsku.",
+  cisText: "Przekazuj payslipy, remittance notes i dowody przychodu. TidGo trzyma kwotę brutto CIS i potrącenie razem, bo sam przelew netto z banku nie pokazuje całej historii.",
   simpleValueTitle: "Bez nadmuchanego kombajnu księgowego",
   simpleValueText: "TidGo skupia się na pracy, której małe firmy naprawdę potrzebują: paragony, dowody przychodu, porządne summary i przekazanie księgowemu. Bez wykresów dla samych wykresów. Bez płacenia za funkcje, których nigdy nie otwierasz.",
   selfText: "Wysyłaj zdjęcia paragonów, zapisuj przychód i podpinaj dokumenty CIS, kiedy je masz. TidGo trzyma wszystko w porządku dla księgowego: miesięcznie albo kwartalnie.",
@@ -547,7 +547,7 @@ Object.assign(MARKETING_COPY.pl, {
   mtdLateText: "Termin 7 sierpnia min&#261;&#322;? W roku 2026/27 nie ma penalty points. Zobacz, co naprawd&#281; dzieje si&#281; dalej.",
   mtdResponsibilities: "MTD: co robisz Ty, a co robi ksi\u0119gowy",
   mtdResponsibilitiesText: "Prosta tabela pokazuj\u0105ca, czego MTD naprawd\u0119 wymaga, co jest opcjonalne i dlaczego quarterly update nie jest kwartalnym tax return.",  mtdAutoSignup: "HMRC automatycznie zapisało Cię do MTD?",
-  mtdAutoSignupText: "Dostałeś list, że HMRC zapisało Cię automatycznie do MTD? Zobacz, co to znaczy i co zrobić dalej.",
+  mtdAutoSignupText: "Dostałeś list, że HMRC automatycznie zapisało Cię do MTD? To nie podłącza żadnej aplikacji. Zacznij tutaj: sprawdź rekordy, wybierz software i nadrób zaległości.",
   mtdSourceTitle: "Oficjalne źródło",
   mtdSourceText: "Przeczytaj publiczne GOV.UK guidance o Making Tax Digital for Income Tax i quarterly updates.",
   launchPricingFullText: "TidGo jest w early access dla małej grupy prawdziwych użytkowników. Jest darmowe, kiedy zbieramy feedback, poprawiamy aplikację i przygotowujemy jaśniejsze poradniki. Użytkownicy dostaną jasną informację z wyprzedzeniem i zawsze będą mogli wyeksportować albo usunąć swoje rekordy.",
@@ -573,7 +573,7 @@ Object.assign(MARKETING_COPY.ro, {
   whatsNewMtd: "TidGo te ajuta sa pastrezi evidente digitale pregatite pentru workflow-ul trimestrial MTD al contabilului. TidGo nu trimite inca la HMRC.",
   whatsNewCta: "Vezi mai multe dupa autentificare.",
   cisTitle: "Construit si pentru documente CIS",
-  cisText: "Redirectioneaza payslipuri, remittance notes si dovezi de venit. Introdu suma manual cand este nevoie, pastreaza dovada atasata si lasa contabilul sa verifice evidente clare in engleza.",
+  cisText: "Redirectioneaza payslipuri, remittance notes si dovezi de venit. TidGo tine impreuna venitul brut CIS si dovada deducerii, deoarece plata neta din banca nu arata toata povestea.",
   simpleValueTitle: "Fara suita contabila umflata",
   simpleValueText: "TidGo se concentreaza pe munca de care utilizatorii mici chiar au nevoie: bonuri, dovezi de venit, rezumate ordonate si predare catre contabil. Fara dashboard-uri de dragul dashboard-urilor. Fara plata pentru functii pe care nu le deschizi.",
   selfText: "Trimite poze cu bonuri, inregistreaza venituri si ataseaza documente CIS cand le ai. TidGo tine totul ordonat pentru contabil: lunar sau trimestrial.",
@@ -598,7 +598,7 @@ Object.assign(MARKETING_COPY.ro, {
   mtdLateText: "Ai ratat termenul de 7 august? In 2026/27 nu exista penalty points. Iata ce se intampla de fapt.",
   mtdResponsibilities: "MTD: ce faci tu si ce face contabilul",
   mtdResponsibilitiesText: "Un tabel simplu care arata ce cere MTD, ce este optional si de ce un quarterly update nu este o declaratie fiscala trimestriala.",  mtdAutoSignup: "HMRC te-a inscris automat la MTD?",
-  mtdAutoSignupText: "Ai primit o scrisoare ca HMRC te-a inscris automat la MTD? Iata ce inseamna si ce trebuie sa faci mai departe.",
+  mtdAutoSignupText: "Ai primit o scrisoare ca HMRC te-a inscris automat la MTD? Asta nu conecteaza nicio aplicatie. Incepe aici: verifica evidentele, alege software si recupereaza actualizarile lipsa.",
   mtdSourceTitle: "Sursa oficiala",
   mtdSourceText: "Citeste ghidul public GOV.UK despre Making Tax Digital for Income Tax si quarterly updates.",
   launchPricingFullText: "TidGo este in early access pentru un grup mic de utilizatori reali. Este gratuit cat timp strangem feedback, imbunatatim aplicatia si pregatim ghiduri mai clare. Utilizatorii vor fi anuntati clar din timp si vor putea mereu exporta sau sterge inregistrarile.",
@@ -624,7 +624,7 @@ Object.assign(MARKETING_COPY.lt, {
   whatsNewMtd: "TidGo padeda laikyti skaitmeninius irasus paruostus buhalterio ketvirtiniam MTD workflow. TidGo dar neteikia deklaraciju HMRC.",
   whatsNewCta: "Daugiau pamatysite prisijunge.",
   cisTitle: "Tinka ir CIS dokumentams",
-  cisText: "Persiuskite payslipus, remittance notes ir pajamu irodymus. Jei reikia, suma irasykite ranka, laikykite irodyma prisegta ir leiskite buhalteriui perziureti tvarkingus angliskus irasus.",
+  cisText: "Persiuskite payslipus, remittance notes ir pajamu irodymus. TidGo laiko bruto CIS pajamas ir atskaitymo irodyma kartu, nes vien neto banko pavedimas neparodo visos istorijos.",
   simpleValueTitle: "Ne perpusta buhalterijos sistema",
   simpleValueText: "TidGo susitelkia i darba, kurio maziems vartotojams tikrai reikia: kvitai, pajamu irodymai, tvarkingos suvestines ir perdavimas buhalteriui. Jokiu dashboard'u vien del dashboard'u. Jokio mokejimo uz funkcijas, kuriu neatidarote.",
   selfText: "Siuskite kvitu nuotraukas, irasykite pajamas ir pridekite CIS dokumentus, kai juos turite. TidGo viska laiko tvarkingai buhalteriui: menesiui arba ketvirciui.",
@@ -649,7 +649,7 @@ Object.assign(MARKETING_COPY.lt, {
   mtdLateText: "Praleidote rugpjucio 7 d. termina? 2026/27 metais penalty points nera. Stai kas is tikruju vyksta toliau.",
   mtdResponsibilities: "MTD: ka darote jus ir ka daro buhalteris",
   mtdResponsibilitiesText: "Paprasta lentele apie tai, ko MTD is tikruju reikalauja, kas neprivaloma ir kodel quarterly update nera ketvirtine mokesciu deklaracija.",  mtdAutoSignup: "HMRC automatiškai įtraukė jus į MTD?",
-  mtdAutoSignupText: "Gavote laišką, kad HMRC automatiškai įtraukė jus į MTD? Štai ką tai reiškia ir ką daryti toliau.",
+  mtdAutoSignupText: "Gavote laišką, kad HMRC automatiškai įtraukė jus į MTD? Tai neprijungia jokios programos. Pradėkite čia: patikrinkite įrašus, pasirinkite software ir sutvarkykite praleistus updates.",
   mtdSourceTitle: "Oficialus saltinis",
   mtdSourceText: "Skaitykite viesas GOV.UK gaires apie Making Tax Digital for Income Tax ir quarterly updates.",
   launchPricingFullText: "TidGo yra early access mazai tikru vartotoju grupei. Programa nemokama, kol renkame atsiliepimus, geriname ja ir ruosiame aiskesnius gidus. Vartotojai bus aiskiai informuoti is anksto ir visada gales eksportuoti arba istrinti savo irasus.",
@@ -4482,7 +4482,7 @@ const MTD_CIS_MYTHS_ARTICLES = {
       <h2>Myth 2: MTD quarterly records should use net CIS income</h2>
       <p>This is the expensive mistake. For MTD records, your income is the gross amount before CIS tax is deducted. If the statement shows &pound;2,000 gross, &pound;400 CIS deducted and &pound;1,600 paid to you, the income record starts from &pound;2,000, not &pound;1,600.</p>
       <p>The CIS deduction is tax already suffered. It is not an ordinary business expense and it should not quietly reduce your turnover in the records used for quarterly updates.</p>
-      <p>HMRC already receives CIS deduction information from contractors. Your accountant can reconcile those figures at year end. TidGo's job is to help keep the gross income proof and the deduction evidence together, so the person doing the submission has clean records to work from.</p>
+      <p>HMRC already receives CIS deduction information from contractors. Your accountant can reconcile those figures at year end. TidGo's job is to help keep the gross income proof and the deduction evidence together, so the person doing the submission has clean records to work from.</p>\n      <p><strong>A bank feed alone can be misleading for CIS.</strong> It may show only the net payment that landed in your account. Your MTD record still needs the gross figure from the CIS statement, with the deduction kept separately.</p>
 
       <h2>Myth 3: you need a big accounting suite to be ready for MTD</h2>
       <p>MTD does not mean every tradesperson needs a dashboard full of stock tracking, customer portals and invoice templates. The practical first layer is simpler: keep digital records of income, expenses and supporting proof.</p>
@@ -4509,7 +4509,7 @@ const MTD_CIS_MYTHS_ARTICLES = {
       <h2>Mit 2: do MTD wpisuje sie dochod netto po CIS</h2>
       <p>To najgrozniejsza pomylka. Do rekordow MTD przychodem jest kwota brutto przed potraceniem CIS. Jezeli dokument pokazuje &pound;2,000 brutto, &pound;400 potracenia CIS i &pound;1,600 wyplaty, rekord przychodu zaczyna sie od &pound;2,000, nie od &pound;1,600.</p>
       <p>Potracenie CIS to podatek zaplacony z gory. Nie jest zwyklym kosztem biznesowym i nie powinien po cichu zmniejszac obrotu w rekordach pod kwartalne aktualizacje.</p>
-      <p>HMRC dostaje informacje o potraceniach CIS od contractorow. Księgowy moze to uzgodnic na koniec roku. TidGo pomaga trzymac dowod przychodu brutto i informacje o potraceniu razem, zeby dane byly czyste.</p>
+      <p>HMRC dostaje informacje o potraceniach CIS od contractorow. Księgowy moze to uzgodnic na koniec roku. TidGo pomaga trzymac dowod przychodu brutto i informacje o potraceniu razem, zeby dane byly czyste.</p>\n      <p><strong>Sam bank feed moze wprowadzic w blad przy CIS.</strong> Moze pokazac tylko przelew netto, ktory wpadl na konto. Rekord MTD nadal potrzebuje kwoty brutto z CIS statement, a potracenie powinno byc zapisane osobno.</p>
 
       <h2>Mit 3: potrzebujesz drogiego kombajnu ksiegowego</h2>
       <p>MTD nie oznacza, ze kazdy tradesperson potrzebuje panelu ze stock tracking, customer portal i rozbudowanymi szablonami faktur. Pierwsza praktyczna warstwa jest prostsza: cyfrowe rekordy przychodow, wydatkow i dowodow.</p>
@@ -4535,7 +4535,7 @@ const MTD_CIS_MYTHS_ARTICLES = {
 
       <h2>Mitul 2: pentru MTD folosesti venitul net dupa CIS</h2>
       <p>Aceasta este eroarea scumpa. Pentru evidentele MTD, venitul este suma bruta inainte de deducerea CIS. Daca documentul arata &pound;2,000 brut, &pound;400 CIS dedus si &pound;1,600 platit, inregistrarea de venit porneste de la &pound;2,000, nu de la &pound;1,600.</p>
-      <p>Deducerea CIS este impozit deja retinut. Nu este o cheltuiala obisnuita si nu ar trebui sa reduca cifra de afaceri folosita pentru actualizarile trimestriale.</p>
+      <p>Deducerea CIS este impozit deja retinut. Nu este o cheltuiala obisnuita si nu ar trebui sa reduca cifra de afaceri folosita pentru actualizarile trimestriale.</p>\n      <p><strong>Un bank feed singur poate induce in eroare la CIS.</strong> Poate arata doar plata neta intrata in cont. Evidenta MTD are nevoie in continuare de suma bruta din CIS statement, cu deducerea pastrata separat.</p>
 
       <h2>Mitul 3: ai nevoie de software contabil scump</h2>
       <p>MTD nu inseamna ca fiecare tradesperson are nevoie de stock tracking, customer portals si modele complicate de facturi. Primul strat practic este mai simplu: evidente digitale pentru venituri, cheltuieli si documente justificative.</p>
@@ -4560,7 +4560,7 @@ const MTD_CIS_MYTHS_ARTICLES = {
 
       <h2>Mitas 2: MTD irasams naudojamos neto pajamos po CIS</h2>
       <p>Tai brangi klaida. MTD irasams pajamos yra bruto suma pries CIS atskaityma. Jei dokumente yra &pound;2,000 bruto, &pound;400 CIS atskaityta ir &pound;1,600 ismoketa, pajamu irasas prasideda nuo &pound;2,000, ne nuo &pound;1,600.</p>
-      <p>CIS atskaitymas yra jau sumoketas mokestis. Tai nera iprasta verslo islaida ir neturetu tyliai mazinti apyvartos ketvirtiniu atnaujinimu irasuose.</p>
+      <p>CIS atskaitymas yra jau sumoketas mokestis. Tai nera iprasta verslo islaida ir neturetu tyliai mazinti apyvartos ketvirtiniu atnaujinimu irasuose.</p>\n      <p><strong>Vien bank feed gali suklaidinti CIS atveju.</strong> Jis gali rodyti tik neto suma, kuri pasieke saskaita. MTD irasui vis tiek reikia bruto sumos is CIS statement, o atskaityma reikia laikyti atskirai.</p>
 
       <h2>Mitas 3: reikia brangios buhalterines sistemos</h2>
       <p>MTD nereiskia, kad kiekvienam tradesperson reikia stock tracking, customer portal ir sudetingu saskaitu sablonu. Pirmas praktinis sluoksnis yra paprastesnis: skaitmeniniai pajamu, islaidu ir irodymu irasai.</p>
