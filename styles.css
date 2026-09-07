@@ -5572,3 +5572,23 @@ button:active,
     0 16px 34px rgba(22, 163, 74, 0.32),
     0 0 0 1px rgba(255, 255, 255, 0.52) inset;
 }
+
+/* Pricing navigation highlight */
+.landing-nav a.nav-pricing {
+  border: 1px solid var(--client-line);
+  border-radius: 999px;
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 55%, #ecfdf5 100%);
+  color: var(--green);
+  padding: 7px 11px;
+  box-shadow: 0 4px 14px rgba(22, 163, 74, 0.13), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+.landing-nav a.nav-pricing:hover,
+.landing-nav a.nav-pricing:focus-visible {
+  border-color: var(--green);
+  box-shadow: 0 5px 18px rgba(22, 163, 74, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+.landing-nav a.nav-pricing.active {
+  background: var(--green);
+  border-color: var(--green);
+  color: #fff;
+}

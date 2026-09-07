@@ -704,7 +704,7 @@ const PRICING_PAGE_COPY = {
     comingNote: "A launch date has not yet been confirmed.",
     earlyTitle: "14-day free trial",
     earlyText: "Every new subscription starts with 14 days free. After that, the all-inclusive plan is £5.99 per month.",
-    earlyNow: "You can try TidGo before paying. No old Early Access deadline applies now.",
+    earlyNow: "You can try TidGo before paying.",
     earlyExisting: "If you are already using TidGo: you will receive clear notice before any charge begins. If you decide not to continue, you will have time to export your records before access ends.",
     faqTitle: "Frequently asked questions",
     faqs: [
@@ -736,7 +736,7 @@ const PRICING_PAGE_COPY = {
     comingNote: "Termin uruchomienia nie został jeszcze potwierdzony.",
     earlyTitle: "14 dni za darmo",
     earlyText: "Każda nowa subskrypcja zaczyna się od 14 dni za darmo. Potem plan all inclusive kosztuje £5.99 miesięcznie.",
-    earlyNow: "Możesz przetestować TidGo przed płatnością. Stary termin Early Access już nie obowiązuje.",
+    earlyNow: "Możesz przetestować TidGo przed płatnością.",
     earlyExisting: "Jesli juz uzywasz TidGo: dostaniesz wyrazne powiadomienie, zanim jakiekolwiek oplaty sie zaczna. Jesli zdecydujesz, ze nie chcesz kontynuowac, bedziesz miec czas, zeby wyeksportowac swoje rekordy przed koncem dostepu.",
     faqTitle: "Najczestsze pytania",
     faqs: [
@@ -768,7 +768,7 @@ const PRICING_PAGE_COPY = {
     comingNote: "Data lansării nu a fost încă confirmată.",
     earlyTitle: "14 zile gratuit",
     earlyText: "Fiecare abonament nou incepe cu 14 zile gratuite. Apoi planul all-inclusive costa £5.99 pe luna.",
-    earlyNow: "Poti incerca TidGo inainte sa platesti. Vechiul termen Early Access nu se mai aplica.",
+    earlyNow: "Poți încerca TidGo înainte să plătești.",
     earlyExisting: "Daca folosesti deja TidGo: vei primi o notificare clara inainte ca orice taxa sa inceapa. Daca nu vrei sa continui, vei avea timp sa exporti inregistrarile inainte ca accesul sa se incheie.",
     faqTitle: "Intrebari frecvente",
     faqs: [
@@ -800,7 +800,7 @@ const PRICING_PAGE_COPY = {
     comingNote: "Paleidimo data dar nepatvirtinta.",
     earlyTitle: "14 dienu nemokamai",
     earlyText: "Kiekviena nauja prenumerata prasideda nuo 14 nemokamu dienu. Po to all-inclusive planas kainuoja £5.99 per menesi.",
-    earlyNow: "Gali isbandyti TidGo pries mokedamas. Senas Early Access terminas nebetaikomas.",
+    earlyNow: "Gali išbandyti TidGo prieš mokėdamas.",
     earlyExisting: "Jei jau naudoji TidGo: gausi aisku pranesima pries pradedant bet kokius mokescius. Jei nenoresi testi, turesi laiko eksportuoti irasus pries pasibaigiant prieigai.",
     faqTitle: "Dazniausiai uzduodami klausimai",
     faqs: [
@@ -3633,7 +3633,7 @@ function marketingNav(active = "") {
       <a class="${active === "intake" ? "active" : ""}" href="/how-intake-works">${mk("navIntake")}</a>
       <a class="${active === "findAccountant" ? "active" : ""}" href="/find-accountant">${mk("navFindAccountant")}</a>
       <a class="${active === "accountantPack" ? "active" : ""}" href="/show-this-to-your-accountant">${mk("navAccountantPack")}</a>
-      <a class="${active === "pricing" ? "active" : ""}" href="/launch-pricing">${mk("navPricing")}</a>
+      <a class="nav-pricing ${active === "pricing" ? "active" : ""}" href="/launch-pricing">${mk("navPricing")}</a>
       <a class="${active === "faq" ? "active" : ""}" href="/faq">${mk("navFaq")}</a>
       <a class="nav-mtd ${active === "mtd" ? "active" : ""}" href="/mtd">${mk("navMtd")}</a>
       <a href="/#contact">${mk("navContact")}</a>
