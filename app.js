@@ -6996,13 +6996,6 @@ function launchPricingPage() {
             `).join("")}
           </div>
         </section>
-        <section class="marketing-page-card pricing-mtd-card">
-          <span class="eyebrow">MTD</span>
-          <h2>${escapeHtml(copy.comingTitle)}</h2>
-          <p><strong>${escapeHtml(copy.comingText)}</strong></p>
-          <p>${escapeHtml(copy.comingScope)}</p>
-          <p>${escapeHtml(copy.comingNote)}</p>
-        </section>
         <section class="marketing-page-card pricing-early-card">
           <h2>${escapeHtml(copy.earlyTitle)}</h2>
           <p>${escapeHtml(copy.earlyText)}</p>
