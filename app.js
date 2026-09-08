@@ -57,7 +57,7 @@ const MARKETING_COPY = {
     earlyTitle: "14-day free trial:", earlyText: "TidGo now starts with 14 days free. After that, the all-inclusive plan is £5.99 per month, with clear notice before payment starts.",
     pricingTitle: "Pricing:", pricingText: "TidGo starts with 14 days free. After that, the all-inclusive plan is £5.99 per month. Your records stay available for 30 days after cancellation so you can export them.",
     mtdTitle: "MTD records without the accounting chaos", mtdLead: "The first step in Making Tax Digital is not sending receipt photos to HMRC. It is keeping your income, expenses and proof in digital form.", mtdText: "TidGo does not replace your accountant and does not submit your tax returns. It helps you collect receipt photos through WhatsApp, keep income proof and MTD records tidy, and prepare cleaner summaries for your accountant before quarterly pressure arrives.", faqTitle: "FAQ:", faqText: "More answers are coming soon. For now, try the app, open the accountant portal, or send a message below.",
-    contactTitle: "Want to try it or ask a question?", contactText: "Send a quick message. No sales maze, just a human reply.", yourEmail: "Your email", roleSelf: "I work for myself", roleAccountant: "I am an accountant", roleCurious: "Just curious", message: "Message", sendMessage: "Send message", messageSent: "Message sent. Thank you.", messagePending: "Automatic contact is being connected. Please try again after the next API deploy.",
+    contactTitle: "Need help or have a question?", contactText: "Send a quick message. No sales maze, just a human reply.", yourEmail: "Your email", roleSelf: "I work for myself", roleAccountant: "I am an accountant", roleCurious: "Just curious", message: "Message", sendMessage: "Send message", messageSent: "Message sent. Thank you.", messagePending: "Automatic contact is being connected. Please try again after the next API deploy.",
     selfLabel: "I work for myself", selfTitle: "Open TidGo App", selfText: "Take receipt photos, add income, keep monthly records ready for your accountant.", scanApp: "Scan app", openApp: "Open app",
     accountantLabel: "I'm an accountant", accountantTitle: "Open Accountant Portal", accountantText: "View connected client records, download CSV/PDF packs, and reduce deadline panic.", scanPortal: "Scan portal", openPortal: "Open Accountant Portal", viewDemo: "View quick demo",
     footer: "TidGo helps organise records. It is not accounting, tax advice or payroll software.", companyFooter: "TidGo Ltd. Company number 17356146. 128 City Road, London, EC1V 2NX. hello@tidgo.co.uk", home: "Home", appDemo: "App demo", accountantDemo: "Accountant demo", deleteAccountLink: "Delete account", backHome: "Back to homepage", step: "Step", findAccountantTitle: "Find an accountant who understands tidy digital records", findAccountantText: "TidGo is building a small introduction list for self-employed people, landlords, CIS workers, accountants and bookkeepers. No public ranking yet. Tell us what you need and we will try to make a sensible introduction.", needAccountantTitle: "I need an accountant or bookkeeper", needAccountantText: "Tell us where you are, what you do and which language you prefer. TidGo may introduce you to an accountant or bookkeeper, but does not provide accounting advice or guarantee third-party services.", accountantJoinTitle: "I am an accountant or bookkeeper", accountantJoinText: "Join the early TidGo accountant list. We are looking for people who can help users with Self Assessment, CIS, landlords, MTD records and simple bookkeeping.", yourName: "Your name", businessType: "Work type or firm type", location: "Town or area", preferredLanguage: "Preferred language", phoneOptional: "Phone or WhatsApp (optional)", accountantFirm: "Firm name", servicesOffered: "Services offered", submitIntroRequest: "Send request", introSent: "Request sent. Thank you.", introPending: "Request could not be sent. Please email hello@tidgo.co.uk.", introDisclaimer: "TidGo may help with introductions, but it is not an accountant, tax adviser or broker. You choose and check any accountant yourself.",
@@ -82,7 +82,7 @@ const MARKETING_COPY = {
     earlyTitle: "14 dni za darmo:", earlyText: "TidGo zaczyna się teraz od 14 dni próbnych. Potem plan all inclusive kosztuje £5.99 miesięcznie, z jasną informacją przed rozpoczęciem płatności.",
     pricingTitle: "Cena:", pricingText: "TidGo zaczyna się od 14 dni za darmo. Potem plan all inclusive kosztuje £5.99 miesięcznie. Po anulowaniu rekordy zostają dostępne przez 30 dni do eksportu.",
     mtdTitle: "Rekordy MTD bez chaosu księgowego", mtdLead: "Pierwszy krok w Making Tax Digital to nie wysyłanie zdjęć paragonów do HMRC. To trzymanie przychodów, wydatków i dowodów w cyfrowej formie.", mtdText: "TidGo nie zastępuje księgowego i nie wysyła Twoich deklaracji podatkowych. Pomaga trzymać paragony, dowody przychodu i podsumowania w jednym uporządkowanym miejscu, żeby Ty albo księgowy mogli przygotować kwartalne summary bez paniki na ostatnią chwilę.", faqTitle: "FAQ:", faqText: "Więcej odpowiedzi wkrótce. Na razie zobacz aplikację, portal księgowego albo wyślij wiadomość poniżej.",
-    contactTitle: "Chcesz przetestować albo zapytać?", contactText: "Wyślij krótką wiadomość. Bez lejka sprzedażowego, normalna odpowiedź od człowieka.", yourEmail: "Twój email", roleSelf: "Pracuję na siebie", roleAccountant: "Jestem księgowym", roleCurious: "Tylko sprawdzam", message: "Wiadomość", sendMessage: "Wyślij wiadomość", messageSent: "Wiadomość wysłana. Dziękuję.", messagePending: "Automatyczny kontakt jest podpinany. Spróbuj po następnym deployu API.",
+    contactTitle: "Potrzebujesz pomocy lub masz pytanie?", contactText: "Wyślij krótką wiadomość. Bez lejka sprzedażowego, normalna odpowiedź od człowieka.", yourEmail: "Twój email", roleSelf: "Pracuję na siebie", roleAccountant: "Jestem księgowym", roleCurious: "Tylko sprawdzam", message: "Wiadomość", sendMessage: "Wyślij wiadomość", messageSent: "Wiadomość wysłana. Dziękuję.", messagePending: "Automatyczny kontakt jest podpinany. Spróbuj po następnym deployu API.",
     selfLabel: "Pracuję na siebie", selfTitle: "Otwórz aplikację TidGo", selfText: "Rób zdjęcia paragonów, dodawaj przychody i trzymaj miesięczne rekordy gotowe dla księgowego.", scanApp: "Skanuj app", openApp: "Otwórz app",
     accountantLabel: "Jestem księgowym", accountantTitle: "Otwórz portal księgowego", accountantText: "Zobacz rekordy klientów, pobierz CSV/PDF i ogranicz panikę przed terminem.", scanPortal: "Skanuj portal", openPortal: "Otwórz portal księgowego", viewDemo: "Zobacz szybkie demo",
     footer: "TidGo pomaga porządkować rekordy. To nie jest księgowość, porada podatkowa ani payroll.", companyFooter: "TidGo Ltd. Company number 17356146. 128 City Road, London, EC1V 2NX. hello@tidgo.co.uk", home: "Start", appDemo: "Demo app", accountantDemo: "Demo księgowego", deleteAccountLink: "Usuń konto", backHome: "Wróć na stronę główną", step: "Krok", findAccountantTitle: "Znajdź księgowego, który rozumie uporządkowane cyfrowe rekordy", findAccountantText: "TidGo buduje małą listę kontaktową dla self-employed, landlordów, CIS workers, księgowych i bookkeeperów. Na razie bez publicznego rankingu. Napisz, czego potrzebujesz, a spróbujemy sensownie połączyć strony.", needAccountantTitle: "Szukam księgowego lub bookkeepera", needAccountantText: "Napisz, gdzie jesteś, czym się zajmujesz i w jakim języku wolisz rozmawiać. TidGo może pomóc w kontakcie, ale nie świadczy usług księgowych i nie gwarantuje usług firm trzecich.", accountantJoinTitle: "Jestem księgowym albo bookkeeperem", accountantJoinText: "Dołącz do wczesnej listy TidGo. Szukamy osób, które pomagają przy Self Assessment, CIS, landlordach, rekordach MTD i prostej księgowości.", yourName: "Imię i nazwisko", businessType: "Rodzaj pracy lub firmy", location: "Miasto lub okolica", preferredLanguage: "Preferowany język", phoneOptional: "Telefon lub WhatsApp (opcjonalnie)", accountantFirm: "Nazwa firmy", servicesOffered: "Usługi", submitIntroRequest: "Wyślij zgłoszenie", introSent: "Zgłoszenie wysłane. Dziękuję.", introPending: "Nie udało się wysłać. Napisz proszę na hello@tidgo.co.uk.", introDisclaimer: "TidGo może pomagać w kontaktach, ale nie jest księgowym, doradcą podatkowym ani brokerem. Sam wybierasz i sprawdzasz księgowego.",
@@ -109,7 +109,7 @@ MARKETING_COPY.ro = { ...MARKETING_COPY.en,
   earlyTitle: "14 zile gratuit:", earlyText: "TidGo incepe acum cu 14 zile gratuite. Apoi planul all-inclusive costa £5.99 pe luna, cu notificare clara inainte de plata.",
   pricingTitle: "Pret:", pricingText: "TidGo incepe cu 14 zile gratuite. Apoi planul all-inclusive costa £5.99 pe luna. Dupa anulare, inregistrarile raman disponibile 30 de zile pentru export.",
   mtdTitle: "Evidente MTD fara haos contabil", mtdLead: "Primul pas in Making Tax Digital nu este trimiterea pozelor cu bonuri la HMRC. Este pastrarea veniturilor, cheltuielilor si dovezilor in format digital.", mtdText: "TidGo nu inlocuieste contabilul si nu trimite declaratii fiscale. Te ajuta sa colectezi bonuri prin WhatsApp, sa pastrezi dovezi de venit si evidente MTD ordonate si sa pregatesti rezumate mai curate pentru contabil.", faqTitle: "FAQ:", faqText: "Mai multe raspunsuri vin curand. Deocamdata poti incerca aplicatia, portalul contabilului sau trimite un mesaj.",
-  contactTitle: "Vrei sa testezi sau sa intrebi ceva?", contactText: "Trimite un mesaj scurt. Fara labirint de vanzari, doar un raspuns uman.", yourEmail: "Emailul tau", roleSelf: "Lucrez pe cont propriu", roleAccountant: "Sunt contabil", roleCurious: "Doar verific", message: "Mesaj", sendMessage: "Trimite mesaj", messageSent: "Mesaj trimis. Multumesc.", messagePending: "Contactul automat este conectat. Incearca din nou dupa urmatorul deploy API.",
+  contactTitle: "Ai nevoie de ajutor sau ai o întrebare?", contactText: "Trimite un mesaj scurt. Fara labirint de vanzari, doar un raspuns uman.", yourEmail: "Emailul tau", roleSelf: "Lucrez pe cont propriu", roleAccountant: "Sunt contabil", roleCurious: "Doar verific", message: "Mesaj", sendMessage: "Trimite mesaj", messageSent: "Mesaj trimis. Multumesc.", messagePending: "Contactul automat este conectat. Incearca din nou dupa urmatorul deploy API.",
   selfLabel: "Lucrez pe cont propriu", selfTitle: "Deschide aplicatia TidGo", selfText: "Fotografiaza bonuri, adauga venituri si tine evidenta lunara pregatita pentru contabil.", scanApp: "Scaneaza app", openApp: "Deschide app",
   accountantLabel: "Sunt contabil", accountantTitle: "Deschide portalul contabilului", accountantText: "Vezi evidentele clientilor conectati, descarca pachete CSV/PDF si redu panica de termen limita.", scanPortal: "Scaneaza portal", openPortal: "Deschide portalul contabilului", viewDemo: "Vezi demo rapid",
   footer: "TidGo ajuta la organizarea evidentelor. Nu este contabilitate, consultanta fiscala sau payroll.", companyFooter: "TidGo Ltd. Company number 17356146. 128 City Road, London, EC1V 2NX. hello@tidgo.co.uk", home: "Acasa", appDemo: "Demo app", accountantDemo: "Demo contabil", deleteAccountLink: "Sterge contul", backHome: "Inapoi la pagina principala", step: "Pas", 
@@ -135,7 +135,7 @@ MARKETING_COPY.lt = { ...MARKETING_COPY.en,
   earlyTitle: "Ankstyva prieiga:", earlyText: "TidGo jau veikia mazai pirmuju vartotoju grupei. Dabar programa nemokama, kol renkame atsiliepimus, taisome detales ir rengiame paprastus paaiskinimus.",
   pricingTitle: "Startas ir kaina:", pricingText: "Oficiali starto data bus paskelbta po ankstyvos prieigos testu. TidGo dabar nemokama. Jei bus ivesti mokami planai, vartotojai bus aiskiai informuoti is anksto ir visada gales eksportuoti arba istrinti savo irasus.",
   mtdTitle: "MTD irasai be buhalterinio chaoso", mtdLead: "Pirmas Making Tax Digital zingsnis nera kvitu nuotrauku siuntimas HMRC. Tai pajamu, islaidu ir irodymu laikymas skaitmenine forma.", mtdText: "TidGo nepakeicia buhalterio ir neteikia mokesciu deklaraciju. Jis padeda rinkti kvitus per WhatsApp, laikyti pajamu irodymus ir MTD irasus tvarkingai bei paruosti aiskesnes suvestines buhalteriui.", faqTitle: "DUK:", faqText: "Daugiau atsakymu bus greitai. Kol kas galite isbandyti programa, buhalterio portala arba parasyti zinute.",
-  contactTitle: "Norite pabandyti ar paklausti?", contactText: "Parasykite trumpa zinute. Be pardavimo labirinto, tiesiog zmogiskas atsakymas.", yourEmail: "Jusu el. pastas", roleSelf: "Dirbu sau", roleAccountant: "Esu buhalteris", roleCurious: "Tik domiuosi", message: "Zinute", sendMessage: "Siusti zinute", messageSent: "Zinute issiusta. Aciu.", messagePending: "Automatinis kontaktas prijungiamas. Pabandykite po kito API deploy.",
+  contactTitle: "Reikia pagalbos ar turite klausimą?", contactText: "Parasykite trumpa zinute. Be pardavimo labirinto, tiesiog zmogiskas atsakymas.", yourEmail: "Jusu el. pastas", roleSelf: "Dirbu sau", roleAccountant: "Esu buhalteris", roleCurious: "Tik domiuosi", message: "Zinute", sendMessage: "Siusti zinute", messageSent: "Zinute issiusta. Aciu.", messagePending: "Automatinis kontaktas prijungiamas. Pabandykite po kito API deploy.",
   selfLabel: "Dirbu sau", selfTitle: "Atidaryti TidGo app", selfText: "Fotografuok kvitus, pridek pajamas ir laikyk menesio irasus paruostus buhalteriui.", scanApp: "Skenuoti app", openApp: "Atidaryti app",
   accountantLabel: "Esu buhalteris", accountantTitle: "Atidaryti buhalterio portala", accountantText: "Matyk prijungtu klientu irasus, atsisiusk CSV/PDF paketus ir sumazink termino panika.", scanPortal: "Skenuoti portala", openPortal: "Atidaryti buhalterio portala", viewDemo: "Greitas demo",
   footer: "TidGo padeda tvarkyti irasus. Tai nera buhalterija, mokesciu konsultacija ar payroll programa.", companyFooter: "TidGo Ltd. Company number 17356146. 128 City Road, London, EC1V 2NX. hello@tidgo.co.uk", home: "Pradzia", appDemo: "App demo", accountantDemo: "Buhalterio demo", deleteAccountLink: "Istrinti paskyra", backHome: "Grizti i pagrindini puslapi", step: "Zingsnis", 
@@ -3437,6 +3437,7 @@ function marketingPageSlug() {
     "/show-this-to-your-accountant": "accountantPack",
     "/launch-pricing": "pricing",
     "/faq": "faq",
+    "/contact": "contact",
     "/our-story": "story",
   "/nasza-historia": "story",
   "/povestea-noastra": "story",
@@ -3636,7 +3637,7 @@ function marketingNav(active = "") {
       <a class="nav-pricing ${active === "pricing" ? "active" : ""}" href="/launch-pricing">${mk("navPricing")}</a>
       <a class="${active === "faq" ? "active" : ""}" href="/faq">${mk("navFaq")}</a>
       <a class="nav-mtd ${active === "mtd" ? "active" : ""}" href="/mtd">${mk("navMtd")}</a>
-      <a href="/#contact">${mk("navContact")}</a>
+      <a class="${active === "contact" ? "active" : ""}" href="/contact/">${mk("navContact")}</a>
     </nav>
   `;
 }
@@ -6611,6 +6612,33 @@ function landingSocialLinks() {
   `;
 }
 
+function contactSection(standalone = false) {
+  return `
+    <section class="${standalone ? "marketing-page-card marketing-article contact-page-card " : ""}landing-contact" id="contact">
+      <div class="landing-contact-copy">
+        <div>
+          ${standalone ? `<span class="eyebrow">${mk("navContact")}</span><h1>${mk("contactTitle")}</h1>` : `<strong>${mk("contactTitle")}</strong>`}
+          <span>${mk("contactText")}</span>
+          ${standalone ? '<a href="mailto:support@tidgo.co.uk">support@tidgo.co.uk</a>' : ''}
+        </div>
+        ${landingSocialLinks()}
+      </div>
+      <form class="landing-contact-form" id="landingContactForm">
+        <input class="input" name="from_email" type="email" placeholder="${escapeAttr(mk("yourEmail"))}">
+        <select class="input" name="role">
+          <option value="${escapeAttr(mk("roleSelf"))}">${mk("roleSelf")}</option>
+          <option value="${escapeAttr(mk("roleAccountant"))}">${mk("roleAccountant")}</option>
+          <option value="${escapeAttr(mk("roleCurious"))}">${mk("roleCurious")}</option>
+        </select>
+        <textarea class="input" name="message" rows="3" placeholder="${escapeAttr(mk("message"))}"></textarea>
+        <div class="contact-submit-row">
+          <button class="primary" type="submit">${mk("sendMessage")}</button>
+        </div>
+      </form>
+    </section>
+  `;
+}
+
 function landing() {
   const origin = location.origin;
   const appUrl = `${origin}/app/`;
@@ -6680,27 +6708,7 @@ function landing() {
           </section>
           ${androidTesterCallout("landing-tester-callout")}
 
-          <section class="landing-contact" id="contact">
-            <div class="landing-contact-copy">
-              <div>
-                <strong>${mk("contactTitle")}</strong>
-                <span>${mk("contactText")}</span>
-              </div>
-              ${landingSocialLinks()}
-            </div>
-            <form class="landing-contact-form" id="landingContactForm">
-              <input class="input" name="from_email" type="email" placeholder="${escapeAttr(mk("yourEmail"))}">
-              <select class="input" name="role">
-                <option value="${escapeAttr(mk("roleSelf"))}">${mk("roleSelf")}</option>
-                <option value="${escapeAttr(mk("roleAccountant"))}">${mk("roleAccountant")}</option>
-                <option value="${escapeAttr(mk("roleCurious"))}">${mk("roleCurious")}</option>
-              </select>
-              <textarea class="input" name="message" rows="3" placeholder="${escapeAttr(mk("message"))}"></textarea>
-              <div class="contact-submit-row">
-                <button class="primary" type="submit">${mk("sendMessage")}</button>
-              </div>
-            </form>
-          </section>
+          ${contactSection()}
         </div>
         <aside class="landing-actions">
           <article class="landing-card">
@@ -7106,7 +7114,10 @@ function marketingPage() {
   const mtdTopic = mtdTopics().find((topic) => topic[0] === slug);
   let body = "";
   let active = simplePages[slug]?.active || "mtd";
-  if (slug === "mtd") {
+  if (slug === "contact") {
+    active = "contact";
+    body = contactSection(true);
+  } else if (slug === "mtd") {
     body = `
       <section class="marketing-page-card">
         <span class="eyebrow">${mk("navMtd")}</span>
