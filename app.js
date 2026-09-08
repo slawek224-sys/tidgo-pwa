@@ -6522,6 +6522,10 @@ function serverUnavailableCard() {
   `;
 }
 
+function isSettingsRoute() {
+  return location.pathname.replace(/\/+$/, "") === "/settings";
+}
+
 function establishSettingsReturnHistory() {
   if (!state.user || !isSettingsRoute() || history.state?.screen === "settings") return;
   const settingsUrl = location.pathname + location.search + location.hash;

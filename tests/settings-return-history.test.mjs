@@ -5,6 +5,7 @@ import fs from 'node:fs';
 const source = fs.readFileSync(new URL('../app.js', import.meta.url), 'utf8');
 
 test('Stripe settings return inserts an app history entry before settings', () => {
+  assert.match(source, /function isSettingsRoute\(\) \{[\s\S]*?=== "\/settings";[\s\S]*?\}/);
   const match = source.match(/function establishSettingsReturnHistory\(\) \{([\s\S]*?)\n\}/);
   assert.ok(match, 'settings history helper should exist');
   const body = match[1];
