@@ -6522,9 +6522,17 @@ function serverUnavailableCard() {
   `;
 }
 
+function establishSettingsReturnHistory() {
+  if (!state.user || !isSettingsRoute() || history.state?.screen === "settings") return;
+  const settingsUrl = location.pathname + location.search + location.hash;
+  history.replaceState({ screen: "home", selected: null }, "", "/app/");
+  history.pushState({ screen: "settings", selected: null }, "", settingsUrl);
+}
+
 function render() {
   billing.stop();
   if (state.user && billing.wantsSettings() && ['boot', 'home', 'settings'].includes(state.screen)) state.screen = 'settings';
+  if (state.screen === "settings") establishSettingsReturnHistory();
   const publicScreens = ["landing", "marketingPage", "appDemo", "accountantDemo", "accountantLanding", "accountantDemoClient", "adminLanding"];
   const legalScreens = ["legalConsent", "privacy", "terms"];
   if (!publicScreens.includes(state.screen) && !state.user) {
