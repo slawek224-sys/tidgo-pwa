@@ -21,14 +21,14 @@ const DATE_TEXT = {
 };
 
 const COMPACT_TEXT = {
-  en: {active: 'Active', trial: 'Trial', trialTo: 'Trial to {date}', renews: 'Renews {date}', ends: 'Ends {date}', issue: 'Payment issue'},
-  pl: {active: 'Aktywna', trial: 'Okres próbny', trialTo: 'Próba do {date}', renews: 'Odnowienie {date}', ends: 'Wygasa {date}', issue: 'Problem z płatnością'},
-  ro: {active: 'Activ', trial: 'Perioadă de probă', trialTo: 'Probă până la {date}', renews: 'Reînnoire {date}', ends: 'Expiră {date}', issue: 'Problemă de plată'},
-  uk: {active: 'Активна', trial: 'Пробний період', trialTo: 'Пробний до {date}', renews: 'Поновлення {date}', ends: 'До {date}', issue: 'Проблема з оплатою'},
-  lt: {active: 'Aktyvi', trial: 'Bandomoji', trialTo: 'Bandomoji iki {date}', renews: 'Atnaujinama {date}', ends: 'Baigiasi {date}', issue: 'Mokėjimo problema'},
-  lv: {active: 'Aktīvs', trial: 'Izmēģinājums', trialTo: 'Izmēģinājums līdz {date}', renews: 'Atjaunošana {date}', ends: 'Beidzas {date}', issue: 'Maksājuma problēma'},
-  es: {active: 'Activa', trial: 'Prueba', trialTo: 'Prueba hasta {date}', renews: 'Renueva {date}', ends: 'Termina {date}', issue: 'Problema de pago'},
-  bg: {active: 'Активен', trial: 'Пробен период', trialTo: 'Пробен до {date}', renews: 'Подновяване {date}', ends: 'Изтича {date}', issue: 'Проблем с плащането'}
+  en: {active: 'Active', trial: 'Trial', trialTo: 'Trial to {date}', renews: 'Renews {date}', ends: 'Ends {date}', issue: 'Payment issue', start: 'Start free trial'},
+  pl: {active: 'Aktywna', trial: 'Okres próbny', trialTo: 'Próba do {date}', renews: 'Odnowienie {date}', ends: 'Wygasa {date}', issue: 'Problem z płatnością', start: 'Rozpocznij trial'},
+  ro: {active: 'Activ', trial: 'Perioadă de probă', trialTo: 'Probă până la {date}', renews: 'Reînnoire {date}', ends: 'Expiră {date}', issue: 'Problemă de plată', start: 'Începe perioada gratuită'},
+  uk: {active: 'Активна', trial: 'Пробний період', trialTo: 'Пробний до {date}', renews: 'Поновлення {date}', ends: 'До {date}', issue: 'Проблема з оплатою', start: 'Почати пробний період'},
+  lt: {active: 'Aktyvi', trial: 'Bandomoji', trialTo: 'Bandomoji iki {date}', renews: 'Atnaujinama {date}', ends: 'Baigiasi {date}', issue: 'Mokėjimo problema', start: 'Pradėti nemokamai'},
+  lv: {active: 'Aktīvs', trial: 'Izmēģinājums', trialTo: 'Izmēģinājums līdz {date}', renews: 'Atjaunošana {date}', ends: 'Beidzas {date}', issue: 'Maksājuma problēma', start: 'Sākt bez maksas'},
+  es: {active: 'Activa', trial: 'Prueba', trialTo: 'Prueba hasta {date}', renews: 'Renueva {date}', ends: 'Termina {date}', issue: 'Problema de pago', start: 'Empezar prueba'},
+  bg: {active: 'Активен', trial: 'Пробен период', trialTo: 'Пробен до {date}', renews: 'Подновяване {date}', ends: 'Изтича {date}', issue: 'Проблем с плащането', start: 'Започнете пробен период'}
 };
 
 const ONBOARDING_TEXT = {
@@ -82,6 +82,7 @@ export function compactSubscriptionStatus(data, language = 'en') {
   const dateText = date
     ? new Intl.DateTimeFormat((DATE_TEXT[language] || DATE_TEXT.en).locale, {day: 'numeric', month: 'short', timeZone: 'UTC'}).format(date)
     : '';
+  if (data.reason === 'no_subscription') return {text: copy.start, tone: 'start'};
   if (data.cancel_at_period_end === true) return {text: dateText ? copy.ends.replace('{date}', dateText) : copy.ends.replace(' {date}', ''), tone: 'ending'};
   if (['past_due', 'unpaid', 'incomplete', 'paused'].includes(status)) return {text: copy.issue, tone: 'issue'};
   if (status === 'trialing') return {text: dateText ? copy.trialTo.replace('{date}', dateText) : copy.trial, tone: 'trial'};
@@ -112,6 +113,17 @@ export function createBilling({api, user, language, escape, win = window, doc = 
     win.history.replaceState(win.history.state, '', url.pathname + url.search + url.hash);
   }
   function stop() { version++; clearTimer(timer); }
+  const trialDismissalKey = id => `tidgo_trial_onboarding_dismissed:${id}`;
+  function recordCreationBlockReason() {
+    const data = snapshot?.data;
+    return data?.allowed === false ? data.reason || 'payment_required' : '';
+  }
+  function showTrialOffer() {
+    const id = user()?.id;
+    if (!id) return;
+    try { win.localStorage.removeItem(trialDismissalKey(id)); } catch {}
+    mountCompact();
+  }
   function mountCompact() {
     const target = doc.getElementById('billingStatusBadge');
     const onboarding = doc.getElementById('billingOnboardingHost');
@@ -119,7 +131,7 @@ export function createBilling({api, user, language, escape, win = window, doc = 
     if ((!target && !onboarding) || !id) return;
     const current = version;
     const valid = () => current === version && (!target || target.isConnected) && (!onboarding || onboarding.isConnected) && user()?.id === id;
-    const dismissalKey = `tidgo_trial_onboarding_dismissed:${id}`;
+    const dismissalKey = trialDismissalKey(id);
     const dismissed = () => {
       try { return win.localStorage.getItem(dismissalKey) === 'true'; } catch { return false; }
     };
@@ -157,6 +169,11 @@ export function createBilling({api, user, language, escape, win = window, doc = 
     };
     const draw = data => {
       if (!valid()) return;
+      doc.querySelectorAll?.('[data-requires-active-plan]').forEach(control => {
+        const locked = data?.allowed === false;
+        control.dataset.planLocked = locked ? 'true' : 'false';
+        control.setAttribute('aria-disabled', locked ? 'true' : 'false');
+      });
       const compact = compactSubscriptionStatus(data, language());
       if (target) {
         target.hidden = !compact;
@@ -237,5 +254,5 @@ export function createBilling({api, user, language, escape, win = window, doc = 
     else refresh();
   }
   win.addEventListener?.('pageshow', event => { if (event.persisted) { snapshot = null; leaving = false; busy = false; mount(); } });
-  return {mount, mountCompact, stop, wantsSettings: () => pending};
+  return {mount, mountCompact, recordCreationBlockReason, showTrialOffer, stop, wantsSettings: () => pending};
 }

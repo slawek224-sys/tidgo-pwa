@@ -442,6 +442,23 @@ button:active,
   box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.12), 0 0 10px rgba(220, 38, 38, 0.4);
 }
 
+.billing-status-badge[data-tone="start"] {
+  border-color: rgba(59, 130, 246, 0.38);
+  background: linear-gradient(180deg, rgba(239, 246, 255, 0.98), rgba(219, 234, 254, 0.92));
+  color: #1e40af;
+}
+
+.billing-status-badge[data-tone="start"]::before {
+  background: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.13), 0 0 10px rgba(59, 130, 246, 0.48);
+}
+
+.action[data-plan-locked="true"] {
+  border-color: rgba(251, 191, 36, 0.72);
+  filter: saturate(0.62) brightness(0.94);
+  box-shadow: 0 12px 25px rgba(15, 23, 42, 0.14), inset 0 0 0 2px rgba(251, 191, 36, 0.24);
+}
+
 .trial-onboarding-backdrop {
   position: fixed;
   inset: 0;

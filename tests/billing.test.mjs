@@ -12,7 +12,7 @@ function fixture(kind = '', status = {allowed:true, subscription_status:null}) {
   let timerId = 0;
   let account = {id:'test-user'}, destination = '', fail = false;
   const localStorage = new Map();
-  const win = {location:{pathname:'/settings/',search:`?billing=${kind}`,href:`https://tidgo.co.uk/settings/?billing=${kind}`,assign:url=>{destination=url;}},history:{state:{},replaceState(){}},sessionStorage:{getItem:k=>storage.get(k),setItem:(k,v)=>storage.set(k,v),removeItem:k=>storage.delete(k)},localStorage:{getItem:k=>localStorage.get(k),setItem:(k,v)=>localStorage.set(k,v)},addEventListener:(name,fn)=>events[name]=fn};
+  const win = {location:{pathname:'/settings/',search:`?billing=${kind}`,href:`https://tidgo.co.uk/settings/?billing=${kind}`,assign:url=>{destination=url;}},history:{state:{},replaceState(){}},sessionStorage:{getItem:k=>storage.get(k),setItem:(k,v)=>storage.set(k,v),removeItem:k=>storage.delete(k)},localStorage:{getItem:k=>localStorage.get(k),setItem:(k,v)=>localStorage.set(k,v),removeItem:k=>localStorage.delete(k)},addEventListener:(name,fn)=>events[name]=fn};
   const billing = createBilling({win,doc:{getElementById:id=>({billingPanel:panel,billingStatusBadge:badge,billingOnboardingHost:onboarding})[id] || null},setTimer:fn=>{timers.set(++timerId,fn);return timerId;},clearTimer:id=>timers.delete(id),user:()=>account,language:()=> 'en',escape:String,api:async(path, options)=>{
     calls.push({path, options});
     if (fail) throw Error('offline');
@@ -105,6 +105,7 @@ test('compact status gives a subtle, dated home-screen summary', ()=>{
   assert.deepEqual(compactSubscriptionStatus({subscription_status:'trialing',subscription_current_period_end:end},'en'),{text:'Trial to 22 Sept',tone:'trial'});
   assert.deepEqual(compactSubscriptionStatus({subscription_status:'trialing',trial_end:unixEnd,cancel_at_period_end:true},'en'),{text:'Ends 22 Sept',tone:'ending'});
   assert.deepEqual(compactSubscriptionStatus({subscription_status:'past_due'},'pl'),{text:'Problem z płatnością',tone:'issue'});
+  assert.deepEqual(compactSubscriptionStatus({reason:'no_subscription'},'en'),{text:'Start free trial',tone:'start'});
 });
 
 test('no-subscription user sees a dismissible, non-blocking trial offer once', async()=>{
@@ -116,6 +117,10 @@ test('no-subscription user sees a dismissible, non-blocking trial offer once', a
   await f.clickOnboarding('later');
   assert.equal(f.onboarding.innerHTML,'');
   assert.equal(f.localStorage.get('tidgo_trial_onboarding_dismissed:test-user'),'true');
+  assert.equal(f.badge.textContent,'Start free trial');
+  assert.equal(f.billing.recordCreationBlockReason(),'no_subscription');
+  f.billing.showTrialOffer();
+  assert.match(f.onboarding.innerHTML,/Start your 14-day free trial/);
   f.billing.stop();
 });
 

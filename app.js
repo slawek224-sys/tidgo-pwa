@@ -7714,8 +7714,8 @@ function home() {
         <span><span class="summary-icon" aria-hidden="true"></span> ${t("summary")}</span><strong>›</strong>
       </button>
       <div class="grid-2" style="margin-top:14px">
-        <button class="action blue" data-action="startExpense"><span>${t("addExpense")}</span><small>${t("photoDone")}</small></button>
-        <button class="action green" data-action="startIncome"><span>${t("addIncome")}</span><small>${t("amountNote")}</small></button>
+        <button class="action blue" data-action="startExpense" data-requires-active-plan><span>${t("addExpense")}</span><small>${t("photoDone")}</small></button>
+        <button class="action green" data-action="startIncome" data-requires-active-plan><span>${t("addIncome")}</span><small>${t("amountNote")}</small></button>
       </div>
       <button class="secondary share-inline app-share-button" type="button" data-action="shareTidGo">${t("shareTidGo")}</button>
       <div class="segmented record-filter" aria-label="${escapeAttr(t("recordFilterReview"))}">
@@ -9726,8 +9726,15 @@ document.addEventListener("click", async (event) => {
   if (action === "privacy") return go("privacy");
   if (action === "terms") return go("terms");
   if (action === "summary") return go("summary");
-  if (action === "startExpense") return startRecordFlow("expense");
-  if (action === "startIncome") return startRecordFlow("income");
+  if (action === "startExpense" || action === "startIncome") {
+    const billingBlock = billing.recordCreationBlockReason();
+    if (billingBlock === "no_subscription") {
+      billing.showTrialOffer();
+      return;
+    }
+    if (billingBlock) return go("settings");
+    return startRecordFlow(action === "startExpense" ? "expense" : "income");
+  }
   if (action === "chooseBusinessType") {
     const slot = businessSlotById(target.dataset.businessSlotId, target.dataset.businessType);
     state.pendingBusinessType = slot.type;
