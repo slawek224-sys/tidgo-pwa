@@ -21,8 +21,8 @@ const DATE_TEXT = {
 };
 
 const COMPACT_TEXT = {
-  en: {active: 'Active', trial: 'Trial', trialTo: 'Trial to {date}', renews: 'Renews {date}', ends: 'Ends {date}', issue: 'Payment issue', start: 'Start free trial'},
-  pl: {active: 'Aktywna', trial: 'Okres próbny', trialTo: 'Próba do {date}', renews: 'Odnowienie {date}', ends: 'Wygasa {date}', issue: 'Problem z płatnością', start: 'Rozpocznij trial'},
+  en: {active: 'Active', trial: 'Trial', trialTo: 'Trial until {date}', renews: 'Renews {date}', ends: 'Ends {date}', issue: 'Payment issue', start: 'Start free trial'},
+  pl: {active: 'Aktywna', trial: 'Okres próbny', trialTo: 'Okres próbny do {date}', renews: 'Odnowienie {date}', ends: 'Wygasa {date}', issue: 'Problem z płatnością', start: 'Rozpocznij trial'},
   ro: {active: 'Activ', trial: 'Perioadă de probă', trialTo: 'Probă până la {date}', renews: 'Reînnoire {date}', ends: 'Expiră {date}', issue: 'Problemă de plată', start: 'Începe perioada gratuită'},
   uk: {active: 'Активна', trial: 'Пробний період', trialTo: 'Пробний до {date}', renews: 'Поновлення {date}', ends: 'До {date}', issue: 'Проблема з оплатою', start: 'Почати пробний період'},
   lt: {active: 'Aktyvi', trial: 'Bandomoji', trialTo: 'Bandomoji iki {date}', renews: 'Atnaujinama {date}', ends: 'Baigiasi {date}', issue: 'Mokėjimo problema', start: 'Pradėti nemokamai'},
