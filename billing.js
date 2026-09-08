@@ -31,6 +31,17 @@ const COMPACT_TEXT = {
   bg: {active: 'Активен', trial: 'Пробен период', trialTo: 'Пробен до {date}', renews: 'Подновяване {date}', ends: 'Изтича {date}', issue: 'Проблем с плащането'}
 };
 
+const ONBOARDING_TEXT = {
+  en: {title: 'Start your 14-day free trial', text: 'No card required. Keep using TidGo and decide later whether it works for you.', start: 'Start free trial', later: 'Not now', error: 'Could not start the trial. Try again from Settings.'},
+  pl: {title: 'Rozpocznij 14-dniowy bezpłatny okres próbny', text: 'Karta nie jest wymagana. Korzystaj z TidGo i później zdecyduj, czy Ci odpowiada.', start: 'Rozpocznij bezpłatny trial', later: 'Nie teraz', error: 'Nie udało się rozpocząć okresu próbnego. Spróbuj ponownie w Ustawieniach.'},
+  ro: {title: 'Începe perioada de probă gratuită de 14 zile', text: 'Nu este necesar un card. Folosește TidGo și decide mai târziu dacă ți se potrivește.', start: 'Începe perioada gratuită', later: 'Nu acum', error: 'Perioada de probă nu a putut fi pornită. Încearcă din Setări.'},
+  uk: {title: 'Почніть безкоштовний 14-денний пробний період', text: 'Картка не потрібна. Користуйтеся TidGo й пізніше вирішіть, чи він вам підходить.', start: 'Почати безкоштовний період', later: 'Не зараз', error: 'Не вдалося почати пробний період. Спробуйте в Налаштуваннях.'},
+  lt: {title: 'Pradėkite nemokamą 14 dienų bandomąjį laikotarpį', text: 'Kortelės nereikia. Naudokitės TidGo ir vėliau nuspręskite, ar jis jums tinka.', start: 'Pradėti nemokamą laikotarpį', later: 'Ne dabar', error: 'Nepavyko pradėti bandomojo laikotarpio. Bandykite Nustatymuose.'},
+  lv: {title: 'Sāciet bezmaksas 14 dienu izmēģinājumu', text: 'Karte nav nepieciešama. Lietojiet TidGo un vēlāk izlemiet, vai tas jums der.', start: 'Sākt bezmaksas izmēģinājumu', later: 'Ne tagad', error: 'Neizdevās sākt izmēģinājumu. Mēģiniet sadaļā Iestatījumi.'},
+  es: {title: 'Empieza tu prueba gratuita de 14 días', text: 'No necesitas tarjeta. Usa TidGo y decide más adelante si te sirve.', start: 'Empezar prueba gratuita', later: 'Ahora no', error: 'No se pudo iniciar la prueba. Inténtalo desde Ajustes.'},
+  bg: {title: 'Започнете безплатен 14-дневен пробен период', text: 'Не е необходима карта. Използвайте TidGo и решете по-късно дали ви е подходящ.', start: 'Започнете безплатния период', later: 'Не сега', error: 'Пробният период не можа да започне. Опитайте от Настройки.'}
+};
+
 function billingEndDate(data) {
   const raw = data?.subscription_current_period_end ?? data?.trial_ends_at ?? data?.current_period_end ?? data?.trial_end;
   if (raw === null || raw === undefined || raw === '') return null;
@@ -103,17 +114,58 @@ export function createBilling({api, user, language, escape, win = window, doc = 
   function stop() { version++; clearTimer(timer); }
   function mountCompact() {
     const target = doc.getElementById('billingStatusBadge');
+    const onboarding = doc.getElementById('billingOnboardingHost');
     const id = user()?.id;
-    if (!target || !id) return;
+    if ((!target && !onboarding) || !id) return;
     const current = version;
-    const valid = () => current === version && target.isConnected && user()?.id === id;
+    const valid = () => current === version && (!target || target.isConnected) && (!onboarding || onboarding.isConnected) && user()?.id === id;
+    const dismissalKey = `tidgo_trial_onboarding_dismissed:${id}`;
+    const dismissed = () => {
+      try { return win.localStorage.getItem(dismissalKey) === 'true'; } catch { return false; }
+    };
+    const dismiss = () => {
+      try { win.localStorage.setItem(dismissalKey, 'true'); } catch {}
+      if (onboarding) onboarding.innerHTML = '';
+    };
+    const drawOnboarding = data => {
+      if (!onboarding || !valid()) return;
+      if (data?.reason !== 'no_subscription' || dismissed()) {
+        onboarding.innerHTML = '';
+        return;
+      }
+      const copy = ONBOARDING_TEXT[language()] || ONBOARDING_TEXT.en;
+      onboarding.innerHTML = `<div class="trial-onboarding-backdrop"><section class="trial-onboarding" role="dialog" aria-modal="true" aria-labelledby="trialOnboardingTitle"><span class="trial-onboarding-mark" aria-hidden="true">14</span><h2 id="trialOnboardingTitle">${escape(copy.title)}</h2><p>${escape(copy.text)}</p><p class="trial-onboarding-error" role="status" aria-live="polite"></p><div class="trial-onboarding-actions"><button type="button" class="primary" data-trial-onboarding="start">${escape(copy.start)}</button><button type="button" class="quiet" data-trial-onboarding="later">${escape(copy.later)}</button></div></section></div>`;
+      onboarding.onclick = async event => {
+        const action = event.target.closest('[data-trial-onboarding]')?.dataset.trialOnboarding;
+        if (action === 'later') return dismiss();
+        if (action !== 'start' || leaving) return;
+        leaving = true;
+        onboarding.querySelectorAll('button').forEach(button => { button.disabled = true; });
+        try {
+          const result = await api('/api/billing/create-checkout-session', {method: 'POST', body: JSON.stringify({user_id: id})});
+          if (!valid()) return;
+          const destination = stripeDestination(result.checkout_url, 'checkout');
+          dismiss();
+          win.location.assign(destination);
+        } catch {
+          leaving = false;
+          onboarding.querySelectorAll('button').forEach(button => { button.disabled = false; });
+          const error = onboarding.querySelector('.trial-onboarding-error');
+          if (error) error.textContent = copy.error;
+        }
+      };
+    };
     const draw = data => {
       if (!valid()) return;
       const compact = compactSubscriptionStatus(data, language());
-      target.hidden = !compact;
-      if (!compact) return;
-      target.dataset.tone = compact.tone;
-      target.textContent = compact.text;
+      if (target) {
+        target.hidden = !compact;
+        if (compact) {
+          target.dataset.tone = compact.tone;
+          target.textContent = compact.text;
+        }
+      }
+      drawOnboarding(data);
     };
     if (snapshot?.id === id && Date.now() - snapshot.time < 15000) {
       draw(snapshot.data);

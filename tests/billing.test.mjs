@@ -6,16 +6,19 @@ const {createBilling, stripeDestination, subscriptionDateDetail, compactSubscrip
 const tick = () => new Promise(resolve => setTimeout(resolve, 0));
 function fixture(kind = '', status = {allowed:true, subscription_status:null}) {
   const panel = {isConnected:true, innerHTML:''};
+  const badge = {isConnected:true, hidden:true, dataset:{}, textContent:''};
+  const onboarding = {isConnected:true, innerHTML:'', querySelectorAll:()=>[], querySelector:()=>null};
   const storage = new Map(), calls = [], events = {}, timers = new Map();
   let timerId = 0;
   let account = {id:'test-user'}, destination = '', fail = false;
-  const win = {location:{pathname:'/settings/',search:`?billing=${kind}`,href:`https://tidgo.co.uk/settings/?billing=${kind}`,assign:url=>{destination=url;}},history:{state:{},replaceState(){}},sessionStorage:{getItem:k=>storage.get(k),setItem:(k,v)=>storage.set(k,v),removeItem:k=>storage.delete(k)},addEventListener:(name,fn)=>events[name]=fn};
-  const billing = createBilling({win,doc:{getElementById:()=>panel},setTimer:fn=>{timers.set(++timerId,fn);return timerId;},clearTimer:id=>timers.delete(id),user:()=>account,language:()=> 'en',escape:String,api:async(path, options)=>{
+  const localStorage = new Map();
+  const win = {location:{pathname:'/settings/',search:`?billing=${kind}`,href:`https://tidgo.co.uk/settings/?billing=${kind}`,assign:url=>{destination=url;}},history:{state:{},replaceState(){}},sessionStorage:{getItem:k=>storage.get(k),setItem:(k,v)=>storage.set(k,v),removeItem:k=>storage.delete(k)},localStorage:{getItem:k=>localStorage.get(k),setItem:(k,v)=>localStorage.set(k,v)},addEventListener:(name,fn)=>events[name]=fn};
+  const billing = createBilling({win,doc:{getElementById:id=>({billingPanel:panel,billingStatusBadge:badge,billingOnboardingHost:onboarding})[id] || null},setTimer:fn=>{timers.set(++timerId,fn);return timerId;},clearTimer:id=>timers.delete(id),user:()=>account,language:()=> 'en',escape:String,api:async(path, options)=>{
     calls.push({path, options});
     if (fail) throw Error('offline');
     return options ? {checkout_url:'https://checkout.stripe.com/c/pay/test',portal_url:'https://billing.stripe.com/p/session/test'} : status;
   }});
-  return {billing,panel,calls,events,storage,timers,logout:()=>account=null,login:()=>account={id:'test-user'},fail:()=>fail=true,destination:()=>destination,click:action=>panel.onclick({target:{closest:()=>({dataset:{billing:action}})}})};
+  return {billing,panel,badge,onboarding,calls,events,storage,localStorage,timers,logout:()=>account=null,login:()=>account={id:'test-user'},fail:()=>fail=true,destination:()=>destination,click:action=>panel.onclick({target:{closest:()=>({dataset:{billing:action}})}}),clickOnboarding:action=>onboarding.onclick({target:{closest:()=>({dataset:{trialOnboarding:action}})}})};
 }
 test('success URL never grants active status or offers another checkout', async()=>{
   const f=fixture('success'); f.logout(); f.billing.mount();
@@ -102,4 +105,26 @@ test('compact status gives a subtle, dated home-screen summary', ()=>{
   assert.deepEqual(compactSubscriptionStatus({subscription_status:'trialing',subscription_current_period_end:end},'en'),{text:'Trial to 22 Sept',tone:'trial'});
   assert.deepEqual(compactSubscriptionStatus({subscription_status:'trialing',trial_end:unixEnd,cancel_at_period_end:true},'en'),{text:'Ends 22 Sept',tone:'ending'});
   assert.deepEqual(compactSubscriptionStatus({subscription_status:'past_due'},'pl'),{text:'Problem z płatnością',tone:'issue'});
+});
+
+test('no-subscription user sees a dismissible, non-blocking trial offer once', async()=>{
+  const status={allowed:false,reason:'no_subscription',subscription_status:null};
+  const f=fixture('',status);
+  f.billing.mountCompact(); await tick();
+  assert.match(f.onboarding.innerHTML,/Start your 14-day free trial/);
+  assert.match(f.onboarding.innerHTML,/No card required/);
+  await f.clickOnboarding('later');
+  assert.equal(f.onboarding.innerHTML,'');
+  assert.equal(f.localStorage.get('tidgo_trial_onboarding_dismissed:test-user'),'true');
+  f.billing.stop();
+});
+
+test('trial onboarding starts the existing Stripe Checkout flow', async()=>{
+  const f=fixture('',{allowed:false,reason:'no_subscription',subscription_status:null});
+  f.billing.mountCompact(); await tick();
+  await f.clickOnboarding('start');
+  assert.equal(f.calls[1].path,'/api/billing/create-checkout-session');
+  assert.deepEqual(JSON.parse(f.calls[1].options.body),{user_id:'test-user'});
+  assert.match(f.destination(),/^https:\/\/checkout\.stripe\.com\//);
+  f.billing.stop();
 });

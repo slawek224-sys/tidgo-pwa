@@ -7707,6 +7707,7 @@ function home() {
   shell(`
     <section class="screen">
       ${topbar("")}
+      <div id="billingOnboardingHost"></div>
       <h1 class="title">${t("hello")}, ${escapeHtml(state.user.first_name)}.</h1>
       ${serverUnavailableCard()}
       <button class="nav-row" data-action="summary">
