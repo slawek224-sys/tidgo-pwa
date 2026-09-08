@@ -383,6 +383,11 @@ button:active,
   transform: translateY(-1px);
 }
 
+.billing-panel { padding: 16px 0; border-bottom: 1px solid var(--client-line); margin-bottom: 16px; }
+.billing-panel h2 { font-size: 18px; margin: 0 0 8px; }
+.billing-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.billing-actions button { min-height: 44px; max-width: 100%; white-space: normal; }
+
 .landing-nav a.nav-mtd {
   border: 1px solid var(--client-line);
   border-radius: 999px;

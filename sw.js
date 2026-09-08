@@ -1,8 +1,10 @@
-const CACHE = "tidgo-pwa-v207";
+const CACHE = "tidgo-pwa-v208";
 const ASSETS = [
   "./",
   "./index.html",
   "./app/index.html",
+  "./settings/index.html",
+  "./billing.js",
   "./accountant/index.html",
   "./app-demo/index.html",
   "./accountant-demo/index.html",
@@ -92,7 +94,7 @@ self.addEventListener("fetch", (event) => {
     event.respondWith(fetch(event.request).catch(() => caches.match("./index.html")));
     return;
   }
-  if (["/app.js", "/styles.css", "/manifest.json", "/manifest.webmanifest", "/sw.js"].includes(url.pathname)) {
+  if (["/app.js", "/billing.js", "/styles.css", "/manifest.json", "/manifest.webmanifest", "/sw.js"].includes(url.pathname)) {
     event.respondWith(
       fetch(event.request)
         .then((response) => {

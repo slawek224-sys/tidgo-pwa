@@ -1,3 +1,6 @@
+import { createBilling } from './billing.js';
+
+const billing = createBilling({api, user: () => state.user, language: () => state.language, escape: escapeHtml});
 const API_BASE = "https://donezo-api-53t9.onrender.com";
 const TIDGO_WHATSAPP_NUMBER = "447466382511";
 const FEEDBACK_EMAIL = "hello@tidgo.co.uk";
@@ -3484,6 +3487,7 @@ function isLandingRoute() {
 }
 
 function initialScreen() {
+  if (location.pathname.replace(/\/+$/, '') === '/settings') return 'boot';
   if (isAdminRoute()) return "adminLanding";
   if (isAccountantRoute()) return "accountantLanding";
   if (isAppDemoRoute()) return "appDemo";
@@ -3501,7 +3505,7 @@ function showSplash() {
   app.innerHTML = `
     <main class="splash">
       <div class="splash-inner">
-        <img class="splash-logo" src="./icon-512.png" alt="TidGo">
+        <img class="splash-logo" src="/icon-512.png" alt="TidGo">
         <h1 class="splash-title">TidGo</h1>
         <div class="splash-note">Loading...</div>
       </div>
@@ -6523,6 +6527,8 @@ function serverUnavailableCard() {
 }
 
 function render() {
+  billing.stop();
+  if (state.user && billing.wantsSettings() && ['boot', 'home', 'settings'].includes(state.screen)) state.screen = 'settings';
   const publicScreens = ["landing", "marketingPage", "appDemo", "accountantDemo", "accountantLanding", "accountantDemoClient", "adminLanding"];
   const legalScreens = ["legalConsent", "privacy", "terms"];
   if (!publicScreens.includes(state.screen) && !state.user) {
@@ -6557,6 +6563,7 @@ function render() {
     terms
   };
   routes[state.screen]();
+  if (state.screen === 'settings') billing.mount();
   renderCookieConsent();
 }
 
@@ -8144,6 +8151,7 @@ function settings() {
   shell(`
     <section class="screen">
       ${topbar(t("settings"), true)}
+      <section id="billingPanel" class="billing-panel"></section>
       <form class="stack" id="settingsForm">
         <label class="field"><span>${t("chooseLanguage")}</span>${languageSelect()}</label>
         <label class="field"><span>${t("firstName")}</span><input class="input" name="first_name" value="${escapeAttr(state.user.first_name)}" required></label>
