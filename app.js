@@ -5944,6 +5944,7 @@ function applyRoute(route) {
   state.screen = route.screen || "home";
   state.selected = route.selected || null;
   render();
+  scrollToPublicHash();
 }
 
 function navigate(screen, extra = {}) {
@@ -5954,6 +5955,13 @@ function navigate(screen, extra = {}) {
   }
   history.pushState(routeState(), "", location.pathname + location.search);
   render();
+}
+
+function scrollToPublicHash() {
+  if (state.screen !== "landing" || location.hash !== "#contact") return;
+  window.requestAnimationFrame(() => {
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
 }
 
 function shell(content) {
@@ -9354,6 +9362,17 @@ document.addEventListener("click", async (event) => {
     return;
   }
 
+  const contactLink = event.target.closest('a[href="/#contact"]');
+  if (contactLink) {
+    event.preventDefault();
+    state.screen = "landing";
+    state.selected = null;
+    history.pushState(routeState(), "", "/#contact");
+    render();
+    scrollToPublicHash();
+    return;
+  }
+
   const scrollLink = event.target.closest("[data-scroll-target]");
   if (scrollLink) {
     event.preventDefault();
@@ -10426,8 +10445,9 @@ window.addEventListener("popstate", (event) => {
 (async function boot() {
   showSplash();
   if (isFastPublicScreen()) {
-    history.replaceState(routeState(), "", location.pathname + location.search);
+    history.replaceState(routeState(), "", location.pathname + location.search + location.hash);
     render();
+    scrollToPublicHash();
     return;
   }
   await restoreDeviceUser();
@@ -10445,7 +10465,7 @@ window.addEventListener("popstate", (event) => {
   if (state.user?.id && !isAccountantRoute()) {
     state.recordsLoading = true;
   }
-  history.replaceState(routeState(), "", location.pathname + location.search);
+  history.replaceState(routeState(), "", location.pathname + location.search + location.hash);
   render();
   if (state.user?.id && !isAccountantRoute()) {
     refresh().then(render).catch(() => {});
