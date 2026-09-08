@@ -6,15 +6,16 @@ const {createBilling, stripeDestination} = await import('data:text/javascript;ba
 const tick = () => new Promise(resolve => setTimeout(resolve, 0));
 function fixture(kind = '', status = {allowed:true, subscription_status:null}) {
   const panel = {isConnected:true, innerHTML:''};
-  const storage = new Map(), calls = [], events = {};
+  const storage = new Map(), calls = [], events = {}, timers = new Map();
+  let timerId = 0;
   let account = {id:'test-user'}, destination = '', fail = false;
   const win = {location:{pathname:'/settings/',search:`?billing=${kind}`,href:`https://tidgo.co.uk/settings/?billing=${kind}`,assign:url=>{destination=url;}},history:{state:{},replaceState(){}},sessionStorage:{getItem:k=>storage.get(k),setItem:(k,v)=>storage.set(k,v),removeItem:k=>storage.delete(k)},addEventListener:(name,fn)=>events[name]=fn};
-  const billing = createBilling({win,doc:{getElementById:()=>panel},user:()=>account,language:()=> 'en',escape:String,api:async(path, options)=>{
+  const billing = createBilling({win,doc:{getElementById:()=>panel},setTimer:fn=>{timers.set(++timerId,fn);return timerId;},clearTimer:id=>timers.delete(id),user:()=>account,language:()=> 'en',escape:String,api:async(path, options)=>{
     calls.push({path, options});
     if (fail) throw Error('offline');
     return options ? {checkout_url:'https://checkout.stripe.com/c/pay/test',portal_url:'https://billing.stripe.com/p/session/test'} : status;
   }});
-  return {billing,panel,calls,events,storage,logout:()=>account=null,login:()=>account={id:'test-user'},fail:()=>fail=true,destination:()=>destination,click:action=>panel.onclick({target:{closest:()=>({dataset:{billing:action}})}})};
+  return {billing,panel,calls,events,storage,timers,logout:()=>account=null,login:()=>account={id:'test-user'},fail:()=>fail=true,destination:()=>destination,click:action=>panel.onclick({target:{closest:()=>({dataset:{billing:action}})}})};
 }
 test('success URL never grants active status or offers another checkout', async()=>{
   const f=fixture('success'); f.logout(); f.billing.mount();
@@ -52,4 +53,32 @@ test('active subscription uses portal; errors remain visible',async()=>{
 test('only expected HTTPS Stripe hosts are accepted',()=>{
   for (const url of ['https://evil.example','http://checkout.stripe.com','https://checkout.stripe.com.evil.example','https://checkout.stripe.com:444','https://user@checkout.stripe.com']) assert.throws(()=>stripeDestination(url,'checkout'));
   assert.equal(stripeDestination('https://billing.stripe.com/p/test','portal'),'https://billing.stripe.com/p/test');
+});
+
+test('portal cancellation is shown from backend flag, with no polling or remount refetch', async()=>{
+  const status={allowed:true,subscription_status:'trialing',stripe_subscription_id:'sub_test',stripe_customer_id:'cus_test',cancel_at_period_end:true};
+  const f=fixture('portal',status); f.billing.mount(); await tick();
+  assert.match(f.panel.innerHTML,/Trial · Cancellation scheduled/);
+  assert.equal(f.timers.size,0);
+  f.billing.mount(); await tick();
+  assert.equal(f.calls.length,1);
+  assert.doesNotMatch(f.panel.innerHTML,/Checking subscription/);
+  status.cancel_at_period_end=false;
+  await f.click('refresh');
+  assert.equal(f.calls.length,2);
+  assert.doesNotMatch(f.panel.innerHTML,/Cancellation scheduled/);
+  assert.equal(f.timers.size,0);
+  f.billing.stop();
+});
+
+test('only success retries pending webhook and stops on confirmation', async()=>{
+  const status={allowed:true,subscription_status:'trialing'};
+  const f=fixture('success',status); f.billing.mount(); await tick();
+  assert.equal(f.timers.size,1);
+  status.stripe_subscription_id='sub_test';
+  await [...f.timers.values()][0]();
+  assert.equal(f.calls.length,2);
+  assert.equal(f.timers.size,0);
+  assert.doesNotMatch(f.panel.innerHTML,/Waiting for the subscription/);
+  f.billing.stop();
 });

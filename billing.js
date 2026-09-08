@@ -19,12 +19,14 @@ export function stripeDestination(raw, kind) {
 export function subscriptionLabel(data, words) {
   if (data.lifetime_free) return words[15];
   const labels = {active: 10, trialing: 11, past_due: 12, unpaid: 12, canceled: 13, incomplete: 14, incomplete_expired: 13, paused: 14};
-  return words[labels[data.subscription_status] ?? 9];
+  const label = words[labels[data.subscription_status] ?? 9];
+  return data.cancel_at_period_end === true ? `${label} · ${words[16]}` : label;
 }
 
-export function createBilling({api, user, language, escape, win = window, doc = document}) {
+export function createBilling({api, user, language, escape, win = window, doc = document, setTimer = setTimeout, clearTimer = clearTimeout}) {
   const key = 'tidgo_billing_return';
   let pending = false, returnKind = '', timer, busy = false, leaving = false, version = 0;
+  let snapshot = null, attempts = 0;
   const query = new URLSearchParams(win.location.search).get('billing');
   const settingsRoute = win.location.pathname.replace(/\/+$/, '') === '/settings';
   try {
@@ -43,25 +45,26 @@ export function createBilling({api, user, language, escape, win = window, doc = 
     url.searchParams.delete('billing');
     win.history.replaceState(win.history.state, '', url.pathname + url.search + url.hash);
   }
-  function stop() { version++; clearTimeout(timer); }
+  function stop() { version++; clearTimer(timer); }
   function mount() {
     stop();
     const target = doc.getElementById('billingPanel');
     const id = user()?.id;
+    if (!id) snapshot = null;
     if (!target || !id) return;
     if (pending) clearPending();
     const current = version;
     const words = TEXT[language()] || TEXT.en;
-    let data = null, attempts = 0;
+    let data = snapshot?.id === id ? snapshot.data : null;
     const valid = () => current === version && target.isConnected && user()?.id === id;
     const button = (action, text, disabled = false) => `<button type="button" class="secondary" data-billing="${action}" ${disabled ? 'disabled' : ''}>${escape(text)}</button>`;
     function draw(message = '', loading = false, error = false) {
       if (!valid()) return;
       const subscribed = data?.stripe_subscription_id && !['canceled', 'incomplete_expired'].includes(data.subscription_status);
-      target.innerHTML = `<h2>${escape(words[0])}</h2><p role="status" aria-live="polite">${escape(message)}</p>${data ? `<p><strong>${escape(subscriptionLabel(data, words))}</strong>${data.cancel_at_period_end ? ` · ${escape(words[16])}` : ''}</p>` : ''}<div class="billing-actions">${data && !subscribed && !data.lifetime_free ? button('checkout', words[1], busy || leaving || loading || error || returnKind === 'success') : ''}${data?.stripe_customer_id ? button('portal', words[2], busy || leaving || loading || error) : ''}${button('refresh', words[3], busy || leaving || loading)}</div>`;
+      target.innerHTML = `<h2>${escape(words[0])}</h2><p role="status" aria-live="polite">${escape(message)}</p>${data ? `<p><strong>${escape(subscriptionLabel(data, words))}</strong></p>` : ''}<div class="billing-actions">${data && !subscribed && !data.lifetime_free ? button('checkout', words[1], busy || leaving || loading || error || returnKind === 'success') : ''}${data?.stripe_customer_id ? button('portal', words[2], busy || leaving || loading || error) : ''}${button('refresh', words[3], busy || leaving || loading)}</div>`;
     }
     async function refresh() {
-      clearTimeout(timer);
+      clearTimer(timer);
       draw(words[4], true);
       try {
         const response = await api(`/api/billing/status?user_id=${encodeURIComponent(id)}`);
@@ -70,9 +73,10 @@ export function createBilling({api, user, language, escape, win = window, doc = 
         data = response;
         const confirmed = data.stripe_subscription_id && ['active', 'trialing'].includes(data.subscription_status);
         const message = returnKind === 'success' && !confirmed ? words[6] : returnKind === 'cancelled' ? words[7] : returnKind === 'portal' ? words[8] : '';
+        snapshot = {id, data, time: Date.now(), message};
         draw(message);
-        if ((returnKind === 'success' || returnKind === 'portal') && attempts++ < 4 && (returnKind === 'portal' || !confirmed)) timer = setTimeout(refresh, 2500);
-      } catch { draw(words[5], false, true); }
+        if (returnKind === 'success' && !confirmed && attempts++ < 4) timer = setTimer(refresh, 2500);
+      } catch { snapshot = null; draw(words[5], false, true); }
     }
     target.onclick = async event => {
       const control = event.target.closest('[data-billing]');
@@ -81,7 +85,8 @@ export function createBilling({api, user, language, escape, win = window, doc = 
       if (action === 'checkout' && returnKind === 'success') return;
       if (action === 'refresh') { attempts = 0; return refresh(); }
       busy = true;
-      clearTimeout(timer);
+      clearTimer(timer);
+      snapshot = null;
       draw(words[4]);
       try {
         const result = await api(`/api/billing/create-${action === 'checkout' ? 'checkout' : 'portal'}-session`, {method: 'POST', body: JSON.stringify({user_id: id})});
@@ -92,8 +97,11 @@ export function createBilling({api, user, language, escape, win = window, doc = 
       } catch { leaving = false; if (valid()) { busy = false; draw(words[17], false, true); } }
       finally { busy = false; }
     };
-    refresh();
+    const waiting = returnKind === 'success' && !(data?.stripe_subscription_id && ['active', 'trialing'].includes(data.subscription_status));
+    // Routine app renders should not repeat a recently completed status request.
+    if (snapshot?.id === id && Date.now() - snapshot.time < 15000 && !waiting) draw(snapshot.message);
+    else refresh();
   }
-  win.addEventListener?.('pageshow', event => { if (event.persisted) { leaving = false; busy = false; mount(); } });
+  win.addEventListener?.('pageshow', event => { if (event.persisted) { snapshot = null; leaving = false; busy = false; mount(); } });
   return {mount, stop, wantsSettings: () => pending};
 }
