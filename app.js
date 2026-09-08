@@ -6005,10 +6005,13 @@ function imageViewerOverlay() {
 
 function topbar(title, back = false) {
   const accountantMode = state.screen === "accountantLanding" || state.screen === "accountantDemoClient";
+  const compactBilling = state.user && state.screen === "home" && !back && !accountantMode
+    ? `<button id="billingStatusBadge" class="billing-status-badge" type="button" data-action="settings" hidden></button>`
+    : `<strong>${title || ""}</strong>`;
   return `
     <div class="topbar">
       ${back ? `<button class="icon-btn" data-action="back" aria-label="Back">←</button>` : `<div class="brand app-brand"><img src="/icon-192.png" alt=""><span>TidGo<sup>TM</sup></span></div>`}
-      <strong>${title || ""}</strong>
+      ${compactBilling}
       ${state.user && !back && !accountantMode ? `<button class="icon-btn" data-action="settings" aria-label="${t("settings")}">⚙</button>` : `<span style="width:44px"></span>`}
     </div>
   `;
@@ -6572,6 +6575,7 @@ function render() {
   };
   routes[state.screen]();
   if (state.screen === 'settings') billing.mount();
+  if (state.screen === 'home') billing.mountCompact();
   renderCookieConsent();
 }
 

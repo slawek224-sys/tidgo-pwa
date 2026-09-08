@@ -20,6 +20,25 @@ const DATE_TEXT = {
   bg: {locale: 'bg-BG', trial: 'Пробният период приключва на {date}.', access: 'Достъпът приключва на {date}.'}
 };
 
+const COMPACT_TEXT = {
+  en: {active: 'Active', trial: 'Trial', trialTo: 'Trial to {date}', renews: 'Renews {date}', ends: 'Ends {date}', issue: 'Payment issue'},
+  pl: {active: 'Aktywna', trial: 'Okres próbny', trialTo: 'Próba do {date}', renews: 'Odnowienie {date}', ends: 'Wygasa {date}', issue: 'Problem z płatnością'},
+  ro: {active: 'Activ', trial: 'Perioadă de probă', trialTo: 'Probă până la {date}', renews: 'Reînnoire {date}', ends: 'Expiră {date}', issue: 'Problemă de plată'},
+  uk: {active: 'Активна', trial: 'Пробний період', trialTo: 'Пробний до {date}', renews: 'Поновлення {date}', ends: 'До {date}', issue: 'Проблема з оплатою'},
+  lt: {active: 'Aktyvi', trial: 'Bandomoji', trialTo: 'Bandomoji iki {date}', renews: 'Atnaujinama {date}', ends: 'Baigiasi {date}', issue: 'Mokėjimo problema'},
+  lv: {active: 'Aktīvs', trial: 'Izmēģinājums', trialTo: 'Izmēģinājums līdz {date}', renews: 'Atjaunošana {date}', ends: 'Beidzas {date}', issue: 'Maksājuma problēma'},
+  es: {active: 'Activa', trial: 'Prueba', trialTo: 'Prueba hasta {date}', renews: 'Renueva {date}', ends: 'Termina {date}', issue: 'Problema de pago'},
+  bg: {active: 'Активен', trial: 'Пробен период', trialTo: 'Пробен до {date}', renews: 'Подновяване {date}', ends: 'Изтича {date}', issue: 'Проблем с плащането'}
+};
+
+function billingEndDate(data) {
+  const raw = data?.subscription_current_period_end ?? data?.trial_ends_at ?? data?.current_period_end ?? data?.trial_end;
+  if (raw === null || raw === undefined || raw === '') return null;
+  const normalized = typeof raw === 'number' && raw < 100000000000 ? raw * 1000 : raw;
+  const date = new Date(normalized);
+  return Number.isFinite(date.getTime()) ? date : null;
+}
+
 export function stripeDestination(raw, kind) {
   const url = new URL(raw);
   const host = kind === 'checkout' ? 'checkout.stripe.com' : 'billing.stripe.com';
@@ -36,14 +55,27 @@ export function subscriptionLabel(data, words) {
 
 export function subscriptionDateDetail(data, language = 'en') {
   if (!data || data.lifetime_free) return '';
-  const raw = data.subscription_current_period_end || data.trial_ends_at;
-  if (!raw) return '';
-  const date = new Date(raw);
-  if (!Number.isFinite(date.getTime())) return '';
+  const date = billingEndDate(data);
+  if (!date) return '';
   const copy = DATE_TEXT[language] || DATE_TEXT.en;
   const formatted = new Intl.DateTimeFormat(copy.locale, {day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC'}).format(date);
   const template = data.cancel_at_period_end === true ? copy.access : data.subscription_status === 'trialing' ? copy.trial : '';
   return template ? template.replace('{date}', formatted) : '';
+}
+
+export function compactSubscriptionStatus(data, language = 'en') {
+  if (!data || data.lifetime_free) return null;
+  const copy = COMPACT_TEXT[language] || COMPACT_TEXT.en;
+  const status = String(data.subscription_status || '').toLowerCase();
+  const date = billingEndDate(data);
+  const dateText = date
+    ? new Intl.DateTimeFormat((DATE_TEXT[language] || DATE_TEXT.en).locale, {day: 'numeric', month: 'short', timeZone: 'UTC'}).format(date)
+    : '';
+  if (data.cancel_at_period_end === true) return {text: dateText ? copy.ends.replace('{date}', dateText) : copy.ends.replace(' {date}', ''), tone: 'ending'};
+  if (['past_due', 'unpaid', 'incomplete', 'paused'].includes(status)) return {text: copy.issue, tone: 'issue'};
+  if (status === 'trialing') return {text: dateText ? copy.trialTo.replace('{date}', dateText) : copy.trial, tone: 'trial'};
+  if (['active', 'paid'].includes(status)) return {text: dateText ? copy.renews.replace('{date}', dateText) : copy.active, tone: 'active'};
+  return null;
 }
 
 export function createBilling({api, user, language, escape, win = window, doc = document, setTimer = setTimeout, clearTimer = clearTimeout}) {
@@ -69,6 +101,32 @@ export function createBilling({api, user, language, escape, win = window, doc = 
     win.history.replaceState(win.history.state, '', url.pathname + url.search + url.hash);
   }
   function stop() { version++; clearTimer(timer); }
+  function mountCompact() {
+    const target = doc.getElementById('billingStatusBadge');
+    const id = user()?.id;
+    if (!target || !id) return;
+    const current = version;
+    const valid = () => current === version && target.isConnected && user()?.id === id;
+    const draw = data => {
+      if (!valid()) return;
+      const compact = compactSubscriptionStatus(data, language());
+      target.hidden = !compact;
+      if (!compact) return;
+      target.dataset.tone = compact.tone;
+      target.textContent = compact.text;
+    };
+    if (snapshot?.id === id && Date.now() - snapshot.time < 15000) {
+      draw(snapshot.data);
+      return;
+    }
+    api(`/api/billing/status?user_id=${encodeURIComponent(id)}`)
+      .then(data => {
+        if (!valid() || !data || typeof data !== 'object' || typeof data.allowed !== 'boolean') return;
+        snapshot = {id, data, time: Date.now(), message: ''};
+        draw(data);
+      })
+      .catch(() => {});
+  }
   function mount() {
     stop();
     const target = doc.getElementById('billingPanel');
@@ -127,5 +185,5 @@ export function createBilling({api, user, language, escape, win = window, doc = 
     else refresh();
   }
   win.addEventListener?.('pageshow', event => { if (event.persisted) { snapshot = null; leaving = false; busy = false; mount(); } });
-  return {mount, stop, wantsSettings: () => pending};
+  return {mount, mountCompact, stop, wantsSettings: () => pending};
 }

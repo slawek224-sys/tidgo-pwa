@@ -2,7 +2,7 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 const source = fs.readFileSync(new URL('../billing.js', import.meta.url), 'utf8');
-const {createBilling, stripeDestination, subscriptionDateDetail} = await import('data:text/javascript;base64,' + Buffer.from(source).toString('base64'));
+const {createBilling, stripeDestination, subscriptionDateDetail, compactSubscriptionStatus} = await import('data:text/javascript;base64,' + Buffer.from(source).toString('base64'));
 const tick = () => new Promise(resolve => setTimeout(resolve, 0));
 function fixture(kind = '', status = {allowed:true, subscription_status:null}) {
   const panel = {isConnected:true, innerHTML:''};
@@ -94,4 +94,12 @@ test('trial and scheduled cancellation show a real end date', async()=>{
   assert.match(f.panel.innerHTML,/Trial · Cancellation scheduled/);
   assert.match(f.panel.innerHTML,/Access ends 22 September 2026/);
   f.billing.stop();
+});
+
+test('compact status gives a subtle, dated home-screen summary', ()=>{
+  const end='2026-09-22T00:00:00Z';
+  const unixEnd=Date.parse(end) / 1000;
+  assert.deepEqual(compactSubscriptionStatus({subscription_status:'trialing',subscription_current_period_end:end},'en'),{text:'Trial to 22 Sept',tone:'trial'});
+  assert.deepEqual(compactSubscriptionStatus({subscription_status:'trialing',trial_end:unixEnd,cancel_at_period_end:true},'en'),{text:'Ends 22 Sept',tone:'ending'});
+  assert.deepEqual(compactSubscriptionStatus({subscription_status:'past_due'},'pl'),{text:'Problem z płatnością',tone:'issue'});
 });

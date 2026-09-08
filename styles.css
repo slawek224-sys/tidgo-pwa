@@ -389,6 +389,59 @@ button:active,
 .billing-actions { display: flex; flex-wrap: wrap; gap: 8px; }
 .billing-actions button { min-height: 44px; max-width: 100%; white-space: normal; }
 
+.billing-status-badge {
+  min-width: 0;
+  max-width: 128px;
+  margin-left: auto;
+  padding: 7px 9px 7px 22px;
+  border: 1px solid rgba(16, 185, 129, 0.32);
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(236, 253, 245, 0.96), rgba(209, 250, 229, 0.88));
+  color: #065f46;
+  box-shadow: 0 7px 18px rgba(16, 185, 129, 0.13), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.15;
+  text-align: left;
+  white-space: normal;
+  position: relative;
+}
+
+.billing-status-badge::before {
+  content: "";
+  position: absolute;
+  left: 9px;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.14), 0 0 10px rgba(16, 185, 129, 0.55);
+  transform: translateY(-50%);
+}
+
+.billing-status-badge[data-tone="ending"] {
+  border-color: rgba(245, 158, 11, 0.4);
+  background: linear-gradient(180deg, rgba(255, 251, 235, 0.98), rgba(254, 243, 199, 0.9));
+  color: #92400e;
+}
+
+.billing-status-badge[data-tone="ending"]::before {
+  background: #f59e0b;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.14), 0 0 10px rgba(245, 158, 11, 0.5);
+}
+
+.billing-status-badge[data-tone="issue"] {
+  border-color: rgba(220, 38, 38, 0.35);
+  background: linear-gradient(180deg, rgba(254, 242, 242, 0.98), rgba(254, 226, 226, 0.9));
+  color: #991b1b;
+}
+
+.billing-status-badge[data-tone="issue"]::before {
+  background: #dc2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.12), 0 0 10px rgba(220, 38, 38, 0.4);
+}
+
 .landing-nav a.nav-mtd {
   border: 1px solid var(--client-line);
   border-radius: 999px;
