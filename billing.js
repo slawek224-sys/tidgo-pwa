@@ -10,14 +10,14 @@ const TEXT = {
 };
 
 const DATE_TEXT = {
-  en: {locale: 'en-GB', trial: 'Trial ends {date}.', access: 'Access ends {date}.'},
-  pl: {locale: 'pl-PL', trial: 'Okres próbny kończy się {date}.', access: 'Dostęp kończy się {date}.'},
-  ro: {locale: 'ro-RO', trial: 'Perioada de probă se încheie la {date}.', access: 'Accesul se încheie la {date}.'},
-  uk: {locale: 'uk-UA', trial: 'Пробний період закінчується {date}.', access: 'Доступ закінчується {date}.'},
-  lt: {locale: 'lt-LT', trial: 'Bandomasis laikotarpis baigiasi {date}.', access: 'Prieiga baigiasi {date}.'},
-  lv: {locale: 'lv-LV', trial: 'Izmēģinājuma periods beidzas {date}.', access: 'Piekļuve beidzas {date}.'},
-  es: {locale: 'es-ES', trial: 'El periodo de prueba termina el {date}.', access: 'El acceso termina el {date}.'},
-  bg: {locale: 'bg-BG', trial: 'Пробният период приключва на {date}.', access: 'Достъпът приключва на {date}.'}
+  en: {locale: 'en-GB', trial: 'Trial ends {date}.', trialEnding: 'Trial ends {date}. Your subscription will not renew.', access: 'Access ends {date}.'},
+  pl: {locale: 'pl-PL', trial: 'Okres próbny kończy się {date}.', trialEnding: 'Okres próbny kończy się {date}. Subskrypcja nie zostanie odnowiona.', access: 'Dostęp kończy się {date}.'},
+  ro: {locale: 'ro-RO', trial: 'Perioada de probă se încheie la {date}.', trialEnding: 'Perioada de probă se încheie la {date}. Abonamentul nu se va reînnoi.', access: 'Accesul se încheie la {date}.'},
+  uk: {locale: 'uk-UA', trial: 'Пробний період закінчується {date}.', trialEnding: 'Пробний період закінчується {date}. Підписку не буде поновлено.', access: 'Доступ закінчується {date}.'},
+  lt: {locale: 'lt-LT', trial: 'Bandomasis laikotarpis baigiasi {date}.', trialEnding: 'Bandomasis laikotarpis baigiasi {date}. Prenumerata nebus atnaujinta.', access: 'Prieiga baigiasi {date}.'},
+  lv: {locale: 'lv-LV', trial: 'Izmēģinājuma periods beidzas {date}.', trialEnding: 'Izmēģinājuma periods beidzas {date}. Abonements netiks atjaunots.', access: 'Piekļuve beidzas {date}.'},
+  es: {locale: 'es-ES', trial: 'El periodo de prueba termina el {date}.', trialEnding: 'El periodo de prueba termina el {date}. Tu suscripción no se renovará.', access: 'El acceso termina el {date}.'},
+  bg: {locale: 'bg-BG', trial: 'Пробният период приключва на {date}.', trialEnding: 'Пробният период приключва на {date}. Абонаментът няма да бъде подновен.', access: 'Достъпът приключва на {date}.'}
 };
 
 const COMPACT_TEXT = {
@@ -70,7 +70,13 @@ export function subscriptionDateDetail(data, language = 'en') {
   if (!date) return '';
   const copy = DATE_TEXT[language] || DATE_TEXT.en;
   const formatted = new Intl.DateTimeFormat(copy.locale, {day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC'}).format(date);
-  const template = data.cancel_at_period_end === true ? copy.access : data.subscription_status === 'trialing' ? copy.trial : '';
+  const template = data.cancel_at_period_end === true && data.subscription_status === 'trialing'
+    ? copy.trialEnding
+    : data.cancel_at_period_end === true
+      ? copy.access
+      : data.subscription_status === 'trialing'
+        ? copy.trial
+        : '';
   return template ? template.replace('{date}', formatted) : '';
 }
 
@@ -223,7 +229,7 @@ export function createBilling({api, user, language, escape, win = window, doc = 
         if (!response || typeof response !== 'object' || typeof response.allowed !== 'boolean') throw Error('Invalid status');
         data = response;
         const confirmed = data.stripe_subscription_id && ['active', 'trialing'].includes(data.subscription_status);
-        const message = returnKind === 'success' && !confirmed ? words[6] : returnKind === 'cancelled' ? words[7] : returnKind === 'portal' ? words[8] : '';
+        const message = returnKind === 'success' && !confirmed ? words[6] : returnKind === 'cancelled' ? words[7] : '';
         snapshot = {id, data, time: Date.now(), message};
         draw(message);
         if (returnKind === 'success' && !confirmed && attempts++ < 4) timer = setTimer(refresh, 2500);

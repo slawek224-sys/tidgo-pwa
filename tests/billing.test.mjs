@@ -62,6 +62,7 @@ test('portal cancellation is shown from backend flag, with no polling or remount
   const status={allowed:true,subscription_status:'trialing',stripe_subscription_id:'sub_test',stripe_customer_id:'cus_test',cancel_at_period_end:true};
   const f=fixture('portal',status); f.billing.mount(); await tick();
   assert.match(f.panel.innerHTML,/Trial · Cancellation scheduled/);
+  assert.doesNotMatch(f.panel.innerHTML,/Returned from the billing portal/);
   assert.equal(f.timers.size,0);
   f.billing.mount(); await tick();
   assert.equal(f.calls.length,1);
@@ -89,13 +90,14 @@ test('only success retries pending webhook and stops on confirmation', async()=>
 test('trial and scheduled cancellation show a real end date', async()=>{
   const end='2026-09-22T00:00:00Z';
   assert.equal(subscriptionDateDetail({subscription_status:'trialing',subscription_current_period_end:end},'en'),'Trial ends 22 September 2026.');
-  assert.equal(subscriptionDateDetail({subscription_status:'trialing',subscription_current_period_end:end,cancel_at_period_end:true},'pl'),'Dostęp kończy się 22 września 2026.');
+  assert.equal(subscriptionDateDetail({subscription_status:'trialing',subscription_current_period_end:end,cancel_at_period_end:true},'pl'),'Okres próbny kończy się 22 września 2026. Subskrypcja nie zostanie odnowiona.');
   assert.equal(subscriptionDateDetail({subscription_status:'trialing',trial_ends_at:end},'ro'),'Perioada de probă se încheie la 22 septembrie 2026.');
   assert.equal(subscriptionDateDetail({subscription_status:'trialing',subscription_current_period_end:'invalid'},'en'),'');
   const f=fixture('portal',{allowed:true,subscription_status:'trialing',stripe_subscription_id:'sub_test',stripe_customer_id:'cus_test',subscription_current_period_end:end,cancel_at_period_end:true});
   f.billing.mount(); await tick();
   assert.match(f.panel.innerHTML,/Trial · Cancellation scheduled/);
-  assert.match(f.panel.innerHTML,/Access ends 22 September 2026/);
+  assert.match(f.panel.innerHTML,/Trial ends 22 September 2026\. Your subscription will not renew\./);
+  assert.match(f.panel.innerHTML,/data-billing="portal"/);
   f.billing.stop();
 });
 
