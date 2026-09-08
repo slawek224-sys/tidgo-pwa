@@ -60,7 +60,7 @@ const MARKETING_COPY = {
     contactTitle: "Want to try it or ask a question?", contactText: "Send a quick message. No sales maze, just a human reply.", yourEmail: "Your email", roleSelf: "I work for myself", roleAccountant: "I am an accountant", roleCurious: "Just curious", message: "Message", sendMessage: "Send message", messageSent: "Message sent. Thank you.", messagePending: "Automatic contact is being connected. Please try again after the next API deploy.",
     selfLabel: "I work for myself", selfTitle: "Open TidGo App", selfText: "Take receipt photos, add income, keep monthly records ready for your accountant.", scanApp: "Scan app", openApp: "Open app",
     accountantLabel: "I'm an accountant", accountantTitle: "Open Accountant Portal", accountantText: "View connected client records, download CSV/PDF packs, and reduce deadline panic.", scanPortal: "Scan portal", openPortal: "Open Accountant Portal", viewDemo: "View quick demo",
-    footer: "TidGo helps organise records. It is not accounting, tax advice or payroll software.", companyFooter: "TidGo Ltd. Company number 17356146. 128 City Road, London, EC1V 2NX. hello@tidgo.co.uk", home: "Home", appDemo: "App demo", accountantDemo: "Accountant demo", deleteAccountLink: "Delete account", backHome: "Back to homepage", step: "Step", foundingTester: "Become a Founding Tester", testerCalloutTitle: "Want to help shape TidGo?", testerCalloutText: "Join the Android closed test, use the app for at least 14 days, and send honest feedback. No positive review required.", testerCalloutButton: "Become an Android tester", findAccountantTitle: "Find an accountant who understands tidy digital records", findAccountantText: "TidGo is building a small early access introduction list for self-employed people, landlords, CIS workers, accountants and bookkeepers. No public ranking yet. Tell us what you need and we will try to make a sensible introduction.", needAccountantTitle: "I need an accountant or bookkeeper", needAccountantText: "Tell us where you are, what you do and which language you prefer. TidGo may introduce you to an accountant or bookkeeper, but does not provide accounting advice or guarantee third-party services.", accountantJoinTitle: "I am an accountant or bookkeeper", accountantJoinText: "Join the early TidGo accountant list. We are looking for people who can help users with Self Assessment, CIS, landlords, MTD records and simple bookkeeping.", yourName: "Your name", businessType: "Work type or firm type", location: "Town or area", preferredLanguage: "Preferred language", phoneOptional: "Phone or WhatsApp (optional)", accountantFirm: "Firm name", servicesOffered: "Services offered", submitIntroRequest: "Send request", introSent: "Request sent. Thank you.", introPending: "Request could not be sent. Please email hello@tidgo.co.uk.", introDisclaimer: "TidGo may help with introductions, but it is not an accountant, tax adviser or broker. You choose and check any accountant yourself.",
+    footer: "TidGo helps organise records. It is not accounting, tax advice or payroll software.", companyFooter: "TidGo Ltd. Company number 17356146. 128 City Road, London, EC1V 2NX. hello@tidgo.co.uk", home: "Home", appDemo: "App demo", accountantDemo: "Accountant demo", deleteAccountLink: "Delete account", backHome: "Back to homepage", step: "Step", findAccountantTitle: "Find an accountant who understands tidy digital records", findAccountantText: "TidGo is building a small introduction list for self-employed people, landlords, CIS workers, accountants and bookkeepers. No public ranking yet. Tell us what you need and we will try to make a sensible introduction.", needAccountantTitle: "I need an accountant or bookkeeper", needAccountantText: "Tell us where you are, what you do and which language you prefer. TidGo may introduce you to an accountant or bookkeeper, but does not provide accounting advice or guarantee third-party services.", accountantJoinTitle: "I am an accountant or bookkeeper", accountantJoinText: "Join the early TidGo accountant list. We are looking for people who can help users with Self Assessment, CIS, landlords, MTD records and simple bookkeeping.", yourName: "Your name", businessType: "Work type or firm type", location: "Town or area", preferredLanguage: "Preferred language", phoneOptional: "Phone or WhatsApp (optional)", accountantFirm: "Firm name", servicesOffered: "Services offered", submitIntroRequest: "Send request", introSent: "Request sent. Thank you.", introPending: "Request could not be sent. Please email hello@tidgo.co.uk.", introDisclaimer: "TidGo may help with introductions, but it is not an accountant, tax adviser or broker. You choose and check any accountant yourself.",
     trySafe: "Try it safely: take a photo, check the result, download your summary, and delete your account/data any time from Settings.",
     appDemoKind: "For self-employed", appDemoTitle: "See the receipt flow before signing in.", appDemoText: "TidGo is built around one simple habit: take the photo now, send a cleaner pack later.",
     accountantDemoKind: "For accountants", accountantDemoTitle: "See the client handoff before signing in.", accountantDemoText: "The accountant portal is read-only. Clients keep records tidy; you get a cleaner pack when it is time to work.",
@@ -85,7 +85,7 @@ const MARKETING_COPY = {
     contactTitle: "Chcesz przetestować albo zapytać?", contactText: "Wyślij krótką wiadomość. Bez lejka sprzedażowego, normalna odpowiedź od człowieka.", yourEmail: "Twój email", roleSelf: "Pracuję na siebie", roleAccountant: "Jestem księgowym", roleCurious: "Tylko sprawdzam", message: "Wiadomość", sendMessage: "Wyślij wiadomość", messageSent: "Wiadomość wysłana. Dziękuję.", messagePending: "Automatyczny kontakt jest podpinany. Spróbuj po następnym deployu API.",
     selfLabel: "Pracuję na siebie", selfTitle: "Otwórz aplikację TidGo", selfText: "Rób zdjęcia paragonów, dodawaj przychody i trzymaj miesięczne rekordy gotowe dla księgowego.", scanApp: "Skanuj app", openApp: "Otwórz app",
     accountantLabel: "Jestem księgowym", accountantTitle: "Otwórz portal księgowego", accountantText: "Zobacz rekordy klientów, pobierz CSV/PDF i ogranicz panikę przed terminem.", scanPortal: "Skanuj portal", openPortal: "Otwórz portal księgowego", viewDemo: "Zobacz szybkie demo",
-    footer: "TidGo pomaga porządkować rekordy. To nie jest księgowość, porada podatkowa ani payroll.", companyFooter: "TidGo Ltd. Company number 17356146. 128 City Road, London, EC1V 2NX. hello@tidgo.co.uk", home: "Start", appDemo: "Demo app", accountantDemo: "Demo księgowego", deleteAccountLink: "Usuń konto", backHome: "Wróć na stronę główną", step: "Krok", foundingTester: "Zostań Founding Tester", testerCalloutTitle: "Chcesz pomóc dopracować TidGo?", testerCalloutText: "Dołącz do zamkniętych testów Androida, używaj aplikacji przez co najmniej 14 dni i wyślij szczery feedback. Nie wymagamy pozytywnej opinii.", testerCalloutButton: "Zostań testerem Androida", findAccountantTitle: "Znajdź księgowego, który rozumie uporządkowane cyfrowe rekordy", findAccountantText: "TidGo buduje małą listę kontaktową dla self-employed, landlordów, CIS workers, księgowych i bookkeeperów. Na razie bez publicznego rankingu. Napisz, czego potrzebujesz, a spróbujemy sensownie połączyć strony.", needAccountantTitle: "Szukam księgowego lub bookkeepera", needAccountantText: "Napisz, gdzie jesteś, czym się zajmujesz i w jakim języku wolisz rozmawiać. TidGo może pomóc w kontakcie, ale nie świadczy usług księgowych i nie gwarantuje usług firm trzecich.", accountantJoinTitle: "Jestem księgowym albo bookkeeperem", accountantJoinText: "Dołącz do wczesnej listy TidGo. Szukamy osób, które pomagają przy Self Assessment, CIS, landlordach, rekordach MTD i prostej księgowości.", yourName: "Imię i nazwisko", businessType: "Rodzaj pracy lub firmy", location: "Miasto lub okolica", preferredLanguage: "Preferowany język", phoneOptional: "Telefon lub WhatsApp (opcjonalnie)", accountantFirm: "Nazwa firmy", servicesOffered: "Usługi", submitIntroRequest: "Wyślij zgłoszenie", introSent: "Zgłoszenie wysłane. Dziękuję.", introPending: "Nie udało się wysłać. Napisz proszę na hello@tidgo.co.uk.", introDisclaimer: "TidGo może pomagać w kontaktach, ale nie jest księgowym, doradcą podatkowym ani brokerem. Sam wybierasz i sprawdzasz księgowego.",
+    footer: "TidGo pomaga porządkować rekordy. To nie jest księgowość, porada podatkowa ani payroll.", companyFooter: "TidGo Ltd. Company number 17356146. 128 City Road, London, EC1V 2NX. hello@tidgo.co.uk", home: "Start", appDemo: "Demo app", accountantDemo: "Demo księgowego", deleteAccountLink: "Usuń konto", backHome: "Wróć na stronę główną", step: "Krok", findAccountantTitle: "Znajdź księgowego, który rozumie uporządkowane cyfrowe rekordy", findAccountantText: "TidGo buduje małą listę kontaktową dla self-employed, landlordów, CIS workers, księgowych i bookkeeperów. Na razie bez publicznego rankingu. Napisz, czego potrzebujesz, a spróbujemy sensownie połączyć strony.", needAccountantTitle: "Szukam księgowego lub bookkeepera", needAccountantText: "Napisz, gdzie jesteś, czym się zajmujesz i w jakim języku wolisz rozmawiać. TidGo może pomóc w kontakcie, ale nie świadczy usług księgowych i nie gwarantuje usług firm trzecich.", accountantJoinTitle: "Jestem księgowym albo bookkeeperem", accountantJoinText: "Dołącz do wczesnej listy TidGo. Szukamy osób, które pomagają przy Self Assessment, CIS, landlordach, rekordach MTD i prostej księgowości.", yourName: "Imię i nazwisko", businessType: "Rodzaj pracy lub firmy", location: "Miasto lub okolica", preferredLanguage: "Preferowany język", phoneOptional: "Telefon lub WhatsApp (opcjonalnie)", accountantFirm: "Nazwa firmy", servicesOffered: "Usługi", submitIntroRequest: "Wyślij zgłoszenie", introSent: "Zgłoszenie wysłane. Dziękuję.", introPending: "Nie udało się wysłać. Napisz proszę na hello@tidgo.co.uk.", introDisclaimer: "TidGo może pomagać w kontaktach, ale nie jest księgowym, doradcą podatkowym ani brokerem. Sam wybierasz i sprawdzasz księgowego.",
     trySafe: "Sprawdź bez stresu: zrób zdjęcie, zobacz wynik, pobierz summary i usuń konto/dane w dowolnym momencie w ustawieniach.",
     appDemoKind: "Dla self-employed", appDemoTitle: "Zobacz flow paragonu bez logowania.", appDemoText: "TidGo opiera się na jednym prostym nawyku: zrób zdjęcie teraz, wyślij czystszą paczkę później.",
     accountantDemoKind: "Dla księgowych", accountantDemoTitle: "Zobacz przekazanie klienta bez logowania.", accountantDemoText: "Portal księgowego jest tylko do odczytu. Klient trzyma rekordy w porządku, a ty dostajesz czystszą paczkę do pracy.",
@@ -99,7 +99,7 @@ const MARKETING_COPY = {
   }
 };
 MARKETING_COPY.ro = { ...MARKETING_COPY.en,
-  navHow: "Cum functioneaza", navWho: "Pentru cine?", navStory: "Povestea noastra", foundingTester: "Devino Founding Tester", navFindAccountant: "Gaseste un contabil", navPricing: "Lansare si pret", navFaq: "FAQ", navMtd: "Baza de cunostinte MTD", navContact: "Contact",
+  navHow: "Cum functioneaza", navWho: "Pentru cine?", navStory: "Povestea noastra", navFindAccountant: "Gaseste un contabil", navPricing: "Lansare si pret", navFaq: "FAQ", navMtd: "Baza de cunostinte MTD", navContact: "Contact",
   navIntake: "Cum adaugi documente", navAccountantPack: "Arata contabilului",
   heroEyebrow: "Bonuri inauntru. Evidente ordonate afara.", heroTitle: "Un loc simplu pentru bonuri.", heroText: "Trimite bonul prin WhatsApp. TidGo tine bonurile, dovezile de venit si evidentele MTD ordonate pentru self-employed, CIS workers, landlords si contabili.",
   stepSnap: "Fotografiaza bonuri", stepTidy: "Tine evidenta ordonata", stepPack: "Trimite pachetul curat",
@@ -112,7 +112,7 @@ MARKETING_COPY.ro = { ...MARKETING_COPY.en,
   contactTitle: "Vrei sa testezi sau sa intrebi ceva?", contactText: "Trimite un mesaj scurt. Fara labirint de vanzari, doar un raspuns uman.", yourEmail: "Emailul tau", roleSelf: "Lucrez pe cont propriu", roleAccountant: "Sunt contabil", roleCurious: "Doar verific", message: "Mesaj", sendMessage: "Trimite mesaj", messageSent: "Mesaj trimis. Multumesc.", messagePending: "Contactul automat este conectat. Incearca din nou dupa urmatorul deploy API.",
   selfLabel: "Lucrez pe cont propriu", selfTitle: "Deschide aplicatia TidGo", selfText: "Fotografiaza bonuri, adauga venituri si tine evidenta lunara pregatita pentru contabil.", scanApp: "Scaneaza app", openApp: "Deschide app",
   accountantLabel: "Sunt contabil", accountantTitle: "Deschide portalul contabilului", accountantText: "Vezi evidentele clientilor conectati, descarca pachete CSV/PDF si redu panica de termen limita.", scanPortal: "Scaneaza portal", openPortal: "Deschide portalul contabilului", viewDemo: "Vezi demo rapid",
-  footer: "TidGo ajuta la organizarea evidentelor. Nu este contabilitate, consultanta fiscala sau payroll.", companyFooter: "TidGo Ltd. Company number 17356146. 128 City Road, London, EC1V 2NX. hello@tidgo.co.uk", home: "Acasa", appDemo: "Demo app", accountantDemo: "Demo contabil", deleteAccountLink: "Sterge contul", backHome: "Inapoi la pagina principala", step: "Pas", testerCalloutTitle: "Vrei sa ajuti la imbunatatirea TidGo?", testerCalloutText: "Alatura-te testului inchis pentru Android, foloseste aplicatia cel putin 14 zile si trimite feedback sincer. Nu cerem o recenzie pozitiva.", testerCalloutButton: "Devino tester Android",
+  footer: "TidGo ajuta la organizarea evidentelor. Nu este contabilitate, consultanta fiscala sau payroll.", companyFooter: "TidGo Ltd. Company number 17356146. 128 City Road, London, EC1V 2NX. hello@tidgo.co.uk", home: "Acasa", appDemo: "Demo app", accountantDemo: "Demo contabil", deleteAccountLink: "Sterge contul", backHome: "Inapoi la pagina principala", step: "Pas", 
   trySafe: "Incearca in siguranta: fa o poza, verifica rezultatul, descarca sumarul si sterge contul/datele oricand din setari.",
   appDemoKind: "Pentru self-employed", appDemoTitle: "Vezi fluxul bonului inainte de autentificare.", appDemoText: "TidGo se bazeaza pe un obicei simplu: faci poza acum, trimiti un pachet mai curat mai tarziu.",
   accountantDemoKind: "Pentru contabili", accountantDemoTitle: "Vezi predarea clientului inainte de autentificare.", accountantDemoText: "Portalul contabilului este doar pentru citire. Clientii isi tin evidentele ordonate; tu primesti un pachet mai curat pentru lucru.",
@@ -125,7 +125,7 @@ MARKETING_COPY.ro = { ...MARKETING_COPY.en,
   demoRecordsScreen: "Evidente client", demoRecordsTitle: "Descarca pachetul clientului", demoRecordsText: "Deschide clientul, verifica totalurile, cere documente lipsa si descarca CSV sau PDF."
 };
 MARKETING_COPY.lt = { ...MARKETING_COPY.en,
-  navHow: "Kaip veikia", navWho: "Kam skirta?", navStory: "Kūrėjo istorija", foundingTester: "Tapk Founding Testeriu", navFindAccountant: "Rasti buhalterį", navPricing: "Startas ir kaina", navFaq: "DUK", navMtd: "MTD žinių bazė", navContact: "Kontaktai",
+  navHow: "Kaip veikia", navWho: "Kam skirta?", navStory: "Kūrėjo istorija", navFindAccountant: "Rasti buhalterį", navPricing: "Startas ir kaina", navFaq: "DUK", navMtd: "MTD žinių bazė", navContact: "Kontaktai",
   navIntake: "Kaip prideti dokumentus", navAccountantPack: "Parodyti buhalteriui",
   heroEyebrow: "Kvitai vidun. Tvarkingi irasai lauk.", heroTitle: "Viena paprasta vieta kvitams.", heroText: "Nufotografuok kvita per WhatsApp. TidGo tvarko kvitus, pajamu irodymus ir MTD irasus self-employed, CIS darbuotojams, landlords ir buhalteriams.",
   stepSnap: "Nufotografuok kvita", stepTidy: "Laikyk irasus tvarkingai", stepPack: "Issiusk tvarkinga paketa",
@@ -138,7 +138,7 @@ MARKETING_COPY.lt = { ...MARKETING_COPY.en,
   contactTitle: "Norite pabandyti ar paklausti?", contactText: "Parasykite trumpa zinute. Be pardavimo labirinto, tiesiog zmogiskas atsakymas.", yourEmail: "Jusu el. pastas", roleSelf: "Dirbu sau", roleAccountant: "Esu buhalteris", roleCurious: "Tik domiuosi", message: "Zinute", sendMessage: "Siusti zinute", messageSent: "Zinute issiusta. Aciu.", messagePending: "Automatinis kontaktas prijungiamas. Pabandykite po kito API deploy.",
   selfLabel: "Dirbu sau", selfTitle: "Atidaryti TidGo app", selfText: "Fotografuok kvitus, pridek pajamas ir laikyk menesio irasus paruostus buhalteriui.", scanApp: "Skenuoti app", openApp: "Atidaryti app",
   accountantLabel: "Esu buhalteris", accountantTitle: "Atidaryti buhalterio portala", accountantText: "Matyk prijungtu klientu irasus, atsisiusk CSV/PDF paketus ir sumazink termino panika.", scanPortal: "Skenuoti portala", openPortal: "Atidaryti buhalterio portala", viewDemo: "Greitas demo",
-  footer: "TidGo padeda tvarkyti irasus. Tai nera buhalterija, mokesciu konsultacija ar payroll programa.", companyFooter: "TidGo Ltd. Company number 17356146. 128 City Road, London, EC1V 2NX. hello@tidgo.co.uk", home: "Pradzia", appDemo: "App demo", accountantDemo: "Buhalterio demo", deleteAccountLink: "Istrinti paskyra", backHome: "Grizti i pagrindini puslapi", step: "Zingsnis", testerCalloutTitle: "Nori padeti tobulinti TidGo?", testerCalloutText: "Prisijunk prie uzdaro Android testo, naudok programa bent 14 dienu ir atsiusk sazininga atsiliepima. Teigiamo ivertinimo nereikalaujame.", testerCalloutButton: "Tapk Android testeriu",
+  footer: "TidGo padeda tvarkyti irasus. Tai nera buhalterija, mokesciu konsultacija ar payroll programa.", companyFooter: "TidGo Ltd. Company number 17356146. 128 City Road, London, EC1V 2NX. hello@tidgo.co.uk", home: "Pradzia", appDemo: "App demo", accountantDemo: "Buhalterio demo", deleteAccountLink: "Istrinti paskyra", backHome: "Grizti i pagrindini puslapi", step: "Zingsnis", 
   trySafe: "Isbandyk saugiai: nufotografuok, patikrink rezultata, atsisiusk suvestine ir bet kada istrink paskyra/duomenis nustatymuose.",
   appDemoKind: "Dirbantiems sau", appDemoTitle: "Pamatyk kvito eiga neprisijungus.", appDemoText: "TidGo remiasi vienu paprastu iprociu: nufotografuok dabar, tvarkingesni paketa issiusk veliau.",
   accountantDemoKind: "Buhalteriams", accountantDemoTitle: "Pamatyk kliento perdavima neprisijungus.", accountantDemoText: "Buhalterio portalas yra tik skaitymui. Klientai tvarko irasus, o jus gaunate tvarkingesni paketa darbui.",
@@ -209,8 +209,8 @@ Object.assign(MARKETING_COPY.en, {
   faqBuildTitle: "Real questions make a better FAQ.",
   faqBuildText: "Send us what feels unclear: setup, receipts, PDF, accountant access, MTD, anything. We are building this FAQ from real user questions, not corporate fog.",
   launchTabTitle: "Launch and pricing",
-  launchTabText: "TidGo is in early access and free while we test with real users. Paid plans are expected later, with clear notice before anything changes.",
-  launchPricingFullText: "TidGo is in early access for a small group of real users. It is free while we collect feedback, improve the app and prepare clearer guides. If paid plans are introduced, users will be told clearly in advance and will always be able to export or delete their records.",
+  launchTabText: "14 days free, then £5.99 per month. After cancellation, records remain available for 30 days to export.",
+  launchPricingFullText: "14 days free, then £5.99 per month. After cancellation, records remain available for 30 days to export.",
   intakeTitle: "How intake works",
   intakeText: "TidGo recognises you by your registered email address and linked WhatsApp number. You do not need to remember a special personal address yet.",
   intakeWhatsAppTitle: "WhatsApp intake",
@@ -296,8 +296,8 @@ Object.assign(MARKETING_COPY.pl, {
   faqBuildTitle: "Prawdziwe pytania robią lepsze FAQ.",
   faqBuildText: "Wyślij nam, co jest niejasne: start, paragony, PDF, dostęp księgowego, MTD, cokolwiek. Budujemy FAQ z prawdziwych pytań, nie z firmowej mgły.",
   launchTabTitle: "Start i ceny",
-  launchTabText: "TidGo jest w early access i jest darmowe podczas testów z prawdziwymi użytkownikami. Płatne plany są spodziewane później, z jasną informacją przed zmianami.",
-  launchPricingFullText: "TidGo jest w early access dla małej grupy prawdziwych użytkowników. Jest darmowe, kiedy zbieramy feedback, poprawiamy aplikację i przygotowujemy jaśniejsze poradniki. Jeśli wprowadzimy płatne plany, użytkownicy dostaną jasną informację z wyprzedzeniem i zawsze będą mogli wyeksportować albo usunąć swoje rekordy.",
+  launchTabText: "14 dni za darmo, potem £5.99 miesięcznie. Po anulowaniu rekordy pozostają dostępne przez 30 dni do eksportu.",
+  launchPricingFullText: "14 dni za darmo, potem £5.99 miesięcznie. Po anulowaniu rekordy pozostają dostępne przez 30 dni do eksportu.",
   intakeTitle: "Jak działa dodawanie dokumentów",
   intakeText: "TidGo rozpoznaje Cię po zarejestrowanym adresie email i podłączonym numerze WhatsApp. Nie musisz pamiętać żadnego specjalnego osobistego adresu.",
   intakeWhatsAppTitle: "WhatsApp intake",
@@ -362,8 +362,8 @@ Object.assign(MARKETING_COPY.ro, {
   faqBuildTitle: "Intrebarile reale fac un FAQ mai bun.",
   faqBuildText: "Trimite-ne ce nu este clar: start, bonuri, PDF, acces contabil, MTD, orice. Construim FAQ-ul din intrebari reale, nu din ceata corporate.",
   launchTabTitle: "Lansare si pret",
-  launchTabText: "TidGo este in early access si este gratuit cat timp testam cu utilizatori reali. Planurile platite sunt asteptate mai tarziu, cu anunt clar inainte de schimbari.",
-  launchPricingFullText: "TidGo este in early access pentru un grup mic de utilizatori reali. Este gratuit cat timp strangem feedback, imbunatatim aplicatia si pregatim ghiduri mai clare. Daca apar planuri platite, utilizatorii vor fi anuntati clar din timp si vor putea mereu exporta sau sterge inregistrarile.",
+  launchTabText: "14 zile gratuite, apoi £5.99 pe lună. După anulare, înregistrările rămân disponibile 30 de zile pentru export.",
+  launchPricingFullText: "14 zile gratuite, apoi £5.99 pe lună. După anulare, înregistrările rămân disponibile 30 de zile pentru export.",
   intakeTitle: "Cum functioneaza adaugarea documentelor",
   intakeText: "TidGo te recunoaste dupa emailul inregistrat si numarul WhatsApp conectat. Nu trebuie sa retii o adresa personala speciala.",
   intakeWhatsAppTitle: "WhatsApp intake",
@@ -428,8 +428,8 @@ Object.assign(MARKETING_COPY.lt, {
   faqBuildTitle: "Tikri klausimai sukuria geresni DUK.",
   faqBuildText: "Parasykite, kas neaisku: startas, kvitai, PDF, buhalterio prieiga, MTD, bet kas. DUK kuriame is tikru klausimu, ne is korporacines miglos.",
   launchTabTitle: "Startas ir kaina",
-  launchTabText: "TidGo yra early access ir nemokama, kol testuojame su tikrais vartotojais. Mokami planai numatomi veliau, su aiskia zinute pries pokycius.",
-  launchPricingFullText: "TidGo yra early access mazai tikru vartotoju grupei. Programa nemokama, kol renkame atsiliepimus, geriname ja ir ruosiame aiskesnius gidus. Jei bus ivesti mokami planai, vartotojai bus aiskiai informuoti is anksto ir visada gales eksportuoti arba istrinti savo irasus.",
+  launchTabText: "14 dienų nemokamai, vėliau £5.99 per mėnesį. Atšaukus prenumeratą, įrašus galima eksportuoti dar 30 dienų.",
+  launchPricingFullText: "14 dienų nemokamai, vėliau £5.99 per mėnesį. Atšaukus prenumeratą, įrašus galima eksportuoti dar 30 dienų.",
   intakeTitle: "Kaip veikia dokumentu pridejimas",
   intakeText: "TidGo atpazista jus pagal registruota el. pasta ir prijungta WhatsApp numeri. Nereikia prisiminti specialaus asmeninio adreso.",
   intakeWhatsAppTitle: "WhatsApp intake",
@@ -502,7 +502,7 @@ Object.assign(MARKETING_COPY.en, {
   mtdAutoSignupText: "Received a letter saying HMRC signed you up automatically? That does not connect any app. Start here: check your records, choose software, then catch up.",
   mtdSourceTitle: "Official source",
   mtdSourceText: "Read the public GOV.UK guidance on Making Tax Digital for Income Tax and quarterly updates.",
-  launchPricingFullText: "TidGo is in early access for a small group of real users. It is free while we collect feedback, improve the app and prepare clearer guides. Users will be told clearly in advance and will always be able to export or delete their records.",
+  launchPricingFullText: "14 days free, then £5.99 per month. After cancellation, records remain available for 30 days to export.",
   pricingText: "TidGo is available with a 14-day free trial. If paid plans are introduced, users will be told clearly in advance and will always be able to export or delete their records.",
   mtdWho: "Does MTD apply to me?",
   mtdWhoText: "Thresholds, exemptions and the plain-English version of what Making Tax Digital actually means.",
@@ -553,8 +553,8 @@ Object.assign(MARKETING_COPY.pl, {
   mtdAutoSignupText: "Dostałeś list, że HMRC automatycznie zapisało Cię do MTD? To nie podłącza żadnej aplikacji. Zacznij tutaj: sprawdź rekordy, wybierz software i nadrób zaległości.",
   mtdSourceTitle: "Oficjalne źródło",
   mtdSourceText: "Przeczytaj publiczne GOV.UK guidance o Making Tax Digital for Income Tax i quarterly updates.",
-  launchPricingFullText: "TidGo jest w early access dla małej grupy prawdziwych użytkowników. Jest darmowe, kiedy zbieramy feedback, poprawiamy aplikację i przygotowujemy jaśniejsze poradniki. Użytkownicy dostaną jasną informację z wyprzedzeniem i zawsze będą mogli wyeksportować albo usunąć swoje rekordy.",
-  pricingText: "TidGo jest darmowe w trakcie early access. Jeśli wprowadzimy płatne plany, użytkownicy dostaną jasną informację z wyprzedzeniem i zawsze będą mogli wyeksportować albo usunąć swoje rekordy.",
+  launchPricingFullText: "14 dni za darmo, potem £5.99 miesięcznie. Po anulowaniu rekordy pozostają dostępne przez 30 dni do eksportu.",
+  pricingText: "14 dni za darmo, potem £5.99 miesięcznie. Po anulowaniu rekordy pozostają dostępne przez 30 dni do eksportu.",
   mtdWho: "Czy MTD dotyczy Ciebie?",
   mtdWhoText: "Progi, zwolnienia i proste wyjaśnienie, co Making Tax Digital naprawdę oznacza.",
   mtdSpreadsheets: "Czy moge dalej uzywac Excela do MTD?",
@@ -604,8 +604,8 @@ Object.assign(MARKETING_COPY.ro, {
   mtdAutoSignupText: "Ai primit o scrisoare ca HMRC te-a inscris automat la MTD? Asta nu conecteaza nicio aplicatie. Incepe aici: verifica evidentele, alege software si recupereaza actualizarile lipsa.",
   mtdSourceTitle: "Sursa oficiala",
   mtdSourceText: "Citeste ghidul public GOV.UK despre Making Tax Digital for Income Tax si quarterly updates.",
-  launchPricingFullText: "TidGo este in early access pentru un grup mic de utilizatori reali. Este gratuit cat timp strangem feedback, imbunatatim aplicatia si pregatim ghiduri mai clare. Utilizatorii vor fi anuntati clar din timp si vor putea mereu exporta sau sterge inregistrarile.",
-  pricingText: "TidGo este gratuit in early access. Daca apar planuri platite, utilizatorii vor fi anuntati clar din timp si vor putea mereu exporta sau sterge inregistrarile.",
+  launchPricingFullText: "14 zile gratuite, apoi £5.99 pe lună. După anulare, înregistrările rămân disponibile 30 de zile pentru export.",
+  pricingText: "14 zile gratuite, apoi £5.99 pe lună. După anulare, înregistrările rămân disponibile 30 de zile pentru export.",
   mtdWho: "Ți se aplică MTD?",
   mtdWhoText: "Praguri, scutiri și explicația simplă a ceea ce înseamnă Making Tax Digital.",
   mtdSpreadsheets: "Pot folosi Excel pentru MTD?",
@@ -655,8 +655,8 @@ Object.assign(MARKETING_COPY.lt, {
   mtdAutoSignupText: "Gavote laišką, kad HMRC automatiškai įtraukė jus į MTD? Tai neprijungia jokios programos. Pradėkite čia: patikrinkite įrašus, pasirinkite software ir sutvarkykite praleistus updates.",
   mtdSourceTitle: "Oficialus saltinis",
   mtdSourceText: "Skaitykite viesas GOV.UK gaires apie Making Tax Digital for Income Tax ir quarterly updates.",
-  launchPricingFullText: "TidGo yra early access mazai tikru vartotoju grupei. Programa nemokama, kol renkame atsiliepimus, geriname ja ir ruosiame aiskesnius gidus. Vartotojai bus aiskiai informuoti is anksto ir visada gales eksportuoti arba istrinti savo irasus.",
-  pricingText: "TidGo nemokama early access metu. Jei bus ivesti mokami planai, vartotojai bus aiskiai informuoti is anksto ir visada gales eksportuoti arba istrinti savo irasus.",
+  launchPricingFullText: "14 dienų nemokamai, vėliau £5.99 per mėnesį. Atšaukus prenumeratą, įrašus galima eksportuoti dar 30 dienų.",
+  pricingText: "14 dienų nemokamai, vėliau £5.99 per mėnesį. Atšaukus prenumeratą, įrašus galima eksportuoti dar 30 dienų.",
   mtdWho: "Ar MTD taikomas tau?",
   mtdWhoText: "Ribos, išimtys ir paprastas paaiškinimas, ką Making Tax Digital iš tikrųjų reiškia.",
   mtdSpreadsheets: "Ar galiu naudoti Excel MTD?",
@@ -2983,10 +2983,10 @@ const LEGAL_TEXT = {
 const FULL_LEGAL_MARKDOWN = {
   privacy: `# TidGo Privacy Policy
 
-**Last updated:** 22 July 2026
-**Version:** 0.9 — Closed Testing / Beta
+**Last updated:** 8 September 2026
+**Version:** 1.0
 
-> **Beta notice:** TidGo is currently in closed testing (Google Play closed testing) and the PWA is under continuous development until the service is formally launched as a subscription product. This policy reflects how we handle your data during closed testing. We will review and update it before public launch if our infrastructure or processing activities change.
+> This policy explains how TidGo handles your personal data. We will update it when our processing activities change and notify you of material changes.
 
 ## 1. Who we are
 
@@ -3165,9 +3165,9 @@ A separate Cookie Policy describing all cookies and local storage used by TidGo 
 
 The TidGo Android app does not currently use Google Analytics or Firebase Analytics. No third-party analytics or advertising identifiers are collected within the Android app.
 
-## 14. Early access notice
+## 14. Service updates
 
-TidGo is currently in **closed testing** (Google Play closed testing), and the PWA remains under continuous development until the service is formally announced as a subscription product. Features may change and data structures may evolve during this phase. We will inform you of material changes to this policy. You will always be told clearly before any paid plan applies to you.
+TidGo continues to be maintained and improved. We will inform you of material changes to this policy. Current subscription prices and trial details are shown on the pricing page and before you agree to a subscription.
 
 ## 15. Changes to this policy
 
@@ -3184,8 +3184,8 @@ Questions, requests or complaints:
 128 City Road, London, EC1V 2NX`,
   terms: `# TidGo Terms & Conditions
 
-**Last updated:** 30 July 2026
-**Version:** 0.10 — Closed Testing / Beta
+**Last updated:** 8 September 2026
+**Version:** 1.0
 
 Please read these Terms & Conditions ("Terms") carefully before using TidGo. You accept these Terms by ticking the acceptance box when creating an account, and by continuing to use TidGo. If you do not agree, please do not use the service.
 
@@ -3224,15 +3224,11 @@ You must be at least **18 years old** and capable of entering into a binding con
 - You must not share your account with others or use another person's account without permission.
 - You are responsible for all activity that occurs under your account.
 
-## 5. Early access / testing
+## 5. Subscriptions and existing access arrangements
 
-TidGo is currently in a **closed testing / beta phase**:
-
-- The Android app is available via **Google Play closed testing** only.
-- The PWA (web app) is **under continuous development** and will remain so until TidGo is formally launched as a subscription product.
-- Features may change, be added or removed at any time; occasional bugs, downtime or data-format changes may occur.
-- The service is provided **free of charge** during this phase. When TidGo launches as a subscription product, **you will always be clearly informed before any paid plan starts or applies to you**, and no charges will apply without your agreement.
-- Android closed testers may be offered free access to the TidGo Core plan as a reward for taking part in testing. To qualify, you must join the Google Play closed test, remain a tester for at least 14 days, genuinely try the app, and send short honest feedback or report problems. We do **not** require a positive review, star rating or public endorsement. "Free access" means free access to the TidGo Core plan for as long as the service remains available. It is non-transferable, and optional future paid add-ons are not included.
+- New subscriptions start with a 14-day free trial, followed by £5.99 per month. The applicable price and payment details are shown before you agree to subscribe.
+- No charges will apply without your agreement. You may cancel your subscription; see the pricing page for cancellation and access details.
+- Any free access already granted under an earlier arrangement remains subject to the terms on which it was granted. This is not an invitation to join a new promotion.
 
 ## 6. Your content and data
 
@@ -3284,7 +3280,7 @@ UK law may require you to keep your own business records (for example, HMRC gene
 
 ## 12. Availability and changes to the service
 
-- We aim to keep TidGo available and working well, but we do not guarantee uninterrupted or error-free operation, especially during early access.
+- We aim to keep TidGo available and working well, but we do not guarantee uninterrupted or error-free operation.
 - We may modify, suspend or discontinue the service (in whole or in part). If we discontinue the service or materially reduce it, we will give you reasonable notice and an opportunity to export your data where practicable.
 
 ## 13. Termination
@@ -6826,7 +6822,7 @@ function earlyAccessBanner() {
   return `
           <section class="early-access-banner" aria-label="${escapeAttr(copy.title)}">
             <div>
-              <span class="early-access-kicker">Early Access</span>
+              <span class="early-access-kicker">${escapeHtml((EARLY_ACCESS_BANNER_COPY[state.marketingLanguage] || EARLY_ACCESS_BANNER_COPY.en).title)}</span>
               <strong>${escapeHtml(copy.title)}</strong>
               <p>${escapeHtml(copy.text)}</p>
             </div>
@@ -7228,15 +7224,15 @@ const STORY_COPY = {
   },
   "pl": {
     "eyebrow": "Nasza historia",
-    "html": "<h1>Z reklamówki w vanie do prostego narzędzia — historia TidGo</h1>\n<h2>31 stycznia, godzina dwudziesta pierwsza. Brzmi znajomo?</h2>\n<p>Wiesz jak to jest. Reklamówka wylatuje. Paragony wszędzie — deska rozdzielcza, kieszenie, ta kurtka co ją miałeś w listopadzie, ten jeden ze składu budowlanego który na pewno ci potrzebny ale już go nie odczytasz bo papier termiczny ma żywotność... hmm... otwartego piwa?</p>\n<p>Siedzisz z piwem, liczysz że zdążysz przed północą. Partnerka rzuca spojrzenie. To samo spojrzenie, każdy rok.</p>\n<p>Tak było u mnie. Przez lata.</p>\n<h2>Kto za tym stoi</h2>\n<p>Emigrant z Polski. Przyjechałem do UK 25 lat temu bez słowa po angielsku — no, &quot;f**k you&quot; umiałem, ale to jakoś nie pomagało na rozmowach kwalifikacyjnych. Zacząłem na budowach, CIS, lata jako fachowiec zanim wsiadłem za kółko — van, HGV, a w pewnym momencie zostałem operatorem telehandlera na budowie.</p>\n<p>Wiecie jak jest z forkie'm. Maszyna pojawia się kiedy ktoś potrzebuje, znika kiedy potrzebuje ktoś inny. Cały dzień zapierdzielasz a i tak stoi kolejka murarzy że cegieł nie ma na czas. Nie powiem że nie zdarzało mi się przyjąć jakiejś &quot;zachęty&quot;. Ekonomia budowlana. Murarze rozumieli.</p>\n<p>Paragony zawsze były koszmarem. Reklamówka, schowek, kieszenie po różnych kurtkach. Co styczeń ta sama historia.</p>\n<p>Na początku tego roku lekarz mnie uziemił. Koniec z maszynami, koniec z HGV. Zamiast siedzieć i się mazgaić, postanowiłem nauczyć się programować. A przy okazji wkopałem się po uszy w Making Tax Digital — bo to jest coś co ludzie tacy jak ja muszą teraz ogarniać.</p>\n<h2>Czemu nie wziąłem po prostu tego dużego oprogramowania</h2>\n<p>Przeszedłem przez wszystkie. Xero, QuickBooks, Sage, FreeAgent. Naprawdę dobre narzędzia. Zrobione dla księgowych. Nie dla kogoś kto wychodzi po dziesięciu godzinach na budowie i chce ogarnąć paragon zanim zapomni co to było.</p>\n<p>No i jeszcze ta kwestia językowa. Podatki są trudne w swoim języku. W obcym to już ściana. Dlatego TidGo działa w ośmiu językach — a wszystko co widzi twój księgowy jest po angielsku. Nikt nic nie musi tłumaczyć.</p>\n<p><a href=\"/how-it-works\">Więcej o tym jak to działa →</a></p>\n<h2>Czego TidGo nie robi — i dlaczego mówię to głośno</h2>\n<p>TidGo nie wysyła nic do HMRC. Nie zastępuje księgowego. Robi jedną rzecz: zbiera i porządkuje twoje cyfrowe rekordy zanim trafią do ludzi którzy ich potrzebują.</p>\n<p>Mówię to wprost bo widziałem za dużo reklam które obiecują wszystko a potem człowiek za nimi boi się odebrać telefon. Wolę powiedzieć gdzie jest granica z góry.</p>\n<h2>Zbudowane dla nas. Przez jednego z nas.</h2>\n<p>Żadnego wielkiego teamu. Żadnych inwestorów z Doliny Krzemowej ani z londyńskiego City.</p>\n<p>Tylko ja — ktoś kto jeździł tymi samymi drogami, pracował na tych samych budowach, stał w tej samej kolejce w składzie budowlanym i spędził za dużo wieczorów w styczniu na podłodze z reklamówką zastanawiając się czemu jeszcze nikt nie zrobił czegoś prostszego.</p>\n<p>Wiem jak wygląda dziesięć godzin na budowie. Wiem jak to jest dostać payslip CIS mailem i nie wiedzieć gdzie go wrzucić. Wiem jak to jest prowadzić biznes w obcym języku i trafiać na ścianę za każdym razem kiedy ktoś mówi &quot;reconciliation&quot; albo &quot;accruals&quot;.</p>\n<p>TidGo powstało z tego. Nie z analizy rynku w arkuszu kalkulacyjnym. Z lat robienia tej roboty i wiedzenia dokładnie gdzie boli.</p>\n<p>Jeśli brzmi to jak ktoś komu możesz zaufać ze swoimi rekordami — jestem tutaj.</p>\n<p>TidGo jest bezpłatne podczas Early Access. Potem £5.99 miesięcznie. Anulujesz kiedy chcesz, bez pytań, twoje rekordy zawsze są twoje.</p>\n<p>Przejrzyj stronę — znajdziesz tu dużo informacji o MTD i o tym jak to wszystko działa. A jeśli nie znajdziesz odpowiedzi na swoje pytanie — napisz śmiało, odpisuję na wszystko.</p>\n"
+    "html": "<h1>Z reklamówki w vanie do prostego narzędzia — historia TidGo</h1>\n<h2>31 stycznia, godzina dwudziesta pierwsza. Brzmi znajomo?</h2>\n<p>Wiesz jak to jest. Reklamówka wylatuje. Paragony wszędzie — deska rozdzielcza, kieszenie, ta kurtka co ją miałeś w listopadzie, ten jeden ze składu budowlanego który na pewno ci potrzebny ale już go nie odczytasz bo papier termiczny ma żywotność... hmm... otwartego piwa?</p>\n<p>Siedzisz z piwem, liczysz że zdążysz przed północą. Partnerka rzuca spojrzenie. To samo spojrzenie, każdy rok.</p>\n<p>Tak było u mnie. Przez lata.</p>\n<h2>Kto za tym stoi</h2>\n<p>Emigrant z Polski. Przyjechałem do UK 25 lat temu bez słowa po angielsku — no, &quot;f**k you&quot; umiałem, ale to jakoś nie pomagało na rozmowach kwalifikacyjnych. Zacząłem na budowach, CIS, lata jako fachowiec zanim wsiadłem za kółko — van, HGV, a w pewnym momencie zostałem operatorem telehandlera na budowie.</p>\n<p>Wiecie jak jest z forkie'm. Maszyna pojawia się kiedy ktoś potrzebuje, znika kiedy potrzebuje ktoś inny. Cały dzień zapierdzielasz a i tak stoi kolejka murarzy że cegieł nie ma na czas. Nie powiem że nie zdarzało mi się przyjąć jakiejś &quot;zachęty&quot;. Ekonomia budowlana. Murarze rozumieli.</p>\n<p>Paragony zawsze były koszmarem. Reklamówka, schowek, kieszenie po różnych kurtkach. Co styczeń ta sama historia.</p>\n<p>Na początku tego roku lekarz mnie uziemił. Koniec z maszynami, koniec z HGV. Zamiast siedzieć i się mazgaić, postanowiłem nauczyć się programować. A przy okazji wkopałem się po uszy w Making Tax Digital — bo to jest coś co ludzie tacy jak ja muszą teraz ogarniać.</p>\n<h2>Czemu nie wziąłem po prostu tego dużego oprogramowania</h2>\n<p>Przeszedłem przez wszystkie. Xero, QuickBooks, Sage, FreeAgent. Naprawdę dobre narzędzia. Zrobione dla księgowych. Nie dla kogoś kto wychodzi po dziesięciu godzinach na budowie i chce ogarnąć paragon zanim zapomni co to było.</p>\n<p>No i jeszcze ta kwestia językowa. Podatki są trudne w swoim języku. W obcym to już ściana. Dlatego TidGo działa w ośmiu językach — a wszystko co widzi twój księgowy jest po angielsku. Nikt nic nie musi tłumaczyć.</p>\n<p><a href=\"/how-it-works\">Więcej o tym jak to działa →</a></p>\n<h2>Czego TidGo nie robi — i dlaczego mówię to głośno</h2>\n<p>TidGo nie wysyła nic do HMRC. Nie zastępuje księgowego. Robi jedną rzecz: zbiera i porządkuje twoje cyfrowe rekordy zanim trafią do ludzi którzy ich potrzebują.</p>\n<p>Mówię to wprost bo widziałem za dużo reklam które obiecują wszystko a potem człowiek za nimi boi się odebrać telefon. Wolę powiedzieć gdzie jest granica z góry.</p>\n<h2>Zbudowane dla nas. Przez jednego z nas.</h2>\n<p>Żadnego wielkiego teamu. Żadnych inwestorów z Doliny Krzemowej ani z londyńskiego City.</p>\n<p>Tylko ja — ktoś kto jeździł tymi samymi drogami, pracował na tych samych budowach, stał w tej samej kolejce w składzie budowlanym i spędził za dużo wieczorów w styczniu na podłodze z reklamówką zastanawiając się czemu jeszcze nikt nie zrobił czegoś prostszego.</p>\n<p>Wiem jak wygląda dziesięć godzin na budowie. Wiem jak to jest dostać payslip CIS mailem i nie wiedzieć gdzie go wrzucić. Wiem jak to jest prowadzić biznes w obcym języku i trafiać na ścianę za każdym razem kiedy ktoś mówi &quot;reconciliation&quot; albo &quot;accruals&quot;.</p>\n<p>TidGo powstało z tego. Nie z analizy rynku w arkuszu kalkulacyjnym. Z lat robienia tej roboty i wiedzenia dokładnie gdzie boli.</p>\n<p>Jeśli brzmi to jak ktoś komu możesz zaufać ze swoimi rekordami — jestem tutaj.</p>\n<p>14 dni za darmo, potem £5.99 miesięcznie. Po anulowaniu rekordy pozostają dostępne przez 30 dni do eksportu.</p>\n<p>Przejrzyj stronę — znajdziesz tu dużo informacji o MTD i o tym jak to wszystko działa. A jeśli nie znajdziesz odpowiedzi na swoje pytanie — napisz śmiało, odpisuję na wszystko.</p>\n"
   },
   "ro": {
     "eyebrow": "Povestea noastra",
-    "html": "<h1>De la o pungă în dubă la un instrument simplu — povestea TidGo</h1>\n<h2>31 ianuarie, ora 21:00. Sună familiar?</h2>\n<p>Știi cum e. Iese punga. Bonuri peste tot — bord, buzunare, jacheta pe care ai purtat-o în noiembrie, ăla de la depozitul de materiale de care ai sigur nevoie dar pe care nu-l mai poți citi pentru că hârtia termică are o durată de viață de... hmm... o bere deschisă?</p>\n<p>Stai cu o bere, sperând că vei depune înainte de miezul nopții. Partenera aruncă privirea. Aceeași privire, în fiecare an.</p>\n<p>Așa a fost la mine. Ani la rând.</p>\n<h2>Cine e în spatele acestui proiect</h2>\n<p>Emigrant din Polonia. Am ajuns în UK acum 25 de ani fără un cuvânt în engleză — ei bine, știam &quot;f**k you&quot;, dar asta nu prea m-a ajutat la interviuri. Am început pe șantiere, am lucrat pe CIS, ani ca meseriaș înainte să mă urc la volan — dubă, camion, și la un moment dat am ajuns operator de telehandler pe șantier.</p>\n<p>Știți cum e cu operatorul de telehandler. Mașina apare când cineva are nevoie, dispare când are nevoie altcineva. Toată ziua dai din greu și tot e o coadă de zidari că nu le-au venit cărămizile. Nu zic că nu mi s-a întâmplat să accept câte o &quot;stimulentă&quot; pentru a prioritiza anumite livrări. Economie de șantier. Zidarii înțelegeau.</p>\n<p>Bonurile au fost mereu un coșmar. Pungă, torpedou, buzunare prin diverse jachete. În fiecare ianuarie, aceeași poveste.</p>\n<p>La începutul acestui an medicul m-a scos din joc. Gata cu utilajele, gata cu camionul. În loc să stau și să mă văicăresc, am hotărât să învăț să programez. Și în timp ce mă ocupam de asta, m-am adâncit în Making Tax Digital — pentru că asta e ce trebuie să înțeleagă oameni ca mine acum.</p>\n<h2>De ce n-am luat pur și simplu software-ul contabil mare</h2>\n<p>Le-am încercat pe toate. Xero, QuickBooks, Sage, FreeAgent. Instrumente cu adevărat bune. Făcute pentru contabili. Nu pentru cineva care tocmai a ieșit după zece ore de muncă și vrea să rezolve un bon înainte să uite pentru ce era.</p>\n<p>Și mai e chestia cu limba. Taxele sunt suficient de grele în propria ta limbă. Într-una străină, e un zid. De aceea TidGo funcționează în opt limbi — în timp ce tot ce vede contabilul tău e în engleză. Nimeni nu trebuie să traducă nimic.</p>\n<p><a href=\"/how-it-works\">Mai multe despre cum funcționează TidGo →</a></p>\n<h2>Ce nu face TidGo — și de ce o spun cu voce tare</h2>\n<p>TidGo nu trimite nimic la HMRC. Nu înlocuiește contabilul. Face un singur lucru: colectează și ordonează evidențele tale digitale înainte să ajungă la oamenii care au nevoie de ele.</p>\n<p>Spun asta pentru că am văzut prea multe reclame care promit totul și apoi omul din spatele lor se teme să răspundă la telefon. Prefer să spun de la început unde e linia.</p>\n<h2>Construit pentru noi. De unul dintre noi.</h2>\n<p>Nicio echipă mare. Niciun investitor din Silicon Valley sau City of London.</p>\n<p>Doar eu — cineva care a condus pe aceleași drumuri, a lucrat pe aceleași șantiere, a stat la aceeași coadă la depozitul de materiale și a petrecut prea multe seri de ianuarie pe podea cu o pungă întrebându-se de ce nu a construit nimeni ceva mai simplu.</p>\n<p>Știu cum arată zece ore pe șantier. Știu cum e să primești un payslip CIS pe email și să nu știi unde să-l pui. Știu cum e să faci afaceri într-o limbă străină și să dai de un zid de fiecare dată când cineva menționează &quot;reconciliation&quot; sau &quot;accruals&quot;.</p>\n<p>TidGo s-a născut din asta. Nu dintr-un gol de piață observat într-un tabel. Din ani de muncă reală și de știut exact unde doare.</p>\n<p>Dacă ți se pare că ești genul de om căruia îi poți încredința evidențele — sunt aici.</p>\n<p>TidGo e gratuit în perioada Early Access. Apoi £5.99 pe lună. Anulezi oricând, fără întrebări, evidențele tale sunt mereu ale tale.</p>\n<p>Uită-te prin site — găsești multe informații despre MTD și despre cum funcționează totul. Iar dacă nu găsești răspunsul la întrebarea ta — scrie fără să te sfiiești, răspund la orice.</p>\n"
+    "html": "<h1>De la o pungă în dubă la un instrument simplu — povestea TidGo</h1>\n<h2>31 ianuarie, ora 21:00. Sună familiar?</h2>\n<p>Știi cum e. Iese punga. Bonuri peste tot — bord, buzunare, jacheta pe care ai purtat-o în noiembrie, ăla de la depozitul de materiale de care ai sigur nevoie dar pe care nu-l mai poți citi pentru că hârtia termică are o durată de viață de... hmm... o bere deschisă?</p>\n<p>Stai cu o bere, sperând că vei depune înainte de miezul nopții. Partenera aruncă privirea. Aceeași privire, în fiecare an.</p>\n<p>Așa a fost la mine. Ani la rând.</p>\n<h2>Cine e în spatele acestui proiect</h2>\n<p>Emigrant din Polonia. Am ajuns în UK acum 25 de ani fără un cuvânt în engleză — ei bine, știam &quot;f**k you&quot;, dar asta nu prea m-a ajutat la interviuri. Am început pe șantiere, am lucrat pe CIS, ani ca meseriaș înainte să mă urc la volan — dubă, camion, și la un moment dat am ajuns operator de telehandler pe șantier.</p>\n<p>Știți cum e cu operatorul de telehandler. Mașina apare când cineva are nevoie, dispare când are nevoie altcineva. Toată ziua dai din greu și tot e o coadă de zidari că nu le-au venit cărămizile. Nu zic că nu mi s-a întâmplat să accept câte o &quot;stimulentă&quot; pentru a prioritiza anumite livrări. Economie de șantier. Zidarii înțelegeau.</p>\n<p>Bonurile au fost mereu un coșmar. Pungă, torpedou, buzunare prin diverse jachete. În fiecare ianuarie, aceeași poveste.</p>\n<p>La începutul acestui an medicul m-a scos din joc. Gata cu utilajele, gata cu camionul. În loc să stau și să mă văicăresc, am hotărât să învăț să programez. Și în timp ce mă ocupam de asta, m-am adâncit în Making Tax Digital — pentru că asta e ce trebuie să înțeleagă oameni ca mine acum.</p>\n<h2>De ce n-am luat pur și simplu software-ul contabil mare</h2>\n<p>Le-am încercat pe toate. Xero, QuickBooks, Sage, FreeAgent. Instrumente cu adevărat bune. Făcute pentru contabili. Nu pentru cineva care tocmai a ieșit după zece ore de muncă și vrea să rezolve un bon înainte să uite pentru ce era.</p>\n<p>Și mai e chestia cu limba. Taxele sunt suficient de grele în propria ta limbă. Într-una străină, e un zid. De aceea TidGo funcționează în opt limbi — în timp ce tot ce vede contabilul tău e în engleză. Nimeni nu trebuie să traducă nimic.</p>\n<p><a href=\"/how-it-works\">Mai multe despre cum funcționează TidGo →</a></p>\n<h2>Ce nu face TidGo — și de ce o spun cu voce tare</h2>\n<p>TidGo nu trimite nimic la HMRC. Nu înlocuiește contabilul. Face un singur lucru: colectează și ordonează evidențele tale digitale înainte să ajungă la oamenii care au nevoie de ele.</p>\n<p>Spun asta pentru că am văzut prea multe reclame care promit totul și apoi omul din spatele lor se teme să răspundă la telefon. Prefer să spun de la început unde e linia.</p>\n<h2>Construit pentru noi. De unul dintre noi.</h2>\n<p>Nicio echipă mare. Niciun investitor din Silicon Valley sau City of London.</p>\n<p>Doar eu — cineva care a condus pe aceleași drumuri, a lucrat pe aceleași șantiere, a stat la aceeași coadă la depozitul de materiale și a petrecut prea multe seri de ianuarie pe podea cu o pungă întrebându-se de ce nu a construit nimeni ceva mai simplu.</p>\n<p>Știu cum arată zece ore pe șantier. Știu cum e să primești un payslip CIS pe email și să nu știi unde să-l pui. Știu cum e să faci afaceri într-o limbă străină și să dai de un zid de fiecare dată când cineva menționează &quot;reconciliation&quot; sau &quot;accruals&quot;.</p>\n<p>TidGo s-a născut din asta. Nu dintr-un gol de piață observat într-un tabel. Din ani de muncă reală și de știut exact unde doare.</p>\n<p>Dacă ți se pare că ești genul de om căruia îi poți încredința evidențele — sunt aici.</p>\n<p>14 zile gratuite, apoi £5.99 pe lună. După anulare, înregistrările rămân disponibile 30 de zile pentru export.</p>\n<p>Uită-te prin site — găsești multe informații despre MTD și despre cum funcționează totul. Iar dacă nu găsești răspunsul la întrebarea ta — scrie fără să te sfiiești, răspund la orice.</p>\n"
   },
   "lt": {
     "eyebrow": "Musu istorija",
-    "html": "<h1>Nuo maišo furgone iki paprasto įrankio — TidGo istorija</h1>\n<h2>Sausio 31-oji, 21:00. Skamba pažįstamai?</h2>\n<p>Žinai kaip būna. Išlenda maišas. Kvitai visur — prietaisų skydelis, kišenės, striukė kurią vilkėjai lapkritį, tas vienas iš statybinių medžiagų parduotuvės kurio tikrai reikia bet kurio nebegalima perskaityti nes termininis popierius turi tokią pat gyvavimo trukmę kaip... hmm... atidarytas alus?</p>\n<p>Sėdi su alumi, tikėdamasis pateikti iki vidurnakčio. Partnerė meta žvilgsnį. Tas pats žvilgsnis, kiekvienais metais.</p>\n<p>Taip buvo pas mane. Metų metus.</p>\n<h2>Kas už to stovi</h2>\n<p>Emigrantas iš Lenkijos. Atvykau į UK prieš 25 metus be žodžio angliškai — na, &quot;f**k you&quot; mokėjau, bet tai nelabai padėjo pokalbiuose dėl darbo. Pradėjau statybose, dirbau CIS, metai kaip amatininkas prieš sėdant prie vairo — furgonas, sunkvežimis, o tam tikru momentu tapau telehandlerio operatoriumi statybvietėje.</p>\n<p>Žinote kaip yra su forkie. Mašina pasirodo kai kam nors reikia, dingsta kai reikia kitam. Visą dieną diri iš peties o vis tiek eilė mūrininkų kad plytų nėra laiku. Nesakysiu kad man nepasitaikė priimti kokio &quot;paskatinimo&quot; tam tikroms pristatymams prioritizuoti. Statybvietės ekonomika. Mūrininkai suprato.</p>\n<p>Kvitai visada buvo košmaras. Maišas, pirštinių skyrius, kišenės po įvairiomis striukėmis. Kiekvieną sausį ta pati istorija.</p>\n<p>Šių metų pradžioje gydytojas mane prikaustė prie žemės. Pabaiga su mašinomis, pabaiga su sunkvežimiu. Vietoj to kad sėdėčiau ir verkšlentum, nusprendžiau išmokti programuoti. O tuo metu giliai pasinėriau į Making Tax Digital — nes tai yra tai ką tokie žmonės kaip aš dabar turi suprasti.</p>\n<h2>Kodėl tiesiog nepasiėmiau didelės apskaitos programinės įrangos</h2>\n<p>Išbandžiau visas. Xero, QuickBooks, Sage, FreeAgent. Tikrai geri įrankiai. Sukurti buhalteriams. Ne kažkam kuris tik išėjo po dešimties valandų darbo ir nori susitvarkyti kvitą kol neužmiršo kam jis buvo.</p>\n<p>Ir dar ta kalbos problema. Mokesčiai yra pakankamai sunkūs savo kalba. Svetima — tai siena. Todėl TidGo veikia aštuoniomis kalbomis — o viskas ką mato tavo buhalteris yra angliškai. Niekas nieko neturi versti.</p>\n<p><a href=\"/how-it-works\">Daugiau apie tai kaip TidGo veikia →</a></p>\n<h2>Ko TidGo nedaro — ir kodėl tai sakau garsiai</h2>\n<p>TidGo nieko nesiunčia į HMRC. Nepakeičia buhalterio. Daro vieną dalyką: renka ir tvarko tavo skaitmeninius įrašus prieš jiems patenkant pas žmones kuriems jų reikia.</p>\n<p>Tai sakau nes mačiau per daug reklamų kurios žada viską o paskui žmogus už jų bijo atsiliepti į telefoną. Verčiau iš anksto pasakysiu kur yra riba.</p>\n<h2>Sukurta mums. Vieno iš mūsų.</h2>\n<p>Jokios didelės komandos. Jokių investuotojų iš Silicio slėnio ar Londono City.</p>\n<p>Tik aš — kažkas kuris važiavo tais pačiais keliais, dirbo tose pačiose statybvietėse, stovėjo toje pačioje eilėje statybinių medžiagų parduotuvėje ir praleido per daug sausio vakarų ant grindų su maišu galvodamas kodėl niekas nesukūrė kažko paprastesnio.</p>\n<p>Žinau kaip atrodo dešimt valandų statybvietėje. Žinau kaip yra gauti CIS payslipą el. paštu ir nežinoti kur jį dėti. Žinau kaip yra vesti verslą svetima kalba ir atsitrenkti į sieną kiekvieną kartą kai kažkas pamini &quot;reconciliation&quot; ar &quot;accruals&quot;.</p>\n<p>TidGo gimė iš to. Ne iš rinkos spragos pastebėtos lentelėje. Iš metų realaus darbo ir tikslaus žinojimo kur skauda.</p>\n<p>Jei tai skamba kaip kažkas kuriam gali patikėti savo įrašus — esu čia.</p>\n<p>TidGo yra nemokamas Early Access laikotarpiu. Po to £5.99 per mėnesį. Atšauk kada nori, be klausimų, tavo įrašai visada yra tavo.</p>\n<p>Apžvelk svetainę — rasi daug informacijos apie MTD ir apie tai kaip viskas veikia. O jei nerasi atsakymo į savo klausimą — rašyk drąsiai, atsakau į viską.</p>\n"
+    "html": "<h1>Nuo maišo furgone iki paprasto įrankio — TidGo istorija</h1>\n<h2>Sausio 31-oji, 21:00. Skamba pažįstamai?</h2>\n<p>Žinai kaip būna. Išlenda maišas. Kvitai visur — prietaisų skydelis, kišenės, striukė kurią vilkėjai lapkritį, tas vienas iš statybinių medžiagų parduotuvės kurio tikrai reikia bet kurio nebegalima perskaityti nes termininis popierius turi tokią pat gyvavimo trukmę kaip... hmm... atidarytas alus?</p>\n<p>Sėdi su alumi, tikėdamasis pateikti iki vidurnakčio. Partnerė meta žvilgsnį. Tas pats žvilgsnis, kiekvienais metais.</p>\n<p>Taip buvo pas mane. Metų metus.</p>\n<h2>Kas už to stovi</h2>\n<p>Emigrantas iš Lenkijos. Atvykau į UK prieš 25 metus be žodžio angliškai — na, &quot;f**k you&quot; mokėjau, bet tai nelabai padėjo pokalbiuose dėl darbo. Pradėjau statybose, dirbau CIS, metai kaip amatininkas prieš sėdant prie vairo — furgonas, sunkvežimis, o tam tikru momentu tapau telehandlerio operatoriumi statybvietėje.</p>\n<p>Žinote kaip yra su forkie. Mašina pasirodo kai kam nors reikia, dingsta kai reikia kitam. Visą dieną diri iš peties o vis tiek eilė mūrininkų kad plytų nėra laiku. Nesakysiu kad man nepasitaikė priimti kokio &quot;paskatinimo&quot; tam tikroms pristatymams prioritizuoti. Statybvietės ekonomika. Mūrininkai suprato.</p>\n<p>Kvitai visada buvo košmaras. Maišas, pirštinių skyrius, kišenės po įvairiomis striukėmis. Kiekvieną sausį ta pati istorija.</p>\n<p>Šių metų pradžioje gydytojas mane prikaustė prie žemės. Pabaiga su mašinomis, pabaiga su sunkvežimiu. Vietoj to kad sėdėčiau ir verkšlentum, nusprendžiau išmokti programuoti. O tuo metu giliai pasinėriau į Making Tax Digital — nes tai yra tai ką tokie žmonės kaip aš dabar turi suprasti.</p>\n<h2>Kodėl tiesiog nepasiėmiau didelės apskaitos programinės įrangos</h2>\n<p>Išbandžiau visas. Xero, QuickBooks, Sage, FreeAgent. Tikrai geri įrankiai. Sukurti buhalteriams. Ne kažkam kuris tik išėjo po dešimties valandų darbo ir nori susitvarkyti kvitą kol neužmiršo kam jis buvo.</p>\n<p>Ir dar ta kalbos problema. Mokesčiai yra pakankamai sunkūs savo kalba. Svetima — tai siena. Todėl TidGo veikia aštuoniomis kalbomis — o viskas ką mato tavo buhalteris yra angliškai. Niekas nieko neturi versti.</p>\n<p><a href=\"/how-it-works\">Daugiau apie tai kaip TidGo veikia →</a></p>\n<h2>Ko TidGo nedaro — ir kodėl tai sakau garsiai</h2>\n<p>TidGo nieko nesiunčia į HMRC. Nepakeičia buhalterio. Daro vieną dalyką: renka ir tvarko tavo skaitmeninius įrašus prieš jiems patenkant pas žmones kuriems jų reikia.</p>\n<p>Tai sakau nes mačiau per daug reklamų kurios žada viską o paskui žmogus už jų bijo atsiliepti į telefoną. Verčiau iš anksto pasakysiu kur yra riba.</p>\n<h2>Sukurta mums. Vieno iš mūsų.</h2>\n<p>Jokios didelės komandos. Jokių investuotojų iš Silicio slėnio ar Londono City.</p>\n<p>Tik aš — kažkas kuris važiavo tais pačiais keliais, dirbo tose pačiose statybvietėse, stovėjo toje pačioje eilėje statybinių medžiagų parduotuvėje ir praleido per daug sausio vakarų ant grindų su maišu galvodamas kodėl niekas nesukūrė kažko paprastesnio.</p>\n<p>Žinau kaip atrodo dešimt valandų statybvietėje. Žinau kaip yra gauti CIS payslipą el. paštu ir nežinoti kur jį dėti. Žinau kaip yra vesti verslą svetima kalba ir atsitrenkti į sieną kiekvieną kartą kai kažkas pamini &quot;reconciliation&quot; ar &quot;accruals&quot;.</p>\n<p>TidGo gimė iš to. Ne iš rinkos spragos pastebėtos lentelėje. Iš metų realaus darbo ir tikslaus žinojimo kur skauda.</p>\n<p>Jei tai skamba kaip kažkas kuriam gali patikėti savo įrašus — esu čia.</p>\n<p>14 dienų nemokamai, vėliau £5.99 per mėnesį. Atšaukus prenumeratą, įrašus galima eksportuoti dar 30 dienų.</p>\n<p>Apžvelk svetainę — rasi daug informacijos apie MTD ir apie tai kaip viskas veikia. O jei nerasi atsakymo į savo klausimą — rašyk drąsiai, atsakau į viską.</p>\n"
   }
 };
 function storyArticleHtml() {
@@ -7263,140 +7259,6 @@ function ourStoryPage() {
   `);
 }
 
-const FOUNDING_TESTER_COPY = {
-  en: {
-    eyebrow: "Founding Tester",
-    title: "Become a TidGo Founding Tester",
-    lead: "TidGo works in your browser right now. The Android app is in closed testing, and the iPhone version is in development.",
-    introOne: "I'm looking for 20 UK sole traders, CIS subcontractors and tradespeople, with landlords who keep simple records welcome too, who will use TidGo for real and tell me honestly what works, what does not, and what could be simpler.",
-    introTwo: "Setup takes about ten minutes. All I ask is that you send receipts the way you normally would, and tell me when something annoys you at least a couple of times over a few weeks.",
-    termsTitle: "Founding Tester terms",
-    termsText: "Active Founding Testers receive access to the TidGo Core plan at no monthly charge, for as long as the Core plan exists. It is personal, non-transferable and fair use applies.",
-    activeTitle: "What active means",
-    activeText: "Use TidGo for at least a few weeks and send feedback at least twice. No minimum number of receipts.",
-    praiseTitle: "No fake praise",
-    praiseText: "No positive review, stars or public promotion required. Honest feedback is the point.",
-    fallback: "If the form misbehaves, email",
-    formEyebrow: "Founding Tester form",
-    name: "Name",
-    namePlaceholder: "Your name",
-    googleEmail: "Google account email used on your Android phone",
-    googleHint: "This must be the Google account on your Android phone, otherwise the test link will not work for you.",
-    workType: "What do you do?",
-    chooseOne: "Choose one",
-    contactEmail: "Contact email, if different",
-    optional: "Optional",
-    whatsapp: "WhatsApp number",
-    useApp: "I agree to use TidGo for at least a few weeks during testing.",
-    feedback: "I agree to send short honest feedback at least twice or report problems I find.",
-    consentPrefix: "I agree to TidGo's",
-    privacy: "Privacy Policy",
-    andText: "and",
-    terms: "Terms",
-    submit: "Become a Founding Tester",
-    options: ["sole trader", "CIS subcontractor", "tradesperson", "landlord", "other"]
-  },
-  pl: {
-    eyebrow: "Founding Tester",
-    title: "Zostań Founding Testerem TidGo",
-    lead: "TidGo działa już w przeglądarce. Aplikacja Android jest w zamkniętych testach, a wersja na iPhone jest w przygotowaniu.",
-    introOne: "Szukam 20 osób w UK: sole traders, CIS subcontractors, tradespeople oraz landlordów prowadzących proste rekordy, którzy użyją TidGo naprawdę i powiedzą uczciwie, co działa, co przeszkadza i co można uprościć.",
-    introTwo: "Start zajmuje około dziesięciu minut. Chodzi tylko o to, żeby wysyłać paragony tak jak zwykle i dać szczery feedback kilka razy w trakcie testów.",
-    termsTitle: "Warunki Founding Tester",
-    termsText: "Aktywni Founding Testerzy dostają dostęp do planu TidGo Core bez miesięcznej opłaty tak długo, jak plan Core istnieje. Dostęp jest osobisty, nieprzenoszalny i objęty zasadą fair use.",
-    activeTitle: "Co znaczy aktywny tester",
-    activeText: "Używaj TidGo przez co najmniej kilka tygodni i wyślij feedback co najmniej dwa razy. Nie ma minimalnej liczby paragonów.",
-    praiseTitle: "Bez sztucznego zachwalania",
-    praiseText: "Nie wymagamy pozytywnej opinii, gwiazdek ani publicznej promocji. Liczy się uczciwy feedback.",
-    fallback: "Jeśli formularz nie działa, napisz na",
-    formEyebrow: "Formularz Founding Tester",
-    name: "Imię i nazwisko",
-    namePlaceholder: "Twoje imię i nazwisko",
-    googleEmail: "Adres konta Google używany na telefonie z Androidem",
-    googleHint: "To musi być konto Google używane na Twoim telefonie z Androidem, inaczej link testowy nie zadziała.",
-    workType: "Czym się zajmujesz?",
-    chooseOne: "Wybierz",
-    contactEmail: "Kontaktowy email, jeśli inny",
-    optional: "Opcjonalnie",
-    whatsapp: "Numer WhatsApp",
-    useApp: "Zgadzam się używać TidGo przez co najmniej kilka tygodni w trakcie testów.",
-    feedback: "Zgadzam się wysłać krótki uczciwy feedback co najmniej dwa razy albo zgłosić znalezione problemy.",
-    consentPrefix: "Akceptuję",
-    privacy: "Privacy Policy",
-    andText: "oraz",
-    terms: "Terms",
-    submit: "Zostań Founding Testerem",
-    options: ["sole trader", "CIS subcontractor", "tradesperson", "landlord", "inne"]
-  },
-  ro: {
-    eyebrow: "Founding Tester",
-    title: "Devino Founding Tester TidGo",
-    lead: "TidGo functioneaza deja in browser. Aplicatia Android este in testare inchisa, iar versiunea pentru iPhone este in dezvoltare.",
-    introOne: "Caut 20 de utilizatori din UK: sole traders, subcontractori CIS, meseriasi si proprietari care tin evidente simple, dispusi sa foloseasca TidGo pe bune si sa spuna sincer ce merge, ce nu merge si ce poate fi mai simplu.",
-    introTwo: "Configurarea dureaza aproximativ zece minute. Te rog doar sa trimiti bonuri asa cum ai face-o normal si sa imi spui de cateva ori in timpul testarii ce te incurca.",
-    termsTitle: "Conditii Founding Tester",
-    termsText: "Testerii activi primesc acces la planul TidGo Core fara taxa lunara, atat timp cat planul Core exista. Accesul este personal, netransferabil si se aplica fair use.",
-    activeTitle: "Ce inseamna activ",
-    activeText: "Foloseste TidGo cel putin cateva saptamani si trimite feedback de cel putin doua ori. Nu exista un numar minim de bonuri.",
-    praiseTitle: "Fara laude false",
-    praiseText: "Nu cerem recenzii pozitive, stele sau promovare publica. Feedbackul sincer este scopul.",
-    fallback: "Daca formularul nu functioneaza, trimite email la",
-    formEyebrow: "Formular Founding Tester",
-    name: "Nume",
-    namePlaceholder: "Numele tau",
-    googleEmail: "Emailul contului Google folosit pe telefonul Android",
-    googleHint: "Trebuie sa fie contul Google de pe telefonul tau Android, altfel linkul de test nu va functiona.",
-    workType: "Cu ce te ocupi?",
-    chooseOne: "Alege",
-    contactEmail: "Email de contact, daca este diferit",
-    optional: "Optional",
-    whatsapp: "Numar WhatsApp",
-    useApp: "Sunt de acord sa folosesc TidGo cel putin cateva saptamani in timpul testarii.",
-    feedback: "Sunt de acord sa trimit feedback sincer de cel putin doua ori sau sa raportez problemele gasite.",
-    consentPrefix: "Sunt de acord cu",
-    privacy: "Privacy Policy",
-    andText: "si",
-    terms: "Terms",
-    submit: "Devino Founding Tester",
-    options: ["sole trader", "subcontractor CIS", "meserias", "landlord", "altceva"]
-  },
-  lt: {
-    eyebrow: "Founding Tester",
-    title: "Tapk TidGo Founding Testeriu",
-    lead: "TidGo jau veikia naršyklėje. Android programėlė yra uždarame testavime, o iPhone versija kuriama.",
-    introOne: "Ieškau 20 žmonių Jungtinėje Karalystėje: sole traders, CIS subcontractors, tradespeople ir landlordų, kurie tvarko paprastus įrašus, naudotų TidGo realiai ir pasakytų, kas veikia, kas trukdo ir ką galima supaprastinti.",
-    introTwo: "Pradžia užtrunka apie dešimt minučių. Tereikia siųsti kvitus taip, kaip įprastai, ir kelis kartus testavimo metu duoti sąžiningą atsiliepimą.",
-    termsTitle: "Founding Tester sąlygos",
-    termsText: "Aktyvūs Founding Testeriai gauna prieigą prie TidGo Core plano be mėnesinio mokesčio tol, kol Core planas egzistuoja. Prieiga yra asmeninė, neperduodama ir taikomas fair use.",
-    activeTitle: "Ką reiškia aktyvus testeris",
-    activeText: "Naudok TidGo bent kelias savaites ir atsiųsk atsiliepimą bent du kartus. Minimalaus kvitų skaičiaus nėra.",
-    praiseTitle: "Be netikrų pagyrimų",
-    praiseText: "Nereikalaujame teigiamo atsiliepimo, žvaigždučių ar viešos reklamos. Tikslas yra sąžiningas feedbackas.",
-    fallback: "Jei forma neveikia, parašyk el. paštu",
-    formEyebrow: "Founding Tester forma",
-    name: "Vardas",
-    namePlaceholder: "Tavo vardas",
-    googleEmail: "Google paskyros el. paštas, naudojamas Android telefone",
-    googleHint: "Tai turi būti Google paskyra tavo Android telefone, kitaip testavimo nuoroda neveiks.",
-    workType: "Kuo užsiimi?",
-    chooseOne: "Pasirink",
-    contactEmail: "Kontaktinis el. paštas, jei kitas",
-    optional: "Nebūtina",
-    whatsapp: "WhatsApp numeris",
-    useApp: "Sutinku naudoti TidGo bent kelias savaites testavimo metu.",
-    feedback: "Sutinku bent du kartus atsiųsti trumpą sąžiningą atsiliepimą arba pranešti apie rastas problemas.",
-    consentPrefix: "Sutinku su TidGo",
-    privacy: "Privacy Policy",
-    andText: "ir",
-    terms: "Terms",
-    submit: "Tapti Founding Testeriu",
-    options: ["sole trader", "CIS subcontractor", "tradesperson", "landlord", "kita"]
-  }
-};
-
-function foundingTesterCopy() {
-  return FOUNDING_TESTER_COPY[state.marketingLanguage] || FOUNDING_TESTER_COPY.en;
-}
 
 function androidTestersPage() {
   const retired = {"en":["Tester recruitment has ended","You can use TidGo directly. Open the app to get started.","Open app","MTD quarterly submissions - in development","MTD quarterly submissions are in development, pending HMRC production approval. HMRC's next update is expected by the end of September 2026.","Quarterly updates are running totals of income and expenses - four per year. The year-end declaration remains your accountant's work. We are not replacing that.","A launch date has not yet been confirmed."],"pl":["Nabór testerów zakończony","Możesz już korzystać z TidGo. Otwórz aplikację, aby zacząć.","Otwórz aplikację","Kwartalne raporty MTD - w przygotowaniu","Pracujemy nad wysyłaniem kwartalnych raportów MTD i czekamy na zatwierdzenie dostępu produkcyjnego przez HMRC. Kolejna informacja od HMRC jest spodziewana do końca września 2026.","Raporty kwartalne zawierają narastające sumy przychodów i wydatków - cztery razy w roku. Roczne rozliczenie pozostaje zadaniem Twojego księgowego. Nie zastępujemy go.","Termin uruchomienia nie został jeszcze potwierdzony."],"ro":["Înscrierile pentru testeri s-au încheiat","Poți folosi TidGo direct. Deschide aplicația pentru a începe.","Deschide aplicația","Rapoarte trimestriale MTD - în dezvoltare","Lucrăm la trimiterea rapoartelor trimestriale MTD și așteptăm aprobarea HMRC pentru accesul în producție. Următoarea informare HMRC este așteptată până la sfârșitul lunii septembrie 2026.","Rapoartele trimestriale conțin totalurile cumulative ale veniturilor și cheltuielilor - de patru ori pe an. Declarația anuală rămâne în grija contabilului tău. Nu îl înlocuim.","Data lansării nu a fost încă confirmată."],"lt":["Testuotojų registracija baigta","Jau gali naudotis TidGo. Atidaryk programėlę ir pradėk.","Atidaryti programėlę","Ketvirtinės MTD ataskaitos - kuriama","Kuriame ketvirtinių MTD ataskaitų teikimo funkciją ir laukiame HMRC leidimo naudoti ją realioje aplinkoje. Kitos HMRC informacijos tikimasi iki 2026 m. rugsėjo pabaigos.","Ketvirtinėse ataskaitose pateikiamos kaupiamosios pajamų ir išlaidų sumos - keturis kartus per metus. Metinė deklaracija lieka tavo buhalterio užduotis. Mes jo nepakeičiame.","Paleidimo data dar nepatvirtinta."]};
@@ -10226,34 +10088,6 @@ document.addEventListener("submit", async (event) => {
       toast("User updated.");
       await loadAdminUsers();
       return render();
-    }
-    if (form.id === "androidTesterForm") {
-      try {
-        const message = [
-          "Founding Tester application",
-          `Name: ${data.tester_name || ""}`,
-          `Google Play Gmail: ${data.google_email || ""}`,
-          `Contact email: ${data.contact_email || data.google_email || ""}`,
-          `Business type: ${data.business_type || ""}`,
-          `WhatsApp number: ${data.whatsapp_number || ""}`,
-          "Agreed to 14 days: yes",
-          "Agreed to feedback: yes",
-          "Privacy/terms consent: yes"
-        ].join("\n");
-        await api("/api/contact", {
-          method: "POST",
-          body: JSON.stringify({
-            from_email: data.contact_email || data.google_email || null,
-            role: "Founding Tester",
-            message
-          })
-        });
-        form.reset();
-        toast(mk("messageSent"));
-      } catch (error) {
-        toast(mk("messagePending"));
-      }
-      return;
     }
     if (form.id === "landingContactForm" || form.id === "settingsFeedbackForm") {
       try {
