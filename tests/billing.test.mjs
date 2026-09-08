@@ -2,7 +2,7 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 const source = fs.readFileSync(new URL('../billing.js', import.meta.url), 'utf8');
-const {createBilling, stripeDestination} = await import('data:text/javascript;base64,' + Buffer.from(source).toString('base64'));
+const {createBilling, stripeDestination, subscriptionDateDetail} = await import('data:text/javascript;base64,' + Buffer.from(source).toString('base64'));
 const tick = () => new Promise(resolve => setTimeout(resolve, 0));
 function fixture(kind = '', status = {allowed:true, subscription_status:null}) {
   const panel = {isConnected:true, innerHTML:''};
@@ -80,5 +80,18 @@ test('only success retries pending webhook and stops on confirmation', async()=>
   assert.equal(f.calls.length,2);
   assert.equal(f.timers.size,0);
   assert.doesNotMatch(f.panel.innerHTML,/Waiting for the subscription/);
+  f.billing.stop();
+});
+
+test('trial and scheduled cancellation show a real end date', async()=>{
+  const end='2026-09-22T00:00:00Z';
+  assert.equal(subscriptionDateDetail({subscription_status:'trialing',subscription_current_period_end:end},'en'),'Trial ends 22 September 2026.');
+  assert.equal(subscriptionDateDetail({subscription_status:'trialing',subscription_current_period_end:end,cancel_at_period_end:true},'pl'),'Dostęp kończy się 22 września 2026.');
+  assert.equal(subscriptionDateDetail({subscription_status:'trialing',trial_ends_at:end},'ro'),'Perioada de probă se încheie la 22 septembrie 2026.');
+  assert.equal(subscriptionDateDetail({subscription_status:'trialing',subscription_current_period_end:'invalid'},'en'),'');
+  const f=fixture('portal',{allowed:true,subscription_status:'trialing',stripe_subscription_id:'sub_test',stripe_customer_id:'cus_test',subscription_current_period_end:end,cancel_at_period_end:true});
+  f.billing.mount(); await tick();
+  assert.match(f.panel.innerHTML,/Trial · Cancellation scheduled/);
+  assert.match(f.panel.innerHTML,/Access ends 22 September 2026/);
   f.billing.stop();
 });

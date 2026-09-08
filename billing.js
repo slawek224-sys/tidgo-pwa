@@ -9,6 +9,17 @@ const TEXT = {
   lt: ['Prenumerata', 'Prenumeruoti', 'Tvarkyti mokėjimus', 'Atnaujinti būseną', 'Tikrinama prenumerata…', 'Nepavyko patikrinti prenumeratos. Bandyk dar kartą.', 'Grįžai iš mokėjimo puslapio. Laukiame prenumeratos būsenos iš serverio.', 'Mokėjimas atšauktas. Prenumeratos būsena pateikta žemiau.', 'Grįžai iš mokėjimų portalo. Būsena atnaujinta.', 'Prenumeratos nėra', 'Aktyvi', 'Bandomasis laikotarpis', 'Pradelstas mokėjimas', 'Atšaukta', 'Laukiama', 'Nemokama prieiga', 'Suplanuotas atšaukimas', 'Nepavyko atidaryti mokėjimo. Bandyk dar kartą.']
 };
 
+const DATE_TEXT = {
+  en: {locale: 'en-GB', trial: 'Trial ends {date}.', access: 'Access ends {date}.'},
+  pl: {locale: 'pl-PL', trial: 'Okres próbny kończy się {date}.', access: 'Dostęp kończy się {date}.'},
+  ro: {locale: 'ro-RO', trial: 'Perioada de probă se încheie la {date}.', access: 'Accesul se încheie la {date}.'},
+  uk: {locale: 'uk-UA', trial: 'Пробний період закінчується {date}.', access: 'Доступ закінчується {date}.'},
+  lt: {locale: 'lt-LT', trial: 'Bandomasis laikotarpis baigiasi {date}.', access: 'Prieiga baigiasi {date}.'},
+  lv: {locale: 'lv-LV', trial: 'Izmēģinājuma periods beidzas {date}.', access: 'Piekļuve beidzas {date}.'},
+  es: {locale: 'es-ES', trial: 'El periodo de prueba termina el {date}.', access: 'El acceso termina el {date}.'},
+  bg: {locale: 'bg-BG', trial: 'Пробният период приключва на {date}.', access: 'Достъпът приключва на {date}.'}
+};
+
 export function stripeDestination(raw, kind) {
   const url = new URL(raw);
   const host = kind === 'checkout' ? 'checkout.stripe.com' : 'billing.stripe.com';
@@ -21,6 +32,18 @@ export function subscriptionLabel(data, words) {
   const labels = {active: 10, trialing: 11, past_due: 12, unpaid: 12, canceled: 13, incomplete: 14, incomplete_expired: 13, paused: 14};
   const label = words[labels[data.subscription_status] ?? 9];
   return data.cancel_at_period_end === true ? `${label} · ${words[16]}` : label;
+}
+
+export function subscriptionDateDetail(data, language = 'en') {
+  if (!data || data.lifetime_free) return '';
+  const raw = data.subscription_current_period_end || data.trial_ends_at;
+  if (!raw) return '';
+  const date = new Date(raw);
+  if (!Number.isFinite(date.getTime())) return '';
+  const copy = DATE_TEXT[language] || DATE_TEXT.en;
+  const formatted = new Intl.DateTimeFormat(copy.locale, {day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC'}).format(date);
+  const template = data.cancel_at_period_end === true ? copy.access : data.subscription_status === 'trialing' ? copy.trial : '';
+  return template ? template.replace('{date}', formatted) : '';
 }
 
 export function createBilling({api, user, language, escape, win = window, doc = document, setTimer = setTimeout, clearTimer = clearTimeout}) {
@@ -61,7 +84,8 @@ export function createBilling({api, user, language, escape, win = window, doc = 
     function draw(message = '', loading = false, error = false) {
       if (!valid()) return;
       const subscribed = data?.stripe_subscription_id && !['canceled', 'incomplete_expired'].includes(data.subscription_status);
-      target.innerHTML = `<h2>${escape(words[0])}</h2><p role="status" aria-live="polite">${escape(message)}</p>${data ? `<p><strong>${escape(subscriptionLabel(data, words))}</strong></p>` : ''}<div class="billing-actions">${data && !subscribed && !data.lifetime_free ? button('checkout', words[1], busy || leaving || loading || error || returnKind === 'success') : ''}${data?.stripe_customer_id ? button('portal', words[2], busy || leaving || loading || error) : ''}${button('refresh', words[3], busy || leaving || loading)}</div>`;
+      const dateDetail = subscriptionDateDetail(data, language());
+      target.innerHTML = `<h2>${escape(words[0])}</h2><p role="status" aria-live="polite">${escape(message)}</p>${data ? `<p><strong>${escape(subscriptionLabel(data, words))}</strong></p>${dateDetail ? `<p class="billing-date-detail">${escape(dateDetail)}</p>` : ''}` : ''}<div class="billing-actions">${data && !subscribed && !data.lifetime_free ? button('checkout', words[1], busy || leaving || loading || error || returnKind === 'success') : ''}${data?.stripe_customer_id ? button('portal', words[2], busy || leaving || loading || error) : ''}${button('refresh', words[3], busy || leaving || loading)}</div>`;
     }
     async function refresh() {
       clearTimer(timer);

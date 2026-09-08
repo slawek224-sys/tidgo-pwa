@@ -385,6 +385,7 @@ button:active,
 
 .billing-panel { padding: 16px 0; border-bottom: 1px solid var(--client-line); margin-bottom: 16px; }
 .billing-panel h2 { font-size: 18px; margin: 0 0 8px; }
+.billing-date-detail { margin-top: -6px; color: var(--muted); font-size: 14px; }
 .billing-actions { display: flex; flex-wrap: wrap; gap: 8px; }
 .billing-actions button { min-height: 44px; max-width: 100%; white-space: normal; }
 
