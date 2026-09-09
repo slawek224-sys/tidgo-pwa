@@ -2983,7 +2983,7 @@ const LEGAL_TEXT = {
 const FULL_LEGAL_MARKDOWN = {
   privacy: `# TidGo Privacy Policy
 
-**Last updated:** 8 September 2026
+**Last updated:** 9 September 2026
 **Version:** 1.0
 
 > This policy explains how TidGo handles your personal data. We will update it when our processing activities change and notify you of material changes.
@@ -3019,6 +3019,7 @@ Depending on how you use TidGo, we may collect:
 - **Receipt photos and uploaded files** — images and documents you upload or send to TidGo.
 - **Income proof files** — such as payslips, remittance notes or screenshots you upload.
 - **Extracted receipt details** — such as amount, currency, merchant, category and date, produced automatically from your receipts using OCR/AI.
+- **Subscription and billing data** — such as your Stripe customer and subscription identifiers, subscription status, billing period dates, cancellation status and the payment information needed to manage your account and meet our accounting and tax obligations. We do not receive or store your full card number or card security details; Stripe handles those details.
 - **Accountant connection data** — if you choose to connect an accountant to your account.
 - **Basic usage and analytics data** — such as how the app is used, to help us maintain and improve TidGo.
 
@@ -3038,6 +3039,8 @@ Under UK data protection law (UK GDPR and the Data Protection Act 2018), we need
 | To match incoming WhatsApp messages and documents to your account (if you connect WhatsApp) | Your consent |
 | To match incoming emails and attachments to your account (if you use email intake) | Performance of a contract |
 | To send service and recovery emails | Performance of a contract / legitimate interests |
+| To process payments and manage your subscription through Stripe | Performance of a contract |
+| To retain subscription and billing records for accounting and tax purposes | Legal obligation |
 | To maintain, secure and improve the app, including basic analytics | Legitimate interests |
 | To comply with legal obligations | Legal obligation |
 
@@ -3049,7 +3052,7 @@ We do **not** sell your personal data. We do **not** use WhatsApp for marketing 
 
 We use trusted third-party providers to run TidGo. They process data on our behalf under contractual safeguards:
 
-- **MongoDB Atlas** — database storage for account data, structured record details and extracted receipt data. Hosted on **AWS, Ireland (eu-west-1)** — data remains within the EU/EEA, no international transfer applies. Note: automated Atlas backups are currently inactive during the testing phase; the backup retention policy will be updated when backups are enabled before production launch.
+- **MongoDB Atlas** — database storage for account data, structured record details and extracted receipt data. Hosted on **AWS, Ireland (eu-west-1)** — data remains within the EU/EEA, no international transfer applies. Note: automated Atlas backups are currently inactive; the backup retention policy will be updated when backups are enabled.
 - **Render** — application hosting and API (backend). Hosted in **Oregon, United States**. International transfer applies — covered by Render's Data Processing Agreement incorporating SCCs with the UK Addendum.
 - **OpenAI (API)** — receipt reading (OCR) and classification. US-based — international transfer safeguards apply (see Section 5). API data is not used to train OpenAI's models by default; abuse-monitoring logs are retained for up to 30 days.
 - **IONOS** (IONOS Cloud Limited) — domain registration and administrative email services for tidgo.co.uk. Data processed in the **UK or EEA**. Covered by IONOS Data Processing Agreement v2.0 (03/2026), subject to English law. IONOS holds ISO 27001 certification. No international transfer applies.
@@ -3057,6 +3060,7 @@ We use trusted third-party providers to run TidGo. They process data on our beha
 - **Scaleway Object Storage (EU)** — stores receipt photos, income proof documents and generated PDF reports. Scaleway is a French company (Scaleway S.A.S., Paris) — all services are located within the European Union by default; no international transfer applies. When you view a receipt or download a report, our backend generates a short-lived signed URL; your device downloads the file directly from Scaleway without passing through our application servers. When you generate a monthly or quarterly PDF report, TidGo may temporarily retrieve stored receipt and proof files from Scaleway to create the report. Generated reports may also be stored in Scaleway so they can be downloaded again without regenerating them. Covered by Scaleway Data Processing Agreement (version June 1st, 2024), governed by French law.
 - **Meta / WhatsApp** — WhatsApp message and document intake, only if you choose to connect WhatsApp. Your use of WhatsApp is also governed by WhatsApp's own terms and privacy policy.
 - **Google Analytics** — website and PWA usage analytics. Data may be processed in the United States — covered by Google Ads Data Processing Terms (privacy.google.com/businesses/processorterms), governed by English law, incorporating SCCs for international transfers.
+- **Stripe** — payment processing and subscription management. Stripe acts as a processor when handling payments on our instructions and may act as an independent controller for its own legal, security and fraud-prevention obligations. TidGo does not receive or store your full card number or card security details. Stripe Privacy Policy: [stripe.com/gb/privacy](https://stripe.com/gb/privacy).
 
 We also share your records with **your accountant**, but only if and when you choose to connect one (see Section 8).
 
@@ -3069,6 +3073,7 @@ Some of our providers process data outside the UK. Our database (MongoDB Atlas) 
 - **Render** (backend/API hosting, Oregon) — transfers covered by UK SCCs with UK Addendum
 - **OpenAI** (OCR/AI processing) — transfers covered by UK SCCs with UK Addendum
 - **Resend** (email) — certified under the EU-US Data Privacy Framework and **UK Extension to the EU-US DPF**
+- **Stripe** (payments and subscription management) — transfers covered by Stripe's applicable data processing and international transfer safeguards
 - **Meta** (WhatsApp, where applicable) — transfers covered by Meta's Data Processing Terms (effective 23 August 2025) incorporating the **UK Data Transfer Addendum** for UK GDPR transfers
 
 Each provider listed above has a Data Processing Agreement or equivalent data processing terms in place, providing appropriate safeguards for UK GDPR compliance.
@@ -3079,6 +3084,8 @@ Where data is transferred outside the UK, we rely on safeguards recognised under
 
 - Your data is kept **while your account is active**.
 - When you delete your account, we delete your active account data, receipts, income records and stored files from our live systems. Some limited technical logs or backups may remain for up to **30 days** before automatic deletion, unless we are legally required to keep them longer.
+- **After your subscription ends** (including cancellation, trial expiry without payment or non-renewal), you have limited access to view, export and delete your data for **30 days** after your access ends. You cannot add new records during this period. Automatic deletion at the end of this period is not yet implemented; we will update this policy when that process is introduced.
+- **Subscription and billing records** — we retain limited billing records, including Stripe identifiers, subscription status, billing period dates and cancellation status, for as long as needed to manage your account and meet accounting and tax obligations, typically **6 years** from the end of the relevant financial year. Complete invoices and payment-method details are held by Stripe.
 - Abuse-monitoring logs held by OpenAI are retained by OpenAI for up to 30 days (see Section 3).
 
 **Please note:** if you use TidGo to keep business records, UK law (HMRC) may require *you* to keep your own copies of business records for several years. Deleting your TidGo account deletes your data from TidGo — it does not fulfil or remove your own record-keeping obligations.
@@ -3184,7 +3191,7 @@ Questions, requests or complaints:
 128 City Road, London, EC1V 2NX`,
   terms: `# TidGo Terms & Conditions
 
-**Last updated:** 8 September 2026
+**Last updated:** 9 September 2026
 **Version:** 1.0
 
 Please read these Terms & Conditions ("Terms") carefully before using TidGo. You accept these Terms by ticking the acceptance box when creating an account, and by continuing to use TidGo. If you do not agree, please do not use the service.
@@ -3224,11 +3231,35 @@ You must be at least **18 years old** and capable of entering into a binding con
 - You must not share your account with others or use another person's account without permission.
 - You are responsible for all activity that occurs under your account.
 
-## 5. Subscriptions and existing access arrangements
+## 5. Subscription, trial and billing
 
-- New subscriptions start with a 14-day free trial, followed by £5.99 per month. The applicable price and payment details are shown before you agree to subscribe.
-- No charges will apply without your agreement. You may cancel your subscription; see the pricing page for cancellation and access details.
-- Any free access already granted under an earlier arrangement remains subject to the terms on which it was granted. This is not an invitation to join a new promotion.
+**Free trial and payment method**
+
+Every new TidGo subscription includes a **14-day free trial**. No payment method is required to start the trial. If you add a valid payment method, the subscription continues after the trial at **£5.99 per month** and renews monthly until cancelled. If you do not add a payment method, Stripe automatically cancels the subscription when the trial ends and no charge is made.
+
+**Renewal and cancellation**
+
+Paid subscriptions renew automatically each month. You can cancel through the Stripe Customer Portal available from TidGo Settings or by contacting **support@tidgo.co.uk**. Cancellation normally takes effect at the end of the current billing period, and you retain paid access until that date.
+
+**Failed payments**
+
+If a payment fails, Stripe may retry it in accordance with the billing settings then in force. TidGo may restrict the ability to add new records while payment remains unsuccessful. If the subscription ends, existing records remain available for viewing, export and deletion for 30 days after access ends.
+
+**Price changes**
+
+We will give you at least 30 days' notice before a subscription price increase applies to your account. You may cancel before the new price takes effect.
+
+**Refunds and statutory rights**
+
+Cancelling stops future renewals but does not automatically refund a billing period that has already started. Refund requests outside your statutory rights are considered case by case. Nothing in these Terms limits any refund, cancellation or other consumer rights that cannot lawfully be excluded. Contact **support@tidgo.co.uk** if you believe you were charged incorrectly or TidGo materially failed to provide the paid service.
+
+**Access after the subscription ends**
+
+After cancellation, non-renewal or expiry of a trial without payment, you cannot add new receipts, income or expense records. For 30 days after access ends, you can still view and export existing records and delete your account. Further details are provided in our Privacy Policy.
+
+**Stripe**
+
+Stripe processes TidGo subscription payments and provides the Customer Portal. TidGo does not receive or store your full card number or card security details.
 
 ## 6. Your content and data
 
@@ -3305,7 +3336,7 @@ To the fullest extent permitted by law:
 
 - TidGo is not liable for indirect or consequential losses, loss of profits, loss of business, or loss of data (beyond taking reasonable steps to protect it as described in the Privacy Policy).
 - TidGo is not liable for penalties, interest, additional tax or losses arising from inaccurate, incomplete or unchecked records, extracted data or summaries.
-- During any free or early-access period, our total liability to you in connection with the service is limited to **£100**. Once paid plans apply, our total liability is limited to the amount you paid to TidGo in the **previous 12 months**.
+- During any free trial or complimentary access period, our total liability to you in connection with the service is limited to **£100**. Once paid plans apply, our total liability is limited to the amount you paid to TidGo in the **previous 12 months**.
 
 ## 16. Intellectual property
 
@@ -3313,7 +3344,7 @@ TidGo, its name, branding, software and design are owned by us or our licensors.
 
 ## 17. Changes to these Terms
 
-We may update these Terms from time to time (for example, when new features launch or paid plans are introduced). We will post the updated Terms with a new "Last updated" date and, for material changes, notify you in-app or by email. Continued use of TidGo after changes take effect means you accept the updated Terms.
+We may update these Terms from time to time (for example, when features or subscription arrangements change). We will post the updated Terms with a new "Last updated" date and, for material changes, notify you in-app or by email. Continued use of TidGo after changes take effect means you accept the updated Terms.
 
 ## 18. Governing law and disputes
 
