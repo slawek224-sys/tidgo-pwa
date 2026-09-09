@@ -3186,9 +3186,14 @@ This Privacy Policy is governed by the laws of **England and Wales**. Any disput
 
 ## 17. Contact
 
-Questions, requests or complaints:
-**hello@tidgo.co.uk** / **support@tidgo.co.uk**
-128 City Road, London, EC1V 2NX`,
+**Privacy and data protection enquiries:**
+**support@tidgo.co.uk**
+
+General enquiries: **hello@tidgo.co.uk**
+
+TidGo Ltd
+128 City Road, London, EC1V 2NX
+ICO registration: **ZC205408**`,
   terms: `# TidGo Terms & Conditions
 
 **Last updated:** 9 September 2026
