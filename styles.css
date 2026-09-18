@@ -215,82 +215,77 @@ button {
 @media (max-width: 999px) and (prefers-reduced-motion: no-preference) {
   body {
     overflow-x: hidden;
-    perspective: 1100px;
   }
 
   .route-enter {
-    animation: mobileCardEnterForward 360ms cubic-bezier(0.16, 1, 0.3, 1) both;
-    backface-visibility: hidden;
-    transform-origin: 78% 50%;
+    animation: mobileFallbackEnterForward 220ms ease-out both;
   }
 
   .route-enter.route-back {
-    animation-name: mobileCardEnterBack;
-    transform-origin: 22% 50%;
+    animation-name: mobileFallbackEnterBack;
   }
 
   .route-exit {
-    animation: mobileCardExitForward 310ms cubic-bezier(0.4, 0, 0.2, 1) both;
-    backface-visibility: hidden;
-    transform-origin: 22% 50%;
+    display: none;
   }
 
   .route-exit.route-exit-back {
-    animation-name: mobileCardExitBack;
-    transform-origin: 78% 50%;
+    animation-name: none;
   }
 }
 
-@keyframes mobileCardEnterForward {
-  from {
-    opacity: 0;
-    transform: translate3d(18vw, 8px, 0) rotateY(-3deg) rotateZ(0.6deg) scale(0.965);
-    filter: blur(1px);
+@media (max-width: 999px) and (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 260ms;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    animation-fill-mode: both;
+    mix-blend-mode: normal;
   }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0) rotateY(0) rotateZ(0) scale(1);
-    filter: blur(0);
+
+  html[data-route-motion="forward"]::view-transition-old(root) {
+    animation-name: nativeRouteExitForward;
+  }
+
+  html[data-route-motion="forward"]::view-transition-new(root) {
+    animation-name: nativeRouteEnterForward;
+  }
+
+  html[data-route-motion="back"]::view-transition-old(root) {
+    animation-name: nativeRouteExitBack;
+  }
+
+  html[data-route-motion="back"]::view-transition-new(root) {
+    animation-name: nativeRouteEnterBack;
   }
 }
 
-@keyframes mobileCardEnterBack {
-  from {
-    opacity: 0;
-    transform: translate3d(-18vw, 8px, 0) rotateY(3deg) rotateZ(-0.6deg) scale(0.965);
-    filter: blur(1px);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0) rotateY(0) rotateZ(0) scale(1);
-    filter: blur(0);
-  }
+@keyframes mobileFallbackEnterForward {
+  from { opacity: 0; transform: translateX(24px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
-@keyframes mobileCardExitForward {
-  from {
-    opacity: 1;
-    transform: translateX(-50%) translate3d(0, 0, 0) rotateY(0) rotateZ(0) scale(1);
-    filter: blur(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateX(-50%) translate3d(-24vw, -6px, 0) rotateY(4deg) rotateZ(-1deg) scale(0.93);
-    filter: blur(1.5px);
-  }
+@keyframes mobileFallbackEnterBack {
+  from { opacity: 0; transform: translateX(-24px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
-@keyframes mobileCardExitBack {
-  from {
-    opacity: 1;
-    transform: translateX(-50%) translate3d(0, 0, 0) rotateY(0) rotateZ(0) scale(1);
-    filter: blur(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateX(-50%) translate3d(24vw, -6px, 0) rotateY(-4deg) rotateZ(1deg) scale(0.93);
-    filter: blur(1.5px);
-  }
+@keyframes nativeRouteExitForward {
+  to { opacity: 0; transform: translateX(-42px); }
+}
+
+@keyframes nativeRouteEnterForward {
+  from { opacity: 0; transform: translateX(34px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes nativeRouteExitBack {
+  to { opacity: 0; transform: translateX(42px); }
+}
+
+@keyframes nativeRouteEnterBack {
+  from { opacity: 0; transform: translateX(-34px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
 button,
@@ -6030,17 +6025,22 @@ button:active,
   }
 
   .desktop-stat {
+    --stat-rgb: 59, 130, 246;
     position: relative;
     min-width: 0;
     min-height: 112px;
     padding: 17px 18px 15px;
     overflow: hidden;
-    border: 1px solid #e0e7f0;
+    border: 1px solid rgba(var(--stat-rgb), 0.28);
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.94);
+    background:
+      radial-gradient(circle at 16% 8%, rgba(255, 255, 255, 0.9), transparent 39%),
+      linear-gradient(145deg, rgba(255, 255, 255, 0.94) 0%, rgba(var(--stat-rgb), 0.11) 48%, rgba(var(--stat-rgb), 0.34) 100%);
     color: #162033;
     text-align: left;
-    box-shadow: 0 10px 26px rgba(15, 23, 42, 0.055);
+    box-shadow:
+      0 12px 28px rgba(var(--stat-rgb), 0.14),
+      0 0 0 1px rgba(255, 255, 255, 0.58) inset;
     transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease;
   }
 
@@ -6049,7 +6049,7 @@ button:active,
     position: absolute;
     inset: 0 auto 0 0;
     width: 4px;
-    background: #3b82f6;
+    background: rgb(var(--stat-rgb));
   }
 
   .desktop-stat::after {
@@ -6061,33 +6061,20 @@ button:active,
   }
 
   .desktop-stat.income {
-    border-color: rgba(22, 163, 74, 0.24);
-    background: linear-gradient(145deg, rgba(240, 253, 244, 0.98), rgba(187, 247, 208, 0.38));
-    box-shadow: 0 12px 28px rgba(22, 163, 74, 0.12);
+    --stat-rgb: 22, 163, 74;
   }
 
   .desktop-stat.expense {
-    border-color: rgba(37, 99, 235, 0.24);
-    background: linear-gradient(145deg, rgba(239, 246, 255, 0.98), rgba(191, 219, 254, 0.42));
-    box-shadow: 0 12px 28px rgba(37, 99, 235, 0.12);
+    --stat-rgb: 30, 64, 175;
   }
 
   .desktop-stat.records {
-    border-color: rgba(14, 165, 233, 0.24);
-    background: linear-gradient(145deg, rgba(240, 249, 255, 0.98), rgba(186, 230, 253, 0.42));
-    box-shadow: 0 12px 28px rgba(14, 165, 233, 0.12);
+    --stat-rgb: 14, 165, 233;
   }
 
   .desktop-stat.review {
-    border-color: rgba(234, 179, 8, 0.3);
-    background: linear-gradient(145deg, rgba(254, 252, 232, 0.98), rgba(253, 230, 138, 0.42));
-    box-shadow: 0 12px 28px rgba(202, 138, 4, 0.13);
+    --stat-rgb: 234, 179, 8;
   }
-
-  .desktop-stat.income::before { background: #16a34a; }
-  .desktop-stat.expense::before { background: #2563eb; }
-  .desktop-stat.records::before { background: #0ea5e9; }
-  .desktop-stat.review::before { background: #eab308; }
 
   .desktop-stat.active {
     transform: translateY(-2px);
@@ -6328,6 +6315,37 @@ button:active,
   .screen-settings .desktop-app-workspace > .screen {
     max-width: 1280px;
     margin: 0 auto;
+  }
+
+  .screen-settings .settings-compact-action {
+    width: auto !important;
+    min-width: 0;
+    min-height: 40px;
+    justify-self: start;
+    padding: 9px 15px;
+  }
+
+  .screen-settings .secondary.settings-compact-action,
+  .screen-settings a.settings-compact-action {
+    border-color: #15803d;
+    background: linear-gradient(145deg, #22c55e 0%, #15803d 100%);
+    color: #ffffff;
+    box-shadow: 0 9px 20px rgba(22, 163, 74, 0.18);
+  }
+
+  .screen-settings .secondary.settings-compact-action:hover,
+  .screen-settings .secondary.settings-compact-action:focus-visible,
+  .screen-settings a.settings-compact-action:hover,
+  .screen-settings a.settings-compact-action:focus-visible {
+    border-color: #166534;
+    box-shadow: 0 12px 26px rgba(22, 163, 74, 0.25);
+  }
+
+  .screen-settings .danger.settings-compact-action {
+    border-color: #dc2626;
+    background: linear-gradient(145deg, #ef4444 0%, #b91c1c 100%);
+    color: #ffffff;
+    box-shadow: 0 9px 20px rgba(220, 38, 38, 0.17);
   }
 
   .screen-expenseChoice .desktop-app-workspace > .screen,

@@ -6075,23 +6075,59 @@ function routeState() {
   };
 }
 
+function useNativeMobileTransition() {
+  return typeof document.startViewTransition === "function"
+    && window.matchMedia("(max-width: 999px)").matches
+    && window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
+}
+
+function renderRouteChange(direction, update, afterRender = null) {
+  if (!useNativeMobileTransition()) {
+    state.routeMotion = direction;
+    update();
+    render();
+    afterRender?.();
+    return;
+  }
+
+  document.documentElement.dataset.routeMotion = direction;
+  state.routeMotion = "";
+  let transition;
+  try {
+    transition = document.startViewTransition(() => {
+      update();
+      render();
+      afterRender?.();
+    });
+  } catch {
+    delete document.documentElement.dataset.routeMotion;
+    state.routeMotion = direction;
+    update();
+    render();
+    afterRender?.();
+    return;
+  }
+  transition.finished.finally(() => {
+    delete document.documentElement.dataset.routeMotion;
+  });
+}
+
 function applyRoute(route) {
   if (!route) return;
-  state.routeMotion = "back";
-  state.screen = route.screen || "home";
-  state.selected = route.selected || null;
-  render();
-  scrollToPublicHash();
+  renderRouteChange("back", () => {
+    state.screen = route.screen || "home";
+    state.selected = route.selected || null;
+  }, scrollToPublicHash);
 }
 
 function navigate(screen, extra = {}) {
-  state.routeMotion = "forward";
-  state.screen = screen;
-  if ("selected" in extra) {
-    state.selected = extra.selected;
-  }
-  history.pushState(routeState(), "", location.pathname + location.search);
-  render();
+  renderRouteChange("forward", () => {
+    state.screen = screen;
+    if ("selected" in extra) {
+      state.selected = extra.selected;
+    }
+    history.pushState(routeState(), "", location.pathname + location.search);
+  });
 }
 
 function desktopAppSidebar() {
@@ -8182,7 +8218,7 @@ function clientConnectionCard() {
       <span class="hint">${t("connectAccountantHint")}</span>
       <span class="hint">${t("noConnection")}</span>
       <label class="field"><span>${t("accountantEmail")}</span><input class="input" name="accountant_email" type="email"></label>
-      <button class="secondary" type="submit">${t("createInvite")}</button>
+      <button class="secondary settings-compact-action" type="submit">${t("createInvite")}</button>
     </form>
   `;
 }
@@ -8229,7 +8265,7 @@ function settingsWhatsAppSection(existingWhatsApp = "") {
 function settingsEmailChangeSection() {
   const newEmail = state.emailChangeNewEmail || "";
   if (!state.emailChangeOpen) {
-    return `<button class="secondary" type="button" data-action="startEmailChange">${t("changeEmailTitle")}</button>`;
+    return `<button class="secondary settings-compact-action" type="button" data-action="startEmailChange">${t("changeEmailTitle")}</button>`;
   }
   return `
     <div class="stack email-change-box">
@@ -8324,7 +8360,7 @@ function settings() {
         <span class="hint">${t("feedbackHint")}</span>
         <form class="stack" id="settingsFeedbackForm">
           <textarea class="textarea" name="message" rows="3" placeholder="${escapeAttr(t("feedbackPlaceholder"))}" required></textarea>
-          <button class="secondary" type="submit">${t("sendMessage")}</button>
+          <button class="secondary settings-compact-action" type="submit">${t("sendMessage")}</button>
         </form>
       </div>
       <div class="card stack" style="margin-top:18px">
@@ -8339,14 +8375,14 @@ function settings() {
           <input type="checkbox" name="legal_agree_settings"${legalAgreed ? " checked" : ""}>
           <span>${t("legalSettingsAgree")}</span>
         </label>
-        <a class="secondary legal-link-button" href="/privacy/" target="_blank" rel="noopener">${t("privacyTitle")}</a>
-        <a class="secondary legal-link-button" href="/terms/" target="_blank" rel="noopener">${t("termsTitle")}</a>
-        <a class="secondary legal-link-button" href="/delete-account/" target="_blank" rel="noopener">${t("deleteAccountInfoTitle")}</a>
+        <a class="secondary legal-link-button settings-compact-action" href="/privacy/" target="_blank" rel="noopener">${t("privacyTitle")}</a>
+        <a class="secondary legal-link-button settings-compact-action" href="/terms/" target="_blank" rel="noopener">${t("termsTitle")}</a>
+        <a class="secondary legal-link-button settings-compact-action" href="/delete-account/" target="_blank" rel="noopener">${t("deleteAccountInfoTitle")}</a>
       </div>
       <div class="card stack" style="margin-top:18px">
         <strong>${t("signOutDevice")}</strong>
         <span class="hint">${t("signOutHint")}</span>
-        <button class="secondary" type="button" data-action="signOutDevice">${t("signOutDevice")}</button>
+        <button class="secondary settings-compact-action" type="button" data-action="signOutDevice">${t("signOutDevice")}</button>
       </div>
       <div class="card stack" style="margin-top:18px">
         <strong>${t("deleteAccount")}</strong>
@@ -8355,7 +8391,7 @@ function settings() {
           <input type="checkbox" name="delete_confirm">
           <span>${t("deleteConfirmText")}</span>
         </label>
-        <button class="danger" data-action="deleteAccount" data-delete-account-button disabled>${t("deleteAccount")}</button>
+        <button class="danger settings-compact-action" data-action="deleteAccount" data-delete-account-button disabled>${t("deleteAccount")}</button>
       </div>
     </section>
   `);
