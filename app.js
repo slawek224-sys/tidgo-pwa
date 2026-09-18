@@ -3419,6 +3419,7 @@ const state = {
   income: [],
   recordsLoading: false,
   recordFilter: read("tg_record_filter", "all"),
+  recordTypeFilter: "all",
   pendingRecordKind: "",
   pendingBusinessType: "",
   pendingBusinessSlotId: "",
@@ -5742,6 +5743,39 @@ function monthLabel(date = state.summaryDate) {
   return date.toLocaleDateString(uiLocale(), { month: "long", year: "numeric" });
 }
 
+function ukTaxYearRange(date = new Date()) {
+  const value = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  const aprilSix = new Date(value.getFullYear(), 3, 6);
+  const startYear = value >= aprilSix ? value.getFullYear() : value.getFullYear() - 1;
+  return {
+    start: new Date(startYear, 3, 6),
+    endExclusive: new Date(startYear + 1, 3, 6),
+    label: `${startYear}/${String(startYear + 1).slice(-2)}`
+  };
+}
+
+function ukTaxYearToDateItems(records = [], date = new Date()) {
+  const range = ukTaxYearRange(date);
+  const endOfToday = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
+  return records.filter((item) => {
+    const itemDate = appDate(item.timestamp || item.created_at);
+    return itemDate >= range.start && itemDate < range.endExclusive && itemDate < endOfToday;
+  });
+}
+
+function ukTaxYearLabel() {
+  return ({
+    en: "UK tax year",
+    pl: "Rok podatkowy UK",
+    ro: "An fiscal UK",
+    uk: "Податковий рік UK",
+    lt: "JK mokestiniai metai",
+    lv: "UK nodokļu gads",
+    es: "Año fiscal UK",
+    bg: "Данъчна година UK"
+  })[state.language] || "UK tax year";
+}
+
 function quarterRange(date = state.summaryDate) {
   if (state.quarterMode === "mtd_running") return mtdRunningQuarterRange(date);
   if (state.quarterMode === "uk_tax") return ukTaxQuarterRange(date);
@@ -5865,11 +5899,33 @@ function proofForIncome(id) {
 
 function dataUrlFromMaybeBase64(value) {
   if (!value || typeof value !== "string") return "";
-  if (value.startsWith("data:image/") || value.startsWith("http://") || value.startsWith("https://")) return value;
+  if (value.startsWith("data:image/") || value.startsWith("http://") || value.startsWith("https://") || value.startsWith("/")) return value;
   if (value.startsWith("/9j/")) return `data:image/jpeg;base64,${value}`;
   if (value.startsWith("iVBOR")) return `data:image/png;base64,${value}`;
   if (value.startsWith("UklGR")) return `data:image/webp;base64,${value}`;
   return "";
+}
+
+function receiptImage(item = {}) {
+  const candidates = [
+    item.image_base64,
+    item.image_url,
+    item.thumbnail_url,
+    item.receipt_image_url,
+    item.photo_url,
+    item.attachment_url,
+    item.file_url,
+    item.document_url
+  ];
+  return candidates.map(dataUrlFromMaybeBase64).find(Boolean) || "";
+}
+
+async function loadReceiptDetail(receiptId) {
+  if (!receiptId) return null;
+  const detail = await api(`/api/receipts/detail/${encodeURIComponent(receiptId)}`);
+  const hydrated = applyRecordBusinessMeta(normalizeReceiptResponse(detail));
+  state.receipts = state.receipts.map((item) => item.id === receiptId ? { ...item, ...hydrated } : item);
+  return hydrated;
 }
 
 function incomeProofImage(item = {}, proof = null) {
@@ -6038,6 +6094,49 @@ function navigate(screen, extra = {}) {
   render();
 }
 
+function desktopAppSidebar() {
+  const homeActive = state.screen === "home" && state.recordFilter !== "needs_review" && state.recordTypeFilter === "all";
+  const reviewActive = state.screen === "home" && state.recordFilter === "needs_review";
+  const active = (screens) => screens.includes(state.screen) ? "active" : "";
+  const reviewCount = transactions().filter(({ item }) => recordNeedsReview(item)).length;
+  return `
+    <aside class="desktop-app-sidebar desktop-dashboard-sidebar" aria-label="TidGo">
+      <a class="desktop-dashboard-brand" href="/" aria-label="TidGo homepage">
+        <img src="/icon-192.png" alt=""><span>TidGo<sup>TM</sup></span>
+      </a>
+      <nav class="desktop-dashboard-nav">
+        <button class="${homeActive ? "active" : ""}" type="button" data-action="setRecordFilter" data-record-filter="all"><span class="desktop-nav-icon" aria-hidden="true">⌂</span><span>${t("recordFilterAll")}</span></button>
+        <button class="${active(["summary"])}" type="button" data-action="summary"><span class="desktop-nav-icon" aria-hidden="true">▥</span><span>${t("summary")}</span></button>
+        <button class="${reviewActive ? "active" : ""}" type="button" data-action="setRecordFilter" data-record-filter="needs_review"><span class="desktop-nav-icon review" aria-hidden="true">!</span><span>${t("recordFilterReview")}</span><small>${reviewCount}</small></button>
+        <button class="${active(["expenseChoice", "receipt"])}" type="button" data-action="startExpense" data-requires-active-plan><span class="desktop-nav-icon expense" aria-hidden="true">−</span><span>${t("addExpense")}</span></button>
+        <button class="${active(["incomeForm", "incomeDetail"])}" type="button" data-action="startIncome" data-requires-active-plan><span class="desktop-nav-icon income" aria-hidden="true">+</span><span>${t("addIncome")}</span></button>
+        <button class="${active(["settings"])}" type="button" data-action="settings"><span class="desktop-nav-icon" aria-hidden="true">⚙</span><span>${t("settings")}</span></button>
+      </nav>
+      <div class="desktop-sidebar-footer">
+        <button class="secondary" type="button" data-action="shareTidGo">${t("shareTidGo")}</button>
+      </div>
+    </aside>
+  `;
+}
+
+function desktopUpdateCopy() {
+  const copy = {
+    en: ["TidGo update", "Your desktop workspace", "Use the menu on the left to move between records, summaries and settings. The phone view stays focused on quick capture.", "Open the MTD Knowledge Base"],
+    pl: ["Aktualności TidGo", "Twoje miejsce pracy na komputerze", "Menu po lewej prowadzi do rekordów, podsumowań i ustawień. Widok telefonu nadal służy do szybkiego dodawania.", "Otwórz bazę wiedzy MTD"],
+    ro: ["Noutăți TidGo", "Spațiul tău de lucru pe desktop", "Folosește meniul din stânga pentru înregistrări, rezumate și setări. Telefonul rămâne pentru adăugare rapidă.", "Deschide baza de cunoștințe MTD"],
+    lt: ["TidGo naujienos", "Jūsų darbo vieta kompiuteryje", "Kairėje esančiu meniu pasieksite įrašus, suvestines ir nustatymus. Telefono vaizdas lieka greitam įvedimui.", "Atidaryti MTD žinių bazę"]
+  }[state.language] || ["TidGo update", "Your desktop workspace", "Use the menu on the left to move between records, summaries and settings. The phone view stays focused on quick capture.", "Open the MTD Knowledge Base"];
+  const prefix = ({ pl: "/pl", ro: "/ro", lt: "/lt" })[state.language] || "";
+  return `
+    <aside class="desktop-quick-panel desktop-update-panel">
+      <span class="desktop-update-kicker">${escapeHtml(copy[0])}</span>
+      <h2>${escapeHtml(copy[1])}</h2>
+      <p>${escapeHtml(copy[2])}</p>
+      <a class="desktop-update-link" href="${prefix}/mtd/">${escapeHtml(copy[3])}<span aria-hidden="true">→</span></a>
+    </aside>
+  `;
+}
+
 function scrollToPublicHash() {
   if (state.screen !== "landing" || location.hash !== "#contact") return;
   window.requestAnimationFrame(() => {
@@ -6048,10 +6147,12 @@ function scrollToPublicHash() {
 function shell(content) {
   const accountantMode = state.screen === "accountantLanding" || state.screen === "accountantDemoClient";
   const landingMode = ["landing", "marketingPage", "appDemo", "accountantDemo"].includes(state.screen);
+  const desktopAppMode = Boolean(state.user) && !accountantMode && !landingMode && !["legalConsent", "privacy", "terms"].includes(state.screen);
   const motionClass = state.routeMotion ? ` route-enter route-${state.routeMotion}` : "";
   const previousShell = state.routeMotion && !landingMode && !state.imageViewer ? app.querySelector(".shell") : null;
   const exitShell = previousShell ? previousShell.cloneNode(true) : null;
-  app.innerHTML = `<main class="shell ${accountantMode ? "accountant-shell" : ""} ${landingMode ? "landing-shell" : ""}${motionClass}">${content}</main><section id="printRoot" class="print-root"></section>${imageViewerOverlay()}`;
+  const shellContent = desktopAppMode ? `<div class="desktop-app-layout">${desktopAppSidebar()}<div class="desktop-app-workspace">${content}</div></div>` : content;
+  app.innerHTML = `<main class="shell screen-${state.screen} ${desktopAppMode ? "desktop-app-shell" : ""} ${accountantMode ? "accountant-shell" : ""} ${landingMode ? "landing-shell" : ""}${motionClass}">${shellContent}</main><section id="printRoot" class="print-root"></section>${imageViewerOverlay()}`;
   if (exitShell) {
     exitShell.setAttribute("aria-hidden", "true");
     exitShell.classList.remove("route-enter", "route-forward", "route-back");
@@ -6092,6 +6193,19 @@ function imageViewerOverlay() {
   `;
 }
 
+function backButtonLabel() {
+  return ({
+    en: "Back",
+    pl: "Wróć",
+    ro: "Înapoi",
+    uk: "Назад",
+    lt: "Atgal",
+    lv: "Atpakaļ",
+    es: "Volver",
+    bg: "Назад"
+  })[state.language] || "Back";
+}
+
 function topbar(title, back = false) {
   const accountantMode = state.screen === "accountantLanding" || state.screen === "accountantDemoClient";
   const compactBilling = state.user && state.screen === "home" && !back && !accountantMode
@@ -6099,9 +6213,9 @@ function topbar(title, back = false) {
     : `<strong>${title || ""}</strong>`;
   return `
     <div class="topbar">
-      ${back ? `<button class="icon-btn" data-action="back" aria-label="Back">←</button>` : `<div class="brand app-brand"><img src="/icon-192.png" alt=""><span>TidGo<sup>TM</sup></span></div>`}
+      ${back ? `<button class="topbar-back" data-action="back" aria-label="${escapeAttr(backButtonLabel())}"><span aria-hidden="true">←</span><strong>${escapeHtml(backButtonLabel())}</strong></button>` : `<div class="brand app-brand"><img src="/icon-192.png" alt=""><span>TidGo<sup>TM</sup></span></div>`}
       ${compactBilling}
-      ${state.user && !back && !accountantMode ? `<button class="icon-btn" data-action="settings" aria-label="${t("settings")}">⚙</button>` : `<span style="width:44px"></span>`}
+      ${state.user && !back && !accountantMode ? `<button class="icon-btn" data-action="settings" aria-label="${t("settings")}">⚙</button>` : `<span class="topbar-back-spacer"></span>`}
     </div>
   `;
 }
@@ -7798,35 +7912,75 @@ function recover() {
 }
 
 function home() {
+  const now = new Date();
+  const taxYear = ukTaxYearRange(now);
   const allItems = transactions();
   const reviewItems = allItems.filter((row) => recordNeedsReview(row.item));
   const recordFilter = state.recordFilter === "needs_review" ? "needs_review" : "all";
-  const items = recordFilter === "needs_review" ? reviewItems : allItems;
+  const typeFilter = ["income", "receipt"].includes(state.recordTypeFilter) ? state.recordTypeFilter : "all";
+  const typeItems = typeFilter === "all" ? allItems : allItems.filter((row) => {
+    const itemDate = appDate(row.item.timestamp || row.item.created_at);
+    return row.type === typeFilter && itemDate >= taxYear.start && itemDate < taxYear.endExclusive && itemDate <= now;
+  });
+  const items = recordFilter === "needs_review" ? reviewItems : typeItems;
   const transactionLimit = Math.max(4, state.transactionLimit || 4);
   const visibleItems = items.slice(0, transactionLimit);
   const emptyText = recordFilter === "needs_review" ? t("noNeedsReviewRecords") : t("empty");
+  const currentIncome = ukTaxYearToDateItems(state.income, now);
+  const currentExpenses = ukTaxYearToDateItems(state.receipts.filter((item) => !item.is_client_expense), now);
+  const listTitle = recordFilter === "needs_review" ? t("recordFilterReview") : typeFilter === "income" ? t("income") : typeFilter === "receipt" ? t("expenses") : t("recordFilterAll");
+  const listPeriodLabel = recordFilter === "needs_review" ? t("recordFilterReview") : typeFilter === "all" ? t("recordFilterAll") : `${ukTaxYearLabel()} ${taxYear.label}`;
   shell(`
-    <section class="screen">
-      ${topbar("")}
-      <div id="billingOnboardingHost"></div>
-      <h1 class="title">${t("hello")}, ${escapeHtml(state.user.first_name)}.</h1>
-      ${serverUnavailableCard()}
-      <button class="nav-row" data-action="summary">
-        <span><span class="summary-icon" aria-hidden="true"></span> ${t("summary")}</span><strong>›</strong>
-      </button>
-      <div class="grid-2" style="margin-top:14px">
-        <button class="action blue" data-action="startExpense" data-requires-active-plan><span>${t("addExpense")}</span><small>${t("photoDone")}</small></button>
-        <button class="action green" data-action="startIncome" data-requires-active-plan><span>${t("addIncome")}</span><small>${t("amountNote")}</small></button>
-      </div>
-      <button class="secondary share-inline app-share-button" type="button" data-action="shareTidGo">${t("shareTidGo")}</button>
-      <div class="segmented record-filter" aria-label="${escapeAttr(t("recordFilterReview"))}">
-        <button class="${recordFilter === "all" ? "active" : ""}" type="button" data-action="setRecordFilter" data-record-filter="all">${t("recordFilterAll")} <small>${allItems.length}</small></button>
-        <button class="${recordFilter === "needs_review" ? "active" : ""}" type="button" data-action="setRecordFilter" data-record-filter="needs_review">${t("recordFilterReview")} <small>${reviewItems.length}</small></button>
-      </div>
-      <div class="list">
-        ${state.recordsLoading && !items.length ? recordSkeletonRows() : items.length ? visibleItems.map(itemRow).join("") : `<div class="empty">${emptyText}</div>`}
-        ${items.length > transactionLimit ? `<button class="link-btn see-all-btn" data-action="showMoreTransactions">${t("seeMore")}</button>` : ""}
-        ${transactionLimit > 4 ? `<button class="link-btn see-all-btn" data-action="showLessTransactions">${t("showLess")}</button>` : ""}
+    <section class="screen home-screen">
+      <div class="desktop-dashboard-main">
+          ${topbar("")}
+          <div id="billingOnboardingHost"></div>
+          <header class="desktop-dashboard-heading">
+            <div><span>${monthLabel(now)}</span><h1>${t("hello")}, ${escapeHtml(state.user.first_name)}.</h1></div>
+          </header>
+          <h1 class="title mobile-home-title">${t("hello")}, ${escapeHtml(state.user.first_name)}.</h1>
+          ${serverUnavailableCard()}
+          <div class="desktop-dashboard-stats">
+            <button type="button" class="desktop-stat income ${typeFilter === "income" ? "active" : ""}" data-action="setRecordTypeFilter" data-record-type-filter="income"><span>${t("income")}</span><strong>${formatTotals(currentIncome)}</strong><small>${ukTaxYearLabel()} ${taxYear.label}</small></button>
+            <button type="button" class="desktop-stat expense ${typeFilter === "receipt" ? "active" : ""}" data-action="setRecordTypeFilter" data-record-type-filter="receipt"><span>${t("expenses")}</span><strong>${formatTotals(currentExpenses)}</strong><small>${ukTaxYearLabel()} ${taxYear.label}</small></button>
+            <button type="button" class="desktop-stat records" data-action="setRecordFilter" data-record-filter="all"><span>${t("recordFilterAll")}</span><strong>${allItems.length}</strong><small>${t("recordFilterAll")}</small></button>
+            <button type="button" class="desktop-stat review" data-action="setRecordFilter" data-record-filter="needs_review"><span>${t("recordFilterReview")}</span><strong>${reviewItems.length}</strong><small>${reviewItems.length ? t("needsReview") : t("noNeedsReviewRecords")}</small></button>
+          </div>
+          <div class="desktop-dashboard-content">
+            <section class="desktop-records-panel">
+              <div class="desktop-panel-heading">
+                <div><span>${listPeriodLabel}</span><h2>${listTitle}</h2></div>
+                <div class="segmented record-filter" aria-label="${escapeAttr(t("recordFilterReview"))}">
+                  <button class="${recordFilter === "all" && typeFilter === "all" ? "active" : ""}" type="button" data-action="setRecordFilter" data-record-filter="all">${t("recordFilterAll")} <small>${allItems.length}</small></button>
+                  <button class="${recordFilter === "needs_review" ? "active" : ""}" type="button" data-action="setRecordFilter" data-record-filter="needs_review">${t("recordFilterReview")} <small>${reviewItems.length}</small></button>
+                </div>
+              </div>
+              <div class="desktop-table-labels" aria-hidden="true"><span>${t("description")}</span><span>${t("date")}</span><span>${t("amount")}</span></div>
+              <div class="list desktop-record-list">
+                ${state.recordsLoading && !items.length ? recordSkeletonRows() : items.length ? visibleItems.map(itemRow).join("") : `<div class="empty">${emptyText}</div>`}
+                ${items.length > transactionLimit ? `<button class="link-btn see-all-btn" data-action="showMoreTransactions">${t("seeMore")}</button>` : ""}
+                ${transactionLimit > 4 ? `<button class="link-btn see-all-btn" data-action="showLessTransactions">${t("showLess")}</button>` : ""}
+              </div>
+            </section>
+            ${desktopUpdateCopy()}
+          </div>
+          <div class="mobile-home-controls">
+            <button class="nav-row" data-action="summary"><span><span class="summary-icon" aria-hidden="true"></span> ${t("summary")}</span><strong>›</strong></button>
+            <div class="grid-2" style="margin-top:14px">
+              <button class="action blue" data-action="startExpense" data-requires-active-plan><span>${t("addExpense")}</span><small>${t("photoDone")}</small></button>
+              <button class="action green" data-action="startIncome" data-requires-active-plan><span>${t("addIncome")}</span><small>${t("amountNote")}</small></button>
+            </div>
+            <button class="secondary share-inline app-share-button" type="button" data-action="shareTidGo">${t("shareTidGo")}</button>
+            <div class="segmented record-filter" aria-label="${escapeAttr(t("recordFilterReview"))}">
+              <button class="${recordFilter === "all" ? "active" : ""}" type="button" data-action="setRecordFilter" data-record-filter="all">${t("recordFilterAll")} <small>${allItems.length}</small></button>
+              <button class="${recordFilter === "needs_review" ? "active" : ""}" type="button" data-action="setRecordFilter" data-record-filter="needs_review">${t("recordFilterReview")} <small>${reviewItems.length}</small></button>
+            </div>
+            <div class="list">
+              ${state.recordsLoading && !items.length ? recordSkeletonRows() : items.length ? visibleItems.map(itemRow).join("") : `<div class="empty">${emptyText}</div>`}
+              ${items.length > transactionLimit ? `<button class="link-btn see-all-btn" data-action="showMoreTransactions">${t("seeMore")}</button>` : ""}
+              ${transactionLimit > 4 ? `<button class="link-btn see-all-btn" data-action="showLessTransactions">${t("showLess")}</button>` : ""}
+            </div>
+          </div>
       </div>
     </section>
   `);
@@ -7888,7 +8042,7 @@ function receipt() {
       </div>
       <div class="record-edit-section record-edit-photo">
         <h2>${t("recordEditReceipt")}</h2>
-        ${imagePreviewButton(receipt.image_base64, "Receipt photo")}
+        ${imagePreviewButton(receiptImage(receipt), "Receipt photo")}
       </div>
       ${isDuplicate || needsDateReview || receipt.ai_comment ? `
         <div class="record-edit-section record-edit-review">
@@ -8784,6 +8938,7 @@ function itemRow(row) {
         <span class="list-title">${escapeHtml(item.description || t("income"))}${reviewBadge(item)}</span>
         <span class="list-meta">${day(item.timestamp)}${businessLabel ? ` - ${escapeHtml(businessLabel)}` : ""}</span>
       </span>
+      <span class="desktop-record-date">${day(item.timestamp)}</span>
       <span class="amount income">${money(item.amount, item.currency)}</span>
     </button>`;
   }
@@ -8794,6 +8949,7 @@ function itemRow(row) {
       <span class="list-title">${escapeHtml(item.merchant || t("unknown"))}${reviewBadge(item)}</span>
       <span class="list-meta">${t(item.category)} - ${day(item.timestamp)}${businessLabel ? ` - ${escapeHtml(businessLabel)}` : ""}</span>
     </span>
+    <span class="desktop-record-date">${day(item.timestamp)}</span>
     <span class="amount expense">${money(item.amount, item.currency)}</span>
   </button>`;
 }
@@ -9490,8 +9646,17 @@ document.addEventListener("click", async (event) => {
 
   if (target.dataset.action === "setRecordFilter") {
     state.recordFilter = target.dataset.recordFilter === "needs_review" ? "needs_review" : "all";
+    state.recordTypeFilter = "all";
     state.transactionLimit = 4;
     write("tg_record_filter", state.recordFilter);
+    if (state.screen !== "home") return navigate("home");
+    render();
+    return;
+  }
+  if (target.dataset.action === "setRecordTypeFilter") {
+    state.recordFilter = "all";
+    state.recordTypeFilter = target.dataset.recordTypeFilter === "income" ? "income" : "receipt";
+    state.transactionLimit = 4;
     render();
     return;
   }
@@ -9536,7 +9701,16 @@ document.addEventListener("click", async (event) => {
     return render();
   }
   if (target.dataset.openReceipt) {
-    return navigate("receipt", { selected: target.dataset.openReceipt });
+    const receiptId = target.dataset.openReceipt;
+    try {
+      setBusy(true);
+      await loadReceiptDetail(receiptId);
+    } catch (error) {
+      toast(error.message || t("backendDown"));
+    } finally {
+      setBusy(false);
+    }
+    return navigate("receipt", { selected: receiptId });
   }
   if (target.dataset.openIncome) {
     return navigate("incomeDetail", { selected: target.dataset.openIncome });
