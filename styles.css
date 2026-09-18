@@ -5833,12 +5833,15 @@ button:active,
     flex-direction: column;
     min-width: 0;
     padding: 24px 16px 18px;
-    color: var(--ink);
-    border-right: 1px solid rgba(30, 64, 175, 0.1);
+    color: #ffffff;
+    border-right: 1px solid rgba(255, 255, 255, 0.3);
     background:
-      linear-gradient(145deg, rgba(255, 255, 255, 0.72) 0%, transparent 38%),
-      linear-gradient(145deg, #e9faef 0%, #f7fbff 48%, #e6efff 100%);
-    box-shadow: 10px 0 28px rgba(30, 64, 175, 0.055);
+      radial-gradient(circle at 14% 4%, rgba(255, 255, 255, 0.36), transparent 27%),
+      linear-gradient(145deg, rgba(255, 255, 255, 0.16) 0%, transparent 38%),
+      linear-gradient(145deg, #16a34a 0%, #0f9f80 38%, #0ea5a4 57%, #2563eb 100%);
+    box-shadow:
+      12px 0 32px rgba(30, 64, 175, 0.13),
+      inset -1px 0 0 rgba(255, 255, 255, 0.2);
   }
 
   .desktop-dashboard-brand {
@@ -5846,7 +5849,7 @@ button:active,
     align-items: center;
     gap: 12px;
     padding: 0 8px 22px;
-    color: var(--blue-dark);
+    color: #ffffff;
     font-size: 21px;
     font-weight: 900;
     text-decoration: none;
@@ -5857,8 +5860,8 @@ button:active,
     height: 42px;
     border-radius: 8px;
     box-shadow:
-      0 10px 24px rgba(30, 64, 175, 0.16),
-      0 0 0 3px rgba(22, 163, 74, 0.08);
+      0 12px 26px rgba(15, 23, 42, 0.18),
+      0 0 0 3px rgba(255, 255, 255, 0.18);
   }
 
   .desktop-dashboard-brand sup {
@@ -5881,7 +5884,7 @@ button:active,
     border: 1px solid transparent;
     border-radius: 7px;
     background: transparent;
-    color: #475569;
+    color: rgba(255, 255, 255, 0.88);
     text-align: left;
     font-size: 14px;
     font-weight: 760;
@@ -5891,15 +5894,15 @@ button:active,
   .desktop-dashboard-nav button:hover,
   .desktop-dashboard-nav button:focus-visible,
   .desktop-dashboard-nav button.active {
-    color: var(--blue-dark);
-    border-color: rgba(30, 64, 175, 0.14);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.3);
     background:
-      linear-gradient(90deg, rgba(22, 163, 74, 0.13), rgba(30, 64, 175, 0.09)),
-      rgba(255, 255, 255, 0.86);
+      linear-gradient(105deg, rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0.1)),
+      rgba(255, 255, 255, 0.08);
     box-shadow:
-      inset 3px 0 0 var(--green),
-      0 8px 20px rgba(30, 64, 175, 0.09),
-      0 0 0 1px rgba(255, 255, 255, 0.82) inset;
+      inset 3px 0 0 rgba(255, 255, 255, 0.92),
+      0 10px 24px rgba(15, 23, 42, 0.13),
+      0 0 0 1px rgba(255, 255, 255, 0.14) inset;
     transform: translateX(2px);
   }
 
@@ -5910,7 +5913,7 @@ button:active,
     place-items: center;
     padding: 2px 6px;
     border-radius: 999px;
-    background: rgba(30, 64, 175, 0.08);
+    background: rgba(255, 255, 255, 0.16);
     color: inherit;
   }
 
@@ -5919,29 +5922,29 @@ button:active,
     width: 30px;
     height: 30px;
     place-items: center;
-    border: 1px solid rgba(30, 64, 175, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.28);
     border-radius: 7px;
-    background: rgba(255, 255, 255, 0.82);
-    color: var(--blue);
+    background: rgba(255, 255, 255, 0.16);
+    color: #ffffff;
     font-size: 16px;
   }
 
   .desktop-nav-icon.review {
-    color: #a16207;
-    border-color: rgba(234, 179, 8, 0.24);
-    background: rgba(254, 249, 195, 0.72);
+    color: #713f12;
+    border-color: rgba(254, 240, 138, 0.58);
+    background: rgba(254, 240, 138, 0.9);
   }
 
   .desktop-nav-icon.expense {
-    color: var(--blue);
-    border-color: rgba(30, 64, 175, 0.18);
-    background: rgba(219, 234, 254, 0.66);
+    color: #1e40af;
+    border-color: rgba(219, 234, 254, 0.58);
+    background: rgba(219, 234, 254, 0.9);
   }
 
   .desktop-nav-icon.income {
-    color: var(--green);
-    border-color: rgba(22, 163, 74, 0.2);
-    background: rgba(220, 252, 231, 0.72);
+    color: #166534;
+    border-color: rgba(220, 252, 231, 0.62);
+    background: rgba(220, 252, 231, 0.92);
   }
 
   .desktop-sidebar-footer {
@@ -5951,10 +5954,12 @@ button:active,
 
   .desktop-sidebar-footer .secondary {
     width: 100%;
-    color: var(--green);
-    border-color: rgba(22, 163, 74, 0.22);
-    background: rgba(255, 255, 255, 0.78);
-    box-shadow: 0 8px 20px rgba(22, 163, 74, 0.07);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.34);
+    background: rgba(255, 255, 255, 0.14);
+    box-shadow:
+      0 10px 24px rgba(15, 23, 42, 0.1),
+      0 0 0 1px rgba(255, 255, 255, 0.08) inset;
   }
 
   .desktop-dashboard-main {
