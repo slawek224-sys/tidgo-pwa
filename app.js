@@ -49,6 +49,7 @@ const MARKETING_LANGUAGES = {
 const MARKETING_COPY = {
   en: {
     navHow: "How it works", navWho: "Who is it for?", navStory: "Our Story", navIntake: "How intake works", navFindAccountant: "Find an accountant", navAccountantPack: "For accountants", navPricing: "Launch & pricing", navFaq: "FAQ", navMtd: "MTD Knowledge Base", navContact: "Contact",
+    navHowShort: "How it works", navWhoShort: "Who for?", navStoryShort: "Story", navIntakeShort: "Intake", navFindAccountantShort: "Find accountant", navAccountantPackShort: "For firms", navPricingShort: "Pricing", navFaqShort: "FAQ", navMtdShort: "MTD guides", navContactShort: "Contact",
     heroEyebrow: "Receipts in. Tidy records out.", heroTitle: "One simple place for receipts.", heroText: "Snap it on WhatsApp. TidGo keeps receipts, income proof and MTD records tidy for self-employed people, CIS workers, landlords and their accountants.",
     stepSnap: "Snap receipts", stepTidy: "Keep records tidy", stepPack: "Send a clean pack",
     trustSimple: "No complicated registration. Just email sign-in.",
@@ -73,7 +74,8 @@ const MARKETING_COPY = {
     demoRecordsScreen: "Client records", demoRecordsTitle: "Download the client pack", demoRecordsText: "Open a client, check totals, request missing docs, then download CSV or PDF."
   },
   pl: {
-    navHow: "Jak to działa", navWho: "Dla kogo?", navStory: "Historia twórcy", navIntake: "Jak dodawać dokumenty", navFindAccountant: "Znajdź księgowego", navAccountantPack: "Dla księgowych", navPricing: "Start i ceny", navFaq: "FAQ", navMtd: "Baza wiedzy MTD", navContact: "Kontakt",
+    navHow: "Jak to działa", navWho: "Dla kogo?", navStory: "Nasza historia", navIntake: "Jak dodawać dokumenty", navFindAccountant: "Znajdź księgowego", navAccountantPack: "Dla księgowych", navPricing: "Start i ceny", navFaq: "FAQ", navMtd: "Baza wiedzy MTD", navContact: "Kontakt",
+    navHowShort: "Jak działa", navWhoShort: "Dla kogo", navStoryShort: "Historia", navIntakeShort: "Dokumenty", navFindAccountantShort: "Znajdź księgowego", navAccountantPackShort: "Księgowi", navPricingShort: "Cennik", navFaqShort: "FAQ", navMtdShort: "Baza MTD", navContactShort: "Kontakt",
     heroEyebrow: "Paragony wchodzą. Porządek wychodzi.", heroTitle: "Jedno proste miejsce na paragony.", heroText: "Dla self-employed, którzy chcą mieć rekordy w porządku, i dla księgowych, którzy nie chcą gonitwy za reklamówką paragonów.",
     stepSnap: "Zrób zdjęcie", stepTidy: "Trzymaj porządek", stepPack: "Wyślij czystą paczkę",
     trustSimple: "Bez skomplikowanej rejestracji. Tylko logowanie emailem.",
@@ -101,6 +103,7 @@ const MARKETING_COPY = {
 MARKETING_COPY.ro = { ...MARKETING_COPY.en,
   navHow: "Cum functioneaza", navWho: "Pentru cine?", navStory: "Povestea noastra", navFindAccountant: "Gaseste un contabil", navPricing: "Lansare si pret", navFaq: "FAQ", navMtd: "Baza de cunostinte MTD", navContact: "Contact",
   navIntake: "Cum adaugi documente", navAccountantPack: "Arata contabilului",
+  navHowShort: "Cum merge", navWhoShort: "Pentru cine", navStoryShort: "Povestea", navIntakeShort: "Documente", navFindAccountantShort: "Gaseste contabil", navAccountantPackShort: "Contabili", navPricingShort: "Preturi", navFaqShort: "FAQ", navMtdShort: "Ghiduri MTD", navContactShort: "Contact",
   heroEyebrow: "Bonuri inauntru. Evidente ordonate afara.", heroTitle: "Un loc simplu pentru bonuri.", heroText: "Trimite bonul prin WhatsApp. TidGo tine bonurile, dovezile de venit si evidentele MTD ordonate pentru self-employed, CIS workers, landlords si contabili.",
   stepSnap: "Fotografiaza bonuri", stepTidy: "Tine evidenta ordonata", stepPack: "Trimite pachetul curat",
   trustSimple: "Fara inregistrare complicata. Doar login cu email.",
@@ -127,6 +130,7 @@ MARKETING_COPY.ro = { ...MARKETING_COPY.en,
 MARKETING_COPY.lt = { ...MARKETING_COPY.en,
   navHow: "Kaip veikia", navWho: "Kam skirta?", navStory: "Kūrėjo istorija", navFindAccountant: "Rasti buhalterį", navPricing: "Startas ir kaina", navFaq: "DUK", navMtd: "MTD žinių bazė", navContact: "Kontaktai",
   navIntake: "Kaip prideti dokumentus", navAccountantPack: "Parodyti buhalteriui",
+  navHowShort: "Kaip veikia", navWhoShort: "Kam skirta", navStoryShort: "Istorija", navIntakeShort: "Dokumentai", navFindAccountantShort: "Rasti buhalterį", navAccountantPackShort: "Buhalteriams", navPricingShort: "Kainos", navFaqShort: "DUK", navMtdShort: "MTD gidai", navContactShort: "Kontaktai",
   heroEyebrow: "Kvitai vidun. Tvarkingi irasai lauk.", heroTitle: "Viena paprasta vieta kvitams.", heroText: "Nufotografuok kvita per WhatsApp. TidGo tvarko kvitus, pajamu irodymus ir MTD irasus self-employed, CIS darbuotojams, landlords ir buhalteriams.",
   stepSnap: "Nufotografuok kvita", stepTidy: "Laikyk irasus tvarkingai", stepPack: "Issiusk tvarkinga paketa",
   trustSimple: "Jokios sudetingos registracijos. Tik prisijungimas el. pastu.",
@@ -3674,16 +3678,16 @@ function marketingLanguagePicker() {
 function marketingNav(active = "") {
   return `
     <nav class="landing-nav" aria-label="TidGo navigation">
-      <a class="nav-story ${active === "story" ? "active" : ""}" href="/our-story">${mk("navStory")}</a>
-      <a class="${active === "how" ? "active" : ""}" href="/how-it-works">${mk("navHow")}</a>
-      <a class="${active === "who" ? "active" : ""}" href="/who-is-it-for">${mk("navWho")}</a>
-      <a class="${active === "intake" ? "active" : ""}" href="/how-intake-works">${mk("navIntake")}</a>
-      <a class="${active === "findAccountant" ? "active" : ""}" href="/find-accountant">${mk("navFindAccountant")}</a>
-      <a class="${active === "accountantPack" ? "active" : ""}" href="/show-this-to-your-accountant">${mk("navAccountantPack")}</a>
-      <a class="nav-pricing ${active === "pricing" ? "active" : ""}" href="/launch-pricing">${mk("navPricing")}</a>
-      <a class="${active === "faq" ? "active" : ""}" href="/faq">${mk("navFaq")}</a>
-      <a class="nav-mtd ${active === "mtd" ? "active" : ""}" href="/mtd">${mk("navMtd")}</a>
-      <a class="${active === "contact" ? "active" : ""}" href="/contact/">${mk("navContact")}</a>
+      <a class="nav-story ${active === "story" ? "active" : ""}" href="/our-story" aria-label="${mk("navStory")}"><span class="nav-label-full">${mk("navStory")}</span><span class="nav-label-mobile">${mk("navStoryShort")}</span></a>
+      <a class="${active === "how" ? "active" : ""}" href="/how-it-works" aria-label="${mk("navHow")}"><span class="nav-label-full">${mk("navHow")}</span><span class="nav-label-mobile">${mk("navHowShort")}</span></a>
+      <a class="${active === "who" ? "active" : ""}" href="/who-is-it-for" aria-label="${mk("navWho")}"><span class="nav-label-full">${mk("navWho")}</span><span class="nav-label-mobile">${mk("navWhoShort")}</span></a>
+      <a class="${active === "intake" ? "active" : ""}" href="/how-intake-works" aria-label="${mk("navIntake")}"><span class="nav-label-full">${mk("navIntake")}</span><span class="nav-label-mobile">${mk("navIntakeShort")}</span></a>
+      <a class="nav-find-accountant ${active === "findAccountant" ? "active" : ""}" href="/find-accountant" aria-label="${mk("navFindAccountant")}"><span class="nav-label-full">${mk("navFindAccountant")}</span><span class="nav-label-mobile">${mk("navFindAccountantShort")}</span></a>
+      <a class="${active === "accountantPack" ? "active" : ""}" href="/show-this-to-your-accountant" aria-label="${mk("navAccountantPack")}"><span class="nav-label-full">${mk("navAccountantPack")}</span><span class="nav-label-mobile">${mk("navAccountantPackShort")}</span></a>
+      <a class="nav-pricing ${active === "pricing" ? "active" : ""}" href="/launch-pricing" aria-label="${mk("navPricing")}"><span class="nav-label-full">${mk("navPricing")}</span><span class="nav-label-mobile">${mk("navPricingShort")}</span></a>
+      <a class="${active === "faq" ? "active" : ""}" href="/faq" aria-label="${mk("navFaq")}"><span class="nav-label-full">${mk("navFaq")}</span><span class="nav-label-mobile">${mk("navFaqShort")}</span></a>
+      <a class="nav-mtd ${active === "mtd" ? "active" : ""}" href="/mtd" aria-label="${mk("navMtd")}"><span class="nav-label-full">${mk("navMtd")}</span><span class="nav-label-mobile">${mk("navMtdShort")}</span></a>
+      <a class="${active === "contact" ? "active" : ""}" href="/contact/" aria-label="${mk("navContact")}"><span class="nav-label-full">${mk("navContact")}</span><span class="nav-label-mobile">${mk("navContactShort")}</span></a>
     </nav>
   `;
 }
