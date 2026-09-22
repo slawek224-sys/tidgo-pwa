@@ -40,10 +40,10 @@ const LANGUAGE_FLAGS = {
 };
 
 const MARKETING_LANGUAGES = {
-  en: { country: "gb", label: "English" },
-  pl: { country: "pl", label: "Polski" },
-  ro: { country: "ro", label: "Romana" },
-  lt: { country: "lt", label: "Lietuviu" }
+  en: { country: "gb", label: "English", short: "EN" },
+  pl: { country: "pl", label: "Polski", short: "PL" },
+  ro: { country: "ro", label: "Romana", short: "RO" },
+  lt: { country: "lt", label: "Lietuviu", short: "LT" }
 };
 
 const MARKETING_COPY = {
@@ -3675,6 +3675,27 @@ function marketingLanguagePicker() {
   `;
 }
 
+function marketingLanguageMenu() {
+  const current = MARKETING_LANGUAGES[state.marketingLanguage] || MARKETING_LANGUAGES.en;
+  return `
+    <details class="marketing-language-menu">
+      <summary aria-label="Choose language">
+        <span class="flag flag-${current.country}" aria-hidden="true"></span>
+        <strong>${escapeHtml(current.short)}</strong>
+        <span class="language-menu-chevron" aria-hidden="true">⌄</span>
+      </summary>
+      <div class="marketing-language-menu-panel">
+        ${Object.entries(MARKETING_LANGUAGES).map(([code, language]) => `
+          <button class="marketing-language-menu-option ${state.marketingLanguage === code ? "active" : ""}" type="button" data-marketing-language="${code}">
+            <span class="flag flag-${language.country}" aria-hidden="true"></span>
+            <span>${escapeHtml(language.label)}</span>
+          </button>
+        `).join("")}
+      </div>
+    </details>
+  `;
+}
+
 function marketingNav(active = "") {
   return `
     <nav class="landing-nav" aria-label="TidGo navigation">
@@ -3682,11 +3703,11 @@ function marketingNav(active = "") {
       <a class="${active === "how" ? "active" : ""}" href="/how-it-works" aria-label="${mk("navHow")}"><span class="nav-label-full">${mk("navHow")}</span><span class="nav-label-mobile">${mk("navHowShort")}</span></a>
       <a class="${active === "who" ? "active" : ""}" href="/who-is-it-for" aria-label="${mk("navWho")}"><span class="nav-label-full">${mk("navWho")}</span><span class="nav-label-mobile">${mk("navWhoShort")}</span></a>
       <a class="${active === "intake" ? "active" : ""}" href="/how-intake-works" aria-label="${mk("navIntake")}"><span class="nav-label-full">${mk("navIntake")}</span><span class="nav-label-mobile">${mk("navIntakeShort")}</span></a>
+      <a class="nav-mtd ${active === "mtd" ? "active" : ""}" href="/mtd" aria-label="${mk("navMtd")}"><span class="nav-label-full">${mk("navMtd")}</span><span class="nav-label-mobile">${mk("navMtdShort")}</span></a>
       <a class="nav-find-accountant ${active === "findAccountant" ? "active" : ""}" href="/find-accountant" aria-label="${mk("navFindAccountant")}"><span class="nav-label-full">${mk("navFindAccountant")}</span><span class="nav-label-mobile">${mk("navFindAccountantShort")}</span></a>
       <a class="${active === "accountantPack" ? "active" : ""}" href="/show-this-to-your-accountant" aria-label="${mk("navAccountantPack")}"><span class="nav-label-full">${mk("navAccountantPack")}</span><span class="nav-label-mobile">${mk("navAccountantPackShort")}</span></a>
       <a class="nav-pricing ${active === "pricing" ? "active" : ""}" href="/launch-pricing" aria-label="${mk("navPricing")}"><span class="nav-label-full">${mk("navPricing")}</span><span class="nav-label-mobile">${mk("navPricingShort")}</span></a>
       <a class="${active === "faq" ? "active" : ""}" href="/faq" aria-label="${mk("navFaq")}"><span class="nav-label-full">${mk("navFaq")}</span><span class="nav-label-mobile">${mk("navFaqShort")}</span></a>
-      <a class="nav-mtd ${active === "mtd" ? "active" : ""}" href="/mtd" aria-label="${mk("navMtd")}"><span class="nav-label-full">${mk("navMtd")}</span><span class="nav-label-mobile">${mk("navMtdShort")}</span></a>
       <a class="${active === "contact" ? "active" : ""}" href="/contact/" aria-label="${mk("navContact")}"><span class="nav-label-full">${mk("navContact")}</span><span class="nav-label-mobile">${mk("navContactShort")}</span></a>
     </nav>
   `;
@@ -3698,6 +3719,7 @@ function landingHeader(active = "") {
   return `
     <header class="landing-head">
       <a class="brand landing-brand" href="/"><img src="/icon-192.png" alt=""><span>TidGo<sup>TM</sup></span></a>
+      ${marketingLanguageMenu()}
       <div class="landing-head-actions">
         ${marketingNav(active)}
         ${marketingLanguagePicker()}
