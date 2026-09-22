@@ -6505,16 +6505,44 @@ button:active,
   .screen-summary .total-box {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px;
-    padding: 18px;
+    gap: 18px;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    overflow: visible;
+    background: transparent;
+    box-shadow: none;
   }
 
   .screen-summary .total-row {
-    min-height: 82px;
-    padding: 16px;
-    border: 1px solid #e1e8f1;
+    min-height: 92px;
+    padding: 18px 20px;
     border-radius: 8px;
-    background: #fff;
+    border: 1px solid rgba(14, 165, 233, 0.2);
+    background:
+      linear-gradient(135deg, rgba(224, 242, 254, 0.9), rgba(236, 253, 245, 0.82)),
+      #fff;
+    box-shadow:
+      0 12px 28px rgba(15, 118, 110, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.94);
+  }
+
+  .screen-summary .total-row:last-child {
+    border: 1px solid rgba(37, 99, 235, 0.2);
+    background:
+      linear-gradient(135deg, rgba(219, 234, 254, 0.88), rgba(239, 246, 255, 0.82)),
+      #fff;
+    box-shadow:
+      0 12px 28px rgba(37, 99, 235, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.94);
+  }
+
+  .screen-summary .total-row:first-child strong {
+    color: #047857;
+  }
+
+  .screen-summary .total-row:last-child strong {
+    color: #1d4ed8;
   }
 
   .record-edit-screen {
