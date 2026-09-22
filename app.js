@@ -2598,6 +2598,15 @@ Object.assign(COPY.bg, {
   ukTaxQuarterly: "Quarterly for UK taxpayers"
 });
 
+Object.assign(COPY.en, { ukTaxQuarterShort: "UK tax quarter" });
+Object.assign(COPY.pl, { ukTaxQuarterShort: "Kwartał podatkowy UK" });
+Object.assign(COPY.ro, { ukTaxQuarterShort: "Trimestru fiscal UK" });
+Object.assign(COPY.uk, { ukTaxQuarterShort: "Податковий квартал UK" });
+Object.assign(COPY.lt, { ukTaxQuarterShort: "JK mokestinis ketvirtis" });
+Object.assign(COPY.lv, { ukTaxQuarterShort: "UK nodokļu ceturksnis" });
+Object.assign(COPY.es, { ukTaxQuarterShort: "Trimestre fiscal UK" });
+Object.assign(COPY.bg, { ukTaxQuarterShort: "Данъчно тримесечие UK" });
+
 Object.assign(COPY.en, {
   calendarYear: "Calendar year",
   ukTaxYear: "UK tax year",
@@ -6038,7 +6047,7 @@ function summaryPeriodControls() {
     <div class="segmented summary-period-options">
       <button class="${state.summaryPeriod === "month" ? "active" : ""}" data-action="setSummaryView" data-summary-view="month">${t("monthly")}</button>
       <button class="${state.summaryPeriod === "quarter" && state.quarterMode === "calendar" ? "active" : ""}" data-action="setSummaryView" data-summary-view="calendar">${t("quarterly")}</button>
-      <button class="${state.summaryPeriod === "quarter" && state.quarterMode === "uk_tax" ? "active" : ""}" data-action="setSummaryView" data-summary-view="uk_tax">${t("ukTaxQuarterly")}</button>
+      <button class="${state.summaryPeriod === "quarter" && state.quarterMode === "uk_tax" ? "active" : ""}" data-action="setSummaryView" data-summary-view="uk_tax"><span class="summary-label-wide">${t("ukTaxQuarterly")}</span><span class="summary-label-mobile">${t("ukTaxQuarterShort")}</span></button>
       <button class="${state.summaryPeriod === "year" && state.yearMode === "calendar" ? "active" : ""}" data-action="setSummaryView" data-summary-view="calendar_year">${t("calendarYear")}</button>
       <button class="${state.summaryPeriod === "year" && state.yearMode === "uk_tax" ? "active" : ""}" data-action="setSummaryView" data-summary-view="uk_tax_year">${t("ukTaxYear")}</button>
     </div>
