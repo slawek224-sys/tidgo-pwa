@@ -2598,6 +2598,110 @@ Object.assign(COPY.bg, {
   ukTaxQuarterly: "Quarterly for UK taxpayers"
 });
 
+Object.assign(COPY.en, {
+  calendarYear: "Calendar year",
+  ukTaxYear: "UK tax year",
+  yearReady: "Records for the selected year",
+  sharePdf: "Share PDF",
+  shareCsv: "Share CSV",
+  savePdf: "Save PDF",
+  saveCsv: "Save CSV",
+  fileSavedNoShare: "File saved. Sharing files is not available in this browser.",
+  csvShareText: "TidGo records summary CSV",
+  csvCreateFailed: "Could not create CSV."
+});
+
+Object.assign(COPY.pl, {
+  calendarYear: "Rok kalendarzowy",
+  ukTaxYear: "Rok podatkowy UK",
+  yearReady: "Rekordy dla wybranego roku",
+  sharePdf: "Udostępnij PDF",
+  shareCsv: "Udostępnij CSV",
+  savePdf: "Zapisz PDF",
+  saveCsv: "Zapisz CSV",
+  fileSavedNoShare: "Plik zapisany. Ta przeglądarka nie obsługuje udostępniania plików.",
+  csvShareText: "Podsumowanie rekordów TidGo w CSV",
+  csvCreateFailed: "Nie udało się utworzyć CSV."
+});
+
+Object.assign(COPY.ro, {
+  calendarYear: "An calendaristic",
+  ukTaxYear: "An fiscal UK",
+  yearReady: "Înregistrări pentru anul selectat",
+  sharePdf: "Distribuie PDF",
+  shareCsv: "Distribuie CSV",
+  savePdf: "Salvează PDF",
+  saveCsv: "Salvează CSV",
+  fileSavedNoShare: "Fișier salvat. Partajarea fișierelor nu este disponibilă în acest browser.",
+  csvShareText: "Rezumatul înregistrărilor TidGo în CSV",
+  csvCreateFailed: "Nu s-a putut crea fișierul CSV."
+});
+
+Object.assign(COPY.uk, {
+  calendarYear: "Календарний рік",
+  ukTaxYear: "Податковий рік UK",
+  yearReady: "Записи за вибраний рік",
+  sharePdf: "Поділитися PDF",
+  shareCsv: "Поділитися CSV",
+  savePdf: "Зберегти PDF",
+  saveCsv: "Зберегти CSV",
+  fileSavedNoShare: "Файл збережено. Цей браузер не підтримує обмін файлами.",
+  csvShareText: "Зведення записів TidGo у CSV",
+  csvCreateFailed: "Не вдалося створити CSV."
+});
+
+Object.assign(COPY.lt, {
+  calendarYear: "Kalendoriniai metai",
+  ukTaxYear: "JK mokestiniai metai",
+  yearReady: "Pasirinktų metų įrašai",
+  sharePdf: "Bendrinti PDF",
+  shareCsv: "Bendrinti CSV",
+  savePdf: "Išsaugoti PDF",
+  saveCsv: "Išsaugoti CSV",
+  fileSavedNoShare: "Failas išsaugotas. Ši naršyklė nepalaiko failų bendrinimo.",
+  csvShareText: "TidGo įrašų suvestinė CSV formatu",
+  csvCreateFailed: "Nepavyko sukurti CSV."
+});
+
+Object.assign(COPY.lv, {
+  calendarYear: "Kalendārais gads",
+  ukTaxYear: "UK nodokļu gads",
+  yearReady: "Izvēlētā gada ieraksti",
+  sharePdf: "Kopīgot PDF",
+  shareCsv: "Kopīgot CSV",
+  savePdf: "Saglabāt PDF",
+  saveCsv: "Saglabāt CSV",
+  fileSavedNoShare: "Fails saglabāts. Šī pārlūkprogramma neatbalsta failu kopīgošanu.",
+  csvShareText: "TidGo ierakstu kopsavilkums CSV formātā",
+  csvCreateFailed: "Neizdevās izveidot CSV."
+});
+
+Object.assign(COPY.es, {
+  calendarYear: "Año natural",
+  ukTaxYear: "Año fiscal UK",
+  yearReady: "Registros del año seleccionado",
+  sharePdf: "Compartir PDF",
+  shareCsv: "Compartir CSV",
+  savePdf: "Guardar PDF",
+  saveCsv: "Guardar CSV",
+  fileSavedNoShare: "Archivo guardado. Este navegador no permite compartir archivos.",
+  csvShareText: "Resumen de registros de TidGo en CSV",
+  csvCreateFailed: "No se pudo crear el CSV."
+});
+
+Object.assign(COPY.bg, {
+  calendarYear: "Календарна година",
+  ukTaxYear: "Данъчна година UK",
+  yearReady: "Записи за избраната година",
+  sharePdf: "Сподели PDF",
+  shareCsv: "Сподели CSV",
+  savePdf: "Запази PDF",
+  saveCsv: "Запази CSV",
+  fileSavedNoShare: "Файлът е запазен. Този браузър не поддържа споделяне на файлове.",
+  csvShareText: "Обобщение на записите от TidGo в CSV",
+  csvCreateFailed: "CSV файлът не можа да бъде създаден."
+});
+
 Object.assign(COPY.ro, {
   whatsappPhone: "Numar WhatsApp",
   whatsappPhoneHint: "Optional. Adauga-l daca vrei sa trimiti poze cu bonuri catre TidGo prin WhatsApp mai tarziu.",
@@ -3432,8 +3536,9 @@ const state = {
   imageViewer: null,
   imageRotation: 0,
   summaryDate: new Date(),
-  summaryPeriod: read("rb_summary_period", "month") === "quarter" ? "quarter" : "month",
-  quarterMode: ["calendar", "uk_tax", "mtd_running"].includes(read("rb_quarter_mode", "calendar")) ? read("rb_quarter_mode", "calendar") : "calendar",
+  summaryPeriod: ["month", "quarter", "year"].includes(read("rb_summary_period", "month")) ? read("rb_summary_period", "month") : "month",
+  quarterMode: ["calendar", "uk_tax"].includes(read("rb_quarter_mode", "calendar")) ? read("rb_quarter_mode", "calendar") : "calendar",
+  yearMode: ["calendar", "uk_tax"].includes(read("rb_year_mode", "calendar")) ? read("rb_year_mode", "calendar") : "calendar",
   summaryBusinessSlotId: read("rb_summary_business_slot_id", "all") || "all",
   transactionLimit: 4,
   loading: false,
@@ -5780,6 +5885,30 @@ function ukTaxYearRange(date = new Date()) {
   };
 }
 
+function calendarYearRange(date = state.summaryDate) {
+  const year = date.getFullYear();
+  return {
+    start: new Date(year, 0, 1),
+    end: new Date(year, 11, 31),
+    endExclusive: new Date(year + 1, 0, 1),
+    year,
+    mode: "calendar"
+  };
+}
+
+function summaryYearRange(date = state.summaryDate) {
+  if (state.yearMode === "uk_tax") {
+    const range = ukTaxYearRange(date);
+    return {
+      ...range,
+      end: new Date(range.endExclusive.getFullYear(), range.endExclusive.getMonth(), range.endExclusive.getDate() - 1),
+      year: range.start.getFullYear(),
+      mode: "uk_tax"
+    };
+  }
+  return calendarYearRange(date);
+}
+
 function ukTaxYearToDateItems(records = [], date = new Date()) {
   const range = ukTaxYearRange(date);
   const endOfToday = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
@@ -5803,7 +5932,6 @@ function ukTaxYearLabel() {
 }
 
 function quarterRange(date = state.summaryDate) {
-  if (state.quarterMode === "mtd_running") return mtdRunningQuarterRange(date);
   if (state.quarterMode === "uk_tax") return ukTaxQuarterRange(date);
   const year = date.getFullYear();
   const quarter = Math.floor(date.getMonth() / 3);
@@ -5845,26 +5973,22 @@ function ukTaxQuarterRange(date = state.summaryDate) {
   };
 }
 
-function mtdRunningQuarterRange(date = state.summaryDate) {
-  const period = ukTaxQuarterRange(date);
-  return {
-    ...period,
-    start: new Date(period.year, 3, 6),
-    mode: "mtd_running"
-  };
-}
-
 function periodLabel(date = state.summaryDate) {
-  if (state.summaryPeriod !== "quarter") return monthLabel(date);
+  if (state.summaryPeriod === "month") return monthLabel(date);
+  if (state.summaryPeriod === "year") {
+    const range = summaryYearRange(date);
+    return range.mode === "uk_tax"
+      ? `${t("ukTaxYear")} ${range.year}/${String(range.year + 1).slice(-2)}`
+      : `${t("calendarYear")} ${range.year}`;
+  }
   const range = quarterRange(date);
-  if (range.mode === "mtd_running") return `MTD running Q${range.quarter} ${range.year}/${String(range.year + 1).slice(-2)}`;
   if (range.mode === "uk_tax") return `UK tax Q${range.quarter} ${range.year}/${String(range.year + 1).slice(-2)}`;
   return `Q${range.quarter} ${range.year}`;
 }
 
 function periodRangeLabel(date = state.summaryDate) {
-  if (state.summaryPeriod !== "quarter") return "";
-  const range = quarterRange(date);
+  if (state.summaryPeriod === "month") return "";
+  const range = state.summaryPeriod === "year" ? summaryYearRange(date) : quarterRange(date);
   const format = (value) => value.toLocaleDateString(uiLocale(), { day: "numeric", month: "short", year: "numeric" });
   return `${format(range.start)} - ${format(range.end)}`;
 }
@@ -5875,7 +5999,15 @@ function periodSwitcherLabel() {
 }
 
 function shiftSummaryPeriod(direction) {
-  if (state.summaryPeriod === "quarter" && (state.quarterMode === "uk_tax" || state.quarterMode === "mtd_running")) {
+  if (state.summaryPeriod === "year") {
+    const range = summaryYearRange(state.summaryDate);
+    const targetYear = range.year + direction;
+    state.summaryDate = state.yearMode === "uk_tax"
+      ? new Date(targetYear, 3, 6, 12)
+      : new Date(targetYear, 0, 1, 12);
+    return;
+  }
+  if (state.summaryPeriod === "quarter" && state.quarterMode === "uk_tax") {
     const range = ukTaxQuarterRange(state.summaryDate);
     if (direction > 0) {
       state.summaryDate = new Date(range.endExclusive.getFullYear(), range.endExclusive.getMonth(), range.endExclusive.getDate(), 12);
@@ -5895,20 +6027,20 @@ function periodFilePart() {
 
 function quarterModeControls() {
   if (state.summaryPeriod !== "quarter") return "";
-  const hint = state.quarterMode === "mtd_running" ? t("mtdRunningHint") : state.quarterMode === "uk_tax" ? t("taxQuarterHint") : t("calendarQuarterHint");
+  const hint = state.quarterMode === "uk_tax" ? t("taxQuarterHint") : t("calendarQuarterHint");
   return `
     <p class="hint quarter-hint">${hint}</p>
-    ${state.quarterMode === "mtd_running" ? `<p class="summary-disclaimer">${t("mtdRunningDisclaimer")}</p>` : ""}
   `;
 }
 
 function summaryPeriodControls() {
   return `
-    <div class="segmented segmented-four">
+    <div class="segmented summary-period-options">
       <button class="${state.summaryPeriod === "month" ? "active" : ""}" data-action="setSummaryView" data-summary-view="month">${t("monthly")}</button>
       <button class="${state.summaryPeriod === "quarter" && state.quarterMode === "calendar" ? "active" : ""}" data-action="setSummaryView" data-summary-view="calendar">${t("quarterly")}</button>
       <button class="${state.summaryPeriod === "quarter" && state.quarterMode === "uk_tax" ? "active" : ""}" data-action="setSummaryView" data-summary-view="uk_tax">${t("ukTaxQuarterly")}</button>
-      <button class="${state.summaryPeriod === "quarter" && state.quarterMode === "mtd_running" ? "active" : ""}" data-action="setSummaryView" data-summary-view="mtd_running">${t("mtdRunning")}</button>
+      <button class="${state.summaryPeriod === "year" && state.yearMode === "calendar" ? "active" : ""}" data-action="setSummaryView" data-summary-view="calendar_year">${t("calendarYear")}</button>
+      <button class="${state.summaryPeriod === "year" && state.yearMode === "uk_tax" ? "active" : ""}" data-action="setSummaryView" data-summary-view="uk_tax_year">${t("ukTaxYear")}</button>
     </div>
     ${quarterModeControls()}
   `;
@@ -8191,8 +8323,8 @@ function incomeDetail() {
 
 function summary() {
   const { receipts, income } = monthEntries();
-  const subtitle = state.summaryPeriod === "quarter" && state.quarterMode === "mtd_running"
-    ? t("mtdRunningReady")
+  const subtitle = state.summaryPeriod === "year"
+    ? t("yearReady")
     : state.summaryPeriod === "quarter"
       ? t("quarterReady")
       : t("note");
@@ -8211,9 +8343,12 @@ function summary() {
         <div class="total-row"><span>${t("expenses")}</span><strong>${formatTotals(receipts)}</strong></div>
       </div>
       <p class="subtitle">${subtitle}</p>
-      <button class="primary" data-action="sharePdf">${t("emailPdf")}</button>
-      <button class="secondary" style="width:100%;margin-top:10px" data-action="downloadUserCsv">${t("downloadCsv")}</button>
-      <button class="secondary" style="width:100%;margin-top:10px" data-action="printPdf">${t("printPdf")}</button>
+      <div class="summary-export-grid">
+        <button class="primary" data-action="sharePdf"><span aria-hidden="true">&#8599;</span>${t("sharePdf")}</button>
+        <button class="primary" data-action="shareCsv"><span aria-hidden="true">&#8599;</span>${t("shareCsv")}</button>
+        <button class="secondary" data-action="savePdf"><span aria-hidden="true">&#8681;</span>${t("savePdf")}</button>
+        <button class="secondary" data-action="saveCsv"><span aria-hidden="true">&#8681;</span>${t("saveCsv")}</button>
+      </div>
       <div class="list">${[...income.map(incomeSummaryRow), ...receipts.map(receiptSummaryRow)].join("") || `<div class="empty">${t("noEntries")}</div>`}</div>
     </section>
   `);
@@ -9031,6 +9166,10 @@ function recordInCurrentPeriod(item) {
     const range = quarterRange();
     return date >= range.start && date < range.endExclusive;
   }
+  if (state.summaryPeriod === "year") {
+    const range = summaryYearRange();
+    return date >= range.start && date < range.endExclusive;
+  }
   return date.getFullYear() === state.summaryDate.getFullYear() && date.getMonth() === state.summaryDate.getMonth();
 }
 
@@ -9297,12 +9436,34 @@ function accountantCsv() {
 
 function downloadFile(name, content, type = "text/plain") {
   const blob = new Blob([content], { type });
-  const url = URL.createObjectURL(blob);
+  downloadBlobFile(new File([blob], name, { type }));
+}
+
+function downloadBlobFile(file) {
+  const url = URL.createObjectURL(file);
   const link = document.createElement("a");
   link.href = url;
-  link.download = name;
+  link.download = file.name;
   link.click();
   URL.revokeObjectURL(url);
+}
+
+function createSummaryCsvFile() {
+  const fileName = `TidGo-${state.user?.first_name || "records"}-${periodFilePart()}.csv`;
+  return new File([accountantCsv()], fileName, { type: "text/csv" });
+}
+
+async function shareSummaryFile(file, text) {
+  if (!window.isSecureContext || !navigator.canShare?.({ files: [file] })) {
+    downloadBlobFile(file);
+    toast(t("fileSavedNoShare"));
+    return;
+  }
+  await navigator.share({
+    title: `TidGo ${periodLabel()}`,
+    text,
+    files: [file]
+  });
 }
 
 function totals(items) {
@@ -10136,20 +10297,24 @@ document.addEventListener("click", async (event) => {
     const view = target.dataset.summaryView;
     if (view === "month") {
       state.summaryPeriod = "month";
+    } else if (view === "calendar_year" || view === "uk_tax_year") {
+      state.summaryPeriod = "year";
+      state.yearMode = view === "uk_tax_year" ? "uk_tax" : "calendar";
     } else {
       const previousPeriod = state.summaryPeriod;
       state.summaryPeriod = "quarter";
-      state.quarterMode = view === "uk_tax" ? "uk_tax" : view === "mtd_running" ? "mtd_running" : "calendar";
+      state.quarterMode = view === "uk_tax" ? "uk_tax" : "calendar";
       if (previousPeriod === "month") anchorSummaryDateToMonthStart();
     }
     write("rb_summary_period", state.summaryPeriod);
     write("rb_quarter_mode", state.quarterMode);
+    write("rb_year_mode", state.yearMode);
     return render();
   }
   if (action === "setQuarterMode") {
-    state.quarterMode = target.dataset.quarterMode === "uk_tax" ? "uk_tax" : target.dataset.quarterMode === "mtd_running" ? "mtd_running" : "calendar";
+    state.quarterMode = target.dataset.quarterMode === "uk_tax" ? "uk_tax" : "calendar";
     write("rb_quarter_mode", state.quarterMode);
-    if (state.quarterMode === "uk_tax" || state.quarterMode === "mtd_running") anchorSummaryDateToMonthStart();
+    if (state.quarterMode === "uk_tax") anchorSummaryDateToMonthStart();
     return render();
   }
   if (action === "setSummaryBusinessSlot") {
@@ -10187,10 +10352,16 @@ document.addEventListener("click", async (event) => {
     }
     return;
   }
-  if (action === "printPdf") {
-    if (!(await confirmDownload("user"))) return;
-    document.querySelector("#printRoot").innerHTML = buildPrintHtml();
-    window.print();
+  if (action === "savePdf") {
+    try {
+      if (!(await confirmDownload("user"))) return;
+      setBusy(true);
+      downloadBlobFile(await createSummaryPdfFile());
+    } catch (error) {
+      toast(error.message || t("pdfCreateFailed"));
+    } finally {
+      setBusy(false);
+    }
     return;
   }
   if (action === "downloadAccountantCsv") {
@@ -10199,11 +10370,10 @@ document.addEventListener("click", async (event) => {
     toast(t("accountantHeroToast"));
     return;
   }
-  if (action === "downloadUserCsv") {
+  if (action === "saveCsv" || action === "downloadUserCsv") {
     if (!(await confirmDownload("user"))) return;
-    const fileName = `TidGo-${state.user.first_name || "records"}-${periodFilePart()}.csv`;
-    downloadFile(fileName, accountantCsv(), "text/csv");
-    toast(t("downloadCsv"));
+    downloadBlobFile(createSummaryCsvFile());
+    toast(t("saveCsv"));
     return;
   }
   if (action === "downloadAccountantPack") {
@@ -10237,30 +10407,24 @@ document.addEventListener("click", async (event) => {
   }
   if (action === "sharePdf") {
     try {
-      if (!window.isSecureContext) {
-        toast(t("secureShareRequired"));
-        return;
-      }
       if (!(await confirmDownload("user"))) return;
       setBusy(true);
       const file = await createSummaryPdfFile();
-      if (navigator.canShare?.({ files: [file] })) {
-        await navigator.share({
-          title: `TidGo ${periodLabel()}`,
-          text: t("emailBody"),
-          files: [file]
-        });
-      } else {
-        const url = URL.createObjectURL(file);
-        const link = document.createElement("a");
-        link.href = url;
-        link.download = file.name;
-        link.click();
-        URL.revokeObjectURL(url);
-        toast(t("pdfSavedNoShare"));
-      }
+      await shareSummaryFile(file, t("emailBody"));
     } catch (error) {
       toast(error.message || t("pdfCreateFailed"));
+    } finally {
+      setBusy(false);
+    }
+    return;
+  }
+  if (action === "shareCsv") {
+    try {
+      if (!(await confirmDownload("user"))) return;
+      setBusy(true);
+      await shareSummaryFile(createSummaryCsvFile(), t("csvShareText"));
+    } catch (error) {
+      toast(error.message || t("csvCreateFailed"));
     } finally {
       setBusy(false);
     }
