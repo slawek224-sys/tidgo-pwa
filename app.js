@@ -6322,20 +6322,43 @@ function desktopAppSidebar() {
   `;
 }
 
+function accountantDesktopSidebar() {
+  const onClient = state.screen === "accountantDemoClient";
+  return `
+    <aside class="desktop-app-sidebar desktop-dashboard-sidebar accountant-desktop-sidebar" aria-label="TidGo Accountant Portal">
+      <a class="desktop-dashboard-brand" href="/" aria-label="TidGo homepage">
+        <img src="/icon-192.png" alt=""><span>TidGo<sup>TM</sup></span>
+      </a>
+      <span class="accountant-sidebar-label">${at("forAccountants")}</span>
+      <nav class="desktop-dashboard-nav">
+        <button class="${onClient ? "" : "active"}" type="button" data-action="accountantLanding"><span class="desktop-nav-icon" aria-hidden="true">⌂</span><span>${at("backToOverview")}</span></button>
+        <button class="${onClient ? "active" : ""}" type="button" data-action="accountantClients"><span class="desktop-nav-icon" aria-hidden="true">▤</span><span>${at("connectedClients")}</span><small>${(state.accountantClients || []).length}</small></button>
+        <button type="button" data-action="shareTidGo"><span class="desktop-nav-icon" aria-hidden="true">↗</span><span>${t("shareTidGo")}</span></button>
+      </nav>
+      <div class="desktop-sidebar-footer accountant-sidebar-account">
+        <span>${at("connectedAccount")}</span>
+        <strong>${escapeHtml(state.accountantDisplayName || "Accountant")}</strong>
+        <small>${escapeHtml(state.accountantPortalEmail || "")}</small>
+        <button class="secondary" type="button" data-action="signOutAccountant">${at("signOut")}</button>
+      </div>
+    </aside>
+  `;
+}
+
 function desktopUpdateCopy() {
   const copy = {
-    en: ["TidGo update", "Your desktop workspace", "Use the menu on the left to move between records, summaries and settings. The phone view stays focused on quick capture.", "Open the MTD Knowledge Base"],
-    pl: ["Aktualności TidGo", "Twoje miejsce pracy na komputerze", "Menu po lewej prowadzi do rekordów, podsumowań i ustawień. Widok telefonu nadal służy do szybkiego dodawania.", "Otwórz bazę wiedzy MTD"],
-    ro: ["Noutăți TidGo", "Spațiul tău de lucru pe desktop", "Folosește meniul din stânga pentru înregistrări, rezumate și setări. Telefonul rămâne pentru adăugare rapidă.", "Deschide baza de cunoștințe MTD"],
-    lt: ["TidGo naujienos", "Jūsų darbo vieta kompiuteryje", "Kairėje esančiu meniu pasieksite įrašus, suvestines ir nustatymus. Telefono vaizdas lieka greitam įvedimui.", "Atidaryti MTD žinių bazę"]
-  }[state.language] || ["TidGo update", "Your desktop workspace", "Use the menu on the left to move between records, summaries and settings. The phone view stays focused on quick capture.", "Open the MTD Knowledge Base"];
+    en: ["MTD Knowledge Base", "HMRC signed you up automatically. What now?", "Automatic sign-up does not connect TidGo or any other software. See what the HMRC letter means and the steps to take next.", "Read the guide"],
+    pl: ["Baza wiedzy MTD", "HMRC zapisało Cię automatycznie. Co dalej?", "Automatyczny zapis nie łączy TidGo ani żadnej innej aplikacji z HMRC. Sprawdź, co oznacza ten list i jakie są kolejne kroki.", "Przeczytaj poradnik"],
+    ro: ["Baza de cunoștințe MTD", "HMRC te-a înscris automat. Ce urmează?", "Înscrierea automată nu conectează TidGo sau altă aplicație la HMRC. Vezi ce înseamnă scrisoarea și care sunt pașii următori.", "Citește ghidul"],
+    lt: ["MTD žinių bazė", "HMRC jus užregistravo automatiškai. Kas toliau?", "Automatinė registracija neprijungia TidGo ar kitos programos prie HMRC. Sužinokite, ką reiškia laiškas ir kokie yra tolesni veiksmai.", "Skaityti vadovą"]
+  }[state.language] || ["MTD Knowledge Base", "HMRC signed you up automatically. What now?", "Automatic sign-up does not connect TidGo or any other software. See what the HMRC letter means and the steps to take next.", "Read the guide"];
   const prefix = ({ pl: "/pl", ro: "/ro", lt: "/lt" })[state.language] || "";
   return `
     <aside class="desktop-quick-panel desktop-update-panel">
       <span class="desktop-update-kicker">${escapeHtml(copy[0])}</span>
       <h2>${escapeHtml(copy[1])}</h2>
       <p>${escapeHtml(copy[2])}</p>
-      <a class="desktop-update-link" href="${prefix}/mtd/">${escapeHtml(copy[3])}<span aria-hidden="true">→</span></a>
+      <a class="desktop-update-link" href="${prefix}/mtd/automatically-signed-up/">${escapeHtml(copy[3])}<span aria-hidden="true">→</span></a>
     </aside>
   `;
 }
@@ -6351,11 +6374,16 @@ function shell(content) {
   const accountantMode = state.screen === "accountantLanding" || state.screen === "accountantDemoClient";
   const landingMode = ["landing", "marketingPage", "appDemo", "accountantDemo"].includes(state.screen);
   const desktopAppMode = Boolean(state.user) && !accountantMode && !landingMode && !["legalConsent", "privacy", "terms"].includes(state.screen);
+  const accountantDesktopMode = accountantMode && Boolean(state.accountantPortalEmail);
   const motionClass = state.routeMotion ? ` route-enter route-${state.routeMotion}` : "";
   const previousShell = state.routeMotion && !landingMode && !state.imageViewer ? app.querySelector(".shell") : null;
   const exitShell = previousShell ? previousShell.cloneNode(true) : null;
-  const shellContent = desktopAppMode ? `<div class="desktop-app-layout">${desktopAppSidebar()}<div class="desktop-app-workspace">${content}</div></div>` : content;
-  app.innerHTML = `<main class="shell screen-${state.screen} ${desktopAppMode ? "desktop-app-shell" : ""} ${accountantMode ? "accountant-shell" : ""} ${landingMode ? "landing-shell" : ""}${motionClass}">${shellContent}</main><section id="printRoot" class="print-root"></section>${imageViewerOverlay()}`;
+  const shellContent = desktopAppMode
+    ? `<div class="desktop-app-layout">${desktopAppSidebar()}<div class="desktop-app-workspace">${content}</div></div>`
+    : accountantDesktopMode
+      ? `<div class="desktop-app-layout accountant-desktop-layout">${accountantDesktopSidebar()}<div class="desktop-app-workspace accountant-desktop-workspace">${content}</div></div>`
+      : content;
+  app.innerHTML = `<main class="shell screen-${state.screen} ${desktopAppMode ? "desktop-app-shell" : ""} ${accountantMode ? "accountant-shell" : ""} ${accountantDesktopMode ? "accountant-desktop-shell" : ""} ${landingMode ? "landing-shell" : ""}${motionClass}">${shellContent}</main><section id="printRoot" class="print-root"></section>${imageViewerOverlay()}`;
   if (exitShell) {
     exitShell.setAttribute("aria-hidden", "true");
     exitShell.classList.remove("route-enter", "route-forward", "route-back");
@@ -8569,57 +8597,65 @@ function settings() {
 
 function accountantLanding() {
   const clients = state.accountantClients || [];
-  shell(`
-    <section class="screen accountant-screen">
-      ${topbar("")}
-      <div class="accountant-hero">
-        <span class="eyebrow">${at("forAccountants")}</span>
-        <h1 class="title">${at("heroTitle")}</h1>
-        <p class="subtitle">${at("heroSubtitle")}</p>
-      </div>
-      <form class="card stack" id="accountantLoginForm">
-        <strong>${at("accessTitle")}</strong>
-        <label class="field"><span>${t("chooseLanguage")}</span>${languageSelect()}</label>
-        <span class="hint">${state.accountantPortalEmail ? at("signedInHint") : at("signedOutHint")}</span>
-        ${state.accountantPortalEmail ? `
-          <div class="total-row"><span>${at("connectedAccount")}</span><strong>${escapeHtml(state.accountantDisplayName || "Accountant")}</strong></div>
-          <div class="total-row"><span>${at("email")}</span><strong>${escapeHtml(state.accountantPortalEmail)}</strong></div>
-        ` : `
+  if (!state.accountantPortalEmail) {
+    return shell(`
+      <section class="screen accountant-screen accountant-login-screen">
+        ${topbar("")}
+        <div class="accountant-hero">
+          <span class="eyebrow">${at("forAccountants")}</span>
+          <h1 class="title">${at("heroTitle")}</h1>
+          <p class="subtitle">${at("heroSubtitle")}</p>
+        </div>
+        <form class="card stack" id="accountantLoginForm">
+          <strong>${at("accessTitle")}</strong>
+          <label class="field"><span>${t("chooseLanguage")}</span>${languageSelect()}</label>
+          <span class="hint">${at("signedOutHint")}</span>
           <label class="field"><span>${at("nameOrPractice")}</span><input class="input" name="display_name" value="${escapeAttr(state.accountantDisplayName || "")}" placeholder="ABC Accounting"></label>
           <label class="field"><span>${at("accountantEmail")} ${infoTip(at("accountantEmailInfo"))}</span><input class="input" name="accountant_email" type="email" value="${escapeAttr(state.accountantPendingEmail || "")}" required></label>
-        `}
-        ${state.accountantPortalEmail ? `
-          <div class="grid-2">
-            <button class="primary" type="button" data-action="openAccountantClientList">${at("openClientList")}</button>
-            <button class="secondary accountant-signout-button" type="button" data-action="signOutAccountant">${at("signOut")}</button>
-          </div>
-        ` : `
           <button class="primary" type="submit" name="step" value="request">${at("sendLoginCode")}</button>
           ${state.accountantCodeSent || state.accountantPendingEmail ? `
             <label class="field"><span>${at("loginCode")}</span><input class="input" name="code" inputmode="numeric" maxlength="6" autocomplete="one-time-code"></label>
             <button class="secondary" type="submit" name="step" value="verify">${at("verifyCode")}</button>
           ` : ""}
-        `}
-      </form>
-      <button class="secondary share-inline accountant-share-button" type="button" data-action="shareTidGo">${t("shareTidGo")}</button>
-      <div class="card stack">
-        <strong>${at("handoffTitle")}</strong>
-        <span class="hint">${at("handoffText")}</span>
-        <div class="total-row"><span>${at("clientAccess")}</span><strong>${at("readOnly")}</strong></div>
-        <div class="total-row"><span>${at("clientPermission")}</span><strong>${at("required")}</strong></div>
-      </div>
-      <div class="card stack">
-        <div class="total-row"><span>${at("connectedClients")} ${infoTip(at("connectedClientsInfo"))}</span><strong>${clients.length}</strong></div>
-      </div>
-      ${state.accountantClientListOpen ? `
+        </form>
         <div class="card stack">
-          <strong>${at("clientList")}</strong>
+          <strong>${at("handoffTitle")}</strong>
+          <span class="hint">${at("handoffText")}</span>
+          <div class="total-row"><span>${at("clientAccess")}</span><strong>${at("readOnly")}</strong></div>
+          <div class="total-row"><span>${at("clientPermission")}</span><strong>${at("required")}</strong></div>
+        </div>
+      </section>
+    `);
+  }
+
+  const totalRecords = clients.reduce((sum, client) => sum + Number(client.receipt_count || 0) + Number(client.income_count || 0), 0);
+  shell(`
+    <section class="screen accountant-screen accountant-dashboard-screen">
+      <header class="accountant-dashboard-header">
+        <div>
+          <span class="eyebrow">${at("forAccountants")}</span>
+          <h1>${at("heroTitle")}</h1>
+          <p>${at("heroSubtitle")}</p>
+        </div>
+        <label class="accountant-language-control"><span>${t("chooseLanguage")}</span>${languageSelect()}</label>
+      </header>
+      <div class="accountant-dashboard-stats">
+        <article class="desktop-stat income"><span>${at("connectedClients")}</span><strong>${clients.length}</strong><small>${at("clientPermission")}: ${at("required")}</small></article>
+        <article class="desktop-stat records"><span>${at("records")}</span><strong>${totalRecords}</strong><small>${at("csvPdf")}</small></article>
+        <article class="desktop-stat review"><span>${at("clientAccess")}</span><strong>${at("readOnly")}</strong><small>${at("consentFirst")}</small></article>
+      </div>
+      <div class="accountant-dashboard-grid">
+        <section class="accountant-clients-panel">
+          <div class="accountant-panel-heading">
+            <div><span>${at("connectedClients")}</span><h2>${at("clientList")}</h2></div>
+            <span class="pill">${clients.length}</span>
+          </div>
           <label class="field"><span>${at("searchClients")}</span><input class="input" name="accountant_client_search" data-accountant-client-search value="${escapeAttr(state.accountantClientSearch)}" placeholder="Dan, builder, email"></label>
           ${clients.length ? clients.map((client, index) => {
             const searchText = [client.first_name, client.trade, client.email].map((value) => String(value || "")).join(" ").toLowerCase();
             const visible = !state.accountantClientSearch || searchText.includes(state.accountantClientSearch.trim().toLowerCase());
             return `
-            <button class="list-item ${visible ? "" : "hidden"}" type="button" data-open-accountant-client="${escapeAttr(client.user_id)}" data-accountant-client-row data-search-text="${escapeAttr(searchText)}">
+            <button class="list-item accountant-client-row ${visible ? "" : "hidden"}" type="button" data-open-accountant-client="${escapeAttr(client.user_id)}" data-accountant-client-row data-search-text="${escapeAttr(searchText)}">
               <span class="list-main">
                 <span class="list-title">${index + 1}. ${escapeHtml(client.first_name || "Client")}</span>
                 <span class="list-meta">${escapeHtml(client.trade || at("noTrade"))} | ${escapeHtml(client.email || at("noEmail"))}</span>
@@ -8627,15 +8663,27 @@ function accountantLanding() {
               <span class="pill">${Number(client.receipt_count || 0) + Number(client.income_count || 0)} ${at("records")}</span>
             </button>
           `}).join("") : ""}
-          <div class="empty ${clients.length ? "hidden" : ""}" data-accountant-client-empty>${state.accountantPortalEmail ? at("noClients") : at("signInFirst")}</div>
-          <button class="secondary" type="button" data-action="closeAccountantClientList">${at("backToOverview")}</button>
-        </div>
-      ` : ""}
-      <div class="card stack">
-        <strong>${at("howAccessWorks")}</strong>
-        <div class="total-row"><span>${at("clientAddsEmail")}</span><strong>${at("consentFirst")}</strong></div>
-        <div class="total-row"><span>${at("youSeeRecords")}</span><strong>${at("readOnly")}</strong></div>
-        <div class="total-row"><span>${at("youDownloadPack")}</span><strong>${at("csvPdf")}</strong></div>
+          <div class="empty ${clients.length ? "hidden" : ""}" data-accountant-client-empty>${at("noClients")}</div>
+        </section>
+        <aside class="accountant-dashboard-aside">
+          <div class="card stack accountant-account-card">
+            <strong>${at("connectedAccount")}</strong>
+            <div class="total-row"><span>${at("nameOrPractice")}</span><strong>${escapeHtml(state.accountantDisplayName || "Accountant")}</strong></div>
+            <div class="total-row"><span>${at("email")}</span><strong>${escapeHtml(state.accountantPortalEmail)}</strong></div>
+          </div>
+          <div class="card stack">
+            <strong>${at("handoffTitle")}</strong>
+            <span class="hint">${at("handoffText")}</span>
+            <div class="total-row"><span>${at("clientAccess")}</span><strong>${at("readOnly")}</strong></div>
+            <div class="total-row"><span>${at("clientPermission")}</span><strong>${at("required")}</strong></div>
+          </div>
+          <div class="card stack">
+            <strong>${at("howAccessWorks")}</strong>
+            <div class="total-row"><span>${at("clientAddsEmail")}</span><strong>${at("consentFirst")}</strong></div>
+            <div class="total-row"><span>${at("youSeeRecords")}</span><strong>${at("readOnly")}</strong></div>
+            <div class="total-row"><span>${at("youDownloadPack")}</span><strong>${at("csvPdf")}</strong></div>
+          </div>
+        </aside>
       </div>
     </section>
   `);
@@ -8659,9 +8707,9 @@ function accountantDemoClient() {
     `);
   }
   shell(`
-    <section class="screen accountant-screen">
+    <section class="screen accountant-screen accountant-client-screen">
       ${topbar(at("clientRecords"), true)}
-      <div class="card stack">
+      <header class="card accountant-client-header">
         <div class="portal-head">
           <span>
             <strong>${escapeHtml(client.first_name || "Client")}</strong>
@@ -8669,35 +8717,49 @@ function accountantDemoClient() {
           </span>
           <span class="pill">${at("readOnly")}</span>
         </div>
-        <div class="total-row"><span>${at("trade")}</span><strong>${escapeHtml(client.trade || at("noTrade"))}</strong></div>
-        <div class="total-row"><span>${at("connected")}</span><strong>${day(client.consented_at)}</strong></div>
+        <div class="accountant-client-meta">
+          <span><small>${at("trade")}</small><strong>${escapeHtml(client.trade || at("noTrade"))}</strong></span>
+          <span><small>${at("connected")}</small><strong>${day(client.consented_at)}</strong></span>
+        </div>
+      </header>
+      <div class="accountant-period-bar">
+        ${summaryPeriodControls()}
+        <div class="month-switcher">
+          <button class="icon-btn" data-action="prevMonth">&#8249;</button>
+          ${periodSwitcherLabel()}
+          <button class="icon-btn" data-action="nextMonth">&#8250;</button>
+        </div>
       </div>
-      ${summaryPeriodControls()}
-      <div class="month-switcher">
-        <button class="icon-btn" data-action="prevMonth">&#8249;</button>
-        ${periodSwitcherLabel()}
-        <button class="icon-btn" data-action="nextMonth">&#8250;</button>
-      </div>
-      <div class="insight-grid">
+      <div class="insight-grid accountant-client-insights">
         <div class="insight-card"><span>${at("income")}</span><strong>${formatTotals(income)}</strong></div>
         <div class="insight-card"><span>${at("expenses")}</span><strong>${formatTotals(receipts)}</strong></div>
         <div class="insight-card"><span>${at("records")}</span><strong>${rows.length}</strong></div>
       </div>
-      <div class="grid-2" style="margin:12px 0">
-        <button class="secondary" type="button" data-action="downloadAccountantClientCsv">${at("downloadCsv")}</button>
-        <button class="secondary" type="button" data-action="downloadAccountantClientPdf">${at("downloadPdf")}</button>
-      </div>
-      <div class="action-with-tip">
-        <button class="secondary" type="button" data-action="requestDemoDocs">${at("requestDocs")}</button>
-        ${infoTip(at("requestDocsInfo"))}
-      </div>
-      <button class="danger" style="width:100%;margin-bottom:12px" type="button" data-action="removeAccountantClient">${at("removeClient")}</button>
-      <div class="total-box">
-        <div class="total-row"><span>${at("income")}</span><strong>${formatTotals(income)}</strong></div>
-        <div class="total-row"><span>${at("expenses")}</span><strong>${formatTotals(receipts)}</strong></div>
-      </div>
-      <div class="list">
-        ${rows.length ? rows.map(accountantRecordRow).join("") : `<div class="empty">${at("noRecords")}</div>`}
+      <div class="accountant-client-workspace">
+        <section class="accountant-records-panel">
+          <div class="accountant-panel-heading">
+            <div><span>${periodSwitcherLabel()}</span><h2>${at("clientRecords")}</h2></div>
+            <div class="accountant-export-actions">
+              <button class="secondary" type="button" data-action="downloadAccountantClientCsv">${at("downloadCsv")}</button>
+              <button class="secondary" type="button" data-action="downloadAccountantClientPdf">${at("downloadPdf")}</button>
+            </div>
+          </div>
+          <div class="list accountant-record-list">
+            ${rows.length ? rows.map(accountantRecordRow).join("") : `<div class="empty">${at("noRecords")}</div>`}
+          </div>
+        </section>
+        <aside class="accountant-client-aside">
+          <div class="card stack">
+            <strong>${at("requestDocs")}</strong>
+            <span class="hint">${at("requestDocsInfo")}</span>
+            <button class="secondary" type="button" data-action="requestDemoDocs">${at("requestDocs")}</button>
+          </div>
+          <div class="card stack accountant-remove-card">
+            <strong>${at("clientAccess")}</strong>
+            <span class="hint">${at("handoffText")}</span>
+            <button class="danger" type="button" data-action="removeAccountantClient">${at("removeClient")}</button>
+          </div>
+        </aside>
       </div>
     </section>
   `);
@@ -10171,6 +10233,13 @@ document.addEventListener("click", async (event) => {
       await loadAccountantClients(state.accountantPortalEmail);
     }
     return render();
+  }
+  if (action === "accountantClients") {
+    state.accountantClientListOpen = true;
+    if (state.accountantPortalEmail && !state.accountantClients.length) {
+      await loadAccountantClients(state.accountantPortalEmail);
+    }
+    return go("accountantLanding");
   }
   if (action === "closeAccountantClientList") {
     state.accountantClientListOpen = false;
