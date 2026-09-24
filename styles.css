@@ -3523,6 +3523,39 @@ button:active,
   background: linear-gradient(145deg, #ffffff, #fff7f7);
 }
 
+.manual-expense-button {
+  border-color: rgba(14, 165, 164, 0.34);
+  background:
+    radial-gradient(circle at 12% 0%, rgba(255, 255, 255, 0.96), transparent 38%),
+    linear-gradient(135deg, rgba(220, 252, 231, 0.82), rgba(219, 234, 254, 0.88));
+  color: #0f5f65;
+  box-shadow: 0 12px 26px rgba(14, 165, 164, 0.12);
+}
+
+.manual-expense-button::before {
+  content: "+";
+  display: inline-grid;
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  place-items: center;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #16a34a, #0ea5a4);
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: 900;
+  box-shadow: 0 7px 16px rgba(14, 165, 164, 0.24);
+}
+
+.manual-expense-hint {
+  margin: 0 0 4px;
+  padding: 11px 12px;
+  border: 1px solid rgba(14, 165, 164, 0.2);
+  border-radius: 7px;
+  background: rgba(236, 253, 245, 0.72);
+  color: #355b5e;
+}
+
 @media (max-width: 999px) {
   .accountant-dashboard-header,
   .accountant-client-header {

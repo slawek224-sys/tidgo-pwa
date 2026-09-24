@@ -1,4 +1,4 @@
-const CACHE = "tidgo-pwa-v237";
+const CACHE = "tidgo-pwa-v238";
 const ASSETS = [
   "./",
   "./index.html",

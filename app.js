@@ -1314,6 +1314,10 @@ const COPY = {
     quarterReady: "Quarter-ready records",
     mtdRunningReady: "Running MTD record summary",
     addExpense: "Add expense",
+    manualExpense: "Manual entry",
+    manualExpenseHint: "Enter a cash or other expense without a photo. It will not be marked for review just because no photo is attached.",
+    manualExpenseNoPhoto: "No receipt photo attached. You can add one later.",
+    addReceiptPhoto: "Add receipt photo",
     addIncome: "Add income",
     photoDone: "Take photo",
     expenseHint: "Take a receipt photo or upload a receipt screenshot/image.",
@@ -1478,6 +1482,10 @@ const COPY = {
     ukTaxQuarterly: "Kwartalnie dla podatników UK",
     quarterReady: "Rekordy gotowe kwartalnie",
     addExpense: "Dodaj wydatek",
+    manualExpense: "Wpis ręczny",
+    manualExpenseHint: "Dodaj wydatek gotówkowy lub inny wydatek bez zdjęcia. Sam brak zdjęcia nie oznaczy go jako do sprawdzenia.",
+    manualExpenseNoPhoto: "Brak zdjęcia paragonu. Możesz dodać je później.",
+    addReceiptPhoto: "Dodaj zdjęcie paragonu",
     addIncome: "Dodaj przychód",
     photoDone: "Zrób zdjęcie",
     expenseHint: "Zrób zdjęcie paragonu albo wgraj screenshot/obraz paragonu.",
@@ -1573,6 +1581,10 @@ Object.assign(COPY, {
     quarterly: "Trimestrial",
     quarterReady: "Evidente gata pe trimestru",
     addExpense: "Adauga cheltuiala",
+    manualExpense: "Introducere manuala",
+    manualExpenseHint: "Adauga o cheltuiala in numerar sau alta cheltuiala fara fotografie. Lipsa fotografiei nu o marcheaza automat pentru verificare.",
+    manualExpenseNoPhoto: "Nu este atasata fotografia bonului. O poti adauga mai tarziu.",
+    addReceiptPhoto: "Adauga fotografia bonului",
     addIncome: "Adauga venit",
     photoDone: "Poza gata",
     amountNote: "Suma si nota",
@@ -1638,6 +1650,10 @@ Object.assign(COPY, {
     quarterly: "Квартально",
     quarterReady: "Записи готові до кварталу",
     addExpense: "Додати витрату",
+    manualExpense: "Ручне введення",
+    manualExpenseHint: "Додайте готівкову або іншу витрату без фото. Відсутність фото сама по собі не позначить запис для перевірки.",
+    manualExpenseNoPhoto: "Фото чека не додано. Його можна додати пізніше.",
+    addReceiptPhoto: "Додати фото чека",
     addIncome: "Додати дохід",
     photoDone: "Фото готове",
     amountNote: "Сума і опис",
@@ -1703,6 +1719,10 @@ Object.assign(COPY, {
     quarterly: "Ketvircio",
     quarterReady: "Ketvirciui paruosti irasai",
     addExpense: "Pridėti išlaidą",
+    manualExpense: "Įvesti rankiniu būdu",
+    manualExpenseHint: "Įveskite grynųjų pinigų ar kitas išlaidas be nuotraukos. Vien dėl nuotraukos nebuvimo įrašas nebus pažymėtas tikrinimui.",
+    manualExpenseNoPhoto: "Kvito nuotrauka nepridėta. Ją galėsite pridėti vėliau.",
+    addReceiptPhoto: "Pridėti kvito nuotrauką",
     addIncome: "Pridėti pajamas",
     photoDone: "Nuotrauka paruošta",
     amountNote: "Suma ir aprašas",
@@ -1768,6 +1788,10 @@ Object.assign(COPY, {
     quarterly: "Ceturksna",
     quarterReady: "Ceturksnim gatavi ieraksti",
     addExpense: "Pievienot izdevumu",
+    manualExpense: "Manuāls ieraksts",
+    manualExpenseHint: "Ievadiet skaidras naudas vai citus izdevumus bez fotoattēla. Fotoattēla trūkums vien neatzīmēs ierakstu pārbaudei.",
+    manualExpenseNoPhoto: "Čeka fotoattēls nav pievienots. To var pievienot vēlāk.",
+    addReceiptPhoto: "Pievienot čeka fotoattēlu",
     addIncome: "Pievienot ienākumu",
     photoDone: "Foto gatavs",
     amountNote: "Summa un piezīme",
@@ -1833,6 +1857,10 @@ Object.assign(COPY, {
     quarterly: "Trimestral",
     quarterReady: "Registros listos por trimestre",
     addExpense: "Añadir gasto",
+    manualExpense: "Entrada manual",
+    manualExpenseHint: "Añade un gasto en efectivo u otro gasto sin foto. La falta de foto no lo marcará automáticamente para revisión.",
+    manualExpenseNoPhoto: "No hay foto del recibo. Puedes añadirla más tarde.",
+    addReceiptPhoto: "Añadir foto del recibo",
     addIncome: "Añadir ingreso",
     photoDone: "Foto lista",
     amountNote: "Importe y nota",
@@ -1898,6 +1926,10 @@ Object.assign(COPY, {
     quarterly: "Тримесечно",
     quarterReady: "Записи готови за тримесечие",
     addExpense: "Добави разход",
+    manualExpense: "Ръчно въвеждане",
+    manualExpenseHint: "Добавете разход в брой или друг разход без снимка. Липсата на снимка сама по себе си няма да го маркира за преглед.",
+    manualExpenseNoPhoto: "Няма добавена снимка на касовата бележка. Можете да я добавите по-късно.",
+    addReceiptPhoto: "Добави снимка на касовата бележка",
     addIncome: "Добави приход",
     photoDone: "Снимката е готова",
     amountNote: "Сума и бележка",
@@ -6998,6 +7030,7 @@ function render() {
     home,
     businessTypeChoice,
     expenseChoice,
+    manualExpenseForm,
     receipt,
     incomeDetail,
     incomeForm,
@@ -8251,7 +8284,36 @@ function expenseChoice() {
           ${t("uploadFile")}
           <input class="hidden" type="file" name="expense_file" accept="image/*,.pdf">
         </label>
+        <button class="secondary manual-expense-button" type="button" data-action="manualExpense">${t("manualExpense")}</button>
       </div>
+    </section>
+  `);
+}
+
+function manualExpenseForm() {
+  shell(`
+    <section class="screen record-edit-screen">
+      ${topbar(t("manualExpense"), true)}
+      <div class="record-edit-title">
+        <strong>${t("manualExpense")}</strong>
+        <span>${t("expenses")}</span>
+      </div>
+      <form class="stack record-edit-form" id="manualExpenseForm">
+        <div class="record-edit-section">
+          <h2>${t("recordEditBusiness")}</h2>
+          <p class="record-assigned-pill">${t("assignedTo")}: <strong>${escapeHtml(selectedBusinessTypeLabel())}</strong></p>
+        </div>
+        <div class="record-edit-section">
+          <h2>${t("recordEditDetails")}</h2>
+          <p class="hint manual-expense-hint">${t("manualExpenseHint")}</p>
+          <label class="field"><span>${t("amount")}</span><input class="input" name="amount" inputmode="decimal" required></label>
+          <label class="field"><span>${t("currency")}</span><input type="hidden" name="currency" value="GBP"><div class="chip-row currency-chip-row">${currencyChips("GBP")}</div></label>
+          <label class="field"><span>${t("merchant")}</span><input class="input" name="merchant"></label>
+          <label class="field"><span>${t("date")}</span><input class="input" type="date" name="date" value="${dateInputValue()}" required></label>
+          <label class="field"><span>${t("category")}</span><div class="chip-row">${categoryChips("other")}</div></label>
+        </div>
+        <button class="primary receipt-save-button" type="submit">${t("save")}</button>
+      </form>
     </section>
   `);
 }
@@ -8263,6 +8325,7 @@ function receipt() {
   const showBusinessMove = shouldAskBusinessType() || Boolean(receipt.business_slot_id || receiptMeta.business_slot_id);
   const isDuplicate = recordPossibleDuplicate(receipt);
   const needsDateReview = recordDateNeedsReview(receipt);
+  const receiptPhoto = receiptImage(receipt);
   const assignedLabel = businessLabelForRecord(receipt) || businessSlotById(receiptMeta.business_slot_id || receipt.business_slot_id, receiptMeta.business_type || receipt.business_type)?.label || "";
   shell(`
     <section class="screen record-edit-screen">
@@ -8273,7 +8336,7 @@ function receipt() {
       </div>
       <div class="record-edit-section record-edit-photo">
         <h2>${t("recordEditReceipt")}</h2>
-        ${imagePreviewButton(receiptImage(receipt), "Receipt photo")}
+        ${receiptPhoto ? imagePreviewButton(receiptPhoto, "Receipt photo") : `<p class="hint">${t("manualExpenseNoPhoto")}</p>`}
       </div>
       ${isDuplicate || needsDateReview || receipt.ai_comment ? `
         <div class="record-edit-section record-edit-review">
@@ -8298,7 +8361,7 @@ function receipt() {
           <label class="field"><span>${t("category")}</span><div class="chip-row">${categoryChips(receipt.category)}</div></label>
         </div>
         <div class="record-edit-section">
-          <h2>${t("replaceReceiptPhoto")}</h2>
+          <h2>${receiptPhoto ? t("replaceReceiptPhoto") : t("addReceiptPhoto")}</h2>
           ${receiptReplaceField()}
         </div>
         <button class="primary receipt-save-button" type="submit">${isDuplicate ? t("saveDuplicate") : t("save")}</button>
@@ -10352,6 +10415,7 @@ document.addEventListener("click", async (event) => {
     return render();
   }
   if (action === "expenseChoice") return startRecordFlow("expense");
+  if (action === "manualExpense") return go("manualExpenseForm");
   if (action === "pickExpensePhoto") {
     if (expensePhotoPicker) expensePhotoPicker.value = "";
     return expensePhotoPicker?.click();
@@ -10806,6 +10870,51 @@ document.addEventListener("submit", async (event) => {
       write("rb_legal_agreed", "true");
       toast(t("saved"));
       return go("home");
+    }
+    if (form.id === "manualExpenseForm") {
+      const amount = normalizeAmount(data.amount);
+      if (!Number.isFinite(amount) || amount <= 0) throw new Error(t("validAmount"));
+      const category = form.querySelector("[data-category].active")?.dataset.category || "other";
+      const slot = businessSlotById(state.pendingBusinessSlotId || defaultBusinessSlotId(), normalizeBusinessType(state.pendingBusinessType || defaultBusinessType()));
+      const createdResponse = await api("/api/receipts", {
+        method: "POST",
+        body: JSON.stringify({
+          user_id: state.user.id,
+          amount,
+          currency: data.currency || "GBP",
+          merchant: data.merchant || null,
+          category,
+          date: data.date ? new Date(`${data.date}T12:00:00`).toISOString() : null,
+          is_client_expense: false,
+          business_type: slot.type,
+          business_slot_id: slot.id,
+          business_slot_label: slot.label,
+          language: state.language
+        })
+      });
+      const created = normalizeReceiptResponse(createdResponse);
+      saveRecordBusinessMeta(created.id, slot);
+      const localReceipt = upsertReceiptLocal(created, {
+        user_id: state.user.id,
+        amount,
+        currency: data.currency || "GBP",
+        merchant: data.merchant || "",
+        category,
+        is_client_expense: false,
+        business_type: slot.type,
+        business_slot_id: slot.id,
+        business_slot_label: slot.label,
+        timestamp: data.date ? new Date(`${data.date}T12:00:00`).toISOString() : created.timestamp,
+        source: "manual"
+      });
+      const receipts = await refreshReceiptsOnly();
+      const storedReceipt = receipts.find((item) => item.id === created.id) || localReceipt || created;
+      focusSummaryOnRecord(storedReceipt);
+      state.selected = storedReceipt.id || created.id;
+      state.screen = "receipt";
+      render();
+      showSuccessPing(t("saved"));
+      return;
     }
     if (form.id === "receiptForm") {
       const receipt = state.receipts.find((item) => item.id === state.selected) || {};
